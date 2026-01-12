@@ -1,53 +1,53 @@
 ---
-title: Creating a Conversation Session
-description: Learn how to create and use conversation sessions to interact with AI in PCode.
+title: 创建普通会话
+description: 了解如何在 PCode 中创建和使用普通会话与 AI 进行交互。
 sidebar_position: 30
 ---
 
-# Creating a Conversation Session
+# 创建普通会话
 
-This guide will show you how to create and use conversation sessions in PCode. Conversation sessions are the primary way to interact with AI for code analysis, review, planning, and modification tasks.
+本指南将向您展示如何在 PCode 中创建和使用普通会话。普通会话是与 AI 进行代码分析、审查、规划和修改任务的主要方式。
 
-## Prerequisites
+## 先决条件
 
-Before creating a conversation session, make sure you have:
+在创建普通会话之前，请确保您已经：
 
-- PCode installed and running (see [Installation](/docs/quick-start/installation))
-- A project created (see [Creating Your First Project](/docs/quick-start/create-first-project))
+- 安装并运行了 PCode（参见[安装指南](/docs/quick-start/installation)）
+- 创建了项目（参见[创建您的第一个项目](/docs/quick-start/create-first-project)）
 
-## Session Types in PCode
+## PCode 中的会话类型
 
-PCode supports two types of sessions, each designed for different workflows:
+PCode 支持两种会话类型，每种都针对不同的工作流程而设计：
 
-### Conversation Sessions (This Guide)
+### 普通会话（本指南）
 
-Conversation sessions are traditional chat-based interactions with AI. They are ideal for:
+普通会话是与 AI 的传统聊天式交互。它们适用于：
 
-- Asking questions about your codebase
-- Getting code explanations and summaries
-- Planning and designing implementations
-- Code review and feedback
-- Making code changes when in edit mode
+- 询问有关代码库的问题
+- 获取代码解释和摘要
+- 规划和设计实现
+- 代码审查和反馈
+- 在编辑模式下进行代码修改
 
-### Idea Sessions
+### 主意会话
 
-Idea sessions (covered in the next guide) provide a structured workflow for transforming ideas into executed changes. They include planning, breakdown, and execution phases.
+主意会话（在下一个指南中介绍）提供了一个结构化的工作流程，用于将想法转化为执行的变更。它们包括规划、分解和执行阶段。
 
-## Creating a Conversation Session
+## 创建普通会话
 
-Follow these steps to create a new conversation session:
+按照以下步骤创建一个新的普通会话：
 
-### Step 1: Locate the Session List
+### 步骤 1：找到会话列表
 
-On the left side of the PCode interface, you'll find the **Session List** panel. This displays all your existing sessions and allows you to create new ones.
+在 PCode 界面的左侧，您会找到**会话列表**面板。它显示您所有现有的会话，并允许您创建新会话。
 
-### Step 2: Click the "Add Chat" Button
+### 步骤 2：点击"添加聊天"按钮
 
-At the top of the Session List, click the **+ Add Chat** button. This will create a new conversation session.
+在会话列表的顶部，点击 **+ Add Chat**（添加聊天）按钮。这将创建一个新的普通会话。
 
-### Step 3: Start Chatting
+### 步骤 3：开始聊天
 
-A new conversation window will appear. You can now start typing your messages to interact with the AI.
+将出现一个新的对话窗口。您现在可以开始输入消息与 AI 交互。
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -55,196 +55,196 @@ A new conversation window will appear. You can now start typing your messages to
 ├─────────────────────────────────────────────────────────────┤
 │                                                              │
 │  ┌─────────────┐  ┌──────────────────────────────────────┐ │
-│  │  Sessions   │  │  Conversation Session                 │ │
+│  │  会话列表   │  │  普通会话                             │ │
 │  │             │  │                                       │ │
-│  │  [+ Add     │  │  User: How do I create a new API?    │ │
-│  │    Chat]    │  │                                       │ │
-│  │             │  │  AI: To create a new API in PCode...  │ │
+│  │  [+ 添加    │  │  用户: 如何创建一个新的 API？        │ │
+│  │    聊天]    │  │                                       │ │
+│  │             │  │  AI: 要在 PCode 中创建新的 API...     │ │
 │  │  ┌─────┐   │  │                                       │ │
-│  │  │Chat1│   │  │  ┌─────────────────────────────────┐  │ │
-│  │  └─────┘   │  │  │  Mode: [Read-Only | Edit]        │  │ │
+│  │  │聊天1│  │  │  ┌─────────────────────────────────┐  │ │
+│  │  └─────┘   │  │  │  模式: [只读 | 编辑]            │  │ │
 │  │             │  │  └─────────────────────────────────┘  │ │
 │  └─────────────┘  │                                       │ │
-│                   │  [Type your message...]               │ │
+│                   │  [输入您的消息...]                     │ │
 │                   └──────────────────────────────────────┘ │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## Understanding Modes
+## 了解模式
 
-PCode conversation sessions operate in two distinct modes with different capabilities and security implications.
+PCode 普通会话以两种不同的模式运行，具有不同的功能和安全含义。
 
-### Read-Only Mode (Default)
+### 只读模式（默认）
 
-When you create a new conversation session, it starts in **Read-Only Mode**. This is the safest mode for exploring and understanding your codebase.
+当您创建新的普通会话时，它以**只读模式**启动。这是探索和理解代码库的最安全模式。
 
-**What AI can do in Read-Only Mode:**
+**AI 在只读模式下可以做的事情：**
 
-- Read and analyze files in your project
-- Answer questions about code structure and logic
-- Provide explanations and summaries
-- Review code and suggest improvements
-- Plan implementation approaches
+- 读取和分析项目中的文件
+- 回答有关代码结构和逻辑的问题
+- 提供解释和摘要
+- 审查代码并提出改进建议
+- 规划实现方法
 
-**What AI cannot do in Read-Only Mode:**
+**AI 在只读模式下无法做的事情：**
 
-- Modify any files
-- Create new files
-- Delete existing files
-- Run commands that change your project
+- 修改任何文件
+- 创建新文件
+- 删除现有文件
+- 运行更改项目的命令
 
-### Edit Mode
+### 编辑模式
 
-**Edit Mode** gives the AI permission to modify files in your project. You must manually enable this mode when you want the AI to make changes.
+**编辑模式**授予 AI 修改项目中文件的权限。当您希望 AI 进行更改时，必须手动启用此模式。
 
-**How to enable Edit Mode:**
+**如何启用编辑模式：**
 
-1. Look for the mode indicator in the conversation window
-2. Click the toggle or switch to change from Read-Only to Edit
-3. The mode indicator will update to show Edit Mode is active
+1. 在对话窗口中查找模式指示器
+2. 点击切换或开关从只读模式更改为编辑模式
+3. 模式指示器将更新以显示编辑模式已激活
 
-**When to use Edit Mode:**
+**何时使用编辑模式：**
 
-- You want the AI to implement a feature
-- You need bug fixes applied
-- You want refactoring performed
-- You need new files created
+- 您希望 AI 实现某个功能
+- 您需要应用错误修复
+- 您希望执行重构
+- 您需要创建新文件
 
-:::caution Security Notice
-Edit Mode allows the AI to modify your files. Only enable this mode when you trust the AI's suggestions and want changes applied to your codebase.
+:::caution 安全提示
+编辑模式允许 AI 修改您的文件。仅当您信任 AI 的建议并希望对代码库应用更改时才启用此模式。
 :::
 
-### Mode Switching Flow
+### 模式切换流程
 
 ```
 ┌────────────────┐
-│ User starts    │
-│ conversation   │
+│ 用户启动       │
+│ 会话           │
 └────────┬───────┘
          │
          ▼
 ┌────────────────┐
-│ Default:       │
-│ Read-Only Mode │
-│ - AI can read  │
-│ - AI cannot    │
-│   modify       │
+│ 默认：         │
+│ 只读模式       │
+│ - AI 可以读取  │
+│ - AI 无法      │
+│   修改         │
 └────────┬───────┘
          │
-         │ User wants AI
-         │ to make changes?
+         │ 用户希望 AI
+         │ 进行更改？
          │
          ▼
     ┌────────┐
-    │ Switch │
-    │ to Edit│
-    │ Mode   │
+    │ 切换到 │
+    │ 编辑   │
+    │ 模式   │
     └───┬────┘
         │
         ▼
 ┌────────────────┐
-│ Edit Mode      │
-│ - AI can read  │
-│ - AI can       │
-│   modify files │
+│ 编辑模式       │
+│ - AI 可以读取  │
+│ - AI 可以      │
+│   修改文件     │
 └────────────────┘
 ```
 
-## Typical Use Cases
+## 典型使用场景
 
-### Analysis and Understanding
+### 分析和理解
 
-Use conversation sessions in Read-Only Mode to understand your codebase:
+在只读模式下使用普通会话来理解您的代码库：
 
-- **Project Summary**: "Give me an overview of this project's architecture"
-- **Code Explanation**: "Explain how the authentication system works"
-- **Architecture Questions**: "What design patterns are used in this codebase?"
+- **项目摘要**："给我这个项目架构的概述"
+- **代码解释**："解释身份验证系统是如何工作的"
+- **架构问题**："这个代码库中使用了哪些设计模式？"
 
-Example:
+示例：
 ```
-User: Can you explain how the user service handles registration?
+用户：你能解释一下用户服务如何处理注册吗？
 
-AI: The user service handles registration through a multi-step process...
-[Detailed explanation of the registration flow]
-```
-
-### Review and Feedback
-
-Get AI feedback on your code in Read-Only Mode:
-
-- **Code Review**: "Review this function for potential issues"
-- **Best Practices**: "Does this code follow best practices?"
-- **Bug Spotting**: "Are there any bugs in this implementation?"
-
-Example:
-```
-User: Review the UserService.cs file for potential issues
-
-AI: I've reviewed UserService.cs and found several areas for improvement...
-[Lists specific issues and suggestions]
+AI：用户服务通过多步骤流程处理注册...
+[注册流程的详细解释]
 ```
 
-### Planning and Design
+### 审查和反馈
 
-Use conversations to plan your work before implementation:
+在只读模式下获取有关代码的 AI 反馈：
 
-- **Task Breakdown**: "Break down the implementation of a new feature"
-- **Implementation Planning**: "What's the best approach to add caching?"
-- **Design Discussions**: "Should we use a factory or builder pattern here?"
+- **代码审查**："审查此函数是否存在潜在问题"
+- **最佳实践**："此代码是否遵循最佳实践？"
+- **发现错误**："此实现中是否有任何错误？"
 
-Example:
+示例：
 ```
-User: I need to add file upload functionality. Can you help me plan this?
+用户：审查 UserService.cs 文件是否存在潜在问题
 
-AI: Here's a suggested approach for implementing file uploads...
-[Step-by-step implementation plan]
-```
-
-### Code Changes (Edit Mode)
-
-When you're ready to make changes, switch to Edit Mode:
-
-- **Refactoring**: "Refactor this class to use dependency injection"
-- **Bug Fixes**: "Fix the null reference exception in this method"
-- **Feature Implementation**: "Implement the user profile update endpoint"
-
-Example:
-```
-User: [Switches to Edit Mode] Please add input validation to the CreateUser method
-
-AI: I'll add validation to the CreateUser method...
-[Applies the changes to the file]
+AI：我已经审查了 UserService.cs，发现了几个可以改进的地方...
+[列出具体问题和建议]
 ```
 
-## Comparison with Traditional IDEs
+### 规划和设计
 
-If you've used other AI-powered development tools, conversation sessions will feel familiar:
+使用会话在实施之前规划您的工作：
 
-- **VS Code Copilot Chat**: Similar chat-based interaction for code questions and assistance
-- **Cursor AI Chat**: Familiar conversation interface for AI-powered development
-- **GitHub Copilot**: Like asking Copilot questions about your codebase
+- **任务分解**："分解新功能的实现"
+- **实施规划**："添加缓存的最佳方法是什么？"
+- **设计讨论**："这里应该使用工厂模式还是建造者模式？"
 
-The key difference in PCode is the explicit **Read-Only vs Edit Mode** distinction, which gives you clear control over when AI can modify your files.
+示例：
+```
+用户：我需要添加文件上传功能。你能帮我规划一下吗？
 
-## Next Steps
+AI：这是实现文件上传的建议方法...
+[分步实施计划]
+```
 
-Now that you understand conversation sessions, continue exploring:
+### 代码更改（编辑模式）
 
-- **[Create Your First Project](/docs/quick-start/create-first-project)**: Set up your first project
-- **[Proposal Session](/docs/quick-start/proposal-session)**: Learn about the proposal workflow
+当您准备好进行更改时，切换到编辑模式：
 
-## Tips for Effective Conversations
+- **重构**："重构此类以使用依赖注入"
+- **错误修复**："修复此方法中的空引用异常"
+- **功能实现**："实现用户配置文件更新端点"
 
-1. **Be Specific**: Clear questions lead to better answers
-   - *Good*: "How does the authentication middleware validate tokens?"
-   - *Vague*: "How does auth work?"
+示例：
+```
+用户：[切换到编辑模式] 请向 CreateUser 方法添加输入验证
 
-2. **Provide Context**: Reference specific files or components
-   - *Good*: "In UserService.cs, line 45, why is the user checked twice?"
-   - *Vague*: "Why is there a duplicate check?"
+AI：我将向 CreateUser 方法添加验证...
+[将更改应用于文件]
+```
 
-3. **Start in Read-Only Mode**: Explore and understand before making changes
+## 与传统 IDE 的比较
 
-4. **Use Edit Mode Intentionally**: Switch only when you're ready to apply changes
+如果您使用过其他 AI 驱动的开发工具，普通会话会感觉很熟悉：
 
-5. **Iterate**: Use the conversation history to refine your understanding and approach
+- **VS Code Copilot 聊天**：类似的聊天式交互，用于代码问题和帮助
+- **Cursor AI 聊天**：熟悉的对话界面，用于 AI 驱动的开发
+- **GitHub Copilot**：就像向 Copilot 询问有关代码库的问题
+
+PCode 中的主要区别是明确的**只读模式与编辑模式**区别，这使您可以清楚地控制 AI 何时可以修改您的文件。
+
+## 后续步骤
+
+现在您了解了普通会话，请继续探索：
+
+- **[创建第一个项目](/docs/quick-start/create-first-project)**：设置您的第一个项目
+- **[提案会话](/docs/quick-start/proposal-session)**：了解提案工作流
+
+## 有效对话的技巧
+
+1. **具体明确**：清晰的问题会带来更好的答案
+   - *好*："身份验证中间件如何验证令牌？"
+   - *模糊*："身份验证是如何工作的？"
+
+2. **提供上下文**：引用特定的文件或组件
+   - *好*："在 UserService.cs 第 45 行，为什么用户被检查了两次？"
+   - *模糊*："为什么有重复检查？"
+
+3. **从只读模式开始**：在进行更改之前先探索和理解
+
+4. **有意使用编辑模式**：仅当您准备好应用更改时才切换
+
+5. **迭代**：使用对话历史来完善您理解和 approach

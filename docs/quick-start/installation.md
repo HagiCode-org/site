@@ -1,35 +1,35 @@
 ---
-title: Installation
-description: Learn how to install and set up PCode on your local machine.
+title: 安装指南
+description: 了解如何在本地机器上安装和设置 PCode。
 sidebar_position: 10
 ---
 
-# Installation
+# 安装指南
 
-This guide will walk you through the process of installing and setting up PCode on your local machine. PCode requires a few prerequisites to be installed before you can begin.
+本指南将引导您完成在本地机器上安装和设置 PCode 的过程。在开始安装之前，PCode 需要先安装一些先决条件。
 
-## Prerequisites
+## 先决条件
 
-Before installing PCode, make sure you have the following software installed on your system:
+在安装 PCode 之前，请确保您的系统上已安装以下软件：
 
-### PostgreSQL Database
+### PostgreSQL 数据库
 
-PCode uses PostgreSQL as its database. The recommended way to run PostgreSQL is through Docker.
+PCode 使用 PostgreSQL 作为其数据库。运行 PostgreSQL 的推荐方式是通过 Docker。
 
-#### Installing Docker
+#### 安装 Docker
 
-- **Windows**: Download and install [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/)
-- **macOS**: Download and install [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/)
-- **Linux**: Install Docker using your package manager
+- **Windows**: 下载并安装 [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/)
+- **macOS**: 下载并安装 [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/)
+- **Linux**: 使用您的包管理器安装 Docker
 
-```bash title="Install Docker on Ubuntu/Debian"
+```bash title="在 Ubuntu/Debian 上安装 Docker"
 sudo apt-get update
 sudo apt-get install docker.io docker-compose
 ```
 
-#### Running PostgreSQL with Docker
+#### 使用 Docker 运行 PostgreSQL
 
-Once Docker is installed, you can run PostgreSQL with the following command:
+安装 Docker 后，您可以使用以下命令运行 PostgreSQL：
 
 ```bash
 docker run --name pcode-postgres \
@@ -40,38 +40,38 @@ docker run --name pcode-postgres \
   -d postgres:16
 ```
 
-This command:
-- Creates a container named `pcode-postgres`
-- Sets the username to `postgres`
-- Sets the password to `postgres`
-- Creates a database named `pcode`
-- Maps port 5432 on your host to the container
+此命令：
+- 创建一个名为 `pcode-postgres` 的容器
+- 将用户名设置为 `postgres`
+- 将密码设置为 `postgres`
+- 创建一个名为 `pcode` 的数据库
+- 将主机上的端口 5432 映射到容器
 
-:::note Security Note
-The default credentials (`postgres/postgres`) are intended for local development only. For production environments, use strong, unique passwords.
+:::note 安全提示
+默认凭据 (`postgres/postgres`) 仅用于本地开发。对于生产环境，请使用强密码和唯一的密码。
 :::
 
-### Node.js and npm
+### Node.js 和 npm
 
-PCode requires Node.js version 18.0 or higher.
+PCode 需要 Node.js 18.0 或更高版本。
 
-#### Verify Node.js Installation
+#### 验证 Node.js 安装
 
 ```bash
 node --version
 ```
 
-If Node.js is not installed or your version is below 18.0:
+如果 Node.js 未安装或您的版本低于 18.0：
 
-- **Windows**: Download and install from [nodejs.org](https://nodejs.org/)
-- **macOS**: Using Homebrew: `brew install node`
-- **Linux**: Using your package manager:
+- **Windows**: 从 [nodejs.org](https://nodejs.org/) 下载并安装
+- **macOS**: 使用 Homebrew: `brew install node`
+- **Linux**: 使用您的包管理器：
 
 ```bash title="Ubuntu/Debian"
 sudo apt-get install nodejs npm
 ```
 
-#### Verify npm Installation
+#### 验证 npm 安装
 
 ```bash
 npm --version
@@ -79,13 +79,13 @@ npm --version
 
 ### OpenSpec CLI
 
-OpenSpec is a tool for managing proposals and specifications. Install it globally:
+OpenSpec 是一个用于管理提案和规范的工具。全局安装它：
 
 ```bash
 npm install -g @openspec/cli
 ```
 
-Verify the installation:
+验证安装：
 
 ```bash
 openspec --version
@@ -93,101 +93,101 @@ openspec --version
 
 ### Claude Code CLI
 
-Claude Code CLI is required for PCode's AI-powered features. Install it globally:
+PCode 的 AI 驱动功能需要 Claude Code CLI。全局安装它：
 
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
 
-Verify the installation:
+验证安装：
 
 ```bash
 claude --version
 ```
 
-## Verify Your Environment
+## 验证您的环境
 
-Before proceeding, use this script to verify all prerequisites are properly installed:
+在继续之前，使用此脚本验证所有先决条件是否已正确安装：
 
 ```bash title="check-environment.sh"
 #!/bin/bash
 
-echo "Checking PCode Prerequisites..."
+echo "检查 PCode 先决条件..."
 echo ""
 
-# Check Node.js
+# 检查 Node.js
 echo -n "Node.js: "
 if command -v node &> /dev/null; then
     NODE_VERSION=$(node --version)
     echo "✓ $NODE_VERSION"
 else
-    echo "✗ Not installed"
+    echo "✗ 未安装"
 fi
 
-# Check npm
+# 检查 npm
 echo -n "npm: "
 if command -v npm &> /dev/null; then
     NPM_VERSION=$(npm --version)
     echo "✓ $NPM_VERSION"
 else
-    echo "✗ Not installed"
+    echo "✗ 未安装"
 fi
 
-# Check Docker
+# 检查 Docker
 echo -n "Docker: "
 if command -v docker &> /dev/null; then
     DOCKER_VERSION=$(docker --version)
     echo "✓ $DOCKER_VERSION"
 else
-    echo "✗ Not installed"
+    echo "✗ 未安装"
 fi
 
-# Check PostgreSQL
+# 检查 PostgreSQL
 echo -n "PostgreSQL: "
 if docker ps --filter "name=pcode-postgres" --format "{{.Names}}" | grep -q "pcode-postgres"; then
-    echo "✓ Running (pcode-postgres container)"
+    echo "✓ 运行中 (pcode-postgres 容器)"
 else
-    echo "✗ Not running"
+    echo "✗ 未运行"
 fi
 
-# Check OpenSpec CLI
+# 检查 OpenSpec CLI
 echo -n "OpenSpec CLI: "
 if command -v openspec &> /dev/null; then
     OPENSPEC_VERSION=$(openspec --version)
     echo "✓ $OPENSPEC_VERSION"
 else
-    echo "✗ Not installed"
+    echo "✗ 未安装"
 fi
 
-# Check Claude Code CLI
+# 检查 Claude Code CLI
 echo -n "Claude Code CLI: "
 if command -v claude &> /dev/null; then
     CLAUDE_VERSION=$(claude --version)
     echo "✓ $CLAUDE_VERSION"
 else
-    echo "✗ Not installed"
+    echo "✗ 未安装"
 fi
 
 echo ""
-echo "Environment check complete!"
+echo "环境检查完成！"
 ```
 
-Save this script as `check-environment.sh`, make it executable, and run it:
+将此脚本保存为 `check-environment.sh`，使其可执行并运行：
 
 ```bash
 chmod +x check-environment.sh
 ./check-environment.sh
 ```
 
-## Deploy the Software Package
+## 部署软件包
 
-PCode is distributed as a software package that you need to download and extract to your local machine.
+PCode 以软件包的形式分发，您需要下载并解压到本地机器。
 
 ### Windows
 
-1. Download the PCode package (`.zip` format)
-2. Extract the package to your desired location, for example: `D:\code\pcode`
-3. Open a Command Prompt or PowerShell and navigate to the extracted directory:
+1. 下载 PCode 软件包（`.zip` 格式）
+2. 将软件包解压到所需位置，例如：`D:\code\pcode`
+3. 打开命令提示符或 PowerShell 并导航到解压目录：
 
 ```powershell
 cd D:\code\pcode
@@ -195,35 +195,35 @@ cd D:\code\pcode
 
 ### Linux
 
-1. Download the PCode package (`.tar.gz` format)
-2. Extract the package:
+1. 下载 PCode 软件包（`.tar.gz` 格式）
+2. 解压软件包：
 
 ```bash
 tar -xzf pcode-package.tar.gz
 cd pcode
 ```
 
-Or use a graphical archive manager to extract to your desired location.
+或使用图形化解压工具将其解压到所需位置。
 
 ### macOS
 
-1. Download the PCode package (`.tar.gz` format)
-2. Extract the package:
+1. 下载 PCode 软件包（`.tar.gz` 格式）
+2. 解压软件包：
 
 ```bash
 tar -xzf pcode-package.tar.gz
 cd pcode
 ```
 
-Or double-click the archive in Finder to extract it.
+或在 Finder 中双击压缩包进行解压。
 
-## Configure Database Connection
+## 配置数据库连接
 
-PCode needs to connect to your PostgreSQL database. The database connection is configured in the `appsettings.Production.json` file.
+PCode 需要连接到您的 PostgreSQL 数据库。数据库连接在 `appsettings.Production.json` 文件中配置。
 
-1. Navigate to the PCode directory
-2. Open `appsettings.Production.json` in a text editor
-3. Locate the connection string section:
+1. 导航到 PCode 目录
+2. 在文本编辑器中打开 `appsettings.Production.json`
+3. 找到连接字符串部分：
 
 ```json
 {
@@ -233,152 +233,152 @@ PCode needs to connect to your PostgreSQL database. The database connection is c
 }
 ```
 
-4. Update the connection string if you're using different credentials:
-   - `Host`: Your PostgreSQL host (default: `127.0.0.1`)
-   - `Port`: Your PostgreSQL port (default: `5432`)
-   - `Database`: Your database name (default: `pcode`)
-   - `Username`: Your PostgreSQL username (default: `postgres`)
-   - `Password`: Your PostgreSQL password (default: `postgres`)
+4. 如果您使用不同的凭据，请更新连接字符串：
+   - `Host`: 您的 PostgreSQL 主机（默认：`127.0.0.1`）
+   - `Port`: 您的 PostgreSQL 端口（默认：`5432`）
+   - `Database`: 您的数据库名称（默认：`pcode`）
+   - `Username`: 您的 PostgreSQL 用户名（默认：`postgres`）
+   - `Password`: 您的 PostgreSQL 密码（默认：`postgres`）
 
 :::tip
-If you're using the Docker PostgreSQL command from above, the default configuration will work without any changes.
+如果您使用上面的 Docker PostgreSQL 命令，默认配置将无需任何更改即可工作。
 :::
 
-## Start the Service
+## 启动服务
 
-PCode provides startup scripts for different platforms.
+PCode 为不同平台提供了启动脚本。
 
 ### Windows
 
-Use the provided batch file to start the service:
+使用提供的批处理文件启动服务：
 
 ```powershell
 start.bat
 ```
 
-This script will:
-1. Check if PostgreSQL is running
-2. Apply database migrations
-3. Start the PCode service
-4. Display the access URL
+此脚本将：
+1. 检查 PostgreSQL 是否正在运行
+2. 应用数据库迁移
+3. 启动 PCode 服务
+4. 显示访问 URL
 
 ### Linux/macOS
 
-Use the provided shell script to start the service:
+使用提供的 shell 脚本启动服务：
 
 ```bash
 chmod +x start.sh
 ./start.sh
 ```
 
-This script will:
-1. Check if PostgreSQL is running
-2. Apply database migrations
-3. Start the PCode service
-4. Display the access URL
+此脚本将：
+1. 检查 PostgreSQL 是否正在运行
+2. 应用数据库迁移
+3. 启动 PCode 服务
+4. 显示访问 URL
 
-### Troubleshooting Startup
+### 启动故障排除
 
-If the service fails to start:
+如果服务启动失败：
 
-1. **Check PostgreSQL is running**:
+1. **检查 PostgreSQL 是否正在运行**：
    ```bash
    docker ps | grep pcode-postgres
    ```
 
-2. **Start PostgreSQL if stopped**:
+2. **如果已停止则启动 PostgreSQL**：
    ```bash
    docker start pcode-postgres
    ```
 
-3. **Check the logs** for detailed error messages:
+3. **查看日志**以获取详细的错误消息：
    ```bash
    tail -f logs/pcode.log
    ```
 
-4. **Verify your connection string** in `appsettings.Production.json`
+4. **验证连接字符串**在 `appsettings.Production.json` 中
 
-5. **Check port availability**: Ensure port `34567` is not in use by another application
+5. **检查端口可用性**：确保端口 `34567` 未被其他应用程序使用
 
-## Access the Interface
+## 访问界面
 
-Once the service is running, you can access the PCode web interface through your browser.
+服务运行后，您可以通过浏览器访问 PCode Web 界面。
 
-### Open in Browser
+### 在浏览器中打开
 
-Navigate to:
+导航到：
 
 ```
 http://127.0.0.1:34567
 ```
 
-The PCode interface should load, displaying the main dashboard.
+PCode 界面应该会加载，显示主仪表板。
 
-### Default Access
+### 默认访问
 
 - **URL**: `http://127.0.0.1:34567`
-- **Port**: `34567` (default)
-- **Host**: `127.0.0.1` (localhost)
+- **端口**: `34567`（默认）
+- **主机**: `127.0.0.1`（本地主机）
 
 :::note
-The port `34567` is the default port used by PCode. If you need to change it, you can modify the configuration in `appsettings.Production.json`.
+端口 `34567` 是 PCode 使用的默认端口。如果您需要更改它，可以在 `appsettings.Production.json` 中修改配置。
 :::
 
-### Stopping the Service
+### 停止服务
 
-To stop the PCode service:
+要停止 PCode 服务：
 
-- **Windows**: Press `Ctrl+C` in the command window where the service is running
-- **Linux/macOS**: Press `Ctrl+C` in the terminal where the service is running, or use:
+- **Windows**: 在运行服务的命令窗口中按 `Ctrl+C`
+- **Linux/macOS**: 在运行服务的终端中按 `Ctrl+C`，或使用：
   ```bash
   ./stop.sh
   ```
 
-To stop PostgreSQL:
+要停止 PostgreSQL：
 
 ```bash
 docker stop pcode-postgres
 ```
 
-## Next Steps
+## 后续步骤
 
-Now that you have PCode installed and running, continue to [Create Your First Project](/docs/quick-start/create-first-project) to start using PCode.
+现在您已经安装并运行了 PCode，请继续[创建第一个项目](/docs/quick-start/create-first-project)以开始使用 PCode。
 
-## Troubleshooting
+## 故障排除
 
-### PostgreSQL Connection Issues
+### PostgreSQL 连接问题
 
-If you see connection errors:
+如果您看到连接错误：
 
-1. Verify PostgreSQL is running: `docker ps | grep pcode-postgres`
-2. Check the connection string in `appsettings.Production.json`
-3. Ensure port `5432` is not blocked by a firewall
+1. 验证 PostgreSQL 是否正在运行：`docker ps | grep pcode-postgres`
+2. 检查 `appsettings.Production.json` 中的连接字符串
+3. 确保端口 `5432` 未被防火墙阻止
 
-### Port Already in Use
+### 端口已被占用
 
-If port `34567` is already in use:
+如果端口 `34567` 已被占用：
 
-1. Find the process using the port:
+1. 查找使用该端口的进程：
    ```bash
    lsof -i :34567  # Linux/macOS
    netstat -ano | findstr :34567  # Windows
    ```
-2. Either stop the conflicting process or change the port in the configuration
+2. 停止冲突的进程或在配置中更改端口
 
-### Migration Failures
+### 迁移失败
 
-If database migrations fail:
+如果数据库迁移失败：
 
-1. Drop and recreate the database:
+1. 删除并重新创建数据库：
    ```bash
    docker exec -it pcode-postgres psql -U postgres -c "DROP DATABASE IF EXISTS pcode;"
    docker exec -it pcode-postgres psql -U postgres -c "CREATE DATABASE pcode;"
    ```
-2. Run the startup script again
+2. 再次运行启动脚本
 
-### Need More Help?
+### 需要更多帮助？
 
-If you encounter issues not covered here:
+如果您遇到此处未涵盖的问题：
 
-1. Check the [GitHub Issues](https://github.com/pcode/pcode-docs/issues) for similar problems
-2. Visit our [community forum](https://github.com/pcode/pcode-docs/discussions) for assistance
+1. 查看 [GitHub Issues](https://github.com/pcode/pcode-docs/issues) 寻找类似问题
+2. 访问我们的[社区论坛](https://github.com/pcode/pcode-docs/discussions)寻求帮助

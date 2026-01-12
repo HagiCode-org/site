@@ -1,7 +1,7 @@
 # Project Context
 
 ## Purpose
-PCode Documentation is a comprehensive documentation site built with Docusaurus 3.x, designed to provide user guides, feature documentation, and technical specifications for the PCode project. The site supports bilingual content (English and Simplified Chinese) and serves as the primary source of truth for PCode users and contributors.
+PCode Documentation is a comprehensive documentation site built with Docusaurus 3.x, designed to provide user guides, feature documentation, and technical specifications for the PCode project. The site supports Chinese (Simplified) as the default and only language and serves as the primary source of truth for PCode users and contributors.
 
 ## Tech Stack
 - **Docusaurus 3.x** - Static site generator and documentation framework
@@ -23,8 +23,7 @@ PCode Documentation is a comprehensive documentation site built with Docusaurus 
 ### Architecture Patterns
 
 **Documentation Structure**
-- `docs/` - Main documentation content (English/default locale)
-- `i18n/zh-CN/` - Chinese translations
+- `docs/` - Main documentation content (Chinese/Simplified)
 - `blog/` - Blog posts with date-based naming (`YYYY-MM-DD-title.md`)
 - `static/` - Static assets (images, favicons)
 - `src/` - Custom React components and styles
@@ -36,10 +35,11 @@ PCode Documentation is a comprehensive documentation site built with Docusaurus 
 - Generated index pages for category landing pages
 
 **Internationalization**
-- Default locale: English (`en`)
-- Supported locales: English (`en`), Simplified Chinese (`zh-CN`)
-- Translation files in `i18n/{locale}/docusaurus-plugin-content-docs/current/`
-- Use `npm run write-translations -- --locale <locale>` to extract translatable content
+- Default locale: Simplified Chinese (`zh-CN`)
+- Supported locales: Single locale only (`zh-CN`)
+- All content is in Chinese and located in `docs/`
+- No i18n configuration (single-language site)
+- Language switcher has been removed from navbar
 
 ### Testing Strategy
 - **Local Development**: Always test with `npm start` before committing
@@ -111,11 +111,55 @@ npm start              # Start development server (localhost:3000)
 npm run build          # Create production build
 npm run serve          # Serve production build locally
 npm run typecheck      # TypeScript type checking
-npm run write-translations  # Extract translatable content
 npm run clear          # Clear Docusaurus cache
 ```
 
 ## Deployment Considerations
 - Static site deployment compatible (GitHub Pages, Netlify, Vercel)
 - Build output directory: `build/`
-- All locales are built during `npm run build`
+- Site is single-language (Chinese only)
+
+## Rollback Instructions
+
+To restore bilingual support (English + Chinese) if needed:
+
+1. Restore the i18n directory from git history:
+   ```bash
+   git checkout b0f4586^ -- i18n/
+   ```
+
+2. Move Chinese content back to i18n:
+   ```bash
+   mv docs/quick-start/ i18n/zh-CN/docusaurus-plugin-content-docs/current/
+   ```
+
+3. Restore English content from git history:
+   ```bash
+   git checkout b0f4586^ -- docs/
+   ```
+
+4. Restore docusaurus.config.ts i18n configuration:
+   ```typescript
+   i18n: {
+     defaultLocale: 'en',
+     locales: ['en', 'zh-CN'],
+     localeConfigs: {
+       en: { label: 'English' },
+       'zh-CN': { label: '简体中文' },
+     },
+   },
+   ```
+
+5. Add language switcher back to navbar:
+   ```typescript
+   {
+     type: 'localeDropdown',
+     position: 'right',
+   },
+   ```
+
+6. Clear cache and rebuild:
+   ```bash
+   npm run clear
+   npm run build
+   ```

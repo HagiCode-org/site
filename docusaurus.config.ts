@@ -14,19 +14,6 @@ const config: Config = {
 
   onBrokenLinks: 'throw',
 
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'zh-CN'],
-    localeConfigs: {
-      en: {
-        label: 'English',
-      },
-      'zh-CN': {
-        label: '简体中文',
-      },
-    },
-  },
-
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -65,10 +52,6 @@ const config: Config = {
           label: 'Docs',
         },
         { to: '/blog', label: 'Blog', position: 'left' },
-        {
-          type: 'localeDropdown',
-          position: 'right',
-        },
         {
           href: 'https://github.com/pcode/pcode-docs',
           label: 'GitHub',

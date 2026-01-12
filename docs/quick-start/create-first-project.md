@@ -1,29 +1,29 @@
 ---
-title: Create Your First Project
-description: Learn how to create and configure your first project in PCode, from repository preparation to OpenSpec initialization.
+title: 创建您的第一个项目
+description: 学习如何在 PCode 中创建和配置您的第一个项目，从仓库准备到 OpenSpec 初始化。
 sidebar_position: 20
 ---
 
-# Create Your First Project
+# 创建您的第一个项目
 
-Now that you have PCode installed and running, let's create your first project. This guide will walk you through the complete process of setting up a project in PCode, from preparing your repository to initializing OpenSpec.
+现在您已经安装并运行了 PCode，让我们创建您的第一个项目。本指南将引导您完成在 PCode 中设置项目的完整过程，从准备仓库到初始化 OpenSpec。
 
-## Prerequisites
+## 先决条件
 
-Before creating your first project, make sure you have:
+在创建第一个项目之前，请确保您具备：
 
-- PCode installed and running (see [Installation Guide](/docs/quick-start/installation))
-- A code repository you want to manage with PCode
-- Git installed and configured
-- Basic familiarity with command line operations
+- 已安装并运行的 PCode（参见[安装指南](/docs/quick-start/installation)）
+- 一个想要使用 PCode 管理的代码仓库
+- 已安装并配置 Git
+- 对命令行操作的基本了解
 
-## Step 1: Prepare Your Repository
+## 步骤 1：准备您的仓库
 
-Before adding a project to PCode, ensure your repository is ready.
+在将项目添加到 PCode 之前，请确保您的仓库已准备就绪。
 
-### Initialize Git (if not already done)
+### 初始化 Git（如果尚未完成）
 
-If your project is not yet a Git repository, initialize it:
+如果您的项目还不是 Git 仓库，请初始化它：
 
 ```bash
 cd /path/to/your/project
@@ -32,9 +32,9 @@ git add .
 git commit -m "Initial commit"
 ```
 
-### Remote Repository Setup
+### 远程仓库设置
 
-If you're using a remote repository (GitHub, GitLab, etc.), add the remote:
+如果您使用远程仓库（GitHub、GitLab 等），请添加远程仓库：
 
 ```bash
 git remote add origin https://github.com/your-username/your-repo.git
@@ -42,99 +42,99 @@ git push -u origin main
 ```
 
 :::tip
-Having your repository on a remote platform like GitHub is recommended for better collaboration and backup.
+建议将您的仓库放在像 GitHub 这样的远程平台上，以便更好地协作和备份。
 :::
 
-## Step 2: Add Project in PCode Interface
+## 步骤 2：在 PCode 界面中添加项目
 
-Now let's add your project to the PCode interface.
+现在让我们将项目添加到 PCode 界面。
 
-### Access the Projects Page
+### 访问项目页面
 
-1. Open your browser and navigate to `http://127.0.0.1:34567`
-2. Click on **Projects** in the navigation sidebar
-3. Click the **Add Project** button
+1. 在浏览器中导航到 `http://127.0.0.1:34567`
+2. 点击导航侧边栏中的 **Projects**（项目）
+3. 点击 **Add Project**（添加项目）按钮
 
-### Configure Project Settings
+### 配置项目设置
 
-Fill in the project information:
+填写项目信息：
 
-| Field | Description | Example |
-|-------|-------------|---------|
-| **Name** | A friendly name for your project | `My Website` |
-| **Repository Path** | Local path to your repository | `/Users/john/projects/my-website` |
-| **Description** | Optional project description | `A personal website built with React` |
-| **Tags** | Optional tags for organization | `web, frontend, react` |
+| 字段 | 描述 | 示例 |
+|------|------|------|
+| **名称** | 项目的友好名称 | `我的网站` |
+| **仓库路径** | 仓库的本地路径 | `/Users/john/projects/my-website` |
+| **描述** | 可选的项目描述 | `使用 React 构建的个人网站` |
+| **标签** | 可选的组织标签 | `web, 前端, react` |
 
 :::note
-The repository path must point to a valid Git repository on your local machine.
+仓库路径必须指向本地计算机上有效的 Git 仓库。
 :::
 
-### Save the Project
+### 保存项目
 
-After filling in the required information:
+填写完必填信息后：
 
-1. Click **Save** to add the project
-2. PCode will verify the repository path
-3. Your project will appear in the projects list
+1. 点击 **Save**（保存）添加项目
+2. PCode 将验证仓库路径
+3. 您的项目将出现在项目列表中
 
-## Step 3: Initialize OpenSpec
+## 步骤 3：初始化 OpenSpec
 
-OpenSpec is PCode's proposal and specification management system. Initializing OpenSpec in your project creates the necessary structure for managing changes.
+OpenSpec 是 PCode 的提案和规范管理系统。在项目中初始化 OpenSpec 会创建管理变更所需的必要结构。
 
-### Navigate to Project Details
+### 导航到项目详情
 
-1. Click on your newly created project in the projects list
-2. You'll see the project overview page
+1. 在项目列表中点击您新创建的项目
+2. 您将看到项目概览页面
 
-### Run OpenSpec Initialization
+### 运行 OpenSpec 初始化
 
-In the project overview, locate the **OpenSpec** section:
+在项目概览中，找到 **OpenSpec** 部分：
 
-1. Click **Initialize OpenSpec**
-2. PCode will create the following structure in your repository:
+1. 点击 **Initialize OpenSpec**（初始化 OpenSpec）
+2. PCode 将在您的仓库中创建以下结构：
 
 ```
 your-repository/
 └── openspec/
-    ├── project.md          # Project metadata and configuration
-    ├── changes/            # Directory for change proposals
+    ├── project.md          # 项目元数据和配置
+    ├── changes/            # 变更提案目录
     │   └── .gitkeep
-    ├── specs/              # Directory for specifications (optional)
+    ├── specs/              # 规范目录（可选）
     │   └── .gitkeep
-    └── AGENTS.md           # OpenSpec agent instructions
+    └── AGENTS.md           # OpenSpec 代理指令
 ```
 
-### Commit the OpenSpec Structure
+### 提交 OpenSpec 结构
 
-After initialization, commit the new files to your repository:
+初始化后，将新文件提交到您的仓库：
 
 ```bash
 cd /path/to/your/project
 git add openspec/
-git commit -m "Initialize OpenSpec structure"
+git commit -m "初始化 OpenSpec 结构"
 ```
 
 :::tip
-Keep the OpenSpec structure in version control to track all proposals and specifications.
+将 OpenSpec 结构保留在版本控制中，以跟踪所有提案和规范。
 :::
 
-## Step 4: Optimize project.md
+## 步骤 4：优化 project.md
 
-The `openspec/project.md` file contains important metadata about your project. Let's customize it for your needs.
+`openspec/project.md` 文件包含有关您项目的重要元数据。让我们根据您的需求进行自定义。
 
-### Edit project.md
+### 编辑 project.md
 
-Open `openspec/project.md` in your text editor:
+在文本编辑器中打开 `openspec/project.md`：
 
 ```bash
 cd /path/to/your/project
-code openspec/project.md  # or use your preferred editor
+code openspec/project.md  # 或使用您首选的编辑器
 ```
 
-### Understanding project.md Structure
+### 了解 project.md 结构
 
-The file contains the following sections:
+该文件包含以下部分：
 
 ```markdown
 ---
@@ -145,30 +145,30 @@ version: 0.1.0
 created: YYYY-MM-DD
 ---
 
-# Project Metadata
+# 项目元数据
 
-This file contains essential information about your project...
+此文件包含有关您项目的基本信息...
 ```
 
-### Customize for Your Project
+### 为您的项目自定义
 
-Update the fields to match your project:
+更新字段以匹配您的项目：
 
-| Field | Description | Example |
-|-------|-------------|---------|
-| **id** | Unique identifier (kebab-case) | `my-awesome-website` |
-| **name** | Display name | `My Awesome Website` |
-| **description** | Short description | `A personal website showcasing my work` |
-| **version** | Current version | `0.1.0` |
-| **tags** | Project tags | `web, personal, portfolio` |
+| 字段 | 描述 | 示例 |
+|------|------|------|
+| **id** | 唯一标识符（短横线命名法） | `my-awesome-website` |
+| **name** | 显示名称 | `我的精彩网站` |
+| **description** | 简短描述 | `展示我工作的个人网站` |
+| **version** | 当前版本 | `0.1.0` |
+| **tags** | 项目标签 | `web, 个人, 作品集` |
 
-### Example project.md
+### project.md 示例
 
 ```markdown
 ---
 id: my-portfolio-website
-name: My Portfolio Website
-description: A personal portfolio website built with Next.js and Tailwind CSS
+name: 我的作品集网站
+description: 使用 Next.js 和 Tailwind CSS 构建的个人作品集网站
 version: 0.1.0
 created: 2025-01-12
 tags:
@@ -178,86 +178,86 @@ tags:
   - tailwind
 ---
 
-# Project Metadata
+# 项目元数据
 
-This project is a personal portfolio website showcasing my development work...
+该项目是一个展示我开发工作的个人作品集网站...
 ```
 
-### Save and Commit
+### 保存并提交
 
-After customizing:
+自定义后：
 
 ```bash
 git add openspec/project.md
-git commit -m "Customize project metadata"
+git commit -m "自定义项目元数据"
 ```
 
-## Verify Your Setup
+## 验证您的设置
 
-Let's verify everything is working correctly.
+让我们验证一切是否正常工作。
 
-### Check Project in PCode
+### 在 PCode 中检查项目
 
-1. Go back to the PCode interface
-2. Navigate to your project
-3. Verify the OpenSpec section shows as initialized
-4. Check that the project metadata is displayed correctly
+1. 返回 PCode 界面
+2. 导航到您的项目
+3. 验证 OpenSpec 部分显示为已初始化
+4. 检查项目元数据是否正确显示
 
-### Create Your First Proposal (Optional)
+### 创建您的第一个提案（可选）
 
-To test the OpenSpec workflow, try creating a simple proposal:
+要测试 OpenSpec 工作流程，请尝试创建一个简单的提案：
 
-1. In your project, click **New Proposal**
-2. Enter a title: "Add About page"
-3. Describe the change you want to make
-4. Save the proposal
-5. Use the CLI commands shown to manage the proposal
+1. 在您的项目中，点击 **New Proposal**（新建提案）
+2. 输入标题："添加关于页面"
+3. 描述您想要进行的变更
+4. 保存提案
+5. 使用显示的 CLI 命令管理提案
 
 :::tip
-See [Proposal Session](/docs/quick-start/proposal-session) for more details on managing proposals.
+有关管理提案的更多详细信息，请参阅 [提案会话](/docs/quick-start/proposal-session)。
 :::
 
-## Common Issues
+## 常见问题
 
-### Repository Path Not Found
+### 找不到仓库路径
 
-If PCode can't find your repository:
+如果 PCode 找不到您的仓库：
 
-1. **Verify the path** is correct and absolute
-2. **Check permissions** - PCode needs read access to the directory
-3. **Ensure it's a Git repository** - run `git status` in the directory
+1. **验证路径**是否正确且为绝对路径
+2. **检查权限** - PCode 需要目录的读取权限
+3. **确保它是 Git 仓库** - 在目录中运行 `git status`
 
-### OpenSpec Initialization Fails
+### OpenSpec 初始化失败
 
-If initialization fails:
+如果初始化失败：
 
-1. **Check directory permissions** - ensure you can write to the repository
-2. **Verify Git is initialized** - run `git status` in your project directory
-3. **Check for existing openspec folder** - remove it if it exists and try again
+1. **检查目录权限** - 确保您可以写入仓库
+2. **验证 Git 已初始化** - 在项目目录中运行 `git status`
+3. **检查现有的 openspec 文件夹** - 如果存在则删除它并重试
 
-### Project.md Not Updating
+### Project.md 未更新
 
-If changes to `project.md` aren't reflected:
+如果对 `project.md` 的更改未反映：
 
-1. **Save the file** - ensure your editor saved the changes
-2. **Refresh the page** in PCode
-3. **Commit the changes** - PCode may only track committed changes
+1. **保存文件** - 确保编辑器保存了更改
+2. **在 PCode 中刷新页面**
+3. **提交更改** - PCode 可能只跟踪已提交的更改
 
-## Next Steps
+## 后续步骤
 
-Congratulations! You've created your first project in PCode. Here are some recommended next steps:
+恭喜！您已经在 PCode 中创建了第一个项目。以下是一些推荐的后续步骤：
 
-- **[Conversation Session](/docs/quick-start/conversation-session)** - Learn how to work with AI-powered coding sessions
-- **[Proposal Session](/docs/quick-start/proposal-session)** - Deep dive into managing proposals
+- **[对话会话](/docs/quick-start/conversation-session)** - 了解如何使用 AI 驱动的编码会话
+- **[提案会话](/docs/quick-start/proposal-session)** - 深入了解管理提案
 
-## Summary
+## 总结
 
-In this guide, you learned how to:
+在本指南中，您学习了如何：
 
-1. Prepare your repository for PCode
-2. Add a project through the PCode interface
-3. Initialize OpenSpec in your project
-4. Customize `project.md` with your project metadata
-5. Verify your setup
+1. 为 PCode 准备仓库
+2. 通过 PCode 界面添加项目
+3. 在项目中初始化 OpenSpec
+4. 使用项目元数据自定义 `project.md`
+5. 验证您的设置
 
-You're now ready to use PCode's powerful features for your development workflow!
+现在您已经准备好将 PCode 的强大功能用于您的开发工作流程！
