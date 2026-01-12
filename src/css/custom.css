@@ -1,0 +1,87 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: rgb(33, 175, 144);
+  --ifm-color-primary-darker: rgb(31, 165, 136);
+  --ifm-color-primary-darkest: rgb(26, 136, 112);
+  --ifm-color-primary-light: rgb(70, 203, 174);
+  --ifm-color-primary-lighter: rgb(92, 230, 203);
+  --ifm-color-primary-lightest: rgb(120, 253, 231);
+  --ifm-code-font-size: 95%;
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --ifm-font-size-base: 16px;
+  --ifm-spacing-horizontal: 2rem;
+  --ifm-spacing-horizontal-vertical: 1.5rem;
+}
+
+/* Dark theme overrides */
+[data-theme='dark'] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: rgb(26, 136, 112);
+  --ifm-color-primary-darker: rgb(24, 128, 106);
+  --ifm-color-primary-darkest: rgb(20, 105, 87);
+  --ifm-color-primary-light: rgb(66, 212, 181);
+  --ifm-color-primary-lighter: rgb(87, 230, 206);
+  --ifm-color-primary-lightest: rgb(119, 253, 231);
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Custom styles */
+.hero {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.hero__title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.hero__subtitle {
+  font-size: 1.5rem;
+  color: var(--ifm-color-secondary);
+  margin-bottom: 2rem;
+}
+
+.hero__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Code block styling */
+.theme-code-block {
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Admonition styling */
+.admonition {
+  margin: 1.5rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 996px) {
+  .hero {
+    padding: 2rem 0;
+  }
+
+  .hero__title {
+    font-size: 2rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.25rem;
+  }
+}
