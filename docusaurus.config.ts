@@ -35,7 +35,10 @@ const config: Config = {
       } satisfies PresetOptions,
     ],
   ],
-
+  themes: ['@docusaurus/theme-mermaid'],
+  markdown: {
+    mermaid: true,
+  },
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
@@ -85,6 +88,12 @@ const config: Config = {
     },
     prism: {
       additionalLanguages: ['bash', 'csharp', 'fsharp', 'powershell'],
+    },
+    mermaid: {
+      theme: {
+        light: 'base',
+        dark: 'dark',
+      },
     },
   },
 };
