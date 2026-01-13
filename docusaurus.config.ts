@@ -43,10 +43,6 @@ const config: Config = {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'PCode Docs',
-      logo: {
-        alt: 'PCode Logo',
-        src: 'img/logo.svg',
-      },
       items: [
         {
           type: 'docSidebar',

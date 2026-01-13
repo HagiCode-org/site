@@ -46,6 +46,8 @@
     rgba(108, 92, 231, 0.02) 50%,
     var(--ifm-background-color) 100%
   );
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Animated background mesh */
@@ -62,11 +64,12 @@
     radial-gradient(ellipse at 50% 50%, rgba(162, 155, 254, 0.06) 0%, transparent 50%);
   animation: meshShift 20s ease-in-out infinite;
   pointer-events: none;
+  z-index: 0;
 }
 
 @keyframes meshShift {
-  0%, 100% { transform: scale(1) rotate(0deg); }
-  50% { transform: scale(1.1) rotate(5deg); }
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
 }
 
 .showcaseHeader {
@@ -121,6 +124,8 @@
   gap: 3rem;
   position: relative;
   z-index: 1;
+  width: 100%;
+  max-width: 100%;
 }
 
 .featureZone {
@@ -131,6 +136,9 @@
   background: var(--ifm-background-surface-color);
   border: 2px solid transparent;
   transition: all var(--zone-transition);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Zone-specific themes */
@@ -197,6 +205,9 @@
   z-index: 1;
   min-height: 500px;
   align-items: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* ==========================================================================
