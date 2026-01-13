@@ -1,0 +1,23 @@
+## 1. Implementation
+
+- [x] 1.1 在 `docs/quick-start/installation.md` 的"部署软件包"章节后添加新的"软件包结构"小节标题
+- [x] 1.2 导入 Tabs 和 TabItem 组件（如果尚未导入）
+- [x] 1.3 使用 Tabs 组件创建三个平台标签页（Windows、macOS、Linux）
+- [x] 1.4 在每个平台标签页中添加完整的目录结构 ASCII 树状图，包括：
+  - `config/` 目录（包含 `appsettings.yml` 和 `README.md`）
+  - `lib/` 目录（包含所有依赖库和 `PCode.Web.dll`）
+  - 启动脚本（`start.sh` 或 `start.bat`）
+  - 根目录 `README.md` 和 `README_en.md`
+- [x] 1.5 添加文件和目录用途说明，包括：
+  - `config/` - 用户配置覆盖目录
+  - `config/appsettings.yml` - 用户配置文件（YAML 格式，最高优先级）
+  - `config/README.md` - 配置系统详细说明文档
+  - `lib/` - 应用依赖和运行时文件目录
+  - `lib/PCode.Web.dll` - 主程序
+  - `lib/appsettings.yml` - 基础配置
+  - `lib/appsettings.Production.yml` - 生产环境配置
+  - `start.sh`/`start.bat` - 启动脚本
+  - `README.md`/`README_en.md` - 软件包说明文档
+- [x] 1.6 说明配置文件加载优先级机制（从低到高：lib/appsettings.yml → lib/appsettings.Production.yml → config/appsettings.yml）
+- [x] 1.7 运行 `npm run build` 验证文档构建成功
+- [x] 1.8 运行 `openspec validate fix-installation-package-structure-docs --strict` 验证提案

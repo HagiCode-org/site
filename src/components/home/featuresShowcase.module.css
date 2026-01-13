@@ -1,0 +1,895 @@
+/**
+ * PCode Homepage - Features Showcase Styles
+ * Aesthetic: Future-tech meets gaming with bold zones,
+ * dynamic animations, and immersive visual effects
+ */
+
+/* ==========================================================================
+   CSS Variables for Feature Zones
+   ========================================================================== */
+
+:root {
+  /* Zone Theme Colors */
+  --smart-primary: #FF6B6B;
+  --smart-secondary: #6C5CE7;
+  --smart-accent: #FFEAA7;
+
+  --convenient-primary: #4ECDC4;
+  --convenient-secondary: #45B7D1;
+  --convenient-accent: #96CEB4;
+
+  --fun-primary: #A29BFE;
+  --fun-secondary: #FD79A8;
+  --fun-accent: #FDCB6E;
+
+  /* Achievement Rarities */
+  --rarity-common: #b0b0b0;
+  --rarity-rare: #4ECDC4;
+  --rarity-epic: #A29BFE;
+  --rarity-legendary: #FFD700;
+
+  /* Animation */
+  --zone-transition: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ==========================================================================
+   Features Showcase Container
+   ========================================================================== */
+
+.featuresShowcase {
+  position: relative;
+  padding: 4rem 0 8rem;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    var(--ifm-background-color) 0%,
+    rgba(108, 92, 231, 0.02) 50%,
+    var(--ifm-background-color) 100%
+  );
+}
+
+/* Animated background mesh */
+.featuresShowcase::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(255, 107, 107, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(78, 205, 196, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(162, 155, 254, 0.06) 0%, transparent 50%);
+  animation: meshShift 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes meshShift {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(5deg); }
+}
+
+.showcaseHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.showcaseTitle {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.titleHighlight {
+  background: linear-gradient(
+    135deg,
+    var(--smart-primary) 0%,
+    var(--smart-secondary) 25%,
+    var(--convenient-primary) 50%,
+    var(--fun-primary) 75%,
+    var(--smart-primary) 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleGradient 8s ease infinite;
+}
+
+@keyframes titleGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.showcaseSubtitle {
+  font-size: 1.25rem;
+  color: var(--ifm-color-emphasis-600);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Feature Zones Layout
+   ========================================================================== */
+
+.zonesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.featureZone {
+  position: relative;
+  min-height: 500px;
+  border-radius: 32px;
+  overflow: hidden;
+  background: var(--ifm-background-surface-color);
+  border: 2px solid transparent;
+  transition: all var(--zone-transition);
+}
+
+/* Zone-specific themes */
+.featureZone[data-theme="smart"] {
+  background:
+    linear-gradient(135deg, rgba(255, 107, 107, 0.05) 0%, transparent 50%),
+    var(--ifm-background-surface-color);
+  border-color: rgba(255, 107, 107, 0.2);
+}
+
+.featureZone[data-theme="smart"]:hover {
+  border-color: rgba(255, 107, 107, 0.4);
+  box-shadow: 0 20px 60px rgba(255, 107, 107, 0.15);
+}
+
+.featureZone[data-theme="convenient"] {
+  background:
+    linear-gradient(135deg, rgba(78, 205, 196, 0.05) 0%, transparent 50%),
+    var(--ifm-background-surface-color);
+  border-color: rgba(78, 205, 196, 0.2);
+}
+
+.featureZone[data-theme="convenient"]:hover {
+  border-color: rgba(78, 205, 196, 0.4);
+  box-shadow: 0 20px 60px rgba(78, 205, 196, 0.15);
+}
+
+.featureZone[data-theme="fun"] {
+  background:
+    linear-gradient(135deg, rgba(162, 155, 254, 0.05) 0%, transparent 50%),
+    var(--ifm-background-surface-color);
+  border-color: rgba(162, 155, 254, 0.2);
+}
+
+.featureZone[data-theme="fun"]:hover {
+  border-color: rgba(162, 155, 254, 0.4);
+  box-shadow: 0 20px 60px rgba(162, 155, 254, 0.15);
+}
+
+/* Animated pattern overlay */
+.featurePattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: patternScroll 30s linear infinite;
+}
+
+@keyframes patternScroll {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(40px, 40px); }
+}
+
+.featureContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  padding: 3rem;
+  position: relative;
+  z-index: 1;
+  min-height: 500px;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Feature Text Content
+   ========================================================================== */
+
+.featureText {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.featureBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  align-self: flex-start;
+}
+
+.featureZone[data-theme="smart"] .featureBadge {
+  background: linear-gradient(135deg, var(--smart-primary), var(--smart-secondary));
+  color: white;
+  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+}
+
+.featureZone[data-theme="convenient"] .featureBadge {
+  background: linear-gradient(135deg, var(--convenient-primary), var(--convenient-secondary));
+  color: white;
+  box-shadow: 0 4px 20px rgba(78, 205, 196, 0.3);
+}
+
+.featureZone[data-theme="fun"] .featureBadge {
+  background: linear-gradient(135deg, var(--fun-primary), var(--fun-secondary));
+  color: white;
+  box-shadow: 0 4px 20px rgba(162, 155, 254, 0.3);
+}
+
+.featureTitle {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0;
+}
+
+.featureZone[data-theme="smart"] .featureTitle {
+  background: linear-gradient(135deg, var(--smart-primary), var(--smart-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.featureZone[data-theme="convenient"] .featureTitle {
+  background: linear-gradient(135deg, var(--convenient-primary), var(--convenient-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.featureZone[data-theme="fun"] .featureTitle {
+  background: linear-gradient(135deg, var(--fun-primary), var(--fun-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.featureSubtitle {
+  font-size: 1.25rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0;
+  font-weight: 500;
+}
+
+.featureDesc {
+  font-size: 1.1rem;
+  color: var(--ifm-color-emphasis-700);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Smart Zone - Efficiency Highlight
+   ========================================================================== */
+
+.efficiencyHighlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(108, 92, 231, 0.1));
+  border-radius: 20px;
+  margin: 1rem 0;
+}
+
+.efficiencyValue {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.efficiencyNumber {
+  font-size: 4rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--smart-primary), var(--smart-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.efficiencyPercent {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--smart-secondary);
+}
+
+.efficiencyLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-600);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.5rem;
+}
+
+.efficiencyChart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  height: 120px;
+}
+
+.chartBar {
+  width: 60px;
+  background: linear-gradient(135deg, #ccc, #999);
+  border-radius: 8px 8px 0 0;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 0.5rem;
+  transition: height 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chartLabel {
+  position: absolute;
+  bottom: -25px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-600);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Smart Zone - Workflow Animation
+   ========================================================================== */
+
+.workflowAnimation {
+  background: var(--ifm-background-color);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.workflowGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.workflowNode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background: var(--ifm-background-surface-color);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid transparent;
+}
+
+.workflowNode.active {
+  border-color: var(--smart-secondary);
+  box-shadow: 0 0 30px rgba(108, 92, 231, 0.3);
+  transform: scale(1.05);
+}
+
+.workflowIcon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.workflowNode.active .workflowIcon {
+  animation: iconBounce 0.6s ease-in-out infinite;
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.workflowLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ifm-color-emphasis-900);
+  margin-bottom: 0.25rem;
+}
+
+.workflowDesc {
+  font-size: 0.7rem;
+  color: var(--ifm-color-emphasis-600);
+  text-align: center;
+}
+
+.workflowProgress {
+  height: 6px;
+  background: var(--ifm-color-emphasis-200);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--smart-primary), var(--smart-secondary));
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* ==========================================================================
+   Convenient Zone - Quota Comparison
+   ========================================================================== */
+
+.quotaComparison {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(69, 183, 209, 0.1));
+  border-radius: 20px;
+  margin: 1rem 0;
+}
+
+.quotaItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.quotaBar {
+  height: 40px;
+  background: var(--ifm-background-color);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.quotaFill {
+  height: 100%;
+  border-radius: 8px;
+  transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.quotaFill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.quotaLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-600);
+  text-align: center;
+}
+
+.quotaArrow {
+  font-size: 1.5rem;
+  color: var(--convenient-primary);
+  animation: arrowPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes arrowPulse {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(8px); }
+}
+
+.boostRange {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, var(--convenient-primary), var(--convenient-secondary));
+  border-radius: 12px;
+  color: white;
+}
+
+.boostLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.boostValue {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+/* ==========================================================================
+   Convenient Zone - Thread Visualization
+   ========================================================================== */
+
+.threadVisualization {
+  background: var(--ifm-background-color);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.threadContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.thread {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: var(--ifm-background-surface-color);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.threadTask {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 1;
+  min-width: 80px;
+}
+
+.threadIcon {
+  font-size: 1.25rem;
+}
+
+.threadLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.threadProgress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--convenient-primary), var(--convenient-secondary));
+  border-radius: 12px;
+  z-index: 0;
+}
+
+.threadLabel {
+  position: relative;
+  z-index: 1;
+}
+
+.threadVisualization > .threadLabel {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-600);
+  margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   Fun Zone - Game Features
+   ========================================================================== */
+
+.gameFeatures {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.gameFeature {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, rgba(162, 155, 254, 0.1), rgba(253, 121, 168, 0.1));
+  border-radius: 16px;
+  text-align: center;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.gameFeature:hover {
+  transform: translateY(-5px);
+}
+
+.gameIcon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.gameLabel {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ifm-color-emphasis-900);
+  margin-bottom: 0.25rem;
+}
+
+.gameDesc {
+  font-size: 0.75rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Fun Zone - Achievement Showcase
+   ========================================================================== */
+
+.achievementShowcase {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.achievementGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.achievementCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem;
+  background: var(--ifm-background-surface-color);
+  border-radius: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.achievementCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: linear-gradient(135deg, var(--fun-primary), var(--fun-secondary));
+  transition: opacity 0.3s;
+  z-index: 0;
+}
+
+.achievementCard:hover::before {
+  opacity: 0.1;
+}
+
+.achievementCard.common {
+  border-color: var(--rarity-common);
+}
+
+.achievementCard.rare {
+  border-color: var(--rarity-rare);
+  box-shadow: 0 0 20px rgba(78, 205, 196, 0.2);
+}
+
+.achievementCard.epic {
+  border-color: var(--rarity-epic);
+  box-shadow: 0 0 25px rgba(162, 155, 254, 0.3);
+}
+
+.achievementCard.legendary {
+  border-color: var(--rarity-legendary);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+  animation: legendaryGlow 2s ease-in-out infinite;
+}
+
+@keyframes legendaryGlow {
+  0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); }
+  50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.6); }
+}
+
+.achievementIcon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.achievementName {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ifm-color-emphasis-900);
+  margin-bottom: 0.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.achievementRarity {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 1;
+}
+
+.achievementCard.common .achievementRarity { color: var(--rarity-common); }
+.achievementCard.rare .achievementRarity { color: var(--rarity-rare); }
+.achievementCard.epic .achievementRarity { color: var(--rarity-epic); }
+.achievementCard.legendary .achievementRarity { color: var(--rarity-legendary); }
+
+/* Daily Report Card */
+.dailyReport {
+  background: linear-gradient(135deg, var(--fun-primary), var(--fun-secondary));
+  border-radius: 20px;
+  padding: 1.5rem;
+  color: white;
+}
+
+.reportHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.reportTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.reportGrade {
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.reportGrade.gradeS {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+}
+
+.reportStats {
+  display: flex;
+  justify-content: space-around;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 996px) {
+  .featureContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .workflowGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .achievementGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .featuresShowcase {
+    padding: 2rem 0 4rem;
+  }
+
+  .featureContent {
+    padding: 2rem 1.5rem;
+  }
+
+  .showcaseTitle {
+    font-size: 2rem;
+  }
+
+  .featureTitle {
+    font-size: 2rem;
+  }
+
+  .efficiencyNumber {
+    font-size: 3rem;
+  }
+
+  .efficiencyChart {
+    height: 100px;
+    gap: 1rem;
+  }
+
+  .chartBar {
+    width: 50px;
+  }
+
+  .workflowGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quotaComparison {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .quotaArrow {
+    transform: rotate(90deg);
+  }
+
+  .gameFeatures {
+    flex-direction: column;
+  }
+
+  .achievementGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .threadVisualization {
+    padding: 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   Accessibility - Reduced Motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .featuresShowcase::before,
+  .featurePattern {
+    animation: none;
+  }
+
+  .workflowNode.active .workflowIcon,
+  .quotaArrow,
+  .achievementCard.legendary {
+    animation: none;
+  }
+
+  .quotaFill::after {
+    animation: none;
+  }
+}

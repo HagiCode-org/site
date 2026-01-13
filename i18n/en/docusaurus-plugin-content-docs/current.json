@@ -1,0 +1,46 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.docsSidebar.category.Quick Start": {
+    "message": "Quick Start",
+    "description": "The label for category 'Quick Start' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Quick Start.link.generated-index.title": {
+    "message": "Quick Start",
+    "description": "The generated-index page title for category 'Quick Start' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Quick Start.link.generated-index.description": {
+    "message": "Get started with PCode quickly",
+    "description": "The generated-index page description for category 'Quick Start' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.相关软件安装": {
+    "message": "相关软件安装",
+    "description": "The label for category '相关软件安装' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.相关软件安装.link.generated-index.title": {
+    "message": "相关软件安装",
+    "description": "The generated-index page title for category '相关软件安装' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.相关软件安装.link.generated-index.description": {
+    "message": "安装和配置 PCode 所需的相关软件",
+    "description": "The generated-index page description for category '相关软件安装' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.PostgreSQL": {
+    "message": "PostgreSQL",
+    "description": "The label for category 'PostgreSQL' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Claude Code": {
+    "message": "Claude Code",
+    "description": "The label for category 'Claude Code' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Node.js": {
+    "message": "Node.js",
+    "description": "The label for category 'Node.js' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.OpenSpec": {
+    "message": "OpenSpec",
+    "description": "The label for category 'OpenSpec' in sidebar 'docsSidebar'"
+  }
+}
