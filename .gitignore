@@ -36,3 +36,5 @@ yarn-error.log*
 
 # OS
 Thumbs.db
+
+.claude/skills/ui-ux-pro-max/scripts/__pycache__/
