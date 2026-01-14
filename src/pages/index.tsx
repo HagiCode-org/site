@@ -2,6 +2,7 @@ import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import HeroSection from '../components/home/HeroSection';
 import FeaturesShowcase from '../components/home/FeaturesShowcase';
+import VideoPlayer from '../components/home/VideoPlayer';
 import ShowcaseSection from '../components/home/ShowcaseSection';
 import QuickStartSection from '../components/home/QuickStartSection';
 
@@ -12,6 +13,7 @@ export default function Home(): JSX.Element {
       <main>
         <HeroSection />
         <FeaturesShowcase />
+        <VideoPlayer />
         <ShowcaseSection />
         <QuickStartSection />
       </main>
