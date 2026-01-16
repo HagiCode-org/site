@@ -22,12 +22,6 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/Hagicode-org/hagicode-docs/tree/main/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-          },
-        },
         pages: {},
         theme: {
           customCss: ['./src/css/custom.css'],
@@ -58,15 +52,19 @@ const config: Config = {
           position: 'left',
           label: 'Docs',
         },
-        { to: '/blog', label: 'Blog', position: 'left' },
         {
           href: 'https://qm.qq.com/q/Wk6twXHdyS',
           label: 'QQ群',
           position: 'right',
         },
         {
-          href: 'https://github.com/Hagicode-org/hagicode-docs',
-          label: 'GitHub',
+          to: 'https://github.com/HagiCode-org/releases/releases',
+          label: '下载安装包',
+          position: 'right',
+        },
+        {
+          href: 'https://hub.docker.com/r/newbe36524/hagicode',
+          label: 'Docker Hub',
           position: 'right',
         },
       ],
@@ -78,21 +76,16 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'GitHub',
-              href: 'https://github.com/Hagicode-org/hagicode-docs',
+              label: '下载安装包',
+              href: 'https://github.com/HagiCode-org/releases/releases',
+            },
+            {
+              label: 'Docker Hub',
+              href: 'https://hub.docker.com/r/newbe36524/hagicode',
             },
             {
               label: 'QQ技术支持群 (610394020)',
               href: 'https://qm.qq.com/q/Wk6twXHdyS',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
             },
           ],
         },

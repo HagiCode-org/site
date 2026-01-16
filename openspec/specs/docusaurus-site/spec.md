@@ -85,26 +85,6 @@ The site MUST support static assets (images, logos, favicons) through a dedicate
 
 ---
 
-### Requirement: Blog Infrastructure
-
-The site MUST include blog directory structure and configuration to support future blog posts.
-
-#### Scenario: Create blog post
-
-**Given** the blog directory structure exists
-**When** a developer creates a new markdown file in `blog/` with proper frontmatter
-**Then** the post appears in the blog listing page
-**And** the post displays the author, date, and excerpt correctly
-
-#### Scenario: Blog page accessibility
-
-**Given** the Docusaurus site is running
-**When** a user navigates to `/blog`
-**Then** the blog page loads successfully
-**And** any example blog posts are displayed
-
----
-
 ### Requirement: Navigation Configuration
 
 The site MUST have simplified navigation elements that reflect the single Quick Start category.

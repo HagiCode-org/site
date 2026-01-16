@@ -33,7 +33,6 @@ Hagicode Documentation is a comprehensive documentation site built with Docusaur
 - `docs/` - Main documentation content (Chinese/Simplified)
   - `quick-start/` - Quick start guides (installation, project creation, sessions)
   - `_category_.json` - Category metadata configuration
-- `blog/` - Blog posts with date-based naming (`YYYY-MM-DD-title.md`)
 - `static/` - Static assets (images, favicons)
   - `img/` - Image assets (logo.svg, favicon.ico, social cards)
 - `src/` - Custom React components and styles
@@ -232,7 +231,7 @@ npm run serve  # Preview production build locally
 
 ### docusaurus.config.ts
 - Site configuration with TypeScript types
-- Navbar: Docs dropdown, Blog link, GitHub link
+- Navbar: Docs dropdown, QQ群, 下载安装包, Docker Hub links
 - No language switcher (single-language site)
 - Broken links: throw error on build failure
 - Edit URL: GitHub repository
