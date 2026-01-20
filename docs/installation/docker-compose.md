@@ -11,6 +11,18 @@ import TabItem from '@theme/TabItem';
 
 本指南介绍如何使用 Docker Compose 一键部署完整的 Hagicode 系统。这是**推荐的部署方式**，适合大多数用户，特别是开发、测试和生产环境。
 
+:::info 使用配置生成器
+**推荐使用我们的 [交互式 Docker Compose 配置生成器](/docker-compose-generator)**！
+
+通过简单的表单填写，即可快速生成符合您需求的 `docker-compose.yml` 配置文件。生成器支持：
+- 自定义端口、容器名称等基础配置
+- 选择内置数据库或外部数据库
+- 自动配置 Windows/Linux 平台差异
+- 智能处理文件权限问题
+
+[🚀 立即使用生成器 →](/docker-compose-generator)
+:::
+
 :::tip 推荐方式
 Docker Compose 部署是首选的安装方式，具有以下优势：
 - 环境隔离，避免依赖冲突
@@ -63,6 +75,12 @@ docker compose version
 ```
 
 ## 快速开始
+
+:::tip 使用配置生成器
+**不想手动编辑配置文件？** 使用我们的 [交互式 Docker Compose 配置生成器](/docker-compose-generator) 可以自动生成符合您需求的配置文件，支持自定义端口、数据库、工作目录等各种选项。
+
+[🚀 打开生成器](/docker-compose-generator)
+:::
 
 ### 1. 准备 docker-compose.yml 文件
 
@@ -219,6 +237,12 @@ docker compose logs -f hagicode
 ```
 
 ## 配置说明
+
+:::tip 快速生成自定义配置
+如果您需要自定义配置（如修改端口、使用外部数据库、调整卷挂载路径等），推荐使用我们的 [交互式 Docker Compose 配置生成器](/docker-compose-generator)，可以自动生成符合您需求的配置文件。
+
+[🚀 打开生成器](/docker-compose-generator)
+:::
 
 ### 智谱 AI API 密钥配置（必须配置）
 

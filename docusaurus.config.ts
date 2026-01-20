@@ -67,6 +67,11 @@ const config: Config = {
           label: 'Docker Hub',
           position: 'right',
         },
+        {
+          to: '/docker-compose-generator',
+          label: 'Docker Compose 生成器',
+          position: 'right',
+        },
       ],
     },
     footer: {

@@ -1,0 +1,506 @@
+/**
+ * Docker Compose Generator Page Styles
+ * Compact, professional layout with 60%/40% split
+ */
+
+/* ============================================================================
+   Page Layout
+   ============================================================================ */
+
+.generatorContainer {
+  min-height: 100vh;
+  padding: 0;
+  max-width: 100%;
+}
+
+.generatorLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .generatorLayout {
+    grid-template-columns: 3fr 2fr; /* 60% / 40% ratio */
+  }
+}
+
+/* ============================================================================
+   Config Panel (Left Side - 60%)
+   ============================================================================ */
+
+.configPanel {
+  display: flex;
+  flex-direction: column;
+  background: var(--ifm-background-surface-color);
+  border-right: 1px solid var(--ifm-border-color);
+  overflow: hidden;
+}
+
+/* ============================================================================
+   Form Header
+   ============================================================================ */
+
+.formHeader {
+  flex-shrink: 0;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(69, 183, 209, 0.06));
+  border-bottom: 1px solid var(--ifm-border-color);
+}
+
+.formTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: #6C5CE7;
+}
+
+/* ============================================================================
+   Form Container with Scroll
+   ============================================================================ */
+
+.configForm {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex: 1;
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+.configForm::-webkit-scrollbar {
+  width: 6px;
+}
+
+.configForm::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.configForm::-webkit-scrollbar-thumb {
+  background: rgba(108, 92, 231, 0.3);
+  border-radius: 3px;
+}
+
+.configForm::-webkit-scrollbar-thumb:hover {
+  background: rgba(108, 92, 231, 0.5);
+}
+
+/* ============================================================================
+   Form Sections - Compact
+   ============================================================================ */
+
+.formSection {
+  padding: 0;
+  border-bottom: 1px solid var(--ifm-border-color);
+}
+
+.formSection:last-child {
+  border-bottom: none;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 0.875rem 1.25rem;
+  color: var(--ifm-color-emphasis-800);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: linear-gradient(90deg, rgba(108, 92, 231, 0.08) 0%, rgba(108, 92, 231, 0.03) 50%, transparent 100%);
+  border-left: 3px solid #6C5CE7;
+  position: relative;
+}
+
+.sectionTitle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #6C5CE7, #45B7D1);
+}
+
+.formSection > *:not(.sectionTitle) {
+  padding: 0 1.25rem 1rem;
+}
+
+/* ============================================================================
+   Form Row - Grid Layout
+   ============================================================================ */
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.formRow .formField:nth-child(3) {
+  grid-column: span 2;
+}
+
+@media (min-width: 640px) {
+  .formRow .formField:nth-child(3) {
+    grid-column: span 1;
+  }
+}
+
+/* ============================================================================
+   Form Fields - Compact
+   ============================================================================ */
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.fieldLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.required {
+  color: #FF6B6B;
+  margin-left: 2px;
+}
+
+.fieldInput {
+  height: 40px;
+  padding: 0 0.75rem;
+  border: 1px solid var(--ifm-border-color);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: var(--ifm-background-color);
+  color: var(--ifm-color-emphasis-900);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.fieldInput:hover {
+  border-color: rgba(108, 92, 231, 0.4);
+}
+
+.fieldInput:focus {
+  border-color: #6C5CE7;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.15);
+}
+
+.fieldInput::placeholder {
+  color: var(--ifm-color-emphasis-400);
+}
+
+select.fieldInput {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236C5CE7' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  padding-right: 1.75rem;
+}
+
+/* ============================================================================
+   Section Description
+   ============================================================================ */
+
+.sectionDescription {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.5;
+}
+
+/* ============================================================================
+   Warning Box & Checkbox
+   ============================================================================ */
+
+.warningBox {
+  margin-top: 0.75rem;
+  padding: 0.875rem;
+  background: rgba(255, 107, 107, 0.08);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 6px;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-800);
+  cursor: pointer;
+  margin: 0;
+}
+
+.checkbox {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: #FF6B6B;
+  cursor: pointer;
+}
+
+.warningContent {
+  margin-top: 0.875rem;
+  padding-top: 0.875rem;
+  border-top: 1px dashed rgba(255, 107, 107, 0.3);
+}
+
+.warningText {
+  font-size: 0.9rem;
+  color: #D63031;
+  margin: 0 0 0.5rem 0;
+}
+
+.warningText code {
+  background: rgba(255, 107, 107, 0.15);
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  font-size: 0.85rem;
+}
+
+.warningContent p {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.5;
+}
+
+.warningList {
+  margin: 0.5rem 0 0 0;
+  padding-left: 1.25rem;
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.warningList li {
+  margin-bottom: 0.375rem;
+}
+
+.warningList code {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-family: 'Fira Code', monospace;
+}
+
+/* ============================================================================
+   User Mapping Box
+   ============================================================================ */
+
+.userMappingBox {
+  margin-top: 0.875rem;
+  padding: 1rem;
+  background: rgba(108, 92, 231, 0.06);
+  border: 1px solid rgba(108, 92, 231, 0.25);
+  border-radius: 6px;
+}
+
+.mappingDescription {
+  font-size: 0.9rem;
+  color: #6C5CE7;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.mappingText {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.5;
+}
+
+.mappingInstruction {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.5;
+}
+
+.mappingInstruction code {
+  background: rgba(108, 92, 231, 0.1);
+  padding: 0.125rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-family: 'Fira Code', monospace;
+  color: #6C5CE7;
+}
+
+/* ============================================================================
+   ZAI API Link
+   ============================================================================ */
+
+.zaiLink {
+  margin-top: 0.75rem;
+}
+
+.zaiLink a {
+  font-size: 0.875rem;
+  color: #6C5CE7;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.zaiLink a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================================
+   Preview Panel (Right Side - 40%)
+   ============================================================================ */
+
+.previewPanel {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #0d0d0d;
+}
+
+@media (min-width: 768px) {
+  .previewPanel {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+.previewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.previewTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.codeBlock {
+  flex: 1;
+  overflow: auto;
+  padding: 1.25rem;
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.codeBlock pre {
+  margin: 0;
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.codeBlock code {
+  font-family: inherit;
+  background: transparent !important;
+}
+
+/* Custom scrollbar for code block */
+.codeBlock::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.codeBlock::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.codeBlock::-webkit-scrollbar-thumb {
+  background: rgba(108, 92, 231, 0.5);
+  border-radius: 4px;
+}
+
+.codeBlock::-webkit-scrollbar-thumb:hover {
+  background: rgba(108, 92, 231, 0.7);
+}
+
+/* ============================================================================
+   Copy Button
+   ============================================================================ */
+
+.copyButton {
+  padding: 0.5rem 1rem;
+  background: #6C5CE7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.copyButton:hover {
+  background: linear-gradient(135deg, #6C5CE7, #45B7D1);
+  box-shadow: 0 2px 8px rgba(108, 92, 231, 0.3);
+}
+
+.copyButton.copied {
+  background: #4ECDC4;
+}
+
+/* ============================================================================
+   Copy Feedback
+   ============================================================================ */
+
+.copyFeedback {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #4ECDC4, #45B7D1);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  animation: feedbackPop 0.2s ease-out;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(78, 205, 196, 0.4);
+}
+
+@keyframes feedbackPop {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* ============================================================================
+   Theme Overrides
+   ============================================================================ */
+
+[data-theme='dark'] .formHeader {
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.12), rgba(69, 183, 209, 0.08));
+}
+
+/* ============================================================================
+   Accessibility - Reduced Motion
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .fieldInput,
+  .copyButton,
+  .advancedToggle,
+  .copyFeedback,
+  .advancedContent {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
