@@ -47,6 +47,136 @@ jobs:
         run: |
           npm run update-metrics
 
+      - name: Calculate metrics diff
+        id: diff
+        run: |
+          # 读取新数据
+          NEW_DATA=$(cat data/activity-metrics.json)
+
+          # 尝试读取旧数据（从 main 分支）
+          if git show main:data/activity-metrics.json &>/dev/null; then
+            OLD_DATA=$(git show main:data/activity-metrics.json)
+
+            # 提取各指标的新旧值
+            OLD_PULL=$(echo "$OLD_DATA" | jq -r '.dockerHub.pullCount // 0')
+            NEW_PULL=$(echo "$NEW_DATA" | jq -r '.dockerHub.pullCount // 0')
+
+            OLD_USERS=$(echo "$OLD_DATA" | jq -r '.clarity.activeUsers // 0')
+            NEW_USERS=$(echo "$NEW_DATA" | jq -r '.clarity.activeUsers // 0')
+
+            OLD_SESSIONS=$(echo "$OLD_DATA" | jq -r '.clarity.activeSessions // 0')
+            NEW_SESSIONS=$(echo "$NEW_DATA" | jq -r '.clarity.activeSessions // 0')
+
+            # 计算差值和百分比
+            # Docker Hub 拉取次数
+            DELTA_PULL=$((NEW_PULL - OLD_PULL))
+            if [ "$OLD_PULL" -gt 0 ]; then
+              PERCENT_PULL=$(awk "BEGIN {printf \"%.1f\", ($DELTA_PULL / $OLD_PULL) * 100}")
+            else
+              PERCENT_PULL="N/A"
+            fi
+
+            # 活跃用户
+            DELTA_USERS=$((NEW_USERS - OLD_USERS))
+            if [ "$OLD_USERS" -gt 0 ]; then
+              PERCENT_USERS=$(awk "BEGIN {printf \"%.1f\", ($DELTA_USERS / $OLD_USERS) * 100}")
+            else
+              PERCENT_USERS="N/A"
+            fi
+
+            # 活跃会话
+            DELTA_SESSIONS=$((NEW_SESSIONS - OLD_SESSIONS))
+            if [ "$OLD_SESSIONS" -gt 0 ]; then
+              PERCENT_SESSIONS=$(awk "BEGIN {printf \"%.1f\", ($DELTA_SESSIONS / $OLD_SESSIONS) * 100}")
+            else
+              PERCENT_SESSIONS="N/A"
+            fi
+
+            # 生成对比表格
+            DIFF_TABLE="| 指标 | 原值 | 新值 | 变化 |
+|------|------|------|------|"
+
+            # Docker Hub 拉取次数
+            if [ "$DELTA_PULL" -gt 0 ]; then
+              DIFF_TABLE="$DIFF_TABLE
+| Docker Hub 拉取次数 | $OLD_PULL | $NEW_PULL | ↑${DELTA_PULL} (▲${PERCENT_PULL}%) |"
+            elif [ "$DELTA_PULL" -lt 0 ]; then
+              DIFF_TABLE="$DIFF_TABLE
+| Docker Hub 拉取次数 | $OLD_PULL | $NEW_PULL | ↓${DELTA_PULL#-} (▼${PERCENT_PULL}%) |"
+            else
+              DIFF_TABLE="$DIFF_TABLE
+| Docker Hub 拉取次数 | $OLD_PULL | $NEW_PULL | →0 (▶0%) |"
+            fi
+
+            # 活跃用户
+            if [ "$DELTA_USERS" -gt 0 ]; then
+              DIFF_TABLE="$DIFF_TABLE
+| 活跃用户 (近3天) | $OLD_USERS | $NEW_USERS | ↑${DELTA_USERS} (▲${PERCENT_USERS}%) |"
+            elif [ "$DELTA_USERS" -lt 0 ]; then
+              DIFF_TABLE="$DIFF_TABLE
+| 活跃用户 (近3天) | $OLD_USERS | $NEW_USERS | ↓${DELTA_USERS#-} (▼${PERCENT_USERS}%) |"
+            else
+              DIFF_TABLE="$DIFF_TABLE
+| 活跃用户 (近3天) | $OLD_USERS | $NEW_USERS | →0 (▶0%) |"
+            fi
+
+            # 活跃会话
+            if [ "$DELTA_SESSIONS" -gt 0 ]; then
+              DIFF_TABLE="$DIFF_TABLE
+| 活跃会话 (近3天) | $OLD_SESSIONS | $NEW_SESSIONS | ↑${DELTA_SESSIONS} (▲${PERCENT_SESSIONS}%) |"
+            elif [ "$DELTA_SESSIONS" -lt 0 ]; then
+              DIFF_TABLE="$DIFF_TABLE
+| 活跃会话 (近3天) | $OLD_SESSIONS | $NEW_SESSIONS | ↓${DELTA_SESSIONS#-} (▼${PERCENT_SESSIONS}%) |"
+            else
+              DIFF_TABLE="$DIFF_TABLE
+| 活跃会话 (近3天) | $OLD_SESSIONS | $NEW_SESSIONS | →0 (▶0%) |"
+            fi
+
+            # 计算变化统计
+            CHANGED_COUNT=0
+            GROWTH_COUNT=0
+            DECLINE_COUNT=0
+
+            [ "$DELTA_PULL" -ne 0 ] && CHANGED_COUNT=$((CHANGED_COUNT + 1))
+            [ "$DELTA_USERS" -ne 0 ] && CHANGED_COUNT=$((CHANGED_COUNT + 1))
+            [ "$DELTA_SESSIONS" -ne 0 ] && CHANGED_COUNT=$((CHANGED_COUNT + 1))
+
+            [ "$DELTA_PULL" -gt 0 ] && GROWTH_COUNT=$((GROWTH_COUNT + 1))
+            [ "$DELTA_USERS" -gt 0 ] && GROWTH_COUNT=$((GROWTH_COUNT + 1))
+            [ "$DELTA_SESSIONS" -gt 0 ] && GROWTH_COUNT=$((GROWTH_COUNT + 1))
+
+            [ "$DELTA_PULL" -lt 0 ] && DECLINE_COUNT=$((DECLINE_COUNT + 1))
+            [ "$DELTA_USERS" -lt 0 ] && DECLINE_COUNT=$((DECLINE_COUNT + 1))
+            [ "$DELTA_SESSIONS" -lt 0 ] && DECLINE_COUNT=$((DECLINE_COUNT + 1))
+
+            # 生成摘要
+            if [ "$GROWTH_COUNT" -gt 0 ] && [ "$DECLINE_COUNT" -eq 0 ]; then
+              SUMMARY="**摘要**: $CHANGED_COUNT 个指标发生变化，全部呈现增长趋势 📈"
+            elif [ "$DECLINE_COUNT" -gt 0 ] && [ "$GROWTH_COUNT" -eq 0 ]; then
+              SUMMARY="**摘要**: $CHANGED_COUNT 个指标发生变化，全部呈现下降趋势 📉"
+            elif [ "$GROWTH_COUNT" -gt 0 ] && [ "$DECLINE_COUNT" -gt 0 ]; then
+              SUMMARY="**摘要**: $CHANGED_COUNT 个指标发生变化，$GROWTH_COUNT 个增长，$DECLINE_COUNT 个下降 📊"
+            else
+              SUMMARY="**摘要**: 所有指标保持不变 ➡️"
+            fi
+
+            # 输出到环境变量
+            {
+              echo "diff_table<<EOF"
+              echo "$DIFF_TABLE"
+              echo "EOF"
+              echo "summary=$SUMMARY" >> $GITHUB_OUTPUT
+              echo "has_diff=true" >> $GITHUB_OUTPUT
+            } >> $GITHUB_OUTPUT
+          else
+            # 首次运行，无旧数据
+            {
+              echo "diff_table> ℹ️ 首次运行，无历史数据进行对比。"
+              echo "summary=" >> $GITHUB_OUTPUT
+              echo "has_diff=false" >> $GITHUB_OUTPUT
+            } >> $GITHUB_OUTPUT
+          fi
+
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
@@ -101,12 +231,22 @@ jobs:
           ACTIVE_SESSIONS=$(jq -r '.clarity.activeSessions' data/activity-metrics.json)
           LAST_UPDATED=$(jq -r '.lastUpdated' data/activity-metrics.json)
 
+          # 获取对比结果
+          DIFF_TABLE="${{ steps.diff.outputs.diff_table }}"
+          SUMMARY="${{ steps.diff.outputs.summary }}"
+
+          # 构建 PR 描述
           PR_BODY="## 活动指标更新
 
           ### 摘要
           此 PR 更新首页的活动指标数据。
 
-          ### 指标数据
+          ### 指标变化对比
+
+          $DIFF_TABLE
+          $SUMMARY
+
+          ### 详细数据
           | 指标 | 数值 |
           |------|------|
           | Docker Hub 拉取次数 | $PULL_COUNT |
