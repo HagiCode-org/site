@@ -22,6 +22,13 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/Hagicode-org/hagicode-docs/tree/main/',
         },
+        blog: {
+          blogTitle: '博客',
+          blogDescription: 'Hagicode 项目动态、技术分享与更新日志',
+          routeBasePath: 'blog',
+          path: 'blog',
+          postsPerPage: 10,
+        },
         pages: {},
         theme: {
           customCss: ['./src/css/custom.css'],
@@ -51,6 +58,11 @@ const config: Config = {
           sidebarId: 'docsSidebar',
           position: 'left',
           label: 'Docs',
+        },
+        {
+          to: '/blog',
+          label: '博客',
+          position: 'left',
         },
         {
           href: 'https://qm.qq.com/q/Wk6twXHdyS',
