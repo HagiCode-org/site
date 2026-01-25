@@ -1,0 +1,55 @@
+name: Sync Docker Image to Azure ACR
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # 每天 UTC 00:00
+  workflow_dispatch: # 手动触发
+  push:
+    branches: [publish]
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download image-syncer
+        run: |
+          # 下载 image-syncer 二进制文件
+          wget https://github.com/AliyunContainerService/image-syncer/releases/download/v1.5.5/image-syncer-v1.5.5-linux-amd64.tar.gz
+          tar -zxvf image-syncer-v1.5.5-linux-amd64.tar.gz
+          chmod +x image-syncer
+
+      - name: Create auth config
+        run: |
+          # 生成认证配置文件 (YAML 格式)
+          cat > auth.yaml <<EOF
+          hagicode.azurecr.io:
+            username: "${{ secrets.AZURE_ACR_USERNAME }}"
+            password: "${{ secrets.AZURE_ACR_PASSWORD }}"
+          EOF
+
+      - name: Create images config
+        run: |
+          # 生成镜像同步配置文件 (YAML 格式)
+          cat > images.yaml <<EOF
+          docker.io/newbe36524/hagicode: hagicode.azurecr.io/hagicode
+          EOF
+
+      - name: Run image-syncer
+        run: |
+          # 执行同步 (使用新版 --auth 和 --images 参数)
+          ./image-syncer --auth=./auth.yaml --images=./images.yaml --proc=10 --retries=3
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sync-logs
+          path: image-syncer-*.log
+          retention-days: 7
