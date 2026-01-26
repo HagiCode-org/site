@@ -16,6 +16,14 @@
       "filePath": "blog/2026-01-25-how-to-sync-docker-hub-to-azure-acr-with-github.md",
       "lastSyncedAt": "2026-01-25T06:48:27.368Z",
       "checksum": "4bd2b08d"
+    },
+    {
+      "localId": "1769388636890-eda3lr4",
+      "title": "HagiCode 实践：如何利用 GitHub Actions 实现 Docusaurus 自动部署",
+      "normalizedTitle": "hagicode-实践如何利用-github-actions-实现-docusaurus-自动部署",
+      "filePath": "blog/2026-01-26-docusaurus-auto-deployment-with-github-actions.md",
+      "lastSyncedAt": "2026-01-26T00:50:36.890Z",
+      "checksum": "2e00dd5b"
     }
   ]
 }
