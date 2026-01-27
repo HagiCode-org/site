@@ -24,6 +24,14 @@
       "filePath": "blog/2026-01-26-docusaurus-auto-deployment-with-github-actions.md",
       "lastSyncedAt": "2026-01-26T00:50:36.890Z",
       "checksum": "2e00dd5b"
+    },
+    {
+      "localId": "1769474843246-v19nqqv",
+      "title": "基于 C# 和 Nuke 打造现代化构建系统的最佳实践",
+      "normalizedTitle": "基于-c-和-nuke-打造现代化构建系统的最佳实践",
+      "filePath": "blog/2026-01-27-modern-build-system-with-csharp-and-nuke.md",
+      "lastSyncedAt": "2026-01-27T00:47:23.246Z",
+      "checksum": "6b215d2e"
     }
   ]
 }
