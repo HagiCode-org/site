@@ -108,9 +108,9 @@ docker compose version
 
 #### 镜像源选择
 
-生成器支持两个镜像源选项：
+生成器支持三个镜像源选项：
 
-**Docker Hub（推荐）**
+**Docker Hub**
 - **镜像地址**：`newbe36524/hagicode:{tag}`
 - **适用场景**：适合支持 Docker Hub 镜像加速的用户
 - **优点**：官方镜像源，更新及时，访问稳定
@@ -122,11 +122,18 @@ docker compose version
 - **优点**：提供备选镜像源，解决网络访问问题
 - **注意事项**：镜像与 Docker Hub 保持同步，但可能存在短暂延迟
 
+**阿里云容器镜像服务（ACR）**
+- **镜像地址**：`registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:{tag}`
+- **适用场景**：适合国内用户，网络访问稳定，下载速度快
+- **优点**：阿里云国内节点，访问速度快，稳定性高
+- **注意事项**：镜像与 Docker Hub 保持同步，通常延迟在 30 分钟内
+
 :::tip 镜像源选择建议
-- **首选 Docker Hub**：如果您的网络环境可以访问 Docker Hub，建议优先使用 Docker Hub 镜像源
-- **备选 ACR**：仅在 Docker Hub 访问困难或不稳定时，选择 ACR 镜像源
-- **镜像同步**：ACR 镜像与 Docker Hub 保持同步，通常延迟在 1 小时内
-- **版本一致性**：两个镜像源的镜像标签保持一致，不用担心版本问题
+- **国内用户推荐阿里云 ACR**：如果您是国内用户，建议优先使用阿里云镜像源，访问速度快且稳定
+- **备选 Docker Hub**：如果您的网络环境可以访问 Docker Hub，也可以选择 Docker Hub 镜像源
+- **备选 Azure ACR**：仅在其他镜像源访问困难时选择 Azure ACR 镜像源
+- **镜像同步**：阿里云 ACR 镜像与 Docker Hub 保持同步，通常延迟在 30 分钟内
+- **版本一致性**：三个镜像源的镜像标签保持一致，不用担心版本问题
 :::
 
 :::info 获取 API Token

@@ -1,4 +1,4 @@
-name: Sync Docker Image to Azure ACR
+name: Sync Docker Image to ACRs (Azure + Alibaba Cloud)
 
 on:
   schedule:
@@ -32,6 +32,9 @@ jobs:
           hagicode.azurecr.io:
             username: "${{ secrets.AZURE_ACR_USERNAME }}"
             password: "${{ secrets.AZURE_ACR_PASSWORD }}"
+          registry.cn-hangzhou.aliyuncs.com:
+            username: "${{ secrets.ALIYUN_ACR_USERNAME }}"
+            password: "${{ secrets.ALIYUN_ACR_PASSWORD }}"
           EOF
 
       - name: Create images config
@@ -39,6 +42,7 @@ jobs:
           # 生成镜像同步配置文件 (YAML 格式)
           cat > images.yaml <<EOF
           docker.io/newbe36524/hagicode: hagicode.azurecr.io/hagicode
+          docker.io/newbe36524/hagicode: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode
           EOF
 
       - name: Run image-syncer
