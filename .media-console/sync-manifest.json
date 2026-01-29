@@ -40,6 +40,14 @@
       "filePath": "blog/2026-01-28-利用-worker-threads-优化-vite-构建性能的实战.md",
       "lastSyncedAt": "2026-01-28T00:58:47.939Z",
       "checksum": "78236a00"
+    },
+    {
+      "localId": "1769647264776-60nmvxb",
+      "title": "StreamJsonRpc 在 HagiCode 中的深度集成与实践",
+      "normalizedTitle": "streamjsonrpc-在-hagicode-中的深度集成与实践",
+      "filePath": "blog/2026-01-29--streamjsonrpc-integration-in-hagicode-.md",
+      "lastSyncedAt": "2026-01-29T00:41:04.776Z",
+      "checksum": "7d5bc105"
     }
   ]
 }
