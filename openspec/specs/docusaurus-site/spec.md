@@ -1,5 +1,9 @@
 # docusaurus-site Specification
 
+> **⚠️ Deprecated**: 此规范描述已废弃的 Docusaurus 技术栈。
+> 当前项目使用 Astro 5.x,请参阅 [astro-site 规范](../astro-site/spec.md)。
+> 本规范仅保留作为历史参考。
+
 ## Purpose
 TBD - created by archiving change docusaurus-site-initialization. Update Purpose after archive.
 ## Requirements

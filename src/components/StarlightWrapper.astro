@@ -1,0 +1,15 @@
+---
+/**
+ * Starlight 自定义布局包装器
+ * 用于添加 Mermaid 渲染脚本和 Clarity 分析
+ */
+import MermaidRenderer from '../scripts/mermaid-renderer.astro';
+import Clarity from './Clarity.astro';
+import { Layout as StarlightLayout } from '@astrojs/starlight/components';
+---
+
+<StarlightLayout {...Astro.props}>
+  <slot />
+  <MermaidRenderer />
+  <Clarity />
+</StarlightLayout>

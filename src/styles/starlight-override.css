@@ -1,0 +1,23 @@
+/**
+ * Starlight 主题样式覆盖
+ * 将 Starlight 变量映射到 Hagicode 品牌颜色
+ * 与首页 homepage.css 保持一致
+ */
+
+/* ==========================================================================
+   CSS Variables - 品牌颜色
+   ========================================================================== */
+:root,
+[data-theme='light'] {
+  --color-primary: #0080FF;
+  --color-secondary: #00CCCC;
+  --color-success: #22C55E;
+  --gradient-primary: linear-gradient(135deg, #0080FF 0%, #00AAAA 50%, #22C55E 100%);
+}
+
+[data-theme='dark'] {
+  --color-primary: #00D4FF;
+  --color-secondary: #00FFFF;
+  --color-success: #4ADE80;
+  --gradient-primary: linear-gradient(135deg, #00D4FF 0%, #00FFFF 50%, #4ADE80 100%);
+}

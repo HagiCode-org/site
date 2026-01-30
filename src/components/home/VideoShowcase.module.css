@@ -1,0 +1,94 @@
+/**
+ * VideoShowcase 样式
+ * 视频展示区块样式 - 遵循项目设计系统
+ * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
+ */
+
+.videoShowcase {
+  width: 100%;
+  position: relative;
+  padding: 4rem 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+/* 区块头部 */
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem 0;
+  font-family: var(--font-display, 'ui-monospace', 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Code', 'Consolas', monospace);
+  background: var(--gradient-primary, linear-gradient(135deg, #0080FF 0%, #00AAAA 50%, #22C55E 100%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.description {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary, #475569);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-family: var(--font-body, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif);
+}
+
+/* 视频包装器 */
+.videoWrapper {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* 响应式 - 平板 */
+@media (max-width: 1023px) {
+  .videoShowcase {
+    padding: 3.5rem 0;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+}
+
+/* 响应式 - 移动端 */
+@media (max-width: 767px) {
+  .videoShowcase {
+    padding: 3rem 0;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .header {
+    margin-bottom: 2rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .description {
+    font-size: 0.9375rem;
+    padding: 0 0.5rem;
+  }
+}

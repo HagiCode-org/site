@@ -1,6 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import styles from './activityMetricsSection.module.css';
+/**
+ * ActivityMetricsSection 组件
+ * 展示活动指标数据 (Docker Hub 拉取量、Clarity 活跃用户等)
+ */
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import styles from './ActivityMetricsSection.module.css';
 
 interface ActivityMetricsData {
   lastUpdated: string;
@@ -25,15 +29,15 @@ interface ActivityMetricCardProps {
   isLoading: boolean;
 }
 
-// 数字滚动动画组件
-function CountUp({ value, duration = 1.5 }: { value: number; duration?: number }): JSX.Element {
+/**
+ * 数字滚动动画组件
+ */
+function CountUp({ value, duration = 1.5 }: { value: number; duration?: number }) {
   const [displayValue, setDisplayValue] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
 
   useEffect(() => {
-    if (isInView && !hasAnimated && value > 0) {
+    if (!hasAnimated && value > 0) {
       setHasAnimated(true);
       const startTime = Date.now();
       const endTime = startTime + duration * 1000;
@@ -55,7 +59,7 @@ function CountUp({ value, duration = 1.5 }: { value: number; duration?: number }
 
       requestAnimationFrame(animate);
     }
-  }, [isInView, hasAnimated, value, duration]);
+  }, [hasAnimated, value, duration]);
 
   const formatValue = (val: number): string => {
     if (val >= 100000000) return `${(val / 100000000).toFixed(1)}亿`;
@@ -63,11 +67,13 @@ function CountUp({ value, duration = 1.5 }: { value: number; duration?: number }
     return val.toString();
   };
 
-  return <span ref={ref}>{formatValue(displayValue)}</span>;
+  return <span>{formatValue(displayValue)}</span>;
 }
 
-// 骨架屏加载器
-function MetricCardSkeleton(): JSX.Element {
+/**
+ * 骨架屏加载器
+ */
+function MetricCardSkeleton() {
   return (
     <div className={`${styles.metricCard} ${styles.skeleton}`}>
       <div className={styles.skeletonIcon} />
@@ -78,15 +84,12 @@ function MetricCardSkeleton(): JSX.Element {
   );
 }
 
-// 空状态展示
-function EmptyState(): JSX.Element {
+/**
+ * 空状态展示
+ */
+function EmptyState() {
   return (
-    <motion.div
-      className={styles.emptyState}
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
-    >
+    <div className={styles.emptyState}>
       <div className={styles.emptyIcon}>📊</div>
       <h3 className={styles.emptyTitle}>数据即将上线</h3>
       <p className={styles.emptyDescription}>
@@ -105,10 +108,13 @@ function EmptyState(): JSX.Element {
           ease: 'easeInOut',
         }}
       />
-    </motion.div>
+    </div>
   );
 }
 
+/**
+ * 单个指标卡片组件
+ */
 function ActivityMetricCard({
   icon,
   title,
@@ -117,7 +123,7 @@ function ActivityMetricCard({
   gradient,
   index,
   isLoading,
-}: ActivityMetricCardProps): JSX.Element {
+}: ActivityMetricCardProps) {
   if (isLoading) {
     return <MetricCardSkeleton />;
   }
@@ -132,13 +138,6 @@ function ActivityMetricCard({
     <motion.div
       className={styles.metricCard}
       style={{ '--card-gradient': gradient } as React.CSSProperties}
-      initial={{ opacity: 0, translateY: 30, scale: 0.95 }}
-      animate={{ opacity: 1, translateY: 0, scale: 1 }}
-      transition={{
-        duration: 0.6,
-        delay: index * 0.15,
-        ease: [0.34, 1.56, 0.64, 1],
-      }}
       whileHover={{
         translateY: -8,
         scale: 1.02,
@@ -213,28 +212,47 @@ function ActivityMetricCard({
   );
 }
 
-// 直接导入 JSON 文件
-let metricsData: ActivityMetricsData | null = null;
-
-try {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  metricsData = require('../../../data/activity-metrics.json');
-} catch {
-  // 文件尚不存在
-}
-
-export default function ActivityMetricsSection(): JSX.Element | null {
+/**
+ * 主组件: 活动指标数据展示
+ */
+export default function ActivityMetricsSection() {
+  const [data, setData] = useState<ActivityMetricsData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    if (isInView) {
-      // 模拟加载以产生视觉效果
-      const timer = setTimeout(() => setIsLoading(false), 1500);
-      return () => clearTimeout(timer);
-    }
-  }, [isInView]);
+    // 从 public 目录加载数据
+    fetch('/activity-metrics.json')
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Failed to load activity metrics');
+        }
+        return res.json();
+      })
+      .then((jsonData: ActivityMetricsData) => {
+        setData(jsonData);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error loading activity metrics:', err);
+        setError(err);
+        setIsLoading(false);
+      });
+  }, []);
+
+  // 错误状态
+  if (error) {
+    return (
+      <section className={styles.activityMetricsSection}>
+        <div className="container">
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>活动指标</h2>
+          </div>
+          <EmptyState />
+        </div>
+      </section>
+    );
+  }
 
   // 默认占位数据
   const defaultData: ActivityMetricsData = {
@@ -250,35 +268,35 @@ export default function ActivityMetricsSection(): JSX.Element | null {
     },
   };
 
-  const data = metricsData || defaultData;
+  const currentData = data || defaultData;
   const hasRealData =
-    data.dockerHub.pullCount > 0 ||
-    data.clarity.activeUsers > 0 ||
-    data.clarity.activeSessions > 0;
+    currentData.dockerHub.pullCount > 0 ||
+    currentData.clarity.activeUsers > 0 ||
+    currentData.clarity.activeSessions > 0;
 
   const metrics: ActivityMetricCardProps[] = [
     {
-      icon: '\uD83D\uDC33', // 🐳
+      icon: '🐳',
       title: 'Docker Hub',
-      value: data.dockerHub.pullCount,
+      value: currentData.dockerHub.pullCount,
       description: '拉取次数',
       gradient: 'linear-gradient(135deg, #4ECDC4, #45B7D1)',
       index: 0,
       isLoading,
     },
     {
-      icon: '\uD83D\uDC65', // 👥
+      icon: '👥',
       title: '活跃用户',
-      value: data.clarity.activeUsers,
+      value: currentData.clarity.activeUsers,
       description: '近三天',
       gradient: 'linear-gradient(135deg, #FF6B6B, #6C5CE7)',
       index: 1,
       isLoading,
     },
     {
-      icon: '\uD83D\uDCAC', // 💬
+      icon: '💬',
       title: '活跃会话',
-      value: data.clarity.activeSessions,
+      value: currentData.clarity.activeSessions,
       description: '近三天',
       gradient: 'linear-gradient(135deg, #A29BFE, #FD79A8)',
       index: 2,
@@ -287,62 +305,30 @@ export default function ActivityMetricsSection(): JSX.Element | null {
   ];
 
   return (
-    <section ref={sectionRef} className={styles.activityMetricsSection}>
+    <section className={styles.activityMetricsSection}>
       {/* 动画背景网格 */}
       <div className={styles.bgMesh} />
       <div className={styles.bgGradient} />
 
       <div className="container">
-        <motion.div
-          className={styles.sectionHeader}
-          initial={{ opacity: 0, translateY: 20 }}
-          animate={isInView ? { opacity: 1, translateY: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className={styles.sectionTitle}>
-            <span className={styles.titleHighlight}>项目活动数据</span>
-          </h2>
-          <p className={styles.sectionSubtitle}>
-            查看社区的成长情况
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>活动指标</h2>
+          <p className={styles.sectionDescription}>
+            社区持续成长,感谢每一位贡献者
           </p>
-        </motion.div>
+        </div>
 
-        <AnimatePresence mode="wait">
-          {isLoading ? (
-            <motion.div
-              key="loading"
-              className={styles.metricsGrid}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              {metrics.map((metric) => (
-                <MetricCardSkeleton key={`${metric.title}-skeleton`} />
-              ))}
-            </motion.div>
-          ) : hasRealData ? (
-            <motion.div
-              key="loaded"
-              className={styles.metricsGrid}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              {metrics.map((metric) => (
-                <ActivityMetricCard key={metric.title} {...metric} />
-              ))}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="empty"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
+        <div className={styles.metricsGrid}>
+          <AnimatePresence mode="wait">
+            {!hasRealData && !isLoading ? (
               <EmptyState />
-            </motion.div>
-          )}
-        </AnimatePresence>
+            ) : (
+              metrics.map((metric) => (
+                <ActivityMetricCard key={metric.title} {...metric} />
+              ))
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

@@ -1,0 +1,295 @@
+/**
+ * Footer 组件样式
+ * 设计系统: Glassmorphism + Tech Dark
+ * 支持亮色/暗色主题切换
+ */
+
+/* ============================================
+   FOOTER 容器样式
+   ============================================ */
+
+.footer {
+  position: relative;
+  width: 100%;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--color-border);
+  transition: var(--theme-transition);
+  margin-top: auto;
+}
+
+/* 亮色主题特有样式 */
+[data-theme='light'] .footer {
+  --footer-bg: rgba(255, 255, 255, 0.9);
+  --footer-border: #e5e7eb;
+  --footer-link-color: #6b7280;
+  --footer-link-hover: var(--color-primary);
+  background: var(--footer-bg);
+  border-color: var(--footer-border);
+}
+
+/* 暗色主题特有样式 - 玻璃态效果 */
+[data-theme='dark'] .footer {
+  --footer-bg: rgba(23, 23, 23, 0.85);
+  --footer-border: rgba(255, 255, 255, 0.1);
+  --footer-link-color: #a3a3a3;
+  --footer-link-hover: var(--color-primary);
+  background: var(--footer-bg);
+  border-color: var(--footer-border);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   内容容器
+   ============================================ */
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-lg) var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  align-items: center;
+  justify-content: center;
+}
+
+/* 桌面端布局 - 水平分布 */
+@media (min-width: 768px) {
+  .content {
+    flex-direction: row;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    justify-content: space-between;
+  }
+}
+
+/* ============================================
+   版权区块
+   ============================================ */
+
+.copyrightSection {
+  display: flex;
+  align-items: center;
+}
+
+.copyrightText {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* ============================================
+   链接区块
+   ============================================ */
+
+.linksSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  align-items: center;
+}
+
+/* 桌面端 - 水平排列 */
+@media (min-width: 768px) {
+  .linksSection {
+    flex-direction: row;
+    gap: var(--spacing-md);
+  }
+}
+
+.link {
+  font-size: 0.9375rem;
+  color: var(--footer-link-color);
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--duration-fast) var(--ease-out);
+  position: relative;
+  font-weight: 400;
+  min-height: 44px; /* 触控目标最小高度 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 链接悬停状态 */
+.link:hover {
+  color: var(--footer-link-hover);
+  background: var(--color-surface-hover);
+  transform: translateY(-1px);
+}
+
+.link:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.link:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* 链接下划线装饰 */
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width var(--duration-fast) var(--ease-out),
+              left var(--duration-fast) var(--ease-out);
+}
+
+.link:hover::after {
+  width: calc(100% - 1.5rem);
+  left: 0.75rem;
+}
+
+/* ============================================
+   社交区块
+   ============================================ */
+
+.socialSection {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  color: var(--footer-link-color);
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  transition: all var(--duration-fast) var(--ease-out);
+  min-width: 44px; /* 触控目标最小宽度 */
+  min-height: 44px; /* 触控目标最小高度 */
+}
+
+.socialLink:hover {
+  color: var(--color-background);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.socialLink:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.socialLink:active {
+  transform: translateY(0) scale(0.95);
+}
+
+.socialIcon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ============================================
+   响应式优化
+   ============================================ */
+
+/* 移动端优化 */
+@media (max-width: 767px) {
+  .footer {
+    padding: var(--spacing-md) 0;
+  }
+
+  .content {
+    gap: var(--spacing-md);
+  }
+
+  .copyrightText {
+    font-size: 0.8125rem;
+    text-align: center;
+  }
+
+  .link {
+    font-size: 0.875rem;
+    padding: 0.625rem 1rem;
+  }
+}
+
+/* 平板优化 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .content {
+    padding: var(--spacing-lg) var(--spacing-lg);
+  }
+}
+
+/* 大屏幕优化 */
+@media (min-width: 1280px) {
+  .content {
+    padding: var(--spacing-xl) var(--spacing-2xl);
+  }
+}
+
+/* ============================================
+   可访问性增强
+   ============================================ */
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .footer {
+    transition: background-color 0.3s ease,
+                border-color 0.3s ease;
+  }
+
+  .link,
+  .socialLink {
+    transition: color 0.2s ease,
+                background-color 0.2s ease;
+  }
+
+  .link:hover,
+  .socialLink:hover {
+    transform: none;
+  }
+
+  .link::after {
+    transition: none;
+  }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+  .footer {
+    border-top-width: 2px;
+  }
+
+  .link:focus,
+  .socialLink:focus {
+    outline-width: 3px;
+  }
+}
+
+/* ============================================
+   打印样式
+   ============================================ */
+
+@media print {
+  .footer {
+    background: white;
+    border-top: 1px solid #000;
+    box-shadow: none;
+  }
+
+  .socialSection {
+    display: none;
+  }
+
+  .link {
+    color: #000;
+  }
+}

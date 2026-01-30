@@ -1,0 +1,512 @@
+/**
+ * Hagicode Docs - Global Styles
+ * Migrated from Docusaurus custom.css
+ * Enhanced with ui-ux-pro-max best practices
+ * Design System: Glassmorphism + Tech Dark
+ */
+
+/* Google Fonts - Space Grotesk + DM Sans */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(4.5rem + 1rem); /* navbar 高度 + 额外间距 */
+}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================
+   HAGICODE DESIGN SYSTEM - CSS VARIABLES
+   ============================================ */
+
+/* Light Theme */
+:root {
+  /* Starlight Compatibility */
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: rgb(33, 175, 144);
+  --ifm-color-primary-darker: rgb(31, 165, 136);
+  --ifm-color-primary-darkest: rgb(26, 136, 112);
+  --ifm-color-primary-light: rgb(70, 203, 174);
+  --ifm-color-primary-lighter: rgb(92, 230, 203);
+  --ifm-color-primary-lightest: rgb(120, 253, 231);
+  --ifm-code-font-size: 95%;
+  --ifm-font-size-base: 16px;
+  --ifm-spacing-horizontal: 2rem;
+  --ifm-spacing-horizontal-vertical: 1.5rem;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Hagicode Brand Colors - Light */
+  --color-primary: #2e8555;
+  --color-primary-dark: #25c2a0;
+  --color-primary-glow: rgba(46, 133, 85, 0.3);
+
+  /* Neutral Colors - Light */
+  --color-text: #1c1e21;
+  --color-text-secondary: #6b7280;
+  --color-text-muted: #9ca3af;
+  --color-background: #ffffff;
+  --color-surface: #f9fafb;
+  --color-surface-hover: #f3f4f6;
+  --color-surface-glass: rgba(255, 255, 255, 0.85);
+  --color-border: #e5e7eb;
+  --color-border-light: rgba(229, 231, 235, 0.5);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #22C55E 0%, #25c2a0 50%, #06b6d4 100%);
+  --gradient-glow: radial-gradient(circle at center, rgba(34, 197, 94, 0.15) 0%, transparent 70%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* Shadows - Light */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.6, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* Theme transition */
+  --theme-transition: background-color 0.3s ease,
+                      color 0.3s ease,
+                      border-color 0.3s ease;
+}
+
+/* Dark Theme */
+[data-theme='dark'] {
+  /* Starlight Compatibility */
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: rgb(26, 136, 112);
+  --ifm-color-primary-darker: rgb(24, 128, 106);
+  --ifm-color-primary-darkest: rgb(20, 105, 87);
+  --ifm-color-primary-light: rgb(66, 212, 181);
+  --ifm-color-primary-lighter: rgb(87, 230, 206);
+  --ifm-color-primary-lightest: rgb(119, 253, 231);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  /* Hagicode Brand Colors - Dark */
+  --color-primary: #25c2a0;
+  --color-primary-dark: #22C55E;
+  --color-primary-glow: rgba(34, 197, 94, 0.4);
+
+  /* Neutral Colors - Dark */
+  --color-text: #f5f5f5;
+  --color-text-secondary: #a3a3a3;
+  --color-text-muted: #737373;
+  --color-background: #0a0a0a;
+  --color-surface: #171717;
+  --color-surface-hover: #262626;
+  --color-surface-glass: rgba(23, 23, 23, 0.8);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-light: rgba(255, 255, 255, 0.05);
+
+  /* Gradients - Dark */
+  --gradient-primary: linear-gradient(135deg, #22C55E 0%, #25c2a0 50%, #06b6d4 100%);
+  --gradient-glow: radial-gradient(circle at center, rgba(34, 197, 94, 0.25) 0%, transparent 70%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+
+  /* Shadows - Dark */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 30px rgba(34, 197, 94, 0.3);
+}
+
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--ifm-font-size-base);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  transition: var(--theme-transition);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+code, pre {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Glassmorphism Card */
+.glass-card {
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.glass-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  transform: translate3d(0, -4px, 0);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow Effect */
+.glow-primary {
+  box-shadow: 0 0 20px var(--color-primary-glow);
+}
+
+/* ============================================
+   HERO SECTION STYLES (Modern)
+   ============================================ */
+
+.hero-section {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-background);
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-glow);
+  opacity: 0.6;
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 900px;
+  padding: var(--spacing-xl);
+}
+
+/* Legacy Starlight Hero Styles */
+.hero {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.hero__title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.hero__subtitle {
+  font-size: 1.5rem;
+  color: var(--ifm-color-secondary);
+  margin-bottom: 2rem;
+}
+
+.hero__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Code Block Styling */
+.theme-code-block {
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+/* Admonition Styling */
+.admonition {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid var(--ifm-color-primary);
+}
+
+/* Section Styling */
+section {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 996px) {
+  .hero {
+    padding: 2rem 0;
+  }
+
+  .hero__title {
+    font-size: 2rem;
+  }
+
+  .hero__subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+/* Global Link Styles */
+a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--ifm-color-primary-dark);
+  text-decoration: underline;
+}
+
+/* 锚点目标高亮效果 */
+:target {
+  scroll-margin-top: calc(4.5rem + 1rem);
+}
+
+:target::before {
+  content: '';
+  display: block;
+  height: calc(4.5rem + 1rem);
+  margin-top: calc((4.5rem + 1rem) * -1);
+  visibility: hidden;
+}
+
+/* 文章标题平滑滚动效果 */
+article h2[id],
+article h3[id],
+article h4[id],
+article h5[id],
+article h6[id] {
+  scroll-margin-top: calc(4.5rem + 1.5rem);
+  transition: background-color 0.3s ease;
+}
+
+/* Table of Contents Styles - Modern UI/UX */
+.toc {
+  padding: 0;
+  border-left: none;
+}
+
+/* 目录标题 */
+.toc-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  padding: 0 0.75rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* 目录列表 */
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 目录项 */
+.toc-item {
+  margin-bottom: 0.125rem;
+}
+
+/* 目录链接 */
+.toc-item a {
+  display: block;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: 0.375rem 0.75rem;
+  margin: 0.125rem 0;
+  border-radius: 0.375rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  position: relative;
+  overflow: hidden;
+}
+
+.toc-item a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--ifm-color-primary);
+  transform: scaleY(0);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 0 3px 3px 0;
+}
+
+.toc-item a:hover {
+  color: var(--ifm-color-primary);
+  background-color: var(--color-surface-hover);
+  transform: translateX(2px);
+}
+
+/* 激活状态 */
+.toc-item.active a {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  background-color: var(--color-surface-hover);
+}
+
+.toc-item.active a::before {
+  transform: scaleY(1);
+}
+
+/* 层级缩进 */
+.toc-level-2 {
+  padding-left: 0;
+}
+
+.toc-level-3 {
+  padding-left: 0.75rem;
+}
+
+.toc-level-4 {
+  padding-left: 1.5rem;
+}
+
+.toc-level-5 {
+  padding-left: 2.25rem;
+}
+
+.toc-level-6 {
+  padding-left: 3rem;
+}
+
+/* 返回顶部按钮 */
+.toc-back-to-top {
+  margin-top: 1rem;
+  padding: 0.625rem 0.75rem;
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.toc-back-to-top:hover {
+  background: var(--ifm-color-primary);
+  color: white;
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(46, 133, 85, 0.3);
+}
+
+.toc-back-to-top:active {
+  transform: translateY(0);
+}
+
+/* 深色模式 */
+[data-theme='dark'] .toc {
+  border-left-color: transparent;
+}
+
+[data-theme='dark'] .toc-item a {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] .toc-item a:hover {
+  color: var(--ifm-color-primary);
+  background-color: var(--color-surface-hover);
+}
+
+[data-theme='dark'] .toc-item.active a {
+  color: var(--ifm-color-primary);
+  background-color: var(--color-surface-hover);
+}
+
+[data-theme='dark'] .toc-back-to-top {
+  color: var(--color-text);
+  background: var(--color-surface-hover);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .toc-back-to-top:hover {
+  background: var(--ifm-color-primary);
+  color: var(--color-background);
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 2px 8px rgba(37, 194, 160, 0.3);
+}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .toc-item a {
+    transition: none;
+  }
+
+  .toc-item a:hover {
+    transform: none;
+  }
+
+  .toc-back-to-top {
+    transition: none;
+  }
+
+  .toc-back-to-top:hover {
+    transform: none;
+  }
+}

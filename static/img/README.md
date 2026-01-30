@@ -1,6 +1,6 @@
 # Static Images Directory
 
-This directory is for static image files that will be served by your Docusaurus site.
+This directory is for static image files that will be served by your Astro site.
 
 ## Usage
 
@@ -27,5 +27,6 @@ Common image formats are supported:
 
 ## Notes
 
-- Files in this directory are copied to the `build/` directory as-is during the build process
-- The `/img/` path is relative to the `static/` directory
+- Files in this directory are copied to the `dist/` directory as-is during the build process
+- The `/img/` path is relative to the `public/` directory
+- Note: This directory is deprecated; please use `public/img/` instead

@@ -51,11 +51,11 @@ jobs:
         id: diff
         run: |
           # 读取新数据
-          NEW_DATA=$(cat data/activity-metrics.json)
+          NEW_DATA=$(cat public/activity-metrics.json)
 
           # 尝试读取旧数据（从 main 分支）
-          if git show main:data/activity-metrics.json &>/dev/null; then
-            OLD_DATA=$(git show main:data/activity-metrics.json)
+          if git show main:public/activity-metrics.json &>/dev/null; then
+            OLD_DATA=$(git show main:public/activity-metrics.json)
 
             # 提取各指标的新旧值
             OLD_PULL=$(echo "$OLD_DATA" | jq -r '.dockerHub.pullCount // 0')
@@ -191,7 +191,7 @@ jobs:
 
       - name: Commit changes
         run: |
-          git add data/activity-metrics.json
+          git add public/activity-metrics.json
           git commit -m "chore: update activity metrics data
 
           - 更新时间: $(date -u +"%Y-%m-%dT%H:%M:%SZ")"
@@ -237,10 +237,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # 读取最新的指标数据用于 PR 描述
-          PULL_COUNT=$(jq -r '.dockerHub.pullCount' data/activity-metrics.json)
-          ACTIVE_USERS=$(jq -r '.clarity.activeUsers' data/activity-metrics.json)
-          ACTIVE_SESSIONS=$(jq -r '.clarity.activeSessions' data/activity-metrics.json)
-          LAST_UPDATED=$(jq -r '.lastUpdated' data/activity-metrics.json)
+          PULL_COUNT=$(jq -r '.dockerHub.pullCount' public/activity-metrics.json)
+          ACTIVE_USERS=$(jq -r '.clarity.activeUsers' public/activity-metrics.json)
+          ACTIVE_SESSIONS=$(jq -r '.clarity.activeSessions' public/activity-metrics.json)
+          LAST_UPDATED=$(jq -r '.lastUpdated' public/activity-metrics.json)
 
           # 获取对比结果
           DIFF_TABLE="${{ steps.diff.outputs.diff_table }}"
@@ -266,7 +266,7 @@ jobs:
           | 更新时间 | $LAST_UPDATED |
 
           ### 变更
-          - 更新 \`data/activity-metrics.json\` 为最新指标
+          - 更新 \`public/activity-metrics.json\` 为最新指标
 
           ### 自动化
           此 PR 由 [Update Activity Metrics](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) 工作流自动创建。"
@@ -280,10 +280,10 @@ jobs:
 
       - name: Summary
         run: |
-          PULL_COUNT=$(jq -r '.dockerHub.pullCount' data/activity-metrics.json)
-          ACTIVE_USERS=$(jq -r '.clarity.activeUsers' data/activity-metrics.json)
-          ACTIVE_SESSIONS=$(jq -r '.clarity.activeSessions' data/activity-metrics.json)
-          LAST_UPDATED=$(jq -r '.lastUpdated' data/activity-metrics.json)
+          PULL_COUNT=$(jq -r '.dockerHub.pullCount' public/activity-metrics.json)
+          ACTIVE_USERS=$(jq -r '.clarity.activeUsers' public/activity-metrics.json)
+          ACTIVE_SESSIONS=$(jq -r '.clarity.activeSessions' public/activity-metrics.json)
+          LAST_UPDATED=$(jq -r '.lastUpdated' public/activity-metrics.json)
 
           echo "### 活动指标更新 :rocket:" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY

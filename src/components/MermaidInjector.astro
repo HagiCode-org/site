@@ -1,0 +1,11 @@
+---
+/**
+ * Mermaid 注入器组件
+ * 用作 Starlight 的 Logo 组件,在渲染 Logo 的同时注入 Mermaid 渲染脚本
+ */
+import { Logo as DefaultLogo } from '@astrojs/starlight/components';
+import MermaidRenderer from '../scripts/mermaid-renderer.astro';
+---
+
+<DefaultLogo {...Astro.props} />
+<MermaidRenderer />

@@ -1,0 +1,459 @@
+/**
+ * Navbar 样式 - 科技感设计风格
+ * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
+ * 响应式导航栏，支持移动端
+ */
+
+/* ==========================================================================
+   NAVBAR CONTAINER
+   ========================================================================== */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all var(--duration-normal) var(--ease-out);
+  padding: 1rem 0;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme='dark'] .navbar {
+  background: rgba(3, 7, 18, 0.85);
+  border-bottom-color: rgba(0, 255, 255, 0.1);
+}
+
+/* HUD 装饰线 */
+.hudLine {
+  position: absolute;
+  bottom: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--color-primary) 20%,
+    var(--color-secondary) 50%,
+    var(--color-primary) 80%,
+    transparent 100%
+  );
+  opacity: 0.3;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+/* 滚动后的状态 */
+.navbar.scrolled {
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0;
+  box-shadow: var(--shadow-md);
+}
+
+.navbar.scrolled .hudLine {
+  opacity: 0.6;
+}
+
+[data-theme='dark'] .navbar.scrolled {
+  background: rgba(3, 7, 18, 0.95);
+  border-bottom-color: rgba(0, 255, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   LOGO
+   ========================================================================== */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: all var(--duration-normal) var(--ease-out);
+  cursor: pointer;
+}
+
+.logo:hover {
+  opacity: 0.9;
+}
+
+.logo:hover .logoIcon {
+  box-shadow: var(--shadow-glow);
+}
+
+.logoIcon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-normal) var(--ease-out);
+  overflow: hidden;
+}
+
+.logoIcon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.logo:hover .logoIcon::before {
+  opacity: 0.1;
+}
+
+.logoIcon svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-primary);
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme='dark'] .logoIcon {
+  background: rgba(0, 255, 255, 0.05);
+  border-color: rgba(0, 255, 255, 0.2);
+}
+
+[data-theme='dark'] .logoIcon svg {
+  color: var(--color-secondary);
+}
+
+.logoText {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ==========================================================================
+   DESKTOP NAVIGATION
+   ========================================================================== */
+
+.navDesktop {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  transition: color var(--duration-fast, 0.15s) ease;
+  cursor: pointer;
+}
+
+.navLinkText {
+  position: relative;
+  z-index: 1;
+}
+
+.navLink:hover {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .navLink:hover {
+  color: var(--color-secondary);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* 底部指示器动画 */
+.navLinkIndicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--duration-normal, 0.3s) var(--ease-out);
+}
+
+.navLink:hover .navLinkIndicator {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ==========================================================================
+   ACTIONS
+   ========================================================================== */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   MOBILE MENU BUTTON
+   ========================================================================== */
+
+.mobileMenuBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--color-text);
+  transition: all var(--duration-normal, 0.3s) var(--ease-out);
+}
+
+.mobileMenuBtn:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .mobileMenuBtn:hover {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.15);
+}
+
+.mobileMenuBtn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* 汉堡菜单动画 */
+.hamburger {
+  position: relative;
+  width: 20px;
+  height: 14px;
+}
+
+.hamburgerLine {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: all var(--duration-normal, 0.3s) var(--ease-out);
+}
+
+.line1 {
+  top: 0;
+}
+
+.line2 {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.line3 {
+  bottom: 0;
+}
+
+/* 打开状态下的汉堡动画 */
+.mobileMenuBtn[aria-expanded="true"] .line1 {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.mobileMenuBtn[aria-expanded="true"] .line2 {
+  opacity: 0;
+}
+
+.mobileMenuBtn[aria-expanded="true"] .line3 {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}
+
+[data-theme='dark'] .mobileMenuBtn {
+  border-color: rgba(0, 255, 255, 0.2);
+  color: var(--color-secondary);
+}
+
+[data-theme='dark'] .hamburgerLine {
+  background: var(--color-secondary);
+}
+
+/* ==========================================================================
+   MOBILE MENU
+   ========================================================================== */
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  z-index: 999;
+  transform: translateX(100%);
+  transition: transform var(--duration-normal, 0.3s) var(--ease-out);
+}
+
+.mobileMenu.open {
+  transform: translateX(0);
+}
+
+.mobileMenuBg {
+  position: absolute;
+  inset: 0;
+  background: var(--color-background);
+  opacity: 0;
+  transition: opacity var(--duration-normal, 0.3s) ease;
+}
+
+.mobileMenu.open .mobileMenuBg {
+  opacity: 1;
+}
+
+.mobileNav {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 6rem 1.5rem 2rem;
+  max-width: 300px;
+  margin-left: auto;
+  height: 100%;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid var(--color-border);
+}
+
+[data-theme='dark'] .mobileNav {
+  background: rgba(3, 7, 18, 0.95);
+  border-left-color: rgba(0, 255, 255, 0.15);
+}
+
+.mobileNavLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  transition: all var(--duration-fast, 0.15s) ease;
+  cursor: pointer;
+}
+
+.mobileNavLink:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-primary);
+  transform: translateX(-4px);
+}
+
+[data-theme='dark'] .mobileNavLink:hover {
+  background: rgba(0, 255, 255, 0.1);
+  color: var(--color-secondary);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.mobileNavText {
+  font-family: var(--font-display);
+}
+
+.mobileNavArrow {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all var(--duration-normal, 0.3s) ease;
+}
+
+.mobileNavLink:hover .mobileNavArrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mobileNavArrow::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 0;
+  }
+
+  .navDesktop {
+    display: none;
+  }
+
+  .mobileMenuBtn {
+    display: flex;
+  }
+
+  .hudLine {
+    left: 1rem;
+    right: 1rem;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar,
+  .navbar.scrolled,
+  .logo,
+  .logoIcon,
+  .navLink,
+  .navLinkIndicator,
+  .mobileMenu,
+  .mobileNavLink,
+  .hamburgerLine {
+    transition: none !important;
+  }
+
+  .mobileNavLink:hover {
+    transform: none !important;
+  }
+}

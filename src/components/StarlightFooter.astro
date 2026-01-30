@@ -1,0 +1,13 @@
+---
+/**
+ * Starlight 自定义 Footer
+ * 在官方 Footer 基础上添加 Clarity 分析
+ */
+import Default from '@astrojs/starlight/components/Footer.astro';
+import Clarity from './Clarity.astro';
+---
+
+<Default {...Astro.props}>
+  <slot />
+</Default>
+<Clarity />

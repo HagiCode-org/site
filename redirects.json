@@ -1,0 +1,72 @@
+{
+  "redirects": [
+    {
+      "from": "/blog/2026/01/22/github-issues-集成",
+      "to": "/blog/2026-01-22-github-issues-集成/"
+    },
+    {
+      "from": "/blog/2026/01/25/how-to-sync-docker-hub-to-azure-acr-with-github",
+      "to": "/blog/2026-01-25-how-to-sync-docker-hub-to-azure-acr-with-github/"
+    },
+    {
+      "from": "/blog/2026/01/26/docusaurus-auto-deployment-with-github-actions",
+      "to": "/blog/2026-01-26-docusaurus-auto-deployment-with-github-actions/"
+    },
+    {
+      "from": "/blog/2026/01/26/modern-build-system-with-csharp-and-nuke",
+      "to": "/blog/2026-01-26-modern-build-system-with-csharp-and-nuke/"
+    },
+    {
+      "from": "/blog/2026/01/28/streamjsonrpc-integration-in-hagicode",
+      "to": "/blog/2026-01-28-streamjsonrpc-integration-in-hagicode/"
+    },
+    {
+      "from": "/blog/2026/01/28/利用-worker-threads-优化-vite-构建性能的实战",
+      "to": "/blog/2026-01-28-利用-worker-threads-优化-vite-构建性能的实战/"
+    },
+    {
+      "from": "/docs/installation/docker-compose",
+      "to": "/installation/docker-compose/"
+    },
+    {
+      "from": "/docs/installation/package-deployment",
+      "to": "/installation/package-deployment/"
+    },
+    {
+      "from": "/docs/product-overview",
+      "to": "/product-overview/"
+    },
+    {
+      "from": "/docs/quick-start/conversation-session",
+      "to": "/quick-start/conversation-session/"
+    },
+    {
+      "from": "/docs/quick-start/create-first-project",
+      "to": "/quick-start/create-first-project/"
+    },
+    {
+      "from": "/docs/quick-start/proposal-session",
+      "to": "/quick-start/proposal-session/"
+    },
+    {
+      "from": "/docs/related-software-installation/claude-code/setup-claude-code-with-zai",
+      "to": "/related-software-installation/claude-code/setup-claude-code-with-zai/"
+    },
+    {
+      "from": "/docs/related-software-installation/nodejs/installation",
+      "to": "/related-software-installation/nodejs/installation/"
+    },
+    {
+      "from": "/docs/related-software-installation/openspec/setup-openspec",
+      "to": "/related-software-installation/openspec/setup-openspec/"
+    },
+    {
+      "from": "/docs/related-software-installation/postgresql/install-on-windows",
+      "to": "/related-software-installation/postgresql/install-on-windows/"
+    },
+    {
+      "from": "/docs/tests/external-links-test",
+      "to": "/tests/external-links-test/"
+    }
+  ]
+}

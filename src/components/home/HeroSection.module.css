@@ -1,0 +1,777 @@
+/**
+ * HeroSection 样式
+ * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
+ * 使用 CSS 变量支持亮色/暗色主题
+ */
+
+/* ==========================================================================
+   HERO SECTION CONTAINER
+   ========================================================================== */
+
+.heroSection {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 7rem 1rem 3rem;
+  isolation: isolate;
+  background: var(--color-background);
+}
+
+[data-theme='dark'] .heroSection {
+  background: #030712;
+}
+
+/* 背景网格 - 科技感 */
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--color-border-light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border-light) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.4;
+  z-index: 0;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+[data-theme='dark'] .bgGrid {
+  opacity: 0.3;
+  background-image:
+    linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* 背景辉光 */
+.bgGlow {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-glow);
+  opacity: 0.6;
+  z-index: 0;
+  pointer-events: none;
+}
+
+[data-theme='dark'] .bgGlow {
+  opacity: 1;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(0, 128, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+}
+
+/* 扫描线效果 - 仅暗色模式 */
+.bgScanlines {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+[data-theme='dark'] .bgScanlines {
+  opacity: 1;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 255, 0.02) 2px,
+    rgba(0, 255, 255, 0.02) 4px
+  );
+}
+
+/* 浮动装饰元素 */
+.floatingElements {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.techOrb {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  filter: blur(80px);
+  opacity: 0.2;
+  top: 10%;
+  left: 5%;
+}
+
+.techOrb2 {
+  top: auto;
+  bottom: 10%;
+  left: auto;
+  right: 5%;
+  background: linear-gradient(135deg, var(--color-success), var(--color-accent));
+}
+
+/* HUD 装饰边框 */
+.hudTopLeft,
+.hudTopRight,
+.hudBottomLeft,
+.hudBottomRight {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.hudTopLeft {
+  top: 2rem;
+  left: 2rem;
+  border-left: 2px solid var(--color-primary);
+  border-top: 2px solid var(--color-primary);
+}
+
+.hudTopRight {
+  top: 2rem;
+  right: 2rem;
+  border-right: 2px solid var(--color-primary);
+  border-top: 2px solid var(--color-primary);
+}
+
+.hudBottomLeft {
+  bottom: 2rem;
+  left: 2rem;
+  border-left: 2px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.hudBottomRight {
+  bottom: 2rem;
+  right: 2rem;
+  border-right: 2px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+[data-theme='dark'] .hudTopLeft,
+[data-theme='dark'] .hudTopRight,
+[data-theme='dark'] .hudBottomLeft,
+[data-theme='dark'] .hudBottomRight {
+  opacity: 0.35;
+  border-color: rgba(0, 255, 255, 0.4);
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   HERO CONTENT
+   ========================================================================== */
+
+.heroContent {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Logo 区域 */
+.heroLogo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.logoContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg),
+              0 0 40px rgba(0, 128, 255, 0.1);
+}
+
+.logoContainer::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-xl);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.logoContainer:hover::before {
+  opacity: 0.5;
+}
+
+[data-theme='dark'] .logoContainer {
+  background: rgba(20, 25, 50, 0.7);
+  border-color: rgba(0, 255, 255, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6),
+              0 0 15px rgba(0, 163, 255, 0.15);
+}
+
+.logoContainer svg {
+  width: 48px;
+  height: 48px;
+  color: var(--color-primary);
+}
+
+/* 主标题 */
+.heroTitle {
+  font-size: clamp(3.5rem, 15vw, 7rem);
+  font-weight: 800;
+  margin: 0 0 1rem 0;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-family: var(--font-display);
+}
+
+.titlePrefix {
+  color: var(--color-text);
+}
+
+.titleGradient {
+  background: var(--gradient-primary);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 6s ease infinite;
+  position: relative;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 打字机效果副标题 */
+.heroTagline {
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  min-height: 2.5em;
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+}
+
+.taglineText {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--color-primary);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* 描述 */
+.heroDescription {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--color-text-secondary);
+  margin: 0 auto 2.5rem auto;
+  max-width: 650px;
+  line-height: 1.7;
+}
+
+.heroDescription .highlight {
+  color: var(--color-primary);
+  font-weight: 600;
+  position: relative;
+}
+
+[data-theme='dark'] .heroDescription .highlight {
+  color: var(--color-secondary);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+/* 主按钮 - 科技感发光 */
+.buttonPrimary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+  color: #ffffff;
+  background: var(--gradient-primary);
+  background-size: 200% 200%;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow:
+    0 4px 14px rgba(0, 128, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all var(--duration-normal) var(--ease-out);
+  overflow: hidden;
+}
+
+/* 暗色模式使用更深的渐变以确保文字可读性 */
+[data-theme='dark'] .buttonPrimary {
+  background: linear-gradient(135deg, #0066CC 0%, #0088AA 50%, #229955 100%);
+  box-shadow:
+    0 4px 14px rgba(0, 100, 200, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.buttonPrimary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s var(--ease-out);
+}
+
+.buttonPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 20px rgba(0, 128, 255, 0.4),
+    0 0 30px rgba(0, 255, 255, 0.3);
+  background-position: 100% 50%;
+}
+
+/* 暗色模式悬停使用更深的阴影 */
+[data-theme='dark'] .buttonPrimary:hover {
+  background: linear-gradient(135deg, #0077DD 0%, #0099BB 50%, #22AA66 100%);
+  box-shadow:
+    0 6px 20px rgba(0, 100, 200, 0.6),
+    0 0 25px rgba(0, 200, 255, 0.25);
+}
+
+.buttonPrimary:hover::before {
+  transform: translateX(100%);
+}
+
+.buttonPrimary:active {
+  transform: translateY(0);
+}
+
+.buttonPrimary svg {
+  width: 18px;
+  height: 18px;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.buttonPrimary:hover svg {
+  transform: translateX(4px);
+}
+
+/* 次要按钮 - 玻璃态 */
+.buttonSecondary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+  color: var(--color-text);
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.buttonSecondary:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+[data-theme='dark'] .buttonSecondary {
+  background: rgba(20, 25, 50, 0.7);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--color-text);
+}
+
+[data-theme='dark'] .buttonSecondary:hover {
+  background: rgba(30, 35, 60, 0.8);
+  border-color: var(--color-secondary);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5),
+              0 0 12px rgba(0, 255, 255, 0.2);
+}
+
+/* 小按钮 */
+.buttonSmall {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+  color: #ffffff;
+  background: var(--gradient-primary);
+  background-size: 200% 200%;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--duration-normal) var(--ease-out);
+  overflow: hidden;
+}
+
+/* 暗色模式使用更深的渐变以确保文字可读性 */
+[data-theme='dark'] .buttonSmall {
+  background: linear-gradient(135deg, #0066CC 0%, #0088AA 50%, #229955 100%);
+  box-shadow:
+    0 4px 12px rgba(0, 100, 200, 0.4),
+    0 0 15px rgba(0, 200, 255, 0.15);
+}
+
+.buttonSmall:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 4px 12px rgba(0, 128, 255, 0.3),
+    0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+/* 暗色模式悬停状态 */
+[data-theme='dark'] .buttonSmall:hover {
+  background: linear-gradient(135deg, #0077DD 0%, #0099BB 50%, #22AA66 100%);
+  box-shadow:
+    0 4px 12px rgba(0, 100, 200, 0.5),
+    0 0 15px rgba(0, 200, 255, 0.2);
+}
+
+.buttonSmall svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ==========================================================================
+   TECH STACK
+   ========================================================================== */
+
+.techStack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.techLabel {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.techTag {
+  padding: 0.375rem 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.techTag:hover {
+  border-color: var(--color-primary);
+  background: var(--gradient-tech);
+}
+
+[data-theme='dark'] .techTag {
+  color: var(--color-secondary);
+  border-color: rgba(0, 255, 255, 0.2);
+}
+
+[data-theme='dark'] .techTag:hover {
+  border-color: var(--color-secondary);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+/* ==========================================================================
+   QQ GROUP CARD (Glassmorphism + Tech)
+   ========================================================================== */
+
+.qqGroupCard {
+  position: relative;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  max-width: 480px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--duration-normal) var(--ease-out);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.qqGroupCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+  z-index: 0;
+}
+
+.qqGroupCard:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+}
+
+.qqGroupCard:hover::before {
+  opacity: 0.05;
+}
+
+[data-theme='dark'] .qqGroupCard {
+  background: rgba(20, 25, 50, 0.7);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] .qqGroupCard:hover {
+  border-color: var(--color-secondary);
+  box-shadow:
+    0 15px 50px rgba(0, 0, 0, 0.7),
+    0 0 25px rgba(0, 255, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* 卡片发光效果 */
+.cardGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 255, 255, 0.15), transparent 50%);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.qqGroupCard:hover .cardGlow {
+  opacity: 1;
+}
+
+.qqGroupIcon {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-lg);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 128, 255, 0.3);
+}
+
+[data-theme='dark'] .qqGroupIcon {
+  box-shadow: 0 4px 15px rgba(0, 128, 255, 0.4);
+}
+
+.qqGroupIcon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.qqGroupTitle {
+  position: relative;
+  z-index: 2;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 0.5rem 0;
+  font-family: var(--font-display);
+}
+
+.qqGroupDescription {
+  position: relative;
+  z-index: 2;
+  color: var(--color-text-secondary);
+  margin: 0 0 1.5rem 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.groupNumber {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+[data-theme='dark'] .groupNumber {
+  color: var(--color-secondary);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.qqGroupCard .buttonSmall {
+  position: relative;
+  z-index: 2;
+  width: auto;
+  min-width: fit-content;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .heroSection {
+    min-height: 80vh;
+    padding: 6rem 1rem 2rem;
+  }
+
+  .hudTopLeft,
+  .hudTopRight,
+  .hudBottomLeft,
+  .hudBottomRight {
+    width: 40px;
+    height: 40px;
+  }
+
+  .heroLogo {
+    margin-bottom: 1.5rem;
+  }
+
+  .logoContainer {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .logoContainer svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .techOrb {
+    width: 150px;
+    height: 150px;
+  }
+
+  .techOrb2 {
+    width: 120px;
+    height: 120px;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .buttonPrimary,
+  .buttonSecondary {
+    justify-content: center;
+  }
+
+  .techStack {
+    gap: 0.5rem;
+  }
+
+  .techLabel {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .qqGroupCard {
+    padding: 1.5rem;
+  }
+
+  .hudTopLeft,
+  .hudTopRight,
+  .hudBottomLeft,
+  .hudBottomRight {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .heroSection,
+  .techOrb,
+  .techOrb2,
+  .heroLogo,
+  .titleGradient,
+  .cursor,
+  .qqGroupCard {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .buttonPrimary:hover,
+  .buttonSecondary:hover,
+  .buttonSmall:hover {
+    transform: none !important;
+  }
+}

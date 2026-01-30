@@ -1,0 +1,238 @@
+/**
+ * 首页全局样式 - 科技感设计风格
+ * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
+ * 仅用于首页，不影响文档站其他页面
+ */
+
+/* ==========================================================================
+   CSS Variables - 亮色主题 (默认)
+   ========================================================================== */
+:root,
+[data-theme='light'] {
+  /* 品牌色 - 霓虹青/全息蓝/成功绿 */
+  --color-primary: #0080FF;
+  --color-primary-dark: #0060CC;
+  --color-secondary: #00CCCC;  /* 更深的青色以提高对比度 */
+  --color-success: #22C55E;
+  --color-accent: #6C5CE7;
+
+  /* 渐变 - 使用更深的颜色以提高白字对比度 */
+  --gradient-primary: linear-gradient(135deg, #0080FF 0%, #00AAAA 50%, #22C55E 100%);
+  --gradient-glow: radial-gradient(circle at center, rgba(0, 128, 255, 0.15) 0%, transparent 70%);
+  --gradient-tech: linear-gradient(135deg, rgba(0, 128, 255, 0.1) 0%, rgba(0, 255, 255, 0.05) 100%);
+
+  /* 背景色 */
+  --color-background: #F5F5F7;
+  --color-surface: #FFFFFF;
+  --color-surface-glass: rgba(255, 255, 255, 0.85);
+  --color-surface-hover: #F8F9FA;
+
+  /* 文字色 */
+  --color-text: #0F172A;
+  --color-text-secondary: #475569;
+  --color-text-muted: #94A3B8;
+
+  /* 边框 */
+  --color-border: rgba(0, 0, 0, 0.1);
+  --color-border-light: rgba(0, 0, 0, 0.05);
+
+  /* 圆角 */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* 过渡 */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.15);
+  --shadow-glow: 0 0 20px rgba(0, 128, 255, 0.3);
+  --shadow-glow-cyan: 0 0 20px rgba(0, 255, 255, 0.3);
+
+  /* 字体 - 使用系统内置科技感字体 */
+  --font-display: 'ui-monospace', 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Code', 'Consolas', monospace;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ==========================================================================
+   CSS Variables - 暗色主题
+   ========================================================================== */
+[data-theme='dark'] {
+  /* 品牌色 - 霓虹青/全息蓝/成功绿 (暗色模式下更亮) */
+  --color-primary: #00D4FF;
+  --color-primary-dark: #00A3FF;
+  --color-secondary: #00FFFF;
+  --color-success: #4ADE80;
+  --color-accent: #A78BFA;
+
+  /* 渐变 - 增强可见性 */
+  --gradient-primary: linear-gradient(135deg, #00D4FF 0%, #00FFFF 50%, #4ADE80 100%);
+  --gradient-glow: radial-gradient(circle at center, rgba(0, 212, 255, 0.2) 0%, transparent 70%);
+  --gradient-tech: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(0, 255, 255, 0.08) 100%);
+
+  /* 背景色 - 深空黑 (OLED 优化) */
+  --color-background: #030712;
+  --color-surface: #0A0F1E;
+  --color-surface-glass: rgba(15, 23, 42, 0.85);
+  --color-surface-hover: #151E32;
+
+  /* 文字色 - 提高对比度 (WCAG AAA) */
+  --color-text: #F8FAFC;
+  --color-text-secondary: #E2E8F0;
+  --color-text-muted: #94A3B8;
+
+  /* 边框 - 增加可见度 */
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-light: rgba(255, 255, 255, 0.06);
+
+  /* 阴影 - 暗色模式下使用柔和发光效果 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.8);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.9);
+  --shadow-glow: 0 0 25px rgba(0, 212, 255, 0.4);
+  --shadow-glow-cyan: 0 0 25px rgba(0, 255, 255, 0.35);
+}
+
+/* ==========================================================================
+   首页全局基础样式
+   ========================================================================== */
+
+/* 重置 body 和 html 背景 */
+body.homepage,
+html {
+  margin: 0;
+  padding: 0;
+  background: var(--color-background);
+  min-height: 100vh;
+}
+
+[data-theme='dark'] body.homepage,
+[data-theme='dark'] html {
+  background: #030712;
+}
+
+.homepage {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 首页 main 内容容器 - 全宽背景，内容限制宽度 */
+main.homepage {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Section 全宽背景 */
+.homepage > section {
+  width: 100%;
+}
+
+/* 内容区域限制 - 各个 section 的直接子元素容器 */
+.homepage > section > * {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1.5rem !important;
+  box-sizing: border-box;
+}
+
+/* 特别处理 .container 类 - 最高权重 */
+main.homepage section > .container,
+main.homepage section div.container,
+.homepage section > .container,
+.homepage section div.container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1.5rem !important;
+  box-sizing: border-box;
+}
+
+/* 背景装饰元素保持全宽 */
+.homepage > section > [class*="bg"],
+.homepage > section > [class*="floating"],
+.homepage > section > [class*="hud"],
+.homepage > section > [class*="techOrb"],
+.homepage > section > [class*="bgMesh"],
+.homepage > section > [class*="bgGradient"] {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.homepage h1,
+.homepage h2,
+.homepage h3,
+.homepage h4,
+.homepage h5,
+.homepage h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* ==========================================================================
+   科技感装饰元素
+   ========================================================================== */
+
+/* 扫描线效果 - 仅在暗色模式 */
+.homepage [data-theme='dark'] .tech-scanlines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 255, 0.03) 2px,
+    rgba(0, 255, 255, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 发光边框效果 */
+.homepage .tech-border-glow {
+  position: relative;
+  border: 1px solid var(--color-primary);
+  box-shadow: var(--shadow-glow),
+              inset 0 0 20px rgba(0, 128, 255, 0.1);
+}
+
+.homepage [data-theme='dark'] .tech-border-glow {
+  box-shadow: var(--shadow-glow),
+              inset 0 0 30px rgba(0, 128, 255, 0.15);
+}
+
+/* 网格背景 */
+.homepage .tech-grid-bg {
+  background-image:
+    linear-gradient(var(--color-border-light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border-light) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ==========================================================================
+   减少动画偏好
+   ========================================================================== */
+.homepage @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

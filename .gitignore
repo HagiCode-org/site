@@ -9,6 +9,7 @@ coverage/
 # Production
 build/
 .dist/
+dist/
 
 # Misc
 .DS_Store
@@ -38,3 +39,4 @@ yarn-error.log*
 Thumbs.db
 
 .claude/skills/ui-ux-pro-max/scripts/__pycache__/
+.astro/

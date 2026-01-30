@@ -1,0 +1,184 @@
+/**
+ * ShowcaseSection 样式 - 产品截图展示
+ * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
+ * 使用 CSS 变量支持亮色/暗色主题
+ */
+
+.showcaseSection {
+  padding: 5rem 0;
+  background: var(--color-background);
+  position: relative;
+}
+
+/* 科技感网格背景 */
+.showcaseSection::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--color-border-light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border-light) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.25;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, black 20%, transparent 80%);
+  -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 80%);
+}
+
+[data-theme='dark'] .showcaseSection::before {
+  opacity: 0.15;
+  background-image:
+    linear-gradient(rgba(0, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+  font-family: var(--font-display);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sectionDescription {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+}
+
+/* 截图网格布局 - 桌面端 3 列 */
+.screenshotsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* 截图卡片 - 玻璃态效果 */
+.screenshotCard {
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-out);
+  margin: 0;
+}
+
+[data-theme='dark'] .screenshotCard {
+  background: rgba(20, 25, 50, 0.6);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 悬停效果 - 缩放 + 阴影 + 边框高亮 */
+.screenshotCard:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(0, 128, 255, 0.15);
+}
+
+[data-theme='dark'] .screenshotCard:hover {
+  border-color: var(--color-secondary);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.6),
+    0 0 25px rgba(0, 255, 255, 0.12);
+}
+
+/* 图片样式 - 保持比例,适配容器 */
+.screenshotImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  background: var(--color-surface-placeholder);
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* 图片加载失败占位符 */
+.screenshotPlaceholder {
+  aspect-ratio: 16 / 9;
+  background: var(--color-surface-placeholder);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+/* 截图标题 */
+.screenshotTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 1rem 1rem 0.5rem;
+  color: var(--color-text);
+  font-family: var(--font-display);
+}
+
+/* 截图描述 */
+.screenshotDescription {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  padding: 0 1rem 1rem;
+}
+
+/* 响应式设计 */
+/* 平板 (768-995px): 2 列 */
+@media (max-width: 995px) {
+  .screenshotsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* 移动端 (<768px): 1 列 */
+@media (max-width: 767px) {
+  .showcaseSection {
+    padding: 3rem 0;
+  }
+
+  .screenshotsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .screenshotTitle {
+    font-size: 1.1rem;
+  }
+
+  .screenshotDescription {
+    font-size: 0.9rem;
+  }
+}
+
+/* 减少运动敏感度 */
+@media (prefers-reduced-motion: reduce) {
+  .screenshotCard {
+    transition: none;
+  }
+
+  .screenshotImage {
+    animation: none;
+    opacity: 1;
+  }
+}

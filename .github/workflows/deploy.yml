@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - doc
 
 permissions:
   contents: read
@@ -30,15 +31,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: install playwright browsers
+        run: npx playwright install --with-deps
+
       - name: Build
         run: npm run build
         env:
           CLARITY_PROJECT_ID: ${{ secrets.CLARITY_PROJECT_ID }}
+          # 站点基础路径配置
+          # - 保留此环境变量以支持子路径部署 (/site)
+          # - 如需切换到根路径部署,移除此环境变量即可
+          # - astro.config.mjs 中的 base 配置默认为 '/',可通过此环境变量覆盖
+          VITE_SITE_BASE: '/site'
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./build
+          path: ./dist
 
   deploy:
     environment:

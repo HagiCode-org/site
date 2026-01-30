@@ -1,0 +1,68 @@
+/**
+ * ThemeToggle 样式
+ * 暗色/亮色主题切换按钮
+ * 设计系统: HUD/Sci-Fi FUI
+ */
+
+.themeToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  color: var(--color-text);
+}
+
+.themeToggle:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-primary);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-glow);
+}
+
+.themeToggle:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+[data-theme='dark'] .themeToggle {
+  background: rgba(15, 23, 42, 0.8);
+  border-color: rgba(0, 255, 255, 0.15);
+  color: var(--color-secondary);
+}
+
+[data-theme='dark'] .themeToggle:hover {
+  background: rgba(21, 30, 50, 0.9);
+  border-color: var(--color-secondary);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.themeToggle .icon {
+  width: 20px;
+  height: 20px;
+  transition: transform var(--duration-fast) ease;
+  stroke: currentColor;
+}
+
+.themeToggle:hover .icon {
+  transform: rotate(15deg);
+}
+
+[data-theme='dark'] .themeToggle .icon {
+  stroke: var(--color-secondary);
+}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .themeToggle:hover .icon {
+    transform: none;
+  }
+}

@@ -1,0 +1,40 @@
+/**
+ * VideoPlayer 样式
+ */
+
+.video-player-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.video-player {
+  position: relative;
+  width: 100%;
+  border-radius: var(--sl-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  background: var(--sl-bg-inset);
+}
+
+.video-iframe-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.video-iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* 响应式 */
+@media (max-width: 767px) {
+  .video-player {
+    border-radius: var(--sl-radius-md);
+  }
+}

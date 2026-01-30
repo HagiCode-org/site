@@ -1,0 +1,79 @@
+---
+/**
+ * Hagicode 首页
+ * 集成所有首页组件,展示产品特性和功能
+ */
+import Navbar from '../components/home/Navbar';
+import HeroSection from '../components/home/HeroSection';
+import ActivityMetricsSection from '../components/home/ActivityMetricsSection';
+import FeaturesShowcase from '../components/home/FeaturesShowcase';
+import ShowcaseSection from '../components/home/ShowcaseSection';
+import VideoShowcase from '../components/home/VideoShowcase';
+import Footer from '../components/home/Footer';
+import Clarity from '../components/Clarity.astro';
+// 导入首页样式
+import '../styles/homepage.css';
+
+// 页面元数据
+const title = 'Hagicode - 智能 · 便捷 · 有趣的 AI 编码助手';
+const description = '用 AI 重新定义代码开发体验。OpenSpec 工作流、多线程会话管理、成就系统,让编码更高效、更有趣';
+
+// 获取站点基础路径
+const siteBase = import.meta.env.VITE_SITE_BASE || '/';
+---
+
+<!doctype html>
+<html lang="zh-CN" data-site-base={siteBase}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="og:title" content={title} />
+    <meta name="og:description" content={description} />
+    <meta name="og:type" content="website" />
+    <script is:inline>
+      // 初始化主题 - 在页面加载前执行，避免闪烁
+      // 与 Starlight 文档站同步使用 starlight-theme 键
+      (function() {
+        const stored = localStorage.getItem('starlight-theme');
+        const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const theme = stored || system;
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body class="homepage">
+    <Navbar client:load />
+
+    <main class="homepage">
+      <!-- Hero Section - 首屏必需 -->
+      <HeroSection client:load />
+
+      <!-- Activity Metrics Section -->
+      <ActivityMetricsSection client:load />
+
+      <!-- Features Showcase -->
+      <FeaturesShowcase client:load />
+
+      <!-- Showcase Section -->
+      <ShowcaseSection client:load />
+
+      <!-- Video Showcase -->
+      <VideoShowcase
+        videoId="BV1pirZBuEzq"
+        title="每天哈基半小时,AI多任务编程实战"
+        description="通过视频快速了解 Hagicode 的核心功能和使用方法"
+        client:load
+      />
+    </main>
+
+    <!-- Footer -->
+    <Footer client:load />
+
+    <!-- Microsoft Clarity 分析 -->
+    <Clarity />
+  </body>
+</html>

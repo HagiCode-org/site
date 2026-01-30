@@ -307,62 +307,8 @@ Tokens<br>
 
 <h3>🤝 贡献指南</h3>
 <ul>
-<li><a href="./docs/contributor-guide/mermaid-guide">Mermaid 图表指南</a></li>
 <li><a href="./docs/contributor-guide">文档贡献规范</a></li>
 </ul>
-
-</td>
-</tr>
-</table>
-
----
-
-## 🛠️ 文档站点开发
-
-基于 <a href="https://docusaurus.io/">Docusaurus</a> 构建的文档站点
-
-<table>
-<tr>
-<td width="50%">
-
-<h4>快速开始</h4>
-
-```bash
-# 安装依赖
-npm install
-
-# 启动开发服务器
-npm start
-
-# 构建生产版本
-npm build
-```
-
-</td>
-<td width="50%">
-
-<h4>环境要求</h4>
-
-| 依赖 | 版本 |
-|:----|:-----|
-| Node.js | ≥18.0 |
-
-<h4>项目结构</h4>
-
-```
-pcode-docs/
-├── docs/          # 文档内容
-│   ├── installation/
-│   ├── quick-start/
-│   └── ...
-├── src/           # 源代码
-│   ├── components/
-│   ├── css/
-│   └── pages/
-├── static/        # 静态资源
-├── docusaurus.config.ts
-└── sidebars.ts
-```
 
 </td>
 </tr>
@@ -373,9 +319,9 @@ pcode-docs/
 <div align="center">
 
 <a href="https://hagicode-org.github.io/site/">🌐 官网</a> |
-<a href="https://github.com/Hagicode-org/hagicode-docs">📂 GitHub</a> |
+<a href="https://github.com/Hagicode-org/site">📂 GitHub</a> |
 <a href="./blog">✏️ 博客</a> |
-<a href="https://docusaurus.io/">📦 Docusaurus 3.0</a>
+<a href="https://astro.build/">🚀 Astro 5.x</a>
 
 <p>Built with ❤️ and 🎮</p>
 
