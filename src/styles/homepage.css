@@ -5,6 +5,12 @@
  */
 
 /* ==========================================================================
+   字体导入 - 必须在文件开头
+   ========================================================================== */
+/* 新年主题字体导入 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap');
+
+/* ==========================================================================
    CSS Variables - 亮色主题 (默认)
    ========================================================================== */
 :root,
@@ -103,6 +109,46 @@
 }
 
 /* ==========================================================================
+   CSS Variables - 农历新年主题
+   ========================================================================== */
+[data-theme='lunar-new-year'] {
+  /* 品牌色 - 春节红/富贵金 */
+  --color-primary: #D32F2F;
+  --color-primary-dark: #FFA000;
+  --color-secondary: #FFD54F;
+  --color-success: #4ADE80;
+  --color-accent: #FFCA28;
+
+  /* 渐变 - 红金渐变 */
+  --gradient-primary: linear-gradient(135deg, #D32F2F 0%, #FFA000 50%, #FFD54F 100%);
+  --gradient-glow: radial-gradient(circle at center, rgba(211, 47, 47, 0.3) 0%, rgba(255, 160, 0, 0.2) 50%, transparent 70%);
+  --gradient-tech: linear-gradient(135deg, rgba(211, 47, 47, 0.15) 0%, rgba(255, 160, 0, 0.08) 100%);
+
+  /* 背景色 - 暗红背景 */
+  --color-background: #1a0505;
+  --color-surface: #2d0a0a;
+  --color-surface-glass: rgba(45, 10, 10, 0.85);
+  --color-surface-hover: #3d0e0e;
+
+  /* 文字色 - 金玉文字 (高对比度) */
+  --color-text: #FFE082;
+  --color-text-secondary: #FFD54F;
+  --color-text-muted: #FFCA28;
+
+  /* 边框 - 金色边框 */
+  --color-border: rgba(255, 160, 0, 0.3);
+  --color-border-light: rgba(255, 160, 0, 0.15);
+
+  /* 阴影 - 金色光晕 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 30px rgba(211, 47, 47, 0.4), 0 0 60px rgba(255, 160, 0, 0.2);
+  --shadow-glow-cyan: 0 0 30px rgba(255, 160, 0, 0.3);
+}
+
+/* ==========================================================================
    首页全局基础样式
    ========================================================================== */
 
@@ -118,6 +164,11 @@ html {
 [data-theme='dark'] body.homepage,
 [data-theme='dark'] html {
   background: #030712;
+}
+
+[data-theme='lunar-new-year'] body.homepage,
+[data-theme='lunar-new-year'] html {
+  background: #1a0505;
 }
 
 .homepage {
@@ -222,6 +273,197 @@ main.homepage section div.container,
     linear-gradient(var(--color-border-light) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-border-light) 1px, transparent 1px);
   background-size: 40px 40px;
+}
+
+/* ==========================================================================
+   农历新年主题专属样式
+   ========================================================================== */
+
+/* 新年主题下的字体设置 */
+[data-theme='lunar-new-year'] .homepage {
+  --font-display: 'Noto Serif TC', 'STKaiti', 'KaiTi', serif;
+  --font-body: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* 新年主题发光边框 */
+[data-theme='lunar-new-year'] .homepage .tech-border-glow {
+  border-color: rgba(255, 160, 0, 0.5);
+  box-shadow:
+    0 0 30px rgba(211, 47, 47, 0.4),
+    0 0 60px rgba(255, 160, 0, 0.2),
+    inset 0 0 20px rgba(255, 160, 0, 0.1);
+}
+
+/* 新年主题扫描线效果 - 金色 */
+[data-theme='lunar-new-year'] .homepage .tech-scanlines::before {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 160, 0, 0.03) 2px,
+    rgba(255, 160, 0, 0.03) 4px
+  );
+}
+
+/* 新年主题网格背景 - 金色细线 */
+[data-theme='lunar-new-year'] .homepage .tech-grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 160, 0, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 160, 0, 0.08) 1px, transparent 1px);
+}
+
+/* 新年主题装饰纹样 - 云纹 */
+[data-theme='lunar-new-year'] .homepage .chinese-cloud-pattern {
+  position: absolute;
+  width: 120px;
+  height: 60px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 60'%3E%3Cpath d='M10 40 Q20 20 40 30 Q50 35 60 30 Q70 25 80 30 Q90 35 100 30 Q110 25 110 40' fill='none' stroke='rgba(255,160,0,0.15)' stroke-width='2'/%3E%3Cpath d='M15 45 Q25 30 45 35 Q55 40 65 35 Q75 30 85 35 Q95 40 105 35' fill='none' stroke='rgba(255,160,0,0.1)' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+/* 新年主题按钮样式增强 */
+[data-theme='lunar-new-year'] .homepage .buttonPrimary {
+  background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%);
+  border: 1px solid rgba(255, 160, 0, 0.4);
+  box-shadow:
+    0 4px 15px rgba(211, 47, 47, 0.4),
+    inset 0 0 20px rgba(255, 160, 0, 0.1);
+}
+
+[data-theme='lunar-new-year'] .homepage .buttonPrimary:hover {
+  background: linear-gradient(135deg, #E53935 0%, #C62828 100%);
+  box-shadow:
+    0 6px 20px rgba(211, 47, 47, 0.6),
+    0 0 30px rgba(255, 160, 0, 0.3),
+    inset 0 0 30px rgba(255, 160, 0, 0.2);
+}
+
+[data-theme='lunar-new-year'] .homepage .buttonSecondary {
+  border-color: rgba(255, 160, 0, 0.4);
+  box-shadow:
+    0 0 15px rgba(255, 160, 0, 0.2),
+    inset 0 0 15px rgba(255, 160, 0, 0.05);
+}
+
+[data-theme='lunar-new-year'] .homepage .buttonSecondary:hover {
+  border-color: rgba(255, 160, 0, 0.6);
+  box-shadow:
+    0 0 25px rgba(255, 160, 0, 0.4),
+    inset 0 0 25px rgba(255, 160, 0, 0.1);
+}
+
+/* 新年主题卡片样式 */
+[data-theme='lunar-new-year'] .homepage .card,
+[data-theme='lunar-new-year'] .homepage .glass-card {
+  border: 1px solid rgba(255, 160, 0, 0.3);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.4),
+    inset 0 0 30px rgba(255, 160, 0, 0.05);
+}
+
+[data-theme='lunar-new-year'] .homepage .card:hover,
+[data-theme='lunar-new-year'] .homepage .glass-card:hover {
+  border-color: rgba(255, 160, 0, 0.5);
+  box-shadow:
+    0 15px 50px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(255, 160, 0, 0.3),
+    inset 0 0 40px rgba(255, 160, 0, 0.1);
+}
+
+/* 新年主题渐变文字 */
+[data-theme='lunar-new-year'] .homepage .titleGradient {
+  background: linear-gradient(135deg, #FFD54F 0%, #FFA000 50%, #FF8F00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 新年主题高亮文字 */
+[data-theme='lunar-new-year'] .homepage .highlight {
+  color: #FFD54F;
+  text-shadow: 0 0 20px rgba(255, 160, 0, 0.5);
+}
+
+/* 新年主题光晕背景 */
+[data-theme='lunar-new-year'] .homepage .bgGlow {
+  background: radial-gradient(
+    ellipse at center top,
+    rgba(211, 47, 47, 0.2) 0%,
+    rgba(255, 160, 0, 0.1) 30%,
+    transparent 70%
+  );
+}
+
+/* 新年主题浮动元素颜色 */
+[data-theme='lunar-new-year'] .homepage .techOrb {
+  background: radial-gradient(
+    circle,
+    rgba(255, 213, 79, 0.4) 0%,
+    rgba(255, 160, 0, 0.2) 40%,
+    transparent 70%
+  );
+  box-shadow:
+    0 0 40px rgba(255, 160, 0, 0.3),
+    0 0 80px rgba(211, 47, 47, 0.2);
+}
+
+/* 新年主题 HUD 装饰 - 金色 */
+[data-theme='lunar-new-year'] .homepage .hudTopLeft,
+[data-theme='lunar-new-year'] .homepage .hudTopRight,
+[data-theme='lunar-new-year'] .homepage .hudBottomLeft,
+[data-theme='lunar-new-year'] .homepage .hudBottomRight {
+  border-color: rgba(255, 160, 0, 0.4);
+}
+
+[data-theme='lunar-new-year'] .homepage .hudTopLeft::before,
+[data-theme='lunar-new-year'] .homepage .hudTopRight::before,
+[data-theme='lunar-new-year'] .homepage .hudBottomLeft::after,
+[data-theme='lunar-new-year'] .homepage .hudBottomRight::after {
+  background: linear-gradient(135deg, #FFD54F 0%, #FFA000 100%);
+}
+
+/* 新年主题链接样式 */
+[data-theme='lunar-new-year'] .homepage a {
+  color: #FFD54F;
+  text-shadow: 0 0 10px rgba(255, 160, 0, 0.3);
+}
+
+[data-theme='lunar-new-year'] .homepage a:hover {
+  color: #FFECB3;
+  text-shadow: 0 0 20px rgba(255, 160, 0, 0.6);
+}
+
+/* 新年主题滚动条样式 */
+[data-theme='lunar-new-year'] ::-webkit-scrollbar {
+  width: 10px;
+}
+
+[data-theme='lunar-new-year'] ::-webkit-scrollbar-track {
+  background: rgba(26, 5, 5, 0.5);
+}
+
+[data-theme='lunar-new-year'] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FFA000 0%, #D32F2F 100%);
+  border-radius: 5px;
+  border: 2px solid #1a0505;
+}
+
+[data-theme='lunar-new-year'] ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FFB300 0%, #E53935 100%);
+}
+
+/* 新年主题选择样式 */
+[data-theme='lunar-new-year'] ::selection {
+  background: rgba(255, 160, 0, 0.3);
+  color: #FFD54F;
+}
+
+/* 新年主题焦点样式 */
+[data-theme='lunar-new-year'] :focus-visible {
+  outline: 2px solid #FFA000;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255, 160, 0, 0.2);
 }
 
 /* ==========================================================================

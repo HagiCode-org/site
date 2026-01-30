@@ -10,6 +10,8 @@ import FeaturesShowcase from '../components/home/FeaturesShowcase';
 import ShowcaseSection from '../components/home/ShowcaseSection';
 import VideoShowcase from '../components/home/VideoShowcase';
 import Footer from '../components/home/Footer';
+import LunarNewYearDecorations from '../components/home/LunarNewYearDecorations';
+import { LunarNewYearCardGroup } from '../components/home/LunarNewYearCard';
 import Clarity from '../components/Clarity.astro';
 // 导入首页样式
 import '../styles/homepage.css';
@@ -38,19 +40,56 @@ const siteBase = import.meta.env.VITE_SITE_BASE || '/';
       // 初始化主题 - 在页面加载前执行，避免闪烁
       // 与 Starlight 文档站同步使用 starlight-theme 键
       (function() {
+        // 判断是否在农历新年期间
+        // 蛇年2025: 2025-01-29 至 2025-02-12 (元宵节)
+        // 马年2026: 2026-02-17 至 2026-03-03 (元宵节)
+        function isLunarNewYearPeriod() {
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = now.getMonth() + 1; // 1-12
+          const day = now.getDate();
+
+          // 2025年蛇年新年期间 (1月29日 - 2月12日)
+          if (year === 2025) {
+            if (month === 1 && day >= 29) return true;
+            if (month === 2 && day <= 12) return true;
+          }
+          // 2026年马年新年期间 (2月17日 - 3月3日)
+          if (year === 2026) {
+            if (month === 2 && day >= 17) return true;
+            if (month === 3 && day <= 3) return true;
+          }
+          return false;
+        }
+
         const stored = localStorage.getItem('starlight-theme');
         const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        const theme = stored || system;
+        let theme;
+
+        if (stored) {
+          // 用户已有主题偏好,使用其选择
+          theme = stored;
+        } else {
+          // 用户无主题偏好,应用智能默认
+          theme = isLunarNewYearPeriod() ? 'lunar-new-year' : system;
+        }
+
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
   </head>
   <body class="homepage">
+    <!-- 新年主题装饰 - 仅在农历新年主题下显示 -->
+    <LunarNewYearDecorations client:load />
+
     <Navbar client:load />
 
     <main class="homepage">
       <!-- Hero Section - 首屏必需 -->
       <HeroSection client:load />
+
+      <!-- 新年主题卡片组 - 仅在农历新年主题下显示 -->
+      <LunarNewYearCardGroup client:load />
 
       <!-- Activity Metrics Section -->
       <ActivityMetricsSection client:load />

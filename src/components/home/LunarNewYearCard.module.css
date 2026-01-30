@@ -1,0 +1,474 @@
+/**
+ * LunarNewYearCard 样式
+ * 新年主题卡片样式
+ */
+
+.card {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ==========================================================================
+   福字卡片
+   ========================================================================== */
+
+.fuCard {
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+}
+
+.cardBackground {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #D32F2F 0%,
+    #C62828 50%,
+    #B71C1C 100%
+  );
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 0 30px rgba(255, 160, 0, 0.2);
+}
+
+.goldBorder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fuCharacter {
+  position: relative;
+  z-index: 2;
+}
+
+.fuWrapper {
+  transition: transform 0.5s ease;
+}
+
+.fuText {
+  font-size: 72px;
+  font-weight: 900;
+  font-family: 'Noto Serif TC', 'STKaiti', 'KaiTi', serif;
+  color: #FFD54F;
+  text-shadow:
+    0 0 20px #FFA000,
+    0 0 40px rgba(255, 160, 0, 0.6),
+    2px 2px 4px rgba(0, 0, 0, 0.4);
+  display: inline-block;
+}
+
+.fuGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 213, 79, 0.4) 0%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: fuGlow 2s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes fuGlow {
+  from {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.patternDot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: #FFA000;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 160, 0, 0.8);
+}
+
+.blessing {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 90%;
+}
+
+.blessing p {
+  margin: 0;
+  color: #FFD54F;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'Noto Sans TC', sans-serif;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(255, 160, 0, 0.5);
+  line-height: 1.4;
+}
+
+.blessingSmall {
+  font-size: 9px;
+  color: #FFCA28;
+}
+
+.tassel {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 25px;
+  background: linear-gradient(to bottom, #FFA000, #FF8F00);
+  border-radius: 0 0 3px 3px;
+}
+
+.tassel::before {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 20px;
+  background: linear-gradient(
+    to bottom,
+    #FFD54F 0%,
+    #FFA000 50%,
+    #FF8F00 100%
+  );
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+}
+
+/* ==========================================================================
+   红包卡片
+   ========================================================================== */
+
+.hongbaoCard {
+  width: 160px;
+  height: 220px;
+  flex-shrink: 0;
+}
+
+.hongbaoBody {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    #E53935 0%,
+    #D32F2F 30%,
+    #C62828 100%
+  );
+  border-radius: 16px 16px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    inset 0 2px 10px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.hongbaoBody::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 160, 0, 0.2) 0%,
+    transparent 100%
+  );
+  border-radius: 16px 16px 0 0;
+}
+
+.hongbaoFlap {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 30px;
+  background: linear-gradient(
+    180deg,
+    #FFA000 0%,
+    #FF8F00 100%
+  );
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hongbaoFlap::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 20px;
+  background: linear-gradient(
+    180deg,
+    #FFD54F 0%,
+    #FFA000 100%
+  );
+  border-radius: 0 0 20px 20px;
+}
+
+.hongbaoPattern {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.hongbaoSvg {
+  width: 60px;
+  height: 60px;
+  filter: drop-shadow(0 2px 8px rgba(255, 160, 0, 0.5));
+}
+
+.hongbaoTitle {
+  margin: 0 0 0.5rem;
+  color: #FFD54F;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: 'Noto Sans TC', sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hongbaoHint {
+  margin: 0;
+  color: rgba(255, 213, 79, 0.8);
+  font-size: 0.75rem;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.hongbaoContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  padding: 1rem;
+  border-radius: 0 0 24px 24px;
+}
+
+.hongbaoMessage {
+  margin: 0 0 0.5rem;
+  color: #FFF;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: 'Noto Sans TC', sans-serif;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.hongbaoCoin {
+  font-size: 1.5rem;
+  text-align: center;
+  animation: coinBounce 0.5s ease;
+}
+
+@keyframes coinBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.hongbaoBottom {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 16px;
+  background: linear-gradient(
+    180deg,
+    #B71C1C 0%,
+    #8B0000 100%
+  );
+  border-radius: 0 0 50% 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   生肖卡片
+   ========================================================================== */
+
+.zodiacCard {
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+}
+
+.zodiacBackground {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #1a0505 0%,
+    #2d0a0a 50%,
+    #1a0505 100%
+  );
+  border-radius: 16px;
+  border: 2px solid #FFA000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow:
+    0 8px 32px rgba(255, 160, 0, 0.3),
+    inset 0 0 30px rgba(255, 160, 0, 0.1);
+}
+
+.zocardBackground::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 160, 0, 0.1) 0%,
+    transparent 70%
+  );
+}
+
+.zodiacSvg {
+  width: 100px;
+  height: 100px;
+  filter: drop-shadow(0 0 10px rgba(255, 160, 0, 0.5));
+}
+
+.zodiacText {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.zodiacYear {
+  margin: 0;
+  color: #FFA000;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: 'Noto Serif TC', serif;
+  letter-spacing: 0.2em;
+}
+
+.zodiacName {
+  margin: 0.25rem 0 0;
+  color: #FFD54F;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: 'Noto Sans TC', sans-serif;
+  text-shadow: 0 0 10px rgba(255, 160, 0, 0.8);
+}
+
+/* ==========================================================================
+   卡片组
+   ========================================================================== */
+
+.cardGroup {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+/* ==========================================================================
+   响应式
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .fuCard,
+  .zodiacCard {
+    width: 100px;
+    height: 100px;
+  }
+
+  .fuText {
+    font-size: 52px;
+  }
+
+  .hongbaoCard {
+    width: 120px;
+    height: 170px;
+  }
+
+  .hongbaoSvg {
+    width: 45px;
+    height: 45px;
+  }
+
+  .hongbaoTitle {
+    font-size: 0.9rem;
+  }
+
+  .zodiacSvg {
+    width: 70px;
+    height: 70px;
+  }
+
+  .cardGroup {
+    gap: 1rem;
+  }
+}
+
+/* ==========================================================================
+   减少动画偏好
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .fuWrapper {
+    transition: none !important;
+  }
+
+  .fuGlow {
+    animation: none !important;
+  }
+
+  .hongbaoCoin {
+    animation: none !important;
+  }
+}

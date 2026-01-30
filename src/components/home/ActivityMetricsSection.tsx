@@ -4,6 +4,7 @@
  */
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { withBasePath } from '../../utils/path';
 import styles from './ActivityMetricsSection.module.css';
 
 interface ActivityMetricsData {
@@ -222,7 +223,7 @@ export default function ActivityMetricsSection() {
 
   useEffect(() => {
     // 从 public 目录加载数据
-    fetch('/activity-metrics.json')
+    fetch(withBasePath('/activity-metrics.json'))
       .then((res) => {
         if (!res.ok) {
           throw new Error('Failed to load activity metrics');

@@ -2,6 +2,7 @@
  * HeroSection 组件
  * 首页 Hero 区域 - 科技感设计风格
  * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
+ * 支持农历新年主题
  */
 import { motion } from 'framer-motion';
 import { useMemo, useState, useEffect } from 'react';
@@ -14,6 +15,9 @@ type Variants = {
     [key: string]: any;
   };
 };
+
+// 定义主题类型
+type Theme = 'light' | 'dark' | 'lunar-new-year' | undefined;
 
 // Icon props type
 interface IconProps {
@@ -97,12 +101,21 @@ function UsersIcon({ className = '' }: IconProps) {
   );
 }
 
-// 打字机效果的标语
-const taglines = [
+// 普通主题打字机效果的标语
+const normalTaglines = [
   '智能 · 便捷 · 有趣',
   'AI 驱动 · 效率倍增',
   'OpenSpec · 工作流革新',
   '多线程 · 会话管理',
+];
+
+// 农历新年主题标语
+const lunarNewYearTaglines = [
+  '新春快乐 · 马年大吉',
+  'AI 赋能 · 码到成功',
+  '智能编码 · 万事如意',
+  'OpenSpec · 财源滚滚',
+  '效率倍增 · 恭喜发财',
 ];
 
 // 动画变体
@@ -130,10 +143,39 @@ export default function HeroSection() {
   const [currentTagline, setCurrentTagline] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const [theme, setTheme] = useState<Theme>(undefined);
 
   // 根据当前 base path 动态生成链接
   const installUrl = useMemo(() => withBasePath('/installation/docker-compose'), []);
   const docsUrl = useMemo(() => withBasePath('/product-overview'), []);
+
+  // 根据主题选择标语数组
+  const taglines = theme === 'lunar-new-year' ? lunarNewYearTaglines : normalTaglines;
+
+  // 检测主题变化
+  useEffect(() => {
+    const checkTheme = () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') as Theme;
+      setTheme(currentTheme);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // 重置打字机状态当主题切换时
+  useEffect(() => {
+    setCurrentTagline(0);
+    setDisplayText('');
+    setIsDeleting(false);
+  }, [theme]);
 
   // 打字机效果
   useEffect(() => {
@@ -156,7 +198,43 @@ export default function HeroSection() {
     }, isDeleting ? 50 : 100);
 
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, currentTagline]);
+  }, [displayText, isDeleting, currentTagline, taglines]);
+
+  // 新年主题图标渲染
+  const renderLogoIcons = () => {
+    if (theme === 'lunar-new-year') {
+      // 新年主题 - 灯笼和金币
+      return (
+        <>
+          <svg className={styles.logoIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="lantern-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FFD54F" />
+                <stop offset="100%" stopColor="#FF8F00" />
+              </linearGradient>
+            </defs>
+            {/* 灯笼 */}
+            <ellipse cx="12" cy="14" rx="6" ry="7" fill="url(#lantern-gold)" stroke="#FFD54F" strokeWidth="1"/>
+            <rect x="9" y="6" width="6" height="2" rx="1" fill="#FFA000"/>
+            <rect x="8" y="21" width="8" height="1" fill="#FFA000"/>
+            {/* 福 */}
+            <text x="12" y="16" textAnchor="middle" fill="#B71C1C" fontSize="6" fontWeight="bold">福</text>
+          </svg>
+          <svg className={styles.logoIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9" fill="url(#lantern-gold)" stroke="#FFD54F" strokeWidth="1"/>
+            <text x="12" y="14" textAnchor="middle" fill="#B71C1C" fontSize="10" fontWeight="bold">元</text>
+          </svg>
+        </>
+      );
+    }
+    // 默认科技图标
+    return (
+      <>
+        <CodeIcon />
+        <ChipIcon />
+      </>
+    );
+  };
 
   return (
     <section className={styles.heroSection}>
@@ -216,8 +294,7 @@ export default function HeroSection() {
           }}
         >
           <div className={styles.logoContainer}>
-            <CodeIcon />
-            <ChipIcon />
+            {renderLogoIcons()}
           </div>
         </motion.div>
 

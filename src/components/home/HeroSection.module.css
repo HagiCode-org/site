@@ -228,6 +228,11 @@
   color: var(--color-primary);
 }
 
+.logoIcon {
+  width: 48px;
+  height: 48px;
+}
+
 /* 主标题 */
 .heroTitle {
   font-size: clamp(3.5rem, 15vw, 7rem);

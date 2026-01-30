@@ -8,6 +8,7 @@
  * - 效率提升报告
  * - 成就系统
  */
+import { withBasePath } from '../../utils/path';
 import styles from './ShowcaseSection.module.css';
 
 interface ScreenshotItem {
@@ -20,37 +21,37 @@ interface ScreenshotItem {
 // 产品截图数据,按推荐顺序排列
 const screenshots: ScreenshotItem[] = [
   {
-    src: '/img/home/亮色主题主界面.png',
+    src: withBasePath('/img/home/亮色主题主界面.png'),
     title: '亮色主题主界面',
     description: '简洁直观的界面设计,让 AI 编码体验更加舒适流畅',
     alt: 'Hagicode 亮色主题主界面截图'
   },
   {
-    src: '/img/home/暗色主题主界面.png',
+    src: withBasePath('/img/home/暗色主题主界面.png'),
     title: '暗色主题主界面',
     description: '护眼暗色模式,支持一键切换主题,适应不同使用场景',
     alt: 'Hagicode 暗色主题主界面截图'
   },
   {
-    src: '/img/home/实时token消耗报告.png',
+    src: withBasePath('/img/home/实时token消耗报告.png'),
     title: '实时 token 消耗报告',
     description: '透明化成本监控,实时追踪每次会话的 AI 使用量',
     alt: 'Hagicode 实时 token 消耗报告截图'
   },
   {
-    src: '/img/home/使用 AI 的效率提升报告.png',
+    src: withBasePath('/img/home/使用 AI 的效率提升报告.png'),
     title: '使用 AI 的效率提升报告',
     description: '数据驱动效率分析,量化 AI 辅助编程带来的生产力提升',
     alt: 'Hagicode 使用 AI 的效率提升报告截图'
   },
   {
-    src: '/img/home/每日成就报告.png',
+    src: withBasePath('/img/home/每日成就报告.png'),
     title: '每日成就报告',
     description: '游戏化激励机制,让编码过程充满乐趣和成就感',
     alt: 'Hagicode 每日成就报告截图'
   },
   {
-    src: '/img/home/每日编写代码获得的成就.png',
+    src: withBasePath('/img/home/每日编写代码获得的成就.png'),
     title: '每日编写代码获得的成就',
     description: '成就系统见证成长轨迹,记录每一次编码里程碑',
     alt: 'Hagicode 每日编写代码获得的成就截图'
