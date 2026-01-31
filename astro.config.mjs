@@ -33,6 +33,11 @@ export default defineConfig({
     },
     // 配置 Vite 环境变量
     vite: {
+        resolve: {
+            alias: {
+                '@': new URL('./src', import.meta.url).pathname,
+            },
+        },
         define: {
             'import.meta.env.VITE_CLARITY_PROJECT_ID': JSON.stringify(
                 process.env.CLARITY_PROJECT_ID || ''
@@ -66,9 +71,8 @@ export default defineConfig({
             baseUrl: 'https://github.com/HagiCode-org/site/edit/main/',
         },
         components: {
-
+            Header: './src/components/StarlightHeader.astro',
             Footer: './src/components/StarlightFooter.astro',
-
         },
 
         plugins: [starlightBlog()],
