@@ -28,7 +28,7 @@
   font-size: 2rem;
   font-weight: 700;
   margin: 0 0 0.75rem 0;
-  font-family: var(--font-display, 'ui-monospace', 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Code', 'Consolas', monospace);
+  font-family: var(--font-display);
   background: var(--gradient-primary, linear-gradient(135deg, #0080FF 0%, #00AAAA 50%, #22C55E 100%));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -42,7 +42,7 @@
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
-  font-family: var(--font-body, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif);
+  font-family: var(--font-body);
 }
 
 /* 视频包装器 */

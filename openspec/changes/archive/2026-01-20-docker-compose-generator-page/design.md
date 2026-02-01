@@ -389,7 +389,7 @@ services:
       PGID: {pgid}
       {endif}
       # 智谱 AI API Key（容器部署必需）
-      # 购买链接：https://www.bigmodel.cn/claude-code?ic=14BY54APZA
+      # 购买链接：https://www.bigmodel.cn/glm-coding?ic=14BY54APZA
       ZAI_API_KEY: "{zaiApiKey}"
     ports:
       # HTTP 端口映射（主机端口:容器端口）

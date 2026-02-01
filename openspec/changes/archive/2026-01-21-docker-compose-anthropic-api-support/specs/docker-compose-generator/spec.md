@@ -175,7 +175,7 @@ The existing "智谱 AI API Key" configuration section SHALL be refactored to su
 **Given** 用户选择 "智谱 AI (ZAI)" 提供商
 **When** 用户查看配置区域
 **Then** 显示 "获取智谱 AI API Token →" 链接
-**And** 链接指向 `https://www.bigmodel.cn/claude-code?ic=14BY54APZA`
+**And** 链接指向 `https://www.bigmodel.cn/glm-coding?ic=14BY54APZA`
 
 **Given** 用户选择 "Anthropic 官方 API" 提供商
 **When** 用户查看配置区域

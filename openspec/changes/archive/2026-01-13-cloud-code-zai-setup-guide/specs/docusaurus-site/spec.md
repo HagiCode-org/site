@@ -31,7 +31,7 @@ The documentation site MUST provide a comprehensive guide for installing and con
 - **GIVEN** the user is reading the subscription purchase section
 - **WHEN** the user views ZAI subscription options
 - **THEN** the guide MUST recommend Coding Plan for daily development use
-- **AND** the guide MUST include the 10% discount link: `https://www.bigmodel.cn/claude-code?ic=14BY54APZA`
+- **AND** the guide MUST include the 10% discount link: `https://www.bigmodel.cn/glm-coding?ic=14BY54APZA`
 - **AND** the guide MUST mention lite version for initial trial
 - **AND** the guide MUST provide direct link to API Key creation page
 
@@ -77,7 +77,7 @@ The documentation site MUST provide a comprehensive guide for installing and con
 - **WHEN** the documentation page is rendered
 - **THEN** all external links MUST be accessible:
   - ZAI official documentation: `https://docs.bigmodel.cn/cn/coding-plan/tool/claude`
-  - ZAI discount link: `https://www.bigmodel.cn/claude-code?ic=14BY54APZA`
+  - ZAI discount link: `https://www.bigmodel.cn/glm-coding?ic=14BY54APZA`
   - API Key creation: `https://bigmodel.cn/usercenter/proj-mgmt/apikeys`
   - VSCode plugin marketplace
   - JetBrains plugin marketplace

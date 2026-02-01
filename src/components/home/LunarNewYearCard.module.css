@@ -58,7 +58,7 @@
 .fuText {
   font-size: 72px;
   font-weight: 900;
-  font-family: 'Noto Serif TC', 'STKaiti', 'KaiTi', serif;
+  font-family: 'Noto Serif SC', 'STKaiti', 'KaiTi', serif;
   color: #FFD54F;
   text-shadow:
     0 0 20px #FFA000,
@@ -126,7 +126,7 @@
   color: #FFD54F;
   font-size: 11px;
   font-weight: 600;
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: 'Noto Sans SC', sans-serif;
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.5),
     0 0 10px rgba(255, 160, 0, 0.5);
@@ -260,7 +260,7 @@
   color: #FFD54F;
   font-size: 1.1rem;
   font-weight: 700;
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: 'Noto Sans SC', sans-serif;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -268,7 +268,7 @@
   margin: 0;
   color: rgba(255, 213, 79, 0.8);
   font-size: 0.75rem;
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: 'Noto Sans SC', sans-serif;
 }
 
 .hongbaoContent {
@@ -290,7 +290,7 @@
   color: #FFF;
   font-size: 0.85rem;
   font-weight: 500;
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: 'Noto Sans SC', sans-serif;
   text-align: center;
   line-height: 1.4;
 }
@@ -343,20 +343,20 @@
   height: 100%;
   background: linear-gradient(
     135deg,
-    #1a0505 0%,
-    #2d0a0a 50%,
-    #1a0505 100%
+    #4a1a1a 0%,
+    #5a2020 50%,
+    #4a1a1a 100%
   );
   border-radius: 16px;
-  border: 2px solid #FFA000;
+  border: 2px solid #FFB300;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   box-shadow:
-    0 8px 32px rgba(255, 160, 0, 0.3),
-    inset 0 0 30px rgba(255, 160, 0, 0.1);
+    0 8px 32px rgba(255, 179, 0, 0.4),
+    inset 0 0 30px rgba(255, 179, 0, 0.15);
 }
 
 .zocardBackground::before {
@@ -386,7 +386,7 @@
   color: #FFA000;
   font-size: 0.9rem;
   font-weight: 700;
-  font-family: 'Noto Serif TC', serif;
+  font-family: 'Noto Serif SC', serif;
   letter-spacing: 0.2em;
 }
 
@@ -395,7 +395,7 @@
   color: #FFD54F;
   font-size: 1.1rem;
   font-weight: 700;
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: 'Noto Sans SC', sans-serif;
   text-shadow: 0 0 10px rgba(255, 160, 0, 0.8);
 }
 

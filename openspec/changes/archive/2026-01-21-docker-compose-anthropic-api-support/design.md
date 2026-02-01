@@ -183,7 +183,7 @@ const providerFields = {
     tokenLabel: 'API Token',
     tokenKey: 'anthropicAuthToken',
     tokenPlaceholder: '请输入您的智谱 AI API Token',
-    link: 'https://www.bigmodel.cn/claude-code?ic=14BY54APZA',
+    link: 'https://www.bigmodel.cn/glm-coding?ic=14BY54APZA',
     linkText: '获取智谱 AI API Token →',
     envVar: 'ANTHROPIC_AUTH_TOKEN',
     envVarUrl: 'ANTHROPIC_URL',

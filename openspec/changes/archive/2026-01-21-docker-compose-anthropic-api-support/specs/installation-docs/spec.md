@@ -125,7 +125,7 @@ External links in the documentation (such as API Token acquisition pages) MUST r
 
 **Given** 文档包含智谱 AI 相关链接
 **When** 用户点击链接
-**Then** 链接指向 `https://www.bigmodel.cn/claude-code?ic=14BY54APZA`
+**Then** 链接指向 `https://www.bigmodel.cn/glm-coding?ic=14BY54APZA`
 **And** 链接在新标签页打开
 **And** 链接有效可访问
 

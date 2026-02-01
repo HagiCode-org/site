@@ -1,0 +1,358 @@
+/**
+ * Hagicode 全局字体配置
+ * 现代化跨平台字体栈，优先使用各平台最佳字体
+ *
+ * 字体选择策略:
+ * 1. 优先使用系统内置的现代字体 (最快、最清晰)
+ * 2. 跨平台字体栈确保一致性
+ * 3. 中英文分别优化，确保最佳显示效果
+ */
+
+/* ==========================================================================
+   CSS 字体变量定义
+   ========================================================================== */
+
+:root {
+  /* ============================================
+     中文字体栈 - 按平台优化
+     ============================================ */
+
+  /* 无衬线中文字体 - 正文/UI */
+  --font-cn-sans:
+    /* macOS 优先 */
+    -apple-system,
+    BlinkMacSystemFont,
+    "PingFang SC",
+    "Hiragino Sans GB",
+    /* Windows 11+ */
+    "Microsoft YaHei UI",
+    /* Windows 10 及以下 */
+    "Microsoft YaHei",
+    /* Windows XP 老系统 */
+    "Segoe UI",
+    /* Android */
+    "Noto Sans SC",
+    "Roboto",
+    /* Linux */
+    "WenQuanYi Micro Hei",
+    /* 通用回退 */
+    sans-serif;
+
+  /* 衬线中文字体 - 标题/特殊场景 */
+  --font-cn-serif:
+    /* macOS */
+    "Songti SC",
+    "Hiragino Mincho ProN",
+    /* Windows */
+    "SimSun",
+    "NSimSun",
+    /* Android */
+    "Noto Serif SC",
+    /* Linux */
+    "WenQuanYi Zen Hei",
+    /* 通用回退 */
+    "STSong",
+    serif;
+
+  /* 等宽中文字体 - 代码/数据 */
+  --font-cn-mono:
+    /* macOS */
+    "PingFang SC",
+    "Hiragino Sans GB",
+    /* Windows */
+    "Microsoft YaHei",
+    /* Android */
+    "Noto Sans SC",
+    /* 通用回退 */
+    sans-serif,
+    monospace;
+
+  /* ============================================
+     英文字体栈 - 现代化设计
+     ============================================ */
+
+  /* 无衬线英文字体 - 正文/UI */
+  --font-en-sans:
+    /* macOS SF Pro (系统默认) */
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "SF Pro Display",
+    /* Windows Segoe UI */
+    "Segoe UI Variable",
+    "Segoe UI",
+    /* Android Roboto */
+    "Roboto",
+    /* Ubuntu Linux */
+    "Ubuntu",
+    "Cantarell",
+    /* 通用回退 */
+    system-ui,
+    sans-serif;
+
+  /* 衬线英文字体 - 标题/文章 */
+  --font-en-serif:
+    /* macOS New York */
+    "New York",
+    "SF Pro Display",
+    /* Georgia */
+    Georgia,
+    "Times New Roman",
+    /* 通用回退 */
+    serif;
+
+  /* 等宽英文字体 - 代码 */
+  --font-en-mono:
+    /* macOS */
+    "SF Mono",
+    "Menlo",
+    "Monaco",
+    /* Windows 11+ */
+    "Cascadia Code",
+    "Cascadia Mono",
+    /* Windows 老版本 */
+    "Consolas",
+    "Lucida Console",
+    /* Android */
+    "Roboto Mono",
+    /* Linux / 开源字体 */
+    "Fira Code",
+    "JetBrains Mono",
+    "Source Code Pro",
+    "DejaVu Sans Mono",
+    /* 通用回退 */
+    monospace;
+
+  /* ============================================
+     组合字体栈 - 中英文混排优化
+     ============================================ */
+
+  /* 正文/UI 字体 - 中英文混排优先 */
+  --font-body:
+    var(--font-cn-sans);
+
+  /* 标题字体 - 更粗的显示效果 */
+  --font-heading:
+    var(--font-cn-sans);
+
+  /* 代码字体 - 等宽优先 */
+  --font-code:
+    var(--font-en-mono),
+    var(--font-cn-mono);
+
+  /* 引用/特殊文字 - 衬线字体 */
+  --font-quote:
+    var(--font-cn-serif);
+
+  /* ============================================
+     数字字体 - 表格数据/数字显示
+     ============================================ */
+
+  /* 表格数字字体 - 等宽数字优化 */
+  --font-tabular:
+    "SF Mono",
+    "Menlo",
+    "Cascadia Code",
+    "Consolas",
+    "Roboto Mono",
+    monospace;
+
+  /* ============================================
+     特殊场景字体
+     ============================================ */
+
+  /* 按钮文字 - 更粗更醒目 */
+  --font-button:
+    /* macOS */
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "PingFang SC",
+    "Microsoft YaHei UI",
+    system-ui,
+    sans-serif;
+
+  /* 标签/徽章文字 */
+  --font-tag:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "PingFang SC",
+    "Segoe UI",
+    "Roboto",
+    sans-serif;
+
+  /* 小字/说明文字 */
+  --font-small:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif;
+}
+
+/* ==========================================================================
+   平台特定优化
+   ========================================================================== */
+
+/* macOS 字体平滑 */
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+  :root {
+    --font-smoothing: antialiased;
+    --moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Windows 字体平滑 */
+@media screen and (min-resolution: 96dpi) {
+  :root {
+    --font-smoothing: antialiased;
+  }
+}
+
+/* ==========================================================================
+   字体渲染属性
+   ========================================================================== */
+
+* {
+  /* macOS 字体平滑 */
+  -webkit-font-smoothing: var(--font-smoothing, antialiased);
+  -moz-osx-font-smoothing: var(--moz-osx-font-smoothing, grayscale);
+
+  /* 字体变体设置 */
+  font-variant-ligatures: common-ligatures;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+/* 代码字体优化 - 启用连字 */
+code,
+pre,
+.code,
+.font-code {
+  font-family: var(--font-code);
+  font-feature-settings:
+    "kern" 1,
+    "liga" 1,
+    "calt" 1,
+    "zero" 1;
+  font-variant-ligatures: common-ligatures contextual;
+}
+
+/* 表格数字等宽优化 */
+table,
+.font-tabular {
+  font-family: var(--font-tabular);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   字重映射
+   ========================================================================== */
+
+:root {
+  /* Thin - 100 */
+  --font-weight-thin: 100;
+
+  /* Extra Light - 200 */
+  --font-weight-extralight: 200;
+
+  /* Light - 300 */
+  --font-weight-light: 300;
+
+  /* Regular - 400 (默认) */
+  --font-weight-regular: 400;
+
+  /* Medium - 500 */
+  --font-weight-medium: 500;
+
+  /* Semi Bold - 600 */
+  --font-weight-semibold: 600;
+
+  /* Bold - 700 */
+  --font-weight-bold: 700;
+
+  /* Extra Bold - 800 */
+  --font-weight-extrabold: 800;
+
+  /* Black - 900 */
+  --font-weight-black: 900;
+}
+
+/* ==========================================================================
+   行高与间距
+   ========================================================================== */
+
+:root {
+  /* 紧凑行高 - 大标题 */
+  --line-height-tight: 1.1;
+
+  /* 默认行高 - 正文 */
+  --line-height-normal: 1.6;
+
+  /* 宽松行高 - 长文章 */
+  --line-height-relaxed: 1.8;
+
+  /* 字母间距 */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.05em;
+  --letter-spacing-wider: 0.1em;
+  --letter-spacing-widest: 0.2em;
+}
+
+/* ==========================================================================
+   工具类 - 字体系列
+   ========================================================================== */
+
+.font-sans {
+  font-family: var(--font-body);
+}
+
+.font-serif {
+  font-family: var(--font-quote);
+}
+
+.font-mono {
+  font-family: var(--font-code);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* ==========================================================================
+   工具类 - 字重
+   ========================================================================== */
+
+.font-thin {
+  font-weight: var(--font-weight-thin);
+}
+
+.font-light {
+  font-weight: var(--font-weight-light);
+}
+
+.font-regular {
+  font-weight: var(--font-weight-regular);
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.font-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.font-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+.font-extrabold {
+  font-weight: var(--font-weight-extrabold);
+}
+
+.font-black {
+  font-weight: var(--font-weight-black);
+}
