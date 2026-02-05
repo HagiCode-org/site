@@ -117,6 +117,19 @@ export default function Footer({ className = '' }: FooterProps) {
           </a>
         </div>
       </div>
+
+      {/* 备案信息区块 - 独立一行，居中显示 */}
+      <div className={styles.icpSection}>
+        <a
+          className={styles.icpLink}
+          href="https://beian.miit.gov.cn/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="查看 ICP 备案信息"
+        >
+          闽ICP备2026004153号-1
+        </a>
+      </div>
     </footer>
   );
 }

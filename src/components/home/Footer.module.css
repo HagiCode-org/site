@@ -82,6 +82,40 @@
 }
 
 /* ============================================
+   备案信息区块
+   ============================================ */
+
+.icpSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.icpLink {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-out),
+              text-decoration var(--duration-fast) var(--ease-out);
+}
+
+.icpLink:hover {
+  color: var(--footer-link-hover);
+  text-decoration: underline;
+}
+
+.icpLink:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================
    链接区块
    ============================================ */
 

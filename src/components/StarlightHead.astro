@@ -22,30 +22,34 @@ const isValidPage = Astro.url.pathname !== '/404';
 ---
 
 {isValidPage && (
-  <SEO
-    title={siteTitle}
-    description={siteDescription}
-    canonicalURL={canonicalUrl}
-    openGraph={{
-      url: canonicalUrl,
-      title: siteTitle,
-      description: siteDescription,
-      images: [
-        {
-          url: fullImageUrl,
-          width: 1200,
-          height: 630,
-          alt: siteTitle,
-        },
-      ],
-      siteName: 'Hagicode Docs',
-      locale: 'zh_CN',
-    }}
-    twitter={{
-      card: 'summary_large_image',
-      title: siteTitle,
-      description: siteDescription,
-      image: fullImageUrl,
-    }}
-  />
+  <>
+    <SEO
+      title={siteTitle}
+      description={siteDescription}
+      canonicalURL={canonicalUrl}
+      openGraph={{
+        url: canonicalUrl,
+        title: siteTitle,
+        description: siteDescription,
+        images: [
+          {
+            url: fullImageUrl,
+            width: 1200,
+            height: 630,
+            alt: siteTitle,
+          },
+        ],
+        siteName: 'Hagicode Docs',
+        locale: 'zh_CN',
+      }}
+      twitter={{
+        card: 'summary_large_image',
+        title: siteTitle,
+        description: siteDescription,
+        image: fullImageUrl,
+      }}
+    />
+    <!-- 百度搜索引擎验证 -->
+    <meta name="baidu-site-verification" content="codeva-A9s3yT3z5m" />
+  </>
 )}
