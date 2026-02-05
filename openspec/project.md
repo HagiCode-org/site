@@ -300,6 +300,58 @@ The project uses GitHub Actions for continuous deployment to GitHub Pages:
    - Astro 会自动根据 base 路径调整所有内部链接、图片和资源
    - 无需手动修改内容中的链接路径
 
+### Azure Static Web Apps CI/CD
+
+The project also supports deployment to Azure Static Web Apps for enhanced performance and global CDN distribution:
+
+**Workflow Configuration**: `.github/workflows/azure-static-web-apps-ashy-flower-0f8ed9400.yml`
+- **Trigger**: Automatic on push to `main` branch
+- **Node.js Version**: 20.x (matches `package.json` engines requirement)
+- **Build Steps**:
+  - `npm ci` - Install dependencies with exact versions
+  - `npx playwright install --with-deps` - Install Playwright browser dependencies
+  - `npm run build` - Generate static site to `dist/` directory
+- **Environment Variables**:
+  - `CLARITY_PROJECT_ID`: Microsoft Clarity analytics ID (from GitHub Secrets)
+  - Azure Static Web Apps 使用根路径部署，无需 `VITE_SITE_BASE` 环境变量
+- **Deployment**: Uses Azure Static Web Apps OIDC authentication
+- **Output Location**: `dist/` directory
+
+**Azure Static Web Apps Configuration**: `public/staticwebapp.config.json`
+- **文件位置**: 配置文件必须放在 `public/` 目录中，Astro 构建时会自动复制到 `dist/` 目录
+- **文件名重要性**: 文件名必须是 `staticwebapp.config.json`，这是 Azure Static Web Apps 识别配置文件的标准名称，不能使用其他名称
+- **路由回退规则**: 使用 `navigationFallback` 配置全局路由回退，将所有不存在的文件路径重定向到 `index.html`
+  ```json
+  {
+    "navigationFallback": {
+      "rewrite": "index.html"
+    }
+  }
+  ```
+- **配置项说明**:
+  - `navigationFallback` - Azure Static Web Apps 官方推荐的路由回退配置方式
+  - `rewrite: "index.html"` - 将不存在的文件路径重写到 index.html，让客户端路由接管
+  - 与使用 `routes` 数组相比，`navigationFallback` 更简洁且是官方推荐的标准做法
+- **解决的问题**:
+  - 用户直接访问文档子路径页面（如 `/docs/quick-start/installation`）时不会出现 404 错误
+  - 刷新浏览器时页面正常加载，保持当前路由状态
+  - 分享文档链接时接收者可以直接访问对应页面
+- **部署场景支持**:
+  - 支持根路径部署（`/`）- 当前 Azure Static Web Apps 部署模式
+  - 支持子路径部署（如 `/site/`）- 如果需要可以通过环境变量配置
+  - 与 `astro.config.mjs` 中的 `base` 配置和 `VITE_SITE_BASE` 环境变量兼容
+
+**GitHub Secrets Required**:
+- `AZURE_STATIC_WEB_APPS_API_TOKEN_ASHY_FLOWER_0F8ED9400`: Azure Static Web Apps deployment token
+- `CLARITY_PROJECT_ID`: Microsoft Clarity analytics ID (optional)
+
+**多部署平台兼容性**:
+- 项目可以同时部署到 GitHub Pages 和 Azure Static Web Apps
+- 两个部署平台使用不同的 CI/CD 工作流，互不影响
+- GitHub Pages: 使用 `deploy.yml` 工作流
+- Azure Static Web Apps: 使用 `azure-static-web-apps-ashy-flower-0f8ed9400.yml` 工作流
+- `staticwebapp.config.json` 仅影响 Azure Static Web Apps 部署，不影响 GitHub Pages 部署
+
 ### Deployment Considerations
 - Static site deployment compatible (GitHub Pages, Netlify, Vercel)
 - Build output directory: `dist/`
@@ -340,6 +392,20 @@ The project uses GitHub Actions for continuous deployment to GitHub Pages:
 - Global styles and CSS custom properties
 - Dark mode theme variables
 - Migrated from Docusaurus custom.css
+
+### staticwebapp.config.json
+- Azure Static Web Apps configuration file (仅用于 Azure Static Web Apps 部署)
+- **文件位置**: `public/staticwebapp.config.json` - 必须放在 `public/` 目录，Astro 构建时会自动复制到 `dist/`
+- **文件命名规范**: 必须使用 `staticwebapp.config.json` 文件名，这是 Azure Static Web Apps 识别配置文件的标准名称
+- **路由回退配置**:
+  - 使用 `navigationFallback` 配置路由回退规则（Azure Static Web Apps 官方推荐方式）
+  - `rewrite: "index.html"` 将不存在的文件路径重写到 index.html
+  - 与 `routes` 数组相比更简洁，是官方标准做法
+- **作用**:
+  - 解决 SPA/静态站点在直接访问子路径时出现 404 的问题
+  - 让客户端路由能够接管所有路由
+  - 支持直接访问、刷新和分享文档链接
+- **部署兼容性**: 不影响 GitHub Pages 部署，仅对 Azure Static Web Apps 生效
 
 ## Recent Changes
 
