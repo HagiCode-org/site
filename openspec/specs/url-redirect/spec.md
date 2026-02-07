@@ -47,7 +47,7 @@ TBD - created by archiving change docusaurus-to-astro-url-redirect-support. Upda
 
 **Then** 重定向页面中的新 URL 包含 base 前缀:
 - 新 URL: `/site/blog/2026-01-25-how-to-sync-docker-hub-to-azure-acr-with-github/`
-- Canonical 链接: `https://hagicode-org.github.io/site/blog/2026-01-25-how-to-sync-docker-hub-to-azure-acr-with-github/`
+- Canonical 链接: `https://hagicode.com/blog/2026-01-25-how-to-sync-docker-hub-to-azure-acr-with-github/`
 
 #### Scenario: 博客文章重定向保留查询参数
 
@@ -67,7 +67,7 @@ TBD - created by archiving change docusaurus-to-astro-url-redirect-support. Upda
 
 **Given** 用户在浏览器中访问旧博客 URL
 ```
-https://hagicode-org.github.io/site/blog/2026/01/28/streamjsonrpc-integration-in-hagicode
+https://hagicode.com/blog/2026/01/28/streamjsonrpc-integration-in-hagicode
 ```
 
 **When** 浏览器加载重定向页面
@@ -142,7 +142,7 @@ https://hagicode-org.github.io/site/blog/2026/01/28/streamjsonrpc-integration-in
 
 **Then** 重定向页面中的新 URL 包含 base 前缀:
 - 新 URL: `/site/installation/docker-compose/`
-- Canonical 链接: `https://hagicode-org.github.io/site/installation/docker-compose/`
+- Canonical 链接: `https://hagicode.com/installation/docker-compose/`
 
 ---
 
@@ -215,7 +215,7 @@ https://hagicode-org.github.io/site/blog/2026/01/28/streamjsonrpc-integration-in
 
 **Then** 包含 canonical 链接:
 ```html
-<link rel="canonical" href="https://hagicode-org.github.io/site/blog/2026-01-28-slug/">
+<link rel="canonical" href="https://hagicode.com/blog/2026-01-28-slug/">
 ```
 
 **And** 搜索引擎识别新 URL 为规范 URL

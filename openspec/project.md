@@ -96,6 +96,11 @@ Hagicode Documentation is a comprehensive documentation site built with **Astro 
 
 ## Domain Context
 
+**Websites**
+
+- **hagicode.com** - 官方网站，包含落地页和用户技术文档
+- **builder.hagicode.com** - Docker Compose 文件构建站点
+
 **Hagicode** is an AI-powered code-related tool/application with the following key feature areas:
 
 **Core Features**

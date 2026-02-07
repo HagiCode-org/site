@@ -8,7 +8,7 @@
 
 <br>
 
-<a href="https://hagicode-org.github.io/site/">🌐 访问官网</a>
+<a href="https://hagicode.com/">🌐 访问官网</a>
 
 </div>
 
@@ -318,7 +318,7 @@ Tokens<br>
 
 <div align="center">
 
-<a href="https://hagicode-org.github.io/site/">🌐 官网</a> |
+<a href="https://hagicode.com/">🌐 官网</a> |
 <a href="https://github.com/Hagicode-org/site">📂 GitHub</a> |
 <a href="./blog">✏️ 博客</a> |
 <a href="https://astro.build/">🚀 Astro 5.x</a>

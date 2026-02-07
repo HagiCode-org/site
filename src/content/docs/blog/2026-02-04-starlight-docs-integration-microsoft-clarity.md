@@ -304,5 +304,5 @@ if (consent !== 'denied') {
 本内容采用人工智能辅助协作,经本人审核,符合本人观点与立场。
 
 - **本文作者:** [newbe36524](https://www.newbe.pro)
-- **本文链接:** [https://hagicode-org.github.io/site/blog/2026-02-04-starlight-docs-integration-microsoft-clarity/](https://hagicode-org.github.io/site/blog/2026-02-04-starlight-docs-integration-microsoft-clarity/)
+- **本文链接:** [https://hagicode.com/blog/2026-02-04-starlight-docs-integration-microsoft-clarity/](https://hagicode.com/blog/2026-02-04-starlight-docs-integration-microsoft-clarity/)
 - **版权声明:** 本博客所有文章除特别声明外,均采用 BY-NC-SA 许可协议。转载请注明出处!

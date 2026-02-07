@@ -50,7 +50,7 @@ export const navLinks: NavLink[] = [
   },
   {
     label: "Docker Compose 构建器",
-    href: "https://hagicode-org.github.io/docker-compose-builder/",
+    href: "https://builder.hagicode.com/",
     external: true,
     icon: "seti:docker",
   },

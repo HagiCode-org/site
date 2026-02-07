@@ -207,9 +207,9 @@ else
 
 如果本文对你有帮助，欢迎来 GitHub 给个 Star，或者直接体验 **HagiCode** 带来的高效开发流程：
 - 来 GitHub 给个 Star：[github.com/HagiCode-org/site](https://github.com/HagiCode-org/site)
-- 访问官网了解更多：[hagicode-org.github.io/site](https://hagicode-org.github.io/site)
+- 访问官网了解更多：[hagicode.com](https://hagicode.com)
 - 观看 30 分钟实战演示：[www.bilibili.com/video/BV1pirZBuEzq/](https://www.bilibili.com/video/BV1pirZBuEzq/)
-- 一键安装体验：[hagicode-org.github.io/site/docs/installation/docker-compose](https://hagicode-org.github.io/site/docs/installation/docker-compose)
+- 一键安装体验：[hagicode.com/installation/docker-compose](https://hagicode.com/installation/docker-compose)
 
 公测已开始，欢迎安装体验！
 
@@ -222,5 +222,5 @@ else
 本内容采用人工智能辅助协作,经本人审核,符合本人观点与立场。
 
 - **本文作者:** [newbe36524](https://www.newbe.pro)
-- **本文链接:** [https://hagicode-org.github.io/site/blog/2026-02-01-dotnet-core-dual-database-postgresql-sqlite/](https://hagicode-org.github.io/site/blog/2026-02-01-dotnet-core-dual-database-postgresql-sqlite/)
+- **本文链接:** [https://hagicode.com/blog/2026-02-01-dotnet-core-dual-database-postgresql-sqlite/](https://hagicode.com/blog/2026-02-01-dotnet-core-dual-database-postgresql-sqlite/)
 - **版权声明:** 本博客所有文章除特别声明外,均采用 BY-NC-SA 许可协议。转载请注明出处!

@@ -197,9 +197,9 @@ React mount 成功后，不要直接 `remove()` 启动页 DOM。
 ## 参考资料
 
 - **HagiCode 项目地址**：[https://github.com/HagiCode-org/site](https://github.com/HagiCode-org/site)
-- **官网了解更多**：[https://hagicode-org.github.io/site](https://hagicode-org.github.io/site)
+- **官网了解更多**：[https://hagicode.com](https://hagicode.com)
 - **观看实战演示**：[https://www.bilibili.com/video/BV1pirZBuEzq/](https://www.bilibili.com/video/BV1pirZBuEzq/)
-- **一键安装体验**：[https://hagicode-org.github.io/site/docs/installation/docker-compose](https://hagicode-org.github.io/site/docs/installation/docker-compose)
+- **一键安装体验**：[https://hagicode.com/installation/docker-compose](https://hagicode.com/installation/docker-compose)
 
 如果本文对你有帮助，欢迎来 GitHub 给个 Star，公测已开始，期待你的反馈！
 
@@ -212,5 +212,5 @@ React mount 成功后，不要直接 `remove()` 启动页 DOM。
 本内容采用人工智能辅助协作,经本人审核,符合本人观点与立场。
 
 - **本文作者:** [newbe36524](https://www.newbe.pro)
-- **本文链接:** [https://hagicode-org.github.io/site/blog/2026-02-03-hagicode-react-19-hydration-splash-screen/](https://hagicode-org.github.io/site/blog/2026-02-03-hagicode-react-19-hydration-splash-screen/)
+- **本文链接:** [https://hagicode.com/blog/2026-02-03-hagicode-react-19-hydration-splash-screen/](https://hagicode.com/blog/2026-02-03-hagicode-react-19-hydration-splash-screen/)
 - **版权声明:** 本博客所有文章除特别声明外,均采用 BY-NC-SA 许可协议。转载请注明出处!

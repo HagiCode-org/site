@@ -15,7 +15,7 @@ import rehypeExternalLinks from 'rehype-external-links';
 // https://astro.build/config
 export default defineConfig({
     // 站点完整 URL,用于生成 sitemap 和 canonical URL
-    site: 'https://hagicode-org.github.io/site',
+    site: 'https://hagicode.com',
     // 从环境变量读取站点基础路径,默认为 '/' (根路径部署)
     // 可通过 VITE_SITE_BASE 环境变量覆盖
     // 示例: VITE_SITE_BASE=/site 表示子路径部署
@@ -50,7 +50,7 @@ export default defineConfig({
     integrations: [
         // robots.txt 配置 - 使用 astro-robots-txt 插件
         robotsTxt({
-            sitemap: 'https://hagicode-org.github.io/site/sitemap-index.xml',
+            sitemap: 'https://hagicode.com/sitemap-index.xml',
         }),
         starlight({
             title: 'Hagicode Docs',
