@@ -1,5 +1,5 @@
 /**
- * Footer 组件
+ * Footer 组件 - 三栏高栏布局
  * 首页页脚 - 提供导航链接、版权信息和社交媒体链接
  * 设计系统: 与首页整体风格保持一致 (Glassmorphism + Tech Dark)
  */
@@ -18,7 +18,7 @@ interface FooterProps {
 }
 
 /**
- * 链接配置接口
+ * Footer 链接接口
  */
 interface FooterLink {
   /** 链接显示文字 */
@@ -29,6 +29,16 @@ interface FooterLink {
   external?: boolean;
   /** ARIA 标签 */
   ariaLabel?: string;
+}
+
+/**
+ * Footer 区块接口
+ */
+interface FooterSection {
+  /** 区块标题 */
+  title: string;
+  /** 区块链接列表 */
+  links: FooterLink[];
 }
 
 /**
@@ -49,72 +59,183 @@ function GitHubIcon({ className = '' }: { className?: string }) {
 }
 
 /**
+ * Hagicode Logo 组件
+ */
+function HagicodeLogo({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 120 32"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <text x="0" y="24" fontFamily="system-ui" fontSize="20" fontWeight="700" fill="currentColor">
+        Hagicode
+      </text>
+    </svg>
+  );
+}
+
+/**
  * Footer 组件
  *
- * 提供网站核心区域的快速导航链接、版权信息和社交媒体链接
+ * 三栏高栏布局：产品信息、快速链接、社区与支持
  */
 export default function Footer({ className = '' }: FooterProps) {
-  // 根据当前 base path 动态生成链接
-  const links = useMemo((): FooterLink[] => [
-    {
-      label: '文档',
-      href: withBasePath('/product-overview'),
-      external: false,
-      ariaLabel: '查看文档',
+  // 定义三栏内容数据结构
+  const footerData = useMemo((): {
+    productInfo: FooterSection;
+    quickLinks: FooterSection;
+    community: FooterSection;
+  } => ({
+    productInfo: {
+      title: '产品',
+      links: [
+        {
+          label: 'Hagicode 简介',
+          href: withBasePath('/product-overview'),
+          external: false,
+          ariaLabel: '查看 Hagicode 产品简介',
+        },
+      ],
     },
-    {
-      label: '博客',
-      href: withBasePath('/blog'),
-      external: false,
-      ariaLabel: '查看博客',
+    quickLinks: {
+      title: '快速链接',
+      links: [
+        {
+          label: '下载客户端',
+          href: withBasePath('/desktop'),
+          external: false,
+          ariaLabel: '下载 Hagicode 桌面客户端',
+        },
+        {
+          label: 'Docker Compose 安装',
+          href: withBasePath('/installation/docker-compose'),
+          external: false,
+          ariaLabel: '通过 Docker Compose 安装',
+        },
+        {
+          label: '产品文档',
+          href: withBasePath('/product-overview'),
+          external: false,
+          ariaLabel: '查看产品文档',
+        },
+        {
+          label: '博客文章',
+          href: withBasePath('/blog'),
+          external: false,
+          ariaLabel: '查看博客文章',
+        },
+      ],
     },
-    {
-      label: 'GitHub',
-      href: 'https://github.com/HagiCode-org/site',
-      external: true,
-      ariaLabel: '访问 GitHub 仓库',
+    community: {
+      title: '社区',
+      links: [
+        {
+          label: 'GitHub',
+          href: 'https://github.com/HagiCode-org/site',
+          external: true,
+          ariaLabel: '访问 GitHub 仓库',
+        },
+        {
+          label: '问题反馈',
+          href: 'https://github.com/HagiCode-org/site/issues',
+          external: true,
+          ariaLabel: '提交问题反馈',
+        },
+        {
+          label: '联系邮箱',
+          href: 'mailto:support@hagicode.com',
+          external: true,
+          ariaLabel: '通过邮件联系我们',
+        },
+        {
+          label: 'QQ 群 610394020',
+          href: 'https://qm.qq.com/q/Fwb0o094kw',
+          external: true,
+          ariaLabel: '加入 QQ 群',
+        },
+      ],
     },
-  ], []);
+  }), []);
 
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className={`${styles.footer} ${className}`}>
-      <div className={styles.content}>
-        {/* 版权区块 */}
-        <div className={styles.copyrightSection}>
-          <p className={styles.copyrightText}>
-            © {currentYear} Hagicode. All rights reserved.
-          </p>
+      <div className={styles.container}>
+        {/* Logo 和版权行 */}
+        <div className={styles.headerRow}>
+          <div className={styles.logoWrapper}>
+            <HagicodeLogo className={styles.logo} />
+            <span className={styles.copyright}>
+              © {currentYear} Hagicode. All rights reserved.
+            </span>
+          </div>
         </div>
 
-        {/* 链接区块 */}
-        <nav className={styles.linksSection} aria-label="页脚导航">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              className={styles.link}
-              href={link.href}
-              target={link.external ? '_blank' : undefined}
-              rel={link.external ? 'noopener noreferrer' : undefined}
-              aria-label={link.ariaLabel}
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        {/* 分隔线 */}
+        <div className={styles.divider} />
 
-        {/* 社交区块 */}
-        <div className={styles.socialSection}>
-          <a
-            className={styles.socialLink}
-            href="https://github.com/HagiCode-org/site"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="在 GitHub 上查看我们"
-          >
-            <GitHubIcon className={styles.socialIcon} />
-          </a>
+        {/* 三栏布局 */}
+        <div className={styles.sections}>
+          {/* 产品信息 */}
+          <div className={styles.section}>
+            <h3 className={styles.sectionTitle}>{footerData.productInfo.title}</h3>
+            <nav className={styles.sectionLinks} aria-label={`${footerData.productInfo.title}链接`}>
+              {footerData.productInfo.links.map((link) => (
+                <a
+                  key={link.href}
+                  className={styles.sectionLink}
+                  href={link.href}
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noopener noreferrer' : undefined}
+                  aria-label={link.ariaLabel}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          {/* 快速链接 */}
+          <div className={styles.section}>
+            <h3 className={styles.sectionTitle}>{footerData.quickLinks.title}</h3>
+            <nav className={styles.sectionLinks} aria-label={`${footerData.quickLinks.title}链接`}>
+              {footerData.quickLinks.links.map((link) => (
+                <a
+                  key={link.href}
+                  className={styles.sectionLink}
+                  href={link.href}
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noopener noreferrer' : undefined}
+                  aria-label={link.ariaLabel}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          {/* 社区与支持 */}
+          <div className={styles.section}>
+            <h3 className={styles.sectionTitle}>{footerData.community.title}</h3>
+            <nav className={styles.sectionLinks} aria-label={`${footerData.community.title}链接`}>
+              {footerData.community.links.map((link) => (
+                <a
+                  key={link.href}
+                  className={styles.sectionLink}
+                  href={link.href}
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noopener noreferrer' : undefined}
+                  aria-label={link.ariaLabel}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
         </div>
       </div>
 

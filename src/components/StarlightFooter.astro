@@ -1,7 +1,7 @@
 ---
 /**
- * Starlight 自定义 Footer
- * 在官方 Footer 基础上添加 Clarity 分析和备案信息
+ * Starlight 自定义 Footer - 三栏高栏布局
+ * 统一首页和文档区的 Footer 设计
  */
 import EditLink from 'virtual:starlight/components/EditLink';
 import LastUpdated from 'virtual:starlight/components/LastUpdated';
@@ -11,8 +11,9 @@ import { Icon } from '@astrojs/starlight/components';
 import Clarity from './Clarity.astro';
 ---
 
-<footer class="sl-flex">
-	<div class="meta sl-flex">
+<footer class="sl-footer">
+	{/* Starlight 原有功能 */}
+	<div class="sl-footer-meta">
 		<EditLink />
 		<LastUpdated />
 	</div>
@@ -20,46 +21,104 @@ import Clarity from './Clarity.astro';
 
 	{
 		config.credits && (
-			<a class="kudos sl-flex" href="https://starlight.astro.build">
+			<a class="sl-footer-kudos" href="https://starlight.astro.build">
 				<Icon name={'starlight'} /> {Astro.locals.t('builtWithStarlight.label')}
 			</a>
 		)
 	}
 
-	<!-- 备案信息 -->
-	<div class="icp-filing-section">
-		<a
-			href="https://beian.miit.gov.cn/"
-			target="_blank"
-			rel="noopener noreferrer"
-			aria-label="查看 ICP 备案信息"
-		>
-			闽ICP备2026004153号-1
-		</a>
+	{/* 三栏布局 - 与首页 Footer 统一 */}
+	<div class="unified-footer">
+		<div class="unified-footer-container">
+			{/* Logo 和版权行 */}
+			<div class="unified-footer-header">
+				<div class="unified-footer-logo-wrapper">
+					<span class="unified-footer-logo">Hagicode</span>
+					<span class="unified-footer-copyright">
+						© {new Date().getFullYear()} Hagicode. All rights reserved.
+					</span>
+				</div>
+			</div>
+
+			{/* 分隔线 */}
+			<div class="unified-footer-divider" />
+
+			{/* 三栏布局 */}
+			<div class="unified-footer-sections">
+				{/* 产品信息 */}
+				<div class="unified-footer-section">
+					<h3 class="unified-footer-section-title">产品</h3>
+					<nav class="unified-footer-section-links" aria-label="产品链接">
+						<a href="/product-overview" class="unified-footer-link">Hagicode 简介</a>
+					</nav>
+				</div>
+
+				{/* 快速链接 */}
+				<div class="unified-footer-section">
+					<h3 class="unified-footer-section-title">快速链接</h3>
+					<nav class="unified-footer-section-links" aria-label="快速链接">
+						<a href="/desktop" class="unified-footer-link">下载客户端</a>
+						<a href="/installation/docker-compose" class="unified-footer-link">Docker Compose 安装</a>
+						<a href="/product-overview" class="unified-footer-link">产品文档</a>
+						<a href="/blog" class="unified-footer-link">博客文章</a>
+					</nav>
+				</div>
+
+				{/* 社区与支持 */}
+				<div class="unified-footer-section">
+					<h3 class="unified-footer-section-title">社区</h3>
+					<nav class="unified-footer-section-links" aria-label="社区链接">
+						<a href="https://github.com/HagiCode-org/site" class="unified-footer-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+						<a href="https://github.com/HagiCode-org/site/issues" class="unified-footer-link" target="_blank" rel="noopener noreferrer">问题反馈</a>
+						<a href="mailto:support@hagicode.com" class="unified-footer-link">联系邮箱</a>
+						<a href="https://qm.qq.com/q/Fwb0o094kw" class="unified-footer-link" target="_blank" rel="noopener noreferrer">QQ 群 610394020</a>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+		{/* 备案信息区块 */}
+		<div class="unified-footer-icp">
+			<a
+				href="https://beian.miit.gov.cn/"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="查看 ICP 备案信息"
+				class="unified-footer-icp-link"
+			>
+				闽ICP备2026004153号-1
+			</a>
+		</div>
 	</div>
 </footer>
 
 <Clarity />
 
 <style>
-	@layer starlight.core {
-		footer {
+	@layer starlight.base {
+		/* Footer 基础样式 */
+		.sl-footer {
+			display: flex;
 			flex-direction: column;
 			gap: 1.5rem;
+			width: 100%;
 		}
-		.meta {
+
+		/* Starlight 原有元数据样式 */
+		.sl-footer-meta {
+			display: flex;
 			gap: 0.75rem 3rem;
 			justify-content: space-between;
 			flex-wrap: wrap;
-			margin-top: 3rem;
 			font-size: var(--sl-text-sm);
 			color: var(--sl-color-gray-3);
 		}
-		.meta > :global(p:only-child) {
+
+		.sl-footer-meta > :global(p:only-child) {
 			margin-inline-start: auto;
 		}
 
-		.kudos {
+		.sl-footer-kudos {
 			align-items: center;
 			gap: 0.5em;
 			margin: 1.5rem auto;
@@ -67,8 +126,248 @@ import Clarity from './Clarity.astro';
 			text-decoration: none;
 			color: var(--sl-color-gray-3);
 		}
-		.kudos:hover {
+
+		.sl-footer-kudos:hover {
 			color: var(--sl-color-white);
+		}
+	}
+
+	@layer starlight.core {
+		/* ============================================
+		   统一 Footer 样式 - 三栏布局
+		   ============================================ */
+
+		.unified-footer {
+			width: 100%;
+			background: var(--sl-color-black);
+			border-top: 1px solid var(--sl-color-gray-6);
+			padding: 2.5rem 0 0;
+		}
+
+		.unified-footer-container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 1.5rem;
+		}
+
+		/* Header 行 - Logo 和版权 */
+		.unified-footer-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 1.5rem;
+		}
+
+		.unified-footer-logo-wrapper {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+		}
+
+		.unified-footer-logo {
+			font-size: 1.25rem;
+			font-weight: 700;
+			color: var(--sl-color-white);
+		}
+
+		.unified-footer-copyright {
+			font-size: 0.875rem;
+			color: var(--sl-color-gray-3);
+		}
+
+		/* 分隔线 */
+		.unified-footer-divider {
+			height: 1px;
+			background: var(--sl-color-gray-6);
+			margin: 1.5rem 0;
+		}
+
+		/* 三栏布局 */
+		.unified-footer-sections {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 2rem;
+			margin-top: 2rem;
+		}
+
+		/* 平板端：两栏布局 */
+		@media (min-width: 768px) {
+			.unified-footer-sections {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			.unified-footer-sections .unified-footer-section:last-child {
+				grid-column: 1 / -1;
+			}
+		}
+
+		/* 桌面端：三栏布局 */
+		@media (min-width: 1024px) {
+			.unified-footer-sections {
+				grid-template-columns: repeat(3, 1fr);
+			}
+
+			.unified-footer-sections .unified-footer-section:last-child {
+				grid-column: auto;
+			}
+		}
+
+		/* 区块样式 */
+		.unified-footer-section {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		.unified-footer-section-title {
+			font-size: 0.9375rem;
+			font-weight: 600;
+			color: var(--sl-color-white);
+			margin: 0;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+		}
+
+		.unified-footer-section-links {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+
+		.unified-footer-link {
+			font-size: 0.9375rem;
+			color: var(--sl-color-gray-3);
+			text-decoration: none;
+			padding: 0.5rem 0 0.5rem 0.75rem;
+			transition: all var(--sl-transition-fast) ease;
+			position: relative;
+			min-height: 44px;
+			display: flex;
+			align-items: center;
+		}
+
+		.unified-footer-link:hover {
+			color: var(--sl-color-white);
+			padding-left: 1rem;
+		}
+
+		.unified-footer-link:focus {
+			outline: 2px solid var(--sl-color-text-accent);
+			outline-offset: 2px;
+			border-radius: 0.25rem;
+		}
+
+		/* 链接左侧装饰线 */
+		.unified-footer-link::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 0;
+			height: 2px;
+			background: var(--sl-color-text-accent);
+			transition: width var(--sl-transition-fast) ease;
+		}
+
+		.unified-footer-link:hover::before {
+			width: 6px;
+		}
+
+		/* 备案信息区块 */
+		.unified-footer-icp {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 1rem 1.5rem;
+			border-top: 1px solid var(--sl-color-gray-6);
+		}
+
+		.unified-footer-icp-link {
+			font-size: 0.875rem;
+			color: var(--sl-color-gray-3);
+			text-decoration: none;
+			transition: color var(--sl-transition-fast) ease;
+		}
+
+		.unified-footer-icp-link:hover {
+			color: var(--sl-color-white);
+			text-decoration: underline;
+		}
+
+		.unified-footer-icp-link:focus {
+			outline: 2px solid var(--sl-color-text-accent);
+			outline-offset: 2px;
+			border-radius: 0.25rem;
+		}
+
+		/* 移动端优化 */
+		@media (max-width: 767px) {
+			.unified-footer-container {
+				padding: 0 1rem;
+			}
+
+			.unified-footer-header {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 0.75rem;
+			}
+
+			.unified-footer-logo-wrapper {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 0.5rem;
+			}
+
+			.unified-footer-section-title {
+				font-size: 0.875rem;
+			}
+
+			.unified-footer-link {
+				font-size: 0.875rem;
+			}
+		}
+
+		/* 平板优化 */
+		@media (min-width: 768px) and (max-width: 1023px) {
+			.unified-footer-container {
+				padding: 0 2rem;
+			}
+		}
+
+		/* 大屏幕优化 */
+		@media (min-width: 1280px) {
+			.unified-footer-container {
+				padding: 0 2rem;
+			}
+		}
+
+		/* 减少动画偏好 */
+		@media (prefers-reduced-motion: reduce) {
+			.unified-footer-link,
+			.unified-footer-icp-link {
+				transition: color 0.2s ease;
+			}
+
+			.unified-footer-link:hover,
+			.unified-footer-link::before {
+				transform: none;
+			}
+		}
+
+		/* 高对比度模式 */
+		@media (prefers-contrast: high) {
+			.unified-footer {
+				border-top-width: 2px;
+			}
+
+			.unified-footer-link:focus,
+			.unified-footer-icp-link:focus {
+				outline-width: 3px;
+			}
 		}
 	}
 </style>

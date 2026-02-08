@@ -1,0 +1,81 @@
+---
+/**
+ * FeatureIcon 组件 - 使用 SVG 替代 emoji
+ * 提供一致、专业的图标样式
+ */
+interface Props {
+  name: 'rocket' | 'lock' | 'bolt' | 'computer' | 'arrow-path' | 'globe' | 'check' | 'warning';
+  size?: number;
+}
+
+const { name, size = 48 } = Astro.props;
+
+// 图标 SVG 路径定义
+const icons = {
+  rocket: 'M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z',
+  lock: 'M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z',
+  bolt: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
+  computer: 'M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25',
+  'arrow-path': 'M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99',
+  globe: 'M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418',
+  check: 'M4.5 12.75l6 6 9-13.5',
+  warning: 'M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z',
+};
+---
+
+<div class="feature-icon-wrapper" style={`width: ${size}px; height: ${size}px`}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    width={size}
+    height={size}
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" d={icons[name]} />
+  </svg>
+</div>
+
+<style>
+  .feature-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .feature-icon-wrapper svg {
+    color: var(--color-primary);
+    transition: transform 0.3s ease-out;
+  }
+
+  .feature-card:hover .feature-icon-wrapper svg {
+    transform: scale(1.1);
+  }
+
+  /* 新年主题下的图标颜色 */
+  [data-theme='lunar-new-year'] .feature-icon-wrapper svg {
+    color: #FFD54F;
+  }
+
+  /* 暗色主题下的图标发光效果 */
+  [data-theme='dark'] .feature-icon-wrapper svg {
+    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.3));
+  }
+
+  /* 新年主题下的图标发光效果 */
+  [data-theme='lunar-new-year'] .feature-icon-wrapper svg {
+    filter: drop-shadow(0 0 12px rgba(255, 193, 7, 0.5));
+  }
+
+  /* 减少动画偏好 */
+  @media (prefers-reduced-motion: reduce) {
+    .feature-icon-wrapper svg {
+      transition: none;
+    }
+
+    .feature-card:hover .feature-icon-wrapper svg {
+      transform: none;
+    }
+  }
+</style>

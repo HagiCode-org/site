@@ -28,11 +28,6 @@ export interface NavLink {
  */
 export const navLinks: NavLink[] = [
   {
-    label: "安装指南",
-    href: withBasePath("/installation/docker-compose"),
-    icon: "open-book",
-  },
-  {
     label: "博客",
     href: withBasePath("/blog"),
     icon: "pencil",
@@ -43,16 +38,15 @@ export const navLinks: NavLink[] = [
     icon: "document",
   },
   {
+    label: "客户端",
+    href: withBasePath("/desktop"),
+    icon: "desktop",
+  },
+  {
     label: "技术支持群 610394020",
     href: "https://qm.qq.com/q/Fwb0o094kw",
     external: true,
     icon: "comment",
-  },
-  {
-    label: "Docker Compose 构建器",
-    href: "https://builder.hagicode.com/",
-    external: true,
-    icon: "seti:docker",
   },
   {
     label: "GitHub （求 Star ~）",

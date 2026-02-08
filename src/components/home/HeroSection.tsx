@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { useMemo, useState, useEffect } from 'react';
 import styles from './HeroSection.module.css';
 import { withBasePath } from '../../utils/path';
+import InstallButton from './InstallButton';
 
 // 定义 Variants 类型
 type Variants = {
@@ -321,13 +322,7 @@ export default function HeroSection() {
 
         {/* CTA 按钮组 */}
         <motion.div className={styles.heroButtons}>
-          <a
-            className={styles.buttonPrimary}
-            href={installUrl}
-          >
-            <span className={styles.buttonText}>开始使用</span>
-            <ArrowRightIcon />
-          </a>
+          <InstallButton variant="full" />
           <a
             className={styles.buttonSecondary}
             href={docsUrl}

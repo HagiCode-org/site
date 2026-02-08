@@ -1,0 +1,171 @@
+/**
+ * InstallCTAButton 样式 - 统一安装入口按钮
+ * 视觉增强的 CTA 按钮样式
+ */
+
+.installCta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* 与导航链接保持一致的大小 */
+  padding: 0.5rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  font-family: var(--font-display);
+  color: #FFFFFF;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  /* 使用 CSS 变量支持多主题 */
+  background: var(--gradient-primary);
+  box-shadow: var(--shadow-glow);
+  transition: all var(--duration-fast) var(--ease-out);
+  overflow: hidden;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 悬停状态 - 增强阴影 */
+.installCta:hover {
+  box-shadow: var(--shadow-glow),
+              0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 焦点状态 - 可访问性 */
+.installCta:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  box-shadow: var(--shadow-glow),
+              0 0 0 4px rgba(0, 128, 255, 0.2);
+}
+
+/* 按下状态 */
+.installCta:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-glow),
+              0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 按钮内容容器 */
+.buttonContent {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* 下载图标 */
+.downloadIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+/* 按钮文字 */
+.buttonText {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* 向下箭头图标 */
+.arrowIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+  color: currentColor;
+  opacity: 0.8;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.installCta:hover .arrowIcon {
+  opacity: 1;
+}
+
+/* 桌面端样式 - 保持与导航链接一致 */
+@media (min-width: 768px) {
+  .installCta {
+    padding: 0.5rem 1.25rem;
+  }
+
+  .downloadIcon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .arrowIcon {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .installCta,
+  .installCta:hover,
+  .installCta:focus-visible,
+  .installCta:active,
+  .arrowIcon {
+    transition: none !important;
+  }
+}
+
+/* 暗色主题适配 */
+[data-theme='dark'] .installCta {
+  /* 暗色主题下使用更亮的渐变和发光 */
+  box-shadow: var(--shadow-glow);
+}
+
+[data-theme='dark'] .installCta:hover {
+  box-shadow: var(--shadow-glow),
+              0 8px 30px rgba(0, 212, 255, 0.25);
+}
+
+[data-theme='dark'] .installCta:focus-visible {
+  box-shadow: var(--shadow-glow),
+              0 0 0 4px rgba(0, 212, 255, 0.25);
+}
+
+/* 农历新年主题适配 */
+[data-theme='lunar-new-year'] .installCta {
+  /* 新年主题下使用红色/金色系渐变和发光 */
+  box-shadow: var(--shadow-glow);
+}
+
+[data-theme='lunar-new-year'] .installCta:hover {
+  box-shadow: var(--shadow-glow),
+              0 8px 30px rgba(229, 57, 53, 0.3),
+              0 0 40px rgba(255, 193, 7, 0.2);
+}
+
+[data-theme='lunar-new-year'] .installCta:focus-visible {
+  box-shadow: var(--shadow-glow),
+              0 0 0 4px rgba(255, 193, 7, 0.3);
+}
+
+/* 发光动画效果 - 可选增强 */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: var(--shadow-glow);
+  }
+  50% {
+    box-shadow: var(--shadow-glow),
+                0 0 30px currentColor;
+  }
+}
+
+/* 仅在非减少动画偏好下应用发光动画 */
+@media (prefers-reduced-motion: no-preference) {
+  .installCta {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+}

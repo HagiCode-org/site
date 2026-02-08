@@ -1,0 +1,68 @@
+name: Version Monitor
+
+# Trigger the workflow every 30 minutes and allow manual triggering
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Run every 30 minutes
+  workflow_dispatch:        # Allow manual trigger from GitHub Actions UI
+
+# Set permissions for creating branches, commits, and pull requests
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  monitor:
+    name: Monitor Version Changes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Display configuration
+        run: |
+          echo "Version Monitor Configuration"
+          echo "=========================="
+          echo "Source URL: ${{ vars.VERSION_SOURCE_URL || 'https://hagicode.com/desktop/index.json' }}"
+          echo "Request Timeout: 30000ms"
+          echo "Max Retries: 3"
+          echo "Repository: ${{ github.repository }}"
+
+      - name: Run version monitor
+        id: monitor
+        run: node scripts/version-monitor.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_OWNER: ${{ github.repository_owner }}
+          REPO_NAME: ${{ github.event.repository.name }}
+          VERSION_SOURCE_URL: ${{ vars.VERSION_SOURCE_URL || 'https://hagicode.com/desktop/index.json' }}
+          REQUEST_TIMEOUT: '30000'
+          MAX_RETRIES: '3'
+
+      - name: Display result
+        if: always()
+        run: |
+          echo "Version Monitor Result"
+          echo "======================"
+          if [ -f ".github/version-state.json" ]; then
+            echo "Last Checked Version: $(jq -r '.lastCheckedVersion // "N/A"' .github/version-state.json)"
+            echo "Last Checked Time: $(jq -r '.lastCheckedTime // "N/A"' .github/version-state.json)"
+            echo "Last Deployed Version: $(jq -r '.lastDeployedVersion // "N/A"' .github/version-state.json)"
+            echo "Check Count: $(jq -r '.checkCount // 0' .github/version-state.json)"
+          fi
+
+      - name: Pull Request created notification
+        if: steps.monitor.outputs.pr_created == 'true'
+        run: |
+          echo "Pull Request Created"
+          echo "===================="
+          echo "PR Number: ${{ steps.monitor.outputs.pr_number }}"
+          echo "PR URL: ${{ steps.monitor.outputs.pr_url }}"

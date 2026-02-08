@@ -11,6 +11,7 @@ import SocialIcons from 'virtual:starlight/components/SocialIcons';
 import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
 import { Icon } from '@astrojs/starlight/components';
 import { navLinks } from '@/config/navigation';
+import InstallButton from './home/InstallButton';
 
 /**
  * Render the `Search` component if Pagefind is enabled or the default search component has been overridden.
@@ -28,6 +29,10 @@ const shouldRenderSearch =
 	</div>
 	<div class="sl-hidden md:sl-flex print:hidden right-group">
 		<nav class="custom-nav-links">
+			<!-- 安装按钮 -->
+			<div class="install-button-wrapper">
+				<InstallButton variant="compact" client:load />
+			</div>
 			{navLinks.map((link) => (
 				<a
 					href={link.href}
@@ -81,6 +86,30 @@ const shouldRenderSearch =
 			display: flex;
 			gap: 0.5rem;
 			align-items: center;
+		}
+
+		/* 安装按钮包装器 */
+		.install-button-wrapper {
+			display: flex;
+			align-items: center;
+		}
+
+		/* 调整 InstallButton 在 Starlight Header 中的样式 */
+		.install-button-wrapper :global(.install-button-wrapper--compact) {
+			font-size: var(--sl-text-sm);
+		}
+
+		.install-button-wrapper :global(.btn-download-main) {
+			padding: 0.375rem 0.75rem;
+			font-size: var(--sl-text-sm);
+			font-weight: var(--sl-font-weight-medium);
+			border-radius: var(--sl-radius-sm);
+		}
+
+		.install-button-wrapper :global(.btn-dropdown-toggle) {
+			width: 32px;
+			min-width: 32px;
+			border-radius: 0 var(--sl-radius-sm) var(--sl-radius-sm) 0;
 		}
 
 		.custom-nav-link {

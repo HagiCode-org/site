@@ -64,6 +64,14 @@
   --shadow-glow: 0 0 20px rgba(0, 128, 255, 0.3);
   --shadow-glow-cyan: 0 0 20px rgba(0, 255, 255, 0.3);
 
+  /* Footer 专用变量 */
+  --footer-bg: var(--color-surface-glass);
+  --footer-border: var(--color-border);
+  --footer-link-color: var(--color-text-secondary);
+  --footer-link-hover: var(--color-primary);
+  --footer-section-gap: 2rem;
+  --footer-grid-template: 1fr;
+
   /* 字体 - 使用现代化跨平台字体栈 */
   --font-display: var(--font-heading);
   --font-body: var(--font-body);
@@ -113,6 +121,14 @@
   --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.9);
   --shadow-glow: 0 0 25px rgba(0, 212, 255, 0.4);
   --shadow-glow-cyan: 0 0 25px rgba(0, 255, 255, 0.35);
+
+  /* Footer 专用变量 */
+  --footer-bg: var(--color-surface-glass);
+  --footer-border: var(--color-border);
+  --footer-link-color: var(--color-text-secondary);
+  --footer-link-hover: var(--color-primary);
+  --footer-section-gap: 2rem;
+  --footer-grid-template: 1fr;
 }
 
 /* ==========================================================================
@@ -153,6 +169,14 @@
   --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.5);
   --shadow-glow: 0 0 35px rgba(229, 57, 53, 0.5), 0 0 70px rgba(255, 193, 7, 0.3);
   --shadow-glow-cyan: 0 0 35px rgba(255, 193, 7, 0.4);
+
+  /* Footer 专用变量 */
+  --footer-bg: var(--color-surface-glass);
+  --footer-border: var(--color-border);
+  --footer-link-color: var(--color-text-secondary);
+  --footer-link-hover: var(--color-primary);
+  --footer-section-gap: 2rem;
+  --footer-grid-template: 1fr;
 }
 
 /* ==========================================================================
@@ -476,10 +500,10 @@ main.homepage section div.container,
 /* ==========================================================================
    减少动画偏好
    ========================================================================== */
-.homepage @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+@media (prefers-reduced-motion: reduce) {
+  .homepage *,
+  .homepage *::before,
+  .homepage *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

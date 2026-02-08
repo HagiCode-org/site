@@ -369,6 +369,12 @@
   border-left: 1px solid var(--color-border);
 }
 
+/* 移动端 CTA 按钮样式 */
+.mobileCtaButton {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
 [data-theme='dark'] .mobileNav {
   background: rgba(3, 7, 18, 0.95);
   border-left-color: rgba(0, 255, 255, 0.15);

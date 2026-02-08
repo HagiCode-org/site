@@ -100,7 +100,7 @@ export default function ThemeToggle({ className = '' }: ThemeToggleProps) {
             : '切换到暗色模式'
       }
     >
-      {theme === 'dark' ? (
+      {theme === 'light' ? (
         // Sun icon for light mode
         <svg className={styles.icon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="12" r="5" />

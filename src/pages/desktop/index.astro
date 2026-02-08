@@ -1,0 +1,820 @@
+---
+import { fetchDesktopVersions, groupAssetsByPlatform } from "@/utils/desktop";
+import type { DesktopVersion, PlatformGroup } from "@/types/desktop";
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+import Clarity from "@/components/Clarity.astro";
+// 导入首页样式系统
+import '@/styles/homepage.css';
+// 导入 Desktop 页面专属样式
+import '@/styles/desktop.css';
+// 导入首页组件
+import Navbar from '@/components/home/Navbar';
+import Footer from '@/components/home/Footer';
+// 导入图标组件
+import FeatureIcon from '@/components/desktop/FeatureIcon.astro';
+import FeatureTagIcon from '@/components/desktop/FeatureTagIcon.astro';
+import PlatformIcon from '@/components/desktop/PlatformIcon.astro';
+import DownloadOption from '@/components/desktop/DownloadOption.astro';
+
+// 在构建时获取版本数据
+let versionData: {
+  latest: DesktopVersion | null;
+  allVersions: DesktopVersion[];
+  latestPlatforms: PlatformGroup[];
+  error: string | null;
+} = {
+  latest: null,
+  allVersions: [],
+  latestPlatforms: [],
+  error: null,
+};
+
+try {
+  const data = await fetchDesktopVersions();
+  versionData.allVersions = data.versions;
+  versionData.latest = data.versions[0] || null;
+
+  if (versionData.latest) {
+    versionData.latestPlatforms = groupAssetsByPlatform(
+      versionData.latest.assets
+    );
+  }
+} catch (e) {
+  versionData.error = e instanceof Error ? e.message : String(e);
+  console.error("Failed to fetch desktop versions:", e);
+}
+
+const { latest, allVersions, latestPlatforms, error } = versionData;
+
+// 为每个平台创建下载选项映射
+const platformOptions = latestPlatforms.map(platform => {
+  // 将 downloads 转换为 DownloadOption 格式
+  const options = platform.downloads.map(download => ({
+    label: download.filename,
+    url: download.url,
+    size: download.size
+  }));
+
+  // 确定推荐的默认选项
+  let defaultIndex = 0;
+  if (platform.platform === 'windows') {
+    defaultIndex = platform.downloads.findIndex(d => d.filename.includes('Setup')) ?? 0;
+  } else if (platform.platform === 'macos') {
+    defaultIndex = platform.downloads.findIndex(d => d.filename.includes('arm64')) ?? 0;
+  } else if (platform.platform === 'linux') {
+    defaultIndex = platform.downloads.findIndex(d => d.filename.includes('AppImage')) ?? 0;
+  }
+
+  return {
+    platform: platform.platform as 'windows' | 'macos' | 'linux',
+    platformLabel: platform.platform === 'windows' ? 'Windows' :
+                    platform.platform === 'macos' ? 'macOS' : 'Linux',
+    options,
+    defaultOption: defaultIndex,
+    isRecommended: false
+  };
+});
+
+// 检测用户操作系统并重新排序平台（客户端脚本）
+// 不再使用模板字符串变量，直接在 HTML 中使用 <script> 标签
+
+// SEO 元数据
+const title = "Hagicode Desktop - 下载";
+const description = "下载 Hagicode Desktop，本地化的 AI 代码助手。支持 Windows、macOS 和 Linux，保护隐私，快速响应。";
+
+// 获取站点基础路径
+const siteBase = import.meta.env.VITE_SITE_BASE || "/";
+---
+
+<!doctype html>
+<html lang="zh-CN" data-site-base={siteBase}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <!-- 百度搜索引擎验证 -->
+    <meta name="baidu-site-verification" content="codeva-A9s3yT3z5m" />
+    <meta name="og:title" content={title} />
+    <meta name="og:description" content={description} />
+    <meta name="og:type" content="website" />
+    <script is:inline>
+      // 初始化主题 - 与主页保持一致
+      (function() {
+        // 判断是否在农历新年期间
+        // 蛇年2025: 2025-01-29 至 2025-02-12 (元宵节)
+        // 马年2026: 2026-02-17 至 2026-03-03 (元宵节)
+        function isLunarNewYearPeriod() {
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = now.getMonth() + 1; // 1-12
+          const day = now.getDate();
+
+          // 2025年蛇年新年期间 (1月29日 - 2月12日)
+          if (year === 2025) {
+            if (month === 1 && day >= 29) return true;
+            if (month === 2 && day <= 12) return true;
+          }
+          // 2026年马年新年期间 (2月17日 - 3月3日)
+          if (year === 2026) {
+            if (month === 2 && day >= 17) return true;
+            if (month === 3 && day <= 3) return true;
+          }
+          return false;
+        }
+
+        const stored = localStorage.getItem('starlight-theme');
+        const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        let theme;
+
+        if (stored) {
+          // 用户已有主题偏好,使用其选择
+          theme = stored;
+        } else {
+          // 用户无主题偏好,应用智能默认
+          theme = isLunarNewYearPeriod() ? 'lunar-new-year' : system;
+        }
+
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body class="homepage">
+    <Navbar client:load />
+
+    <main class="homepage">
+      <!-- Hero Section -->
+      <section class="hero">
+        <!-- 科技感装饰元素 - 全宽背景 -->
+        <div class="tech-grid-bg" />
+        <div class="bgGlow" />
+        <!-- 内容区域 -->
+        <div class="hero-content">
+          <h1>Hagicode Desktop</h1>
+          <p class="hero-tagline">本地化的 AI 代码助手，保护隐私，提升效率</p>
+
+          {error ? (
+            <div class="error-message">
+              <p>⚠️ 无法加载版本信息</p>
+              <p>{error}</p>
+              <a
+                href="https://desktop.dl.hagicode.com/"
+                class="btn btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                前往下载页面
+              </a>
+            </div>
+          ) : latest ? (
+            <>
+              <div class="download-buttons">
+                {platformOptions.map((option) => (
+                  <DownloadOption
+                    platform={option.platform}
+                    platformLabel={option.platformLabel}
+                    defaultOption={option.defaultOption}
+                    options={option.options}
+                    isRecommended={option.isRecommended}
+                  />
+                ))}
+              </div>
+              <p class="version-info">
+                最新版本: {latest.version}
+                {latestPlatforms.length > 0 && (
+                  <span class="platform-info">
+                    {" "}
+                    • 支持{" "}
+                    {latestPlatforms.map((p) =>
+                      p.platform === 'windows' ? 'Windows' :
+                      p.platform === 'macos' ? 'macOS' : 'Linux'
+                    ).join("、")}
+                  </span>
+                )}
+              </p>
+            </>
+          ) : (
+            <p>暂无可用的下载版本</p>
+          )}
+
+          <div class="hero-features">
+            <span class="feature-tag">
+              <FeatureTagIcon name="lock" />
+              隐私保护
+            </span>
+            <span class="feature-tag">
+              <FeatureTagIcon name="bolt" />
+              快速响应
+            </span>
+            <span class="feature-tag">
+              <FeatureTagIcon name="computer" />
+              跨平台支持
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 功能特性区域 -->
+      <section class="features">
+        <h2>核心功能</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="rocket" size={48} />
+            </div>
+            <h3>本地运行</h3>
+            <p>所有数据本地处理，无需上传到云端，确保代码隐私安全</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="lock" size={48} />
+            </div>
+            <h3>隐私保护</h3>
+            <p>代码完全不上传，支持离线使用，保护你的知识产权</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="bolt" size={48} />
+            </div>
+            <h3>快速响应</h3>
+            <p>毫秒级响应时间，无需等待网络请求，提升开发效率</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="computer" size={48} />
+            </div>
+            <h3>跨平台支持</h3>
+            <p>支持 Windows、macOS 和 Linux，满足不同开发环境需求</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="arrow-path" size={48} />
+            </div>
+            <h3>自动更新</h3>
+            <p>自动检查更新，一键升级到最新版本，获取最新功能</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="globe" size={48} />
+            </div>
+            <h3>多语言支持</h3>
+            <p>内置中英文界面，支持国际化开发团队协作</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 系统要求 -->
+      <section class="system-requirements">
+        <h2>系统要求</h2>
+        <Tabs>
+          <TabItem label="Windows">
+            <div class="requirements-content">
+              <p>
+                <strong>操作系统:</strong> Windows 10/11 (64-bit)
+              </p>
+              <p>
+                <strong>处理器:</strong> Intel Core i3 或同等性能处理器
+              </p>
+              <p>
+                <strong>内存:</strong> 4GB RAM (推荐 8GB)
+              </p>
+              <p>
+                <strong>磁盘空间:</strong> 2GB 可用空间
+              </p>
+              <p>
+                <strong>网络:</strong> 初始下载需要网络连接（后续可离线使用）
+              </p>
+            </div>
+          </TabItem>
+          <TabItem label="macOS">
+            <div class="requirements-content">
+              <p>
+                <strong>操作系统:</strong> macOS 12+ (Monterey 或更高版本)
+              </p>
+              <p>
+                <strong>处理器:</strong> Apple Silicon (M1/M2/M3) 或 Intel
+                Core i3+
+              </p>
+              <p>
+                <strong>内存:</strong> 4GB RAM (推荐 8GB)
+              </p>
+              <p>
+                <strong>磁盘空间:</strong> 2GB 可用空间
+              </p>
+              <p>
+                <strong>网络:</strong> 初始下载需要网络连接（后续可离线使用）
+              </p>
+            </div>
+          </TabItem>
+          <TabItem label="Linux">
+            <div class="requirements-content">
+              <p>
+                <strong>操作系统:</strong> Ubuntu 20.04+ / Debian 11+ / 其他主流发行版
+              </p>
+              <p>
+                <strong>处理器:</strong> Intel Core i3 或同等性能处理器
+              </p>
+              <p>
+                <strong>内存:</strong> 4GB RAM (推荐 8GB)
+              </p>
+              <p>
+                <strong>磁盘空间:</strong> 2GB 可用空间
+              </p>
+              <p>
+                <strong>网络:</strong> 初始下载需要网络连接（后续可离线使用）
+              </p>
+              <p>
+                <strong>注意:</strong> 需要安装图形界面环境
+              </p>
+            </div>
+          </TabItem>
+        </Tabs>
+      </section>
+
+      <!-- 安装指南 -->
+      <section class="installation-guide">
+        <h2>安装指南</h2>
+        <Tabs>
+          <TabItem label="Windows">
+            <div class="guide-content">
+              <ol>
+                <li>
+                  <strong>下载安装包</strong>
+                  <br />
+                  点击上方的 "Windows 下载" 按钮，下载
+                  <code>Hagicode-Desktop-Setup-x.x.x.exe</code> 文件
+                </li>
+                <li>
+                  <strong>运行安装程序</strong>
+                  <br />
+                  双击下载的 <code>.exe</code> 文件，在 Windows SmartScreen
+                  提示时点击"更多信息"然后"运行"
+                </li>
+                <li>
+                  <strong>完成安装</strong>
+                  <br />
+                  按照安装向导完成安装，安装完成后可以从开始菜单启动 Hagicode
+                  Desktop
+                </li>
+              </ol>
+              :::tip[安装失败]
+              如果安装失败，请确保：
+              - 已关闭正在运行的 Hagicode Desktop 实例
+              - 有管理员权限
+              - 系统满足最低要求
+              :::
+            </div>
+          </TabItem>
+          <TabItem label="macOS">
+            <div class="guide-content">
+              <h3>Intel Mac</h3>
+              <ol>
+                <li>
+                  <strong>下载 DMG 文件</strong>
+                  <br />
+                  下载 <code>Hagicode-Desktop-*.dmg</code> 文件
+                </li>
+                <li>
+                  <strong>打开 DMG 文件</strong>
+                  <br />
+                  双击打开 DMG 文件
+                </li>
+                <li>
+                  <strong>安装应用</strong>
+                  <br />
+                  将 Hagicode Desktop 拖入应用程序文件夹
+                </li>
+                <li>
+                  <strong>移除隔离属性</strong>
+                  <br />
+                  打开"终端"应用，运行以下命令：
+                  <br />
+                  <code>sudo xattr -dr com.apple.quarantine /Applications/Hagicode\ Desktop.app</code>
+                  <br />
+                  <br />
+                  该命令会移除 macOS Gatekeeper 对从互联网下载的应用自动添加的隔离属性，从而避免启动时的安全提示。
+                </li>
+                <li>
+                  <strong>启动应用</strong>
+                  <br />
+                  从启动台启动 Hagicode Desktop
+                </li>
+              </ol>
+
+              <h3>Apple Silicon Mac (M1/M2/M3)</h3>
+              <ol>
+                <li>
+                  <strong>下载 DMG 文件</strong>
+                  <br />
+                  下载 <code>Hagicode-Desktop-*-arm64.dmg</code> 文件
+                </li>
+                <li>
+                  <strong>打开 DMG 文件</strong>
+                  <br />
+                  双击打开 DMG 文件
+                </li>
+                <li>
+                  <strong>安装应用</strong>
+                  <br />
+                  将 Hagicode Desktop 拖入应用程序文件夹
+                </li>
+                <li>
+                  <strong>移除隔离属性</strong>
+                  <br />
+                  打开"终端"应用，运行以下命令：
+                  <br />
+                  <code>sudo xattr -dr com.apple.quarantine /Applications/Hagicode\ Desktop.app</code>
+                  <br />
+                  <br />
+                  该命令会移除 macOS Gatekeeper 对从互联网下载的应用自动添加的隔离属性，从而避免启动时的安全提示。
+                </li>
+                <li>
+                  <strong>启动应用</strong>
+                  <br />
+                  从启动台启动 Hagicode Desktop
+                </li>
+              </ol>
+
+              :::tip[提示]
+              如果未执行上述命令移除隔离属性，首次启动时系统可能会提示"无法验证开发者"。此时请在系统偏好设置 > 安全性与隐私中点击"仍要打开"。或者您也可以先关闭该提示，然后在终端执行上述 xattr 命令后再重新启动应用。
+              :::
+            </div>
+          </TabItem>
+          <TabItem label="Linux">
+            <div class="guide-content">
+              <h3>使用 AppImage（推荐）</h3>
+              <ol>
+                <li>
+                  <strong>下载 AppImage</strong>
+                  <br />
+                  点击上方的 "Linux 下载" 按钮，下载 <code>.AppImage</code>
+                  文件
+                </li>
+                <li>
+                  <strong>添加执行权限</strong>
+                  <br />
+                  <code>chmod +x Hagicode.Desktop-*.AppImage</code>
+                </li>
+                <li>
+                  <strong>运行应用</strong>
+                  <br />
+                  <code>./Hagicode.Desktop-*.AppImage</code>
+                </li>
+              </ol>
+
+              <h3>使用 Debian 包</h3>
+              <ol>
+                <li>
+                  <strong>下载 Debian 包</strong>
+                  <br />
+                  下载 <code>_amd64.deb</code> 文件
+                </li>
+                <li>
+                  <strong>安装包</strong>
+                  <br />
+                  <code>sudo dpkg -i hagicode-desktop_*_amd64.deb</code>
+                </li>
+                <li>
+                  <strong>修复依赖（如果需要）</strong>
+                  <br />
+                  <code>sudo apt-get install -f</code>
+                </li>
+              </ol>
+            </div>
+          </TabItem>
+        </Tabs>
+      </section>
+
+      <!-- 版本历史 -->
+      <section class="version-history">
+        <h2>版本历史</h2>
+        <div class="version-list">
+          {allVersions.length > 0 ? (
+            allVersions.map((version) => (
+              <div class="version-item">
+                <div class="version-header">
+                  <h3>{version.version}</h3>
+                  {version === latest && (
+                    <span class="latest-badge">最新版本</span>
+                  )}
+                </div>
+                <details>
+                  <summary>查看下载选项</summary>
+                  <div class="version-downloads">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>平台</th>
+                          <th>类型</th>
+                          <th>文件大小</th>
+                          <th>下载</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {groupAssetsByPlatform(version.assets).map((platform) =>
+                          platform.downloads.map((download) => (
+                            <tr>
+                              <td>{platform.platform}</td>
+                              <td>{download.filename}</td>
+                              <td>{download.size}</td>
+                              <td>
+                                <a
+                                  href={download.url}
+                                  class="btn-link"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  下载
+                                </a>
+                              </td>
+                            </tr>
+                          ))
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </details>
+              </div>
+            ))
+          ) : (
+            <p>暂无版本历史</p>
+          )}
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq">
+        <h2>常见问题</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>
+              Desktop 版本和 Server 版本有什么区别？
+            </summary>
+            <div class="faq-content">
+              <p>
+                Hagicode 提供两种部署方式：Desktop 版本和 Server 版本。两种版本各有优势，但都采用用户自主管理服务器和数据的方式，因此都具备更好的数据保护特性。
+              </p>
+              <h4>Desktop 版本</h4>
+              <ul>
+                <li>在本地电脑上运行，更加轻便</li>
+                <li>无需配置服务器，开箱即用</li>
+                <li>适合个人开发者和轻量使用场景</li>
+                <li>所有数据完全本地化</li>
+              </ul>
+              <h4>Server 版本</h4>
+              <ul>
+                <li>可部署在远程服务器上</li>
+                <li>支持多用户远程访问</li>
+                <li>更适合团队协作和广泛扩展</li>
+                <li>为未来的企业级功能和多设备同步做准备</li>
+              </ul>
+              <p>
+                无论选择哪种版本，你都完全掌控自己的服务器和数据，享受更好的隐私保护和数据安全。
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>安装后还需要做什么？</summary>
+            <div class="faq-content">
+              <p>
+                Hagicode Desktop 本质上是一个启动器，安装完成后首次启动时，它会引导你完成以下步骤：
+              </p>
+              <ul>
+                <li><strong>下载 Hagicode Core：</strong> Desktop 会自动检测并提示下载 Hagicode 核心组件</li>
+                <li><strong>安装核心组件：</strong> 按照界面提示完成核心组件的安装</li>
+                <li><strong>配置 AI 编码助手：</strong> 根据需要配置 Claude Code 等助手</li>
+              </ul>
+              <p>
+                整个过程在 Desktop 界面中都有清晰的提示指引，请确保在首次启动时保持网络连接以完成核心组件的下载。
+              </p>
+              <p>
+                完成这些步骤后，你就可以正常使用 Hagicode Desktop 的所有功能了。
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>如何检查更新？</summary>
+            <div class="faq-content">
+              <p>
+                Desktop 会自动检查更新。当有新版本可用时，会在界面右上角显示提示。你也可以在"设置"中手动检查更新。
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>支持哪些 AI 模型？</summary>
+            <div class="faq-content">
+              <p>Hagicode Desktop 通过 Agent CLI 提供强大的 AI 编码助手支持：</p>
+              <ul>
+                <li><strong>当前支持：</strong>Claude Code（主要支持）</li>
+                <li><strong>即将支持：</strong>Copilot、Gemini、Kimi Code 等各类 CLI Agent</li>
+              </ul>
+              <p>我们正在积极扩展对更多 AI 编码助手的支持，敬请期待后续版本的更新。</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>数据存储在哪里？</summary>
+            <div class="faq-content">
+              <p>Hagicode Desktop 使用 Electron 框架发布，所有数据都存储在 Electron 的 UserData 目录中：</p>
+              <ul>
+                <li>
+                  <strong>Windows:</strong> <code>C:\Users\&lt;用户名&gt;\AppData\Roaming\Hagicode Desktop</code>
+                </li>
+                <li>
+                  <strong>macOS:</strong> <code>~/Library/Application Support/Hagicode Desktop</code>
+                </li>
+                <li>
+                  <strong>Linux:</strong> <code>~/.config/Hagicode Desktop</code>
+                </li>
+              </ul>
+              <p>这是 Electron 应用的标准数据存储位置，确保你的配置和数据与应用程序生命周期保持一致。</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>如何卸载？</summary>
+            <div class="faq-content">
+              <ul>
+                <li>
+                  <strong>Windows:</strong> 通过"设置 > 应用"卸载，或运行卸载程序
+                </li>
+                <li>
+                  <strong>macOS:</strong> 删除 Applications 文件夹中的 Hagicode
+                  Desktop
+                </li>
+                <li>
+                  <strong>Linux:</strong> 使用包管理器卸载或删除 AppImage 文件
+                </li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>是否需要网络连接？</summary>
+            <div class="faq-content">
+              <p>
+                仅在以下情况需要网络连接：
+              </p>
+              <ul>
+                <li>首次下载和安装应用</li>
+                <li>使用 AI 编码助手（如 Claude Code、Copilot 等）</li>
+                <li>检查和下载应用更新</li>
+              </ul>
+              <p>
+                应用本体可以离线运行，但 AI 编码助手功能需要网络连接来调用相应的服务。
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>如何获取帮助与支持？</summary>
+            <div class="faq-content">
+              <p>如果你在使用 Hagicode Desktop 时遇到问题或有任何建议，我们提供多种方式与你联系：</p>
+              <ul>
+                <li>
+                  <strong>官方网站：</strong>
+                  <a href="https://hagicode.com" target="_blank" rel="noopener noreferrer">https://hagicode.com</a>
+                  <br />
+                  访问我们的官网获取最新动态、文档和教程。
+                </li>
+                <li>
+                  <strong>GitHub 仓库：</strong>
+                  <a href="https://github.com/HagiCode-org/site" target="_blank" rel="noopener noreferrer">https://github.com/HagiCode-org/site</a>
+                  <br />
+                  在 GitHub 上提交 Issue、参与讨论或查看源代码。欢迎给我们一个 Star ⭐
+                </li>
+                <li>
+                  <strong>QQ 群：</strong>
+                  <a href="https://qm.qq.com/q/Fwb0o094kw" target="_blank" rel="noopener noreferrer">技术支持群 610394020</a>
+                  <br />
+                  加入我们的 QQ 群与其他用户交流，获取实时帮助。
+                </li>
+                <li>
+                  <strong>邮箱支持：</strong>
+                  <a href="mailto:support@hagicode.com">support@hagicode.com</a>
+                  <br />
+                  通过邮件联系我们，我们会在收到邮件后尽快回复。
+                </li>
+              </ul>
+              <p>
+                我们欢迎所有形式的反馈，包括功能建议、Bug 报告和使用体验分享。你的意见对我们非常重要！
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <Footer client:load />
+
+    <!-- 平台检测和按钮重排序脚本 -->
+    <script type="module">
+      (function() {
+        function detectOS() {
+          // 优先检查 URL 查询参数中的 os 参数（用于调试）
+          const urlParams = new URLSearchParams(window.location.search);
+          const osParam = urlParams.get('os');
+          if (osParam) {
+            const validOS = ['windows', 'macos', 'linux'];
+            if (validOS.includes(osParam.toLowerCase())) {
+              console.log('[Platform Detection] Using OS from query param:', osParam.toLowerCase());
+              return osParam.toLowerCase();
+            }
+          }
+
+          const userAgent = navigator.userAgent;
+          console.log('[Platform Detection] UserAgent:', userAgent);
+
+          if (userAgent.includes('Windows')) {
+            console.log('[Platform Detection] Detected: Windows');
+            return 'windows';
+          }
+          if (userAgent.includes('Mac') || userAgent.includes('iPhone') || userAgent.includes('iPad') || userAgent.includes('Mac OS')) {
+            console.log('[Platform Detection] Detected: macOS');
+            return 'macos';
+          }
+          if (userAgent.includes('Linux')) {
+            console.log('[Platform Detection] Detected: Linux');
+            return 'linux';
+          }
+          console.log('[Platform Detection] Detected: Unknown');
+          return 'unknown';
+        }
+
+        function highlightCurrentPlatform() {
+          const userOS = detectOS();
+          const downloadButtons = document.querySelectorAll('.download-option-wrapper');
+
+          console.log('[Platform Detection] Found buttons:', downloadButtons.length);
+          console.log('[Platform Detection] User OS:', userOS);
+
+          downloadButtons.forEach(wrapper => {
+            const platform = wrapper.dataset.platform;
+            console.log('[Platform Detection] Button platform:', platform);
+
+            // 移除所有推荐状态
+            wrapper.classList.remove('download-option-wrapper--recommended');
+
+            // 为当前用户的系统添加推荐状态
+            if (platform === userOS) {
+              wrapper.classList.add('download-option-wrapper--recommended');
+              console.log('[Platform Detection] Added recommended class to:', platform);
+            }
+          });
+
+          // 如果是未知系统，默认推荐第一个平台（通常是 Windows）
+          if (userOS === 'unknown' && downloadButtons.length > 0) {
+            const firstButton = downloadButtons[0];
+            firstButton.classList.add('download-option-wrapper--recommended');
+            console.log('[Platform Detection] Unknown OS, defaulting to first platform:', firstButton.dataset.platform);
+          }
+
+          // 重新排序：当前系统放最前面
+          const buttonsContainer = document.querySelector('.download-buttons');
+          if (!buttonsContainer) {
+            console.warn('[Platform Detection] Download buttons container not found');
+            return;
+          }
+
+          const sortedWrappers = Array.from(downloadButtons).sort((a, b) => {
+            const aPlatform = a.dataset.platform || '';
+            const bPlatform = b.dataset.platform || '';
+
+            // 当前系统的平台排最前
+            if (aPlatform === userOS && bPlatform !== userOS) return -1;
+            if (aPlatform !== userOS && bPlatform === userOS) return 1;
+
+            return 0;
+          });
+
+          // 重新排列 DOM
+          sortedWrappers.forEach(wrapper => {
+            buttonsContainer.appendChild(wrapper);
+          });
+        }
+
+        // 确保在所有内容加载后执行
+        function initPlatformDetection() {
+          setTimeout(() => {
+            highlightCurrentPlatform();
+          }, 100);
+        }
+
+        // 在 DOM 加载后执行
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initPlatformDetection);
+        } else {
+          initPlatformDetection();
+        }
+      })();
+    </script>
+
+    <!-- Microsoft Clarity 分析 -->
+    <Clarity />
+  </body>
+</html>

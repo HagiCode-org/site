@@ -1,0 +1,49 @@
+---
+/**
+ * FeatureTagIcon 组件 - 用于标签的小图标
+ */
+interface Props {
+  name: 'lock' | 'bolt' | 'computer';
+  size?: number;
+}
+
+const { name, size = 16 } = Astro.props;
+
+// 小图标 SVG 路径
+const icons = {
+  lock: 'M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z',
+  bolt: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
+  computer: 'M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25',
+};
+---
+
+<span class="tag-icon">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="2"
+    stroke="currentColor"
+    width={size}
+    height={size}
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" d={icons[name]} />
+  </svg>
+</span>
+
+<style>
+  .tag-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.25rem;
+  }
+
+  .tag-icon svg {
+    color: var(--color-primary);
+  }
+
+  /* 新年主题 */
+  [data-theme='lunar-new-year'] .tag-icon svg {
+    color: #FFD54F;
+  }
+</style>

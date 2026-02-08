@@ -1,0 +1,1178 @@
+/**
+ * Desktop 页面专属样式
+ * 与首页样式系统 (homepage.css) 配合使用
+ * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
+ *
+ * 布局模式:
+ * - 使用首页的 main.homepage 容器
+ * - Section 占全宽，内容限制在 1200px 并居中
+ * - 背景装饰元素保持全宽
+ *
+ * UI/UX 改进:
+ * - 添加 prefers-reduced-motion 支持
+ * - 添加 focus 状态以满足可访问性要求
+ * - 确保触摸目标尺寸符合移动设备标准
+ * - 优化动画性能使用 transform
+ * - 为可交互元素添加 cursor-pointer
+ */
+
+/* ==========================================================================
+   Desktop 页面布局 - 继承首页布局系统
+   ========================================================================== */
+
+/* desktop-page 类已废弃，内容直接在 section 中 */
+
+/* ==========================================================================
+   背景装饰元素 - 全宽显示
+   ========================================================================== */
+
+/* 这些元素需要覆盖 homepage.css 的宽度限制 */
+main.homepage section > .tech-grid-bg,
+main.homepage section > .bgGlow {
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 网格背景样式 */
+.tech-grid-bg {
+  background-image:
+    linear-gradient(var(--color-border-light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border-light) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* 光晕背景样式 */
+.bgGlow {
+  background: var(--gradient-glow);
+}
+
+/* Hero Section - 布局 */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 4rem 0;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hero 内容 - 由 homepage.css 限制宽度并居中 */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* 确保标题在所有主题下都有正确的回退颜色 */
+.hero-content h1 {
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: var(--color-text); /* 回退颜色 */
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
+  line-height: 1.3;
+  min-height: 1.3em;
+  overflow: visible;
+}
+
+.hero-tagline {
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.8s ease-out 0.4s backwards;
+}
+
+.download-buttons {
+  display: grid;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 0.8s ease-out 0.6s backwards;
+  /* 默认单列布局 */
+  grid-template-columns: 1fr;
+  /* 移动端保持较窄宽度 */
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 桌面端：每个按钮单独一行，推荐按钮更加突出 */
+@media (min-width: 768px) {
+  .download-buttons {
+    /* 桌面端移除容器宽度限制 */
+    max-width: 800px;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* 推荐版本全宽显示 */
+  .download-buttons > .download-option-wrapper--recommended {
+    grid-column: 1;
+    max-width: 100%;
+  }
+
+  /* 非推荐按钮也全宽，但稍微窄一点居中显示 */
+  .download-buttons > :not(.download-option-wrapper--recommended) {
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* 推荐版本在桌面端更大 */
+@media (min-width: 768px) {
+  .download-option-wrapper--recommended .btn-download-primary {
+    min-height: 72px;
+    font-size: 1.25rem;
+  }
+
+  .download-option-wrapper--recommended .btn-label {
+    font-size: 1.25rem;
+  }
+
+  .download-option-wrapper--recommended .btn-sublabel {
+    font-size: 1rem;
+  }
+}
+
+/* 推荐按钮样式 - 当前系统的下载按钮 */
+.btn-primary.btn-recommended {
+  position: relative;
+  padding: 1rem 2rem;
+  min-height: 56px;
+  font-size: 1.1rem;
+  border: 2px solid var(--color-primary);
+  box-shadow:
+    var(--shadow-glow),
+    0 0 30px rgba(0, 128, 255, 0.3);
+  transform: scale(1);
+}
+
+/* 推荐标签 */
+.recommended-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.5rem;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+  animation: pulse-badge 2s ease-in-out infinite;
+}
+
+/* 推荐标签脉冲动画 */
+@keyframes pulse-badge {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 2px 12px rgba(255, 107, 107, 0.6);
+  }
+}
+
+/* 非推荐按钮的次要样式 */
+.download-buttons .btn-primary:not(.btn-recommended) {
+  opacity: 0.8;
+  transform: scale(0.95);
+}
+
+.download-buttons .btn-primary:not(.btn-recommended):hover {
+  opacity: 1;
+  transform: scale(0.98) translateY(-2px);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px; /* 触摸目标最小高度 */
+  min-width: 44px; /* 触摸目标最小宽度 */
+  padding: 0.75rem 1.5rem;
+  background: var(--gradient-primary);
+  color: var(--color-text); /* 使用主题文字色，确保在渐变背景上可见 */
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.2s ease-out;
+  box-shadow: var(--shadow-glow);
+  cursor: pointer;
+}
+
+/* 按钮图标容器 */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 确保按钮文字在所有主题下可见 - 使用白色文字阴影或文字描边 */
+.btn-primary {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Focus 状态 - 可访问性要求 */
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 活动状态 */
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.version-info {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.platform-info {
+  color: var(--color-text-muted);
+}
+
+.hero-features {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.feature-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  gap: 0.25rem;
+}
+
+/* Error Message */
+.error-message {
+  padding: 2rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+  border-radius: 0.5rem;
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   Features Section
+   ========================================================================== */
+
+.features {
+  padding: 4rem 0;
+}
+
+.features h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  padding: 2rem;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+  animation: fadeInUp 0.6s ease-out backwards;
+  cursor: pointer;
+}
+
+/* Focus 状态 */
+.feature-card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.feature-card:nth-child(1) { animation-delay: 0.1s; }
+.feature-card:nth-child(2) { animation-delay: 0.2s; }
+.feature-card:nth-child(3) { animation-delay: 0.3s; }
+.feature-card:nth-child(4) { animation-delay: 0.4s; }
+.feature-card:nth-child(5) { animation-delay: 0.5s; }
+.feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* SVG 图标包装器样式 */
+.feature-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-text);
+}
+
+.feature-card p {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Starlight Tabs 组件样式覆盖
+   ========================================================================== */
+
+/* Tabs 容器 - 确保在所有主题下正确显示 */
+starlight-tabs {
+  display: block;
+  margin-top: 1.5rem;
+}
+
+/* Tabs 导航栏包装器 */
+.tablist-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem 0.5rem 0 0;
+  background: var(--color-surface-hover);
+}
+
+/* Tabs 列表 */
+[role='tablist'] {
+  display: flex;
+  list-style: none;
+  border-bottom: 1px solid var(--color-border);
+  padding: 0;
+  margin: 0;
+}
+
+/* 单个 Tab 容器 */
+.tab {
+  display: flex;
+}
+
+/* Tab 按钮 - 使用主题颜色 */
+.tab > [role='tab'] {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1.5;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  color: var(--color-text-secondary) !important;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+/* 暗色主题下 Tab 按钮 */
+[data-theme='dark'] .tab > [role='tab'] {
+  color: var(--color-text-secondary) !important;
+}
+
+/* 新年主题下 Tab 按钮 */
+[data-theme='lunar-new-year'] .tab > [role='tab'] {
+  color: #FFE082 !important;
+}
+
+/* 激活状态的 Tab */
+.tab [role='tab'][aria-selected='true'] {
+  color: var(--color-primary) !important;
+  font-weight: 600;
+  border-bottom-color: var(--color-primary);
+}
+
+/* 暗色主题下激活的 Tab */
+[data-theme='dark'] .tab [role='tab'][aria-selected='true'] {
+  color: var(--color-primary) !important;
+}
+
+/* 新年主题下激活的 Tab */
+[data-theme='lunar-new-year'] .tab [role='tab'][aria-selected='true'] {
+  color: #FFD54F !important;
+  border-bottom-color: #FFD54F;
+}
+
+/* Tab 按钮悬停状态 */
+.tab > [role='tab']:hover {
+  background: var(--color-surface);
+}
+
+/* 暗色主题下悬停 */
+[data-theme='dark'] .tab > [role='tab']:hover {
+  background: var(--color-surface-hover);
+}
+
+/* 新年主题下悬停 */
+[data-theme='lunar-new-year'] .tab > [role='tab']:hover {
+  background: #631f1f;
+}
+
+/* Tab 按钮焦点状态 - 可访问性 */
+.tab > [role='tab']:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Tab 内容面板 */
+[role='tabpanel'] {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+}
+
+/* 暗色主题下面板文字 */
+[data-theme='dark'] [role='tabpanel'] {
+  color: var(--color-text-secondary);
+}
+
+/* 新年主题下面板文字 */
+[data-theme='lunar-new-year'] [role='tabpanel'] {
+  color: #FFE082;
+}
+
+/* 确保面板内的段落有正确颜色 */
+[role='tabpanel'] p {
+  color: var(--color-text-secondary) !important;
+}
+
+[data-theme='dark'] [role='tabpanel'] p {
+  color: var(--color-text-secondary) !important;
+}
+
+[data-theme='lunar-new-year'] [role='tabpanel'] p {
+  color: #FFE082 !important;
+}
+
+/* 确保面板内的 strong 标签有正确颜色 */
+[role='tabpanel'] strong {
+  color: var(--color-text) !important;
+  font-weight: 600;
+}
+
+[data-theme='dark'] [role='tabpanel'] strong {
+  color: var(--color-text) !important;
+}
+
+[data-theme='lunar-new-year'] [role='tabpanel'] strong {
+  color: #FFF9C4 !important;
+}
+
+/* 确保面板内的标题有正确颜色 */
+[role='tabpanel'] h3 {
+  color: var(--color-text) !important;
+}
+
+[data-theme='dark'] [role='tabpanel'] h3 {
+  color: var(--color-text) !important;
+}
+
+[data-theme='lunar-new-year'] [role='tabpanel'] h3 {
+  color: #FFF9C4 !important;
+}
+
+/* 确保列表项也有正确的颜色 */
+[role='tabpanel'] li {
+  color: var(--color-text-secondary) !important;
+}
+
+[data-theme='dark'] [role='tabpanel'] li {
+  color: var(--color-text-secondary) !important;
+}
+
+[data-theme='lunar-new-year'] [role='tabpanel'] li {
+  color: #FFE082 !important;
+}
+
+/* 确保列表中的 strong 标签正确显示 */
+[role='tabpanel'] li strong {
+  color: var(--color-text) !important;
+}
+
+[data-theme='dark'] [role='tabpanel'] li strong {
+  color: var(--color-text) !important;
+}
+
+[data-theme='lunar-new-year'] [role='tabpanel'] li strong {
+  color: #FFF9C4 !important;
+}
+
+/* ==========================================================================
+   System Requirements & Installation
+   ========================================================================== */
+
+.system-requirements,
+.installation-guide,
+.version-history,
+.faq {
+  padding: 4rem 0;
+}
+
+.system-requirements h2,
+.installation-guide h2,
+.version-history h2,
+.faq h2 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  margin-top: 4rem;
+  color: var(--color-text);
+}
+
+.requirements-content,
+.guide-content {
+  padding: 1.5rem;
+}
+
+/* 确保所有段落在所有主题下正确显示 */
+.requirements-content p,
+.guide-content p {
+  margin-bottom: 0.75rem;
+  color: var(--color-text-secondary) !important;
+}
+
+/* strong 标签颜色 - 继承父元素颜色 */
+.requirements-content strong,
+.guide-content strong,
+.faq-content strong {
+  color: inherit;
+  font-weight: 600;
+}
+
+/* 暗色主题下 strong 标签使用主题色 */
+[data-theme='dark'] .requirements-content strong,
+[data-theme='dark'] .guide-content strong,
+[data-theme='dark'] .faq-content strong {
+  color: var(--color-text);
+}
+
+/* 新年主题下 strong 标签使用金色 */
+[data-theme='lunar-new-year'] .requirements-content strong,
+[data-theme='lunar-new-year'] .guide-content strong,
+[data-theme='lunar-new-year'] .faq-content strong {
+  color: #FFF9C4;
+}
+
+.requirements-content code,
+.guide-content code {
+  background: var(--color-surface-hover);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  color: var(--color-primary);
+}
+
+/* 暗色主题下 code 标签更亮 */
+[data-theme='dark'] .requirements-content code,
+[data-theme='dark'] .guide-content code {
+  color: #4ADE80;
+}
+
+/* 新年主题下 code 标签使用金色 */
+[data-theme='lunar-new-year'] .requirements-content code,
+[data-theme='lunar-new-year'] .guide-content code {
+  color: #FFD54F;
+}
+
+.guide-content ol {
+  padding-left: 1.5rem;
+}
+
+.guide-content li {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary) !important;
+}
+
+/* 确保列表中的 strong 标签正确显示 */
+.guide-content li strong {
+  color: inherit;
+  font-weight: 600;
+}
+
+[data-theme='dark'] .guide-content li strong {
+  color: var(--color-text);
+}
+
+[data-theme='lunar-new-year'] .guide-content li strong {
+  color: #FFF9C4;
+}
+
+.guide-content h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  color: var(--color-text) !important;
+}
+
+/* ==========================================================================
+   Version History
+   ========================================================================== */
+
+.version-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.version-item {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.version-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--color-surface);
+}
+
+.version-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--color-text);
+}
+
+.latest-badge {
+  padding: 0.25rem 0.75rem;
+  background: var(--color-primary);
+  color: var(--color-background); /* 使用背景色作为文字色，确保对比度 */
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.version-item details {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.version-item summary {
+  cursor: pointer;
+  padding: 1rem 0;
+  color: var(--color-primary);
+  font-weight: 500;
+  transition: color 0.2s ease-out;
+}
+
+/* Focus 状态 */
+.version-item summary:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.version-item summary:hover {
+  color: var(--color-primary-dark);
+}
+
+/* 版本下载表格容器 */
+.version-downloads {
+  margin-top: 1.5rem;
+}
+
+.version-downloads table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.version-downloads th,
+.version-downloads td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-secondary) !important; /* 确保表格文字颜色 */
+}
+
+/* 表格行交替背景 */
+.version-downloads tbody tr:nth-child(even) {
+  background: var(--color-surface-hover);
+}
+
+/* 表格行悬停效果 */
+.version-downloads tbody tr:hover {
+  background: var(--color-surface-hover);
+  transition: background-color 0.2s ease-out;
+}
+
+.version-downloads th {
+  font-weight: 600;
+  color: var(--color-text) !important; /* 表头使用主文字色 */
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.version-downloads a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease-out;
+}
+
+.version-downloads a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.btn-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease-out;
+}
+
+/* Focus 状态 */
+.btn-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.btn-link:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.all-versions-link {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.all-versions-link a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease-out;
+}
+
+/* Focus 状态 */
+.all-versions-link a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.all-versions-link a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.faq-item {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.faq-item:hover {
+  border-color: var(--color-primary);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  background: var(--color-surface);
+  font-weight: 500;
+  color: var(--color-text) !important; /* 确保文字颜色使用主题变量 */
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
+  position: relative;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 移除默认的三角形 */
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+/* 添加自定义展开/收起图标 */
+.faq-item summary::after {
+  content: '+';
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--color-primary);
+  transition: transform 0.3s ease-out;
+}
+
+.faq-item[open] summary::after {
+  content: '−';
+  transform: rotate(180deg);
+}
+
+/* Focus 状态 */
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.faq-item summary:hover {
+  background: var(--color-surface-hover);
+}
+
+.faq-content {
+  padding: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faq-content p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary) !important; /* 确保文字颜色使用主题变量 */
+}
+
+.faq-content ul {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-text-secondary) !important; /* 确保列表文字颜色 */
+}
+
+.faq-content li {
+  margin-bottom: 0.5rem;
+  color: var(--color-text-secondary) !important; /* 确保列表项文字颜色 */
+}
+
+/* 确保 FAQ 中的 strong 标签正确显示 */
+.faq-content strong {
+  color: inherit;
+  font-weight: 600;
+}
+
+[data-theme='dark'] .faq-content strong {
+  color: var(--color-text);
+}
+
+[data-theme='lunar-new-year'] .faq-content strong {
+  color: #FFF9C4;
+}
+
+.faq-content code {
+  background: var(--color-surface-hover);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  color: var(--color-primary);
+}
+
+/* 暗色主题下 FAQ code 标签 */
+[data-theme='dark'] .faq-content code {
+  color: #4ADE80;
+}
+
+/* 新年主题下 FAQ code 标签 */
+[data-theme='lunar-new-year'] .faq-content code {
+  color: #FFD54F;
+}
+
+/* ==========================================================================
+   动画关键帧
+   ========================================================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   农历新年主题专属样式
+   ========================================================================== */
+
+/* 新年主题 Hero 标题 - 金色渐变 */
+[data-theme='lunar-new-year'] .hero-content h1 {
+  background: linear-gradient(135deg, #FFD54F 0%, #FFA000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: #FFD54F; /* 回退颜色 */
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+/* 新年主题副标题 - 金色文字 */
+[data-theme='lunar-new-year'] .hero-tagline {
+  color: #FFE082;
+}
+
+/* 新年主题标题 - 金色 */
+[data-theme='lunar-new-year'] .features h2,
+[data-theme='lunar-new-year'] .system-requirements h2,
+[data-theme='lunar-new-year'] .installation-guide h2,
+[data-theme='lunar-new-year'] .version-history h2,
+[data-theme='lunar-new-year'] .faq h2 {
+  color: #FFD54F;
+}
+
+/* 新年主题卡片标题 */
+[data-theme='lunar-new-year'] .feature-card h3,
+[data-theme='lunar-new-year'] .version-header h3 {
+  color: #FFF9C4;
+}
+
+/* 新年主题卡片内容 */
+[data-theme='lunar-new-year'] .feature-card p,
+[data-theme='lunar-new-year'] .version-downloads th {
+  color: #FFE082;
+}
+
+/* 新年主题版本标签 */
+[data-theme='lunar-new-year'] .latest-badge {
+  background: linear-gradient(135deg, #FFA000 0%, #FF8F00 100%);
+  color: #FFF9C4;
+  box-shadow: 0 0 15px rgba(255, 160, 0, 0.5);
+}
+
+/* 移除无限动画 - 改用仅在悬停时的效果 */
+[data-theme='lunar-new-year'] .hero-content h1:hover {
+  filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.6));
+  transition: filter 0.3s ease-out;
+}
+
+/* 新年主题主按钮 - 红底金字 */
+[data-theme='lunar-new-year'] .btn-primary {
+  background: linear-gradient(135deg, #E53935 0%, #C62828 100%);
+  box-shadow: 0 0 20px rgba(229, 57, 53, 0.5);
+  animation: fadeInUp 0.8s ease-out 0.6s backwards;
+}
+
+/* 悬停时的金色光晕效果 */
+[data-theme='lunar-new-year'] .btn-primary:hover {
+  background: linear-gradient(135deg, #EF5350 0%, #D32F2F 100%);
+  box-shadow: 0 0 30px rgba(229, 57, 53, 0.7), 0 0 20px rgba(255, 193, 7, 0.4);
+}
+
+/* 新年主题功能卡片 - 金色边框 */
+[data-theme='lunar-new-year'] .feature-card {
+  border: 1px solid rgba(255, 193, 7, 0.4);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='lunar-new-year'] .feature-card:hover {
+  border-color: rgba(255, 193, 7, 0.6);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 193, 7, 0.2);
+}
+
+/* 新年主题版本标签 */
+[data-theme='lunar-new-year'] .latest-badge {
+  background: linear-gradient(135deg, #FFA000 0%, #FF8F00 100%);
+  box-shadow: 0 0 15px rgba(255, 160, 0, 0.5);
+}
+
+/* 新年主题链接 */
+[data-theme='lunar-new-year'] .btn-link,
+[data-theme='lunar-new-year'] .all-versions-link a,
+[data-theme='lunar-new-year'] .version-item summary {
+  color: #FFECB3;
+  text-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
+}
+
+[data-theme='lunar-new-year'] .btn-link:hover,
+[data-theme='lunar-new-year'] .all-versions-link a:hover,
+[data-theme='lunar-new-year'] .version-item summary:hover {
+  color: #FFF9C4;
+  text-shadow: 0 0 20px rgba(255, 193, 7, 0.7);
+}
+
+/* 新年主题系统要求和安装指南内容 */
+[data-theme='lunar-new-year'] .requirements-content p,
+[data-theme='lunar-new-year'] .guide-content p {
+  color: #FFE082 !important;
+}
+
+[data-theme='lunar-new-year'] .requirements-content li,
+[data-theme='lunar-new-year'] .guide-content li {
+  color: #FFE082 !important;
+}
+
+[data-theme='lunar-new-year'] .requirements-content h3,
+[data-theme='lunar-new-year'] .guide-content h3 {
+  color: #FFF9C4 !important;
+}
+
+/* 新年主题 FAQ 内容 */
+[data-theme='lunar-new-year'] .faq-content p,
+[data-theme='lunar-new-year'] .faq-content ul,
+[data-theme='lunar-new-year'] .faq-content li {
+  color: #FFE082 !important;
+}
+
+[data-theme='lunar-new-year'] .faq-item summary {
+  color: #FFF9C4 !important;
+}
+
+/* 新年主题推荐按钮特殊样式 */
+[data-theme='lunar-new-year'] .btn-primary.btn-recommended {
+  background: linear-gradient(135deg, #E53935 0%, #C62828 100%);
+  border: 2px solid #FFD54F;
+  box-shadow:
+    0 0 30px rgba(229, 57, 53, 0.7),
+    0 0 40px rgba(255, 193, 7, 0.4),
+    inset 0 0 20px rgba(255, 193, 7, 0.2);
+}
+
+[data-theme='lunar-new-year'] .btn-primary.btn-recommended:hover {
+  background: linear-gradient(135deg, #EF5350 0%, #D32F2F 100%);
+  box-shadow:
+    0 0 40px rgba(229, 57, 53, 0.9),
+    0 0 60px rgba(255, 193, 7, 0.6),
+    inset 0 0 30px rgba(255, 193, 7, 0.3);
+}
+
+/* 新年主题推荐标签 */
+[data-theme='lunar-new-year'] .recommended-badge {
+  background: linear-gradient(135deg, #FFD54F 0%, #FFA000 100%);
+  color: #C62828;
+  box-shadow:
+    0 2px 12px rgba(255, 193, 7, 0.6),
+    0 0 20px rgba(255, 193, 7, 0.4);
+}
+
+/* ==========================================================================
+   可访问性：尊重用户的运动偏好设置
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  /* 减少或禁用所有动画 */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* 保留必要的 transform 动画但缩短时间 */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .download-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* 确保移动设备上按钮有足够的触摸区域 */
+  .btn-primary {
+    width: 100%;
+    min-height: 48px; /* 移动设备上增加触摸目标 */
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .version-downloads {
+    overflow-x: auto;
+  }
+
+  .version-downloads table {
+    min-width: 500px;
+  }
+
+  /* FAQ 在移动设备上增大触摸目标 */
+  .faq-item summary {
+    padding: 1.25rem 1.5rem; /* 增加内边距 */
+    min-height: 48px; /* 确保最小触摸高度 */
+    display: flex;
+    align-items: center;
+  }
+
+  .version-item summary {
+    padding: 1.25rem 0;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

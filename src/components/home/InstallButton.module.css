@@ -1,0 +1,430 @@
+/**
+ * InstallButton 样式 - 全局统一安装按钮
+ * 支持完整模式（Hero）和紧凑模式（Header）
+ * 支持亮色/暗色/农历新年主题
+ */
+
+/* ==========================================================================
+   安装按钮容器
+   ========================================================================== */
+
+.installButtonWrapper {
+  display: inline-block;
+}
+
+.splitButtonContainer {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+/* 完整模式 - Hero 区域使用 */
+.installButtonWrapper--full .splitButtonContainer {
+  min-height: 56px;
+}
+
+/* 紧凑模式 - Header 导航栏使用 */
+.installButtonWrapper--compact .splitButtonContainer {
+  min-height: 40px;
+}
+
+/* ==========================================================================
+   主下载按钮
+   ========================================================================== */
+
+.btnDownloadMain {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1.25rem;
+  /* 高饱和度渐变填充背景 */
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  border: none;
+  /* 波动渐变动画 */
+  animation: install-button-gradient-wave 3s ease-in-out infinite;
+}
+
+.installButtonWrapper--full .btnDownloadMain {
+  border-radius: 0.75rem 0 0 0.75rem;
+  min-height: 56px;
+  font-size: 1.125rem;
+  padding: 0 1.75rem;
+}
+
+.installButtonWrapper--compact .btnDownloadMain {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  min-height: 40px;
+  font-size: 0.9375rem;
+  padding: 0 1rem;
+}
+
+.btnDownloadMain:hover {
+  background-position: 100% 50%;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(74, 144, 217, 0.2);
+}
+
+/* 按钮波动渐变动画 */
+@keyframes install-button-gradient-wave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.downloadIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.installButtonWrapper--compact .downloadIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.btnText {
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   下拉切换按钮
+   ========================================================================== */
+
+.btnDropdownToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 高饱和度渐变填充背景 */
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff !important;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  padding: 0;
+  /* 波动渐变动画 */
+  animation: install-button-gradient-wave 3s ease-in-out infinite;
+}
+
+.installButtonWrapper--full .btnDropdownToggle {
+  width: 48px;
+  min-width: 48px;
+  border-radius: 0 0.75rem 0.75rem 0;
+}
+
+.installButtonWrapper--compact .btnDropdownToggle {
+  width: 36px;
+  min-width: 36px;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.btnDropdownToggle:hover {
+  background-position: 100% 50%;
+}
+
+/* ==========================================================================
+   下拉菜单
+   ========================================================================== */
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  min-width: 240px;
+  background: var(--color-surface);
+  /* 强制指定背景色，确保在 Starlight 中生效 */
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-lg);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease-out;
+  z-index: 1000;
+}
+
+.dropdownMenuOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   平台分组标签
+   ========================================================================== */
+
+.dropdownGroupLabel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 0.25rem -0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  /* 左侧色栏 */
+}
+
+.dropdownGroupLabel::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Windows - 蓝色 */
+.platform--windows::before {
+  background: linear-gradient(180deg, #0080FF 0%, #0066CC 100%);
+}
+
+/* macOS - 紫色 */
+.platform--macos::before {
+  background: linear-gradient(180deg, #9B59B6 0%, #8E44AD 100%);
+}
+
+/* Linux - 橙色 */
+.platform--linux::before {
+  background: linear-gradient(180deg, #E67E22 0%, #D35400 100%);
+}
+
+.platformName {
+  display: block;
+  padding-left: 0.75rem;
+}
+
+/* ==========================================================================
+   下拉菜单项
+   ========================================================================== */
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-radius: 0.375rem;
+  transition: all 0.15s ease-out;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.dropdownItemLabel {
+  flex: 1;
+}
+
+.dropdownItemSize {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   分隔线
+   ========================================================================== */
+
+.dropdownSeparator {
+  margin: 0.5rem 0;
+  border-top: 1px solid var(--color-border-light);
+}
+
+/* ==========================================================================
+   Docker 选项特殊样式
+   ========================================================================== */
+
+.dropdownItemDocker {
+  color: var(--color-primary);
+  font-weight: 500;
+  gap: 0.75rem;
+}
+
+.dropdownItemDocker:hover {
+  background: var(--gradient-tech);
+}
+
+.dockerIcon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+.externalIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+.dropdownItemDocker:hover .externalIcon {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   暗色主题
+   ========================================================================== */
+
+[data-theme='dark'] .btnDownloadMain {
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  animation: install-button-gradient-wave 3s ease-in-out infinite;
+}
+
+[data-theme='dark'] .btnDropdownToggle {
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  border-left-color: rgba(255, 255, 255, 0.15);
+  animation: install-button-gradient-wave 3s ease-in-out infinite;
+}
+
+[data-theme='dark'] .btnDownloadMain:hover,
+[data-theme='dark'] .btnDropdownToggle:hover {
+  background: linear-gradient(135deg, #1A90FF 0%, #10DDDD 50%, #32D55E 100%);
+}
+
+[data-theme='dark'] .dropdownMenu {
+  background: #0a0f1e;
+  background-color: #0a0f1e;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* 暗色主题下的平台色栏 - 更柔和 */
+[data-theme='dark'] .platform--windows::before {
+  background: linear-gradient(180deg, #0066CC 0%, #004C99 100%);
+}
+
+[data-theme='dark'] .platform--macos::before {
+  background: linear-gradient(180deg, #7B3996 0%, #6E349D 100%);
+}
+
+[data-theme='dark'] .platform--linux::before {
+  background: linear-gradient(180deg, #C66E12 0%, #B34400 100%);
+}
+
+/* ==========================================================================
+   新年主题
+   ========================================================================== */
+
+[data-theme='lunar-new-year'] .btnDownloadMain {
+  /* 新年主题 - 高饱和度红金渐变填充 */
+  background: linear-gradient(135deg, #FF1744 0%, #FF9100 50%, #FFD600 100%);
+  background-size: 200% 200%;
+  animation: install-button-gradient-wave-lunar 3s ease-in-out infinite;
+}
+
+[data-theme='lunar-new-year'] .btnDropdownToggle {
+  background: linear-gradient(135deg, #FF1744 0%, #FF9100 50%, #FFD600 100%);
+  background-size: 200% 200%;
+  border-left-color: rgba(255, 193, 7, 0.3);
+  animation: install-button-gradient-wave-lunar 3s ease-in-out infinite;
+}
+
+[data-theme='lunar-new-year'] .btnDownloadMain:hover,
+[data-theme='lunar-new-year'] .btnDropdownToggle:hover {
+  background: linear-gradient(135deg, #FF2754 0%, #FFA110 50%, #FFE610 100%);
+}
+
+/* 新年主题的波动渐变动画 */
+@keyframes install-button-gradient-wave-lunar {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+[data-theme='lunar-new-year'] .dropdownMenu {
+  background: #521818;
+  background-color: #521818;
+  border-color: rgba(255, 193, 7, 0.4);
+}
+
+/* 新年主题下的平台色栏 - 金色系 */
+[data-theme='lunar-new-year'] .platform--windows::before {
+  background: linear-gradient(180deg, #FFD54F 0%, #FFA000 100%);
+}
+
+[data-theme='lunar-new-year'] .platform--macos::before {
+  background: linear-gradient(180deg, #FFECB3 0%, #FFCA28 100%);
+}
+
+[data-theme='lunar-new-year'] .platform--linux::before {
+  background: linear-gradient(180deg, #FFF9C4 0%, #FFEE58 100%);
+}
+
+[data-theme='lunar-new-year'] .dropdownItemDocker {
+  color: #FFECB3;
+}
+
+/* ==========================================================================
+   移动端样式
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .installButtonWrapper--full .splitButtonContainer {
+    min-height: 48px;
+  }
+
+  .installButtonWrapper--full .btnDownloadMain {
+    min-height: 48px;
+    padding: 0 1.25rem;
+    font-size: 1rem;
+  }
+
+  .installButtonWrapper--full .btnDropdownToggle {
+    width: 40px;
+    min-width: 40px;
+  }
+
+  .dropdownMenu {
+    min-width: 200px;
+  }
+}
+
+/* ==========================================================================
+   减少动画偏好
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .btnDownloadMain,
+  .btnDropdownToggle,
+  .dropdownItem,
+  .dropdownMenu {
+    animation: none !important;
+    transition: none !important;
+  }
+}

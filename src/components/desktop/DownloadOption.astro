@@ -1,0 +1,483 @@
+---
+/**
+ * DownloadOption 组件 - 支持多个下载选项的下拉按钮
+ */
+import PlatformIcon from './PlatformIcon.astro';
+
+interface DownloadOption {
+  label: string;
+  url: string;
+  size?: string;
+}
+
+interface Props {
+  platform: 'windows' | 'macos' | 'linux';
+  platformLabel: string;
+  defaultOption?: number;
+  options: DownloadOption[];
+  isRecommended?: boolean;
+}
+
+const {
+  platform,
+  platformLabel,
+  defaultOption = 0,
+  options,
+  isRecommended = false
+} = Astro.props;
+
+// 生成唯一的组件 ID
+const dropdownId = `download-dropdown-${platform}-${Math.random().toString(36).substring(2, 11)}`;
+const currentUrl = options[defaultOption].url;
+const currentLabel = options[defaultOption].label;
+---
+
+<div class={`download-option-wrapper ${isRecommended ? 'download-option-wrapper--recommended' : ''}`} data-platform={platform}>
+  <!-- 分体式下载按钮容器 -->
+  <div class="split-button-container" id={dropdownId}>
+    <!-- 主下载区域 -->
+    <a
+      href={currentUrl}
+      class="btn-download-main"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <PlatformIcon platform={platform} size={24} />
+      <span class="btn-content">
+        <span class="btn-label">{platformLabel}</span>
+        <span class="btn-sublabel">{currentLabel}</span>
+      </span>
+    </a>
+
+    <!-- 下拉切换按钮 -->
+    {options.length > 1 && (
+      <>
+        <button
+          class="btn-dropdown-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls={`${dropdownId}-menu`}
+          aria-haspopup="listbox"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+
+        <!-- 下拉菜单 -->
+        <ul class="dropdown-menu" id={`${dropdownId}-menu`} role="listbox" aria-label={`${platformLabel} 下载选项`}>
+          {options.map((option, index) => (
+            <li role="none">
+              <a
+                href={option.url}
+                class="dropdown-item"
+                role="option"
+                aria-selected={index === defaultOption ? 'true' : 'false'}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-label={option.label}
+                data-url={option.url}
+              >
+                <span class="dropdown-item-label">{option.label}</span>
+                {option.size && (
+                  <span class="dropdown-item-size">{option.size}</span>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+  </div>
+</div>
+
+<style>
+  /* 下载选项容器 */
+  .download-option-wrapper {
+    width: 100%;
+  }
+
+  /* 推荐版本 - 占整行 */
+  .download-option-wrapper--recommended {
+    width: 100%;
+    order: -1;
+  }
+
+  /* 分体式按钮容器 */
+  .split-button-container {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    min-height: 64px;
+  }
+
+  /* 主下载区域 - 左侧 */
+  .btn-download-main {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    min-height: 64px;
+    padding: 1rem 1.5rem;
+    background: var(--gradient-primary);
+    /* 所有主题下文字都是白色 */
+    color: #ffffff !important;
+    text-decoration: none;
+    border-radius: 0.75rem 0 0 0.75rem;
+    font-weight: 700;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    box-shadow: var(--shadow-glow);
+    cursor: pointer;
+    /* 增强文字阴影确保可读性 */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-download-main:hover {
+    background: var(--gradient-primary);
+  }
+
+  .btn-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+  }
+
+  .btn-label {
+    font-size: 1.125rem;
+    font-weight: 700;
+    /* 确保标签也是白色 */
+    color: #ffffff !important;
+  }
+
+  .btn-sublabel {
+    font-size: 0.875rem;
+    opacity: 0.95;
+    /* 确保子标签也是白色 */
+    color: #ffffff !important;
+    font-weight: 500;
+  }
+
+  /* 下拉切换按钮 - 右侧 */
+  .btn-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    min-width: 56px;
+    background: var(--gradient-primary);
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0 0.75rem 0.75rem 0;
+    color: #ffffff !important;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+  }
+
+  .btn-dropdown-toggle:hover {
+    background: var(--gradient-primary);
+    filter: brightness(1.1);
+  }
+
+  .btn-dropdown-toggle svg {
+    transition: transform 0.3s ease-out;
+  }
+
+  .btn-dropdown-toggle[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+
+  /* 下拉菜单 */
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-lg);
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease-out;
+    z-index: 100;
+  }
+
+  .btn-dropdown-toggle[aria-expanded="true"] ~ .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* 下拉菜单项 */
+  .dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-radius: 0.375rem;
+    transition: all 0.15s ease-out;
+    font-size: 0.875rem;
+  }
+
+  .dropdown-item:hover {
+    background: var(--color-surface-hover);
+    color: var(--color-text);
+  }
+
+  .dropdown-item[aria-selected="true"] {
+    background: var(--color-surface-hover);
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .dropdown-item-label {
+    flex: 1;
+  }
+
+  .dropdown-item-size {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  /* 非推荐按钮的次要样式 - 灰白色背景 */
+  .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-download-main {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    border: 1px solid #d0d0d0;
+    border-right: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    color: #333333 !important;
+    text-shadow: none;
+  }
+
+  .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-download-main:hover {
+    background: linear-gradient(135deg, #e8e8e8 0%, #d5d5d5 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-label,
+  .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-sublabel {
+    color: #333333 !important;
+  }
+
+  .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-dropdown-toggle {
+    background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+    border: 1px solid #d0d0d0;
+    border-left: 1px solid #b0b0b0;
+    color: #333333 !important;
+  }
+
+  .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-dropdown-toggle:hover {
+    background: linear-gradient(135deg, #d5d5d5 0%, #c0c0c0 100%);
+  }
+
+  /* 暗色主题下的非推荐按钮 */
+  [data-theme='dark'] .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-download-main {
+    background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 100%);
+    border: 1px solid #444;
+    border-right: none;
+    color: #e0e0e0 !important;
+  }
+
+  [data-theme='dark'] .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-download-main:hover {
+    background: linear-gradient(135deg, #4a4a4a 0%, #3a3a3a 100%);
+  }
+
+  [data-theme='dark'] .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-label,
+  [data-theme='dark'] .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-sublabel {
+    color: #e0e0e0 !important;
+  }
+
+  [data-theme='dark'] .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-dropdown-toggle {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    border: 1px solid #444;
+    border-left: 1px solid #555;
+    color: #e0e0e0 !important;
+  }
+
+  /* 新年主题下的非推荐按钮 */
+  [data-theme='lunar-new-year'] .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-download-main {
+    background: linear-gradient(135deg, #4a2c2c 0%, #3a1f1f 100%);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-right: none;
+    color: #e0e0e0 !important;
+  }
+
+  [data-theme='lunar-new-year'] .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-download-main:hover {
+    background: linear-gradient(135deg, #5a3c3c 0%, #4a2f2f 100%);
+    border-color: rgba(255, 193, 7, 0.5);
+  }
+
+  [data-theme='lunar-new-year'] .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-label,
+  [data-theme='lunar-new-year'] .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-sublabel {
+    color: #e0e0e0 !important;
+  }
+
+  [data-theme='lunar-new-year'] .download-option-wrapper:not(.download-option-wrapper--recommended) .btn-dropdown-toggle {
+    background: linear-gradient(135deg, #3a1f1f 0%, #2a1515 100%);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-left: 1px solid rgba(255, 193, 7, 0.4);
+    color: #e0e0e0 !important;
+  }
+
+  /* 推荐版本的特殊样式 */
+  .download-option-wrapper--recommended .btn-download-main {
+    border: 2px solid var(--color-primary);
+    box-shadow:
+      var(--shadow-glow),
+      0 0 30px rgba(0, 128, 255, 0.3);
+    /* 确保推荐按钮文字也是白色加粗 */
+    color: #ffffff !important;
+  }
+
+  .download-option-wrapper--recommended .btn-label,
+  .download-option-wrapper--recommended .btn-sublabel {
+    color: #ffffff !important;
+    font-weight: 700;
+  }
+
+  /* 新年主题 - 推荐按钮 */
+  [data-theme='lunar-new-year'] .download-option-wrapper--recommended .btn-download-main {
+    background: linear-gradient(135deg, #E53935 0%, #C62828 100%);
+    border-color: #FFD54F;
+    box-shadow:
+      0 0 30px rgba(229, 57, 53, 0.7),
+      0 0 40px rgba(255, 193, 7, 0.4);
+    /* 确保新年主题下文字也是白色 */
+    color: #ffffff !important;
+  }
+
+  [data-theme='lunar-new-year'] .download-option-wrapper--recommended .btn-label,
+  [data-theme='lunar-new-year'] .download-option-wrapper--recommended .btn-sublabel {
+    color: #ffffff !important;
+  }
+
+  [data-theme='lunar-new-year'] .download-option-wrapper--recommended .btn-dropdown-toggle {
+    background: linear-gradient(135deg, #C62828 0%, #B71C1C 100%);
+    border-left: 1px solid rgba(255, 193, 7, 0.3);
+    color: #ffffff !important;
+  }
+
+  /* 暗色主题 - 推荐按钮 */
+  [data-theme='dark'] .download-option-wrapper--recommended .btn-download-main {
+    color: #ffffff !important;
+  }
+
+  [data-theme='dark'] .download-option-wrapper--recommended .btn-label,
+  [data-theme='dark'] .download-option-wrapper--recommended .btn-sublabel {
+    color: #ffffff !important;
+  }
+
+  /* 移动端样式 */
+  @media (max-width: 768px) {
+    .split-button-container {
+      min-height: 56px;
+    }
+
+    .btn-download-main {
+      min-height: 56px;
+    }
+
+    .btn-label {
+      font-size: 1rem;
+    }
+
+    .btn-sublabel {
+      font-size: 0.8125rem;
+    }
+
+    .btn-dropdown-toggle {
+      width: 48px;
+      min-width: 48px;
+    }
+  }
+
+  /* 减少动画偏好 */
+  @media (prefers-reduced-motion: reduce) {
+    .btn-download-main,
+    .btn-dropdown-toggle,
+    .dropdown-item {
+      transition: none;
+    }
+
+    .btn-dropdown-toggle svg,
+    .dropdown-menu {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  // 下拉菜单交互脚本
+  document.querySelectorAll('.split-button-container').forEach(container => {
+    const toggle = container.querySelector('.btn-dropdown-toggle') as HTMLButtonElement | null;
+    const mainBtn = container.querySelector('.btn-download-main') as HTMLAnchorElement | null;
+    const items = container.querySelectorAll('.dropdown-item');
+
+    if (!toggle) return;
+
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+      // 关闭所有其他下拉菜单
+      document.querySelectorAll('.btn-dropdown-toggle').forEach(t => {
+        t.setAttribute('aria-expanded', 'false');
+      });
+
+      // 切换当前下拉菜单
+      toggle.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
+    });
+
+    // 点击主下载链接时关闭下拉菜单
+    if (mainBtn) {
+      mainBtn.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    // 选择选项
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        // 关闭下拉菜单
+        toggle.setAttribute('aria-expanded', 'false');
+
+        // 更新主按钮的标签和链接
+        const wrapper = container.closest('.download-option-wrapper');
+        if (wrapper) {
+          const sublabel = wrapper.querySelector('.btn-sublabel') as HTMLElement | null;
+          const mainLink = wrapper.querySelector('.btn-download-main') as HTMLAnchorElement | null;
+          const itemData = (item as HTMLElement).dataset;
+
+          if (sublabel && mainLink && itemData.label && itemData.url) {
+            sublabel.textContent = itemData.label;
+            mainLink.href = itemData.url;
+          }
+        }
+      });
+    });
+  });
+
+  // 点击外部关闭下拉菜单
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.btn-dropdown-toggle').forEach(toggle => {
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ESC 键关闭下拉菜单
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.btn-dropdown-toggle').forEach(toggle => {
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+</script>
