@@ -142,7 +142,12 @@ const siteBase = import.meta.env.VITE_SITE_BASE || "/";
     </script>
   </head>
   <body class="homepage">
-    <Navbar client:load />
+    <Navbar
+      desktopVersion={latest}
+      desktopPlatforms={latestPlatforms}
+      desktopVersionError={error}
+      client:load
+    />
 
     <main class="homepage">
       <!-- Hero Section -->

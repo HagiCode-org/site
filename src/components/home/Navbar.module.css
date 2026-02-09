@@ -20,6 +20,7 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--color-border);
+  overflow: visible;
 }
 
 [data-theme='dark'] .navbar {
@@ -75,6 +76,7 @@
   gap: 2rem;
   position: relative;
   z-index: 1;
+  overflow: visible;
 }
 
 /* ==========================================================================
@@ -162,6 +164,7 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+  overflow: visible;
 }
 
 .navLink {
@@ -333,7 +336,7 @@
   left: 0;
   right: 0;
   height: 100vh;
-  z-index: 999;
+  z-index: 1001;
   transform: translateX(100%);
   transition: transform var(--duration-normal, 0.3s) var(--ease-out);
 }
@@ -498,4 +501,13 @@
   .mobileNavLink:hover {
     transform: none !important;
   }
+}
+
+/* ==========================================================================
+   INSTALL BUTTON DROPDOWN FIX
+   ========================================================================== */
+
+/* 确保 Navbar 中的 InstallButton 下拉菜单能够正常显示 */
+.navDesktop .installButtonWrapper {
+  position: static;
 }

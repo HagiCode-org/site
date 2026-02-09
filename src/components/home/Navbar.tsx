@@ -9,9 +9,13 @@ import InstallButton from "./InstallButton";
 import styles from "./Navbar.module.css";
 import { withBasePath } from "../../utils/path";
 import { navLinks } from "@/config/navigation";
+import type { DesktopVersion, PlatformGroup } from "@/types/desktop";
 
 interface NavbarProps {
   className?: string;
+  desktopVersion?: DesktopVersion | null;
+  desktopPlatforms?: PlatformGroup[];
+  desktopVersionError?: string | null;
 }
 
 /**
@@ -89,7 +93,12 @@ const NavIcon = ({ name }: { name: string }): JSX.Element | null => {
   return icons[name] || null;
 };
 
-export default function Navbar({ className = "" }: NavbarProps) {
+export default function Navbar({
+  className = "",
+  desktopVersion = null,
+  desktopPlatforms = [],
+  desktopVersionError = null
+}: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -174,7 +183,12 @@ export default function Navbar({ className = "" }: NavbarProps) {
         {/* Desktop Navigation */}
         <nav className={styles.navDesktop}>
           {/* CTA 按钮 - 放在导航链接之前 */}
-          <InstallButton variant="compact" />
+          <InstallButton
+            variant="compact"
+            version={desktopVersion}
+            platforms={desktopPlatforms}
+            versionError={desktopVersionError}
+          />
 
           {navLinks.map((item) => (
             <a
@@ -220,7 +234,13 @@ export default function Navbar({ className = "" }: NavbarProps) {
         <div className={styles.mobileMenuBg} />
         <nav className={styles.mobileNav}>
           {/* CTA 按钮 - 移动端菜单顶部 */}
-          <InstallButton variant="compact" className={styles.mobileCtaButton} />
+          <InstallButton
+            variant="compact"
+            className={styles.mobileCtaButton}
+            version={desktopVersion}
+            platforms={desktopPlatforms}
+            versionError={desktopVersionError}
+          />
 
           {navLinks.map((item) => (
             <a

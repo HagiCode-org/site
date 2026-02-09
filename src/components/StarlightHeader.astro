@@ -12,6 +12,31 @@ import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
 import { Icon } from '@astrojs/starlight/components';
 import { navLinks } from '@/config/navigation';
 import InstallButton from './home/InstallButton';
+import { fetchDesktopVersions, groupAssetsByPlatform } from '@/utils/desktop';
+import type { DesktopVersion, PlatformGroup } from '@/types/desktop';
+
+// 获取版本数据
+let versionData: {
+  latest: DesktopVersion | null;
+  platforms: PlatformGroup[];
+  error: string | null;
+} = {
+  latest: null,
+  platforms: [],
+  error: null,
+};
+
+try {
+  const data = await fetchDesktopVersions();
+  versionData.latest = data.versions[0] || null;
+  if (versionData.latest) {
+    versionData.platforms = groupAssetsByPlatform(versionData.latest.assets);
+  }
+} catch (e) {
+  versionData.error = e instanceof Error ? e.message : String(e);
+}
+
+const { latest, platforms, error } = versionData;
 
 /**
  * Render the `Search` component if Pagefind is enabled or the default search component has been overridden.
@@ -31,7 +56,13 @@ const shouldRenderSearch =
 		<nav class="custom-nav-links">
 			<!-- 安装按钮 -->
 			<div class="install-button-wrapper">
-				<InstallButton variant="compact" client:load />
+				<InstallButton
+					variant="compact"
+					version={latest}
+					platforms={platforms}
+					versionError={error}
+					client:load
+				/>
 			</div>
 			{navLinks.map((link) => (
 				<a

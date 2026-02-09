@@ -14,9 +14,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   padding: 7rem 1rem 3rem;
-  isolation: isolate;
   background: var(--color-background);
 }
 

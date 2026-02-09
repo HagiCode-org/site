@@ -159,7 +159,7 @@
   visibility: hidden;
   transform: translateY(-10px);
   transition: all 0.2s ease-out;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .dropdownMenuOpen {
@@ -427,4 +427,15 @@
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* ==========================================================================
+   NAVBAR DROPDOWN FIX
+   ========================================================================== */
+
+/* 为 Navbar 中的紧凑模式安装按钮提供特殊处理
+   由于 Navbar 有 position: fixed 和 z-index: 1000，创建了一个层叠上下文
+   为了让下拉菜单能够正常显示，我们需要确保它在层叠顺序中位于最顶层 */
+.installButtonWrapper--compact .dropdownMenu {
+  z-index: 99999;
 }

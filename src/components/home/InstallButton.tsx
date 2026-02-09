@@ -2,10 +2,13 @@
  * InstallButton 组件 - 全局统一安装按钮 (React 版本)
  * 支持自动平台检测、下拉菜单选择版本、Docker 版本跳转
  * 可用于 Header（紧凑模式）和 Hero 区域（完整模式）
+ *
+ * 版本数据在构建时从服务端传入，无需客户端网络请求
  */
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import styles from './InstallButton.module.css';
 import { withBasePath } from '@/utils/path';
+import type { DesktopVersion, PlatformGroup } from '@/types/desktop';
 
 interface DownloadOption {
   label: string;
@@ -20,6 +23,21 @@ interface PlatformDownloads {
 }
 
 interface InstallButtonProps {
+  /**
+   * Desktop 版本数据（构建时获取）
+   */
+  version?: DesktopVersion | null;
+
+  /**
+   * Desktop 平台下载数据（构建时获取）
+   */
+  platforms?: PlatformGroup[];
+
+  /**
+   * 版本数据获取错误信息（如有）
+   */
+  versionError?: string | null;
+
   /**
    * 显示模式
    * - full: 完整模式，用于 Hero 区域
@@ -83,109 +101,65 @@ function getAssetTypeLabel(filename: string): string {
   return filename;
 }
 
+/**
+ * 将 PlatformGroup[] 转换为 PlatformDownloads[] 格式
+ */
+function convertPlatformGroups(platforms: PlatformGroup[]): PlatformDownloads[] {
+  const platformLabels = { windows: 'Windows', macos: 'macOS', linux: 'Linux' };
+
+  return platforms.map(platform => ({
+    platform: platform.platform,
+    platformLabel: platformLabels[platform.platform],
+    options: platform.downloads.map(download => ({
+      label: download.filename,
+      url: download.url,
+      size: download.size
+    }))
+  }));
+}
+
 export default function InstallButton({
+  version = null,
+  platforms = [],
+  versionError = null,
   variant = 'full',
   showDropdown = true,
   className = ''
 }: InstallButtonProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [platformData, setPlatformData] = useState<PlatformDownloads[]>([]);
-  const [currentUrl, setCurrentUrl] = useState<string>(withBasePath('/desktop'));
-  const [hasError, setHasError] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   // 生成唯一的组件 ID
   const buttonId = useMemo(() => `install-button-${Math.random().toString(36).substring(2, 11)}`, []);
 
-  // 获取版本数据
-  useEffect(() => {
-    const fetchVersions = async () => {
-      try {
-        const response = await fetch('https://desktop.dl.hagicode.com/index.json');
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  // 转换平台数据格式
+  const platformData = useMemo(() => {
+    if (!platforms || platforms.length === 0) return [];
+    return convertPlatformGroups(platforms);
+  }, [platforms]);
 
-        const data = await response.json();
-        const latest = data.versions?.[0];
+  // 根据用户系统设置默认下载链接
+  const currentUrl = useMemo(() => {
+    if (platformData.length === 0) {
+      return withBasePath('/desktop');
+    }
 
-        if (latest?.assets) {
-          // 按平台分组
-          const platformGroups = new Map<string, DownloadOption[]>();
+    const userOS = detectOS();
+    const userPlatform = platformData.find(p => p.platform === userOS);
 
-          for (const asset of latest.assets) {
-            const name = asset.name.toLowerCase();
-            let platform: 'windows' | 'macos' | 'linux' | null = null;
+    if (userPlatform) {
+      // 优先选择推荐版本
+      const recommended = userPlatform.options.find(opt => {
+        const label = opt.label.toLowerCase();
+        if (userOS === 'windows') return label.includes('setup');
+        if (userOS === 'macos') return label.includes('arm64');
+        if (userOS === 'linux') return label.includes('appimage');
+        return false;
+      });
+      return recommended ? recommended.url : userPlatform.options[0].url;
+    }
 
-            if (name.includes('.exe') || name.includes('.appx')) {
-              platform = 'windows';
-            } else if (name.includes('.dmg') || name.includes('-mac.zip')) {
-              platform = 'macos';
-            } else if (name.includes('.appimage') || name.includes('.deb') || name.includes('.tar.gz')) {
-              platform = 'linux';
-            }
-
-            if (platform) {
-              if (!platformGroups.has(platform)) {
-                platformGroups.set(platform, []);
-              }
-
-              const sizeBytes = asset.size || 0;
-              const sizeGB = sizeBytes / (1024 * 1024 * 1024);
-              const sizeMB = sizeBytes / (1024 * 1024);
-              const size = sizeGB >= 1 ? `${sizeGB.toFixed(1)} GB` : `${sizeMB.toFixed(0)} MB`;
-
-              platformGroups.get(platform)!.push({
-                label: asset.name,
-                url: `https://desktop.dl.hagicode.com/${asset.path}`,
-                size
-              });
-            }
-          }
-
-          // 转换为数组并排序
-          const platforms: PlatformDownloads[] = [];
-          const platformOrder: ('windows' | 'macos' | 'linux')[] = ['windows', 'macos', 'linux'];
-          const platformLabels = { windows: 'Windows', macos: 'macOS', linux: 'Linux' };
-
-          for (const platform of platformOrder) {
-            const downloads = platformGroups.get(platform);
-            if (downloads && downloads.length > 0) {
-              platforms.push({
-                platform,
-                platformLabel: platformLabels[platform],
-                options: downloads
-              });
-            }
-          }
-
-          setPlatformData(platforms);
-
-          // 根据用户系统设置默认下载链接
-          const userOS = detectOS();
-          const userPlatform = platforms.find(p => p.platform === userOS);
-          if (userPlatform) {
-            // 优先选择推荐版本
-            const recommended = userPlatform.options.find(opt => {
-              const label = opt.label.toLowerCase();
-              if (userOS === 'windows') return label.includes('setup');
-              if (userOS === 'macos') return label.includes('arm64');
-              if (userOS === 'linux') return label.includes('appimage');
-              return false;
-            });
-            setCurrentUrl(recommended ? recommended.url : userPlatform.options[0].url);
-          } else if (platforms.length > 0) {
-            setCurrentUrl(platforms[0].options[0].url);
-          }
-        }
-      } catch (e) {
-        console.error('Failed to fetch desktop versions:', e);
-        setHasError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchVersions();
-  }, []);
+    return platformData[0].options[0].url;
+  }, [platformData]);
 
   // 点击外部关闭下拉菜单
   useEffect(() => {
@@ -221,11 +195,12 @@ export default function InstallButton({
     setIsDropdownOpen(false);
   };
 
-  if (isLoading) {
+  // 如果有错误，显示降级链接
+  if (versionError) {
     return (
       <div className={`${styles.installButtonWrapper} ${styles[`installButtonWrapper--${variant}`]} ${className}`}>
         <div className={styles.splitButtonContainer}>
-          <a className={styles.btnDownloadMain} style={{ opacity: 0.7 }}>
+          <a href={withBasePath('/desktop')} className={styles.btnDownloadMain}>
             <svg className={styles.downloadIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
@@ -235,14 +210,15 @@ export default function InstallButton({
                 strokeLinejoin="round"
               />
             </svg>
-            <span className={styles.btnText}>加载中...</span>
+            <span className={styles.btnText}>立即安装</span>
           </a>
         </div>
       </div>
     );
   }
 
-  if (hasError) {
+  // 如果没有版本数据，显示降级链接
+  if (!version || platformData.length === 0) {
     return (
       <div className={`${styles.installButtonWrapper} ${styles[`installButtonWrapper--${variant}`]} ${className}`}>
         <div className={styles.splitButtonContainer}>

@@ -9,6 +9,7 @@ import { useMemo, useState, useEffect } from 'react';
 import styles from './HeroSection.module.css';
 import { withBasePath } from '../../utils/path';
 import InstallButton from './InstallButton';
+import type { DesktopVersion, PlatformGroup } from '@/types/desktop';
 
 // 定义 Variants 类型
 type Variants = {
@@ -19,6 +20,16 @@ type Variants = {
 
 // 定义主题类型
 type Theme = 'light' | 'dark' | 'lunar-new-year' | undefined;
+
+// HeroSection Props
+interface HeroSectionProps {
+  /** Desktop 版本数据（构建时获取） */
+  desktopVersion?: DesktopVersion | null;
+  /** Desktop 平台下载数据（构建时获取） */
+  desktopPlatforms?: PlatformGroup[];
+  /** Desktop 版本获取错误信息 */
+  desktopVersionError?: string | null;
+}
 
 // Icon props type
 interface IconProps {
@@ -140,7 +151,11 @@ const itemVariants: Variants = {
   },
 };
 
-export default function HeroSection() {
+export default function HeroSection({
+  desktopVersion = null,
+  desktopPlatforms = [],
+  desktopVersionError = null
+}: HeroSectionProps) {
   const [currentTagline, setCurrentTagline] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -322,7 +337,12 @@ export default function HeroSection() {
 
         {/* CTA 按钮组 */}
         <motion.div className={styles.heroButtons}>
-          <InstallButton variant="full" />
+          <InstallButton
+            variant="full"
+            version={desktopVersion}
+            platforms={desktopPlatforms}
+            versionError={desktopVersionError}
+          />
           <a
             className={styles.buttonSecondary}
             href={docsUrl}

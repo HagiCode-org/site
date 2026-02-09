@@ -16,12 +16,38 @@ import Clarity from '../components/Clarity.astro';
 // 导入首页样式
 import '../styles/homepage.css';
 
+// 导入版本数据工具函数
+import { fetchDesktopVersions, groupAssetsByPlatform } from "@/utils/desktop";
+import type { DesktopVersion, PlatformGroup } from "@/types/desktop";
+
 // 页面元数据
 const title = 'Hagicode - 智能 · 便捷 · 有趣的 AI 编码助手';
 const description = '用 AI 重新定义代码开发体验。OpenSpec 工作流、多线程会话管理、成就系统,让编码更高效、更有趣';
 
 // 获取站点基础路径
 const siteBase = import.meta.env.VITE_SITE_BASE || '/';
+
+// 在构建时获取版本数据（用于 InstallButton）
+let desktopVersionData: {
+  latest: DesktopVersion | null;
+  platforms: PlatformGroup[];
+  error: string | null;
+} = {
+  latest: null,
+  platforms: [],
+  error: null,
+};
+
+try {
+  const data = await fetchDesktopVersions();
+  desktopVersionData.latest = data.versions[0] || null;
+  if (desktopVersionData.latest) {
+    desktopVersionData.platforms = groupAssetsByPlatform(desktopVersionData.latest.assets);
+  }
+} catch (e) {
+  desktopVersionData.error = e instanceof Error ? e.message : String(e);
+  console.error("Failed to fetch desktop versions for homepage:", e);
+}
 ---
 
 <!doctype html>
@@ -84,11 +110,21 @@ const siteBase = import.meta.env.VITE_SITE_BASE || '/';
     <!-- 新年主题装饰 - 仅在农历新年主题下显示 -->
     <LunarNewYearDecorations client:load />
 
-    <Navbar client:load />
+    <Navbar
+      client:load
+      desktopVersion={desktopVersionData.latest}
+      desktopPlatforms={desktopVersionData.platforms}
+      desktopVersionError={desktopVersionData.error}
+    />
 
     <main class="homepage">
       <!-- Hero Section - 首屏必需 -->
-      <HeroSection client:load />
+      <HeroSection
+        desktopVersion={desktopVersionData.latest}
+        desktopPlatforms={desktopVersionData.platforms}
+        desktopVersionError={desktopVersionData.error}
+        client:load
+      />
 
       <!-- 新年主题卡片组 - 仅在农历新年主题下显示 -->
       <LunarNewYearCardGroup client:load />

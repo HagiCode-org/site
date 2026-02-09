@@ -198,30 +198,125 @@ async function saveVersionState(state) {
 }
 
 /**
- * Compare two version strings using semver
+ * Parse a semver version string into its components
+ * @param {string} version - Version string (e.g., "v1.2.3", "v1.2.3-beta", "v1.2.3-beta.1")
+ * @returns {object} Parsed version with major, minor, patch, and prerelease parts
+ */
+function parseSemver(version) {
+  // Remove 'v' prefix if present
+  const v = version.replace(/^v/, '');
+
+  // Split version and pre-release parts
+  const versionParts = v.split('-');
+  const versionNumbers = versionParts[0].split('.');
+
+  const major = parseInt(versionNumbers[0], 10) || 0;
+  const minor = parseInt(versionNumbers[1] || '0', 10) || 0;
+  const patch = parseInt(versionNumbers[2] || '0', 10) || 0;
+
+  // Parse pre-release identifiers (e.g., "beta.1" -> ["beta", "1"])
+  let prerelease = [];
+  if (versionParts.length > 1) {
+    prerelease = versionParts.slice(1).join('-').split('.').map(id => {
+      const num = parseInt(id, 10);
+      return isNaN(num) ? id : num;
+    });
+  }
+
+  return { major, minor, patch, prerelease };
+}
+
+/**
+ * Pre-release identifier priority for comparison
+ * Lower index = lower priority (alpha < beta < preview < rc)
+ * Identifiers not in this list are compared lexicographically
+ */
+const PRERELEASE_PRIORITY = {
+  'alpha': 1,
+  'beta': 2,
+  'preview': 3,
+  'rc': 4,
+  'pre': 1
+};
+
+/**
+ * Compare two pre-release identifier arrays
+ * @param {Array} a - First pre-release identifiers array
+ * @param {Array} b - Second pre-release identifiers array
+ * @returns {number} -1 if a < b, 0 if a = b, 1 if a > b
+ */
+function comparePrerelease(a, b) {
+  // Empty pre-release (stable) is greater than any non-empty pre-release
+  if (a.length === 0 && b.length === 0) return 0;
+  if (a.length === 0) return 1; // stable > prerelease
+  if (b.length === 0) return -1; // prerelease < stable
+
+  // Compare each identifier
+  const maxLength = Math.max(a.length, b.length);
+  for (let i = 0; i < maxLength; i++) {
+    const idA = a[i] === undefined ? null : a[i];
+    const idB = b[i] === undefined ? null : b[i];
+
+    // If one array is shorter, it has lower priority
+    if (idA === null && idB === null) return 0;
+    if (idA === null) return -1;
+    if (idB === null) return 1;
+
+    // Compare numeric identifiers
+    if (typeof idA === 'number' && typeof idB === 'number') {
+      if (idA < idB) return -1;
+      if (idA > idB) return 1;
+    }
+    // Compare string identifiers with priority
+    else if (typeof idA === 'string' && typeof idB === 'string') {
+      const priorityA = PRERELEASE_PRIORITY[idA] ?? 999;
+      const priorityB = PRERELEASE_PRIORITY[idB] ?? 999;
+
+      // Both have defined priority
+      if (priorityA !== 999 && priorityB !== 999) {
+        if (priorityA < priorityB) return -1;
+        if (priorityA > priorityB) return 1;
+      }
+      // One has defined priority
+      else if (priorityA !== 999) return -1;
+      else if (priorityB !== 999) return 1;
+      // Neither has defined priority - compare lexicographically
+      else {
+        const cmp = idA.localeCompare(idB);
+        if (cmp !== 0) return cmp < 0 ? -1 : 1;
+      }
+    }
+    // Mixed types: numeric < string
+    else if (typeof idA === 'number') return -1;
+    else return 1;
+  }
+
+  return 0;
+}
+
+/**
+ * Compare two version strings using semver specification
  * @param {string} v1 - First version
  * @param {string} v2 - Second version
  * @returns {number} -1 if v1 < v2, 0 if v1 = v2, 1 if v1 > v2
  */
 function compareVersions(v1, v2) {
-  // Simple semver comparison
-  const parseVersion = (v) => {
-    const parts = v.replace(/^v/, '').split('-')[0].split('.');
-    return parts.map(p => parseInt(p, 10) || 0);
-  };
+  const semver1 = parseSemver(v1);
+  const semver2 = parseSemver(v2);
 
-  const parts1 = parseVersion(v1);
-  const parts2 = parseVersion(v2);
-
-  for (let i = 0; i < Math.max(parts1.length, parts2.length); i++) {
-    const p1 = parts1[i] || 0;
-    const p2 = parts2[i] || 0;
-
-    if (p1 < p2) return -1;
-    if (p1 > p2) return 1;
+  // Compare major, minor, patch
+  if (semver1.major !== semver2.major) {
+    return semver1.major < semver2.major ? -1 : 1;
+  }
+  if (semver1.minor !== semver2.minor) {
+    return semver1.minor < semver2.minor ? -1 : 1;
+  }
+  if (semver1.patch !== semver2.patch) {
+    return semver1.patch < semver2.patch ? -1 : 1;
   }
 
-  return 0;
+  // Compare pre-release identifiers
+  return comparePrerelease(semver1.prerelease, semver2.prerelease);
 }
 
 /**
