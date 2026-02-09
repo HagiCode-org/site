@@ -104,3 +104,21 @@ If issues occur:
 1. Revert workflow files to previous Reusable Workflow syntax
 2. Notifications will continue working with the old syntax (still supported by haginotifier)
 3. No data loss or service interruption expected
+
+## Status
+
+**Status**: ExecutionCompleted
+
+**Execution Date**: 2026-02-09
+
+**Pull Request**: https://github.com/HagiCode-org/site/pull/99
+
+**Completed Tasks**:
+- [x] Analyzed current workflow syntax in `deploy.yml` and `version-monitor.yml`
+- [x] Updated `deploy.yml` notify jobs to Composite Action syntax
+- [x] Updated `version-monitor.yml` notify jobs to Composite Action syntax
+- [x] Validated YAML syntax for both workflow files
+- [x] Created feature branch and pull request
+- [x] Verified no remaining Reusable Workflow references
+
+**Notes**: All four notification jobs now use `HagiCode-org/haginotifier@v1` with the Composite Action syntax. PR is ready for review and merge.
