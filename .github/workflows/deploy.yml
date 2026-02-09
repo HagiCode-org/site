@@ -63,37 +63,41 @@ jobs:
   notify-success:
     needs: [build, deploy]
     if: success()
-    uses: HagiCode-org/haginotifier/.github/workflows/notify.yml@main
-    with:
-      msg_type: 'post'
-      title: 'Deploy Notification'
-      message: |
-        ## Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: HagiCode-org/haginotifier@v1
+        with:
+          msg_type: 'post'
+          title: 'Deploy Notification'
+          message: |
+            ## Deploy to GitHub Pages
 
-        **状态**: ✅ 成功
-        **仓库**: ${{ github.repository }}
-        **分支**: ${{ github.ref_name }}
-        **提交**: ${{ github.sha }}
-        **触发者**: ${{ github.actor }}
-        **运行详情**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-    secrets:
-      FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+            **状态**: ✅ 成功
+            **仓库**: ${{ github.repository }}
+            **分支**: ${{ github.ref_name }}
+            **提交**: ${{ github.sha }}
+            **触发者**: ${{ github.actor }}
+            **运行详情**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        env:
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
 
   notify-failure:
     needs: [build, deploy]
     if: failure()
-    uses: HagiCode-org/haginotifier/.github/workflows/notify.yml@main
-    with:
-      msg_type: 'post'
-      title: 'Deploy Notification'
-      message: |
-        ## Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: HagiCode-org/haginotifier@v1
+        with:
+          msg_type: 'post'
+          title: 'Deploy Notification'
+          message: |
+            ## Deploy to GitHub Pages
 
-        **状态**: ❌ 失败
-        **仓库**: ${{ github.repository }}
-        **分支**: ${{ github.ref_name }}
-        **提交**: ${{ github.sha }}
-        **触发者**: ${{ github.actor }}
-        **运行详情**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-    secrets:
-      FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+            **状态**: ❌ 失败
+            **仓库**: ${{ github.repository }}
+            **分支**: ${{ github.ref_name }}
+            **提交**: ${{ github.sha }}
+            **触发者**: ${{ github.actor }}
+            **运行详情**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        env:
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}

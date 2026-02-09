@@ -77,34 +77,38 @@ jobs:
   notify-version-update:
     needs: monitor
     if: needs.monitor.outputs.pr_created == 'true'
-    uses: HagiCode-org/haginotifier/.github/workflows/notify.yml@main
-    with:
-      msg_type: 'post'
-      title: 'Version Monitor'
-      message: |
-        ## Version Monitor
+    runs-on: ubuntu-latest
+    steps:
+      - uses: HagiCode-org/haginotifier@v1
+        with:
+          msg_type: 'post'
+          title: 'Version Monitor'
+          message: |
+            ## Version Monitor
 
-        **状态**: 🔄 发现新版本
-        **新版本**: ${{ needs.monitor.outputs.new_version }}
-        **仓库**: ${{ github.repository }}
-        **PR 链接**: ${{ needs.monitor.outputs.pr_url }}
-        **运行详情**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-    secrets:
-      FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+            **状态**: 🔄 发现新版本
+            **新版本**: ${{ needs.monitor.outputs.new_version }}
+            **仓库**: ${{ github.repository }}
+            **PR 链接**: ${{ needs.monitor.outputs.pr_url }}
+            **运行详情**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        env:
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
 
   notify-failure:
     needs: monitor
     if: failure()
-    uses: HagiCode-org/haginotifier/.github/workflows/notify.yml@main
-    with:
-      msg_type: 'post'
-      title: 'Version Monitor'
-      message: |
-        ## Version Monitor
+    runs-on: ubuntu-latest
+    steps:
+      - uses: HagiCode-org/haginotifier@v1
+        with:
+          msg_type: 'post'
+          title: 'Version Monitor'
+          message: |
+            ## Version Monitor
 
-        **状态**: ❌ 失败
-        **仓库**: ${{ github.repository }}
-        **触发者**: ${{ github.actor }}
-        **运行详情**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-    secrets:
-      FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
+            **状态**: ❌ 失败
+            **仓库**: ${{ github.repository }}
+            **触发者**: ${{ github.actor }}
+            **运行详情**: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        env:
+          FEISHU_WEBHOOK_URL: ${{ secrets.FEISHU_WEBHOOK_URL }}
