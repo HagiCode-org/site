@@ -1,0 +1,471 @@
+/**
+ * SocialProofSection 组件样式
+ * 更激进的科技风格设计
+ */
+
+/* ==========================================================================
+   社交证明区域容器
+   ========================================================================== */
+
+.socialProofSection {
+  position: relative;
+  padding: 5rem 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 128, 255, 0.03) 50%, transparent 100%);
+}
+
+/* 背景装饰 */
+.socialProofSection .bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 128, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 128, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.socialProofSection .bgGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 128, 255, 0.08) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ==========================================================================
+   统计数据卡片
+   ========================================================================== */
+
+.statsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 5rem;
+}
+
+.statCard {
+  position: relative;
+  padding: 2rem 1.5rem;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  text-align: center;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+}
+
+.statCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 128, 255, 0.1) 0%,
+    transparent 50%,
+    rgba(0, 255, 255, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.statCard:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-primary);
+  box-shadow:
+    0 20px 40px rgba(0, 128, 255, 0.15),
+    0 0 60px rgba(0, 128, 255, 0.1);
+}
+
+.statCard:hover::before {
+  opacity: 1;
+}
+
+.statGlow {
+  position: absolute;
+  bottom: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 128, 255, 0.2) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  pointer-events: none;
+}
+
+.statCard:hover .statGlow {
+  opacity: 1;
+}
+
+.statValue {
+  font-size: 2.5rem;
+  font-weight: 900;
+  font-family: var(--font-display);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.statSuffix {
+  font-size: 1.5rem;
+  margin-left: 0.25rem;
+}
+
+.statLabel {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   用户评价
+   ========================================================================== */
+
+.testimonialsContainer {
+  margin-bottom: 5rem;
+}
+
+.testimonialsTitle {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-family: var(--font-display);
+  background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.testimonialCard {
+  position: relative;
+  padding: 2rem;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.testimonialCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.05) 0%,
+    transparent 50%,
+    rgba(0, 128, 255, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.testimonialCard:hover {
+  border-color: rgba(34, 197, 94, 0.3);
+  box-shadow:
+    0 20px 40px rgba(34, 197, 94, 0.1),
+    0 0 40px rgba(34, 197, 94, 0.05);
+}
+
+.testimonialCard:hover::before {
+  opacity: 1;
+}
+
+.testimonialContent {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.quotesIcon {
+  position: absolute;
+  top: -1rem;
+  left: -0.5rem;
+  font-size: 4rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  color: var(--color-primary);
+  opacity: 0.1;
+  line-height: 1;
+}
+
+.testimonialText {
+  position: relative;
+  z-index: 1;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.testimonialFooter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.testimonialAvatar {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 1.25rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.testimonialInfo {
+  flex: 1;
+}
+
+.testimonialName {
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.testimonialRole {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.testimonialRating {
+  display: flex;
+  gap: 0.125rem;
+  color: #FFD700;
+  font-size: 1rem;
+}
+
+.testimonialRating svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ==========================================================================
+   信任徽章
+   ========================================================================== */
+
+.trustBadgesContainer {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.trustBadge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+
+.trustBadge:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 20px rgba(0, 128, 255, 0.15);
+}
+
+.badgeIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: white;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.badgeInfo {
+  text-align: left;
+}
+
+.badgeName {
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.badgeDescription {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   主题变体
+   ========================================================================== */
+
+/* 深色主题 - 更激进的发光效果 */
+[data-theme='dark'] .statCard:hover {
+  box-shadow:
+    0 20px 40px rgba(0, 128, 255, 0.25),
+    0 0 80px rgba(0, 128, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .testimonialCard:hover {
+  box-shadow:
+    0 20px 40px rgba(34, 197, 94, 0.15),
+    0 0 60px rgba(34, 197, 94, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .statValue {
+  background: linear-gradient(
+    135deg,
+    #00D4FF 0%,
+    #0080FF 50%,
+    #4ADE80 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));
+}
+
+/* 农历新年主题 */
+[data-theme='lunar-new-year'] .statCard:hover {
+  border-color: rgba(255, 193, 7, 0.5);
+  box-shadow:
+    0 20px 40px rgba(255, 193, 7, 0.15),
+    0 0 60px rgba(255, 193, 7, 0.1);
+}
+
+[data-theme='lunar-new-year'] .testimonialCard:hover {
+  border-color: rgba(255, 193, 7, 0.3);
+  box-shadow:
+    0 20px 40px rgba(255, 193, 7, 0.1),
+    0 0 40px rgba(255, 193, 7, 0.05);
+}
+
+[data-theme='lunar-new-year'] .statValue {
+  background: linear-gradient(135deg, #FFD54F 0%, #FF8F00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme='lunar-new-year'] .badgeIcon {
+  background: linear-gradient(135deg, #FFD54F 0%, #FF8F00 100%);
+}
+
+/* ==========================================================================
+   响应式设计
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .statsContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .testimonialsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .socialProofSection {
+    padding: 3rem 0;
+  }
+
+  .statsContainer {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .statCard {
+    padding: 1.5rem 1rem;
+  }
+
+  .statValue {
+    font-size: 2rem;
+  }
+
+  .testimonialsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .testimonialsTitle {
+    font-size: 1.75rem;
+  }
+
+  .testimonialText {
+    font-size: 0.9rem;
+  }
+
+  .trustBadgesContainer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .trustBadge {
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   动画优化
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .statCard,
+  .testimonialCard,
+  .trustBadge {
+    transition: none;
+    transform: none !important;
+  }
+
+  .statCard:hover,
+  .testimonialCard:hover,
+  .trustBadge:hover {
+    transform: none;
+  }
+}

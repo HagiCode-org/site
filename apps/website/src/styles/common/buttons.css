@@ -2,14 +2,16 @@
  * 公共按钮组件样式
  * 适用于所有页面
  * 统一按钮尺寸标准：min-height: 44px，padding: 0.75rem 1.5rem
+ * 更激进的科技风格 - 增强发光效果和视觉冲击力
  */
 
 /* ==========================================================================
    按钮组件
    ========================================================================== */
 
-/* 主按钮 - 统一标准尺寸 */
+/* 主按钮 - 更激进的科技风格 */
 .btn-primary {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -17,77 +19,218 @@
   min-height: 44px;
   min-width: 44px;
   padding: 0.75rem 1.5rem;
-  background: var(--gradient-primary);
+  background: linear-gradient(135deg, #0080FF 0%, #00FFFF 100%);
+  background-size: 200% 200%;
   color: #FFFFFF;
   text-decoration: none;
   border-radius: var(--radius-md);
   font-weight: 600;
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background-color 0.2s ease-out;
-  box-shadow: var(--shadow-glow);
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 4px 15px rgba(0, 128, 255, 0.4),
+    0 0 25px rgba(0, 128, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  border: none;
+  overflow: hidden;
+}
+
+/* 深色主题下更强烈的渐变 */
+[data-theme='dark'] .btn-primary {
+  background: linear-gradient(135deg, #0066CC 0%, #00CCFF 50%, #22AA66 100%);
+  box-shadow:
+    0 4px 20px rgba(0, 128, 255, 0.5),
+    0 0 40px rgba(0, 255, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* 按钮光泽扫描效果 */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px) scale(1.02);
+  background-position: 100% 50%;
+  box-shadow:
+    0 8px 25px rgba(0, 128, 255, 0.5),
+    0 0 50px rgba(0, 255, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+[data-theme='dark'] .btn-primary:hover {
+  background: linear-gradient(135deg, #0077DD 0%, #00DDFF 50%, #22CC77 100%);
+  box-shadow:
+    0 8px 30px rgba(0, 128, 255, 0.6),
+    0 0 60px rgba(0, 255, 255, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .btn-primary:active {
-  transform: translateY(0);
+  transform: translateY(-1px) scale(1);
 }
 
 .btn-primary:focus-visible {
   outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+  outline-offset: 3px;
+  box-shadow:
+    0 0 0 4px rgba(0, 128, 255, 0.2),
+    0 4px 15px rgba(0, 128, 255, 0.4);
 }
 
-/* 大号主按钮 */
+/* 大号主按钮 - 超级发光效果 */
 .btn-primary.btn-large {
   min-height: 64px;
   font-size: 1.25rem;
   padding: 1.25rem 3rem;
+  box-shadow:
+    0 6px 20px rgba(0, 128, 255, 0.5),
+    0 0 40px rgba(0, 255, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
-/* 推荐按钮样式 */
+[data-theme='dark'] .btn-primary.btn-large {
+  box-shadow:
+    0 6px 30px rgba(0, 128, 255, 0.6),
+    0 0 60px rgba(0, 255, 255, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary.btn-large:hover {
+  box-shadow:
+    0 10px 35px rgba(0, 128, 255, 0.6),
+    0 0 70px rgba(0, 255, 255, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* 推荐按钮样式 - 最强视觉冲击 */
 .btn-primary.btn-recommended {
   position: relative;
-  padding: 1rem 2rem;
-  min-height: 56px;
-  font-size: 1.1rem;
-  border: 2px solid var(--color-primary);
+  padding: 1rem 2.5rem;
+  min-height: 60px;
+  font-size: 1.15rem;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#0080FF, #0080FF) padding-box,
+    linear-gradient(135deg, #00FFFF, #0080FF, #22C55E) border-box;
   box-shadow:
-    var(--shadow-glow),
-    0 0 30px rgba(0, 128, 255, 0.3);
-  transform: scale(1);
+    0 6px 25px rgba(0, 128, 255, 0.5),
+    0 0 50px rgba(0, 255, 255, 0.4),
+    inset 0 0 20px rgba(0, 255, 255, 0.1);
+  animation: glow-pulse 2s ease-in-out infinite;
 }
 
-/* 次要按钮 - 统一标准尺寸 */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow:
+      0 6px 25px rgba(0, 128, 255, 0.5),
+      0 0 50px rgba(0, 255, 255, 0.4),
+      inset 0 0 20px rgba(0, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 6px 30px rgba(0, 128, 255, 0.6),
+      0 0 70px rgba(0, 255, 255, 0.6),
+      inset 0 0 30px rgba(0, 255, 255, 0.2);
+  }
+}
+
+[data-theme='dark'] .btn-primary.btn-recommended {
+  background:
+    linear-gradient(#0066CC, #0066CC) padding-box,
+    linear-gradient(135deg, #00DDFF, #0088FF, #22CC66) border-box;
+  animation: glow-pulse-dark 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse-dark {
+  0%, 100% {
+    box-shadow:
+      0 6px 30px rgba(0, 128, 255, 0.6),
+      0 0 60px rgba(0, 255, 255, 0.5),
+      inset 0 0 20px rgba(0, 255, 255, 0.15);
+  }
+  50% {
+    box-shadow:
+      0 6px 40px rgba(0, 128, 255, 0.8),
+      0 0 100px rgba(0, 255, 255, 0.7),
+      inset 0 0 40px rgba(0, 255, 255, 0.25);
+  }
+}
+
+/* 次要按钮 - 玻璃态增强 */
 .btn-secondary {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   min-height: 44px;
   padding: 0.75rem 2rem;
-  background: transparent;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: var(--color-primary);
   border: 1px solid var(--color-primary);
   text-decoration: none;
   border-radius: var(--radius-md);
   font-weight: 600;
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  box-shadow:
+    0 2px 8px rgba(0, 128, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .btn-secondary {
+  background: rgba(20, 30, 50, 0.7);
+  border-color: rgba(0, 255, 255, 0.4);
+  color: var(--color-secondary);
+  box-shadow:
+    0 2px 12px rgba(0, 128, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .btn-secondary:hover {
-  background: var(--color-surface-hover);
+  background: var(--color-primary);
+  color: white;
   transform: translateY(-2px);
+  box-shadow:
+    0 4px 15px rgba(0, 128, 255, 0.3),
+    0 0 25px rgba(0, 128, 255, 0.2);
+}
+
+[data-theme='dark'] .btn-secondary:hover {
+  background: rgba(0, 255, 255, 0.2);
+  border-color: var(--color-secondary);
+  box-shadow:
+    0 4px 20px rgba(0, 128, 255, 0.4),
+    0 0 30px rgba(0, 255, 255, 0.3);
 }
 
 .btn-secondary:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+  box-shadow:
+    0 0 0 4px rgba(0, 128, 255, 0.15),
+    0 2px 8px rgba(0, 128, 255, 0.2);
 }
 
 /* 图标容器 */
@@ -104,20 +247,36 @@
   width: 20px;
   height: 20px;
   margin-left: 0.5rem;
+  transition: transform 0.3s ease;
 }
 
-/* 链接按钮 */
+.btn-primary:hover .btn-arrow,
+.btn-secondary:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* 链接按钮 - 增强发光 */
 .btn-link {
+  position: relative;
   color: var(--color-primary);
   text-decoration: none;
   font-weight: 500;
   cursor: pointer;
-  transition: color 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+[data-theme='dark'] .btn-link {
+  color: var(--color-secondary);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
 }
 
 .btn-link:hover {
   color: var(--color-primary-dark);
-  text-decoration: underline;
+}
+
+[data-theme='dark'] .btn-link:hover {
+  color: #00DDFF;
+  text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
 }
 
 .btn-link:focus-visible {
@@ -125,19 +284,61 @@
   outline-offset: 2px;
 }
 
-/* 推荐标签 */
+/* 推荐标签 - 增强脉冲效果 */
 .recommended-badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.5rem;
+  padding: 0.35rem 0.65rem;
   margin-right: 0.5rem;
   background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
   color: white;
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 700;
   border-radius: 0.25rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.4);
-  animation: pulse-badge 2s ease-in-out infinite;
+  box-shadow:
+    0 2px 10px rgba(255, 107, 107, 0.5),
+    0 0 15px rgba(255, 107, 107, 0.3);
+  animation: pulse-badge 1.5s ease-in-out infinite;
+}
+
+[data-theme='dark'] .recommended-badge {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+  box-shadow:
+    0 2px 15px rgba(255, 107, 107, 0.6),
+    0 0 25px rgba(255, 107, 107, 0.4);
+}
+
+/* 农历新年主题按钮 */
+[data-theme='lunar-new-year'] .btn-primary {
+  background: linear-gradient(135deg, #FF8F00 0%, #FFD54F 100%);
+  box-shadow:
+    0 4px 15px rgba(255, 143, 0, 0.4),
+    0 0 25px rgba(255, 193, 7, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+[data-theme='lunar-new-year'] .btn-primary:hover {
+  background: linear-gradient(135deg, #FFA000 0%, #FFE082 100%);
+  box-shadow:
+    0 6px 20px rgba(255, 143, 0, 0.5),
+    0 0 40px rgba(255, 193, 7, 0.5);
+}
+
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary,
+  .btn-primary.btn-recommended,
+  .btn-secondary {
+    transition: none;
+    animation: none;
+    transform: none !important;
+  }
+
+  .btn-primary:hover,
+  .btn-primary.btn-recommended:hover,
+  .btn-secondary:hover {
+    transform: none;
+  }
 }

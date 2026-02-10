@@ -327,14 +327,58 @@ export default function HeroSection({
           <span className={styles.cursor} />
         </motion.p>
 
-        {/* 描述 */}
+        {/* 增强的描述 - 问题-解决方案-收益框架 */}
         <motion.p className={styles.heroDescription}>
-          用 AI 重新定义代码开发体验。
+            传统 AI 编码工具的<span className={styles.highlight}>痛点</span>：
+            上下文受限、会话混乱、缺乏协作。
+        </motion.p>
+
+        <motion.p className={styles.heroDescriptionSecondary}>
+          <span className={styles.highlightPrimary}>Hagicode</span> 用
           <span className={styles.highlight}>OpenSpec 工作流</span>、
           <span className={styles.highlight}>多线程会话管理</span>、
-          <span className={styles.highlight}>成就系统</span>，
-          让编码更高效、更有趣。
+          <span className={styles.highlight}>成就系统</span>
+          重新定义 AI 编码体验。
         </motion.p>
+
+        {/* 核心价值卡片 */}
+        <motion.div className={styles.valueCards} variants={containerVariants} initial="hidden" animate="visible">
+          <motion.div className={styles.valueCard} variants={itemVariants}>
+            <div className={styles.valueIcon}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <div className={styles.valueContent}>
+              <h4>效率提升 300%</h4>
+              <p>多线程并发处理</p>
+            </div>
+          </motion.div>
+          <motion.div className={styles.valueCard} variants={itemVariants}>
+            <div className={styles.valueIcon}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <div className={styles.valueContent}>
+              <h4>数据隐私保障</h4>
+              <p>完全本地化部署</p>
+            </div>
+          </motion.div>
+          <motion.div className={styles.valueCard} variants={itemVariants}>
+            <div className={styles.valueIcon}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M17 21V19a2 2 0 00-2-2H5a2 2 0 00-2 2v2" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a2 2 0 00-2-2-3-3 0 01-3-3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <div className={styles.valueContent}>
+              <h4>团队协作</h4>
+              <p>OpenSpec 标准化流程</p>
+            </div>
+          </motion.div>
+        </motion.div>
 
         {/* CTA 按钮组 */}
         <motion.div className={styles.heroButtons}>

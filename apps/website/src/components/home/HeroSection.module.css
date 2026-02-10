@@ -301,24 +301,54 @@
   }
 }
 
-/* 描述 */
+/* 描述 - 问题陈述样式 */
 .heroDescription {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
   color: var(--color-text-secondary);
-  margin: 0 auto 2.5rem auto;
+  margin: 0 auto 1rem auto;
   max-width: 650px;
   line-height: 1.7;
 }
 
 .heroDescription .highlight {
-  color: var(--color-primary);
+  color: #EF4444;
   font-weight: 600;
   position: relative;
 }
 
 [data-theme='dark'] .heroDescription .highlight {
+  color: #F87171;
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+/* 次要描述 - 解决方案样式 */
+.heroDescriptionSecondary {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--color-text);
+  margin: 0 auto 2.5rem auto;
+  max-width: 700px;
+  line-height: 1.7;
+}
+
+.heroDescriptionSecondary .highlightPrimary {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.heroDescriptionSecondary .highlight {
+  color: var(--color-primary);
+  font-weight: 600;
+  position: relative;
+}
+
+[data-theme='dark'] .heroDescriptionSecondary .highlightPrimary {
   color: var(--color-secondary);
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+[data-theme='dark'] .heroDescriptionSecondary .highlight {
+  color: var(--color-secondary);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
 }
 
 /* ==========================================================================
@@ -682,10 +712,153 @@
 }
 
 /* ==========================================================================
+   VALUE CARDS - 核心价值展示
+   ========================================================================== */
+
+.valueCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 3rem auto;
+  max-width: 900px;
+}
+
+.valueCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.5rem;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  transition: all var(--duration-normal) var(--ease-out);
+  overflow: hidden;
+}
+
+.valueCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 128, 255, 0.08) 0%,
+    transparent 50%,
+    rgba(0, 255, 255, 0.03) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.valueCard:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-primary);
+  box-shadow:
+    0 20px 40px rgba(0, 128, 255, 0.15),
+    0 0 60px rgba(0, 128, 255, 0.1);
+}
+
+.valueCard:hover::before {
+  opacity: 1;
+}
+
+[data-theme='dark'] .valueCard:hover {
+  border-color: var(--color-secondary);
+  box-shadow:
+    0 20px 40px rgba(0, 128, 255, 0.25),
+    0 0 80px rgba(0, 255, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.valueIcon {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  border-radius: var(--radius-lg);
+  color: white;
+  box-shadow:
+    0 4px 15px rgba(0, 128, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.valueIcon svg {
+  width: 28px;
+  height: 28px;
+}
+
+[data-theme='dark'] .valueIcon {
+  box-shadow:
+    0 4px 20px rgba(0, 128, 255, 0.5),
+    0 0 20px rgba(0, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.valueContent h4 {
+  position: relative;
+  z-index: 1;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 0.5rem 0;
+  font-family: var(--font-display);
+}
+
+.valueContent p {
+  position: relative;
+  z-index: 1;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
    RESPONSIVE DESIGN
    ========================================================================== */
 
 @media (max-width: 768px) {
+  .valueCards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 2rem auto;
+  }
+
+  .valueCard {
+    padding: 1.5rem 1rem;
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .valueIcon {
+    margin-bottom: 0;
+    margin-right: 1rem;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+
+  .valueIcon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .valueContent h4 {
+    font-size: 1rem;
+  }
+
+  .valueContent p {
+    font-size: 0.8125rem;
+  }
+
   .heroSection {
     min-height: 80vh;
     padding: 6rem 1rem 2rem;

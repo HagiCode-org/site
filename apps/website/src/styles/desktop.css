@@ -38,6 +38,77 @@ main.homepage section > .bgGlow {
 }
 
 /* ==========================================================================
+   Hero Value Props - 增强的价值主张展示
+   ========================================================================== */
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, rgba(0, 128, 255, 0.15) 0%, rgba(0, 255, 255, 0.1) 100%);
+  border: 1px solid rgba(0, 128, 255, 0.3);
+  border-radius: 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+
+[data-theme='dark'] .hero-badge {
+  background: linear-gradient(135deg, rgba(0, 128, 255, 0.2) 0%, rgba(0, 255, 255, 0.15) 100%);
+  border-color: rgba(0, 255, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+}
+
+.hero-value-prop {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+  animation: fadeInUp 0.8s ease-out 0.4s backwards;
+}
+
+.value-point {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  transition: all 0.3s ease-out;
+}
+
+.value-point svg {
+  width: 18px;
+  height: 18px;
+  color: var(--color-success);
+  flex-shrink: 0;
+}
+
+[data-theme='dark'] .value-point svg {
+  color: #4ADE80;
+  filter: drop-shadow(0 0 4px rgba(74, 222, 128, 0.5));
+}
+
+.value-point:hover {
+  border-color: var(--color-success);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.15);
+}
+
+[data-theme='dark'] .value-point:hover {
+  box-shadow: 0 4px 15px rgba(74, 222, 128, 0.25);
+}
+
+/* ==========================================================================
    Desktop 页面 Section 间距调整
    ========================================================================== */
 

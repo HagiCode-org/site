@@ -12,23 +12,18 @@ import rehypeMermaid from 'rehype-mermaid';
 import rehypeRaw from 'rehype-raw';
 import rehypeExternalLinks from 'rehype-external-links';
 
-// 获取 base 路径：开发环境使用根路径，生产环境使用 /docs
+// 获取 base 路径：文档站点独立部署在 docs.hagicode.com，开发和生产都使用根路径
 const getBasePath = () => {
-    // 使用 NODE_ENV 环境变量判断（与共享库一致）
-    // Astro 在开发模式下 MODE='development'，生产构建时 MODE='production'
-    const nodeEnv = import.meta.env.NODE_ENV || import.meta.env.MODE;
-    if (nodeEnv === 'development') {
-        return '/';
-    }
-    // 生产构建使用 /docs
-    return '/docs';
+    // 文档站点现在独立部署在 docs.hagicode.com
+    // 不再需要 /docs 前缀，开发和生产都使用根路径
+    return '/';
 };
 
 // https://astro.build/config
 export default defineConfig({
     // 站点完整 URL,用于生成 sitemap 和 canonical URL
     site: 'https://docs.hagicode.com',
-    // 文档站点部署路径：开发环境为根路径，生产环境为 /docs
+    // 文档站点部署路径：独立部署在 docs.hagicode.com，使用根路径
     base: getBasePath(),
     markdown: {
         syntaxHighlight: {
@@ -61,7 +56,7 @@ export default defineConfig({
     integrations: [
         // robots.txt 配置 - 使用 astro-robots-txt 插件
         robotsTxt({
-            sitemap: 'https://docs.hagicode.com/docs/sitemap-index.xml',
+            sitemap: 'https://docs.hagicode.com/sitemap-index.xml',
         }),
         starlight({
             title: 'Hagicode Docs',

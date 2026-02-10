@@ -5,6 +5,7 @@
  */
 import Navbar from '../components/home/Navbar';
 import HeroSection from '../components/home/HeroSection';
+import SocialProofSection from '../components/home/SocialProofSection';
 import ActivityMetricsSection from '../components/home/ActivityMetricsSection';
 import FeaturesShowcase from '../components/home/FeaturesShowcase';
 import ShowcaseSection from '../components/home/ShowcaseSection';
@@ -137,6 +138,9 @@ try {
 
       <!-- 新年主题卡片组 - 仅在农历新年主题下显示 -->
       <LunarNewYearCardGroup client:load />
+
+      <!-- Social Proof Section - 社交证明 -->
+      <SocialProofSection client:load />
 
       <!-- Activity Metrics Section -->
       <ActivityMetricsSection client:load />
