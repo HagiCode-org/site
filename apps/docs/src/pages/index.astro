@@ -1,0 +1,30 @@
+---
+/**
+ * 文档站点首页 - 重定向到产品概述
+ */
+import { AstroSeo } from 'astro-seo';
+
+const canonicalURL = new URL(Astro.url.origin);
+canonicalURL.pathname = '/product-overview';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>正在跳转...</title>
+    <link rel="canonical" href={canonicalURL.href} />
+    <meta http-equiv="refresh" content="0; url=/product-overview" />
+  </head>
+  <body>
+    <script>
+      // 立即跳转到产品概述
+      window.location.replace('/product-overview');
+    </script>
+    <noscript>
+      <meta http-equiv="refresh" content="0; url=/product-overview" />
+      <p>正在跳转到产品概述，如果没有自动跳转，请<a href="/product-overview">点击这里</a>。</p>
+    </noscript>
+  </body>
+</html>

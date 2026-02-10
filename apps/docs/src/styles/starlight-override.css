@@ -1,0 +1,308 @@
+/**
+ * Starlight 主题样式覆盖
+ * 将 Starlight 变量映射到 Hagicode 品牌颜色
+ * 与首页 homepage.css 保持一致
+ */
+
+/* ==========================================================================
+   字体配置导入
+   ========================================================================== */
+@import './fonts.css';
+
+/* ==========================================================================
+   全局字体覆盖
+   ========================================================================== */
+:root {
+  /* 覆盖 Starlight 默认字体 */
+  --sl-font: var(--font-body);
+  --sl-font-heading: var(--font-heading);
+  --sl-font-code: var(--font-code);
+}
+
+/* ==========================================================================
+   CSS Variables - 品牌颜色
+   ========================================================================== */
+:root,
+[data-theme='light'] {
+  --color-primary: #0080FF;
+  --color-secondary: #00CCCC;
+  --color-success: #22C55E;
+  --gradient-primary: linear-gradient(135deg, #0080FF 0%, #00AAAA 50%, #22C55E 100%);
+}
+
+[data-theme='dark'] {
+  --color-primary: #00D4FF;
+  --color-secondary: #00FFFF;
+  --color-success: #4ADE80;
+  --gradient-primary: linear-gradient(135deg, #00D4FF 0%, #00FFFF 50%, #4ADE80 100%);
+}
+
+/* ==========================================================================
+   隐藏 RSS 链接
+   ========================================================================== */
+/* Hide RSS links from sidebar, header and social icons */
+.social-icons a[href*="rss.xml"],
+.sl-sidebar a[href*="rss.xml"],
+a[href*="/blog/rss.xml"],
+a[href*="/site/blog/rss.xml"] {
+  display: none !important;
+}
+
+/* ==========================================================================
+   备案信息样式
+   ========================================================================== */
+.icp-filing-section {
+  text-align: center;
+  padding: var(--sl-space-4) 0;
+  border-top: 1px solid var(--sl-color-gray-6);
+  margin-top: var(--sl-space-4);
+}
+
+.icp-filing-section a {
+  color: var(--sl-color-gray-3);
+  font-size: var(--sl-text-sm);
+  text-decoration: none;
+  transition: color var(--sl-transition-fast) ease,
+              text-decoration var(--sl-transition-fast) ease;
+}
+
+.icp-filing-section a:hover {
+  color: var(--sl-color-text-accent);
+  text-decoration: underline;
+}
+
+.icp-filing-section a:focus {
+  outline: 2px solid var(--sl-color-text-accent);
+  outline-offset: 2px;
+  border-radius: var(--sl-radius-sm);
+}
+
+/* 响应式优化 */
+@media (max-width: 767px) {
+  .icp-filing-section {
+    font-size: 0.8125rem;
+    padding: var(--sl-space-3) 0;
+  }
+}
+
+/* ==========================================================================
+   安装按钮组件样式
+   ========================================================================== */
+
+/* 安装按钮容器 */
+.install-button-wrapper {
+  display: inline-block;
+}
+
+.split-button-container {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+.install-button-wrapper--compact .split-button-container {
+  min-height: 40px;
+}
+
+/* 主下载按钮 */
+.btn-download-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  /* 高饱和度渐变填充背景 */
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  border: none;
+  /* 波动渐变动画 */
+  animation: install-button-gradient-wave 3s ease-in-out infinite;
+}
+
+.install-button-wrapper--compact .btn-download-main {
+  border-radius: var(--sl-radius-sm);
+  min-height: 40px;
+  font-size: 0.875rem;
+  padding: 0 1rem;
+}
+
+.btn-download-main:hover {
+  background-position: 100% 50%;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(74, 144, 217, 0.2);
+}
+
+/* 按钮波动渐变动画 */
+@keyframes install-button-gradient-wave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.download-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.btn-text {
+  white-space: nowrap;
+}
+
+/* 下拉切换按钮 */
+.btn-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+  margin-left: 1px;
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  animation: install-button-gradient-wave 3s ease-in-out infinite;
+  border-radius: 0 var(--sl-radius-sm) var(--sl-radius-sm) 0;
+}
+
+.install-button-wrapper--compact .btn-dropdown-toggle {
+  min-height: 40px;
+  min-width: 32px;
+}
+
+.btn-dropdown-toggle:hover {
+  background-position: 100% 50%;
+}
+
+/* 下拉菜单 */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 240px;
+  max-width: 320px;
+  background: var(--sl-color-bg);
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: var(--sl-radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem 0;
+  margin: 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s ease-out;
+  z-index: 1000;
+}
+
+.dropdown-menu-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* 平台分组标签 */
+.dropdown-group-label {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 1rem 0.125rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--sl-color-text-low);
+}
+
+.dropdown-group-label.platform--windows {
+  color: #0078D4;
+}
+
+.dropdown-group-label.platform--macos {
+  color: #999999;
+}
+
+.dropdown-group-label.platform--linux {
+  color: #FCC624;
+}
+
+.platform-name {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+/* 下拉菜单项 */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: var(--sl-color-text-high);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: background-color 0.15s ease;
+}
+
+.dropdown-item:hover {
+  background-color: var(--sl-color-gray-5);
+  color: var(--sl-color-text-accent);
+}
+
+.dropdown-item-label {
+  flex: 1;
+}
+
+.dropdown-item-size {
+  font-size: 0.75rem;
+  color: var(--sl-color-text-low);
+}
+
+/* Docker 图标 */
+.docker-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.external-icon {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex-shrink: 0;
+}
+
+.dropdown-item-docker {
+  color: var(--sl-color-text-high);
+}
+
+.dropdown-separator {
+  border-top: 1px solid var(--sl-color-gray-6);
+  margin: 0.25rem 0;
+}
+
+/* 小屏幕隐藏 */
+@media (max-width: 64rem) {
+  .install-button-wrapper {
+    display: none;
+  }
+}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .btn-download-main,
+  .btn-dropdown-toggle {
+    animation: none !important;
+    transition: none !important;
+  }
+}

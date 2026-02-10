@@ -1,0 +1,22 @@
+---
+/**
+ * Microsoft Clarity Analytics Integration
+ *
+ * Injects Microsoft Clarity tracking script when CLARITY_PROJECT_ID is available.
+ * This component is used on the marketing website to track user behavior.
+ *
+ * Environment Variables:
+ * - CLARITY_PROJECT_ID: Microsoft Clarity project ID (optional)
+ */
+const clarityProjectId = import.meta.env.VITE_CLARITY_PROJECT_ID;
+---
+
+{clarityProjectId && (
+  <script is:inline define:vars={{clarityProjectId}}>
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", clarityProjectId);
+  </script>
+)}
