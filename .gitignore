@@ -3,6 +3,9 @@ node_modules/
 .pnp/
 .pnp.js
 
+# Turbo
+.turbo/
+
 # Testing
 coverage/
 
