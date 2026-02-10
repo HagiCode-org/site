@@ -1,5 +1,7 @@
 # Change: 适配 MonoRepo 架构的活动指标路径
 
+Status: ExecutionCompleted
+
 ## Why
 
 项目已完成从单体 Astro 应用到 **MonoRepo 架构**的重构，原始的单体应用已拆分为两个独立应用：
