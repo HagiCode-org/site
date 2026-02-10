@@ -3,20 +3,16 @@
 /**
  * Version Monitor Script
  *
- * This script monitors the version from the official website URL and creates
- * a Pull Request when a new version is detected.
+ * This script monitors the version from the official website URL and updates
+ * the local version index file. Pull Request creation is handled by the workflow.
  *
  * Environment Variables:
- * - GITHUB_TOKEN: GitHub token for API calls (automatically provided by GitHub Actions)
- * - REPO_OWNER: Repository owner (e.g., "newbe36524")
- * - REPO_NAME: Repository name (e.g., "pcode-docs")
  * - VERSION_SOURCE_URL: URL to fetch version data (default: https://desktop.dl.hagicode.com/index.json)
  * - REQUEST_TIMEOUT: HTTP request timeout in milliseconds (default: 30000)
  * - MAX_RETRIES: Maximum number of retry attempts (default: 3)
  */
 
 import { promises as fs } from 'fs';
-import { execSync } from 'child_process';
 
 // Logger with levels
 const logger = {
@@ -28,9 +24,6 @@ const logger = {
 
 // Configuration from environment variables
 const config = {
-  repoOwner: process.env.REPO_OWNER || '',
-  repoName: process.env.REPO_NAME || '',
-  githubToken: process.env.GITHUB_TOKEN || '',
   sourceUrl: process.env.VERSION_SOURCE_URL || 'https://desktop.dl.hagicode.com/index.json',
   timeout: parseInt(process.env.REQUEST_TIMEOUT || '30000', 10),
   maxRetries: parseInt(process.env.MAX_RETRIES || '3', 10),
@@ -321,158 +314,6 @@ function compareVersions(v1, v2) {
 }
 
 /**
- * Check if a pull request for the given version already exists
- * @param {string} version - Version to check
- * @returns {Promise<boolean>} True if PR exists
- */
-async function hasExistingPullRequest(version) {
-  try {
-    const response = await fetchWithRetry(
-      `https://api.github.com/repos/${config.repoOwner}/${config.repoName}/pulls?state=open`,
-      {
-        headers: {
-          'Authorization': `Bearer ${config.githubToken}`,
-          'Accept': 'application/vnd.github.v3+json',
-          'User-Agent': 'Version-Monitor/1.0'
-        }
-      }
-    );
-
-    const pulls = await response.json();
-    const prTitle = `chore: update version to ${version}`;
-
-    const existingPR = pulls.find(pr => pr.title === prTitle);
-
-    if (existingPR) {
-      logger.info(`Existing PR found for version ${version}: #${existingPR.number}`);
-      return true;
-    }
-
-    return false;
-  } catch (error) {
-    logger.warn(`Failed to check existing PRs: ${error.message}`);
-    // Return false to allow attempting PR creation
-    return false;
-  }
-}
-
-/**
- * Create a new branch for version update
- * @param {string} version - New version number
- * @returns {string} Branch name
- */
-function createVersionBranch(version) {
-  const sanitizedName = version.replace(/[^a-zA-Z0-9.-]/g, '-');
-  const branchName = `update-version-${sanitizedName}`;
-
-  logger.info(`Creating branch: ${branchName}`);
-
-  try {
-    // Create and checkout new branch
-    execSync(`git checkout -b ${branchName}`, { stdio: 'inherit' });
-    return branchName;
-  } catch (error) {
-    logger.error(`Failed to create branch: ${error.message}`);
-    throw error;
-  }
-}
-
-/**
- * Update version index and commit to current branch
- * @param {string} branch - Branch name
- * @param {object} versionData - Raw version data from online API
- */
-async function updateVersionIndexAndCommit(branch, versionData) {
-  try {
-    // Update local version data file
-    await updateLocalVersionIndex(versionData);
-
-    // Commit changes (only version index file)
-    execSync('git add public/version-index.json', { stdio: 'inherit' });
-    const newVersion = versionData.versions[0].version;
-    execSync(`git commit -m "chore: update version to ${newVersion}"`, { stdio: 'inherit' });
-
-    // Push to remote
-    execSync(`git push origin ${branch}`, { stdio: 'inherit' });
-
-    logger.info(`Version index committed and pushed to ${branch}`);
-  } catch (error) {
-    logger.error(`Failed to commit version index: ${error.message}`);
-    throw error;
-  }
-}
-
-/**
- * Create a pull request
- * @param {string} version - New version number
- * @param {string} branch - Branch name
- * @returns {Promise<number>} Pull request number
- */
-async function createPullRequest(version, branch) {
-  try {
-    const prTitle = `chore: update version to ${version}`;
-    const prBody = `## Version Update
-
-This PR updates the version index to reflect the new version detected from the official website.
-
-- **New Version**: ${version}
-- **Source**: ${config.sourceUrl}
-- **Checked At**: ${new Date().toISOString()}
-
-### Changes
-- Updated \`public/version-index.json\` with the latest version data from online API
-
-### Next Steps
-After merging this PR, the CI/CD pipeline will automatically rebuild and deploy the documentation site with the updated version information using the local version data file.
-
----
-_This PR was automatically created by the Version Monitor workflow._`;
-
-    logger.info(`Creating pull request: ${prTitle}`);
-
-    const response = await fetchWithRetry(
-      `https://api.github.com/repos/${config.repoOwner}/${config.repoName}/pulls`,
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${config.githubToken}`,
-          'Accept': 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json',
-          'User-Agent': 'Version-Monitor/1.0'
-        },
-        body: JSON.stringify({
-          title: prTitle,
-          body: prBody,
-          head: branch,
-          base: 'main'
-        })
-      }
-    );
-
-    const pr = await response.json();
-
-    if (response.status !== 201) {
-      throw new Error(`Failed to create PR: ${pr.message}`);
-    }
-
-    logger.info(`Pull request created successfully: #${pr.number}`);
-    logger.info(`PR URL: ${pr.html_url}`);
-
-    // Set GitHub Actions output for use in workflow
-    if (process.env.GITHUB_OUTPUT) {
-      const fs = await import('fs');
-      await fs.promises.appendFile(process.env.GITHUB_OUTPUT,
-        `pr_created=true\npr_number=${pr.number}\npr_url=${pr.html_url}\n`);
-    }
-
-    return pr.number;
-  } catch (error) {
-    logger.error(`Failed to create pull request: ${error.message}`);
-    throw error;
-  }
-}
-
-/**
  * Main execution function
  */
 async function main() {
@@ -481,9 +322,7 @@ async function main() {
     logger.debug(`Configuration: ${JSON.stringify({
       sourceUrl: config.sourceUrl,
       timeout: config.timeout,
-      maxRetries: config.maxRetries,
-      repoOwner: config.repoOwner,
-      repoName: config.repoName
+      maxRetries: config.maxRetries
     })}`);
 
     // Fetch current version from source
@@ -509,22 +348,20 @@ async function main() {
       logger.info('Empty state detected - treating as new version scenario');
     }
 
-    // Check if PR already exists for this version
-    if (await hasExistingPullRequest(currentVersion)) {
-      logger.info('Pull request already exists for this version, skipping creation');
-      return;
+    // Update local version index file
+    await updateLocalVersionIndex(versionData);
+
+    // Set GitHub Actions outputs for workflow to use
+    if (process.env.GITHUB_OUTPUT) {
+      const outputs = [
+        `update_needed=true`,
+        `new_version=${currentVersion}`
+      ];
+      await fs.appendFile(process.env.GITHUB_OUTPUT, outputs.join('\n') + '\n');
+      logger.info(`Set outputs: update_needed=true, new_version=${currentVersion}`);
     }
 
-    // Create new branch
-    const branch = createVersionBranch(currentVersion);
-
-    // Update version index and commit
-    await updateVersionIndexAndCommit(branch, versionData);
-
-    // Create pull request
-    await createPullRequest(currentVersion, branch);
-
-    logger.info('Version monitor completed successfully - PR created');
+    logger.info('Version monitor completed successfully - version index updated');
 
   } catch (error) {
     logger.error(`Version monitor failed: ${error.message}`);

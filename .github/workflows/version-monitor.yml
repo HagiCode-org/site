@@ -19,9 +19,10 @@ jobs:
     name: Monitor Version Changes
     runs-on: ubuntu-latest
     outputs:
-      pr_created: ${{ steps.monitor.outputs.pr_created }}
+      update_needed: ${{ steps.monitor.outputs.update_needed }}
       new_version: ${{ steps.monitor.outputs.new_version }}
-      pr_url: ${{ steps.monitor.outputs.pr_url }}
+      pr_created: ${{ steps.pr.outputs.pr_created }}
+      pr_url: ${{ steps.pr.outputs.pr_url }}
 
     steps:
       - name: Checkout repository
@@ -47,32 +48,104 @@ jobs:
         id: monitor
         run: node scripts/version-monitor.js
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO_OWNER: ${{ github.repository_owner }}
-          REPO_NAME: ${{ github.event.repository.name }}
           VERSION_SOURCE_URL: ${{ vars.VERSION_SOURCE_URL || 'https://desktop.dl.hagicode.com/index.json' }}
           REQUEST_TIMEOUT: "30000"
           MAX_RETRIES: "3"
+
+      - name: Configure Git
+        if: steps.monitor.outputs.update_needed == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create feature branch
+        if: steps.monitor.outputs.update_needed == 'true'
+        run: |
+          BRANCH_NAME="version-update-${{ steps.monitor.outputs.new_version }}"
+          git checkout -b "$BRANCH_NAME"
+          echo "Created branch: $BRANCH_NAME"
+
+      - name: Commit version changes
+        if: steps.monitor.outputs.update_needed == 'true'
+        run: |
+          git add public/version-index.json
+          git commit -m "chore: update version to ${{ steps.monitor.outputs.new_version }}"
+
+      - name: Delete remote branch if exists
+        if: steps.monitor.outputs.update_needed == 'true'
+        run: |
+          BRANCH_NAME="version-update-${{ steps.monitor.outputs.new_version }}"
+          if git ls-remote --heads origin "$BRANCH_NAME" | grep -q "$BRANCH_NAME"; then
+            git push origin --delete "$BRANCH_NAME"
+          fi
+
+      - name: Push branch
+        if: steps.monitor.outputs.update_needed == 'true'
+        run: |
+          BRANCH_NAME="version-update-${{ steps.monitor.outputs.new_version }}"
+          git push origin "$BRANCH_NAME" --force-with-lease
+
+      - name: Close previous version PRs
+        id: close_prs
+        if: steps.monitor.outputs.update_needed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PREVIOUS_PRS=$(gh pr list \
+            --search "chore: update version to in:head" \
+            --state open \
+            --json number \
+            --jq '.[].number')
+
+          if [ -n "$PREVIOUS_PRS" ]; then
+            echo "$PREVIOUS_PRS" | while read -r pr_number; do
+              gh pr close "$pr_number" --comment "由于新的版本更新 PR 自动关闭"
+            done
+          fi
+
+      - name: Create Pull Request
+        id: pr
+        if: steps.monitor.outputs.update_needed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          NEW_VERSION="${{ steps.monitor.outputs.new_version }}"
+          PR_BODY="## Version Update
+
+          This PR updates the version index to reflect the new version detected from the official website.
+
+          - **New Version**: ${NEW_VERSION}
+          - **Source**: ${{ vars.VERSION_SOURCE_URL || 'https://desktop.dl.hagicode.com/index.json' }}
+          - **Checked At**: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          ### Changes
+          - Updated \`public/version-index.json\` with the latest version data from online API
+
+          ### Next Steps
+          After merging this PR, the CI/CD pipeline will automatically rebuild and deploy the documentation site with the updated version information.
+
+          ---
+          _This PR was automatically created by the [Version Monitor](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow._"
+
+          gh pr create \
+            --title "chore: update version to ${NEW_VERSION}" \
+            --body "$PR_BODY" \
+            --base main \
+            --head "version-update-${NEW_VERSION}" \
+            --label "automation,version"
+
+          echo "pr_created=true" >> $GITHUB_OUTPUT
+          echo "pr_url=$(gh pr view --json url -q .url)" >> $GITHUB_OUTPUT
 
       - name: Display result
         if: always()
         run: |
           echo "Version Monitor Result"
           echo "======================"
-          if [ -f ".github/version-state.json" ]; then
-            echo "Last Checked Version: $(jq -r '.lastCheckedVersion // "N/A"' .github/version-state.json)"
-            echo "Last Checked Time: $(jq -r '.lastCheckedTime // "N/A"' .github/version-state.json)"
-            echo "Last Deployed Version: $(jq -r '.lastDeployedVersion // "N/A"' .github/version-state.json)"
-            echo "Check Count: $(jq -r '.checkCount // 0' .github/version-state.json)"
-          fi
-
-      - name: Pull Request created notification
-        if: steps.monitor.outputs.pr_created == 'true'
-        run: |
-          echo "Pull Request Created"
-          echo "===================="
-          echo "PR Number: ${{ steps.monitor.outputs.pr_number }}"
-          echo "PR URL: ${{ steps.monitor.outputs.pr_url }}"
+          echo "Update Needed: ${{ steps.monitor.outputs.update_needed }}"
+          echo "New Version: ${{ steps.monitor.outputs.new_version }}"
+          echo "PR Created: ${{ steps.pr.outputs.pr_created }}"
+          echo "PR URL: ${{ steps.pr.outputs.pr_url }}"
 
   notify-version-update:
     needs: monitor
