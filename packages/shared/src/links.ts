@@ -22,11 +22,11 @@ export function getEnvironment(): 'development' | 'production' {
 
 /**
  * 获取文档站点的 base 路径
- * 开发环境为根路径，生产环境为 /docs
+ * 开发环境为根路径，生产环境为根路径（独立部署在 docs.hagicode.com）
  * @returns base 路径
  */
 export function getDocsBasePath(): string {
-    return getEnvironment() === 'development' ? '/' : '/docs';
+    return '/';
 }
 
 /**
@@ -50,7 +50,7 @@ export const SITE_LINKS = {
     /** 文档站点 */
     docs: {
         dev: 'http://localhost:4321/', // docs 应用开发环境端口
-        prod: 'https://hagicode.com/docs/',
+        prod: 'https://docs.hagicode.com/',
         external: false,
     } as LinkConfig,
 
@@ -78,14 +78,14 @@ export const SITE_LINKS = {
     /** 博客页面（相对于文档站点） */
     blog: {
         dev: 'http://localhost:4321/blog/',
-        prod: 'https://hagicode.com/docs/blog/',
+        prod: 'https://docs.hagicode.com/blog/',
         external: false,
     } as LinkConfig,
 
     /** 产品概述（相对于文档站点） */
     productOverview: {
         dev: 'http://localhost:4321/product-overview/',
-        prod: 'https://hagicode.com/docs/product-overview/',
+        prod: 'https://docs.hagicode.com/product-overview/',
         external: false,
     } as LinkConfig,
 
@@ -99,7 +99,7 @@ export const SITE_LINKS = {
     /** Docker Compose 安装指南（相对于文档站点） */
     dockerCompose: {
         dev: 'http://localhost:4321/installation/docker-compose/',
-        prod: 'https://hagicode.com/docs/installation/docker-compose/',
+        prod: 'https://docs.hagicode.com/installation/docker-compose/',
         external: false,
     } as LinkConfig,
 
@@ -113,7 +113,7 @@ export const SITE_LINKS = {
     /** 博客 RSS 订阅（相对于文档站点） */
     rss: {
         dev: 'http://localhost:4321/blog/rss.xml',
-        prod: 'https://hagicode.com/docs/blog/rss.xml',
+        prod: 'https://docs.hagicode.com/blog/rss.xml',
         external: false,
     } as LinkConfig,
 } as const;

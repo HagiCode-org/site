@@ -163,13 +163,13 @@ const custom404Content = `<!doctype html>
           <a href="/" class="nav-link">
             <span>首页</span>
           </a>
-          <a href="/docs/installation/docker-compose" class="nav-link">
+          <a href="/installation/docker-compose" class="nav-link">
             <span>安装指南</span>
           </a>
-          <a href="/docs/quick-start/" class="nav-link">
+          <a href="/quick-start/" class="nav-link">
             <span>快速开始</span>
           </a>
-          <a href="/docs/product-overview" class="nav-link">
+          <a href="/product-overview" class="nav-link">
             <span>产品概览</span>
           </a>
         </nav>
