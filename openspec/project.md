@@ -7,7 +7,7 @@ Hagicode Documentation is a **monorepo** containing two comprehensive websites b
 
 ### Monorepo Architecture
 
-The project uses **pnpm workspaces** to manage multiple applications and shared packages:
+The project uses **npm workspaces** and **Turbopack** to manage multiple applications and shared packages:
 
 ```
 pcode-docs/
@@ -46,7 +46,7 @@ pcode-docs/
 - **Astro 5.6** - Modern static site generator with zero-JS by default
 - **React 19.2** - UI library for interactive components (via @astrojs/react)
 - **TypeScript 5.3** - Type-safe configuration and component development
-- **pnpm** - Package manager for monorepo workspace management
+- **Turbopack** - High-performance build system for monorepo task orchestration
 
 ### Documentation Site (apps/docs)
 - **@astrojs/starlight 0.37.4** - Documentation framework
@@ -69,7 +69,7 @@ pcode-docs/
 ### Development Tools
 - **Node.js >=18.0** - Runtime environment
 - **npm >=9.0** - Package manager requirement
-- **npm-run-all 4.1** - Parallel script execution
+- **Turbopack 2.4** - High-performance build system and task orchestration
 - **playwright 1.58** - Browser automation for version monitoring
 
 ### Utilities
@@ -371,7 +371,7 @@ The project uses GitHub Actions for continuous deployment to Azure Static Web Ap
 - **Trigger**: Automatic on push to `main` branch
 - **Node.js Version**: 20.x (matches `package.json` engines requirement)
 - **Build Steps**:
-  - `pnpm install` - Install dependencies with pnpm
+  - `npm ci` - Install dependencies with npm
   - `npm run build:docs` - Generate static site to `apps/docs/dist/` directory
 - **Environment Variables**:
   - `CLARITY_PROJECT_ID`: Microsoft Clarity analytics ID (from GitHub Secrets)
@@ -382,7 +382,7 @@ The project uses GitHub Actions for continuous deployment to Azure Static Web Ap
 - **Trigger**: Automatic on push to `main` branch
 - **Node.js Version**: 20.x
 - **Build Steps**:
-  - `pnpm install` - Install dependencies with pnpm
+  - `npm ci` - Install dependencies with npm
   - `npm run build:website` - Generate static site to `apps/website/dist/` directory
 - **Environment Variables**:
   - `CLARITY_PROJECT_ID`: Microsoft Clarity analytics ID (from GitHub Secrets)
@@ -412,7 +412,7 @@ The project uses GitHub Actions for continuous deployment to Azure Static Web Ap
 
 ### Root package.json
 - Monorepo workspace configuration
-- pnpm workspace management
+- Turbopack task orchestration
 - Shared scripts for building, testing, and cleaning
 - Workspace dependencies managed centrally
 
@@ -467,7 +467,7 @@ The project uses GitHub Actions for continuous deployment to Azure Static Web Ap
 ## Recent Changes
 
 ### 2026-02-10: Monorepo Migration
-- **Architecture Change**: Restructured from single Astro site to pnpm workspace monorepo
+- **Architecture Change**: Restructured from single Astro site to npm workspace monorepo
 - **Split Sites**: Separated documentation (apps/docs) and marketing (apps/website)
 - **Shared Package**: Created packages/shared for common utilities
 - **Build Scripts**: Updated for multi-site building and development

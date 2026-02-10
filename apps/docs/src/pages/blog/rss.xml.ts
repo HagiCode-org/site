@@ -3,8 +3,9 @@ import { getCollection } from 'astro:content';
 
 // 获取 base 路径的函数（与 astro.config.mjs 中的逻辑一致）
 function getBasePath(): string {
-  const nodeEnv = import.meta.env.NODE_ENV || import.meta.env.MODE;
-  return nodeEnv === 'development' ? '/' : '/docs';
+  // 文档站点现在独立部署在 docs.hagicode.com
+  // 不再需要 /docs 前缀，开发和生产都使用根路径
+  return '/';
 }
 
 export async function GET(context) {

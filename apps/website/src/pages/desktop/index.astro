@@ -157,8 +157,31 @@ const siteBase = import.meta.env.VITE_SITE_BASE || "/";
         <div class="bgGlow" />
         <!-- 内容区域 -->
         <div class="hero-content">
+          <div class="hero-badge">桌面版</div>
           <h1>Hagicode Desktop</h1>
           <p class="hero-tagline">本地化的 AI 代码助手，保护隐私，提升效率</p>
+
+          <div class="hero-value-prop">
+            <div class="value-point">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+              <span>100% 本地运行，代码不上传</span>
+            </div>
+            <div class="value-point">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>毫秒级响应，无需等待</span>
+            </div>
+            <div class="value-point">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>一键安装，开箱即用</span>
+            </div>
+          </div>
 
           {error ? (
             <div class="error-message">

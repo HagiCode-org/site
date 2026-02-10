@@ -277,5 +277,5 @@ export async function getLatestVersion(): Promise<string>
 
 - 当前 Version Monitor 工作流: `.github/workflows/version-monitor.yml`
 - Version Monitor 脚本: `scripts/version-monitor.js`
-- MonoRepo 结构: `pnpm-workspace.yaml`
+- MonoRepo 结构: `package.json` workspaces
 - Docs 应用部署: `.github/workflows/deploy-docs.yml`

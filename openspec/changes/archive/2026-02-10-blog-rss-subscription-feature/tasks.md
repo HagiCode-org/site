@@ -24,7 +24,7 @@
 ### 阶段 3: 验证测试
 
 - [ ] **T-003: 本地验证 RSS 生成**
-  - 操作: 运行 `pnpm --filter docs dev` 启动开发服务器
+  - 操作: 运行 `turbo run dev --filter=docs` 启动开发服务器
   - 访问: `http://localhost:4321/blog/rss.xml`
   - 验证点:
     - 返回 XML 格式内容
@@ -48,7 +48,7 @@
 ### 阶段 4: 构建验证
 
 - [ ] **T-006: 生产构建验证**
-  - 操作: 运行 `pnpm --filter docs build`
+  - 操作: 运行 `turbo run build --filter=docs`
   - 验证点: 构建成功，无错误或警告
   - 输出检查: `dist/docs/blog/rss.xml` 文件存在
   - 预期时间: 2 分钟

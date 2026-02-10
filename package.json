@@ -3,24 +3,25 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
+  "packageManager": "npm@11.10.1",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "scripts": {
-    "dev": "NODE_ENV=development npm run clean && node scripts/copy-version-index.js && npm-run-all --parallel dev:*",
-    "dev:docs": "NODE_ENV=development npm run clean:docs && npm run dev --workspace=docs",
-    "dev:website": "NODE_ENV=development npm run clean:website && node scripts/copy-version-index.js && npm run dev --workspace=website",
-    "clean": "npm run clean:docs && npm run clean:website",
+    "dev": "NODE_ENV=development turbo run clean && node scripts/copy-version-index.js && turbo run dev --parallel",
+    "dev:docs": "NODE_ENV=development turbo run clean:docs && turbo run dev --filter=docs",
+    "dev:website": "NODE_ENV=development turbo run clean:website && node scripts/copy-version-index.js && turbo run dev --filter=website",
+    "clean": "turbo run clean:docs clean:website",
     "clean:docs": "rm -rf apps/docs/.astro apps/docs/dist",
     "clean:website": "rm -rf apps/website/.astro apps/website/dist",
-    "build": "NODE_ENV=production node scripts/copy-version-index.js && npm run clean && npm run build --workspaces --if-present",
-    "build:docs": "NODE_ENV=production npm run clean:docs && npm run build --workspace=docs",
-    "build:website": "NODE_ENV=production npm run clean:website && node scripts/copy-version-index.js && npm run build --workspace=website",
-    "preview": "npm run preview --workspaces --if-present",
-    "preview:docs": "npm run preview --workspace=docs",
-    "preview:website": "npm run preview --workspace=website",
-    "astro": "npm run astro --workspaces --if-present",
+    "build": "NODE_ENV=production node scripts/copy-version-index.js && turbo run build",
+    "build:docs": "NODE_ENV=production turbo run clean:docs && turbo run build --filter=docs",
+    "build:website": "NODE_ENV=production turbo run clean:website && node scripts/copy-version-index.js && turbo run build --filter=website",
+    "preview": "turbo run preview",
+    "preview:docs": "turbo run preview --filter=docs",
+    "preview:website": "turbo run preview --filter=website",
+    "astro": "turbo run astro",
     "update-metrics": "node scripts/update-activity-metrics.js"
   },
   "devDependencies": {
@@ -47,6 +48,7 @@
     "sharp": "^0.34.2",
     "starlight-blog": "^0.25.2",
     "typescript": "~5.3.0",
+    "turbo": "^2.4.4",
     "vite": "^6.0.0"
   },
   "engines": {
