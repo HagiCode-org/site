@@ -50,17 +50,17 @@
 }
 
 /* ==========================================================================
-   统计数据卡片
+   产品特性亮点 - 替代虚假统计数据
    ========================================================================== */
 
-.statsContainer {
+.highlightsContainer {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   margin-bottom: 5rem;
 }
 
-.statCard {
+.highlightCard {
   position: relative;
   padding: 2rem 1.5rem;
   background: var(--color-surface-glass);
@@ -70,9 +70,13 @@
   text-align: center;
   overflow: hidden;
   transition: all 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.statCard::before {
+.highlightCard::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -86,7 +90,7 @@
   transition: opacity 0.3s ease-out;
 }
 
-.statCard:hover {
+.highlightCard:hover {
   transform: translateY(-8px);
   border-color: var(--color-primary);
   box-shadow:
@@ -94,205 +98,51 @@
     0 0 60px rgba(0, 128, 255, 0.1);
 }
 
-.statCard:hover::before {
+.highlightCard:hover::before {
   opacity: 1;
 }
 
-.statGlow {
-  position: absolute;
-  bottom: -50%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(0, 128, 255, 0.2) 0%,
-    transparent 70%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-  pointer-events: none;
-}
-
-.statCard:hover .statGlow {
-  opacity: 1;
-}
-
-.statValue {
+.highlightIcon {
   font-size: 2.5rem;
-  font-weight: 900;
-  font-family: var(--font-display);
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 0.5rem;
-  position: relative;
-  display: inline-block;
-}
-
-.statSuffix {
-  font-size: 1.5rem;
-  margin-left: 0.25rem;
-}
-
-.statLabel {
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-}
-
-/* ==========================================================================
-   用户评价
-   ========================================================================== */
-
-.testimonialsContainer {
-  margin-bottom: 5rem;
-}
-
-.testimonialsTitle {
-  font-size: clamp(1.75rem, 5vw, 2.5rem);
-  font-weight: 900;
-  text-align: center;
-  margin-bottom: 3rem;
-  font-family: var(--font-display);
-  background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.testimonialsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
-.testimonialCard {
-  position: relative;
-  padding: 2rem;
-  background: var(--color-surface-glass);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--color-border);
-  border-radius: 1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-}
-
-.testimonialCard::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(34, 197, 94, 0.05) 0%,
-    transparent 50%,
-    rgba(0, 128, 255, 0.05) 100%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-}
-
-.testimonialCard:hover {
-  border-color: rgba(34, 197, 94, 0.3);
-  box-shadow:
-    0 20px 40px rgba(34, 197, 94, 0.1),
-    0 0 40px rgba(34, 197, 94, 0.05);
-}
-
-.testimonialCard:hover::before {
-  opacity: 1;
-}
-
-.testimonialContent {
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-.quotesIcon {
-  position: absolute;
-  top: -1rem;
-  left: -0.5rem;
-  font-size: 4rem;
-  font-family: var(--font-display);
-  font-weight: 900;
-  color: var(--color-primary);
-  opacity: 0.1;
   line-height: 1;
+  filter: drop-shadow(0 4px 8px rgba(0, 128, 255, 0.3));
 }
 
-.testimonialText {
-  position: relative;
-  z-index: 1;
-  color: var(--color-text-secondary);
-  line-height: 1.7;
-  font-size: 0.95rem;
+[data-theme='dark'] .highlightIcon {
+  filter: drop-shadow(0 4px 12px rgba(0, 128, 255, 0.5));
 }
 
-.testimonialFooter {
+.highlightContent {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--color-border);
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.testimonialAvatar {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  color: white;
+.highlightTitle {
+  font-size: 1rem;
   font-weight: 700;
-  font-size: 1.25rem;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.testimonialInfo {
-  flex: 1;
-}
-
-.testimonialName {
-  font-weight: 600;
   color: var(--color-text);
-  font-size: 1rem;
+  font-family: var(--font-display);
 }
 
-.testimonialRole {
-  font-size: 0.875rem;
+.highlightDescription {
+  font-size: 0.8125rem;
   color: var(--color-text-secondary);
-}
-
-.testimonialRating {
-  display: flex;
-  gap: 0.125rem;
-  color: #FFD700;
-  font-size: 1rem;
-}
-
-.testimonialRating svg {
-  width: 16px;
-  height: 16px;
+  line-height: 1.4;
 }
 
 /* ==========================================================================
-   信任徽章
+   技术标识徽章
    ========================================================================== */
 
-.trustBadgesContainer {
+.techBadgesContainer {
   display: flex;
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
 }
 
-.trustBadge {
+.techBadge {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -400,11 +250,7 @@
    ========================================================================== */
 
 @media (max-width: 1024px) {
-  .statsContainer {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .testimonialsGrid {
+  .highlightsContainer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -414,31 +260,20 @@
     padding: 3rem 0;
   }
 
-  .statsContainer {
+  .highlightsContainer {
     grid-template-columns: 1fr;
     gap: 1rem;
     margin-bottom: 3rem;
   }
 
-  .statCard {
+  .highlightCard {
     padding: 1.5rem 1rem;
+    flex-direction: row;
+    text-align: left;
   }
 
-  .statValue {
+  .highlightIcon {
     font-size: 2rem;
-  }
-
-  .testimonialsGrid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .testimonialsTitle {
-    font-size: 1.75rem;
-  }
-
-  .testimonialText {
-    font-size: 0.9rem;
   }
 
   .trustBadgesContainer {
