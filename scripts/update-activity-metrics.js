@@ -52,7 +52,7 @@ const CONFIG = {
     apiPath: '/api/v1/stats',
     dateRange: '3D',
   },
-  outputFile: path.join(__dirname, '../public/activity-metrics.json'),
+  outputFile: path.join(__dirname, '../apps/website/public/activity-metrics.json'),
 };
 
 // 错误处理器
