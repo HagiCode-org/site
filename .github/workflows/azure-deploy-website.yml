@@ -59,7 +59,6 @@ jobs:
           api_location: "" # Api source code path - optional
           ###### End of Repository/Build Configurations ######
           skip_app_build: true
-          verbose: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
