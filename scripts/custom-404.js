@@ -180,7 +180,8 @@ const custom404Content = `<!doctype html>
 `;
 
 // 获取 dist 目录路径
-const distDir = path.resolve(__dirname, '../dist');
+// 支持从根目录或 apps/docs 目录运行
+const distDir = path.resolve(__dirname, '../apps/docs/dist');
 const outputFile = path.join(distDir, '404.html');
 
 // 确保目录存在
