@@ -1,6 +1,83 @@
 {
-  "updatedAt": 1770803723.758727,
+  "updatedAt": 1770986478.49468,
   "versions": [
+    {
+      "version": "v0.1.8",
+      "files": [
+        "Hagicode.Desktop-0.1.8-arm64-mac.zip",
+        "Hagicode.Desktop-0.1.8-arm64.dmg",
+        "Hagicode.Desktop-0.1.8-mac.zip",
+        "Hagicode.Desktop-0.1.8.AppImage",
+        "Hagicode.Desktop-0.1.8.dmg",
+        "Hagicode.Desktop.0.1.8.appx",
+        "Hagicode.Desktop.0.1.8.exe",
+        "Hagicode.Desktop.Setup.0.1.8.exe",
+        "hagicode-desktop-0.1.8.tar.gz",
+        "hagicode-desktop_0.1.8_amd64.deb"
+      ],
+      "assets": [
+        {
+          "name": "Hagicode.Desktop-0.1.8-arm64-mac.zip",
+          "path": "v0.1.8/Hagicode.Desktop-0.1.8-arm64-mac.zip",
+          "size": 170039416,
+          "lastModified": "2026-02-13T12:28:02+00:00"
+        },
+        {
+          "name": "Hagicode.Desktop-0.1.8-arm64.dmg",
+          "path": "v0.1.8/Hagicode.Desktop-0.1.8-arm64.dmg",
+          "size": 177668972,
+          "lastModified": "2026-02-13T12:28:17+00:00"
+        },
+        {
+          "name": "Hagicode.Desktop-0.1.8-mac.zip",
+          "path": "v0.1.8/Hagicode.Desktop-0.1.8-mac.zip",
+          "size": 175488879,
+          "lastModified": "2026-02-13T12:34:07+00:00"
+        },
+        {
+          "name": "Hagicode.Desktop-0.1.8.AppImage",
+          "path": "v0.1.8/Hagicode.Desktop-0.1.8.AppImage",
+          "size": 183902403,
+          "lastModified": "2026-02-13T12:35:21+00:00"
+        },
+        {
+          "name": "Hagicode.Desktop-0.1.8.dmg",
+          "path": "v0.1.8/Hagicode.Desktop-0.1.8.dmg",
+          "size": 183156977,
+          "lastModified": "2026-02-13T12:37:19+00:00"
+        },
+        {
+          "name": "Hagicode.Desktop.0.1.8.appx",
+          "path": "v0.1.8/Hagicode.Desktop.0.1.8.appx",
+          "size": 211820948,
+          "lastModified": "2026-02-13T12:38:22+00:00"
+        },
+        {
+          "name": "Hagicode.Desktop.0.1.8.exe",
+          "path": "v0.1.8/Hagicode.Desktop.0.1.8.exe",
+          "size": 106954896,
+          "lastModified": "2026-02-13T12:38:32+00:00"
+        },
+        {
+          "name": "Hagicode.Desktop.Setup.0.1.8.exe",
+          "path": "v0.1.8/Hagicode.Desktop.Setup.0.1.8.exe",
+          "size": 107153833,
+          "lastModified": "2026-02-13T12:38:49+00:00"
+        },
+        {
+          "name": "hagicode-desktop-0.1.8.tar.gz",
+          "path": "v0.1.8/hagicode-desktop-0.1.8.tar.gz",
+          "size": 171848729,
+          "lastModified": "2026-02-13T12:40:37+00:00"
+        },
+        {
+          "name": "hagicode-desktop_0.1.8_amd64.deb",
+          "path": "v0.1.8/hagicode-desktop_0.1.8_amd64.deb",
+          "size": 117422480,
+          "lastModified": "2026-02-13T12:41:15+00:00"
+        }
+      ]
+    },
     {
       "version": "v0.1.7",
       "files": [
