@@ -106,3 +106,67 @@ export async function getAllVersions(): Promise<string[]> {
     throw new Error('Failed to get all versions: Unknown error');
   }
 }
+
+import semver from 'semver';
+
+/**
+ * Parsed semantic version components
+ */
+export interface Semver {
+  /** Major version number */
+  major: number;
+  /** Minor version number */
+  minor: number;
+  /** Patch version number */
+  patch: number;
+  /** Pre-release identifiers (e.g., ["beta", "1"] for "v1.2.3-beta.1") */
+  prerelease: Array<string | number>;
+}
+
+/**
+ * Parse a semver version string into its components using the semver library
+ * @param version - Version string (e.g., "v1.2.3", "v1.2.3-beta", "v1.2.3-beta.1", "v1.2", "v1")
+ * @returns Parsed Semver interface or null if invalid
+ */
+export function parseSemver(version: string): Semver | null {
+  // Remove 'v' prefix if present and parse
+  const cleaned = version.replace(/^v/, '');
+
+  // Try to parse with strict mode first
+  try {
+    const sem = new semver.SemVer(cleaned);
+    return {
+      major: sem.major,
+      minor: sem.minor,
+      patch: sem.patch,
+      prerelease: sem.prerelease as Array<string | number>
+    };
+  } catch {
+    // If strict parsing fails, try coerce for partial versions like "1.2" or "1"
+    const sem = semver.coerce(cleaned);
+    if (!sem) return null;
+    return {
+      major: sem.major,
+      minor: sem.minor,
+      patch: sem.patch,
+      prerelease: sem.prerelease as Array<string | number>
+    };
+  }
+}
+
+/**
+ * Compare two version strings using semver specification (via semver library)
+ * @param v1 - First version
+ * @param v2 - Second version
+ * @returns -1 if v1 < v2, 0 if v1 = v2, 1 if v1 > v2
+ */
+export function compareVersions(v1: string, v2: string): number {
+  const cleaned1 = v1.replace(/^v/, '');
+  const cleaned2 = v2.replace(/^v/, '');
+
+  const cmp = semver.compare(cleaned1, cleaned2);
+  // semver.compare returns: negative if a < b, 0 if equal, positive if a > b
+  if (cmp < 0) return -1;
+  if (cmp > 0) return 1;
+  return 0;
+}

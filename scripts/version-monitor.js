@@ -144,9 +144,41 @@ function extractVersionFromData(data) {
   if (data.latestVersion) return data.latestVersion;
   if (data.currentVersion) return data.currentVersion;
   if (data.release && data.release.version) return data.release.version;
-  if (Array.isArray(data.versions) && data.versions[0]) {
-    return data.versions[0].version || data.versions[0];
+
+  // For versions array, need to find the latest (highest) version
+  if (Array.isArray(data.versions) && data.versions.length > 0) {
+    logger.info(`[extractVersionFromData] Found ${data.versions.length} versions in array`);
+    logger.debug(`[extractVersionFromData] Versions: ${data.versions.map(v => v.version || v).join(', ')}`);
+
+    logger.info('[extractVersionFromData] Searching for latest version by comparing all versions...');
+    let latestVersion = data.versions[0];
+    let latestVersionObj = data.versions[0];
+
+    for (const versionObj of data.versions) {
+      const v1 = versionObj.version || versionObj;
+      const v2 = latestVersionObj.version || latestVersionObj;
+
+      logger.debug(`[extractVersionFromData] Comparing: "${v1}" vs current latest "${v2}"`);
+
+      const comparison = compareVersions(v1, v2);
+
+      if (comparison === 1) {
+        logger.info(`[extractVersionFromData] Found newer version: "${v1}" > "${v2}"`);
+        latestVersion = v1;
+        latestVersionObj = versionObj;
+      } else if (comparison === 0) {
+        logger.debug(`[extractVersionFromData] Versions are equal: "${v1}" = "${v2}"`);
+      }
+    }
+
+    logger.info(`[extractVersionFromData] Latest version from array: ${latestVersion}`);
+    return latestVersion;
   }
+
+  logger.warn('[extractVersionFromData] No version found in data');
+  return null;
+
+  logger.warn('[extractVersionFromData] No version found in data');
   return null;
 }
 
@@ -224,8 +256,11 @@ async function updateLocalVersionIndex(versionData) {
  * @returns {object} Parsed version with major, minor, patch, and prerelease parts
  */
 function parseSemver(version) {
+  logger.debug(`[parseSemver] Parsing version: "${version}"`);
+
   // Remove 'v' prefix if present
   const v = version.replace(/^v/, '');
+  logger.debug(`[parseSemver] Removed 'v' prefix: "${v}"`);
 
   // Split version and pre-release parts
   const versionParts = v.split('-');
@@ -235,6 +270,8 @@ function parseSemver(version) {
   const minor = parseInt(versionNumbers[1] || '0', 10) || 0;
   const patch = parseInt(versionNumbers[2] || '0', 10) || 0;
 
+  logger.debug(`[parseSemver] Parsed numbers: major=${major}, minor=${minor}, patch=${patch}`);
+
   // Parse pre-release identifiers (e.g., "beta.1" -> ["beta", "1"])
   let prerelease = [];
   if (versionParts.length > 1) {
@@ -242,9 +279,13 @@ function parseSemver(version) {
       const num = parseInt(id, 10);
       return isNaN(num) ? id : num;
     });
+    logger.debug(`[parseSemver] Parsed prerelease: [${prerelease.join(', ')}]`);
   }
 
-  return { major, minor, patch, prerelease };
+  const result = { major, minor, patch, prerelease };
+  logger.debug(`[parseSemver] Result: ${result.major}.${result.minor}.${result.patch}${prerelease.length > 0 ? '-' + prerelease.join('.') : ''}`);
+
+  return result;
 }
 
 /**
@@ -269,8 +310,14 @@ const PRERELEASE_PRIORITY = {
 function comparePrerelease(a, b) {
   // Empty pre-release (stable) is greater than any non-empty pre-release
   if (a.length === 0 && b.length === 0) return 0;
-  if (a.length === 0) return 1; // stable > prerelease
-  if (b.length === 0) return -1; // prerelease < stable
+  if (a.length === 0) {
+    logger.debug(`[comparePrerelease] a=[] (stable) > b=[${b.join(', ')}] (prerelease)`);
+    return 1; // stable > prerelease
+  }
+  if (b.length === 0) {
+    logger.debug(`[comparePrerelease] a=[${a.join(', ')}] (prerelease) < b=[] (stable)`);
+    return -1; // prerelease < stable
+  }
 
   // Compare each identifier
   const maxLength = Math.max(a.length, b.length);
@@ -280,13 +327,25 @@ function comparePrerelease(a, b) {
 
     // If one array is shorter, it has lower priority
     if (idA === null && idB === null) return 0;
-    if (idA === null) return -1;
-    if (idB === null) return 1;
+    if (idA === null) {
+      logger.debug(`[comparePrerelease] Index ${i}: a is shorter => a < b`);
+      return -1;
+    }
+    if (idB === null) {
+      logger.debug(`[comparePrerelease] Index ${i}: b is shorter => a > b`);
+      return 1;
+    }
 
     // Compare numeric identifiers
     if (typeof idA === 'number' && typeof idB === 'number') {
-      if (idA < idB) return -1;
-      if (idA > idB) return 1;
+      if (idA < idB) {
+        logger.debug(`[comparePrerelease] Index ${i}: ${idA} < ${idB} => a < b`);
+        return -1;
+      }
+      if (idA > idB) {
+        logger.debug(`[comparePrerelease] Index ${i}: ${idA} > ${idB} => a > b`);
+        return 1;
+      }
     }
     // Compare string identifiers with priority
     else if (typeof idA === 'string' && typeof idB === 'string') {
@@ -295,21 +354,42 @@ function comparePrerelease(a, b) {
 
       // Both have defined priority
       if (priorityA !== 999 && priorityB !== 999) {
-        if (priorityA < priorityB) return -1;
-        if (priorityA > priorityB) return 1;
+        if (priorityA < priorityB) {
+          logger.debug(`[comparePrerelease] Index ${i}: "${idA}" (priority ${priorityA}) < "${idB}" (priority ${priorityB}) => a < b`);
+          return -1;
+        }
+        if (priorityA > priorityB) {
+          logger.debug(`[comparePrerelease] Index ${i}: "${idA}" (priority ${priorityA}) > "${idB}" (priority ${priorityB}) => a > b`);
+          return 1;
+        }
       }
       // One has defined priority
-      else if (priorityA !== 999) return -1;
-      else if (priorityB !== 999) return 1;
+      else if (priorityA !== 999) {
+        logger.debug(`[comparePrerelease] Index ${i}: "${idA}" (priority ${priorityA}) < "${idB}" (no priority) => a < b`);
+        return -1;
+      }
+      else if (priorityB !== 999) {
+        logger.debug(`[comparePrerelease] Index ${i}: "${idA}" (no priority) > "${idB}" (priority ${priorityB}) => a > b`);
+        return 1;
+      }
       // Neither has defined priority - compare lexicographically
       else {
         const cmp = idA.localeCompare(idB);
-        if (cmp !== 0) return cmp < 0 ? -1 : 1;
+        if (cmp !== 0) {
+          logger.debug(`[comparePrerelease] Index ${i}: "${idA}" ${cmp < 0 ? '<' : '>'} "${idB}" (lexicographic) => ${cmp < 0 ? 'a < b' : 'a > b'}`);
+          return cmp < 0 ? -1 : 1;
+        }
       }
     }
     // Mixed types: numeric < string
-    else if (typeof idA === 'number') return -1;
-    else return 1;
+    else if (typeof idA === 'number') {
+      logger.debug(`[comparePrerelease] Index ${i}: ${idA} (number) < "${idB}" (string) => a < b`);
+      return -1;
+    }
+    else {
+      logger.debug(`[comparePrerelease] Index ${i}: "${idA}" (string) > ${idB} (number) => a > b`);
+      return 1;
+    }
   }
 
   return 0;
@@ -322,22 +402,37 @@ function comparePrerelease(a, b) {
  * @returns {number} -1 if v1 < v2, 0 if v1 = v2, 1 if v1 > v2
  */
 function compareVersions(v1, v2) {
+  logger.info(`[compareVersions] Comparing versions: "${v1}" vs "${v2}"`);
+
   const semver1 = parseSemver(v1);
   const semver2 = parseSemver(v2);
 
   // Compare major, minor, patch
   if (semver1.major !== semver2.major) {
-    return semver1.major < semver2.major ? -1 : 1;
+    const result = semver1.major < semver2.major ? -1 : 1;
+    logger.info(`[compareVersions] Major version differs: ${semver1.major} vs ${semver2.major} => ${result === -1 ? v1 + ' < ' + v2 : v1 + ' > ' + v2}`);
+    return result;
   }
   if (semver1.minor !== semver2.minor) {
-    return semver1.minor < semver2.minor ? -1 : 1;
+    const result = semver1.minor < semver2.minor ? -1 : 1;
+    logger.info(`[compareVersions] Minor version differs: ${semver1.minor} vs ${semver2.minor} => ${result === -1 ? v1 + ' < ' + v2 : v1 + ' > ' + v2}`);
+    return result;
   }
   if (semver1.patch !== semver2.patch) {
-    return semver1.patch < semver2.patch ? -1 : 1;
+    const result = semver1.patch < semver2.patch ? -1 : 1;
+    logger.info(`[compareVersions] Patch version differs: ${semver1.patch} vs ${semver2.patch} => ${result === -1 ? v1 + ' < ' + v2 : v1 + ' > ' + v2}`);
+    return result;
   }
 
   // Compare pre-release identifiers
-  return comparePrerelease(semver1.prerelease, semver2.prerelease);
+  const prereleaseResult = comparePrerelease(semver1.prerelease, semver2.prerelease);
+  if (prereleaseResult !== 0) {
+    logger.info(`[compareVersions] Prerelease differs: [${semver1.prerelease.join(', ')}] vs [${semver2.prerelease.join(', ')}] => ${prereleaseResult === -1 ? v1 + ' < ' + v2 : v1 + ' > ' + v2}`);
+  } else {
+    logger.info(`[compareVersions] Versions are equal: ${v1} = ${v2}`);
+  }
+
+  return prereleaseResult;
 }
 
 /**
@@ -363,14 +458,30 @@ async function main() {
     const hasEmptyState = !localVersion;
 
     if (!hasEmptyState) {
+      logger.info('='.repeat(60));
+      logger.info('VERSION COMPARISON START');
+      logger.info('='.repeat(60));
+      logger.info(`Local version: "${localVersion}"`);
+      logger.info(`Current version: "${currentVersion}"`);
+      logger.info('Critical edge cases to verify:');
+      logger.info('  - Multi-digit comparison (e.g., v0.1.9 vs v0.1.10)');
+      logger.info('  - Multi-digit version numbers (e.g., v1.10.0 vs v1.9.9)');
+      logger.info('  - Pre-release comparison (e.g., alpha < beta < rc < stable)');
+      logger.info('-'.repeat(60));
+
       const versionComparison = compareVersions(currentVersion, localVersion);
 
+      logger.info('-'.repeat(60));
       if (versionComparison === 0) {
-        logger.info('Version unchanged - no update needed');
+        logger.info('✅ Version unchanged - no update needed');
+        logger.info('='.repeat(60));
         return;
       }
 
-      logger.info(`Version changed: ${localVersion} -> ${currentVersion}`);
+      const comparisonSymbol = versionComparison === -1 ? '<' : '>';
+      logger.info(`📊 Version comparison result: "${currentVersion}" ${comparisonSymbol} "${localVersion}"`);
+      logger.info(`🔄 Version changed: ${localVersion} -> ${currentVersion}`);
+      logger.info('='.repeat(60));
     } else {
       logger.info('Empty state detected - treating as new version scenario');
     }
