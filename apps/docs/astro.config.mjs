@@ -65,6 +65,7 @@ export default defineConfig({
             components: {
                 Header: './src/components/StarlightHeader.astro',
                 Footer: './src/components/StarlightFooter.astro',
+                MarkdownContent: './src/components/MarkdownContent.astro',
             },
             sidebar: [
                 {

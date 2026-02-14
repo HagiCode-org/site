@@ -119,6 +119,52 @@ export const SITE_LINKS = {
 } as const;
 
 /**
+ * GLM（智谱 AI）推广链接配置
+ * 用于博客广告区域和其他推广位置
+ */
+export const GLM_PROMO_LINKS = {
+    /** 智谱 GLM Coding 订阅链接（带推广码） */
+    glmCoding: {
+        url: 'https://www.bigmodel.cn/glm-coding?ic=14BY54APZA',
+        label: '立即开拼',
+        title: '智谱 GLM Coding: 20+ 大编程工具无缝支持',
+        description: 'Claude Code、Cline 等 20+ 大编程工具无缝支持，"码力"全开，越拼越爽！',
+        discount: '10% 优惠',
+    },
+
+    /** Docker Compose 部署指南链接 */
+    dockerComposeGuide: {
+        url: '/installation/docker-compose/',
+        label: '查看部署指南',
+        title: 'Docker Compose 部署: 一键部署 Hagicode',
+        description: '一键部署 Hagicode，快速体验 AI 编程助手',
+        isInternal: true,
+    },
+} as const;
+
+/**
+ * 获取 GLM Coding 推广链接
+ * @returns GLM Coding 推广链接 URL
+ */
+export function getGlmCodingUrl(): string {
+    return GLM_PROMO_LINKS.glmCoding.url;
+}
+
+/**
+ * 获取 Docker Compose 指南链接（带 base 路径）
+ * @returns Docker Compose 指南完整 URL
+ */
+export function getDockerComposeGuideUrl(): string {
+    const basePath = getDocsBasePath();
+    const path = GLM_PROMO_LINKS.dockerComposeGuide.url;
+    // 确保 base 路径和链接路径正确拼接
+    if (basePath === '/') {
+        return path;
+    }
+    return `${basePath}${path}`.replace(/\/+/g, '/');
+}
+
+/**
  * 公共链接类型
  */
 export type PublicLinkKey = keyof typeof SITE_LINKS;
