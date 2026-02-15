@@ -42,20 +42,35 @@ export interface DesktopAsset {
 export interface DesktopVersion {
   /** 版本号 (如 "v0.1.1") */
   version: string;
-  /** 文件名数组 */
-  files: string[];
-  /** 详细文件信息 */
-  assets: DesktopAsset[];
+  /** 文件详细信息数组 */
+  files: DesktopAsset[];
 }
 
 /**
- * index.json 响应结构
+ * 渠道信息
+ */
+export interface ChannelInfo {
+  /** 该渠道最新版本号 */
+  latest: string;
+  /** 该渠道包含的版本号列表 */
+  versions: string[];
+}
+
+/**
+ * index.json 响应结构（更新后）
  */
 export interface DesktopIndexResponse {
-  /** Unix 时间戳 */
-  updatedAt: number;
-  /** 版本列表 */
+  /** Unix 时间戳或 ISO 时间戳字符串 */
+  updatedAt: number | string;
+  /** 版本列表（完整历史） */
   versions: DesktopVersion[];
+  /** 渠道信息（可选，向后兼容） */
+  channels?: {
+    /** 稳定版渠道 */
+    stable: ChannelInfo;
+    /** 测试版渠道 */
+    beta: ChannelInfo;
+  };
 }
 
 /**

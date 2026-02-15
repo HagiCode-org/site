@@ -3,12 +3,15 @@
  * 支持自动平台检测、下拉菜单选择版本、Docker 版本跳转
  * 可用于 Header（紧凑模式）和 Hero 区域（完整模式）
  *
- * 版本数据在构建时从服务端传入，无需客户端网络请求
+ * 版本数据在构建时从服务端传入，也支持客户端获取
  */
 import { useState, useMemo, useEffect } from 'react';
 import styles from './InstallButton.module.css';
 import { withBasePath } from '@/utils/path';
 import type { DesktopVersion, PlatformGroup } from '@/types/desktop';
+
+// 动态导入工具函数的类型
+type DesktopUtils = typeof import('@/utils/desktop');
 
 interface DownloadOption {
   label: string;
@@ -54,6 +57,13 @@ interface InstallButtonProps {
    * 可选的额外类名
    */
   className?: string;
+
+  /**
+   * 版本渠道（默认 'stable'）
+   * - stable: 稳定版
+   * - beta: 测试版
+   */
+  channel?: 'stable' | 'beta';
 }
 
 // 平台检测函数
@@ -124,18 +134,50 @@ export default function InstallButton({
   versionError = null,
   variant = 'full',
   showDropdown = true,
-  className = ''
+  className = '',
+  channel = 'stable'
 }: InstallButtonProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [currentVersion, setCurrentVersion] = useState<DesktopVersion | null>(version);
+  const [currentPlatforms, setCurrentPlatforms] = useState<PlatformGroup[]>(platforms);
+
+  // 客户端数据获取（如果服务端没有提供数据）
+  useEffect(() => {
+    // 只在没有服务端数据时才获取
+    if (version || platforms.length > 0 || versionError) {
+      return; // 已有数据或错误，无需重新获取
+    }
+
+    // 动态导入以避免服务端渲染问题
+    import('@/utils/desktop').then(({ fetchDesktopVersions, groupAssetsByPlatform }) => {
+      return fetchDesktopVersions()
+        .then((data) => {
+          // 优先使用 channels.stable.latest
+          let latest = data.versions[0];
+          if (data.channels && data.channels.stable && data.channels.stable.latest) {
+            const stableLatestVersion = data.channels.stable.latest;
+            latest = data.versions.find(v => v.version === stableLatestVersion) || data.versions[0];
+          }
+
+          if (latest) {
+            setCurrentVersion(latest);
+            setCurrentPlatforms(groupAssetsByPlatform(latest.files));
+          }
+        })
+        .catch((err) => {
+          console.error('Failed to fetch desktop versions:', err);
+        });
+    });
+  }, [version, platforms, versionError]);
 
   // 生成唯一的组件 ID
   const buttonId = useMemo(() => `install-button-${Math.random().toString(36).substring(2, 11)}`, []);
 
   // 转换平台数据格式
   const platformData = useMemo(() => {
-    if (!platforms || platforms.length === 0) return [];
-    return convertPlatformGroups(platforms);
-  }, [platforms]);
+    if (!currentPlatforms || currentPlatforms.length === 0) return [];
+    return convertPlatformGroups(currentPlatforms);
+  }, [currentPlatforms]);
 
   // 根据用户系统设置默认下载链接
   const currentUrl = useMemo(() => {
@@ -218,7 +260,7 @@ export default function InstallButton({
   }
 
   // 如果没有版本数据，显示降级链接
-  if (!version || platformData.length === 0) {
+  if (!currentVersion || platformData.length === 0) {
     return (
       <div className={`${styles.installButtonWrapper} ${styles[`installButtonWrapper--${variant}`]} ${className}`}>
         <div className={styles.splitButtonContainer}>

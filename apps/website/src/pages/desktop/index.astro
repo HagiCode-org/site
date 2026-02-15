@@ -22,29 +22,68 @@ let versionData: {
   allVersions: DesktopVersion[];
   latestPlatforms: PlatformGroup[];
   error: string | null;
+  channels: {
+    stable: { latest: DesktopVersion | null; all: DesktopVersion[] };
+    beta: { latest: DesktopVersion | null; all: DesktopVersion[] };
+  };
 } = {
   latest: null,
   allVersions: [],
   latestPlatforms: [],
   error: null,
+  channels: {
+    stable: { latest: null, all: [] },
+    beta: { latest: null, all: [] }
+  }
 };
 
 try {
   const data = await fetchDesktopVersions();
   versionData.allVersions = data.versions;
-  versionData.latest = data.versions[0] || null;
+
+  // 优先使用 channels.stable.latest 作为默认显示的版本
+  if (data.channels && data.channels.stable && data.channels.stable.latest) {
+    const stableLatestVersion = data.channels.stable.latest;
+    versionData.latest = data.versions.find(v => v.version === stableLatestVersion) || data.versions[0] || null;
+  } else {
+    versionData.latest = data.versions[0] || null;
+  }
 
   if (versionData.latest) {
     versionData.latestPlatforms = groupAssetsByPlatform(
-      versionData.latest.assets
+      versionData.latest.files
     );
+  }
+
+  // 处理渠道数据（如果存在）
+  if (data.channels) {
+    // 从 channels 数据中提取版本信息
+    const stableVersions = data.channels.stable?.versions || [];
+    const betaVersions = data.channels.beta?.versions || [];
+    const stableLatest = data.channels.stable?.latest;
+    const betaLatest = data.channels.beta?.latest;
+
+    // 查找对应的版本对象
+    if (stableLatest) {
+      versionData.channels.stable.latest = data.versions.find(v => v.version === stableLatest) || null;
+    }
+    if (betaLatest) {
+      versionData.channels.beta.latest = data.versions.find(v => v.version === betaLatest) || null;
+    }
+
+    // 获取渠道的所有版本
+    versionData.channels.stable.all = data.versions.filter(v => stableVersions.includes(v.version));
+    versionData.channels.beta.all = data.versions.filter(v => betaVersions.includes(v.version));
   }
 } catch (e) {
   versionData.error = e instanceof Error ? e.message : String(e);
   console.error("Failed to fetch desktop versions:", e);
 }
 
-const { latest, allVersions, latestPlatforms, error } = versionData;
+const { latest, allVersions, latestPlatforms, error, channels } = versionData;
+
+// 判断是否有渠道数据可用
+const hasChannels = channels.stable.latest !== null || channels.beta.latest !== null;
 
 // 为每个平台创建下载选项映射
 const platformOptions = latestPlatforms.map(platform => {
@@ -84,6 +123,28 @@ const description = "下载 Hagicode Desktop，本地化的 AI 代码助手。�
 
 // 获取站点基础路径
 const siteBase = import.meta.env.VITE_SITE_BASE || "/";
+
+// 准备渠道数据用于客户端脚本（序列化为 JSON 字符串）
+const channelDataForClient = {
+  stable: {
+    latest: channels.stable.latest?.version || '',
+    platforms: channels.stable.latest ? channels.stable.latest.files.map(f => ({
+      name: f.name,
+      path: f.path,
+      size: f.size
+    })) : []
+  },
+  beta: {
+    latest: channels.beta.latest?.version || '',
+    platforms: channels.beta.latest ? channels.beta.latest.files.map(f => ({
+      name: f.name,
+      path: f.path,
+      size: f.size
+    })) : []
+  }
+};
+
+const channelDataJSON = JSON.stringify(channelDataForClient);
 ---
 
 <!doctype html>
@@ -182,6 +243,39 @@ const siteBase = import.meta.env.VITE_SITE_BASE || "/";
               <span>一键安装，开箱即用</span>
             </div>
           </div>
+
+          {hasChannels && (
+            <div class="channel-selector" id="channel-selector">
+              <button
+                class="channel-tab channel-tab--active"
+                data-channel="stable"
+                aria-selected="true"
+              >
+                <span class="channel-icon">🟢</span>
+                <span class="channel-label">稳定版</span>
+              </button>
+              <button
+                class="channel-tab"
+                data-channel="beta"
+                aria-selected="false"
+              >
+                <span class="channel-icon">🧪</span>
+                <span class="channel-label">测试版 Beta</span>
+              </button>
+            </div>
+          )}
+
+          {hasChannels && (
+            <div class="beta-warning" id="beta-warning" style="display: none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="warning-icon">
+                <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="warning-content">
+                <strong>测试版警告</strong>
+                <p>这是一个测试版本，可能存在不稳定问题。建议用于测试环境，生产环境请使用稳定版。</p>
+              </div>
+            </div>
+          )}
 
           {error ? (
             <div class="error-message">
@@ -519,60 +613,64 @@ const siteBase = import.meta.env.VITE_SITE_BASE || "/";
       <section class="version-history">
         <h2>版本历史</h2>
         <div class="version-list">
-          {allVersions.length > 0 ? (
-            allVersions.map((version) => (
-              <div class="version-item">
-                <div class="version-header">
-                  <h3>{version.version}</h3>
-                  {version === latest && (
-                    <span class="latest-badge">最新版本</span>
-                  )}
-                </div>
-                <details>
-                  <summary>查看下载选项</summary>
-                  <div class="version-downloads">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>平台</th>
-                          <th>类型</th>
-                          <th>文件大小</th>
-                          <th>下载</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {groupAssetsByPlatform(version.assets).map((platform) =>
-                          platform.downloads.map((download) => (
-                            <tr>
-                              <td>{platform.platform}</td>
-                              <td>{download.filename}</td>
-                              <td>{download.size}</td>
-                              <td>
-                                <a
-                                  href={download.url}
-                                  class="btn-link"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  下载
-                                </a>
-                              </td>
-                            </tr>
-                          ))
-                        )}
-                      </tbody>
-                    </table>
-                  </div>
-                </details>
+          {allVersions.map((version) => (
+            <div class="version-item">
+              <div class="version-header">
+                <h3>{version.version}</h3>
+                {version === latest && (
+                  <span class="latest-badge">最新版本</span>
+                )}
               </div>
-            ))
-          ) : (
-            <p>暂无版本历史</p>
-          )}
+              <details>
+                <summary>查看下载选项</summary>
+                <div class="version-downloads">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>平台</th>
+                        <th>类型</th>
+                        <th>文件大小</th>
+                        <th>下载</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {groupAssetsByPlatform(version.files).map((platform) =>
+                        platform.downloads.map((download) => (
+                          <tr>
+                            <td>{platform.platform}</td>
+                            <td>{download.filename}</td>
+                            <td>{download.size}</td>
+                            <td>
+                              <a
+                                href={download.url}
+                                class="btn-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                下载
+                              </a>
+                            </td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </details>
+            </div>
+          ))}
         </div>
       </section>
 
       <!-- FAQ -->
+
+      <!-- 渠道数据存储（作为 data 属性） -->
+      <div
+        id="channel-data"
+        style="display:none"
+        data-has-channels={hasChannels}
+        data-channels={channelDataJSON}
+      ></div>
       <section class="faq">
         <h2>常见问题</h2>
         <div class="faq-list">
@@ -740,7 +838,7 @@ const siteBase = import.meta.env.VITE_SITE_BASE || "/";
 
     <Footer client:load />
 
-    <!-- 平台检测和按钮重排序脚本 -->
+    <!-- 平台检测和按钮重排序脚本 + 渠道切换脚本 -->
     <script type="module">
       (function() {
         function detectOS() {
@@ -839,6 +937,263 @@ const siteBase = import.meta.env.VITE_SITE_BASE || "/";
         } else {
           initPlatformDetection();
         }
+      })();
+    </script>
+    </script>
+
+    <!-- 渠道切换脚本 -->
+    <script type="module">
+      (function() {
+        // 从 data 属性中读取渠道信息
+        var channelDataElement = document.getElementById('channel-data');
+        if (!channelDataElement) {
+          console.log('[Channel Switch] Channel data element not found');
+          return;
+        }
+
+        var hasChannels = channelDataElement.dataset.hasChannels === 'true';
+        var channelsJSON = channelDataElement.dataset.channels;
+        var channelData = channelsJSON ? JSON.parse(channelsJSON) : {};
+        console.log('[Channel Switch] Loaded channel data:', channelData);
+
+        if (!hasChannels) {
+          console.log('[Channel Switch] Channels not available');
+          return;
+        }
+
+        // 当前选择的渠道
+        var currentChannel = 'stable';
+
+        // 切换渠道
+        function switchChannel(channel) {
+          console.log('[Channel Switch] Switching to:', channel);
+          currentChannel = channel;
+
+          // 更新渠道标签页状态
+          document.querySelectorAll('.channel-tab').forEach(function(tab) {
+            var tabChannel = tab.dataset.channel;
+            if (tabChannel === channel) {
+              tab.classList.add('channel-tab--active');
+              tab.setAttribute('aria-selected', 'true');
+            } else {
+              tab.classList.remove('channel-tab--active');
+              tab.setAttribute('aria-selected', 'false');
+            }
+          });
+
+          // 显示/隐藏 Beta 警告
+          var betaWarning = document.getElementById('beta-warning');
+          if (betaWarning) {
+            betaWarning.style.display = channel === 'beta' ? 'flex' : 'none';
+          }
+
+          // 更新下载按钮
+          updateDownloadButtons(channel);
+
+          // 更新版本信息
+          updateVersionInfo(channel);
+        }
+
+        // 更新下载按钮 - 更新现有组件的链接和数据
+        function updateDownloadButtons(channel) {
+          var wrappers = document.querySelectorAll('.download-option-wrapper');
+          if (!wrappers || wrappers.length === 0) {
+            console.warn('[Channel Switch] No download button wrappers found');
+            return;
+          }
+
+          var channelInfo = channelData[channel];
+          if (!channelInfo || !channelInfo.platforms || channelInfo.platforms.length === 0) {
+            console.warn('[Channel Switch] No platforms available for channel:', channel);
+            return;
+          }
+
+          console.log('[Channel Switch] Updating download buttons for channel:', channel, 'with', channelInfo.platforms.length, 'files');
+
+          // 按平台分组文件
+          var platforms = {
+            windows: [],
+            macos: [],
+            linux: []
+          };
+
+          channelInfo.platforms.forEach(function(file) {
+            var name = file.name.toLowerCase();
+            if (name.includes('.exe') || name.includes('.appx')) {
+              platforms.windows.push(file);
+            } else if (name.includes('.dmg') || name.includes('-mac.zip')) {
+              platforms.macos.push(file);
+            } else if (name.includes('.appimage') || name.includes('.deb') || name.includes('.tar.gz')) {
+              platforms.linux.push(file);
+            }
+          });
+
+          // 更新每个平台的下载按钮
+          wrappers.forEach(function(wrapper) {
+            var platform = wrapper.dataset.platform;
+            if (!platform || !platforms[platform] || platforms[platform].length === 0) {
+              return; // 跳过没有文件的平台
+            }
+
+            var platformFiles = platforms[platform];
+
+            // 获取推荐文件
+            var recommendedFile = platformFiles[0];
+            if (platform === 'windows') {
+              recommendedFile = platformFiles.find(function(f) { return f.name.indexOf('Setup') >= 0; }) || platformFiles[0];
+            } else if (platform === 'macos') {
+              recommendedFile = platformFiles.find(function(f) { return f.name.indexOf('arm64') >= 0; }) || platformFiles[0];
+            } else if (platform === 'linux') {
+              recommendedFile = platformFiles.find(function(f) { return f.name.indexOf('.AppImage') >= 0; }) || platformFiles[0];
+            }
+
+            // 格式化文件大小
+            var sizeInMB = (recommendedFile.size / (1024 * 1024)).toFixed(0);
+            var size = parseFloat(sizeInMB) >= 1000 ? (parseFloat(sizeInMB) / 1024).toFixed(1) + ' GB' : sizeInMB + ' MB';
+            var downloadUrl = 'https://desktop.dl.hagicode.com/' + recommendedFile.path;
+
+            // 更新主下载按钮
+            var mainBtn = wrapper.querySelector('.btn-download-main');
+            if (mainBtn) {
+              mainBtn.href = downloadUrl;
+              mainBtn.setAttribute('download', recommendedFile.name);
+            }
+
+            // 更新按钮副标签（文件名）
+            var sublabel = wrapper.querySelector('.btn-sublabel');
+            if (sublabel) {
+              sublabel.textContent = recommendedFile.name;
+            }
+
+            // 更新下拉菜单项
+            var dropdownMenu = wrapper.querySelector('.dropdown-menu');
+            if (dropdownMenu) {
+              // 清空现有菜单项
+              dropdownMenu.innerHTML = '';
+
+              // 添加新的菜单项
+              platformFiles.forEach(function(file) {
+                var fileSize = (file.size / (1024 * 1024)).toFixed(0);
+                var formattedSize = parseFloat(fileSize) >= 1000 ? (parseFloat(fileSize) / 1024).toFixed(1) + ' GB' : fileSize + ' MB';
+                var fileUrl = 'https://desktop.dl.hagicode.com/' + file.path;
+
+                var li = document.createElement('li');
+                li.setAttribute('role', 'none');
+
+                var a = document.createElement('a');
+                a.href = fileUrl;
+                a.className = 'dropdown-item';
+                a.setAttribute('role', 'option');
+                a.setAttribute('target', '_blank');
+                a.setAttribute('rel', 'noopener noreferrer');
+                a.dataset.label = file.name;
+                a.dataset.url = fileUrl;
+
+                a.style.display = 'flex';
+                a.style.alignItems = 'center';
+                a.style.justifyContent = 'space-between';
+                a.style.gap = '0.5rem';
+                a.style.padding = '0.75rem 1rem';
+                a.style.textDecoration = 'none';
+                a.style.borderRadius = '0.375rem';
+                a.style.transition = 'all 0.15s ease-out';
+                a.style.fontSize = '0.875rem';
+                a.style.color = 'var(--color-text-secondary)';
+
+                var labelSpan = document.createElement('span');
+                labelSpan.className = 'dropdown-item-label';
+                labelSpan.textContent = file.name;
+                labelSpan.style.flex = '1';
+
+                var sizeSpan = document.createElement('span');
+                sizeSpan.className = 'dropdown-item-size';
+                sizeSpan.textContent = formattedSize;
+                sizeSpan.style.fontSize = '0.75rem';
+                sizeSpan.style.color = 'var(--color-text-muted)';
+
+                a.appendChild(labelSpan);
+                a.appendChild(sizeSpan);
+                li.appendChild(a);
+                dropdownMenu.appendChild(li);
+
+                // 添加点击事件
+                a.addEventListener('click', function(e) {
+                  e.preventDefault();
+
+                  // 更新主按钮
+                  var sublabel = wrapper.querySelector('.btn-sublabel');
+                  var mainLink = wrapper.querySelector('.btn-download-main');
+
+                  if (sublabel && mainLink) {
+                    sublabel.textContent = file.name;
+                    mainLink.href = fileUrl;
+                    mainLink.setAttribute('download', file.name);
+                  }
+
+                  // 关闭下拉菜单
+                  var toggle = wrapper.querySelector('.btn-dropdown-toggle');
+                  if (toggle) {
+                    toggle.setAttribute('aria-expanded', 'false');
+                  }
+                });
+
+                // 添加悬停效果
+                a.addEventListener('mouseenter', function() {
+                  a.style.background = 'var(--color-surface-hover)';
+                  a.style.color = 'var(--color-text)';
+                });
+
+                a.addEventListener('mouseleave', function() {
+                  a.style.background = '';
+                  a.style.color = 'var(--color-text-secondary)';
+                });
+              });
+            }
+          });
+
+          // 重新绑定平台检测
+          setTimeout(function() {
+            if (typeof highlightCurrentPlatform === 'function') {
+              highlightCurrentPlatform();
+            }
+          }, 50);
+        }
+
+        // 更新版本信息
+        function updateVersionInfo(channel) {
+          var versionInfoEl = document.querySelector('.version-info');
+          if (!versionInfoEl) return;
+
+          var channelInfo = channelData[channel];
+          if (channelInfo && channelInfo.latest) {
+            var betaTag = channel === 'beta' ? ' <span class="beta-tag">[测试版]</span>' : '';
+            versionInfoEl.innerHTML = '最新版本: ' + channelInfo.latest + betaTag;
+          }
+        }
+
+        // 初始化渠道切换
+        function initChannelSwitch() {
+          var channelTabs = document.querySelectorAll('.channel-tab');
+          console.log('[Channel Switch] Found tabs:', channelTabs.length);
+
+          channelTabs.forEach(function(tab) {
+            tab.addEventListener('click', function(e) {
+              e.preventDefault();
+              var channel = tab.dataset.channel;
+              console.log('[Channel Switch] Tab clicked:', channel);
+              switchChannel(channel);
+            });
+          });
+        }
+
+        // 页面加载完成后初始化
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initChannelSwitch);
+        } else {
+          initChannelSwitch();
+        }
+
+        console.log('[Channel Switch] Initialized successfully');
       })();
     </script>
 

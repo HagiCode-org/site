@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --port ${PORT_DOCS:-31265}",
     "start": "astro dev",
     "build": "astro build && node ../../scripts/custom-404.js",
-    "preview": "astro preview",
+    "preview": "astro preview --port ${PORT_DOCS:-31265}",
     "astro": "astro",
     "typecheck": "tsc --noEmit"
   },

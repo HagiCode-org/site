@@ -30,6 +30,11 @@ interface HeroSectionProps {
   desktopPlatforms?: PlatformGroup[];
   /** Desktop 版本获取错误信息 */
   desktopVersionError?: string | null;
+  /** Desktop 渠道数据 */
+  desktopChannels?: {
+    stable: { latest: DesktopVersion | null; all: DesktopVersion[] };
+    beta: { latest: DesktopVersion | null; all: DesktopVersion[] };
+  };
 }
 
 // Icon props type
@@ -155,7 +160,8 @@ const itemVariants: Variants = {
 export default function HeroSection({
   desktopVersion = null,
   desktopPlatforms = [],
-  desktopVersionError = null
+  desktopVersionError = null,
+  desktopChannels
 }: HeroSectionProps) {
   const [currentTagline, setCurrentTagline] = useState(0);
   const [displayText, setDisplayText] = useState('');

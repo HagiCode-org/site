@@ -16,6 +16,10 @@ interface NavbarProps {
   desktopVersion?: DesktopVersion | null;
   desktopPlatforms?: PlatformGroup[];
   desktopVersionError?: string | null;
+  desktopChannels?: {
+    stable: { latest: DesktopVersion | null; all: DesktopVersion[] };
+    beta: { latest: DesktopVersion | null; all: DesktopVersion[] };
+  };
 }
 
 /**
@@ -97,7 +101,8 @@ export default function Navbar({
   className = "",
   desktopVersion = null,
   desktopPlatforms = [],
-  desktopVersionError = null
+  desktopVersionError = null,
+  desktopChannels
 }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

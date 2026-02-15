@@ -3,6 +3,14 @@
  *
  * 统一管理站点间的跳转链接和公共链接
  * 根据环境自动切换开发/生产环境的链接
+ *
+ * 开发环境链接配置
+ *
+ * 端口可通过环境变量配置：
+ * - PORT_DOCS: 文档站点端口（默认 31265）
+ * - PORT_WEBSITE: 营销站点端口（默认 31264）
+ *
+ * 如需自定义端口，请在 .env.local 中设置对应的环境变量
  */
 
 /**
@@ -49,14 +57,14 @@ export interface LinkConfig {
 export const SITE_LINKS = {
     /** 文档站点 */
     docs: {
-        dev: 'http://localhost:4321/', // docs 应用开发环境端口
+        dev: 'http://localhost:31265/', // docs 应用开发环境端口
         prod: 'https://docs.hagicode.com/',
         external: false,
     } as LinkConfig,
 
     /** 官方营销站点 */
     website: {
-        dev: 'http://localhost:4322/', // website 应用开发环境端口
+        dev: 'http://localhost:31264/', // website 应用开发环境端口
         prod: 'https://hagicode.com/',
         external: false,
     } as LinkConfig,
@@ -77,42 +85,42 @@ export const SITE_LINKS = {
 
     /** 博客页面（相对于文档站点） */
     blog: {
-        dev: 'http://localhost:4321/blog/',
+        dev: 'http://localhost:31265/blog/',
         prod: 'https://docs.hagicode.com/blog/',
         external: false,
     } as LinkConfig,
 
     /** 产品概述（相对于文档站点） */
     productOverview: {
-        dev: 'http://localhost:4321/product-overview/',
+        dev: 'http://localhost:31265/product-overview/',
         prod: 'https://docs.hagicode.com/product-overview/',
         external: false,
     } as LinkConfig,
 
     /** 桌面应用下载页 */
     desktop: {
-        dev: 'http://localhost:4322/desktop/',
+        dev: 'http://localhost:31264/desktop/',
         prod: 'https://hagicode.com/desktop/',
         external: false,
     } as LinkConfig,
 
     /** Docker Compose 安装指南（相对于文档站点） */
     dockerCompose: {
-        dev: 'http://localhost:4321/installation/docker-compose/',
+        dev: 'http://localhost:31265/installation/docker-compose/',
         prod: 'https://docs.hagicode.com/installation/docker-compose/',
         external: false,
     } as LinkConfig,
 
     /** 容器部署落地页 */
     container: {
-        dev: 'http://localhost:4322/container/',
+        dev: 'http://localhost:31264/container/',
         prod: 'https://hagicode.com/container/',
         external: false,
     } as LinkConfig,
 
     /** 博客 RSS 订阅（相对于文档站点） */
     rss: {
-        dev: 'http://localhost:4321/blog/rss.xml',
+        dev: 'http://localhost:31265/blog/rss.xml',
         prod: 'https://docs.hagicode.com/blog/rss.xml',
         external: false,
     } as LinkConfig,

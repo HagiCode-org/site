@@ -34,17 +34,54 @@ let desktopVersionData: {
   latest: DesktopVersion | null;
   platforms: PlatformGroup[];
   error: string | null;
+  channels: {
+    stable: { latest: DesktopVersion | null; all: DesktopVersion[] };
+    beta: { latest: DesktopVersion | null; all: DesktopVersion[] };
+  };
 } = {
   latest: null,
   platforms: [],
   error: null,
+  channels: {
+    stable: { latest: null, all: [] },
+    beta: { latest: null, all: [] }
+  }
 };
 
 try {
   const data = await fetchDesktopVersions();
-  desktopVersionData.latest = data.versions[0] || null;
+
+  // 优先使用 channels.stable.latest 作为默认显示的版本
+  if (data.channels && data.channels.stable && data.channels.stable.latest) {
+    const stableLatestVersion = data.channels.stable.latest;
+    desktopVersionData.latest = data.versions.find(v => v.version === stableLatestVersion) || data.versions[0] || null;
+  } else {
+    desktopVersionData.latest = data.versions[0] || null;
+  }
+
   if (desktopVersionData.latest) {
-    desktopVersionData.platforms = groupAssetsByPlatform(desktopVersionData.latest.assets);
+    desktopVersionData.platforms = groupAssetsByPlatform(desktopVersionData.latest.files);
+  }
+
+  // 处理渠道数据（如果存在）
+  if (data.channels) {
+    // 从 channels 数据中提取版本信息
+    const stableVersions = data.channels.stable?.versions || [];
+    const betaVersions = data.channels.beta?.versions || [];
+    const stableLatest = data.channels.stable?.latest;
+    const betaLatest = data.channels.beta?.latest;
+
+    // 查找对应的版本对象
+    if (stableLatest) {
+      desktopVersionData.channels.stable.latest = data.versions.find(v => v.version === stableLatest) || null;
+    }
+    if (betaLatest) {
+      desktopVersionData.channels.beta.latest = data.versions.find(v => v.version === betaLatest) || null;
+    }
+
+    // 获取渠道的所有版本
+    desktopVersionData.channels.stable.all = data.versions.filter(v => stableVersions.includes(v.version));
+    desktopVersionData.channels.beta.all = data.versions.filter(v => betaVersions.includes(v.version));
   }
 } catch (e) {
   desktopVersionData.error = e instanceof Error ? e.message : String(e);
@@ -125,6 +162,7 @@ try {
       desktopVersion={desktopVersionData.latest}
       desktopPlatforms={desktopVersionData.platforms}
       desktopVersionError={desktopVersionData.error}
+      desktopChannels={desktopVersionData.channels}
     />
 
     <main class="homepage">
@@ -133,6 +171,7 @@ try {
         desktopVersion={desktopVersionData.latest}
         desktopPlatforms={desktopVersionData.platforms}
         desktopVersionError={desktopVersionData.error}
+        desktopChannels={desktopVersionData.channels}
         client:load
       />
 

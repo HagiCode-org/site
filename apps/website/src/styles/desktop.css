@@ -654,3 +654,165 @@ starlight-tabs {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ==========================================================================
+   Channel Selector
+   ========================================================================== */
+
+.channel-selector {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin: 2rem 0;
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+.channel-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--color-border);
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  outline: none;
+}
+
+.channel-tab:hover {
+  border-color: var(--color-primary);
+  background: var(--color-surface-hover);
+  transform: translateY(-2px);
+}
+
+.channel-tab:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.channel-tab--active {
+  border-color: var(--color-primary);
+  background: linear-gradient(135deg, rgba(0, 128, 255, 0.1) 0%, rgba(0, 255, 255, 0.05) 100%);
+  color: var(--color-primary);
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(0, 128, 255, 0.2);
+}
+
+[data-theme='dark'] .channel-tab--active {
+  background: linear-gradient(135deg, rgba(0, 128, 255, 0.2) 0%, rgba(0, 255, 255, 0.1) 100%);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+}
+
+.channel-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.channel-label {
+  line-height: 1;
+}
+
+/* Beta Warning */
+.beta-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem auto;
+  max-width: 600px;
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 152, 0, 0.05) 100%);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-left: 4px solid #FFC107;
+  border-radius: 0.75rem;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+[data-theme='dark'] .beta-warning {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.15) 0%, rgba(255, 152, 0, 0.1) 100%);
+  border-color: rgba(255, 193, 7, 0.4);
+  box-shadow: 0 0 20px rgba(255, 193, 7, 0.15);
+}
+
+.beta-warning .warning-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: #FFC107;
+  margin-top: 0.125rem;
+}
+
+[data-theme='dark'] .beta-warning .warning-icon {
+  filter: drop-shadow(0 0 4px rgba(255, 193, 7, 0.6));
+}
+
+.beta-warning .warning-content {
+  flex: 1;
+}
+
+.beta-warning strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #FFC107;
+  font-size: 0.95rem;
+}
+
+[data-theme='dark'] .beta-warning strong {
+  color: #FFD54F;
+}
+
+.beta-warning p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* Beta Tag */
+.beta-tag {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  margin-left: 0.5rem;
+  background: rgba(255, 193, 7, 0.15);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #FFC107;
+}
+
+[data-theme='dark'] .beta-tag {
+  background: rgba(255, 193, 7, 0.2);
+  border-color: rgba(255, 193, 7, 0.4);
+  color: #FFD54F;
+}
+
+/* ==========================================================================
+   Responsive Design for Channel Elements
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .channel-selector {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .channel-tab {
+    width: 100%;
+    justify-content: center;
+    padding: 0.875rem 1rem;
+  }
+
+  .beta-warning {
+    padding: 0.875rem 1.25rem;
+  }
+
+  .beta-warning .warning-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
