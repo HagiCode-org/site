@@ -1,5 +1,5 @@
 {
-  "updatedAt": 1771060573.792866,
+  "updatedAt": 1771132920.252207,
   "versions": [
     {
       "version": "v0.1.9",
@@ -600,6 +600,83 @@
           "path": "v0.1.2/hagicode-desktop_0.1.2_amd64.deb",
           "size": 114481460,
           "lastModified": "2026-02-08T15:42:21+00:00"
+        }
+      ]
+    },
+    {
+      "version": "v0.1.11-beta.1",
+      "files": [
+        "Hagicode.Desktop-0.1.11-beta.1-arm64-mac.zip",
+        "Hagicode.Desktop-0.1.11-beta.1-arm64.dmg",
+        "Hagicode.Desktop-0.1.11-beta.1-mac.zip",
+        "Hagicode.Desktop-0.1.11-beta.1.AppImage",
+        "Hagicode.Desktop-0.1.11-beta.1.dmg",
+        "Hagicode.Desktop.0.1.11-beta.1.appx",
+        "Hagicode.Desktop.0.1.11-beta.1.exe",
+        "Hagicode.Desktop.Setup.0.1.11-beta.1.exe",
+        "hagicode-desktop-0.1.11-beta.1.tar.gz",
+        "hagicode-desktop_0.1.11-beta.1_amd64.deb"
+      ],
+      "assets": [
+        {
+          "name": "Hagicode.Desktop-0.1.11-beta.1-arm64-mac.zip",
+          "path": "v0.1.11-beta.1/Hagicode.Desktop-0.1.11-beta.1-arm64-mac.zip",
+          "size": 170041893,
+          "lastModified": "2026-02-15T05:19:31+00:00"
+        },
+        {
+          "name": "Hagicode.Desktop-0.1.11-beta.1-arm64.dmg",
+          "path": "v0.1.11-beta.1/Hagicode.Desktop-0.1.11-beta.1-arm64.dmg",
+          "size": 177664522,
+          "lastModified": "2026-02-15T05:19:53+00:00"
+        },
+        {
+          "name": "Hagicode.Desktop-0.1.11-beta.1-mac.zip",
+          "path": "v0.1.11-beta.1/Hagicode.Desktop-0.1.11-beta.1-mac.zip",
+          "size": 175491348,
+          "lastModified": "2026-02-15T05:20:04+00:00"
+        },
+        {
+          "name": "Hagicode.Desktop-0.1.11-beta.1.AppImage",
+          "path": "v0.1.11-beta.1/Hagicode.Desktop-0.1.11-beta.1.AppImage",
+          "size": 183906552,
+          "lastModified": "2026-02-15T05:20:17+00:00"
+        },
+        {
+          "name": "Hagicode.Desktop-0.1.11-beta.1.dmg",
+          "path": "v0.1.11-beta.1/Hagicode.Desktop-0.1.11-beta.1.dmg",
+          "size": 183151530,
+          "lastModified": "2026-02-15T05:20:30+00:00"
+        },
+        {
+          "name": "Hagicode.Desktop.0.1.11-beta.1.appx",
+          "path": "v0.1.11-beta.1/Hagicode.Desktop.0.1.11-beta.1.appx",
+          "size": 211823280,
+          "lastModified": "2026-02-15T05:21:19+00:00"
+        },
+        {
+          "name": "Hagicode.Desktop.0.1.11-beta.1.exe",
+          "path": "v0.1.11-beta.1/Hagicode.Desktop.0.1.11-beta.1.exe",
+          "size": 106940638,
+          "lastModified": "2026-02-15T05:21:30+00:00"
+        },
+        {
+          "name": "Hagicode.Desktop.Setup.0.1.11-beta.1.exe",
+          "path": "v0.1.11-beta.1/Hagicode.Desktop.Setup.0.1.11-beta.1.exe",
+          "size": 107139593,
+          "lastModified": "2026-02-15T05:21:37+00:00"
+        },
+        {
+          "name": "hagicode-desktop-0.1.11-beta.1.tar.gz",
+          "path": "v0.1.11-beta.1/hagicode-desktop-0.1.11-beta.1.tar.gz",
+          "size": 171852599,
+          "lastModified": "2026-02-15T05:21:50+00:00"
+        },
+        {
+          "name": "hagicode-desktop_0.1.11-beta.1_amd64.deb",
+          "path": "v0.1.11-beta.1/hagicode-desktop_0.1.11-beta.1_amd64.deb",
+          "size": 117424336,
+          "lastModified": "2026-02-15T05:21:57+00:00"
         }
       ]
     },
