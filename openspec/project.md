@@ -334,11 +334,18 @@ Reference these guidelines when:
 
 ```bash
 # 开发服务器 - 启动两个站点
-npm run dev                # Start both docs (port 4321) and website (port 4322)
+npm run dev                # Start both docs (port 31265) and website (port 31264)
+
+# 使用自定义端口
+PORT_DOCS=4000 PORT_WEBSITE=4001 npm run dev
 
 # 单独启动各站点
-npm run dev:docs           # Start docs site only (localhost:4321/)
-npm run dev:website        # Start website only (localhost:4322/)
+npm run dev:docs           # Start docs site only (localhost:31265/)
+npm run dev:website        # Start website only (localhost:31264/)
+
+# 环境变量配置（可选）
+# PORT_DOCS=31265          # 文档站点端口
+# PORT_WEBSITE=31264       # 营销站点端口
 
 # 生产构建 - 构建两个站点
 npm run build              # Build both sites
