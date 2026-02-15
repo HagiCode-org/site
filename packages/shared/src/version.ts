@@ -6,13 +6,21 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import semver from 'semver';
+
+// Import types from desktop.ts
+import type {
+  DesktopIndexResponse,
+  DesktopVersion,
+  DesktopAsset
+} from './desktop';
 
 // Re-export types from desktop.ts for convenience
 export type {
   DesktopIndexResponse,
   DesktopVersion,
   DesktopAsset
-} from './desktop';
+};
 
 /**
  * Get the path to the version-index.json file in the Docs app
@@ -27,20 +35,20 @@ function getVersionIndexPath(): string {
   const sharedDir = path.dirname(__dirname); // packages/shared/
 
   // Navigate from packages/shared/ to apps/docs/public/
-  return path.join(sharedDir, '..', 'apps', 'docs', 'public', 'version-index.json');
+  return path.join(sharedDir, '..', '..', 'apps', 'docs', 'public', 'version-index.json');
 }
 
 /**
  * Load and parse the version-index.json file from the Docs app
  *
- * @returns {Promise<import('./desktop').DesktopIndexResponse>} Version index data
+ * @returns {Promise<DesktopIndexResponse>} Version index data
  * @throws {Error} If the file cannot be read or parsed
  */
-export async function getVersionIndex(): Promise<import('./desktop').DesktopIndexResponse> {
+export async function getVersionIndex(): Promise<DesktopIndexResponse> {
   try {
     const versionPath = getVersionIndexPath();
     const content = await fs.readFile(versionPath, 'utf-8');
-    return JSON.parse(content) as import('./desktop').DesktopIndexResponse;
+    return JSON.parse(content) as DesktopIndexResponse;
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(`Failed to load version index: ${error.message}`);
@@ -63,7 +71,8 @@ export async function getLatestVersion(): Promise<string> {
       throw new Error('No versions found in version index');
     }
 
-    return data.versions[0].version;
+    const latest = getLatestVersionFromVersions(data.versions);
+    return latest.version;
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(`Failed to get latest version: ${error.message}`);
@@ -76,9 +85,9 @@ export async function getLatestVersion(): Promise<string> {
  * Get version data for a specific version string
  *
  * @param {string} version - Version string to look up (e.g., "v0.1.4")
- * @returns {Promise<import('./desktop').DesktopVersion | undefined>} Version data or undefined if not found
+ * @returns {Promise<DesktopVersion | undefined>} Version data or undefined if not found
  */
-export async function getVersion(version: string): Promise<import('./desktop').DesktopVersion | undefined> {
+export async function getVersion(version: string): Promise<DesktopVersion | undefined> {
   try {
     const data = await getVersionIndex();
     return data.versions.find(v => v.version === version);
@@ -107,7 +116,27 @@ export async function getAllVersions(): Promise<string[]> {
   }
 }
 
-import semver from 'semver';
+/**
+ * Get the latest version from a version array by comparing all versions using semver
+ * This is a utility function that can be used with any DesktopVersion array
+ *
+ * @param {DesktopVersion[]} versions - Array of DesktopVersion objects to search
+ * @returns {DesktopVersion} The latest DesktopVersion object
+ * @throws {Error} If versions array is empty
+ */
+export function getLatestVersionFromVersions(
+  versions: DesktopVersion[]
+): DesktopVersion {
+  if (!versions || versions.length === 0) {
+    throw new Error('Versions array is empty');
+  }
+
+  // Find the latest version by comparing all versions using semver
+  return versions.reduce((latest, current) => {
+    const comparison = compareVersions(current.version, latest.version);
+    return comparison > 0 ? current : latest;
+  });
+}
 
 /**
  * Parsed semantic version components
@@ -125,8 +154,8 @@ export interface Semver {
 
 /**
  * Parse a semver version string into its components using the semver library
- * @param version - Version string (e.g., "v1.2.3", "v1.2.3-beta", "v1.2.3-beta.1", "v1.2", "v1")
- * @returns Parsed Semver interface or null if invalid
+ * @param {string} version - Version string (e.g., "v1.2.3", "v1.2.3-beta", "v1.2.3-beta.1", "v1.2", "v1")
+ * @returns {Semver | null} Parsed Semver interface or null if invalid
  */
 export function parseSemver(version: string): Semver | null {
   // Remove 'v' prefix if present and parse
@@ -156,9 +185,9 @@ export function parseSemver(version: string): Semver | null {
 
 /**
  * Compare two version strings using semver specification (via semver library)
- * @param v1 - First version
- * @param v2 - Second version
- * @returns -1 if v1 < v2, 0 if v1 = v2, 1 if v1 > v2
+ * @param {string} v1 - First version
+ * @param {string} v2 - Second version
+ * @returns {number} -1 if v1 < v2, 0 if v1 = v2, 1 if v1 > v2
  */
 export function compareVersions(v1: string, v2: string): number {
   const cleaned1 = v1.replace(/^v/, '');

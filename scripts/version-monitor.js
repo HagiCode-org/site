@@ -1,11 +1,17 @@
 #!/usr/bin/env node
 
 /**
- * Version Monitor Script
+ * Version Monitor Script (Multi-Channel Support)
  *
  * This script monitors the version from the official website URL and updates
  * the local version index files for both the documentation site and marketing site.
  * Pull Request creation is handled by the workflow.
+ *
+ * Multi-Channel Support:
+ * - Supports channels field (stable/beta) in version data
+ * - Prioritizes stable channel by default
+ * - Can be configured to monitor beta channel via PREFERRED_CHANNEL env var
+ * - Automatically detects version channel from version string (beta/alpha/rc indicators)
  *
  * Updates the following files atomically:
  * - apps/docs/public/version-index.json (primary)
@@ -15,6 +21,13 @@
  * - VERSION_SOURCE_URL: URL to fetch version data (default: https://desktop.dl.hagicode.com/index.json)
  * - REQUEST_TIMEOUT: HTTP request timeout in milliseconds (default: 30000)
  * - MAX_RETRIES: Maximum number of retry attempts (default: 3)
+ * - PREFERRED_CHANNEL: Preferred channel to monitor ('stable' or 'beta', default: 'stable')
+ *
+ * GitHub Outputs:
+ * - update_needed: Set to 'true' when version changes
+ * - new_version: The new version string
+ * - version_channel: The channel of the new version ('stable' or 'beta')
+ * - version_source: The source of the version data (e.g., 'channels.stable.latest')
  */
 
 import { promises as fs } from 'fs';
@@ -99,11 +112,12 @@ async function fetchWithRetry(url, options = {}, maxRetries = config.maxRetries)
 /**
  * Fetch current version from the official website URL
  * @param {string} url - Optional custom URL to fetch from
- * @returns {Promise<object>} Version data object
+ * @param {string} preferredChannel - Preferred channel ('stable' or 'beta', default 'stable')
+ * @returns {Promise<object>} Version data object with version, channel, and raw data
  */
-async function fetchCurrentVersion(url) {
+async function fetchCurrentVersion(url, preferredChannel = 'stable') {
   const targetUrl = url || config.sourceUrl;
-  logger.info(`Fetching version from: ${targetUrl}`);
+  logger.info(`Fetching version from: ${targetUrl} (preferred channel: ${preferredChannel})`);
 
   try {
     const response = await fetchWithRetry(targetUrl, {
@@ -119,15 +133,28 @@ async function fetchCurrentVersion(url) {
       throw new Error('Invalid response: not an object');
     }
 
-    // Extract version from common response formats
-    const version = data.version || extractVersionFromData(data);
+    // Extract version with channel information
+    let versionInfo;
 
-    if (!version) {
+    if (data.version) {
+      // Direct version field (legacy support)
+      const isBeta = data.version.includes('beta') || data.version.includes('alpha') || data.version.includes('rc');
+      versionInfo = {
+        version: data.version,
+        channel: isBeta ? 'beta' : 'stable',
+        source: 'direct version field'
+      };
+    } else {
+      // Use enhanced extraction
+      versionInfo = extractVersionFromData(data, preferredChannel);
+    }
+
+    if (!versionInfo.version) {
       throw new Error('No version found in response data');
     }
 
-    logger.info(`Current version from source: ${version}`);
-    return { version, raw: data };
+    logger.info(`Current version from source: ${versionInfo.version} (channel: ${versionInfo.channel}, source: ${versionInfo.source})`);
+    return { ...versionInfo, raw: data };
   } catch (error) {
     logger.error(`Failed to fetch version data: ${error.message}`);
     throw error;
@@ -136,14 +163,42 @@ async function fetchCurrentVersion(url) {
 
 /**
  * Extract version from various data structures
+ * Supports channel-based version detection (stable > beta)
  * @param {object} data - Parsed JSON data
- * @returns {string|null} Version string or null
+ * @param {string} preferredChannel - Preferred channel ('stable' or 'beta', default 'stable')
+ * @returns {object} Object containing version string and channel info
  */
-function extractVersionFromData(data) {
-  // Common patterns for version data
-  if (data.latestVersion) return data.latestVersion;
-  if (data.currentVersion) return data.currentVersion;
-  if (data.release && data.release.version) return data.release.version;
+function extractVersionFromData(data, preferredChannel = 'stable') {
+  // Common patterns for version data (legacy support)
+  if (data.latestVersion) return { version: data.latestVersion, channel: 'stable', source: 'latestVersion' };
+  if (data.currentVersion) return { version: data.currentVersion, channel: 'stable', source: 'currentVersion' };
+  if (data.release && data.release.version) return { version: data.release.version, channel: 'stable', source: 'release.version' };
+
+  // Check for channels field (new multi-channel format)
+  if (data.channels) {
+    logger.info(`[extractVersionFromData] Found channels field in data`);
+
+    // Try preferred channel first
+    if (data.channels[preferredChannel] && data.channels[preferredChannel].latest) {
+      const version = data.channels[preferredChannel].latest;
+      logger.info(`[extractVersionFromData] Using ${preferredChannel} channel latest: ${version}`);
+      return { version, channel: preferredChannel, source: `channels.${preferredChannel}.latest` };
+    }
+
+    // Fallback to stable if preferred channel not available
+    if (preferredChannel !== 'stable' && data.channels.stable && data.channels.stable.latest) {
+      const version = data.channels.stable.latest;
+      logger.info(`[extractVersionFromData] Preferred channel not available, using stable channel: ${version}`);
+      return { version, channel: 'stable', source: 'channels.stable.latest (fallback)' };
+    }
+
+    // Try beta as last resort
+    if (data.channels.beta && data.channels.beta.latest) {
+      const version = data.channels.beta.latest;
+      logger.info(`[extractVersionFromData] Only beta channel available: ${version}`);
+      return { version, channel: 'beta', source: 'channels.beta.latest (fallback)' };
+    }
+  }
 
   // For versions array, need to find the latest (highest) version
   if (Array.isArray(data.versions) && data.versions.length > 0) {
@@ -171,30 +226,72 @@ function extractVersionFromData(data) {
       }
     }
 
-    logger.info(`[extractVersionFromData] Latest version from array: ${latestVersion}`);
-    return latestVersion;
+    // Determine if this is a beta version based on version string
+    const isBeta = latestVersion.includes('beta') || latestVersion.includes('alpha') || latestVersion.includes('rc');
+
+    logger.info(`[extractVersionFromData] Latest version from array: ${latestVersion} (${isBeta ? 'beta' : 'stable'})`);
+    return { version: latestVersion, channel: isBeta ? 'beta' : 'stable', source: 'versions array (auto-detected)' };
   }
 
   logger.warn('[extractVersionFromData] No version found in data');
-  return null;
-
-  logger.warn('[extractVersionFromData] No version found in data');
-  return null;
+  return { version: null, channel: null, source: null };
 }
 
 /**
  * Load local version from primary site's version-index.json
- * @returns {Promise<string|null>} Latest version from local file, or null if file doesn't exist
+ * Supports channel-based version detection
+ * @returns {Promise<object|null>} Object with version, channel, and source, or null if file doesn't exist
  */
 async function loadLocalVersion() {
   try {
     const content = await fs.readFile(VERSION_INDEX_PRIMARY, 'utf-8');
     const data = JSON.parse(content);
 
+    // Check for channels field first (new format)
+    if (data.channels && data.channels.stable && data.channels.stable.latest) {
+      logger.info('[loadLocalVersion] Found channels field in local file');
+      const version = data.channels.stable.latest;
+      logger.info(`Local version (from stable channel): ${version}`);
+      return { version, channel: 'stable', source: 'local channels.stable.latest' };
+    }
+
     if (Array.isArray(data.versions) && data.versions.length > 0) {
-      const localVersion = data.versions[0].version;
-      logger.info(`Local version: ${localVersion}`);
-      return localVersion;
+      if (data.versions.length === 1) {
+        const localVersion = data.versions[0].version;
+        logger.info(`Local version (only one): ${localVersion}`);
+        return { version: localVersion, channel: 'stable', source: 'local single version' };
+      }
+
+      // Multiple versions exist - need to find the latest (highest) version
+      logger.info(`[loadLocalVersion] Found ${data.versions.length} versions in local file`);
+      logger.debug(`[loadLocalVersion] Versions: ${data.versions.map(v => v.version || v).join(', ')}`);
+
+      logger.info('[loadLocalVersion] Searching for latest version by comparing all versions...');
+      let latestVersion = data.versions[0].version;
+      let latestVersionObj = data.versions[0];
+
+      for (const versionObj of data.versions) {
+        const v1 = versionObj.version;
+        const v2 = latestVersionObj.version;
+
+        logger.debug(`[loadLocalVersion] Comparing: "${v1}" vs current latest "${v2}"`);
+
+        const comparison = compareVersions(v1, v2);
+
+        if (comparison === 1) {
+          logger.info(`[loadLocalVersion] Found newer version: "${v1}" > "${v2}"`);
+          latestVersion = v1;
+          latestVersionObj = versionObj;
+        } else if (comparison === 0) {
+          logger.debug(`[loadLocalVersion] Versions are equal: "${v1}" = "${v2}"`);
+        }
+      }
+
+      // Determine if this is a beta version
+      const isBeta = latestVersion.includes('beta') || latestVersion.includes('alpha') || latestVersion.includes('rc');
+
+      logger.info(`[loadLocalVersion] Latest version from local file: ${latestVersion} (${isBeta ? 'beta' : 'stable'})`);
+      return { version: latestVersion, channel: isBeta ? 'beta' : 'stable', source: 'local versions array' };
     }
 
     logger.warn('Local version file exists but contains no versions');
@@ -437,6 +534,7 @@ function compareVersions(v1, v2) {
 
 /**
  * Main execution function
+ * Supports multi-channel version monitoring
  */
 async function main() {
   try {
@@ -447,11 +545,17 @@ async function main() {
       maxRetries: config.maxRetries
     })}`);
 
+    // Get preferred channel from environment variable (default: stable)
+    const preferredChannel = process.env.PREFERRED_CHANNEL || 'stable';
+    logger.info(`Preferred channel: ${preferredChannel}`);
+
     // Fetch current version from source
-    const { version: currentVersion, raw: versionData } = await fetchCurrentVersion();
+    const { version: currentVersion, channel: currentChannel, source: currentSource, raw: versionData } = await fetchCurrentVersion(null, preferredChannel);
 
     // Load local version from public/version-index.json
-    const localVersion = await loadLocalVersion();
+    const localInfo = await loadLocalVersion();
+    const localVersion = localInfo?.version;
+    const localChannel = localInfo?.channel;
 
     // Check if version has changed
     // Empty state (localVersion is null) is treated as a new version scenario
@@ -461,12 +565,13 @@ async function main() {
       logger.info('='.repeat(60));
       logger.info('VERSION COMPARISON START');
       logger.info('='.repeat(60));
-      logger.info(`Local version: "${localVersion}"`);
-      logger.info(`Current version: "${currentVersion}"`);
+      logger.info(`Local version: "${localVersion}" (channel: ${localChannel || 'unknown'}, source: ${localInfo?.source || 'unknown'})`);
+      logger.info(`Current version: "${currentVersion}" (channel: ${currentChannel}, source: ${currentSource})`);
       logger.info('Critical edge cases to verify:');
       logger.info('  - Multi-digit comparison (e.g., v0.1.9 vs v0.1.10)');
       logger.info('  - Multi-digit version numbers (e.g., v1.10.0 vs v1.9.9)');
       logger.info('  - Pre-release comparison (e.g., alpha < beta < rc < stable)');
+      logger.info('  - Channel comparison (stable vs beta)');
       logger.info('-'.repeat(60));
 
       const versionComparison = compareVersions(currentVersion, localVersion);
@@ -481,9 +586,11 @@ async function main() {
       const comparisonSymbol = versionComparison === -1 ? '<' : '>';
       logger.info(`📊 Version comparison result: "${currentVersion}" ${comparisonSymbol} "${localVersion}"`);
       logger.info(`🔄 Version changed: ${localVersion} -> ${currentVersion}`);
+      logger.info(`📡 Channel info: ${localChannel || 'unknown'} -> ${currentChannel}`);
       logger.info('='.repeat(60));
     } else {
       logger.info('Empty state detected - treating as new version scenario');
+      logger.info(`📡 Current channel: ${currentChannel}`);
     }
 
     // Update local version index file
@@ -493,10 +600,12 @@ async function main() {
     if (process.env.GITHUB_OUTPUT) {
       const outputs = [
         `update_needed=true`,
-        `new_version=${currentVersion}`
+        `new_version=${currentVersion}`,
+        `version_channel=${currentChannel}`,
+        `version_source=${currentSource}`
       ];
       await fs.appendFile(process.env.GITHUB_OUTPUT, outputs.join('\n') + '\n');
-      logger.info(`Set outputs: update_needed=true, new_version=${currentVersion}`);
+      logger.info(`Set outputs: update_needed=true, new_version=${currentVersion}, version_channel=${currentChannel}, version_source=${currentSource}`);
     }
 
     logger.info('Version monitor completed successfully - version index updated');

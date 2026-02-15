@@ -58,59 +58,97 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Create feature branch
+      - name: Check existing branch
+        id: check_branch
         if: steps.monitor.outputs.update_needed == 'true'
+        run: |
+          BRANCH_NAME="version-update-${{ steps.monitor.outputs.new_version }}"
+          echo "Checking for existing branch: $BRANCH_NAME"
+          if git ls-remote --heads origin "$BRANCH_NAME" | grep -q "$BRANCH_NAME"; then
+            echo "branch_exists=true" >> $GITHUB_OUTPUT
+            echo "Branch $BRANCH_NAME already exists on remote"
+          else
+            echo "branch_exists=false" >> $GITHUB_OUTPUT
+            echo "Branch $BRANCH_NAME does not exist on remote"
+          fi
+
+      - name: Create feature branch
+        if: steps.monitor.outputs.update_needed == 'true' && steps.check_branch.outputs.branch_exists != 'true'
         run: |
           BRANCH_NAME="version-update-${{ steps.monitor.outputs.new_version }}"
           git checkout -b "$BRANCH_NAME"
           echo "Created branch: $BRANCH_NAME"
 
       - name: Commit version changes
-        if: steps.monitor.outputs.update_needed == 'true'
+        if: steps.monitor.outputs.update_needed == 'true' && steps.check_branch.outputs.branch_exists != 'true'
         run: |
           git add apps/docs/public/version-index.json
           git add apps/website/public/version-index.json
           git commit -m "chore: update version to ${{ steps.monitor.outputs.new_version }}"
 
-      - name: Delete remote branch if exists
-        if: steps.monitor.outputs.update_needed == 'true'
-        run: |
-          BRANCH_NAME="version-update-${{ steps.monitor.outputs.new_version }}"
-          if git ls-remote --heads origin "$BRANCH_NAME" | grep -q "$BRANCH_NAME"; then
-            git push origin --delete "$BRANCH_NAME"
-          fi
-
       - name: Push branch
-        if: steps.monitor.outputs.update_needed == 'true'
+        if: steps.monitor.outputs.update_needed == 'true' && steps.check_branch.outputs.branch_exists != 'true'
         run: |
           BRANCH_NAME="version-update-${{ steps.monitor.outputs.new_version }}"
-          git push origin "$BRANCH_NAME" --force-with-lease
+          git push origin "$BRANCH_NAME"
+
+      - name: Check existing PR
+        id: check_pr
+        if: steps.monitor.outputs.update_needed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CURRENT_VERSION: ${{ steps.monitor.outputs.new_version }}
+        run: |
+          echo "Checking for existing PR for version: ${CURRENT_VERSION}"
+          EXISTING_PR=$(gh pr list \
+            --search "chore: update version to ${CURRENT_VERSION} in:head" \
+            --state open \
+            --json number,title \
+            --jq '.[0]')
+
+          if [ -n "$EXISTING_PR" ]; then
+            PR_NUMBER=$(echo "$EXISTING_PR" | jq -r '.number')
+            PR_TITLE=$(echo "$EXISTING_PR" | jq -r '.title')
+            echo "pr_exists=true" >> $GITHUB_OUTPUT
+            echo "existing_pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+            echo "existing_pr_url=$(gh pr view $PR_NUMBER --json url -q .url)" >> $GITHUB_OUTPUT
+            echo "Found existing PR: #$PR_NUMBER - $PR_TITLE"
+          else
+            echo "pr_exists=false" >> $GITHUB_OUTPUT
+            echo "No existing PR found for version ${CURRENT_VERSION}"
+          fi
 
       - name: Close previous version PRs
         id: close_prs
         if: steps.monitor.outputs.update_needed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CURRENT_VERSION: ${{ steps.monitor.outputs.new_version }}
         run: |
+          echo "Closing previous version PRs (excluding current version: ${CURRENT_VERSION})..."
           PREVIOUS_PRS=$(gh pr list \
             --search "chore: update version to in:head" \
             --state open \
-            --json number \
-            --jq '.[].number')
+            --json number,title \
+            --jq '.[] | select(.title != "chore: update version to '"${CURRENT_VERSION}"'") | .number')
 
           if [ -n "$PREVIOUS_PRS" ]; then
             echo "$PREVIOUS_PRS" | while read -r pr_number; do
+              echo "Closing PR #$pr_number"
               gh pr close "$pr_number" --comment "由于新的版本更新 PR 自动关闭"
             done
+          else
+            echo "No previous version PRs to close"
           fi
 
       - name: Create Pull Request
         id: pr
-        if: steps.monitor.outputs.update_needed == 'true'
+        if: steps.monitor.outputs.update_needed == 'true' && steps.check_pr.outputs.pr_exists != 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           NEW_VERSION="${{ steps.monitor.outputs.new_version }}"
+          BRANCH_NAME="version-update-${NEW_VERSION}"
           PR_BODY="## Version Update
 
           This PR updates the version index to reflect the new version detected from the official website.
@@ -133,7 +171,7 @@ jobs:
             --title "chore: update version to ${NEW_VERSION}" \
             --body "$PR_BODY" \
             --base main \
-            --head "version-update-${NEW_VERSION}" \
+            --head "$BRANCH_NAME" \
             --label "automation,version"
 
           echo "pr_created=true" >> $GITHUB_OUTPUT
@@ -146,8 +184,15 @@ jobs:
           echo "======================"
           echo "Update Needed: ${{ steps.monitor.outputs.update_needed }}"
           echo "New Version: ${{ steps.monitor.outputs.new_version }}"
+          echo "Branch Exists: ${{ steps.check_branch.outputs.branch_exists }}"
+          echo "PR Exists: ${{ steps.check_pr.outputs.pr_exists }}"
           echo "PR Created: ${{ steps.pr.outputs.pr_created }}"
-          echo "PR URL: ${{ steps.pr.outputs.pr_url }}"
+          if [ "${{ steps.check_pr.outputs.pr_exists }}" == "true" ]; then
+            echo "Existing PR: #${{ steps.check_pr.outputs.existing_pr_number }}"
+            echo "Existing PR URL: ${{ steps.check_pr.outputs.existing_pr_url }}"
+          else
+            echo "PR URL: ${{ steps.pr.outputs.pr_url }}"
+          fi
 
   notify-version-update:
     needs: monitor

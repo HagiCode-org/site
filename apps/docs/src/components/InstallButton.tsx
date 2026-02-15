@@ -55,6 +55,13 @@ interface InstallButtonProps {
    * 错误信息
    */
   versionError?: string | null;
+
+  /**
+   * 版本渠道（默认 'stable'）
+   * - stable: 稳定版
+   * - beta: 测试版
+   */
+  channel?: 'stable' | 'beta';
 }
 
 /**
@@ -80,7 +87,8 @@ export default function InstallButton({
   className = '',
   initialVersion = null,
   initialPlatforms = [],
-  versionError = null
+  versionError = null,
+  channel = 'stable'
 }: InstallButtonProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [version, setVersion] = useState<DesktopVersion | null>(initialVersion);
@@ -97,10 +105,17 @@ export default function InstallButton({
     fetchDesktopVersions()
       .then((data) => {
         if (!mounted) return;
-        if (data.versions.length > 0) {
-          const latest = data.versions[0];
+
+        // 优先使用 channels.stable.latest
+        let latest = data.versions[0];
+        if (data.channels && data.channels.stable && data.channels.stable.latest) {
+          const stableLatestVersion = data.channels.stable.latest;
+          latest = data.versions.find(v => v.version === stableLatestVersion) || data.versions[0];
+        }
+
+        if (latest) {
           setVersion(latest);
-          setPlatforms(groupAssetsByPlatform(latest.assets));
+          setPlatforms(groupAssetsByPlatform(latest.files));
         }
       })
       .catch((err) => {

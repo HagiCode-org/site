@@ -8,8 +8,27 @@ import type {
   DesktopIndexResponse,
   PlatformDownload,
   PlatformGroup,
+  DesktopVersion,
 } from "@/types/desktop";
 import { AssetType } from "@/types/desktop";
+import semver from 'semver';
+
+/**
+ * 比较两个版本字符串
+ * @param v1 - 第一个版本
+ * @param v2 - 第二个版本
+ * @returns -1 如果 v1 < v2, 0 如果 v1 = v2, 1 如果 v1 > v2
+ */
+function compareVersions(v1: string, v2: string): number {
+  const cleaned1 = v1.replace(/^v/, '');
+  const cleaned2 = v2.replace(/^v/, '');
+
+  const cmp = semver.compare(cleaned1, cleaned2);
+  // semver.compare 返回：负数如果 a < b, 0 如果相等, 正数如果 a > b
+  if (cmp < 0) return -1;
+  if (cmp > 0) return 1;
+  return 0;
+}
 
 const INDEX_JSON_URL = "https://desktop.dl.hagicode.com/index.json";
 const LOCAL_VERSION_INDEX = "/version-index.json";
@@ -125,6 +144,7 @@ export function getAssetTypeLabel(assetType: AssetType): string {
 /**
  * 获取版本数据
  * 优先使用本地文件，确保构建过程不依赖外部服务
+ * 返回的版本数组已按版本号从高到低排序
  * @returns 版本数据响应
  * @throws 当请求失败或超时时抛出错误
  */
@@ -139,6 +159,9 @@ export async function fetchDesktopVersions(): Promise<DesktopIndexResponse> {
       if (!Array.isArray(data.versions)) {
         throw new Error("Invalid data structure: missing versions array");
       }
+
+      // 按版本号排序（从高到低）
+      data.versions.sort((a, b) => compareVersions(b.version, a.version));
 
       return data;
     }
@@ -168,6 +191,9 @@ export async function fetchDesktopVersions(): Promise<DesktopIndexResponse> {
       throw new Error("Invalid data structure: missing versions array");
     }
 
+    // 按版本号排序（从高到低）
+    data.versions.sort((a, b) => compareVersions(b.version, a.version));
+
     return data;
   } catch (error) {
     if (error instanceof Error && error.name === "AbortError") {
@@ -178,13 +204,76 @@ export async function fetchDesktopVersions(): Promise<DesktopIndexResponse> {
 }
 
 /**
+ * 获取指定渠道的最新版本
+ * @param channel - 渠道名称 ('stable' | 'beta')
+ * @returns 该渠道的最新 DesktopVersion 对象
+ * @throws 当渠道数据不存在或版本未找到时抛出错误
+ */
+export async function getChannelLatestVersion(
+  channel: 'stable' | 'beta'
+): Promise<DesktopVersion> {
+  const data = await fetchDesktopVersions();
+
+  // 检查 channels 字段是否存在
+  if (!data.channels || !data.channels[channel]) {
+    throw new Error(`Channel '${channel}' not available in version data`);
+  }
+
+  const channelInfo = data.channels[channel];
+  const latestVersion = channelInfo.latest;
+
+  // 在 versions 数组中查找对应的版本对象
+  const latestVersionObj = data.versions.find(v => v.version === latestVersion);
+
+  if (!latestVersionObj) {
+    throw new Error(`Version '${latestVersion}' not found in versions array for channel '${channel}'`);
+  }
+
+  return latestVersionObj;
+}
+
+/**
+ * 获取指定渠道的所有版本
+ * @param channel - 渠道名称 ('stable' | 'beta')
+ * @returns 该渠道的 DesktopVersion 对象数组
+ * @throws 当渠道数据不存在时抛出错误
+ */
+export async function getAllChannelVersions(
+  channel: 'stable' | 'beta'
+): Promise<DesktopVersion[]> {
+  const data = await fetchDesktopVersions();
+
+  // 检查 channels 字段是否存在
+  if (!data.channels || !data.channels[channel]) {
+    throw new Error(`Channel '${channel}' not available in version data`);
+  }
+
+  const channelInfo = data.channels[channel];
+  const channelVersions = channelInfo.versions;
+
+  // 在 versions 数组中查找对应的版本对象
+  const versionObjects = data.versions.filter(v =>
+    channelVersions.includes(v.version)
+  );
+
+  // 按版本号排序（从高到低）
+  versionObjects.sort((a, b) => compareVersions(b.version, a.version));
+
+  return versionObjects;
+}
+
+/**
  * 将资源按平台分组
  * @param assets - 文件资源数组
  * @returns 按平台分组的资源
  */
 export function groupAssetsByPlatform(
-  assets: DesktopAsset[]
+  assets: DesktopAsset[] | undefined
 ): PlatformGroup[] {
+  if (!assets || !Array.isArray(assets)) {
+    return [];
+  }
+
   const platformGroups = new Map<string, PlatformDownload[]>();
 
   for (const asset of assets) {
