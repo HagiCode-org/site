@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-02-15T11:25:27.5325458Z",
+  "updatedAt": "2026-02-15T11:58:43.4004542Z",
   "versions": [
     {
       "version": "v0.1.9",
@@ -575,6 +575,71 @@
       ]
     },
     {
+      "version": "v0.1.11",
+      "files": [
+        {
+          "name": "Hagicode.Desktop-0.1.11-arm64-mac.zip",
+          "path": "v0.1.11/Hagicode.Desktop-0.1.11-arm64-mac.zip",
+          "size": 170347208,
+          "lastModified": "2026-02-15T11:58:21.0000000"
+        },
+        {
+          "name": "Hagicode.Desktop-0.1.11-arm64.dmg",
+          "path": "v0.1.11/Hagicode.Desktop-0.1.11-arm64.dmg",
+          "size": 178032237,
+          "lastModified": "2026-02-15T11:55:36.0000000"
+        },
+        {
+          "name": "Hagicode.Desktop-0.1.11-mac.zip",
+          "path": "v0.1.11/Hagicode.Desktop-0.1.11-mac.zip",
+          "size": 175792449,
+          "lastModified": "2026-02-15T11:55:07.0000000"
+        },
+        {
+          "name": "Hagicode.Desktop-0.1.11.AppImage",
+          "path": "v0.1.11/Hagicode.Desktop-0.1.11.AppImage",
+          "size": 184193524,
+          "lastModified": "2026-02-15T11:55:52.0000000"
+        },
+        {
+          "name": "Hagicode.Desktop-0.1.11.dmg",
+          "path": "v0.1.11/Hagicode.Desktop-0.1.11.dmg",
+          "size": 183466887,
+          "lastModified": "2026-02-15T11:57:39.0000000"
+        },
+        {
+          "name": "Hagicode.Desktop.0.1.11.appx",
+          "path": "v0.1.11/Hagicode.Desktop.0.1.11.appx",
+          "size": 212112126,
+          "lastModified": "2026-02-15T11:54:25.0000000"
+        },
+        {
+          "name": "Hagicode.Desktop.0.1.11.exe",
+          "path": "v0.1.11/Hagicode.Desktop.0.1.11.exe",
+          "size": 107053093,
+          "lastModified": "2026-02-15T11:55:27.0000000"
+        },
+        {
+          "name": "Hagicode.Desktop.Setup.0.1.11.exe",
+          "path": "v0.1.11/Hagicode.Desktop.Setup.0.1.11.exe",
+          "size": 107252032,
+          "lastModified": "2026-02-15T11:58:42.0000000"
+        },
+        {
+          "name": "hagicode-desktop-0.1.11.tar.gz",
+          "path": "v0.1.11/hagicode-desktop-0.1.11.tar.gz",
+          "size": 172151821,
+          "lastModified": "2026-02-15T11:56:14.0000000"
+        },
+        {
+          "name": "hagicode-desktop_0.1.11_amd64.deb",
+          "path": "v0.1.11/hagicode-desktop_0.1.11_amd64.deb",
+          "size": 117566700,
+          "lastModified": "2026-02-15T11:56:49.0000000"
+        }
+      ]
+    },
+    {
       "version": "v0.1.10",
       "files": [
         {
@@ -707,7 +772,7 @@
   ],
   "channels": {
     "stable": {
-      "latest": "v0.1.10",
+      "latest": "v0.1.11",
       "versions": [
         "v0.1.9",
         "v0.1.8",
@@ -717,6 +782,7 @@
         "v0.1.4",
         "v0.1.3",
         "v0.1.2",
+        "v0.1.11",
         "v0.1.10",
         "v0.1.1"
       ]
