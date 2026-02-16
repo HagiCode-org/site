@@ -1,0 +1,165 @@
+name: Link Check
+
+on:
+  # 定时执行：每天 UTC 2:00 (北京时间 10:00)
+  schedule:
+    - cron: '0 2 * * *'
+
+  # 支持手动触发
+  workflow_dispatch:
+
+  # 在 PR 时也可以触发（可选）
+  pull_request:
+    paths:
+      - 'apps/docs/src/**'
+      - 'apps/website/src/**'
+      - '.github/workflows/link-check.yml'
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: "link-check"
+  cancel-in-progress: false
+
+jobs:
+  link-check:
+    name: Check External Links
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check Docs site links
+        id: check-docs
+        continue-on-error: true
+        run: |
+          echo "[INFO] 开始检查 Docs 站点链接..."
+          cd apps/docs
+          npm run build 2>&1 | tee ../docs-build.log || true
+          cd ..
+
+      - name: Check Website site links
+        id: check-website
+        continue-on-error: true
+        run: |
+          echo "[INFO] 开始检查 Website 站点链接..."
+          cd apps/website
+          npm run build 2>&1 | tee ../website-build.log || true
+          cd ..
+
+      - name: Parse broken links
+        id: parse-links
+        run: |
+          echo "[INFO] 解析失效链接..."
+
+          # 合并所有构建日志
+          cat docs-build.log website-build.log > all-build.log 2>/dev/null || true
+
+          # 提取失效链接信息
+          node scripts/parse-link-check.js
+
+      - name: Create or update Issue
+        if: steps.parse-links.outputs.has_broken_links == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const brokenLinksData = JSON.parse(fs.readFileSync('broken-links.json', 'utf8'));
+
+            // 搜索最近 7 天内的未关闭 Issue
+            const today = new Date().toISOString().split('T')[0];
+            const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+
+            const query = `repo:${context.repo.owner}/${context.repo.repo} is:issue is:open created:>=${sevenDaysAgo} in:title`;
+            const issues = await github.rest.search.issuesAndPullRequests({
+              q: query + ' [链接检查]'
+            });
+
+            const existingIssue = issues.data.items.find(issue =>
+              issue.title.includes('[链接检查]') && !issue.pull_request
+            );
+
+            const issueBody = `## 检查日期
+            ${today}
+
+            ## 检查结果
+            发现 ${brokenLinksData.total} 个失效的外部链接：
+
+            | 站点 | 文件路径 | 行号 | 链接 | 状态码 |
+            |------|---------|------|------|--------|
+            ${brokenLinksData.links.map(link =>
+              `| ${link.site} | ${link.file} | ${link.line || '-'} | \`${link.url}\` | ${link.status} |`
+            ).join('\n')}
+
+            ## 建议操作
+            - 修复失效链接
+            - 或将其添加到排除列表（在 astro.config.mjs 中配置 exclude 选项）
+
+            ---
+            此 Issue 由链接检查工作流自动创建
+            **运行详情**: [${context.runNumber}](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+            `;
+
+            if (existingIssue) {
+              // 更新现有 Issue，添加新评论
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existingIssue.number,
+                body: issueBody
+              });
+              console.log('已更新现有 Issue #' + existingIssue.number);
+            } else {
+              // 创建新 Issue
+              const issue = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `[链接检查] 发现失效外部链接 - ${today}`,
+                body: issueBody,
+                labels: ['bug', 'automated', 'link-check']
+              });
+              console.log('已创建新 Issue #' + issue.data.number);
+            }
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### 链接检查结果" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**检查时间**: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f broken-links.json ]; then
+            echo "❌ 发现失效链接" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            node -e "
+              const data = JSON.parse(require('fs').readFileSync('broken-links.json', 'utf8'));
+              console.log('- **失效链接数**: ' + data.total);
+              console.log('- **受影响站点**: ' + [...new Set(data.links.map(l => l.site))].join(', '));
+            " >> $GITHUB_STEP_SUMMARY
+          else
+            echo "✅ 未发现失效链接" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-check-logs
+          path: |
+            docs-build.log
+            website-build.log
+            all-build.log
+          retention-days: 7
