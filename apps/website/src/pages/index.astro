@@ -19,8 +19,9 @@ import Clarity from '../components/Clarity.astro';
 import '../styles/homepage.css';
 
 // 导入版本数据工具函数
-import { fetchDesktopVersions, groupAssetsByPlatform } from "@/utils/desktop";
-import type { DesktopVersion, PlatformGroup } from "@/types/desktop";
+import { fetchDesktopVersions, groupAssetsByPlatform } from "@shared/desktop-utils";
+import { setDesktopServerData } from "@shared/version-manager";
+import type { DesktopVersion, PlatformGroup } from "@shared/desktop";
 
 // 页面元数据
 const title = 'Hagicode - 智能 · 便捷 · 有趣的 AI 编码助手';
@@ -50,6 +51,9 @@ let desktopVersionData: {
 
 try {
   const data = await fetchDesktopVersions();
+
+  // 注入数据到 VersionManager（用于客户端组件）
+  setDesktopServerData(data);
 
   // 优先使用 channels.stable.latest 作为默认显示的版本
   if (data.channels && data.channels.stable && data.channels.stable.latest) {

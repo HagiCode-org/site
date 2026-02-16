@@ -3,16 +3,15 @@
  * 支持自动平台检测、下拉菜单选择版本、Docker 版本跳转
  * 用于 Header 导航栏
  */
-import { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { getLink } from '@shared/links';
 import {
-  fetchDesktopVersions,
   groupAssetsByPlatform,
-  getRecommendedDownload,
   detectOS,
   getAssetTypeLabel,
   inferAssetType
 } from '@shared/desktop-utils';
+import { getDesktopVersionData } from '@shared/version-manager';
 import type { DesktopVersion, PlatformGroup } from '@shared/desktop';
 
 interface DownloadOption {
@@ -102,20 +101,21 @@ export default function InstallButton({
     }
 
     let mounted = true;
-    fetchDesktopVersions()
+    getDesktopVersionData()
       .then((data) => {
         if (!mounted) return;
 
-        // 优先使用 channels.stable.latest
-        let latest = data.versions[0];
-        if (data.channels && data.channels.stable && data.channels.stable.latest) {
-          const stableLatestVersion = data.channels.stable.latest;
-          latest = data.versions.find(v => v.version === stableLatestVersion) || data.versions[0];
+        // 根据渠道选择最新版本
+        let latest = data.latest;
+        if (channel && data.channels[channel]?.latest) {
+          latest = data.channels[channel].latest;
+        } else if (data.channels.stable?.latest) {
+          latest = data.channels.stable.latest;
         }
 
         if (latest) {
           setVersion(latest);
-          setPlatforms(groupAssetsByPlatform(latest.files));
+          setPlatforms(data.platforms);
         }
       })
       .catch((err) => {
@@ -127,7 +127,7 @@ export default function InstallButton({
     return () => {
       mounted = false;
     };
-  }, [initialVersion, initialPlatforms, versionError]);
+  }, [initialVersion, initialPlatforms, versionError, channel]);
 
   // 生成唯一的组件 ID
   const buttonId = useMemo(() => `install-button-${Math.random().toString(36).substring(2, 11)}`, []);
@@ -264,7 +264,7 @@ export default function InstallButton({
               aria-label="选择下载版本"
             >
               {platformData.map((platformGroup) => (
-                <li key={platformGroup.platform}>
+                <React.Fragment key={platformGroup.platform}>
                   {/* 平台分组标签 */}
                   <div
                     className={`dropdown-group-label platform--${platformGroup.platform}`}
@@ -288,7 +288,7 @@ export default function InstallButton({
                       </a>
                     </li>
                   ))}
-                </li>
+                </React.Fragment>
               ))}
               {/* Docker 版本选项 - 带分隔线 */}
               <li role="separator" className="dropdown-separator" />

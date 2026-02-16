@@ -54,7 +54,6 @@ main.homepage section > .bgGlow {
   color: var(--color-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  animation: fadeInUp 0.6s ease-out backwards;
 }
 
 [data-theme='dark'] .hero-badge {
@@ -69,7 +68,6 @@ main.homepage section > .bgGlow {
   justify-content: center;
   flex-wrap: wrap;
   margin: 2rem 0;
-  animation: fadeInUp 0.8s ease-out 0.4s backwards;
 }
 
 .value-point {
@@ -131,7 +129,6 @@ main.homepage section > .bgGlow {
   gap: 1rem;
   justify-content: center;
   margin-bottom: 1.5rem;
-  animation: fadeInUp 0.8s ease-out 0.6s backwards;
   grid-template-columns: 1fr;
   max-width: 600px;
   margin-left: auto;
@@ -664,7 +661,6 @@ starlight-tabs {
   gap: 0.75rem;
   justify-content: center;
   margin: 2rem 0;
-  animation: fadeInUp 0.8s ease-out 0.2s backwards;
 }
 
 .channel-tab {
@@ -729,7 +725,6 @@ starlight-tabs {
   border: 1px solid rgba(255, 193, 7, 0.3);
   border-left: 4px solid #FFC107;
   border-radius: 0.75rem;
-  animation: fadeInUp 0.6s ease-out;
 }
 
 [data-theme='dark'] .beta-warning {
@@ -814,5 +809,242 @@ starlight-tabs {
   .beta-warning .warning-icon {
     width: 20px;
     height: 20px;
+  }
+}
+
+/* ==========================================================================
+   快速安装区域 (Installation Steps)
+   设计系统: Glassmorphism + HUD/Sci-Fi FUI
+   ========================================================================== */
+
+/* 区域容器 */
+.installation-steps {
+  padding: 4rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.installation-steps h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--color-text, #ffffff);
+}
+
+/* 步骤网格布局 */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* 步骤卡片 */
+.step-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* 悬停状态 */
+.step-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(0, 128, 255, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 128, 255, 0.15);
+  transform: translateY(-4px);
+}
+
+/* 焦点状态（键盘导航） */
+.step-card:focus-within {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-primary, #0080FF),
+              0 0 0 6px rgba(0, 128, 255, 0.2);
+}
+
+/* 步骤编号 */
+.step-number {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 128, 255, 0.3);
+  flex-shrink: 0;
+}
+
+/* 步骤标题 */
+.step-card h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text, #ffffff);
+  margin: 0 0 0.75rem 0;
+}
+
+/* 步骤描述 */
+.step-card p {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary, rgba(255, 255, 255, 0.7));
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Dark 主题样式 */
+[data-theme='dark'] .step-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .step-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 200, 255, 0.5);
+  box-shadow: 0 4px 16px rgba(0, 200, 255, 0.2);
+}
+
+[data-theme='dark'] .step-number {
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  box-shadow: 0 4px 12px rgba(0, 200, 255, 0.4);
+}
+
+[data-theme='dark'] .step-card p {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Lunar New Year 主题样式 */
+[data-theme='lunar-new-year'] .step-card {
+  background: rgba(255, 193, 7, 0.05);
+  border-color: rgba(255, 193, 7, 0.2);
+}
+
+[data-theme='lunar-new-year'] .step-card:hover {
+  background: rgba(255, 193, 7, 0.08);
+  border-color: rgba(255, 87, 34, 0.4);
+  box-shadow: 0 4px 16px rgba(255, 87, 34, 0.2);
+}
+
+[data-theme='lunar-new-year'] .step-number {
+  background: linear-gradient(135deg, #FF1744 0%, #FF9100 50%, #FFD600 100%);
+  box-shadow: 0 4px 12px rgba(255, 23, 68, 0.3);
+}
+
+[data-theme='lunar-new-year'] .step-card p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 响应式设计 - 平板端 */
+@media (max-width: 768px) {
+  .steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .installation-steps {
+    padding: 3rem 1rem;
+  }
+
+  .installation-steps h2 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .step-card {
+    padding: 1.25rem;
+    min-height: 180px;
+  }
+
+  .step-number {
+    width: 42px;
+    height: 42px;
+    font-size: 1.25rem;
+  }
+
+  .step-card h3 {
+    font-size: 1rem;
+  }
+
+  .step-card p {
+    font-size: 0.875rem;
+  }
+}
+
+/* 响应式设计 - 移动端 */
+@media (max-width: 480px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+
+  .installation-steps {
+    padding: 2.5rem 0.75rem;
+  }
+
+  .installation-steps h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .step-card {
+    padding: 1.125rem;
+    min-height: 160px;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    font-size: 1.125rem;
+  }
+
+  .step-card h3 {
+    font-size: 0.9375rem;
+  }
+
+  .step-card p {
+    font-size: 0.8125rem;
+  }
+}
+
+/* 减少动画偏好支持 */
+@media (prefers-reduced-motion: reduce) {
+  .step-card {
+    transition: none;
+  }
+
+  .step-card:hover {
+    transform: none;
+  }
+
+  .step-number {
+    transition: none;
+  }
+}
+
+/* 降级方案 - 不支持 backdrop-filter 的浏览器 */
+@supports not (backdrop-filter: blur(16px)) {
+  .step-card {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  [data-theme='dark'] .step-card {
+    background: rgba(30, 30, 30, 0.95);
+  }
+
+  [data-theme='lunar-new-year'] .step-card {
+    background: rgba(40, 30, 20, 0.95);
   }
 }
