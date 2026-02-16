@@ -3,20 +3,21 @@
  * 支持自动平台检测、下拉菜单选择版本、Docker 版本跳转
  * 可用于 Header（紧凑模式）和 Hero 区域（完整模式）
  *
- * 版本数据在构建时从服务端传入，也支持客户端获取
+ * 版本数据从共享的 VersionManager 获取
  */
-import { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import styles from './InstallButton.module.css';
 import { withBasePath } from '@/utils/path';
-import type { DesktopVersion, PlatformGroup } from '@/types/desktop';
-
-// 动态导入工具函数的类型
-type DesktopUtils = typeof import('@/utils/desktop');
+import type { DesktopVersion, PlatformGroup } from '@shared/desktop';
+import { getDesktopVersionData } from '@shared/version-manager';
+import { getAssetTypeLabel, detectOS } from '@shared/desktop-utils';
+import type { AssetType } from '@shared/desktop';
 
 interface DownloadOption {
   label: string;
   url: string;
   size?: string;
+  assetType: AssetType;
 }
 
 interface PlatformDownloads {
@@ -27,12 +28,12 @@ interface PlatformDownloads {
 
 interface InstallButtonProps {
   /**
-   * Desktop 版本数据（构建时获取）
+   * Desktop 版本数据（构建时获取，向后兼容）
    */
   version?: DesktopVersion | null;
 
   /**
-   * Desktop 平台下载数据（构建时获取）
+   * Desktop 平台下载数据（构建时获取，向后兼容）
    */
   platforms?: PlatformGroup[];
 
@@ -66,51 +67,6 @@ interface InstallButtonProps {
   channel?: 'stable' | 'beta';
 }
 
-// 平台检测函数
-function detectOS(): 'windows' | 'macos' | 'linux' | 'unknown' {
-  if (typeof window === 'undefined') return 'unknown';
-
-  // 优先检查 URL 查询参数
-  const urlParams = new URLSearchParams(window.location.search);
-  const osParam = urlParams.get('os');
-  if (osParam) {
-    const validOS = ['windows', 'macos', 'linux'];
-    const normalizedParam = osParam.toLowerCase();
-    if (validOS.includes(normalizedParam)) {
-      return normalizedParam as 'windows' | 'macos' | 'linux';
-    }
-  }
-
-  // 基于 UserAgent 检测
-  const userAgent = navigator.userAgent;
-  if (userAgent.includes('Windows')) {
-    return 'windows';
-  }
-  if (userAgent.includes('Mac') || userAgent.includes('iPhone') || userAgent.includes('iPad') || userAgent.includes('Mac OS')) {
-    return 'macos';
-  }
-  if (userAgent.includes('Linux')) {
-    return 'linux';
-  }
-  return 'unknown';
-}
-
-// 获取资源类型标签
-function getAssetTypeLabel(filename: string): string {
-  const name = filename.toLowerCase();
-
-  if (name.includes('setup') && name.endsWith('.exe')) return '安装程序';
-  if (name.endsWith('.exe')) return '便携版';
-  if (name.endsWith('.appx')) return 'Microsoft Store';
-  if (name.includes('arm64') && name.endsWith('.dmg')) return 'Apple Silicon';
-  if (name.endsWith('.dmg')) return 'Intel 版';
-  if (name.endsWith('.appimage')) return 'AppImage';
-  if (name.includes('_amd64.deb')) return 'Debian 包';
-  if (name.includes('.tar.gz')) return '压缩包';
-
-  return filename;
-}
-
 /**
  * 将 PlatformGroup[] 转换为 PlatformDownloads[] 格式
  */
@@ -123,7 +79,8 @@ function convertPlatformGroups(platforms: PlatformGroup[]): PlatformDownloads[] 
     options: platform.downloads.map(download => ({
       label: download.filename,
       url: download.url,
-      size: download.size
+      size: download.size,
+      assetType: download.assetType
     }))
   }));
 }
@@ -148,27 +105,33 @@ export default function InstallButton({
       return; // 已有数据或错误，无需重新获取
     }
 
-    // 动态导入以避免服务端渲染问题
-    import('@/utils/desktop').then(({ fetchDesktopVersions, groupAssetsByPlatform }) => {
-      return fetchDesktopVersions()
-        .then((data) => {
-          // 优先使用 channels.stable.latest
-          let latest = data.versions[0];
-          if (data.channels && data.channels.stable && data.channels.stable.latest) {
-            const stableLatestVersion = data.channels.stable.latest;
-            latest = data.versions.find(v => v.version === stableLatestVersion) || data.versions[0];
-          }
+    let mounted = true;
+    getDesktopVersionData()
+      .then((data) => {
+        if (!mounted) return;
 
-          if (latest) {
-            setCurrentVersion(latest);
-            setCurrentPlatforms(groupAssetsByPlatform(latest.files));
-          }
-        })
-        .catch((err) => {
-          console.error('Failed to fetch desktop versions:', err);
-        });
-    });
-  }, [version, platforms, versionError]);
+        // 根据渠道选择最新版本
+        let latest = data.latest;
+        if (channel && data.channels[channel]?.latest) {
+          latest = data.channels[channel].latest;
+        } else if (data.channels.stable?.latest) {
+          latest = data.channels.stable.latest;
+        }
+
+        if (latest) {
+          setCurrentVersion(latest);
+          setCurrentPlatforms(data.platforms);
+        }
+      })
+      .catch((err) => {
+        if (!mounted) return;
+        console.error('Failed to fetch desktop versions:', err);
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [version, platforms, versionError, channel]);
 
   // 生成唯一的组件 ID
   const buttonId = useMemo(() => `install-button-${Math.random().toString(36).substring(2, 11)}`, []);
@@ -327,7 +290,7 @@ export default function InstallButton({
               aria-label="选择下载版本"
             >
               {platformData.map((platformGroup) => (
-                <li key={platformGroup.platform}>
+                <React.Fragment key={platformGroup.platform}>
                   {/* 平台分组标签 */}
                   <div
                     className={`${styles.dropdownGroupLabel} ${styles[`platform--${platformGroup.platform}`]}`}
@@ -344,14 +307,14 @@ export default function InstallButton({
                         download
                         onClick={handleLinkClick}
                       >
-                        <span className={styles.dropdownItemLabel}>{getAssetTypeLabel(option.label)}</span>
+                        <span className={styles.dropdownItemLabel}>{getAssetTypeLabel(option.assetType)}</span>
                         {option.size && (
                           <span className={styles.dropdownItemSize}>{option.size}</span>
                         )}
                       </a>
                     </li>
                   ))}
-                </li>
+                </React.Fragment>
               ))}
               {/* Docker 版本选项 - 带分隔线 */}
               <li role="separator" className={styles.dropdownSeparator} />

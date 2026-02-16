@@ -1,6 +1,4 @@
 ---
-import { fetchDesktopVersions, groupAssetsByPlatform } from "@/utils/desktop";
-import type { DesktopVersion, PlatformGroup } from "@/types/desktop";
 import { Tabs, TabItem } from "@astrojs/starlight/components";
 import Clarity from "@/components/Clarity.astro";
 // 导入首页样式系统
@@ -10,112 +8,12 @@ import '@/styles/desktop.css';
 // 导入首页组件
 import Navbar from '@/components/home/Navbar';
 import Footer from '@/components/home/Footer';
+// 导入 Desktop Hero 组件
+import DesktopHero from '@/components/desktop/DesktopHero';
 // 导入图标组件
 import FeatureIcon from '@/components/desktop/FeatureIcon.astro';
 import FeatureTagIcon from '@/components/desktop/FeatureTagIcon.astro';
 import PlatformIcon from '@/components/desktop/PlatformIcon.astro';
-import DownloadOption from '@/components/desktop/DownloadOption.astro';
-
-// 在构建时获取版本数据
-let versionData: {
-  latest: DesktopVersion | null;
-  allVersions: DesktopVersion[];
-  latestPlatforms: PlatformGroup[];
-  error: string | null;
-  channels: {
-    stable: { latest: DesktopVersion | null; all: DesktopVersion[] };
-    beta: { latest: DesktopVersion | null; all: DesktopVersion[] };
-  };
-} = {
-  latest: null,
-  allVersions: [],
-  latestPlatforms: [],
-  error: null,
-  channels: {
-    stable: { latest: null, all: [] },
-    beta: { latest: null, all: [] }
-  }
-};
-
-try {
-  const data = await fetchDesktopVersions();
-  versionData.allVersions = data.versions;
-
-  // 优先使用 channels.stable.latest 作为默认显示的版本
-  if (data.channels && data.channels.stable && data.channels.stable.latest) {
-    const stableLatestVersion = data.channels.stable.latest;
-    versionData.latest = data.versions.find(v => v.version === stableLatestVersion) || data.versions[0] || null;
-  } else {
-    versionData.latest = data.versions[0] || null;
-  }
-
-  if (versionData.latest) {
-    versionData.latestPlatforms = groupAssetsByPlatform(
-      versionData.latest.files
-    );
-  }
-
-  // 处理渠道数据（如果存在）
-  if (data.channels) {
-    // 从 channels 数据中提取版本信息
-    const stableVersions = data.channels.stable?.versions || [];
-    const betaVersions = data.channels.beta?.versions || [];
-    const stableLatest = data.channels.stable?.latest;
-    const betaLatest = data.channels.beta?.latest;
-
-    // 查找对应的版本对象
-    if (stableLatest) {
-      versionData.channels.stable.latest = data.versions.find(v => v.version === stableLatest) || null;
-    }
-    if (betaLatest) {
-      versionData.channels.beta.latest = data.versions.find(v => v.version === betaLatest) || null;
-    }
-
-    // 获取渠道的所有版本
-    versionData.channels.stable.all = data.versions.filter(v => stableVersions.includes(v.version));
-    versionData.channels.beta.all = data.versions.filter(v => betaVersions.includes(v.version));
-  }
-} catch (e) {
-  versionData.error = e instanceof Error ? e.message : String(e);
-  console.error("Failed to fetch desktop versions:", e);
-}
-
-const { latest, allVersions, latestPlatforms, error, channels } = versionData;
-
-// 判断是否有渠道数据可用
-const hasChannels = channels.stable.latest !== null || channels.beta.latest !== null;
-
-// 为每个平台创建下载选项映射
-const platformOptions = latestPlatforms.map(platform => {
-  // 将 downloads 转换为 DownloadOption 格式
-  const options = platform.downloads.map(download => ({
-    label: download.filename,
-    url: download.url,
-    size: download.size
-  }));
-
-  // 确定推荐的默认选项
-  let defaultIndex = 0;
-  if (platform.platform === 'windows') {
-    defaultIndex = platform.downloads.findIndex(d => d.filename.includes('Setup')) ?? 0;
-  } else if (platform.platform === 'macos') {
-    defaultIndex = platform.downloads.findIndex(d => d.filename.includes('arm64')) ?? 0;
-  } else if (platform.platform === 'linux') {
-    defaultIndex = platform.downloads.findIndex(d => d.filename.includes('AppImage')) ?? 0;
-  }
-
-  return {
-    platform: platform.platform as 'windows' | 'macos' | 'linux',
-    platformLabel: platform.platform === 'windows' ? 'Windows' :
-                    platform.platform === 'macos' ? 'macOS' : 'Linux',
-    options,
-    defaultOption: defaultIndex,
-    isRecommended: false
-  };
-});
-
-// 检测用户操作系统并重新排序平台（客户端脚本）
-// 不再使用模板字符串变量，直接在 HTML 中使用 <script> 标签
 
 // SEO 元数据
 const title = "Hagicode Desktop - 下载";
@@ -124,27 +22,20 @@ const description = "下载 Hagicode Desktop，本地化的 AI 代码助手。�
 // 获取站点基础路径
 const siteBase = import.meta.env.VITE_SITE_BASE || "/";
 
-// 准备渠道数据用于客户端脚本（序列化为 JSON 字符串）
-const channelDataForClient = {
-  stable: {
-    latest: channels.stable.latest?.version || '',
-    platforms: channels.stable.latest ? channels.stable.latest.files.map(f => ({
-      name: f.name,
-      path: f.path,
-      size: f.size
-    })) : []
-  },
-  beta: {
-    latest: channels.beta.latest?.version || '',
-    platforms: channels.beta.latest ? channels.beta.latest.files.map(f => ({
-      name: f.name,
-      path: f.path,
-      size: f.size
-    })) : []
-  }
-};
+// 在服务端获取版本数据并传递到客户端
+let desktopVersionData = null;
+try {
+  // 在服务端直接读取文件，避免使用 fetch
+  const fs = await import('fs/promises');
+  const path = await import('path');
+  const versionIndexPath = path.join(process.cwd(), 'public', 'version-index.json');
+  desktopVersionData = JSON.parse(await fs.readFile(versionIndexPath, 'utf-8'));
+} catch (e) {
+  console.error("Failed to fetch desktop versions for desktop page:", e);
+}
 
-const channelDataJSON = JSON.stringify(channelDataForClient);
+// 将数据序列化为 JSON，以便在客户端脚本中使用
+const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData) : 'null';
 ---
 
 <!doctype html>
@@ -161,6 +52,7 @@ const channelDataJSON = JSON.stringify(channelDataForClient);
     <meta name="og:title" content={title} />
     <meta name="og:description" content={description} />
     <meta name="og:type" content="website" />
+    <script set:html={`window.__DESKTOP_VERSION_DATA__ = ${desktopVersionData ? JSON.stringify(desktopVersionData) : 'null'};`} is:inline></script>
     <script is:inline>
       // 初始化主题 - 与主页保持一致
       (function() {
@@ -203,140 +95,11 @@ const channelDataJSON = JSON.stringify(channelDataForClient);
     </script>
   </head>
   <body class="homepage">
-    <Navbar
-      desktopVersion={latest}
-      desktopPlatforms={latestPlatforms}
-      desktopVersionError={error}
-      client:load
-    />
+    <Navbar client:load />
 
     <main class="homepage">
-      <!-- Hero Section -->
-      <section class="hero">
-        <!-- 科技感装饰元素 - 全宽背景 -->
-        <div class="tech-grid-bg" />
-        <div class="bgGlow" />
-        <!-- 内容区域 -->
-        <div class="hero-content">
-          <div class="hero-badge">桌面版</div>
-          <h1>Hagicode Desktop</h1>
-          <p class="hero-tagline">本地化的 AI 代码助手，保护隐私，提升效率</p>
-
-          <div class="hero-value-prop">
-            <div class="value-point">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="12" cy="12" r="10"/>
-              </svg>
-              <span>100% 本地运行，代码不上传</span>
-            </div>
-            <div class="value-point">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>毫秒级响应，无需等待</span>
-            </div>
-            <div class="value-point">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>一键安装，开箱即用</span>
-            </div>
-          </div>
-
-          {hasChannels && (
-            <div class="channel-selector" id="channel-selector">
-              <button
-                class="channel-tab channel-tab--active"
-                data-channel="stable"
-                aria-selected="true"
-              >
-                <span class="channel-icon">🟢</span>
-                <span class="channel-label">稳定版</span>
-              </button>
-              <button
-                class="channel-tab"
-                data-channel="beta"
-                aria-selected="false"
-              >
-                <span class="channel-icon">🧪</span>
-                <span class="channel-label">测试版 Beta</span>
-              </button>
-            </div>
-          )}
-
-          {hasChannels && (
-            <div class="beta-warning" id="beta-warning" style="display: none;">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="warning-icon">
-                <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <div class="warning-content">
-                <strong>测试版警告</strong>
-                <p>这是一个测试版本，可能存在不稳定问题。建议用于测试环境，生产环境请使用稳定版。</p>
-              </div>
-            </div>
-          )}
-
-          {error ? (
-            <div class="error-message">
-              <p>⚠️ 无法加载版本信息</p>
-              <p>{error}</p>
-              <a
-                href="https://desktop.dl.hagicode.com/"
-                class="btn btn-primary"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                前往下载页面
-              </a>
-            </div>
-          ) : latest ? (
-            <>
-              <div class="download-buttons">
-                {platformOptions.map((option) => (
-                  <DownloadOption
-                    platform={option.platform}
-                    platformLabel={option.platformLabel}
-                    defaultOption={option.defaultOption}
-                    options={option.options}
-                    isRecommended={option.isRecommended}
-                  />
-                ))}
-              </div>
-              <p class="version-info">
-                最新版本: {latest.version}
-                {latestPlatforms.length > 0 && (
-                  <span class="platform-info">
-                    {" "}
-                    • 支持{" "}
-                    {latestPlatforms.map((p) =>
-                      p.platform === 'windows' ? 'Windows' :
-                      p.platform === 'macos' ? 'macOS' : 'Linux'
-                    ).join("、")}
-                  </span>
-                )}
-              </p>
-            </>
-          ) : (
-            <p>暂无可用的下载版本</p>
-          )}
-
-          <div class="hero-features">
-            <span class="feature-tag">
-              <FeatureTagIcon name="lock" />
-              隐私保护
-            </span>
-            <span class="feature-tag">
-              <FeatureTagIcon name="bolt" />
-              快速响应
-            </span>
-            <span class="feature-tag">
-              <FeatureTagIcon name="computer" />
-              跨平台支持
-            </span>
-          </div>
-        </div>
-      </section>
+      <!-- Hero Section - 使用 React 组件 -->
+      <DesktopHero client:load />
 
       <!-- 功能特性区域 -->
       <section class="features">
@@ -447,230 +210,39 @@ const channelDataJSON = JSON.stringify(channelDataForClient);
               <p>
                 <strong>网络:</strong> 初始下载需要网络连接（后续可离线使用）
               </p>
-              <p>
-                <strong>注意:</strong> 需要安装图形界面环境
-              </p>
             </div>
           </TabItem>
         </Tabs>
       </section>
 
-      <!-- 安装指南 -->
-      <section class="installation-guide">
-        <h2>安装指南</h2>
-        <Tabs>
-          <TabItem label="Windows">
-            <div class="guide-content">
-              <ol>
-                <li>
-                  <strong>下载安装包</strong>
-                  <br />
-                  点击上方的 "Windows 下载" 按钮，下载
-                  <code>Hagicode-Desktop-Setup-x.x.x.exe</code> 文件
-                </li>
-                <li>
-                  <strong>运行安装程序</strong>
-                  <br />
-                  双击下载的 <code>.exe</code> 文件，在 Windows SmartScreen
-                  提示时点击"更多信息"然后"运行"
-                </li>
-                <li>
-                  <strong>完成安装</strong>
-                  <br />
-                  按照安装向导完成安装，安装完成后可以从开始菜单启动 Hagicode
-                  Desktop
-                </li>
-              </ol>
-              :::tip[安装失败]
-              如果安装失败，请确保：
-              - 已关闭正在运行的 Hagicode Desktop 实例
-              - 有管理员权限
-              - 系统满足最低要求
-              :::
-            </div>
-          </TabItem>
-          <TabItem label="macOS">
-            <div class="guide-content">
-              <h3>Intel Mac</h3>
-              <ol>
-                <li>
-                  <strong>下载 DMG 文件</strong>
-                  <br />
-                  下载 <code>Hagicode-Desktop-*.dmg</code> 文件
-                </li>
-                <li>
-                  <strong>打开 DMG 文件</strong>
-                  <br />
-                  双击打开 DMG 文件
-                </li>
-                <li>
-                  <strong>安装应用</strong>
-                  <br />
-                  将 Hagicode Desktop 拖入应用程序文件夹
-                </li>
-                <li>
-                  <strong>移除隔离属性</strong>
-                  <br />
-                  打开"终端"应用，运行以下命令：
-                  <br />
-                  <code>sudo xattr -dr com.apple.quarantine /Applications/Hagicode\ Desktop.app</code>
-                  <br />
-                  <br />
-                  该命令会移除 macOS Gatekeeper 对从互联网下载的应用自动添加的隔离属性，从而避免启动时的安全提示。
-                </li>
-                <li>
-                  <strong>启动应用</strong>
-                  <br />
-                  从启动台启动 Hagicode Desktop
-                </li>
-              </ol>
-
-              <h3>Apple Silicon Mac (M1/M2/M3)</h3>
-              <ol>
-                <li>
-                  <strong>下载 DMG 文件</strong>
-                  <br />
-                  下载 <code>Hagicode-Desktop-*-arm64.dmg</code> 文件
-                </li>
-                <li>
-                  <strong>打开 DMG 文件</strong>
-                  <br />
-                  双击打开 DMG 文件
-                </li>
-                <li>
-                  <strong>安装应用</strong>
-                  <br />
-                  将 Hagicode Desktop 拖入应用程序文件夹
-                </li>
-                <li>
-                  <strong>移除隔离属性</strong>
-                  <br />
-                  打开"终端"应用，运行以下命令：
-                  <br />
-                  <code>sudo xattr -dr com.apple.quarantine /Applications/Hagicode\ Desktop.app</code>
-                  <br />
-                  <br />
-                  该命令会移除 macOS Gatekeeper 对从互联网下载的应用自动添加的隔离属性，从而避免启动时的安全提示。
-                </li>
-                <li>
-                  <strong>启动应用</strong>
-                  <br />
-                  从启动台启动 Hagicode Desktop
-                </li>
-              </ol>
-
-              :::tip[提示]
-              如果未执行上述命令移除隔离属性，首次启动时系统可能会提示"无法验证开发者"。此时请在系统偏好设置 > 安全性与隐私中点击"仍要打开"。或者您也可以先关闭该提示，然后在终端执行上述 xattr 命令后再重新启动应用。
-              :::
-            </div>
-          </TabItem>
-          <TabItem label="Linux">
-            <div class="guide-content">
-              <h3>使用 AppImage（推荐）</h3>
-              <ol>
-                <li>
-                  <strong>下载 AppImage</strong>
-                  <br />
-                  点击上方的 "Linux 下载" 按钮，下载 <code>.AppImage</code>
-                  文件
-                </li>
-                <li>
-                  <strong>添加执行权限</strong>
-                  <br />
-                  <code>chmod +x Hagicode.Desktop-*.AppImage</code>
-                </li>
-                <li>
-                  <strong>运行应用</strong>
-                  <br />
-                  <code>./Hagicode.Desktop-*.AppImage</code>
-                </li>
-              </ol>
-
-              <h3>使用 Debian 包</h3>
-              <ol>
-                <li>
-                  <strong>下载 Debian 包</strong>
-                  <br />
-                  下载 <code>_amd64.deb</code> 文件
-                </li>
-                <li>
-                  <strong>安装包</strong>
-                  <br />
-                  <code>sudo dpkg -i hagicode-desktop_*_amd64.deb</code>
-                </li>
-                <li>
-                  <strong>修复依赖（如果需要）</strong>
-                  <br />
-                  <code>sudo apt-get install -f</code>
-                </li>
-              </ol>
-            </div>
-          </TabItem>
-        </Tabs>
-      </section>
-
-      <!-- 版本历史 -->
-      <section class="version-history">
-        <h2>版本历史</h2>
-        <div class="version-list">
-          {allVersions.map((version) => (
-            <div class="version-item">
-              <div class="version-header">
-                <h3>{version.version}</h3>
-                {version === latest && (
-                  <span class="latest-badge">最新版本</span>
-                )}
-              </div>
-              <details>
-                <summary>查看下载选项</summary>
-                <div class="version-downloads">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>平台</th>
-                        <th>类型</th>
-                        <th>文件大小</th>
-                        <th>下载</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {groupAssetsByPlatform(version.files).map((platform) =>
-                        platform.downloads.map((download) => (
-                          <tr>
-                            <td>{platform.platform}</td>
-                            <td>{download.filename}</td>
-                            <td>{download.size}</td>
-                            <td>
-                              <a
-                                href={download.url}
-                                class="btn-link"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                下载
-                              </a>
-                            </td>
-                          </tr>
-                        ))
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-              </details>
-            </div>
-          ))}
+      <!-- 安装步骤 -->
+      <section class="installation-steps">
+        <h2>快速安装</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3>下载安装包</h3>
+            <p>根据你的操作系统选择对应的安装包</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3>运行安装程序</h3>
+            <p>双击下载的安装包，按照提示完成安装</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3>启动应用</h3>
+            <p>首次启动时会引导你完成初始配置</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <h3>开始使用</h3>
+            <p>配置完成后即可开始使用 Hagicode Desktop</p>
+          </div>
         </div>
       </section>
 
       <!-- FAQ -->
-
-      <!-- 渠道数据存储（作为 data 属性） -->
-      <div
-        id="channel-data"
-        style="display:none"
-        data-has-channels={hasChannels}
-        data-channels={channelDataJSON}
-      ></div>
       <section class="faq">
         <h2>常见问题</h2>
         <div class="faq-list">
@@ -744,458 +316,34 @@ const channelDataJSON = JSON.stringify(channelDataForClient);
           </details>
 
           <details class="faq-item">
-            <summary>数据存储在哪里？</summary>
+            <summary>是否支持离线使用？</summary>
             <div class="faq-content">
-              <p>Hagicode Desktop 使用 Electron 框架发布，所有数据都存储在 Electron 的 UserData 目录中：</p>
+              <p>是的！Hagicode Desktop 支持完全离线使用：</p>
               <ul>
-                <li>
-                  <strong>Windows:</strong> <code>C:\Users\&lt;用户名&gt;\AppData\Roaming\Hagicode Desktop</code>
-                </li>
-                <li>
-                  <strong>macOS:</strong> <code>~/Library/Application Support/Hagicode Desktop</code>
-                </li>
-                <li>
-                  <strong>Linux:</strong> <code>~/.config/Hagicode Desktop</code>
-                </li>
-              </ul>
-              <p>这是 Electron 应用的标准数据存储位置，确保你的配置和数据与应用程序生命周期保持一致。</p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>如何卸载？</summary>
-            <div class="faq-content">
-              <ul>
-                <li>
-                  <strong>Windows:</strong> 通过"设置 > 应用"卸载，或运行卸载程序
-                </li>
-                <li>
-                  <strong>macOS:</strong> 删除 Applications 文件夹中的 Hagicode
-                  Desktop
-                </li>
-                <li>
-                  <strong>Linux:</strong> 使用包管理器卸载或删除 AppImage 文件
-                </li>
+                <li>首次安装和配置需要网络连接（下载核心组件和 AI 模型）</li>
+                <li>配置完成后可断网使用所有功能</li>
+                <li>你的代码和数据永远不会上传到云端</li>
+                <li>所有 AI 处理都在本地完成</li>
               </ul>
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>是否需要网络连接？</summary>
+            <summary>遇到问题如何获取帮助？</summary>
             <div class="faq-content">
-              <p>
-                仅在以下情况需要网络连接：
-              </p>
+              <p>如果你在使用 Hagicode Desktop 时遇到问题，可以通过以下方式获取帮助：</p>
               <ul>
-                <li>首次下载和安装应用</li>
-                <li>使用 AI 编码助手（如 Claude Code、Copilot 等）</li>
-                <li>检查和下载应用更新</li>
+                <li><strong>技术支持群：</strong>加入 QQ 群 610394020</li>
+                <li><strong>在线文档：</strong>查看完整的使用文档和教程</li>
+                <li><strong>GitHub Issues：</strong>在项目仓库提交问题报告</li>
               </ul>
-              <p>
-                应用本体可以离线运行，但 AI 编码助手功能需要网络连接来调用相应的服务。
-              </p>
-            </div>
-          </details>
-
-          <details class="faq-item">
-            <summary>如何获取帮助与支持？</summary>
-            <div class="faq-content">
-              <p>如果你在使用 Hagicode Desktop 时遇到问题或有任何建议，我们提供多种方式与你联系：</p>
-              <ul>
-                <li>
-                  <strong>官方网站：</strong>
-                  <a href="https://hagicode.com" target="_blank" rel="noopener noreferrer">https://hagicode.com</a>
-                  <br />
-                  访问我们的官网获取最新动态、文档和教程。
-                </li>
-                <li>
-                  <strong>GitHub 仓库：</strong>
-                  <a href="https://github.com/HagiCode-org/site" target="_blank" rel="noopener noreferrer">https://github.com/HagiCode-org/site</a>
-                  <br />
-                  在 GitHub 上提交 Issue、参与讨论或查看源代码。欢迎给我们一个 Star ⭐
-                </li>
-                <li>
-                  <strong>QQ 群：</strong>
-                  <a href="https://qm.qq.com/q/Fwb0o094kw" target="_blank" rel="noopener noreferrer">技术支持群 610394020</a>
-                  <br />
-                  加入我们的 QQ 群与其他用户交流，获取实时帮助。
-                </li>
-                <li>
-                  <strong>邮箱支持：</strong>
-                  <a href="mailto:support@hagicode.com">support@hagicode.com</a>
-                  <br />
-                  通过邮件联系我们，我们会在收到邮件后尽快回复。
-                </li>
-              </ul>
-              <p>
-                我们欢迎所有形式的反馈，包括功能建议、Bug 报告和使用体验分享。你的意见对我们非常重要！
-              </p>
             </div>
           </details>
         </div>
       </section>
     </main>
 
-    <Footer client:load />
-
-    <!-- 平台检测和按钮重排序脚本 + 渠道切换脚本 -->
-    <script type="module">
-      (function() {
-        function detectOS() {
-          // 优先检查 URL 查询参数中的 os 参数（用于调试）
-          const urlParams = new URLSearchParams(window.location.search);
-          const osParam = urlParams.get('os');
-          if (osParam) {
-            const validOS = ['windows', 'macos', 'linux'];
-            if (validOS.includes(osParam.toLowerCase())) {
-              console.log('[Platform Detection] Using OS from query param:', osParam.toLowerCase());
-              return osParam.toLowerCase();
-            }
-          }
-
-          const userAgent = navigator.userAgent;
-          console.log('[Platform Detection] UserAgent:', userAgent);
-
-          if (userAgent.includes('Windows')) {
-            console.log('[Platform Detection] Detected: Windows');
-            return 'windows';
-          }
-          if (userAgent.includes('Mac') || userAgent.includes('iPhone') || userAgent.includes('iPad') || userAgent.includes('Mac OS')) {
-            console.log('[Platform Detection] Detected: macOS');
-            return 'macos';
-          }
-          if (userAgent.includes('Linux')) {
-            console.log('[Platform Detection] Detected: Linux');
-            return 'linux';
-          }
-          console.log('[Platform Detection] Detected: Unknown');
-          return 'unknown';
-        }
-
-        function highlightCurrentPlatform() {
-          const userOS = detectOS();
-          const downloadButtons = document.querySelectorAll('.download-option-wrapper');
-
-          console.log('[Platform Detection] Found buttons:', downloadButtons.length);
-          console.log('[Platform Detection] User OS:', userOS);
-
-          downloadButtons.forEach(wrapper => {
-            const platform = wrapper.dataset.platform;
-            console.log('[Platform Detection] Button platform:', platform);
-
-            // 移除所有推荐状态
-            wrapper.classList.remove('download-option-wrapper--recommended');
-
-            // 为当前用户的系统添加推荐状态
-            if (platform === userOS) {
-              wrapper.classList.add('download-option-wrapper--recommended');
-              console.log('[Platform Detection] Added recommended class to:', platform);
-            }
-          });
-
-          // 如果是未知系统，默认推荐第一个平台（通常是 Windows）
-          if (userOS === 'unknown' && downloadButtons.length > 0) {
-            const firstButton = downloadButtons[0];
-            firstButton.classList.add('download-option-wrapper--recommended');
-            console.log('[Platform Detection] Unknown OS, defaulting to first platform:', firstButton.dataset.platform);
-          }
-
-          // 重新排序：当前系统放最前面
-          const buttonsContainer = document.querySelector('.download-buttons');
-          if (!buttonsContainer) {
-            console.warn('[Platform Detection] Download buttons container not found');
-            return;
-          }
-
-          const sortedWrappers = Array.from(downloadButtons).sort((a, b) => {
-            const aPlatform = a.dataset.platform || '';
-            const bPlatform = b.dataset.platform || '';
-
-            // 当前系统的平台排最前
-            if (aPlatform === userOS && bPlatform !== userOS) return -1;
-            if (aPlatform !== userOS && bPlatform === userOS) return 1;
-
-            return 0;
-          });
-
-          // 重新排列 DOM
-          sortedWrappers.forEach(wrapper => {
-            buttonsContainer.appendChild(wrapper);
-          });
-        }
-
-        // 确保在所有内容加载后执行
-        function initPlatformDetection() {
-          setTimeout(() => {
-            highlightCurrentPlatform();
-          }, 100);
-        }
-
-        // 在 DOM 加载后执行
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initPlatformDetection);
-        } else {
-          initPlatformDetection();
-        }
-      })();
-    </script>
-    </script>
-
-    <!-- 渠道切换脚本 -->
-    <script type="module">
-      (function() {
-        // 从 data 属性中读取渠道信息
-        var channelDataElement = document.getElementById('channel-data');
-        if (!channelDataElement) {
-          console.log('[Channel Switch] Channel data element not found');
-          return;
-        }
-
-        var hasChannels = channelDataElement.dataset.hasChannels === 'true';
-        var channelsJSON = channelDataElement.dataset.channels;
-        var channelData = channelsJSON ? JSON.parse(channelsJSON) : {};
-        console.log('[Channel Switch] Loaded channel data:', channelData);
-
-        if (!hasChannels) {
-          console.log('[Channel Switch] Channels not available');
-          return;
-        }
-
-        // 当前选择的渠道
-        var currentChannel = 'stable';
-
-        // 切换渠道
-        function switchChannel(channel) {
-          console.log('[Channel Switch] Switching to:', channel);
-          currentChannel = channel;
-
-          // 更新渠道标签页状态
-          document.querySelectorAll('.channel-tab').forEach(function(tab) {
-            var tabChannel = tab.dataset.channel;
-            if (tabChannel === channel) {
-              tab.classList.add('channel-tab--active');
-              tab.setAttribute('aria-selected', 'true');
-            } else {
-              tab.classList.remove('channel-tab--active');
-              tab.setAttribute('aria-selected', 'false');
-            }
-          });
-
-          // 显示/隐藏 Beta 警告
-          var betaWarning = document.getElementById('beta-warning');
-          if (betaWarning) {
-            betaWarning.style.display = channel === 'beta' ? 'flex' : 'none';
-          }
-
-          // 更新下载按钮
-          updateDownloadButtons(channel);
-
-          // 更新版本信息
-          updateVersionInfo(channel);
-        }
-
-        // 更新下载按钮 - 更新现有组件的链接和数据
-        function updateDownloadButtons(channel) {
-          var wrappers = document.querySelectorAll('.download-option-wrapper');
-          if (!wrappers || wrappers.length === 0) {
-            console.warn('[Channel Switch] No download button wrappers found');
-            return;
-          }
-
-          var channelInfo = channelData[channel];
-          if (!channelInfo || !channelInfo.platforms || channelInfo.platforms.length === 0) {
-            console.warn('[Channel Switch] No platforms available for channel:', channel);
-            return;
-          }
-
-          console.log('[Channel Switch] Updating download buttons for channel:', channel, 'with', channelInfo.platforms.length, 'files');
-
-          // 按平台分组文件
-          var platforms = {
-            windows: [],
-            macos: [],
-            linux: []
-          };
-
-          channelInfo.platforms.forEach(function(file) {
-            var name = file.name.toLowerCase();
-            if (name.includes('.exe') || name.includes('.appx')) {
-              platforms.windows.push(file);
-            } else if (name.includes('.dmg') || name.includes('-mac.zip')) {
-              platforms.macos.push(file);
-            } else if (name.includes('.appimage') || name.includes('.deb') || name.includes('.tar.gz')) {
-              platforms.linux.push(file);
-            }
-          });
-
-          // 更新每个平台的下载按钮
-          wrappers.forEach(function(wrapper) {
-            var platform = wrapper.dataset.platform;
-            if (!platform || !platforms[platform] || platforms[platform].length === 0) {
-              return; // 跳过没有文件的平台
-            }
-
-            var platformFiles = platforms[platform];
-
-            // 获取推荐文件
-            var recommendedFile = platformFiles[0];
-            if (platform === 'windows') {
-              recommendedFile = platformFiles.find(function(f) { return f.name.indexOf('Setup') >= 0; }) || platformFiles[0];
-            } else if (platform === 'macos') {
-              recommendedFile = platformFiles.find(function(f) { return f.name.indexOf('arm64') >= 0; }) || platformFiles[0];
-            } else if (platform === 'linux') {
-              recommendedFile = platformFiles.find(function(f) { return f.name.indexOf('.AppImage') >= 0; }) || platformFiles[0];
-            }
-
-            // 格式化文件大小
-            var sizeInMB = (recommendedFile.size / (1024 * 1024)).toFixed(0);
-            var size = parseFloat(sizeInMB) >= 1000 ? (parseFloat(sizeInMB) / 1024).toFixed(1) + ' GB' : sizeInMB + ' MB';
-            var downloadUrl = 'https://desktop.dl.hagicode.com/' + recommendedFile.path;
-
-            // 更新主下载按钮
-            var mainBtn = wrapper.querySelector('.btn-download-main');
-            if (mainBtn) {
-              mainBtn.href = downloadUrl;
-              mainBtn.setAttribute('download', recommendedFile.name);
-            }
-
-            // 更新按钮副标签（文件名）
-            var sublabel = wrapper.querySelector('.btn-sublabel');
-            if (sublabel) {
-              sublabel.textContent = recommendedFile.name;
-            }
-
-            // 更新下拉菜单项
-            var dropdownMenu = wrapper.querySelector('.dropdown-menu');
-            if (dropdownMenu) {
-              // 清空现有菜单项
-              dropdownMenu.innerHTML = '';
-
-              // 添加新的菜单项
-              platformFiles.forEach(function(file) {
-                var fileSize = (file.size / (1024 * 1024)).toFixed(0);
-                var formattedSize = parseFloat(fileSize) >= 1000 ? (parseFloat(fileSize) / 1024).toFixed(1) + ' GB' : fileSize + ' MB';
-                var fileUrl = 'https://desktop.dl.hagicode.com/' + file.path;
-
-                var li = document.createElement('li');
-                li.setAttribute('role', 'none');
-
-                var a = document.createElement('a');
-                a.href = fileUrl;
-                a.className = 'dropdown-item';
-                a.setAttribute('role', 'option');
-                a.setAttribute('target', '_blank');
-                a.setAttribute('rel', 'noopener noreferrer');
-                a.dataset.label = file.name;
-                a.dataset.url = fileUrl;
-
-                a.style.display = 'flex';
-                a.style.alignItems = 'center';
-                a.style.justifyContent = 'space-between';
-                a.style.gap = '0.5rem';
-                a.style.padding = '0.75rem 1rem';
-                a.style.textDecoration = 'none';
-                a.style.borderRadius = '0.375rem';
-                a.style.transition = 'all 0.15s ease-out';
-                a.style.fontSize = '0.875rem';
-                a.style.color = 'var(--color-text-secondary)';
-
-                var labelSpan = document.createElement('span');
-                labelSpan.className = 'dropdown-item-label';
-                labelSpan.textContent = file.name;
-                labelSpan.style.flex = '1';
-
-                var sizeSpan = document.createElement('span');
-                sizeSpan.className = 'dropdown-item-size';
-                sizeSpan.textContent = formattedSize;
-                sizeSpan.style.fontSize = '0.75rem';
-                sizeSpan.style.color = 'var(--color-text-muted)';
-
-                a.appendChild(labelSpan);
-                a.appendChild(sizeSpan);
-                li.appendChild(a);
-                dropdownMenu.appendChild(li);
-
-                // 添加点击事件
-                a.addEventListener('click', function(e) {
-                  e.preventDefault();
-
-                  // 更新主按钮
-                  var sublabel = wrapper.querySelector('.btn-sublabel');
-                  var mainLink = wrapper.querySelector('.btn-download-main');
-
-                  if (sublabel && mainLink) {
-                    sublabel.textContent = file.name;
-                    mainLink.href = fileUrl;
-                    mainLink.setAttribute('download', file.name);
-                  }
-
-                  // 关闭下拉菜单
-                  var toggle = wrapper.querySelector('.btn-dropdown-toggle');
-                  if (toggle) {
-                    toggle.setAttribute('aria-expanded', 'false');
-                  }
-                });
-
-                // 添加悬停效果
-                a.addEventListener('mouseenter', function() {
-                  a.style.background = 'var(--color-surface-hover)';
-                  a.style.color = 'var(--color-text)';
-                });
-
-                a.addEventListener('mouseleave', function() {
-                  a.style.background = '';
-                  a.style.color = 'var(--color-text-secondary)';
-                });
-              });
-            }
-          });
-
-          // 重新绑定平台检测
-          setTimeout(function() {
-            if (typeof highlightCurrentPlatform === 'function') {
-              highlightCurrentPlatform();
-            }
-          }, 50);
-        }
-
-        // 更新版本信息
-        function updateVersionInfo(channel) {
-          var versionInfoEl = document.querySelector('.version-info');
-          if (!versionInfoEl) return;
-
-          var channelInfo = channelData[channel];
-          if (channelInfo && channelInfo.latest) {
-            var betaTag = channel === 'beta' ? ' <span class="beta-tag">[测试版]</span>' : '';
-            versionInfoEl.innerHTML = '最新版本: ' + channelInfo.latest + betaTag;
-          }
-        }
-
-        // 初始化渠道切换
-        function initChannelSwitch() {
-          var channelTabs = document.querySelectorAll('.channel-tab');
-          console.log('[Channel Switch] Found tabs:', channelTabs.length);
-
-          channelTabs.forEach(function(tab) {
-            tab.addEventListener('click', function(e) {
-              e.preventDefault();
-              var channel = tab.dataset.channel;
-              console.log('[Channel Switch] Tab clicked:', channel);
-              switchChannel(channel);
-            });
-          });
-        }
-
-        // 页面加载完成后初始化
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initChannelSwitch);
-        } else {
-          initChannelSwitch();
-        }
-
-        console.log('[Channel Switch] Initialized successfully');
-      })();
-    </script>
+    <Footer />
 
     <!-- Microsoft Clarity 分析 -->
     <Clarity />

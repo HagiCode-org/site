@@ -11,8 +11,9 @@ import Footer from '@/components/home/Footer';
 import FeatureIcon from '@/components/desktop/FeatureIcon.astro';
 import FeatureTagIcon from '@/components/desktop/FeatureTagIcon.astro';
 import { getLink } from '@shared/links';
-import { fetchDesktopVersions, groupAssetsByPlatform } from '@/utils/desktop';
-import type { DesktopVersion, PlatformGroup } from '@/types/desktop';
+import { fetchDesktopVersions, groupAssetsByPlatform } from "@shared/desktop-utils";
+import { setDesktopServerData } from "@shared/version-manager";
+import type { DesktopVersion, PlatformGroup } from "@shared/desktop";
 
 // SEO 元数据
 const title = "Hagicode Container - 容器部署";
@@ -43,6 +44,9 @@ let desktopVersionData: {
 
 try {
   const data = await fetchDesktopVersions();
+
+  // 注入数据到 VersionManager（用于客户端组件）
+  setDesktopServerData(data);
 
   // 优先使用 channels.stable.latest 作为默认显示的版本
   if (data.channels && data.channels.stable && data.channels.stable.latest) {

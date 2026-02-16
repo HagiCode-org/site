@@ -9,17 +9,9 @@ import InstallButton from "./InstallButton";
 import styles from "./Navbar.module.css";
 import { withBasePath } from "../../utils/path";
 import { navLinks } from "@/config/navigation";
-import type { DesktopVersion, PlatformGroup } from "@/types/desktop";
 
 interface NavbarProps {
   className?: string;
-  desktopVersion?: DesktopVersion | null;
-  desktopPlatforms?: PlatformGroup[];
-  desktopVersionError?: string | null;
-  desktopChannels?: {
-    stable: { latest: DesktopVersion | null; all: DesktopVersion[] };
-    beta: { latest: DesktopVersion | null; all: DesktopVersion[] };
-  };
 }
 
 /**
@@ -99,10 +91,6 @@ const NavIcon = ({ name }: { name: string }): JSX.Element | null => {
 
 export default function Navbar({
   className = "",
-  desktopVersion = null,
-  desktopPlatforms = [],
-  desktopVersionError = null,
-  desktopChannels
 }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -155,12 +143,7 @@ export default function Navbar({
         {/* Desktop Navigation */}
         <nav className={styles.navDesktop}>
           {/* CTA 按钮 - 放在导航链接之前 */}
-          <InstallButton
-            variant="compact"
-            version={desktopVersion}
-            platforms={desktopPlatforms}
-            versionError={desktopVersionError}
-          />
+          <InstallButton variant="compact" />
 
           {navLinks.map((item) => (
             <a
@@ -209,9 +192,6 @@ export default function Navbar({
           <InstallButton
             variant="compact"
             className={styles.mobileCtaButton}
-            version={desktopVersion}
-            platforms={desktopPlatforms}
-            versionError={desktopVersionError}
           />
 
           {navLinks.map((item) => (

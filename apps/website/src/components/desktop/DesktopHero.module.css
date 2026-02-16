@@ -1,0 +1,1149 @@
+/**
+ * DesktopHero 组件专属样式 - 统一下载按钮 UI (UI/UX 优化版)
+ * - 统一按钮组布局，显示所有平台
+ * - 检测到的系统显示为主要按钮（渐变背景）
+ * - 其他平台显示为次要按钮（灰色背景）
+ * - 增强的微交互、动画和可访问性
+ */
+
+/* ==========================================================================
+   下载区域容器
+   ========================================================================== */
+
+.downloadSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin: 2.5rem 0;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   按钮组布局
+   ========================================================================== */
+
+.buttonGroup {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   平台按钮
+   ========================================================================== */
+
+.platformButton {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.splitButtonContainer {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  min-height: 56px;
+}
+
+/* 主下载按钮 - 左侧 */
+.btnDownloadMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0 1.25rem;
+  flex: 1;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  text-align: center;
+}
+
+/* 主要按钮的主下载按钮 */
+.platformButtonPrimary .btnDownloadMain {
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  color: #ffffff;
+  border-radius: 0.75rem 0 0 0.75rem;
+  box-shadow: 0 4px 16px rgba(0, 128, 255, 0.2),
+              0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+
+.platformButtonPrimary .btnDownloadMain:hover {
+  background-position: 100% 50%;
+  box-shadow: 0 8px 24px rgba(0, 128, 255, 0.3),
+              0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+              0 0 32px rgba(0, 204, 204, 0.2);
+}
+
+/* 次要按钮的主下载按钮 */
+.platformButtonSecondary .btnDownloadMain {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-radius: 0.75rem 0 0 0.75rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1),
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.platformButtonSecondary .btnDownloadMain:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(0, 128, 255, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15),
+              0 0 0 1px rgba(0, 128, 255, 0.1) inset;
+}
+
+/* 下拉切换按钮 - 右侧 */
+.btnDropdownToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  min-width: 48px;
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #ffffff;
+}
+
+/* 主要按钮的下拉切换按钮 */
+.platformButtonPrimary .btnDropdownToggle {
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  border-radius: 0 0.75rem 0.75rem 0;
+  box-shadow: 0 4px 16px rgba(0, 128, 255, 0.2),
+              0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+
+.platformButtonPrimary .btnDropdownToggle:hover {
+  background-position: 100% 50%;
+}
+
+/* 次要按钮的下拉切换按钮 */
+.platformButtonSecondary .btnDropdownToggle {
+  background: rgba(255, 255, 255, 0.08);
+  border-left-color: rgba(255, 255, 255, 0.15);
+  border-radius: 0 0.75rem 0.75rem 0;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1),
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.platformButtonSecondary .btnDropdownToggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-left-color: rgba(0, 128, 255, 0.4);
+}
+
+/* 下拉箭头动画 */
+.btnDropdownToggle svg {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btnDropdownToggle[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+/* 平台按钮标签 */
+.platformButtonLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.platformName {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* 推荐徽章 - 优化视觉层次 */
+.recommendedBadge {
+  padding: 0.25rem 0.625rem;
+  background: linear-gradient(135deg, #22C55E, #16A34A);
+  color: #ffffff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4);
+  position: relative;
+  z-index: 1;
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ==========================================================================
+   下拉菜单 - UI/UX 优化 - 与按钮渐变风格一致
+   ========================================================================== */
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  min-width: 260px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 128, 255, 0.15);
+  border-radius: 0.75rem;
+  box-shadow: 0 8px 32px rgba(0, 128, 255, 0.15),
+              0 0 0 1px rgba(0, 128, 255, 0.05) inset;
+  padding: 0.625rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0s linear 0.25s;
+}
+
+.platformButton[aria-expanded="true"] .dropdownMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0s linear 0s;
+}
+
+/* 平台分组标签 - 优化视觉层次 */
+.dropdownGroupLabel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.375rem 0.625rem;
+  margin: 0 0 0.375rem 0;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #0080FF;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, rgba(0, 128, 255, 0.08) 0%, rgba(0, 204, 204, 0.08) 100%);
+  border-radius: 0.5rem;
+}
+
+.dropdownGroupLabel::before {
+  content: '';
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.platformLabel {
+  padding-left: 0.75rem;
+}
+
+/* Windows - 蓝色 */
+.platform--windows::before {
+  background: linear-gradient(180deg, #0080FF 0%, #0066CC 100%);
+}
+
+/* macOS - 紫色 */
+.platform--macos::before {
+  background: linear-gradient(180deg, #9B59B6 0%, #8E44AD 100%);
+}
+
+/* Linux - 橙色 */
+.platform--linux::before {
+  background: linear-gradient(180deg, #E67E22 0%, #D35400 100%);
+}
+
+/* 下拉列表 */
+.dropdownList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+/* 下拉菜单项 - 与按钮渐变风格一致 */
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 0.875rem;
+  min-height: 44px;
+  background: rgba(0, 128, 255, 0.03);
+  border: 1px solid rgba(0, 128, 255, 0.1);
+  border-radius: 0.625rem;
+  color: #475569;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.dropdownItem::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  opacity: 0;
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.dropdownItem:hover {
+  background: rgba(0, 128, 255, 0.06);
+  border-color: rgba(0, 128, 255, 0.25);
+  color: #0F172A;
+  transform: translateX(2px);
+  box-shadow: 0 2px 8px rgba(0, 128, 255, 0.15);
+}
+
+.dropdownItem:hover::before {
+  opacity: 0.08;
+}
+
+.dropdownItem:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #0080FF,
+              inset 0 0 0 2px #ffffff;
+}
+
+.dropdownItemLabel {
+  flex: 1;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+.dropdownItem svg {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  color: #0080FF;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* 历史版本按钮 - 优化视觉层次 */
+.dropdownHistoryBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.625rem 0.875rem;
+  margin-top: 0.5rem;
+  background: linear-gradient(135deg, rgba(0, 128, 255, 0.05) 0%, rgba(0, 204, 204, 0.05) 100%);
+  border: 1px solid rgba(0, 128, 255, 0.2);
+  border-radius: 0.625rem;
+  color: #0080FF;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdownHistoryBtn:hover {
+  background: linear-gradient(135deg, rgba(0, 128, 255, 0.1) 0%, rgba(0, 204, 204, 0.1) 100%);
+  border-color: rgba(0, 128, 255, 0.35);
+  color: #0066CC;
+  box-shadow: 0 2px 8px rgba(0, 128, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.dropdownHistoryBtn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #0080FF;
+}
+
+.dropdownHistoryBtn svg {
+  color: #0080FF;
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ==========================================================================
+   注册模态框
+   ========================================================================== */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modalContent {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  padding: 2rem;
+  background: var(--color-surface, #1a1a2e);
+  border: 1px solid var(--color-border, rgba(0, 128, 255, 0.2));
+  border-radius: 1.25rem;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modalClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--color-text-secondary, rgba(255, 255, 255, 0.5));
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+}
+
+.modalClose:hover {
+  background: var(--color-surface-hover, rgba(255, 255, 255, 0.1));
+  color: var(--color-text, #ffffff);
+}
+
+.modalHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.modalIcon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  border-radius: 1rem;
+  color: #ffffff;
+}
+
+.modalIconGradient {
+  background: linear-gradient(135deg, #0080FF, #00CCCC);
+  box-shadow: 0 8px 24px rgba(0, 128, 255, 0.3);
+}
+
+.modalIconSuccess {
+  background: linear-gradient(135deg, #22C55E, #16A34A);
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text, #ffffff);
+  margin: 0 0 0.75rem 0;
+}
+
+.modalDescription {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary, rgba(255, 255, 255, 0.6));
+  margin: 0;
+  line-height: 1.5;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text, #ffffff);
+}
+
+.input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: var(--color-surface-glass, rgba(255, 255, 255, 0.04));
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.15));
+  border-radius: 0.75rem;
+  color: var(--color-text, #ffffff);
+  font-size: 0.9375rem;
+  transition: all 0.2s ease-out;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--color-text-secondary, rgba(255, 255, 255, 0.3));
+}
+
+.input:hover {
+  border-color: var(--color-primary, rgba(0, 128, 255, 0.4));
+}
+
+.input:focus {
+  border-color: var(--color-primary, #0080FF);
+  box-shadow: 0 0 0 3px rgba(0, 128, 255, 0.15);
+}
+
+.input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background: linear-gradient(135deg, #0080FF, #00CCCC);
+  border: none;
+  border-radius: 0.75rem;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 4px 16px rgba(0, 128, 255, 0.3);
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 128, 255, 0.4);
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.modalTerms {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary, rgba(255, 255, 255, 0.4));
+  text-align: center;
+  margin: 0;
+}
+
+.modalTerms a {
+  color: var(--color-primary, #0080FF);
+  text-decoration: none;
+}
+
+.modalTerms a:hover {
+  text-decoration: underline;
+}
+
+.modalSuccess {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.modalSuccess .modalDescription strong {
+  color: var(--color-primary, #0080FF);
+}
+
+.loadingSpinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   加载和错误状态
+   ========================================================================== */
+
+.loadingState,
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem;
+  text-align: center;
+  color: var(--color-text, #ffffff);
+}
+
+.errorIcon {
+  font-size: 3rem;
+}
+
+.errorState h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.errorState p {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary, rgba(255, 255, 255, 0.6));
+  margin: 0.5rem 0 1rem;
+  max-width: 400px;
+}
+
+/* ==========================================================================
+   暗色主题适配 - 优化对比度
+   ========================================================================== */
+
+/* 主要按钮 - 暗色主题 */
+[data-theme='dark'] .platformButtonPrimary .btnDownloadMain {
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  box-shadow: 0 4px 16px rgba(0, 128, 255, 0.3),
+              0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+
+[data-theme='dark'] .platformButtonPrimary .btnDownloadMain:hover {
+  background-position: 100% 50%;
+  box-shadow: 0 8px 24px rgba(0, 128, 255, 0.4),
+              0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+              0 0 32px rgba(0, 204, 204, 0.3);
+}
+
+[data-theme='dark'] .platformButtonPrimary .btnDropdownToggle {
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  box-shadow: 0 4px 16px rgba(0, 128, 255, 0.3),
+              0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  animation: gradient-shift 8s ease-in-out infinite;
+}
+
+[data-theme='dark'] .platformButtonPrimary .btnDropdownToggle:hover {
+  background-position: 100% 50%;
+}
+
+/* 次要按钮 - 暗色主题 - 提高可见性 */
+[data-theme='dark'] .platformButtonSecondary .btnDownloadMain {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2),
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+[data-theme='dark'] .platformButtonSecondary .btnDownloadMain:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(0, 128, 255, 0.5);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3),
+              0 0 0 1px rgba(0, 128, 255, 0.15) inset;
+}
+
+[data-theme='dark'] .platformButtonSecondary .btnDropdownToggle {
+  background: rgba(255, 255, 255, 0.08);
+  border-left-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2),
+              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+[data-theme='dark'] .platformButtonSecondary .btnDropdownToggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-left-color: rgba(0, 128, 255, 0.5);
+}
+
+/* 下拉菜单 - 暗色主题 - 优化背景和对比度 */
+[data-theme='dark'] .dropdownMenu {
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: rgba(0, 128, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+              0 0 0 1px rgba(0, 128, 255, 0.1) inset;
+}
+
+[data-theme='dark'] .dropdownGroupLabel {
+  background: linear-gradient(135deg, rgba(0, 128, 255, 0.15) 0%, rgba(0, 204, 204, 0.15) 100%);
+  color: #00CCCC;
+}
+
+[data-theme='dark'] .dropdownItem {
+  background: rgba(0, 128, 255, 0.08);
+  border-color: rgba(0, 128, 255, 0.2);
+  color: #CBD5E1;
+}
+
+[data-theme='dark'] .dropdownItem:hover {
+  background: rgba(0, 128, 255, 0.15);
+  border-color: rgba(0, 128, 255, 0.4);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 128, 255, 0.25);
+}
+
+[data-theme='dark'] .dropdownItem::before {
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+}
+
+[data-theme='dark'] .dropdownHistoryBtn {
+  background: linear-gradient(135deg, rgba(0, 128, 255, 0.1) 0%, rgba(0, 204, 204, 0.1) 100%);
+  border-color: rgba(0, 128, 255, 0.3);
+  color: #00CCCC;
+}
+
+[data-theme='dark'] .dropdownHistoryBtn:hover {
+  background: linear-gradient(135deg, rgba(0, 128, 255, 0.18) 0%, rgba(0, 204, 204, 0.18) 100%);
+  border-color: rgba(0, 128, 255, 0.5);
+  color: #00CCCC;
+  box-shadow: 0 2px 8px rgba(0, 128, 255, 0.25);
+}
+
+[data-theme='dark'] .dropdownHistoryBtn svg {
+  color: #00CCCC;
+}
+
+/* 平台色栏 - 暗色主题（更柔和的渐变） */
+[data-theme='dark'] .platform--windows::before {
+  background: linear-gradient(180deg, #0066CC 0%, #004C99 100%);
+}
+
+[data-theme='dark'] .platform--macos::before {
+  background: linear-gradient(180deg, #7B3996 0%, #6E349D 100%);
+}
+
+[data-theme='dark'] .platform--linux::before {
+  background: linear-gradient(180deg, #C66E12 0%, #B34400 100%);
+}
+
+/* ==========================================================================
+   农历新年主题适配 - 优化视觉一致性
+   ========================================================================== */
+
+/* 主要按钮 - 新年主题 */
+[data-theme='lunar-new-year'] .platformButtonPrimary .btnDownloadMain {
+  background: linear-gradient(135deg, #FF1744 0%, #FF9100 50%, #FFD600 100%);
+  background-size: 200% 200%;
+  box-shadow: 0 4px 16px rgba(255, 23, 68, 0.3),
+              0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  animation: gradient-shift-lunar 8s ease-in-out infinite;
+}
+
+@keyframes gradient-shift-lunar {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+[data-theme='lunar-new-year'] .platformButtonPrimary .btnDownloadMain:hover {
+  background-position: 100% 50%;
+  box-shadow: 0 8px 24px rgba(255, 23, 68, 0.4),
+              0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+              0 0 32px rgba(255, 145, 0, 0.3);
+}
+
+[data-theme='lunar-new-year'] .platformButtonPrimary .btnDropdownToggle {
+  background: linear-gradient(135deg, #FF1744 0%, #FF9100 50%, #FFD600 100%);
+  background-size: 200% 200%;
+  box-shadow: 0 4px 16px rgba(255, 23, 68, 0.3),
+              0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  animation: gradient-shift-lunar 8s ease-in-out infinite;
+}
+
+[data-theme='lunar-new-year'] .platformButtonPrimary .btnDropdownToggle:hover {
+  background-position: 100% 50%;
+}
+
+/* 次要按钮 - 新年主题 */
+[data-theme='lunar-new-year'] .platformButtonSecondary .btnDownloadMain {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 193, 7, 0.3);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1),
+              0 0 0 1px rgba(255, 193, 7, 0.05) inset;
+}
+
+[data-theme='lunar-new-year'] .platformButtonSecondary .btnDownloadMain:hover {
+  background: rgba(255, 193, 7, 0.15);
+  border-color: rgba(255, 193, 7, 0.5);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15),
+              0 0 0 1px rgba(255, 193, 7, 0.1) inset;
+}
+
+[data-theme='lunar-new-year'] .platformButtonSecondary .btnDropdownToggle {
+  background: rgba(255, 255, 255, 0.08);
+  border-left-color: rgba(255, 193, 7, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1),
+              0 0 0 1px rgba(255, 193, 7, 0.05) inset;
+}
+
+[data-theme='lunar-new-year'] .platformButtonSecondary .btnDropdownToggle:hover {
+  background: rgba(255, 193, 7, 0.12);
+  border-left-color: rgba(255, 193, 7, 0.4);
+}
+
+/* 推荐徽章 - 新年主题 */
+[data-theme='lunar-new-year'] .recommendedBadge {
+  background: linear-gradient(135deg, #FFD600, #FF9100);
+  box-shadow: 0 2px 8px rgba(255, 214, 0, 0.5);
+}
+
+/* 下拉菜单 - 新年主题 - 优化背景和可读性 */
+[data-theme='lunar-new-year'] .dropdownMenu {
+  background: rgba(45, 31, 31, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: rgba(255, 193, 7, 0.3);
+  box-shadow: 0 8px 32px rgba(255, 23, 68, 0.25),
+              0 0 0 1px rgba(255, 193, 7, 0.15) inset;
+}
+
+[data-theme='lunar-new-year'] .dropdownGroupLabel {
+  background: linear-gradient(135deg, rgba(255, 23, 68, 0.15) 0%, rgba(255, 145, 0, 0.15) 100%);
+  color: #FF9100;
+}
+
+[data-theme='lunar-new-year'] .dropdownItem {
+  background: rgba(255, 193, 7, 0.08);
+  border-color: rgba(255, 193, 7, 0.25);
+  color: #E5E7EB;
+}
+
+[data-theme='lunar-new-year'] .dropdownItem:hover {
+  background: rgba(255, 193, 7, 0.15);
+  border-color: rgba(255, 193, 7, 0.45);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.25);
+}
+
+[data-theme='lunar-new-year'] .dropdownItem::before {
+  background: linear-gradient(135deg, #FF1744 0%, #FF9100 50%, #FFD600 100%);
+  background-size: 200% 200%;
+}
+
+[data-theme='lunar-new-year'] .dropdownHistoryBtn {
+  background: linear-gradient(135deg, rgba(255, 23, 68, 0.1) 0%, rgba(255, 145, 0, 0.1) 100%);
+  border-color: rgba(255, 193, 7, 0.4);
+  color: #FF9100;
+}
+
+[data-theme='lunar-new-year'] .dropdownHistoryBtn:hover {
+  background: linear-gradient(135deg, rgba(255, 23, 68, 0.18) 0%, rgba(255, 145, 0, 0.18) 100%);
+  border-color: rgba(255, 193, 7, 0.6);
+  color: #FFD600;
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+}
+
+[data-theme='lunar-new-year'] .dropdownHistoryBtn svg {
+  color: #FF9100;
+}
+
+/* 平台色栏 - 新年主题（金色系） */
+[data-theme='lunar-new-year'] .platform--windows::before {
+  background: linear-gradient(180deg, #FFD54F 0%, #FFA000 100%);
+}
+
+[data-theme='lunar-new-year'] .platform--macos::before {
+  background: linear-gradient(180deg, #FFECB3 0%, #FFCA28 100%);
+}
+
+[data-theme='lunar-new-year'] .platform--linux::before {
+  background: linear-gradient(180deg, #FFF9C4 0%, #FFEE58 100%);
+}
+
+/* ==========================================================================
+   辅助功能 - 减少动画
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .downloadSection,
+  .platformButton,
+  .btnDownloadMain,
+  .btnDropdownToggle,
+  .dropdownMenu,
+  .dropdownItem,
+  .dropdownHistoryBtn,
+  .modalOverlay,
+  .modalContent,
+  .submitButton,
+  .input,
+  .loadingSpinner,
+  .recommendedBadge {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .btnDownloadMain:hover,
+  .btnDropdownToggle:hover,
+  .dropdownItem:hover,
+  .submitButton:hover {
+    transform: none !important;
+  }
+
+  .btnDropdownToggle[aria-expanded="true"] svg {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   焦点样式 - 键盘导航 - 增强可访问性
+   ========================================================================== */
+
+.btnDownloadMain:focus-visible,
+.btnDropdownToggle:focus-visible,
+.dropdownItem:focus-visible,
+.dropdownHistoryBtn:focus-visible,
+.modalClose:focus-visible,
+.submitButton:focus-visible,
+.input:focus-visible {
+  outline: none;
+}
+
+.btnDownloadMain:focus-visible,
+.btnDropdownToggle:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-primary, #0080FF),
+              0 0 0 6px rgba(0, 128, 255, 0.2);
+}
+
+.dropdownItem:focus-visible,
+.dropdownHistoryBtn:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-primary, #0080FF);
+}
+
+.modalClose:focus-visible,
+.submitButton:focus-visible,
+.input:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-primary, #0080FF);
+}
+
+/* ==========================================================================
+   响应式设计 - 优化移动端体验
+   ========================================================================== */
+
+/* 平板布局 (481px-768px) */
+@media (max-width: 768px) {
+  .downloadSection {
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .buttonGroup {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    max-width: 100%;
+  }
+
+  .splitButtonContainer {
+    min-height: 52px;
+  }
+
+  .btnDownloadMain {
+    padding: 0 1rem;
+    font-size: 1rem;
+  }
+
+  .btnDropdownToggle {
+    width: 44px;
+    min-width: 44px;
+  }
+
+  .platformName {
+    font-size: 1rem;
+  }
+
+  .dropdownMenu {
+    min-width: 200px;
+  }
+
+  .modalContent {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+
+  .modalTitle {
+    font-size: 1.25rem;
+  }
+
+  .modalIcon {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* 移动布局 (≤480px) - 优化触摸目标 */
+@media (max-width: 480px) {
+  .buttonGroup {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+
+  .splitButtonContainer {
+    min-height: 48px;
+  }
+
+  .btnDownloadMain {
+    padding: 0 1rem;
+    font-size: 0.9375rem;
+    border-radius: 0.75rem 0 0 0.75rem;
+  }
+
+  .btnDropdownToggle {
+    width: 44px;
+    min-width: 44px;
+    border-radius: 0 0.75rem 0.75rem 0;
+  }
+
+  .platformName {
+    font-size: 0.9375rem;
+  }
+
+  .recommendedBadge {
+    padding: 0.125rem 0.5rem;
+    font-size: 0.625rem;
+  }
+
+  /* 在移动端，下拉菜单完全展开并优化定位 */
+  .dropdownMenu {
+    position: relative;
+    top: 0.5rem;
+    left: auto;
+    right: auto;
+    width: 100%;
+    min-width: unset;
+  }
+
+  .dropdownItem,
+  .dropdownHistoryBtn {
+    min-height: 44px;
+  }
+
+  .modalContent {
+    padding: 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   亮色主题适配 - 修复次要按钮对比度
+   ========================================================================== */
+
+/* 亮色模式下的次要按钮主下载按钮 - 仅在无 data-theme 或 data-theme="light" 时生效 */
+html:not([data-theme]),
+html[data-theme='light'] {
+  --btn-secondary-bg: rgba(15, 23, 42, 0.08);
+  --btn-secondary-border: rgba(0, 0, 0, 0.15);
+  --btn-secondary-color: #0F172A;
+  --btn-secondary-hover-bg: rgba(0, 128, 255, 0.1);
+  --btn-secondary-hover-border: rgba(0, 128, 255, 0.3);
+  --btn-secondary-hover-color: #0060CC;
+  --btn-dropdown-bg: rgba(15, 23, 42, 0.06);
+  --btn-dropdown-border: rgba(0, 0, 0, 0.12);
+  --btn-dropdown-hover-bg: rgba(0, 128, 255, 0.08);
+  --btn-dropdown-hover-border: rgba(0, 128, 255, 0.3);
+}
+
+html:not([data-theme]) .platformButtonSecondary .btnDownloadMain,
+html[data-theme='light'] .platformButtonSecondary .btnDownloadMain {
+  background: var(--btn-secondary-bg);
+  border: 1px solid var(--btn-secondary-border);
+  color: var(--btn-secondary-color);
+}
+
+html:not([data-theme]) .platformButtonSecondary .btnDownloadMain:hover,
+html[data-theme='light'] .platformButtonSecondary .btnDownloadMain:hover {
+  background: var(--btn-secondary-hover-bg);
+  border-color: var(--btn-secondary-hover-border);
+  color: var(--btn-secondary-hover-color);
+}
+
+/* 亮色模式下的次要下拉切换按钮 */
+html:not([data-theme]) .platformButtonSecondary .btnDropdownToggle,
+html[data-theme='light'] .platformButtonSecondary .btnDropdownToggle {
+  background: var(--btn-dropdown-bg);
+  border-left-color: var(--btn-dropdown-border);
+  color: var(--btn-secondary-color);
+}
+
+html:not([data-theme]) .platformButtonSecondary .btnDropdownToggle:hover,
+html[data-theme='light'] .platformButtonSecondary .btnDropdownToggle:hover {
+  background: var(--btn-dropdown-hover-bg);
+  border-left-color: var(--btn-dropdown-hover-border);
+  color: var(--btn-secondary-hover-color);
+}
