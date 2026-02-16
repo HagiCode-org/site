@@ -236,4 +236,4 @@ PostgreSQL 未暴露到主机端口，这样更安全且避免端口冲突。如
 
 现在您已经成功部署了 Hagicode，请继续[创建第一个项目](/quick-start/create-first-project)以开始使用。
 
-如果您更喜欢使用软件包方式部署，请参阅[软件包部署指南](/installation/package-deployment)。
+如果您更喜欢使用桌面应用方式部署，请参阅[Desktop 安装指南](/installation/desktop)。
