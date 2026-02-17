@@ -7,14 +7,11 @@ date: 2026-02-04
 
 > 本文将分享如何在 Starlight 文档站点中优雅地接入 Microsoft Clarity，不仅能看清用户行为，还能确保隐私合规。这套方案是我们在 HagiCode 项目中实践总结出来的，希望能给同样在折腾数据统计的你一点参考。
 
-<!-- truncate -->
-
 ## 背景：为什么我们需要 Clarity？
 
 以下代码展示了如何在 Astro 集成中根据环境变量动态注入 Microsoft Clarity 脚本，仅在生效时进行生产环境加载。
 
 
-<!-- Code from openspec/changes/archive/2026-01-30-microsoft-clarity-integration/design.md:105-119 -->
 ```markdown
 105 | interface Props {
 106 |   // 未来可扩展: 允许手动覆盖 Project ID
@@ -50,7 +47,6 @@ date: 2026-02-04
 HagiCode 主题初始化逻辑：优先读取本地存储，回退至系统偏好，默认暗色。
 
 
-<!-- Code from openspec/changes/archive/2026-01-29-theme-toggle-implementation/design.md:67-86 -->
 ```markdown
 67 | function getInitialTheme(): Theme {
 68 |   // 1. 检查 localStorage
@@ -109,7 +105,6 @@ HagiCode 主题初始化逻辑：优先读取本地存储，回退至系统偏�
 下面通过环境变量配置与日期判断代码，实现新年期间的逻辑控制，请参考具体实现。
 
 
-<!-- Code from src/pages/index.astro:46-65 -->
 ```text
 46 |         function isLunarNewYearPeriod() {
 47 |           const now = new Date();
@@ -149,7 +144,6 @@ PUBLIC_CLARITY_ID="你的_Clarity_ID"
 以下是监听系统主题变化的实现代码，展示了如何仅在未手动设置时跟随系统切换主题。
 
 
-<!-- Code from openspec/changes/archive/2026-01-29-theme-toggle-implementation/design.md:445-464 -->
 ```markdown
 445 |     const handleChange = (e: MediaQueryListEvent) => {
 446 |       // 仅在用户未手动设置时跟随系统
@@ -225,7 +219,6 @@ HagiCode 的做法是提供一个简单的开关。虽然这不是全功能的 C
 本文将介绍用于主题切换与持久化的 TypeScript 工具函数，通过类型安全与环境检测实现严谨控制。
 
 
-<!-- Code from openspec/changes/archive/2026-01-29-theme-toggle-implementation/design.md:367-386 -->
 ```markdown
 367 | export function getInitialTheme(): Theme;
 368 | export function getSystemTheme(): Theme;

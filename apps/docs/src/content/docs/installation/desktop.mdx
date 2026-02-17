@@ -4,6 +4,9 @@ description: Hagicode Desktop 桌面应用程序安装指南
 sidebar_position: 30
 ---
 
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+import InstallButton from '../../../components/InstallButton';
+
 本指南介绍如何安装和使用 Hagicode Desktop 桌面应用程序。Hagicode Desktop 是一款功能强大且易于使用的桌面应用程序，为您提供完整的 Hagicode 体验。
 
 :::tip[推荐方式]
@@ -41,8 +44,6 @@ Hagicode Desktop 适用于以下场景：
 ### 快速下载
 
 选择适合您操作系统的版本，直接下载安装程序：
-
-import InstallButton from '../../../components/InstallButton';
 
 {/* 使用 client:visible 指令确保组件在可见时进行客户端水合，避免 SSR 阶段的 React Hooks 错误 */}
 <InstallButton variant="full" client:visible />
@@ -248,12 +249,23 @@ Desktop 应用程序会实时显示 Hagicode Server 的运行状态，包括：
 
 ## 后续步骤
 
-安装完成后，您可以：
+安装完成后，您可以继续以下步骤：
 
-1. **创建您的第一个项目**：按照[快速开始指南](/quick-start/create-first-project)创建项目
-2. **了解 Hagicode 功能**：浏览[功能文档](/docs/)了解更多功能
-3. **配置 API 设置**：配置您的 API 提供商和 Token
-4. **加入技术交流群**：扫描下方二维码加入 Hagicode 技术交流群，与其他开发者交流经验、获取帮助和分享项目成果
+<CardGrid>
+
+<LinkCard title="创建第一个项目" href="/quick-start/create-first-project"
+    description="初始化您的 Hagicode 项目，配置基本设置，开始您的 AI 辅助开发之旅。"
+/>
+
+<LinkCard title="创建普通会话" href="/quick-start/conversation-session"
+    description="开始与 AI 交互，体验只读和编辑双模式，让 AI 成为您得力的编程搭档。"
+/>
+
+<LinkCard title="创建提案会话" href="/quick-start/proposal-session"
+    description="了解提案驱动开发工作流，将抽象想法转化为结构化的实施计划。"
+/>
+
+</CardGrid>
 
 ## 故障排除
 
