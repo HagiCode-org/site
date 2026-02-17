@@ -4,6 +4,9 @@ description: 本指南将帮助您在 Windows、macOS 和 Linux 系统上安装 
 sidebar_position: 10
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
 本指南将详细说明如何在 Windows、macOS 和 Linux 操作系统上安装 Node.js 运行时环境。Node.js 是 PCode 运行所需的核心依赖。
 
 :::tip[版本要求]
@@ -498,7 +501,23 @@ node -v
 
 ## 下一步
 
-Node.js 安装完成后，[返回安装指南](/installation)继续配置。
+Node.js 安装完成后，您可以继续以下步骤：
+
+<CardGrid>
+
+<LinkCard title="安装 OpenSpec" href="/related-software-installation/openspec/setup-openspec"
+    description="安装 OpenSpec 规范驱动开发工具，管理提案、规范和变更。"
+/>
+
+<LinkCard title="安装 Claude Code" href="/related-software-installation/claude-code/setup-claude-code-with-zai"
+    description="安装 Claude Code AI 辅助开发工具，体验智能编程助手。"
+/>
+
+<LinkCard title="返回安装指南" href="/installation"
+    description="返回主安装指南，继续配置其他依赖项。"
+/>
+
+</CardGrid>
 
 ## 需要更多帮助？
 

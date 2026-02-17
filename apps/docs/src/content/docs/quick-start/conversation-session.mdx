@@ -4,6 +4,7 @@ description: 了解如何在 Hagicode 中创建和使用普通会话与 AI 进�
 sidebar_position: 30
 ---
 
+
 准备好和 AI 聊天了吗？本指南会向你展示如何在 Hagicode 中创建和使用普通会话。普通会话是你与 AI 进行代码分析、审查、规划和修改的主要方式——就像和一个经验丰富的同事对话一样自然。
 
 ## 先决条件
@@ -289,8 +290,19 @@ AI：我将向 CreateUser 方法添加验证...
 
 现在您了解了普通会话，请继续探索：
 
-- **[创建第一个项目](/quick-start/create-first-project)**：设置您的第一个项目
-- **[提案会话](/quick-start/proposal-session)**：了解提案工作流
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid>
+
+<LinkCard title="创建第一个项目" href="/quick-start/create-first-project"
+    description="设置您的第一个项目，了解 Hagicode 项目的基本概念和配置。"
+/>
+
+<LinkCard title="创建提案会话" href="/quick-start/proposal-session"
+    description="了解提案驱动开发工作流，将抽象想法转化为结构化的实施计划。"
+/>
+
+</CardGrid>
 
 ## 有效对话的技巧
 
