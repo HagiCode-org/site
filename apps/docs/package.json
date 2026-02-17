@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@astrojs/mdx": "4.3.13",
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.7.0",
@@ -19,6 +20,7 @@
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
     "astro": "^5.6.1",
+    "astro-link-validator": "github:rodgtr1/astro-link-validator",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^1.1.0",
     "mermaid": "^11.12.2",
