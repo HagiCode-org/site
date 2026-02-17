@@ -38,7 +38,7 @@ jobs:
       - name: Build docs
         run: cd apps/docs && npm run build
         env:
-          CLARITY_PROJECT_ID: ${{ secrets.CLARITY_PROJECT_ID }}
+          VITE_CLARITY_PROJECT_ID: ${{ secrets.CLARITY_PROJECT_ID }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

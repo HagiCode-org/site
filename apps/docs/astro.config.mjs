@@ -56,11 +56,10 @@ export default defineConfig({
     },
     define: {
       "import.meta.env.VITE_CLARITY_PROJECT_ID": JSON.stringify(
-        process.env.CLARITY_PROJECT_ID || "",
+        process.env.VITE_CLARITY_PROJECT_ID || "",
       ),
-      // 确保 import.meta.env.PROD 在构建时正确评估为 true
-      "import.meta.env.PROD": JSON.stringify(
-        process.env.NODE_ENV === "production",
+      "import.meta.env.VITE_CLARITY_DEBUG": JSON.stringify(
+        process.env.VITE_CLARITY_DEBUG || "",
       ),
     },
   },
