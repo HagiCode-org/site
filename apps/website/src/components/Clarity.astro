@@ -7,11 +7,28 @@
  *
  * Environment Variables:
  * - CLARITY_PROJECT_ID: Microsoft Clarity project ID (optional)
+ *
+ * @see https://learn.microsoft.com/en-us/clarity/
  */
 const clarityProjectId = import.meta.env.VITE_CLARITY_PROJECT_ID;
+const isProduction = import.meta.env.PROD;
+
+// 在构建时检查是否应该加载 Clarity
+// 仅在生产环境且配置了 Project ID 时加载
+const shouldLoadClarity = isProduction && clarityProjectId;
+
+// 可选的构建时调试日志（通过设置环境变量 CLARITY_DEBUG=1 启用）
+if (import.meta.env.CLARITY_DEBUG) {
+  console.log('[Clarity] Build-time state:', {
+    isProduction,
+    clarityProjectId: clarityProjectId ? '***' + clarityProjectId.slice(-4) : 'not set',
+    shouldLoadClarity: !!shouldLoadClarity,
+    NODE_ENV: process.env.NODE_ENV,
+  });
+}
 ---
 
-{clarityProjectId && (
+{shouldLoadClarity && (
   <script is:inline define:vars={{clarityProjectId}}>
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
