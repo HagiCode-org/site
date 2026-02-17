@@ -69,6 +69,7 @@ export default defineConfig({
     starlight({
       title: "Hagicode Docs",
       description: "Hagicode 项目文档",
+      favicon: "/favicon.ico",
       social: [
         {
           icon: "github",
@@ -79,7 +80,7 @@ export default defineConfig({
       components: {
         Header: "./src/components/StarlightHeader.astro",
         Footer: "./src/components/StarlightFooter.astro",
-        // MarkdownContent: './src/components/MarkdownContent.astro',
+        MarkdownContent: './src/components/MarkdownContent.astro',
       },
       sidebar: [
         {
@@ -106,6 +107,7 @@ export default defineConfig({
       plugins: [
         starlightBlog({
           rss: false,
+          postCount: 20,
         }),
       ],
     }),
@@ -119,8 +121,9 @@ export default defineConfig({
       checkExternal: process.env.CI === "true",
       // 外部链接超时时间（毫秒）
       externalTimeout: 10000,
-      // 仅在 CI 环境中对失效链接使构建失败
-      failOnBrokenLinks: process.env.CI === "true",
+      // 链接检查不再阻塞构建，仅发出警告
+      // 独立的链接检查由 .github/workflows/link-check.yml 负责
+      failOnBrokenLinks: false,
       // 详细输出（用于调试）
       verbose: process.env.CI === "true",
       // 排除某些路径（如 API 端点、管理后台）

@@ -5,12 +5,12 @@
  *
  * 版本数据从共享的 VersionManager 获取
  */
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import styles from './InstallButton.module.css';
 import { withBasePath } from '@/utils/path';
 import type { DesktopVersion, PlatformGroup } from '@shared/desktop';
 import { getDesktopVersionData } from '@shared/version-manager';
-import { getAssetTypeLabel, detectOS } from '@shared/desktop-utils';
+import { getAssetTypeLabel, detectOS, getArchitectureLabel, PLATFORM_ICONS, getFileExtension } from '@shared/desktop-utils';
 import type { AssetType } from '@shared/desktop';
 
 interface DownloadOption {
@@ -97,6 +97,8 @@ export default function InstallButton({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [currentVersion, setCurrentVersion] = useState<DesktopVersion | null>(version);
   const [currentPlatforms, setCurrentPlatforms] = useState<PlatformGroup[]>(platforms);
+  const [dropdownPosition, setDropdownPosition] = useState<{ top: number; left: number } | null>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   // 客户端数据获取（如果服务端没有提供数据）
   useEffect(() => {
@@ -192,7 +194,19 @@ export default function InstallButton({
 
   const handleToggleDropdown = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsDropdownOpen(!isDropdownOpen);
+    const newState = !isDropdownOpen;
+    setIsDropdownOpen(newState);
+
+    // 计算下拉菜单位置
+    if (newState && buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setDropdownPosition({
+        top: rect.bottom + 4, // 4px 间距
+        left: rect.left
+      });
+    } else {
+      setDropdownPosition(null);
+    }
   };
 
   // 点击下拉菜单中的链接后关闭菜单
@@ -245,7 +259,7 @@ export default function InstallButton({
   }
 
   return (
-    <div className={`${styles.installButtonWrapper} ${styles[`installButtonWrapper--${variant}`]} ${className}`}>
+    <div className={`${styles.installButtonWrapper} ${styles[`installButtonWrapper--${variant}`]} ${className}`} ref={buttonRef}>
       <div className={styles.splitButtonContainer}>
         {/* 主下载按钮 */}
         <a
@@ -288,32 +302,51 @@ export default function InstallButton({
               id={`${buttonId}-menu`}
               role="listbox"
               aria-label="选择下载版本"
+              style={
+                dropdownPosition
+                  ? { top: `${dropdownPosition.top}px`, left: `${dropdownPosition.left}px` }
+                  : undefined
+              }
             >
               {platformData.map((platformGroup) => (
                 <React.Fragment key={platformGroup.platform}>
-                  {/* 平台分组标签 */}
+                  {/* 平台分组标签 - 带图标和版本号 */}
                   <div
                     className={`${styles.dropdownGroupLabel} ${styles[`platform--${platformGroup.platform}`]}`}
                     role="presentation"
                   >
+                    <span className={styles.platformIcon}>{PLATFORM_ICONS[platformGroup.platform]}</span>
                     <span className={styles.platformName}>{platformGroup.platformLabel}</span>
+                    {currentVersion?.version && (
+                      <span className={styles.versionTag}>{currentVersion.version}</span>
+                    )}
                   </div>
-                  {platformGroup.options.map((option, idx) => (
-                    <li key={idx} role="none">
-                      <a
-                        href={option.url}
-                        className={styles.dropdownItem}
-                        role="option"
-                        download
-                        onClick={handleLinkClick}
-                      >
-                        <span className={styles.dropdownItemLabel}>{getAssetTypeLabel(option.assetType)}</span>
-                        {option.size && (
-                          <span className={styles.dropdownItemSize}>{option.size}</span>
-                        )}
-                      </a>
-                    </li>
-                  ))}
+                  {platformGroup.options.map((option, idx) => {
+                    const archLabel = getArchitectureLabel(option.assetType);
+                    const fileExt = getFileExtension(option.assetType);
+                    const isRecommended = idx === 0;
+                    return (
+                      <li key={idx} role="none">
+                        <a
+                          href={option.url}
+                          className={`${styles.dropdownItem} ${isRecommended ? styles.dropdownItemRecommended : ''}`}
+                          role="option"
+                          download
+                          onClick={handleLinkClick}
+                        >
+                          <span className={styles.dropdownItemLabel}>
+                            {getAssetTypeLabel(option.assetType)}
+                            {archLabel && <span className={styles.archLabel}> ({archLabel})</span>}
+                            {fileExt && <span className={styles.fileExtBadge}>{fileExt}</span>}
+                            {isRecommended && <span className={styles.recommendedBadge}>⭐推荐</span>}
+                          </span>
+                          {option.size && (
+                            <span className={styles.dropdownItemSize}>{option.size}</span>
+                          )}
+                        </a>
+                      </li>
+                    );
+                  })}
                 </React.Fragment>
               ))}
               {/* Docker 版本选项 - 带分隔线 */}

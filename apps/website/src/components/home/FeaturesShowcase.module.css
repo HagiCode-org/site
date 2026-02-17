@@ -102,10 +102,14 @@
   padding: 3rem;
   border-radius: var(--radius-xl, 1rem);
   overflow: hidden;
-  isolation: isolate;
+  /* 移除 isolation: isolate 以避免创建新的层叠上下文
+     这样可以让上方的下拉菜单正确显示在最顶层 */
+  /* isolation: isolate; */
+  /* backdrop-filter 也会创建新的层叠上下文，需要移除或调整
+     临时移除以测试层叠问题，后续可以考虑其他方式实现玻璃态效果 */
+  /* backdrop-filter: blur(16px); */
+  /* -webkit-backdrop-filter: blur(16px); */
   background: var(--color-surface-glass, rgba(255, 255, 255, 0.85));
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--color-border);
   transition: all var(--duration-normal, 0.3s) var(--ease-out, cubic-bezier(0.4, 0, 0.2, 1));
   cursor: default;
