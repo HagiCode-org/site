@@ -10,7 +10,8 @@ import linkValidator from "astro-link-validator";
 
 import mermaidInjector from "./src/integrations/mermaid-injector.ts";
 import rehypeMermaid from "rehype-mermaid";
-import rehypeRaw from "rehype-raw";
+// rehype-raw 暂时禁用，可能与 MDX 处理冲突
+// import rehypeRaw from "rehype-raw";
 import rehypeExternalLinks from "rehype-external-links";
 
 // 获取 base 路径：文档站点独立部署在 docs.hagicode.com，开发和生产都使用根路径
@@ -32,7 +33,8 @@ export default defineConfig({
       excludeLangs: ["mermaid", "math"],
     },
     rehypePlugins: [
-      rehypeRaw,
+      // rehypeRaw 暂时禁用，可能与 MDX 处理冲突
+      // rehypeRaw,
       rehypeMermaid,
       [
         rehypeExternalLinks,

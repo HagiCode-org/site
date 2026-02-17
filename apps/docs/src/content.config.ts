@@ -5,7 +5,7 @@ import { blogSchema } from 'starlight-blog/schema'
 
 export const collections = {
 	docs: defineCollection({
-		loader: docsLoader({ extensions: ['.md', '.mdx'] }),
+		loader: docsLoader(),
 		schema: docsSchema({
 			extend: (context) => blogSchema(context).extend({
 				/** 隐藏博客文章中的广告区域 */
