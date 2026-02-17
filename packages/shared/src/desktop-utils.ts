@@ -121,6 +121,57 @@ export function formatFileSize(bytes: number): string {
 }
 
 /**
+ * 平台图标常量（用于 UI 显示）
+ */
+export const PLATFORM_ICONS: Record<string, string> = {
+  macos: '🍎',
+  windows: '🪟',
+  linux: '🐧',
+};
+
+/**
+ * 获取资源类型的架构标签
+ * @param assetType - 资源类型枚举值
+ * @returns 架构标签（如 ARM64、x64）
+ */
+export function getArchitectureLabel(assetType: AssetType): string {
+  const archLabels: Record<AssetType, string> = {
+    [AssetType.MacOSApple]: 'ARM64',
+    [AssetType.MacOSIntel]: 'x64',
+    [AssetType.WindowsSetup]: 'x64',
+    [AssetType.WindowsPortable]: 'x64',
+    [AssetType.WindowsStore]: '',
+    [AssetType.LinuxAppImage]: '通用',
+    [AssetType.LinuxDeb]: 'amd64',
+    [AssetType.LinuxTarball]: '通用',
+    [AssetType.Source]: '',
+    [AssetType.Unknown]: '',
+  };
+  return archLabels[assetType] || '';
+}
+
+/**
+ * 获取资源类型的文件扩展名
+ * @param assetType - 资源类型枚举值
+ * @returns 文件扩展名（包含点号，如 .exe、.dmg）
+ */
+export function getFileExtension(assetType: AssetType): string {
+  const extensions: Record<AssetType, string> = {
+    [AssetType.WindowsSetup]: '.exe',
+    [AssetType.WindowsPortable]: '.exe',
+    [AssetType.WindowsStore]: '.appx',
+    [AssetType.MacOSApple]: '.dmg',
+    [AssetType.MacOSIntel]: '.dmg',
+    [AssetType.LinuxAppImage]: '.AppImage',
+    [AssetType.LinuxDeb]: '.deb',
+    [AssetType.LinuxTarball]: '.tar.gz',
+    [AssetType.Source]: '.zip',
+    [AssetType.Unknown]: '',
+  };
+  return extensions[assetType] || '';
+}
+
+/**
  * 获取资源类型的显示名称
  * @param assetType - 资源类型枚举值
  * @returns 显示名称

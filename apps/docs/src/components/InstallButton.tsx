@@ -9,7 +9,10 @@ import {
   groupAssetsByPlatform,
   detectOS,
   getAssetTypeLabel,
-  inferAssetType
+  inferAssetType,
+  getArchitectureLabel,
+  PLATFORM_ICONS,
+  getFileExtension
 } from '@shared/desktop-utils';
 import { getDesktopVersionData } from '@shared/version-manager';
 import type { DesktopVersion, PlatformGroup } from '@shared/desktop';
@@ -265,29 +268,43 @@ export default function InstallButton({
             >
               {platformData.map((platformGroup) => (
                 <React.Fragment key={platformGroup.platform}>
-                  {/* 平台分组标签 */}
+                  {/* 平台分组标签 - 带图标和版本号 */}
                   <div
                     className={`dropdown-group-label platform--${platformGroup.platform}`}
                     role="presentation"
                   >
+                    <span className="platform-icon">{PLATFORM_ICONS[platformGroup.platform]}</span>
                     <span className="platform-name">{platformGroup.platformLabel}</span>
+                    {version?.version && (
+                      <span className="version-tag">{version.version}</span>
+                    )}
                   </div>
-                  {platformGroup.options.map((option, idx) => (
-                    <li key={idx} role="none">
-                      <a
-                        href={option.url}
-                        className="dropdown-item"
-                        role="option"
-                        download
-                        onClick={handleLinkClick}
-                      >
-                        <span className="dropdown-item-label">{getAssetTypeLabel(option.assetType)}</span>
-                        {option.size && (
-                          <span className="dropdown-item-size">{option.size}</span>
-                        )}
-                      </a>
-                    </li>
-                  ))}
+                  {platformGroup.options.map((option, idx) => {
+                    const archLabel = getArchitectureLabel(option.assetType);
+                    const fileExt = getFileExtension(option.assetType);
+                    const isRecommended = idx === 0;
+                    return (
+                      <li key={idx} role="none">
+                        <a
+                          href={option.url}
+                          className={`dropdown-item ${isRecommended ? 'dropdown-item-recommended' : ''}`}
+                          role="option"
+                          download
+                          onClick={handleLinkClick}
+                        >
+                          <span className="dropdown-item-label">
+                            {getAssetTypeLabel(option.assetType)}
+                            {archLabel && <span className="arch-label"> ({archLabel})</span>}
+                            {fileExt && <span className="file-ext-badge">{fileExt}</span>}
+                            {isRecommended && <span className="recommended-badge">⭐推荐</span>}
+                          </span>
+                          {option.size && (
+                            <span className="dropdown-item-size">{option.size}</span>
+                          )}
+                        </a>
+                      </li>
+                    );
+                  })}
                 </React.Fragment>
               ))}
               {/* Docker 版本选项 - 带分隔线 */}

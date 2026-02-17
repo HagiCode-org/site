@@ -48,13 +48,6 @@ export const navLinks: NavLink[] = [
     icon: "comment",
     linkKey: 'qqGroup',
   },
-  {
-    label: "GitHub",
-    href: getLink('github'),
-    external: true,
-    icon: "github",
-    linkKey: 'github',
-  },
 ];
 
 /**

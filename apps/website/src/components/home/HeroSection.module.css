@@ -387,6 +387,18 @@
   overflow: hidden;
 }
 
+.downloadIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.dockerIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
 /* 暗色模式使用更深的渐变以确保文字可读性 */
 [data-theme='dark'] .buttonPrimary {
   background: linear-gradient(135deg, #0066CC 0%, #0088AA 50%, #229955 100%);
