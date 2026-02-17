@@ -44,7 +44,8 @@ Hagicode Desktop 适用于以下场景：
 
 import InstallButton from '../../../components/InstallButton';
 
-<InstallButton variant="full" client:load />
+{/* 使用 client:visible 指令确保组件在可见时进行客户端水合，避免 SSR 阶段的 React Hooks 错误 */}
+<InstallButton variant="full" client:visible />
 
 ### 其他获取方式
 
