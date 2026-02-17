@@ -1,0 +1,16 @@
+{
+  "_comment": "Image generation prompt configuration",
+  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "context": "code-generation\n",
+  "customPrompt": "Emphasize collaboration and partnership between human developer and AI.\n",
+  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Highlight code creation with syntax elements, algorithms visualization, and AI-assisted development. Include screens, code blocks, and intelligent automation imagery.. Emphasize collaboration and partnership between human developer and AI.. An illustration showing AI as a programming partner. Feature a developer and an AI avatar working collaboratively side by side. Show code snippets, architectural diagrams, and conversation bubbles representing intelligent dialogue. Include visual elements of deep code understanding like interconnected code modules and pattern recognition visualization.\n",
+  "generationParams": {
+    "size": "1024x1024",
+    "quality": "high",
+    "format": "png"
+  },
+  "_metadata": {
+    "generatedAt": "2026-02-17T08:15:43Z",
+    "version": "1.0.0"
+  }
+}

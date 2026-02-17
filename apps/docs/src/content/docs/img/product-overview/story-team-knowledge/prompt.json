@@ -1,0 +1,16 @@
+{
+  "_comment": "Image generation prompt configuration",
+  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "context": "web-app\n",
+  "customPrompt": "Emphasize the transformation from scattered to organized knowledge.\n",
+  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Feature web application design with browser interfaces, responsive layouts, and cross-platform compatibility. Include modern web technologies and online collaboration elements.. Emphasize the transformation from scattered to organized knowledge.. An illustration showing team knowledge preservation. Feature a project manager (张总监) solving knowledge loss when core developers leave. Show the problem: scattered knowledge in 100+ code comments, 50+ personal notes, countless chat records. Then show the Hagicode solution: OpenSpec workflow with 25 archived proposals, SDD documents, and structured knowledge base. Include visuals of new team members quickly accessing preserved knowledge.\n",
+  "generationParams": {
+    "size": "1024x1024",
+    "quality": "high",
+    "format": "png"
+  },
+  "_metadata": {
+    "generatedAt": "2026-02-17T08:26:21Z",
+    "version": "1.0.0"
+  }
+}

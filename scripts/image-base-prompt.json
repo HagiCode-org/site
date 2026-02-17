@@ -1,0 +1,18 @@
+{
+  "_comment": "Image Generation Base Prompt Configuration for Hagicode",
+  "_comment_fields": {
+    "basePrompt": "统一视觉风格描述，定义所有生成图片的基础风格和品牌调性",
+    "defaultEnabled": "控制默认是否启用基底提示词（true/false）",
+    "contexts": "不同上下文的提示词增强，支持特定功能模块的视觉定制"
+  },
+  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.",
+  "defaultEnabled": true,
+  "contexts": {
+    "session-management": "Focus on session lifecycle visualization with flowing timelines, user journey paths, and connection state indicators. Include elements that represent continuity, persistence, and seamless user experience.",
+    "api-integration": "Emphasize connectivity and data exchange with network diagrams, API endpoints, and flowing data streams. Use visual metaphors for integration, communication protocols, and seamless interoperability.",
+    "code-generation": "Highlight code creation with syntax elements, algorithms visualization, and AI-assisted development. Include screens, code blocks, and intelligent automation imagery.",
+    "desktop-app": "Showcase desktop application interfaces with clean UI patterns, window management, and native platform integration. Emphasize productivity tools and seamless desktop experience.",
+    "web-app": "Feature web application design with browser interfaces, responsive layouts, and cross-platform compatibility. Include modern web technologies and online collaboration elements.",
+    "brand-marketing": "Elevate brand presence with bold, eye-catching visuals, company identity elements, and promotional aesthetics. Focus on memorability and brand recognition."
+  }
+}

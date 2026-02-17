@@ -1,0 +1,16 @@
+{
+  "_comment": "Image generation prompt configuration",
+  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "context": "code-generation\n",
+  "customPrompt": "Use circular/recursive visual motifs to demonstrate the self-referential nature.\n",
+  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Highlight code creation with syntax elements, algorithms visualization, and AI-assisted development. Include screens, code blocks, and intelligent automation imagery.. Use circular/recursive visual motifs to demonstrate the self-referential nature.. A visual representation of the self-bootstrapping concept. Show Hagicode building itself - like a tool creating its own blueprint. Include recursive imagery: a robot/AI assembling a smaller version of itself, or a code editor displaying code that writes itself. Include icons representing documentation, repository management, and continuous iteration.\n",
+  "generationParams": {
+    "size": "1024x1024",
+    "quality": "high",
+    "format": "png"
+  },
+  "_metadata": {
+    "generatedAt": "2026-02-17T08:16:29Z",
+    "version": "1.0.0"
+  }
+}

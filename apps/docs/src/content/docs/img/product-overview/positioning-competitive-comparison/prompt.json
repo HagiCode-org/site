@@ -1,0 +1,16 @@
+{
+  "_comment": "Image generation prompt configuration",
+  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "context": "brand-marketing\n",
+  "customPrompt": "Make Hagicode's column stand out with brand colors and positive visual emphasis.\n",
+  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Elevate brand presence with bold, eye-catching visuals, company identity elements, and promotional aesthetics. Focus on memorability and brand recognition.. Make Hagicode's column stand out with brand colors and positive visual emphasis.. A comparison chart showing Hagicode's advantages over traditional AI assistants. Create a visual table with columns for Traditional AI Assistants vs Hagicode. Include icons representing key differentiators: proposal-driven development, permission controls, knowledge management, change traceability, and team collaboration. Use checkmarks and X marks to clearly show feature comparisons.\n",
+  "generationParams": {
+    "size": "1536x1024",
+    "quality": "high",
+    "format": "png"
+  },
+  "_metadata": {
+    "generatedAt": "2026-02-17T08:27:48Z",
+    "version": "1.0.0"
+  }
+}

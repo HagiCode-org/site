@@ -1,0 +1,16 @@
+{
+  "_comment": "Image generation prompt configuration",
+  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "context": "code-generation\n",
+  "customPrompt": "Emphasize knowledge preservation and traceability in the repository structure.\n",
+  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Highlight code creation with syntax elements, algorithms visualization, and AI-assisted development. Include screens, code blocks, and intelligent automation imagery.. Emphasize knowledge preservation and traceability in the repository structure.. An illustration showing repository management self-bootstrapping. Display a project structure with knowledge artifacts: design decisions, change traces, and development standards. Show a git repository intertwined with proposal documents and SDD files. Include visual elements representing knowledge accumulation and规范的驱动开发。\n",
+  "generationParams": {
+    "size": "1024x1024",
+    "quality": "high",
+    "format": "png"
+  },
+  "_metadata": {
+    "generatedAt": "2026-02-17T08:18:18Z",
+    "version": "1.0.0"
+  }
+}

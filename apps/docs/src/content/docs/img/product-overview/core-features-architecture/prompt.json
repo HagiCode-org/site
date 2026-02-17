@@ -1,0 +1,16 @@
+{
+  "_comment": "Image generation prompt configuration",
+  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "context": "api-integration\n",
+  "customPrompt": "Use a pyramid or stacked layer approach with clear labels and icons for each feature.\n",
+  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Emphasize connectivity and data exchange with network diagrams, API endpoints, and flowing data streams. Use visual metaphors for integration, communication protocols, and seamless interoperability.. Use a pyramid or stacked layer approach with clear labels and icons for each feature.. A three-layer architecture diagram showing Hagicode's core features. Bottom layer: Core Features (session management, conversation, proposal sessions). Middle layer: Integration Capabilities (OpenSpec workflow, diagrams, project management). Top layer: User Experience (configuration, themes, statistics). Use a clean layered diagram style with clear visual hierarchy and connecting elements showing relationships between layers.\n",
+  "generationParams": {
+    "size": "1536x1024",
+    "quality": "high",
+    "format": "png"
+  },
+  "_metadata": {
+    "generatedAt": "2026-02-17T08:28:51Z",
+    "version": "1.0.0"
+  }
+}

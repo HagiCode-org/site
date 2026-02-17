@@ -1,0 +1,16 @@
+{
+  "_comment": "Image generation prompt configuration",
+  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "context": "code-generation\n",
+  "customPrompt": "Use a spiral or upward-trending cycle to show continuous improvement over time.\n",
+  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Highlight code creation with syntax elements, algorithms visualization, and AI-assisted development. Include screens, code blocks, and intelligent automation imagery.. Use a spiral or upward-trending cycle to show continuous improvement over time.. A diagram showing continuous iteration self-bootstrapping. Illustrate the feature development cycle: new feature proposals, code review by AI, and automatic documentation synchronization. Show a wheel or spiral representing ongoing improvement, with icons for new features, quality checks, and documentation updates.\n",
+  "generationParams": {
+    "size": "1024x1024",
+    "quality": "high",
+    "format": "png"
+  },
+  "_metadata": {
+    "generatedAt": "2026-02-17T08:19:01Z",
+    "version": "1.0.0"
+  }
+}

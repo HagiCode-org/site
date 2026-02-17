@@ -1,0 +1,137 @@
+{
+  "_comment": "Batch configuration for generating product overview illustrations",
+  "images": [
+    {
+      "name": "value-proposition-proposal-driven",
+      "prompt": "A visual diagram illustrating the proposal-driven development workflow. Show the journey from abstract idea to structured implementation plan. Include elements like: a lightbulb representing initial ideas, transforming into a structured document with checkmarks, task lists, and verification standards. Use a clean flowchart style with arrows showing the progression from planning to execution.",
+      "context": "code-generation",
+      "customPrompt": "Include visual elements representing task lists, verification standards, and design decision records.",
+      "output": "apps/docs/src/content/docs/img/product-overview/value-proposition-proposal-driven/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/value-proposition-proposal-driven/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "value-proposition-dual-mode",
+      "prompt": "A split-screen illustration showing the dual-mode conversation system. Left side: Read-only mode with a magnifying glass analyzing code, file icons with 'read' indicators, and a shield symbolizing safety. Right side: Edit mode with a gear/wrench icon, code being modified, and files with 'write' indicators. Use a clear visual divider between the two modes.",
+      "context": "code-generation",
+      "customPrompt": "Use contrasting colors to distinguish between read-only (blue) and edit (green) modes.",
+      "output": "apps/docs/src/content/docs/img/product-overview/value-proposition-dual-mode/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/value-proposition-dual-mode/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "value-proposition-ai-assisted-coding",
+      "prompt": "An illustration showing AI as a programming partner. Feature a developer and an AI avatar working collaboratively side by side. Show code snippets, architectural diagrams, and conversation bubbles representing intelligent dialogue. Include visual elements of deep code understanding like interconnected code modules and pattern recognition visualization.",
+      "context": "code-generation",
+      "customPrompt": "Emphasize collaboration and partnership between human developer and AI.",
+      "output": "apps/docs/src/content/docs/img/product-overview/value-proposition-ai-assisted-coding/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/value-proposition-ai-assisted-coding/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "value-proposition-self-bootstrapping",
+      "prompt": "A visual representation of the self-bootstrapping concept. Show Hagicode building itself - like a tool creating its own blueprint. Include recursive imagery: a robot/AI assembling a smaller version of itself, or a code editor displaying code that writes itself. Include icons representing documentation, repository management, and continuous iteration.",
+      "context": "code-generation",
+      "customPrompt": "Use circular/recursive visual motifs to demonstrate the self-referential nature.",
+      "output": "apps/docs/src/content/docs/img/product-overview/value-proposition-self-bootstrapping/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/value-proposition-self-bootstrapping/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "positioning-competitive-comparison",
+      "prompt": "A comparison chart showing Hagicode's advantages over traditional AI assistants. Create a visual table with columns for Traditional AI Assistants vs Hagicode. Include icons representing key differentiators: proposal-driven development, permission controls, knowledge management, change traceability, and team collaboration. Use checkmarks and X marks to clearly show feature comparisons.",
+      "context": "brand-marketing",
+      "customPrompt": "Make Hagicode's column stand out with brand colors and positive visual emphasis.",
+      "output": "apps/docs/src/content/docs/img/product-overview/positioning-competitive-comparison/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/positioning-competitive-comparison/prompt.json",
+      "size": "1536x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "self-bootstrapping-documentation",
+      "prompt": "A flow diagram showing the documentation system self-bootstrapping process. Illustrate the OpenSpec proposal workflow with stages: proposal creation, AI-assisted writing, and automatic optimization. Show documents being created, reviewed, and optimized in a continuous cycle. Include icons for proposals, content generation, and improvement suggestions.",
+      "context": "code-generation",
+      "customPrompt": "Use a cyclical flow pattern to represent continuous improvement.",
+      "output": "apps/docs/src/content/docs/img/product-overview/self-bootstrapping-documentation/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/self-bootstrapping-documentation/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "self-bootstrapping-repository",
+      "prompt": "An illustration showing repository management self-bootstrapping. Display a project structure with knowledge artifacts: design decisions, change traces, and development standards. Show a git repository intertwined with proposal documents and SDD files. Include visual elements representing knowledge accumulation and规范的驱动开发。",
+      "context": "code-generation",
+      "customPrompt": "Emphasize knowledge preservation and traceability in the repository structure.",
+      "output": "apps/docs/src/content/docs/img/product-overview/self-bootstrapping-repository/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/self-bootstrapping-repository/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "self-bootstrapping-iteration",
+      "prompt": "A diagram showing continuous iteration self-bootstrapping. Illustrate the feature development cycle: new feature proposals, code review by AI, and automatic documentation synchronization. Show a wheel or spiral representing ongoing improvement, with icons for new features, quality checks, and documentation updates.",
+      "context": "code-generation",
+      "customPrompt": "Use a spiral or upward-trending cycle to show continuous improvement over time.",
+      "output": "apps/docs/src/content/docs/img/product-overview/self-bootstrapping-iteration/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/self-bootstrapping-iteration/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "core-features-architecture",
+      "prompt": "A three-layer architecture diagram showing Hagicode's core features. Bottom layer: Core Features (session management, conversation, proposal sessions). Middle layer: Integration Capabilities (OpenSpec workflow, diagrams, project management). Top layer: User Experience (configuration, themes, statistics). Use a clean layered diagram style with clear visual hierarchy and connecting elements showing relationships between layers.",
+      "context": "api-integration",
+      "customPrompt": "Use a pyramid or stacked layer approach with clear labels and icons for each feature.",
+      "output": "apps/docs/src/content/docs/img/product-overview/core-features-architecture/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/core-features-architecture/prompt.json",
+      "size": "1536x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "story-newcomer-onboarding",
+      "prompt": "An illustration showing a new developer's journey with Hagicode. Feature a new engineer character (小王) exploring a large codebase with AI assistance. Show a timeline: Day 1 - understanding architecture in 4 hours vs 3 days, Day 2 - AI helps with 80% of coding, Day 3 - code review and bug fixes. Include visual elements of speed improvement and quality scoring.",
+      "context": "desktop-app",
+      "customPrompt": "Include comparison visuals showing 'before vs after' scenarios.",
+      "output": "apps/docs/src/content/docs/img/product-overview/story-newcomer-onboarding/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/story-newcomer-onboarding/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "story-complex-change",
+      "prompt": "An illustration showing a complex change management scenario. Feature a technical lead (李经理) managing a payment system refactoring. Show the traditional chaotic approach vs the Hagicode structured approach. Include visual elements: structured proposal document, task list with progress tracking, and team collaboration with clear accountability.",
+      "context": "desktop-app",
+      "customPrompt": "Use split comparison to show chaos vs organization.",
+      "output": "apps/docs/src/content/docs/img/product-overview/story-complex-change/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/story-complex-change/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "story-team-knowledge",
+      "prompt": "An illustration showing team knowledge preservation. Feature a project manager (张总监) solving knowledge loss when core developers leave. Show the problem: scattered knowledge in 100+ code comments, 50+ personal notes, countless chat records. Then show the Hagicode solution: OpenSpec workflow with 25 archived proposals, SDD documents, and structured knowledge base. Include visuals of new team members quickly accessing preserved knowledge.",
+      "context": "web-app",
+      "customPrompt": "Emphasize the transformation from scattered to organized knowledge.",
+      "output": "apps/docs/src/content/docs/img/product-overview/story-team-knowledge/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/story-team-knowledge/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    }
+  ]
+}

@@ -24,6 +24,8 @@ Hagicode 的**提案会话模式**将抽象想法转化为结构化的实施计�
 - **清晰的验证标准** - 完成后如何验证,事先说清楚
 - **完整的设计决策记录** - 为什么这么做,有据可查
 
+![提案驱动开发示意图](./img/product-overview/value-proposition-proposal-driven/illustration.png)
+
 > "从想法到代码的规范路径,让每一次变更都可追溯、可审查、可复用。"
 
 ---
@@ -38,6 +40,8 @@ Hagicode 的**提案会话模式**将抽象想法转化为结构化的实施计�
 Hagicode 独创的**双模式设计**,让你在不同场景选择最合适的工作方式:
 - **只读模式**: AI 深入分析代码库,解释架构逻辑,找出潜在问题,但**绝不修改任何文件**——适合安全探索和理解复杂项目
 - **编辑模式**: AI 动手实现功能、修复 bug、执行重构——适合快速开发和迭代优化
+
+![只读/编辑双模式示意图](./img/product-overview/value-proposition-dual-mode/illustration.png)
 
 > "细粒度的权限控制,让你既能大胆探索,又能放心实践。"
 
@@ -55,6 +59,8 @@ Hagicode 不仅是"代码生成器",更是你的"编程搭档":
 - **智能对话交互** - 支持富文本消息、工具调用、任务管理,像和经验丰富的同事协作
 - **多会话并发** - 同时处理多个任务,在不同会话间自由切换
 
+![AI 辅助编码示意图](./img/product-overview/value-proposition-ai-assisted-coding/illustration.png)
+
 > "超越代码生成的智能助手,真正理解你的代码。"
 
 ---
@@ -70,6 +76,8 @@ Hagicode 最独特的优势:**它用自己的技术栈构建了自己**。这不
 - Hagicode 的**文档系统**是用本工具创建和优化的
 - Hagicode 的**仓库管理**使用本工具进行提案管理
 - Hagicode 的**持续迭代**通过本工具的提案会话规划
+
+![自举特性示意图](./img/product-overview/value-proposition-self-bootstrapping/illustration.png)
 
 你现在阅读的这份文档,就是使用 Hagicode 优化的成果。
 
@@ -102,6 +110,8 @@ Hagicode 最独特的优势在于:**它用自己的技术栈构建了自己**。
 
 你现在阅读的这份文档,就是使用 Hagicode 创建和优化的:
 
+![文档系统自举流程图](./img/product-overview/self-bootstrapping-documentation/illustration.png)
+
 - **提案驱动**: 文档优化通过 OpenSpec 提案流程实施,包含结构化计划和验收标准
 - **AI 辅助编写**: 内容草稿由 AI 根据需求生成,开发者审查和调整
 - **自动优化**: AI 分析文档结构,提出改进建议并执行优化
@@ -112,6 +122,8 @@ Hagicode 最独特的优势在于:**它用自己的技术栈构建了自己**。
 
 Hagicode 的项目管理和 SDD(软件设计文档)功能也在管理着自己的开发:
 
+![仓库管理自举示意图](./img/product-overview/self-bootstrapping-repository/illustration.png)
+
 - **项目知识沉淀**: 每个功能的设计决策都记录在 OpenSpec 提案中
 - **变更追溯**: 从需求分析到代码实现,完整记录开发过程
 - **规范驱动**: 严格遵守自己定义的开发规范和最佳实践
@@ -121,6 +133,8 @@ Hagicode 的项目管理和 SDD(软件设计文档)功能也在管理着自己�
 ### 持续迭代自举
 
 Hagicode 的功能迭代也在使用自己的工具:
+
+![持续迭代自举流程图](./img/product-overview/self-bootstrapping-iteration/illustration.png)
 
 - **新功能提案**: 新特性通过提案会话创建和规划
 - **代码审查**: AI 自动检查代码质量,提出改进建议
@@ -139,6 +153,8 @@ Hagicode 的功能迭代也在使用自己的工具:
 ### 与竞品的差异化
 
 你可能已经了解 VS Code Copilot、Cursor AI、Kilo 或 Claude Code,它们都很优秀。但 Hagicode 有一些独特的优势:
+
+![竞品对比图](./img/product-overview/positioning-competitive-comparison/illustration.png)
 
 | 特性 | 传统 AI 助手 | Hagicode |
 |------|-------------|----------|
@@ -166,6 +182,8 @@ Hagicode 特别适合以下场景:
 
 **挑战**: 面对一个陌生的电商系统代码库(50,000+ 行代码),需要在 5 个工作日内完成订单模块的新功能
 
+![新人上手场景插图](./img/product-overview/story-newcomer-onboarding/illustration.png)
+
 **传统方式**: 小王花了前 3 天阅读文档、调试代码,在团队群里问了 50+ 个问题,才勉强理解现有架构。第 4 天开始编码,因为对代码库不熟悉,改出了 3 个 bug,又花了 2 天修复。
 
 **使用 Hagicode 后**:
@@ -180,6 +198,8 @@ Hagicode 特别适合以下场景:
 **角色**: 技术负责人李经理
 
 **挑战**: 团队提出"重构支付系统"的想法,涉及 20+ 个文件,担心改出新问题
+
+![复杂变更场景插图](./img/product-overview/story-complex-change/illustration.png)
 
 **传统方式**: 李经理自己写 15 页设计文档,列出 30+ 个任务,分派给 3 名团队成员。实施过程中:
 - 2 个边界情况被遗漏
@@ -202,6 +222,8 @@ Hagicode 特别适合以下场景:
 
 **挑战**: 核心开发者离职,带走了大量隐性知识,2 名新成员接手困难
 
+![团队知识管理场景插图](./img/product-overview/story-team-knowledge/illustration.png)
+
 **传统方式**: 知识散落在 100+ 个代码注释、50+ 个个人笔记、无数条聊天记录中。新成员只能边做边猜:
 - 平均每人每天问 20+ 个问题
 - 重复实现已有功能 3 次
@@ -218,6 +240,8 @@ Hagicode 特别适合以下场景:
 ## 核心特性详解
 
 Hagicode 的功能按三层架构组织,从核心能力到集成体验,为开发者提供完整的开发支持。
+
+![核心特性三层架构图](./img/product-overview/core-features-architecture/illustration.png)
 
 ### 核心特性层 - 开发工作流的基础
 

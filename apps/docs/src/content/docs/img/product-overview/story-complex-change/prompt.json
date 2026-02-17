@@ -1,0 +1,16 @@
+{
+  "_comment": "Image generation prompt configuration",
+  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "context": "desktop-app\n",
+  "customPrompt": "Use split comparison to show chaos vs organization.\n",
+  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Showcase desktop application interfaces with clean UI patterns, window management, and native platform integration. Emphasize productivity tools and seamless desktop experience.. Use split comparison to show chaos vs organization.. An illustration showing a complex change management scenario. Feature a technical lead (李经理) managing a payment system refactoring. Show the traditional chaotic approach vs the Hagicode structured approach. Include visual elements: structured proposal document, task list with progress tracking, and team collaboration with clear accountability.\n",
+  "generationParams": {
+    "size": "1024x1024",
+    "quality": "high",
+    "format": "png"
+  },
+  "_metadata": {
+    "generatedAt": "2026-02-17T08:25:30Z",
+    "version": "1.0.0"
+  }
+}

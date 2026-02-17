@@ -1,0 +1,16 @@
+{
+  "_comment": "Image generation prompt configuration",
+  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "context": "desktop-app\n",
+  "customPrompt": "Include comparison visuals showing 'before vs after' scenarios.\n",
+  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Showcase desktop application interfaces with clean UI patterns, window management, and native platform integration. Emphasize productivity tools and seamless desktop experience.. Include comparison visuals showing 'before vs after' scenarios.. An illustration showing a new developer's journey with Hagicode. Feature a new engineer character (小王) exploring a large codebase with AI assistance. Show a timeline: Day 1 - understanding architecture in 4 hours vs 3 days, Day 2 - AI helps with 80% of coding, Day 3 - code review and bug fixes. Include visual elements of speed improvement and quality scoring.\n",
+  "generationParams": {
+    "size": "1024x1024",
+    "quality": "high",
+    "format": "png"
+  },
+  "_metadata": {
+    "generatedAt": "2026-02-17T08:24:38Z",
+    "version": "1.0.0"
+  }
+}
