@@ -1,6 +1,13 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
+  "globalEnv": [
+    "NODE_ENV",
+    "VITE_CLARITY_PROJECT_ID",
+    "VITE_CLARITY_DEBUG",
+    "CLARITY_PROJECT_ID",
+    "CLARITY_DEBUG"
+  ],
   "tasks": {
     "clean": {
       "cache": false
@@ -17,7 +24,14 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".astro/**"]
+      "outputs": ["dist/**", ".astro/**"],
+      "env": [
+        "VITE_CLARITY_PROJECT_ID",
+        "VITE_CLARITY_DEBUG",
+        "CLARITY_PROJECT_ID",
+        "CLARITY_DEBUG",
+        "NODE_ENV"
+      ]
     },
     "preview": {
       "cache": false,

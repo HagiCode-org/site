@@ -1,0 +1,19 @@
+---
+// 调试组件 - 输出环境变量状态
+const clarityProjectId = import.meta.env.VITE_CLARITY_PROJECT_ID;
+const isProduction = import.meta.env.PROD;
+const clarityDebug = import.meta.env.CLARITY_DEBUG;
+
+console.log('[ClarityDebug] Build-time state:', {
+  clarityProjectId,
+  isProduction,
+  clarityDebug,
+  shouldLoad: isProduction && clarityProjectId,
+});
+---
+<div style="display: none;" data-clarity-debug="{JSON.stringify({
+  clarityProjectId,
+  isProduction,
+  clarityDebug,
+  shouldLoad: isProduction && clarityProjectId,
+})}"></div>
