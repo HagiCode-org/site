@@ -1,16 +1,16 @@
 {
   "_comment": "Image generation prompt configuration",
-  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "basePrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.\n",
   "context": "code-generation\n",
-  "customPrompt": "Use circular/recursive visual motifs to demonstrate the self-referential nature.\n",
-  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Highlight code creation with syntax elements, algorithms visualization, and AI-assisted development. Include screens, code blocks, and intelligent automation imagery.. Use circular/recursive visual motifs to demonstrate the self-referential nature.. A visual representation of the self-bootstrapping concept. Show Hagicode building itself - like a tool creating its own blueprint. Include recursive imagery: a robot/AI assembling a smaller version of itself, or a code editor displaying code that writes itself. Include icons representing documentation, repository management, and continuous iteration.\n",
+  "customPrompt": "Use circular or looping doodle patterns to show the self-building concept in a fun way.\n",
+  "userPrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.. Highlight code creation with simplified code blocks drawn in crayon style. Include hand-drawn elements like lightbulbs for ideas and checkmarks for completed tasks, keeping technical concepts accessible and fun.. Use circular or looping doodle patterns to show the self-building concept in a fun way.. A playful doodle showing Hagicode building itself, like a robot drawing a smaller version of itself. Show recursive imagery with simple hand-drawn elements: a tool creating its own blueprint, code that appears to write itself. Include cute icons for documents and improvements, all drawn in friendly crayon style.\n",
   "generationParams": {
     "size": "1024x1024",
     "quality": "high",
     "format": "png"
   },
   "_metadata": {
-    "generatedAt": "2026-02-17T08:16:29Z",
+    "generatedAt": "2026-02-17T09:34:00Z",
     "version": "1.0.0"
   }
 }

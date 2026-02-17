@@ -1,16 +1,16 @@
 {
   "_comment": "Image generation prompt configuration",
-  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "basePrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.\n",
   "context": "code-generation\n",
-  "customPrompt": "Use a spiral or upward-trending cycle to show continuous improvement over time.\n",
-  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Highlight code creation with syntax elements, algorithms visualization, and AI-assisted development. Include screens, code blocks, and intelligent automation imagery.. Use a spiral or upward-trending cycle to show continuous improvement over time.. A diagram showing continuous iteration self-bootstrapping. Illustrate the feature development cycle: new feature proposals, code review by AI, and automatic documentation synchronization. Show a wheel or spiral representing ongoing improvement, with icons for new features, quality checks, and documentation updates.\n",
+  "customPrompt": "Draw an upward-trending spiral with happy improvement milestones along the way.\n",
+  "userPrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.. Highlight code creation with simplified code blocks drawn in crayon style. Include hand-drawn elements like lightbulbs for ideas and checkmarks for completed tasks, keeping technical concepts accessible and fun.. Draw an upward-trending spiral with happy improvement milestones along the way.. A playful doodle showing continuous improvement as an upward spiral. Draw the development cycle with simple hand-drawn elements: new features, quality checks, and document updates. Create a spiral or wheel going upward with cute icons for progress, like a classroom chart showing getting better and better.\n",
   "generationParams": {
     "size": "1024x1024",
     "quality": "high",
     "format": "png"
   },
   "_metadata": {
-    "generatedAt": "2026-02-17T08:19:01Z",
+    "generatedAt": "2026-02-17T09:37:25Z",
     "version": "1.0.0"
   }
 }

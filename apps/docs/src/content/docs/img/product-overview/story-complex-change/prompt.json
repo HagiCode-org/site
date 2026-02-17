@@ -1,16 +1,16 @@
 {
   "_comment": "Image generation prompt configuration",
-  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "basePrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.\n",
   "context": "desktop-app\n",
-  "customPrompt": "Use split comparison to show chaos vs organization.\n",
-  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Showcase desktop application interfaces with clean UI patterns, window management, and native platform integration. Emphasize productivity tools and seamless desktop experience.. Use split comparison to show chaos vs organization.. An illustration showing a complex change management scenario. Feature a technical lead (李经理) managing a payment system refactoring. Show the traditional chaotic approach vs the Hagicode structured approach. Include visual elements: structured proposal document, task list with progress tracking, and team collaboration with clear accountability.\n",
+  "customPrompt": "Draw a side-by-side comparison: confused doodles vs happy organized doodles.\n",
+  "userPrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.. Showcase desktop interfaces with simple, rounded window frames and friendly UI elements drawn in colored pencil. Emphasize productivity tools in a warm, approachable way that feels like a helpful study companion.. Draw a side-by-side comparison: confused doodles vs happy organized doodles.. A friendly doodle comparing messy vs organized change management. Show the traditional way as a confused tangle of doodles, then Hagicode way as neat and organized with clear documents, task lists, and happy teamwork. Use hand-drawn elements to show chaos turning into order, like tidying up a messy desk.\n",
   "generationParams": {
     "size": "1024x1024",
     "quality": "high",
     "format": "png"
   },
   "_metadata": {
-    "generatedAt": "2026-02-17T08:25:30Z",
+    "generatedAt": "2026-02-17T09:40:08Z",
     "version": "1.0.0"
   }
 }

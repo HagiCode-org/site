@@ -1,16 +1,16 @@
 {
   "_comment": "Image generation prompt configuration",
-  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "basePrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.\n",
   "context": "web-app\n",
-  "customPrompt": "Emphasize the transformation from scattered to organized knowledge.\n",
-  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Feature web application design with browser interfaces, responsive layouts, and cross-platform compatibility. Include modern web technologies and online collaboration elements.. Emphasize the transformation from scattered to organized knowledge.. An illustration showing team knowledge preservation. Feature a project manager (张总监) solving knowledge loss when core developers leave. Show the problem: scattered knowledge in 100+ code comments, 50+ personal notes, countless chat records. Then show the Hagicode solution: OpenSpec workflow with 25 archived proposals, SDD documents, and structured knowledge base. Include visuals of new team members quickly accessing preserved knowledge.\n",
+  "customPrompt": "Emphasize the happy transformation from scattered mess to organized knowledge with friendly doodles.\n",
+  "userPrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.. Feature web application design with simple browser windows and playful icons representing online features. Keep layouts clean and friendly, like a well-organized notebook doodle.. Emphasize the happy transformation from scattered mess to organized knowledge with friendly doodles.. A reassuring doodle showing how team knowledge stays safe. First show the problem: scattered notes and lost information as confused doodles. Then show Hagicode's solution: neat proposals and documents like a well-organized notebook. Draw happy team members easily finding what they need, like a library where everything is in its place.\n",
   "generationParams": {
     "size": "1024x1024",
     "quality": "high",
     "format": "png"
   },
   "_metadata": {
-    "generatedAt": "2026-02-17T08:26:21Z",
+    "generatedAt": "2026-02-17T09:40:56Z",
     "version": "1.0.0"
   }
 }

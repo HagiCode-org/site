@@ -1,16 +1,16 @@
 {
   "_comment": "Image generation prompt configuration",
-  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "basePrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.\n",
   "context": "api-integration\n",
-  "customPrompt": "Use a pyramid or stacked layer approach with clear labels and icons for each feature.\n",
-  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Emphasize connectivity and data exchange with network diagrams, API endpoints, and flowing data streams. Use visual metaphors for integration, communication protocols, and seamless interoperability.. Use a pyramid or stacked layer approach with clear labels and icons for each feature.. A three-layer architecture diagram showing Hagicode's core features. Bottom layer: Core Features (session management, conversation, proposal sessions). Middle layer: Integration Capabilities (OpenSpec workflow, diagrams, project management). Top layer: User Experience (configuration, themes, statistics). Use a clean layered diagram style with clear visual hierarchy and connecting elements showing relationships between layers.\n",
+  "customPrompt": "Draw connected stack layers with cute labels and icons, like building blocks or a friendly tower.\n",
+  "userPrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.. Illustrate connectivity with playful dotted lines and cute icons connecting to each other. Keep it simple like a child's drawing of how things connect, with clear but friendly visual metaphors for data exchange.. Draw connected stack layers with cute labels and icons, like building blocks or a friendly tower.. A simple hand-drawn stack showing Hagicode's three layers of features. Bottom: basic features (sessions, chat), Middle: helper features (proposals, diagrams), Top: user experience (themes, settings). Draw like a friendly tower with connected levels, using simple doodle icons for each feature group. Like building blocks stacked neatly.\n",
   "generationParams": {
     "size": "1536x1024",
     "quality": "high",
     "format": "png"
   },
   "_metadata": {
-    "generatedAt": "2026-02-17T08:28:51Z",
+    "generatedAt": "2026-02-17T09:38:15Z",
     "version": "1.0.0"
   }
 }

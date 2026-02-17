@@ -34,7 +34,7 @@ sidebar_position: 10
 
 双击运行安装程序后，您将看到 PostgreSQL 的安装向导界面。
 
-![打开安装界面](../../img/installation/install-postgres-windows/1.打开安装界面.png)
+![打开安装界面](/img/install-postgres-windows/1.打开安装界面.png)
 
 点击"下一步"继续安装过程。
 
@@ -42,7 +42,7 @@ sidebar_position: 10
 
 选择 PostgreSQL 的安装目录。默认安装路径为 `C:\Program Files\PostgreSQL\16`。
 
-![设置安装的文件夹](../../img/installation/install-postgres-windows/2.设置安装的文件夹.png)
+![设置安装的文件夹](/img/install-postgres-windows/2.设置安装的文件夹.png)
 
 :::tip
 建议使用默认路径，除非您有特殊需求需要安装到其他位置。
@@ -59,7 +59,7 @@ sidebar_position: 10
 - Stack Builder - 包管理器
 - Command Line Tools - 命令行工具
 
-![设置安装的内容](../../img/installation/install-postgres-windows/3.设置安装的内容.png)
+![设置安装的内容](/img/install-postgres-windows/3.设置安装的内容.png)
 
 建议保持默认选择，点击"下一步"继续。
 
@@ -67,7 +67,7 @@ sidebar_position: 10
 
 指定数据库数据存储目录。默认路径为 `C:\Program Files\PostgreSQL\16\data`。
 
-![设置数据库存放数据的文件夹](../../img/installation/install-postgres-windows/4.设置之后数据库存放数据的文件夹.png)
+![设置数据库存放数据的文件夹](/img/install-postgres-windows/4.设置之后数据库存放数据的文件夹.png)
 
 :::note
 数据目录将包含所有数据库文件，请确保有足够的磁盘空间。
@@ -79,7 +79,7 @@ sidebar_position: 10
 
 设置 PostgreSQL 超级用户（postgres）的密码。这是数据库管理员的密码，请妥善保管。
 
-![设置数据库初始用户的密码](../../img/installation/install-postgres-windows/5.设置数据库初始用户的密码.png)
+![设置数据库初始用户的密码](/img/install-postgres-windows/5.设置数据库初始用户的密码.png)
 
 :::warning 安全建议
 - 使用强密码（至少 8 位，包含大小写字母、数字和特殊字符）
@@ -93,7 +93,7 @@ sidebar_position: 10
 
 设置 PostgreSQL 服务监听的端口。默认端口为 `5432`。
 
-![设置数据库端口](../../img/installation/install-postgres-windows/6.设置数据库的端口.png)
+![设置数据库端口](/img/install-postgres-windows/6.设置数据库的端口.png)
 
 :::tip
 - 保持默认端口 5432，除非该端口已被其他应用程序占用
@@ -106,7 +106,7 @@ sidebar_position: 10
 
 设置数据库的区域设置（Locale）和字符集。
 
-![设置数据库字符集](../../img/installation/install-postgres-windows/7.设置数据库的字符集和文化.png)
+![设置数据库字符集](/img/install-postgres-windows/7.设置数据库的字符集和文化.png)
 
 :::tip
 - **保持默认选择 [default]** 即可，无需修改
@@ -125,7 +125,7 @@ sidebar_position: 10
 - 端口号
 - 区域设置
 
-![查看安装计划](../../img/installation/install-postgres-windows/8.查看安装的计划.png)
+![查看安装计划](/img/install-postgres-windows/8.查看安装的计划.png)
 
 确认信息无误后，点击"下一步"开始安装。
 
@@ -133,7 +133,7 @@ sidebar_position: 10
 
 安装程序已准备好开始复制文件和配置系统。
 
-![准备开始安装](../../img/installation/install-postgres-windows/9.准备开始安装，点击下一步开始.png)
+![准备开始安装](/img/install-postgres-windows/9.准备开始安装，点击下一步开始.png)
 
 点击"下一步"开始安装过程。
 
@@ -141,7 +141,7 @@ sidebar_position: 10
 
 安装程序将显示安装进度条，这个过程可能需要几分钟时间。
 
-![安装进度](../../img/installation/install-postgres-windows/10.实时展示安装进度.png)
+![安装进度](/img/install-postgres-windows/10.实时展示安装进度.png)
 
 请耐心等待安装完成。
 
@@ -149,7 +149,7 @@ sidebar_position: 10
 
 安装完成后，您将看到成功提示界面。
 
-![安装完成](../../img/installation/install-postgres-windows/11.安装已完成.png)
+![安装完成](/img/install-postgres-windows/11.安装已完成.png)
 
 取消勾选"Launch Stack Builder at exit?"（除非您需要额外的扩展），然后点击"完成"按钮退出安装向导。
 

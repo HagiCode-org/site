@@ -72,7 +72,7 @@ import InstallButton from '../../../components/InstallButton';
 
 下载完成后，运行安装程序。您将看到 Hagicode Desktop 安装程序的欢迎界面。
 
-![Desktop 安装程序](../img/installation/install-desktop/hagicode-desktop-正在安装中.png)
+![Desktop 安装程序](/img/install-desktop/hagicode-desktop-正在安装中.png)
 
 **安装程序界面说明**：
 - 这是 Hagicode Desktop 的安装管理器
@@ -87,7 +87,7 @@ Hagicode Desktop 提供了一个四步安装向导，引导您完成整个安装
 
 下载完成后，运行安装程序。安装向导将启动并显示欢迎界面。
 
-![安装向导第一步](../img/installation/install-desktop/向导第一步，点击开始安装.png)
+![安装向导第一步](/img/install-desktop/向导第一步，点击开始安装.png)
 
 **此步骤说明**：
 - 点击"开始安装"按钮启动安装过程
@@ -97,7 +97,7 @@ Hagicode Desktop 提供了一个四步安装向导，引导您完成整个安装
 
 安装向导会自动从官方源下载最新版本的 Hagicode。
 
-![安装向导第二步](../img/installation/install-desktop/向导第二步，自动下载最新版本安装.png)
+![安装向导第二步](/img/install-desktop/向导第二步，自动下载最新版本安装.png)
 
 **此步骤说明**：
 - 安装程序自动检测并下载最新稳定版本
@@ -116,13 +116,13 @@ Hagicode Desktop 需要一些运行时环境才能正常工作。安装向导会
 
 首先，安装向导会检查系统是否已安装所需的依赖项。
 
-![检查依赖项](../img/installation/install-desktop/向导第三步，检查版本的依赖项.png)
+![检查依赖项](/img/install-desktop/向导第三步，检查版本的依赖项.png)
 
 #### 安装依赖项
 
 如果检测到缺少依赖项，您将看到以下界面，可以一键安装所有缺失的组件。
 
-![一键安装依赖项](../img/installation/install-desktop/向导第三步，检查完成之后可以一键安装依赖项.png)
+![一键安装依赖项](/img/install-desktop/向导第三步，检查完成之后可以一键安装依赖项.png)
 
 **主要依赖项包括**：
 
@@ -147,13 +147,13 @@ Hagicode Desktop 当前版本需要以下软件组件才能完整运行：
 
 安装向导会自动安装所有缺失的依赖项。以下是安装 .NET 运行时的示例：
 
-![安装 .NET 运行时](../img/installation/install-desktop/向导第三步-正在安装dotnet-运行时的示例.png)
+![安装 .NET 运行时](/img/install-desktop/向导第三步-正在安装dotnet-运行时的示例.png)
 
 #### 完成依赖项安装
 
 当所有依赖项安装完成后，您将看到成功提示。
 
-![依赖项安装完成](../img/installation/install-desktop/向导第三步，安装所有依赖项完成.png)
+![依赖项安装完成](/img/install-desktop/向导第三步，安装所有依赖项完成.png)
 
 :::tip[依赖项管理]
 所有依赖项的安装都是自动进行的，您无需手动下载或配置。安装向导会确保安装正确的版本和组件。
@@ -163,7 +163,7 @@ Hagicode Desktop 当前版本需要以下软件组件才能完整运行：
 
 依赖项安装完成后，安装向导将启动 Hagicode Server 服务。
 
-![启动 Hagicode Server](../img/installation/install-desktop/向导第四步-正在启动-hagicode-server.png)
+![启动 Hagicode Server](/img/install-desktop/向导第四步-正在启动-hagicode-server.png)
 
 **此步骤说明**：
 - Hagicode Server 会在后台自动启动
@@ -174,7 +174,7 @@ Hagicode Desktop 当前版本需要以下软件组件才能完整运行：
 
 当 Hagicode Server 成功启动后，您将看到以下界面，点击 "Hagicode" 按钮即可开始使用。
 
-![服务启动完成](../img/installation/install-desktop/向导第四步-server-启动之后可以点击-hagicode-开始使用.png)
+![服务启动完成](/img/install-desktop/向导第四步-server-启动之后可以点击-hagicode-开始使用.png)
 
 安装向导完成后，您现在可以开始使用 Hagicode 了。
 
@@ -184,7 +184,7 @@ Hagicode Desktop 当前版本需要以下软件组件才能完整运行：
 
 首次进入 Hagicode 时，您可以通过内置向导创建您的第一个项目。
 
-![创建项目向导](../img/installation/install-desktop/进入hagicode-之后可以通过内部向导开始创建项目.png)
+![创建项目向导](/img/install-desktop/进入hagicode-之后可以通过内部向导开始创建项目.png)
 
 **创建项目的步骤**：
 1. 选择"创建新项目"
@@ -197,7 +197,7 @@ Hagicode Desktop 当前版本需要以下软件组件才能完整运行：
 
 如果您已有现有的 Git 仓库，可以轻松导入到 Hagicode 中。
 
-![导入 Git 仓库](../img/installation/install-desktop/通过输入一个文件夹-可以扫描这个文件夹地下所有的-git-仓库进行导入.png)
+![导入 Git 仓库](/img/install-desktop/通过输入一个文件夹-可以扫描这个文件夹地下所有的-git-仓库进行导入.png)
 
 **导入步骤**：
 1. 点击"导入项目"
@@ -209,7 +209,7 @@ Hagicode Desktop 当前版本需要以下软件组件才能完整运行：
 
 Hagicode Desktop 支持多版本管理，您可以在不同版本之间自由切换。
 
-![版本管理](../img/installation/install-desktop/可以在版本管理页面对不同的版本进行切换.png)
+![版本管理](/img/install-desktop/可以在版本管理页面对不同的版本进行切换.png)
 
 ### 切换版本
 
@@ -233,7 +233,7 @@ Hagicode Desktop 提供了简单的方式来管理 Hagicode Server 服务。
 
 在 Desktop 应用程序的首页，点击"启动服务"按钮即可启动 Hagicode Server。
 
-![启动服务](../img/installation/install-desktop/在首页可以通过启动服务来启动hagicode-server.png)
+![启动服务](/img/install-desktop/在首页可以通过启动服务来启动hagicode-server.png)
 
 ### 停止服务
 

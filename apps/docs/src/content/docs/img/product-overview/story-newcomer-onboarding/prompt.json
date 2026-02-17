@@ -1,16 +1,16 @@
 {
   "_comment": "Image generation prompt configuration",
-  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "basePrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.\n",
   "context": "desktop-app\n",
-  "customPrompt": "Include comparison visuals showing 'before vs after' scenarios.\n",
-  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Showcase desktop application interfaces with clean UI patterns, window management, and native platform integration. Emphasize productivity tools and seamless desktop experience.. Include comparison visuals showing 'before vs after' scenarios.. An illustration showing a new developer's journey with Hagicode. Feature a new engineer character (小王) exploring a large codebase with AI assistance. Show a timeline: Day 1 - understanding architecture in 4 hours vs 3 days, Day 2 - AI helps with 80% of coding, Day 3 - code review and bug fixes. Include visual elements of speed improvement and quality scoring.\n",
+  "customPrompt": "Include friendly before-and-after doodles showing the happy improvement.\n",
+  "userPrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.. Showcase desktop interfaces with simple, rounded window frames and friendly UI elements drawn in colored pencil. Emphasize productivity tools in a warm, approachable way that feels like a helpful study companion.. Include friendly before-and-after doodles showing the happy improvement.. A warm doodle showing a new developer's happy journey with Hagicode. Draw a friendly character exploring code with AI help. Show a simple timeline with cute milestones: Day 1 - learning fast, Day 2 - AI helps with coding, Day 3 - fixing bugs together. Include smiley faces and speed lines to show how much easier and happier it is.\n",
   "generationParams": {
     "size": "1024x1024",
     "quality": "high",
     "format": "png"
   },
   "_metadata": {
-    "generatedAt": "2026-02-17T08:24:38Z",
+    "generatedAt": "2026-02-17T09:39:22Z",
     "version": "1.0.0"
   }
 }

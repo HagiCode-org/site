@@ -1,16 +1,16 @@
 {
   "_comment": "Image generation prompt configuration",
-  "basePrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.\n",
+  "basePrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.\n",
   "context": "code-generation\n",
-  "customPrompt": "Use a cyclical flow pattern to represent continuous improvement.\n",
-  "userPrompt": "Professional modern tech illustration with clean lines, minimalist design, and a cohesive visual language. Use a refined color palette featuring deep blues, vibrant purples, and warm accent colors. Incorporate subtle gradients and geometric patterns that suggest innovation and AI technology. Style should be suitable for technical documentation, marketing materials, and brand presentations. Emphasize clarity, professionalism, and forward-thinking aesthetics.. Highlight code creation with syntax elements, algorithms visualization, and AI-assisted development. Include screens, code blocks, and intelligent automation imagery.. Use a cyclical flow pattern to represent continuous improvement.. A flow diagram showing the documentation system self-bootstrapping process. Illustrate the OpenSpec proposal workflow with stages: proposal creation, AI-assisted writing, and automatic optimization. Show documents being created, reviewed, and optimized in a continuous cycle. Include icons for proposals, content generation, and improvement suggestions.\n",
+  "customPrompt": "Use a circular doodle pattern to show continuous improvement in a fun, encouraging way.\n",
+  "userPrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.. Highlight code creation with simplified code blocks drawn in crayon style. Include hand-drawn elements like lightbulbs for ideas and checkmarks for completed tasks, keeping technical concepts accessible and fun.. Use a circular doodle pattern to show continuous improvement in a fun, encouraging way.. A hand-drawn flow showing how documentation improves itself. Draw simple stages connected by friendly arrows: creating proposals, AI helping write, and making things better. Show documents in a happy cycle of improvement, like a classroom chart showing progress. Include doodle icons for proposals and happy improvements.\n",
   "generationParams": {
     "size": "1024x1024",
     "quality": "high",
     "format": "png"
   },
   "_metadata": {
-    "generatedAt": "2026-02-17T08:17:32Z",
+    "generatedAt": "2026-02-17T09:35:46Z",
     "version": "1.0.0"
   }
 }
