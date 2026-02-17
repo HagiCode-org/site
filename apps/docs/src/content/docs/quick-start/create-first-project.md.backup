@@ -68,13 +68,13 @@ git push -u origin main
 2. 点击导航侧边栏中的 **Projects**（项目）
 3. 点击 **Add Project**（添加项目）按钮
 
-![点击新建项目按钮](../img/quick-start/create-project/step1-click-new-project-button.png)
+![点击新建项目按钮](/img/create-project/step1-click-new-project-button.png)
 
 ### 配置项目设置
 
 填写项目信息：
 
-![填写项目的一般信息](../img/quick-start/create-project/step2-fill-project-information.png)
+![填写项目的一般信息](/img/create-project/step2-fill-project-information.png)
 
 :::note
 仓库路径必须指向本地计算机上有效的 Git 仓库。
@@ -113,7 +113,7 @@ volumes:
 2. Hagicode 将验证仓库路径
 3. 您的项目将出现在项目列表中
 
-![新建项目之后，在项目列表当中就可以看到这个项目](../img/quick-start/create-project/step3-project-list-view.png)
+![新建项目之后，在项目列表当中就可以看到这个项目](/img/create-project/step3-project-list-view.png)
 
 ## 步骤 3：初始化 SDD
 
@@ -125,11 +125,11 @@ SDD（软件设计文档）是 Hagicode 中用于管理项目设计和变更的�
 
 1. 点击项目的 SDD tab
 
-![点击项目的 SDD tab，可以对 SDD 进行初始化](../img/quick-start/create-project/step4-click-sdd-tab.png)
+![点击项目的 SDD tab，可以对 SDD 进行初始化](/img/create-project/step4-click-sdd-tab.png)
 
 2. 点击 **初始化 SDD** 按钮
 
-![初始化完 SDD 之后显示的状态](../img/quick-start/create-project/step5-sdd-initialized-status.png)
+![初始化完 SDD 之后显示的状态](/img/create-project/step5-sdd-initialized-status.png)
 
 ## 步骤 4：优化 project.md
 
@@ -139,7 +139,7 @@ Hagicode 会自动为您优化 `project.md` 文件，添加详细的项目信息
 
 1. 在项目详情页面，点击右上角的 **优化** 按钮
 
-![点击优化按钮，可以优化 Project.md](../img/quick-start/create-project/step6-click-optimize-button.png)
+![点击优化按钮，可以优化 Project.md](/img/create-project/step6-click-optimize-button.png)
 
 2. Hagicode 将自动分析您的代码仓库并生成优化的 project.md 内容
 

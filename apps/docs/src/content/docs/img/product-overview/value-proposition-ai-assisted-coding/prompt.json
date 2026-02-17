@@ -1,0 +1,16 @@
+{
+  "_comment": "Image generation prompt configuration",
+  "basePrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.\n",
+  "context": "code-generation\n",
+  "customPrompt": "Emphasize friendship and collaboration with warm, inviting character interactions.\n",
+  "userPrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.. Highlight code creation with simplified code blocks drawn in crayon style. Include hand-drawn elements like lightbulbs for ideas and checkmarks for completed tasks, keeping technical concepts accessible and fun.. Emphasize friendship and collaboration with warm, inviting character interactions.. A friendly doodle showing a developer and AI helper working together like study buddies. Draw them side by side with simple conversation bubbles, code snippets drawn in crayon, and happy expressions. Include interconnected elements showing they're helping each other understand code, like a classroom partnership.\n",
+  "generationParams": {
+    "size": "1024x1024",
+    "quality": "high",
+    "format": "png"
+  },
+  "_metadata": {
+    "generatedAt": "2026-02-17T09:33:09Z",
+    "version": "1.0.0"
+  }
+}

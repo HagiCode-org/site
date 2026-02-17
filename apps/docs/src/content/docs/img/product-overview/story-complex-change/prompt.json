@@ -1,0 +1,16 @@
+{
+  "_comment": "Image generation prompt configuration",
+  "basePrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.\n",
+  "context": "desktop-app\n",
+  "customPrompt": "Draw a side-by-side comparison: confused doodles vs happy organized doodles.\n",
+  "userPrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.. Showcase desktop interfaces with simple, rounded window frames and friendly UI elements drawn in colored pencil. Emphasize productivity tools in a warm, approachable way that feels like a helpful study companion.. Draw a side-by-side comparison: confused doodles vs happy organized doodles.. A friendly doodle comparing messy vs organized change management. Show the traditional way as a confused tangle of doodles, then Hagicode way as neat and organized with clear documents, task lists, and happy teamwork. Use hand-drawn elements to show chaos turning into order, like tidying up a messy desk.\n",
+  "generationParams": {
+    "size": "1024x1024",
+    "quality": "high",
+    "format": "png"
+  },
+  "_metadata": {
+    "generatedAt": "2026-02-17T09:40:08Z",
+    "version": "1.0.0"
+  }
+}

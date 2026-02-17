@@ -25,7 +25,11 @@
     "update-metrics": "node scripts/update-activity-metrics.js",
     "test": "vitest run",
     "test:ui": "vitest --ui",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "generate:image": "bash scripts/generate-image.sh",
+    "generate:image:custom": "bash scripts/generate-image.sh",
+    "generate:product-images": "bash scripts/generate-image.sh --batch-config scripts/product-images-batch.json",
+    "regenerate:product-images": "bash scripts/generate-image.sh --batch-config scripts/product-images-batch.json --force"
   },
   "devDependencies": {
     "@astrojs/partytown": "^2.1.4",

@@ -1,0 +1,18 @@
+{
+  "_comment": "Image Generation Base Prompt Configuration for Hagicode - Children's Hand-rawing Style",
+  "_comment_fields": {
+    "basePrompt": "统一视觉风格描述，定义所有生成图片的基础风格和品牌调性（儿童手绘风格）",
+    "defaultEnabled": "控制默认是否启用基底提示词（true/false）",
+    "contexts": "不同上下文的提示词增强，支持特定功能模块的视觉定制（儿童手绘风格）"
+  },
+  "basePrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.",
+  "defaultEnabled": true,
+  "contexts": {
+    "session-management": "Show session lifecycle as a simple, colorful flowchart with hand-drawn arrows and friendly icons. Use cheerful colors to represent continuity, persistence, and smooth user experience in a classroom doodle style.",
+    "api-integration": "Illustrate connectivity with playful dotted lines and cute icons connecting to each other. Keep it simple like a child's drawing of how things connect, with clear but friendly visual metaphors for data exchange.",
+    "code-generation": "Highlight code creation with simplified code blocks drawn in crayon style. Include hand-drawn elements like lightbulbs for ideas and checkmarks for completed tasks, keeping technical concepts accessible and fun.",
+    "desktop-app": "Showcase desktop interfaces with simple, rounded window frames and friendly UI elements drawn in colored pencil. Emphasize productivity tools in a warm, approachable way that feels like a helpful study companion.",
+    "web-app": "Feature web application design with simple browser windows and playful icons representing online features. Keep layouts clean and friendly, like a well-organized notebook doodle.",
+    "brand-marketing": "Elevate brand presence with cheerful, hand-drawn style visuals that maintain professionalism while feeling warm and welcoming. Focus on memorability through friendly aesthetic choices."
+  }
+}

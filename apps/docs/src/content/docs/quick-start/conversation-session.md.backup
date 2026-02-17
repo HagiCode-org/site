@@ -38,13 +38,13 @@ Hagicode 支持两种会话类型，每种都针对不同的工作流程而设�
 
 在 Hagicode 界面左侧的会话列表顶部，点击 **+ Add Chat**（添加聊天）按钮。这将直接创建一个新的普通会话。
 
-![点击新建会话按钮创建普通会话](../img/quick-start/create-normal-session/01-create-normal-session.png)
+![点击新建会话按钮创建普通会话](/img/create-normal-session/01-create-normal-session.png)
 
 ### 步骤 2：开始聊天
 
 创建普通会话后，在 Chat tab 下面的输入框中输入消息，就可以开始与 AI 进行 vibeCoding 了。
 
-![点击普通会话可以在 Chat tab 下面的输入框进行 vibeCoding](../img/quick-start/create-normal-session/02-chat-input.png)
+![点击普通会话可以在 Chat tab 下面的输入框进行 vibeCoding](/img/create-normal-session/02-chat-input.png)
 
 ## 了解模式
 
@@ -66,11 +66,11 @@ Hagicode 普通会话以两种不同的模式运行，具有不同的功能和�
 2. **AI 分析项目**：AI 会读取项目文件并分析结构
 3. **查看分析结果**：AI 返回项目结构的详细说明
 
-![发送内容之后可以在会话区看到当前 AI 的回答](../img/quick-start/create-normal-session/03-ai-response.png)
+![发送内容之后可以在会话区看到当前 AI 的回答](/img/create-normal-session/03-ai-response.png)
 
 在只读模式下，AI 会分析您的项目并返回结构化信息：
 
-![最后可以看到 AI 的执行结果](../img/quick-start/create-normal-session/04-execution-result.png)
+![最后可以看到 AI 的执行结果](/img/create-normal-session/04-execution-result.png)
 
 **AI 在只读模式下可以做的事情：**
 
@@ -103,7 +103,7 @@ Hagicode 普通会话以两种不同的模式运行，具有不同的功能和�
 2. 点击按钮从"只读"模式切换到"编辑"模式
 3. 模式指示器将更新以显示编辑模式已激活
 
-![普通会话默认是只读的可以点击编辑按钮进行模式切换](../img/quick-start/create-normal-session/05-mode-switch.png)
+![普通会话默认是只读的可以点击编辑按钮进行模式切换](/img/create-normal-session/05-mode-switch.png)
 
 #### 编辑模式演示
 
@@ -114,11 +114,11 @@ Hagicode 普通会话以两种不同的模式运行，具有不同的功能和�
 3. **AI 执行修改**：AI 会读取文件、应用更改并保存
 4. **查看文件变化**：AI 返回修改结果，您可以查看具体变更
 
-![发送带有编辑权限消息的展示效果](../img/quick-start/create-normal-session/06-edit-permission.png)
+![发送带有编辑权限消息的展示效果](/img/create-normal-session/06-edit-permission.png)
 
 在编辑模式下，AI 会直接修改您的文件。您可以看到具体的变更内容：
 
-![刚才我们进行编辑之后的 README 变化](../img/quick-start/create-normal-session/07-readme-changes.png)
+![刚才我们进行编辑之后的 README 变化](/img/create-normal-session/07-readme-changes.png)
 
 **何时使用编辑模式：**
 
@@ -279,7 +279,7 @@ AI：我将向 CreateUser 方法添加验证...
 2. 点击会话右上角的**删除**按钮（通常是一个垃圾桶图标）
 3. 确认删除操作
 
-![点击右上角的删除会话可以删除这个普通会话](../img/quick-start/create-normal-session/08-delete-session.png)
+![点击右上角的删除会话可以删除这个普通会话](/img/create-normal-session/08-delete-session.png)
 
 :::tip[删除会话的影响]
 删除会话仅会删除该会话的聊天历史，不会影响您的项目文件或代码。

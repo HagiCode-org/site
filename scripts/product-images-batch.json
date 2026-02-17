@@ -1,0 +1,137 @@
+{
+  "_comment": "Batch configuration for generating product overview illustrations - Children's hand-drawing style",
+  "images": [
+    {
+      "name": "value-proposition-proposal-driven",
+      "prompt": "A hand-drawn doodle showing the proposal-driven development workflow. Show the journey from idea to plan with simple crayon-style elements: a lightbulb for ideas, a document with checkmarks for tasks, and friendly arrows showing progress. Like a classroom notebook illustration that makes planning feel fun and approachable.",
+      "context": "code-generation",
+      "customPrompt": "Include playful task lists and verification checkmarks drawn in colored pencil style.",
+      "output": "apps/docs/src/content/docs/img/product-overview/value-proposition-proposal-driven/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/value-proposition-proposal-driven/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "value-proposition-dual-mode",
+      "prompt": "A simple hand-drawn side-by-side comparison showing two conversation modes. Left side: read-only mode with a magnifying glass and 'read' symbols, drawn like a child's doodle. Right side: edit mode with tools and 'write' symbols. Use a friendly hand-drawn line to separate them, like dividing a notebook page.",
+      "context": "code-generation",
+      "customPrompt": "Use cheerful contrasting colors: blue for reading, green for editing, like colored pencils on paper.",
+      "output": "apps/docs/src/content/docs/img/product-overview/value-proposition-dual-mode/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/value-proposition-dual-mode/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "value-proposition-ai-assisted-coding",
+      "prompt": "A friendly doodle showing a developer and AI helper working together like study buddies. Draw them side by side with simple conversation bubbles, code snippets drawn in crayon, and happy expressions. Include interconnected elements showing they're helping each other understand code, like a classroom partnership.",
+      "context": "code-generation",
+      "customPrompt": "Emphasize friendship and collaboration with warm, inviting character interactions.",
+      "output": "apps/docs/src/content/docs/img/product-overview/value-proposition-ai-assisted-coding/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/value-proposition-ai-assisted-coding/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "value-proposition-self-bootstrapping",
+      "prompt": "A playful doodle showing Hagicode building itself, like a robot drawing a smaller version of itself. Show recursive imagery with simple hand-drawn elements: a tool creating its own blueprint, code that appears to write itself. Include cute icons for documents and improvements, all drawn in friendly crayon style.",
+      "context": "code-generation",
+      "customPrompt": "Use circular or looping doodle patterns to show the self-building concept in a fun way.",
+      "output": "apps/docs/src/content/docs/img/product-overview/value-proposition-self-bootstrapping/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/value-proposition-self-bootstrapping/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "positioning-competitive-comparison",
+      "prompt": "A friendly comparison doodle like notebook notes comparing two options. Create a simple hand-drawn table showing Traditional AI vs Hagicode. Use playful icons for each feature: proposals, permissions, knowledge, teamwork. Draw checkmarks and smiley faces to show Hagicode's advantages, like comparing notes in class.",
+      "context": "brand-marketing",
+      "customPrompt": "Make Hagicode's section stand out with cheerful colors and positive doodle elements.",
+      "output": "apps/docs/src/content/docs/img/product-overview/positioning-competitive-comparison/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/positioning-competitive-comparison/prompt.json",
+      "size": "1536x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "self-bootstrapping-documentation",
+      "prompt": "A hand-drawn flow showing how documentation improves itself. Draw simple stages connected by friendly arrows: creating proposals, AI helping write, and making things better. Show documents in a happy cycle of improvement, like a classroom chart showing progress. Include doodle icons for proposals and happy improvements.",
+      "context": "code-generation",
+      "customPrompt": "Use a circular doodle pattern to show continuous improvement in a fun, encouraging way.",
+      "output": "apps/docs/src/content/docs/img/product-overview/self-bootstrapping-documentation/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/self-bootstrapping-documentation/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "self-bootstrapping-repository",
+      "prompt": "A friendly doodle showing a project repository like a well-organized notebook. Display knowledge artifacts with hand-drawn icons: decisions, changes, and standards all stored neatly. Show git and documents working together like friends, with cute elements representing preserved knowledge and happy organization.",
+      "context": "code-generation",
+      "customPrompt": "Emphasize how knowledge stays safe and organized with warm, reassuring doodle elements.",
+      "output": "apps/docs/src/content/docs/img/product-overview/self-bootstrapping-repository/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/self-bootstrapping-repository/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "self-bootstrapping-iteration",
+      "prompt": "A playful doodle showing continuous improvement as an upward spiral. Draw the development cycle with simple hand-drawn elements: new features, quality checks, and document updates. Create a spiral or wheel going upward with cute icons for progress, like a classroom chart showing getting better and better.",
+      "context": "code-generation",
+      "customPrompt": "Draw an upward-trending spiral with happy improvement milestones along the way.",
+      "output": "apps/docs/src/content/docs/img/product-overview/self-bootstrapping-iteration/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/self-bootstrapping-iteration/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "core-features-architecture",
+      "prompt": "A simple hand-drawn stack showing Hagicode's three layers of features. Bottom: basic features (sessions, chat), Middle: helper features (proposals, diagrams), Top: user experience (themes, settings). Draw like a friendly tower with connected levels, using simple doodle icons for each feature group. Like building blocks stacked neatly.",
+      "context": "api-integration",
+      "customPrompt": "Draw connected stack layers with cute labels and icons, like building blocks or a friendly tower.",
+      "output": "apps/docs/src/content/docs/img/product-overview/core-features-architecture/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/core-features-architecture/prompt.json",
+      "size": "1536x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "story-newcomer-onboarding",
+      "prompt": "A warm doodle showing a new developer's happy journey with Hagicode. Draw a friendly character exploring code with AI help. Show a simple timeline with cute milestones: Day 1 - learning fast, Day 2 - AI helps with coding, Day 3 - fixing bugs together. Include smiley faces and speed lines to show how much easier and happier it is.",
+      "context": "desktop-app",
+      "customPrompt": "Include friendly before-and-after doodles showing the happy improvement.",
+      "output": "apps/docs/src/content/docs/img/product-overview/story-newcomer-onboarding/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/story-newcomer-onboarding/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "story-complex-change",
+      "prompt": "A friendly doodle comparing messy vs organized change management. Show the traditional way as a confused tangle of doodles, then Hagicode way as neat and organized with clear documents, task lists, and happy teamwork. Use hand-drawn elements to show chaos turning into order, like tidying up a messy desk.",
+      "context": "desktop-app",
+      "customPrompt": "Draw a side-by-side comparison: confused doodles vs happy organized doodles.",
+      "output": "apps/docs/src/content/docs/img/product-overview/story-complex-change/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/story-complex-change/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    },
+    {
+      "name": "story-team-knowledge",
+      "prompt": "A reassuring doodle showing how team knowledge stays safe. First show the problem: scattered notes and lost information as confused doodles. Then show Hagicode's solution: neat proposals and documents like a well-organized notebook. Draw happy team members easily finding what they need, like a library where everything is in its place.",
+      "context": "web-app",
+      "customPrompt": "Emphasize the happy transformation from scattered mess to organized knowledge with friendly doodles.",
+      "output": "apps/docs/src/content/docs/img/product-overview/story-team-knowledge/illustration.png",
+      "saveConfig": "apps/docs/src/content/docs/img/product-overview/story-team-knowledge/prompt.json",
+      "size": "1024x1024",
+      "quality": "high",
+      "format": "png"
+    }
+  ]
+}
