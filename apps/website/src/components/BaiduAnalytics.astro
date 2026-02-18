@@ -3,15 +3,15 @@
  * Baidu Analytics Integration
  *
  * Injects Baidu Analytics tracking script in production environment.
- * Uses default ID '26c9739b2f3cddbe36c649e0823ee2de' with environment variable override support.
+ * Uses default ID '43081dabdf7dd7249f20795e76c2f017' with environment variable override support.
  *
  * Environment Variables:
- * - VITE_BAIDU_ANALYTICS_ID: Baidu Analytics ID (optional, defaults to '26c9739b2f3cddbe36c649e0823ee2de')
+ * - VITE_BAIDU_ANALYTICS_ID: Baidu Analytics ID (optional, defaults to '43081dabdf7dd7249f20795e76c2f017')
  *
  * @see https://tongji.baidu.com/
  */
 // Default Baidu Analytics ID
-const defaultBaiduAnalyticsId = '26c9739b2f3cddbe36c649e0823ee2de';
+const defaultBaiduAnalyticsId = '43081dabdf7dd7249f20795e76c2f017';
 const baiduAnalyticsId = import.meta.env.VITE_BAIDU_ANALYTICS_ID || defaultBaiduAnalyticsId;
 const isProduction = import.meta.env.PROD;
 

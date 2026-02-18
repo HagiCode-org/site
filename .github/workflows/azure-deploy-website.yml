@@ -41,7 +41,7 @@ jobs:
         run: NODE_ENV=production npm run build:website
         env:
           VITE_CLARITY_PROJECT_ID: ${{ secrets.CLARITY_PROJECT_ID }}
-          BAIDU_ANALYTICS_ID: ${{ secrets.BAIDU_ANALYTICS_ID }}
+          BAIDU_ANALYTICS_ID: ${{ secrets.WEBSITE_BAIDU_ANALYTICS_ID }}
 
       - name: Build And Deploy
         id: builddeploy
