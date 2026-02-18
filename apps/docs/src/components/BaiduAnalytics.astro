@@ -12,12 +12,12 @@ const defaultBaiduAnalyticsId = '04ac03637b01a1f4cc0bdfa376387fe5';
 const baiduAnalyticsId = import.meta.env.VITE_BAIDU_ANALYTICS_ID || defaultBaiduAnalyticsId;
 const isProduction = import.meta.env.PROD;
 
-// 临时调试：始终启用 Baidu Analytics 用于测试
-// TODO: 测试完成后改回 `const shouldLoadBaiduAnalytics = isProduction;`
-const shouldLoadBaiduAnalytics = true;
+// 在构建时检查是否应该加载 Baidu Analytics
+// 仅在生产环境加载（使用默认 ID 或环境变量提供的 ID）
+const shouldLoadBaiduAnalytics = isProduction;
 
 // 可选的构建时调试日志
-if (import.meta.env.VITE_BAIDU_ANALYTICS_DEBUG || true) {
+if (import.meta.env.VITE_BAIDU_ANALYTICS_DEBUG) {
   console.log('[Baidu Analytics] Build-time state:', {
     isProduction,
     baiduAnalyticsId: baiduAnalyticsId ? '***' + baiduAnalyticsId.slice(-4) : 'not set',

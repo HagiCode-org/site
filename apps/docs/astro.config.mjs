@@ -55,6 +55,9 @@ export default defineConfig({
       },
     },
     define: {
+      'import.meta.env.PROD': JSON.stringify(
+        process.env.NODE_ENV === 'production'
+      ),
       "import.meta.env.VITE_CLARITY_PROJECT_ID": JSON.stringify(
         process.env.VITE_CLARITY_PROJECT_ID || "",
       ),
