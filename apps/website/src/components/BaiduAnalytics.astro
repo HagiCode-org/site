@@ -1,0 +1,41 @@
+---
+/**
+ * Baidu Analytics Integration
+ *
+ * Injects Baidu Analytics tracking script in production environment.
+ * Uses default ID '26c9739b2f3cddbe36c649e0823ee2de' with environment variable override support.
+ *
+ * Environment Variables:
+ * - VITE_BAIDU_ANALYTICS_ID: Baidu Analytics ID (optional, defaults to '26c9739b2f3cddbe36c649e0823ee2de')
+ *
+ * @see https://tongji.baidu.com/
+ */
+// Default Baidu Analytics ID
+const defaultBaiduAnalyticsId = '26c9739b2f3cddbe36c649e0823ee2de';
+const baiduAnalyticsId = import.meta.env.VITE_BAIDU_ANALYTICS_ID || defaultBaiduAnalyticsId;
+const isProduction = import.meta.env.PROD;
+
+// Only load Baidu Analytics in production
+const shouldLoadBaiduAnalytics = isProduction;
+
+// Optional debug logging
+if (import.meta.env.VITE_BAIDU_ANALYTICS_DEBUG) {
+  console.log('[Baidu Analytics] Build-time state:', {
+    isProduction,
+    baiduAnalyticsId: baiduAnalyticsId ? '***' + baiduAnalyticsId.slice(-4) : 'not set',
+    shouldLoadBaiduAnalytics: !!shouldLoadBaiduAnalytics,
+    NODE_ENV: process.env.NODE_ENV,
+  });
+}
+---
+
+{shouldLoadBaiduAnalytics && (
+  <script is:inline define:vars={{baiduAnalyticsId}}>
+    (function() {
+      const hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?" + baiduAnalyticsId;
+      const s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+)}

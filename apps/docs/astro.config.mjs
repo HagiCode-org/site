@@ -61,6 +61,12 @@ export default defineConfig({
       "import.meta.env.VITE_CLARITY_DEBUG": JSON.stringify(
         process.env.VITE_CLARITY_DEBUG || "",
       ),
+      "import.meta.env.VITE_BAIDU_ANALYTICS_ID": JSON.stringify(
+        process.env.BAIDU_ANALYTICS_ID || "",
+      ),
+      "import.meta.env.VITE_BAIDU_ANALYTICS_DEBUG": JSON.stringify(
+        process.env.BAIDU_ANALYTICS_DEBUG || "",
+      ),
     },
   },
   integrations: [
