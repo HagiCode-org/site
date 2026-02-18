@@ -1,0 +1,39 @@
+---
+/**
+ * Baidu Analytics 用户行为分析集成组件
+ * 仅在生产环境加载 Baidu Analytics 脚本
+ *
+ * @see https://tongji.baidu.com/
+ */
+// Astro 组件在服务端执行时可以直接访问 process.env
+// 对于构建时静态生成，process.env 在构建时可用
+// 默认使用硬编码的 ID，环境变量可覆盖
+const defaultBaiduAnalyticsId = '26c9739b2f3cddbe36c649e0823ee2de';
+const baiduAnalyticsId = import.meta.env.VITE_BAIDU_ANALYTICS_ID || defaultBaiduAnalyticsId;
+const isProduction = import.meta.env.PROD;
+
+// 在构建时检查是否应该加载 Baidu Analytics
+// 仅在生产环境加载（使用默认 ID 或环境变量提供的 ID）
+const shouldLoadBaiduAnalytics = isProduction;
+
+// 可选的构建时调试日志
+if (import.meta.env.VITE_BAIDU_ANALYTICS_DEBUG) {
+  console.log('[Baidu Analytics] Build-time state:', {
+    isProduction,
+    baiduAnalyticsId: baiduAnalyticsId ? '***' + baiduAnalyticsId.slice(-4) : 'not set',
+    shouldLoadBaiduAnalytics: !!shouldLoadBaiduAnalytics,
+    NODE_ENV: process.env.NODE_ENV,
+  });
+}
+---
+
+{shouldLoadBaiduAnalytics && (
+  <script is:inline define:vars={{baiduAnalyticsId}}>
+    (function() {
+      const hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?" + baiduAnalyticsId;
+      const s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+)}

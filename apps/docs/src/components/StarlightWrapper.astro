@@ -1,10 +1,11 @@
 ---
 /**
  * Starlight 自定义布局包装器
- * 用于添加 Mermaid 渲染脚本和 Clarity 分析
+ * 用于添加 Mermaid 渲染脚本、Clarity 分析和 Baidu Analytics
  */
 import MermaidRenderer from '../scripts/mermaid-renderer.astro';
 import Clarity from './Clarity.astro';
+import BaiduAnalytics from './BaiduAnalytics.astro';
 import { Layout as StarlightLayout } from '@astrojs/starlight/components';
 ---
 
@@ -12,4 +13,5 @@ import { Layout as StarlightLayout } from '@astrojs/starlight/components';
   <slot />
   <MermaidRenderer />
   <Clarity />
+  <BaiduAnalytics />
 </StarlightLayout>
