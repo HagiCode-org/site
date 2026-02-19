@@ -54,7 +54,7 @@ npm --version
 ## 安装 OpenSpec
 
 :::tip[版本要求]
-本项目要求使用 **OpenSpec 0.23.0** 版本。请按照以下说明安装特定版本，以确保与项目工作流兼容。
+本项目要求使用 **OpenSpec >=1.0.0 <2.0.0** 版本范围。支持所有 1.x 版本（最高支持 1.x），以确保与项目工作流兼容。
 :::
 
 OpenSpec 通过 npm 全局安装，使其在系统的任何位置都可用。
@@ -66,7 +66,7 @@ OpenSpec 通过 npm 全局安装，使其在系统的任何位置都可用。
     在 PowerShell 或命令提示符中运行：
 
 ```powershell
-npm install -g @fission-ai/openspec@0.23.0
+npm install -g @fission-ai/openspec@1
 ```
 
 :::note[Windows 权限问题]
@@ -77,13 +77,13 @@ npm install -g @fission-ai/openspec@0.23.0
     在终端中运行：
 
 ```bash
-npm install -g @fission-ai/openspec@0.23.0
+npm install -g @fission-ai/openspec@1
 ```
 
 :::note[macOS 权限问题]
 如果遇到 `EACCES` 权限错误，可以尝试：
 ```bash
-sudo npm install -g @fission-ai/openspec@0.23.0
+sudo npm install -g @fission-ai/openspec@1
 ```
 或使用 [nvm](https://github.com/nvm-sh/nvm) 管理 Node.js 版本，避免权限问题。
 :::
@@ -92,12 +92,12 @@ sudo npm install -g @fission-ai/openspec@0.23.0
     在终端中运行：
 
 ```bash
-npm install -g @fission-ai/openspec@0.23.0
+npm install -g @fission-ai/openspec@1
 ```
 
 :::note[Linux 权限问题]
 如果遇到 `EACCES` 权限错误，可以：
-1. 使用 `sudo`：`sudo npm install -g @fission-ai/openspec@0.23.0`
+1. 使用 `sudo`：`sudo npm install -g @fission-ai/openspec@1`
 2. 配置 npm 使用用户目录：
 ```bash
 mkdir -p ~/.npm-global
@@ -120,11 +120,11 @@ openspec --version
 如果安装成功，您将看到版本号输出，例如：
 
 ```
-openspec/0.23.0 linux-x64 node-v18.17.0
+openspec/1.1.1 linux-x64 node-v18.17.0
 ```
 
-:::warning 版本兼容性
-请确保安装的是 0.23.0 版本。**不要升级到 1.0 或更高版本**，因为这些版本包含破坏性变更，与当前项目工作流不兼容。
+:::note[版本范围]
+请确保安装的 OpenSpec 版本在 >=1.0.0 <2.0.0 范围内。项目已验证 1.1.1 版本兼容性。建议使用最新兼容版本以获取新功能。
 :::
 
 ## 常见问题和故障排除
@@ -148,7 +148,7 @@ openspec/0.23.0 linux-x64 node-v18.17.0
     使用 `sudo` 安装：
 
 ```bash
-sudo npm install -g @fission-ai/openspec@0.23.0
+sudo npm install -g @fission-ai/openspec@1
 ```
 
 或使用 [nvm](https://github.com/nvm-sh/nvm) 管理 Node.js，避免全局安装权限问题。
@@ -156,7 +156,7 @@ sudo npm install -g @fission-ai/openspec@0.23.0
   <TabItem value="linux" label="Linux">
     方案 1：使用 sudo
 ```bash
-sudo npm install -g @fission-ai/openspec@0.23.0
+sudo npm install -g @fission-ai/openspec@1
 ```
 
 方案 2：配置 npm 使用用户目录
@@ -165,7 +165,7 @@ mkdir -p ~/.npm-global
 npm config set prefix '~/.npm-global'
 echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
-npm install -g @fission-ai/openspec@0.23.0
+npm install -g @fission-ai/openspec@1
 ```
   </TabItem>
 </Tabs>
@@ -185,7 +185,7 @@ npm install -g @fission-ai/openspec@0.23.0
 npm config set registry https://registry.npmmirror.com
 
 # 然后重新安装
-npm install -g @fission-ai/openspec@0.23.0
+npm install -g @fission-ai/openspec@1
 ```
 
 2. **恢复官方源**（如果需要）：
@@ -198,7 +198,7 @@ npm config set registry https://registry.npmjs.org
 
 ```bash
 npm install -g cnpm --registry=https://registry.npmmirror.com
-cnpm install -g @fission-ai/openspec@0.23.0
+cnpm install -g @fission-ai/openspec@1
 ```
 
 :::tip
@@ -230,14 +230,14 @@ openspec --version
 3. **重新安装特定版本**：
 
 ```bash
-npm install -g @fission-ai/openspec@0.23.0
+npm install -g @fission-ai/openspec@1
 ```
 
 4. **清理 npm 缓存**（如果问题持续）：
 
 ```bash
 npm cache clean --force
-npm install -g @fission-ai/openspec@0.23.0
+npm install -g @fission-ai/openspec@1
 ```
 
 ### 命令未找到
@@ -304,14 +304,14 @@ source ~/.bashrc
 
 ## 升级 OpenSpec
 
-:::warning 版本锁定
-本项目要求使用 OpenSpec 0.23.0 版本。**不要升级到其他版本**，除非项目明确要求。
+:::note[版本范围]
+本项目要求使用 OpenSpec >=1.0.0 <2.0.0 版本范围。如有版本更新需求，请参考项目文档。
 :::
 
 如果需要重新安装特定版本：
 
 ```bash
-npm install -g @fission-ai/openspec@0.23.0
+npm install -g @fission-ai/openspec@1
 ```
 
 ## 卸载 OpenSpec
