@@ -39,7 +39,8 @@ jobs:
         run: cd apps/docs && npm run build
         env:
           VITE_CLARITY_PROJECT_ID: ${{ secrets.CLARITY_PROJECT_ID }}
-          BAIDU_ANALYTICS_ID: ${{ secrets.DOCS_BAIDU_ANALYTICS_ID }}
+          # BAIDU_ANALYTICS_ID: ${{ secrets.DOCS_BAIDU_ANALYTICS_ID }} # Disabled, migrated to 51LA
+          LI_51LA_ID: ${{ secrets.LI_51LA_ID }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

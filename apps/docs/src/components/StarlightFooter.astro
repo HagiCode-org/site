@@ -10,7 +10,8 @@ import Pagination from 'virtual:starlight/components/Pagination';
 import config from 'virtual:starlight/user-config';
 import { Icon } from '@astrojs/starlight/components';
 import Clarity from './Clarity.astro';
-import BaiduAnalytics from './BaiduAnalytics.astro';
+// import BaiduAnalytics from './BaiduAnalytics.astro'; // Disabled, migrated to 51LA
+import Analytics51LA from './51LAAnalytics.astro';
 import { getLink, getLinkTarget, getLinkRel } from '@shared/links';
 import type { PublicLinkKey } from '@shared/links';
 
@@ -122,7 +123,8 @@ const qqGroupRel = getLinkRel('qqGroup');
 </footer>
 
 <Clarity />
-<BaiduAnalytics />
+{/* <BaiduAnalytics /> */} {/* Disabled, migrated to 51LA */}
+<Analytics51LA />
 
 <style>
 	@layer starlight.base {

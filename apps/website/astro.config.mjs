@@ -36,11 +36,18 @@ export default defineConfig({
             'import.meta.env.VITE_CLARITY_DEBUG': JSON.stringify(
                 process.env.VITE_CLARITY_DEBUG || ''
             ),
-            'import.meta.env.VITE_BAIDU_ANALYTICS_ID': JSON.stringify(
-                process.env.BAIDU_ANALYTICS_ID || ''
+            // Baidu Analytics - Disabled, migrated to 51LA
+            // 'import.meta.env.VITE_BAIDU_ANALYTICS_ID': JSON.stringify(
+            //     process.env.BAIDU_ANALYTICS_ID || ''
+            // ),
+            // 'import.meta.env.VITE_BAIDU_ANALYTICS_DEBUG': JSON.stringify(
+            //     process.env.BAIDU_ANALYTICS_DEBUG || ''
+            // ),
+            'import.meta.env.VITE_51LA_ID': JSON.stringify(
+                process.env.LI_51LA_ID || 'L6b88a5yK4h2Xnci'
             ),
-            'import.meta.env.VITE_BAIDU_ANALYTICS_DEBUG': JSON.stringify(
-                process.env.BAIDU_ANALYTICS_DEBUG || ''
+            'import.meta.env.VITE_51LA_DEBUG': JSON.stringify(
+                process.env.LI_51LA_DEBUG || ''
             ),
         },
         build: {
