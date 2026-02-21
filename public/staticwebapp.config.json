@@ -4,8 +4,7 @@
   },
   "globalOverrides": {
     "headers": {
-      "cache-control": "public, max-age=0, must-revalidate",
-      "Referrer-Policy": "strict-origin-when-cross-origin"
+      "cache-control": "public, max-age=0, must-revalidate"
     }
   },
   "overrides": [

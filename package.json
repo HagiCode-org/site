@@ -1,23 +1,17 @@
 {
-  "name": "hagicode-site-monorepo",
-  "type": "module",
+  "name": "hagicode-site",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "packageManager": "npm@11.10.1",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
-    "dev": "NODE_ENV=development turbo run clean && node scripts/copy-version-index.js && turbo run dev --parallel",
-    "dev:website": "NODE_ENV=development turbo run clean:website && node scripts/copy-version-index.js && turbo run dev --filter=website",
-    "clean": "turbo run clean:website",
-    "clean:website": "rm -rf apps/website/.astro apps/website/dist",
-    "build": "NODE_ENV=production node scripts/copy-version-index.js && turbo run build",
-    "build:website": "NODE_ENV=production turbo run clean:website && node scripts/copy-version-index.js && turbo run build --filter=website",
-    "preview": "turbo run preview",
-    "preview:website": "turbo run preview --filter=website",
-    "astro": "turbo run astro",
+    "dev": "astro dev --port ${PORT_WEBSITE:-31264}",
+    "start": "astro dev",
+    "build": "node scripts/copy-version-index.js && astro build",
+    "preview": "astro preview --port ${PORT_WEBSITE:-31264}",
+    "astro": "astro",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf .astro dist",
     "update-metrics": "node scripts/update-activity-metrics.js",
     "test": "vitest run",
     "test:ui": "vitest --ui",
@@ -27,32 +21,36 @@
     "generate:product-images": "bash scripts/generate-image.sh --batch-config scripts/product-images-batch.json",
     "regenerate:product-images": "bash scripts/generate-image.sh --batch-config scripts/product-images-batch.json --force"
   },
-  "devDependencies": {
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.13",
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.7.0",
-    "@astrojs/starlight": "^0.37.4",
-    "@types/react": "^19.2.10",
-    "@types/react-dom": "^19.2.3",
-    "@types/semver": "^7.7.1",
-    "@vitest/ui": "^4.0.18",
     "astro": "^5.6.1",
+    "astro-link-validator": "github:rodgtr1/astro-link-validator",
     "astro-og-canvas": "^0.10.1",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^1.1.0",
     "dotenv": "^17.2.3",
     "framer-motion": "^12.29.2",
     "mermaid": "^11.12.2",
-    "npm-run-all": "^4.1.5",
-    "playwright": "^1.58.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "rehype-external-links": "^3.0.0",
     "rehype-mermaid": "^3.0.0",
     "rehype-raw": "^3.0.0",
+    "semver": "^7.7.4",
     "sharp": "^0.34.2",
-    "starlight-blog": "^0.25.2",
-    "turbo": "^2.8.9",
+    "starlight-blog": "^0.25.2"
+  },
+  "devDependencies": {
+    "@astrojs/starlight": "^0.37.4",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "^19.2.3",
+    "@types/semver": "^7.7.1",
+    "@vitest/ui": "^4.0.18",
+    "npm-run-all": "^4.1.5",
+    "playwright": "^1.58.0",
     "typescript": "~5.3.0",
     "vite": "^6.0.0",
     "vitest": "^4.0.18"
@@ -60,8 +58,5 @@
   "engines": {
     "node": ">=18.0",
     "npm": ">=9.0"
-  },
-  "dependencies": {
-    "semver": "^7.7.4"
   }
 }

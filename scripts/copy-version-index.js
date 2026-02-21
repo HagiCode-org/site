@@ -17,7 +17,7 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, '..');
 
 const SOURCE_FILE = path.join(rootDir, 'apps', 'docs', 'public', 'version-index.json');
-const TARGET_DIR = path.join(rootDir, 'apps', 'website', 'public');
+const TARGET_DIR = path.join(rootDir, 'public');
 const TARGET_FILE = path.join(TARGET_DIR, 'version-index.json');
 
 async function main() {
