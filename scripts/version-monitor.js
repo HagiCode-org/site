@@ -4,8 +4,11 @@
  * Version Monitor Script (Multi-Channel Support)
  *
  * This script monitors the version from the official website URL and updates
- * the local version index files for both the documentation site and marketing site.
+ * the local version index file for the website site.
  * Pull Request creation is handled by the workflow.
+ *
+ * Note: Documentation site has been migrated to HagiCode-org/docs repository.
+ * This script now only updates the website site's version index.
  *
  * Multi-Channel Support:
  * - Supports channels field (stable/beta) in version data
@@ -13,9 +16,8 @@
  * - Can be configured to monitor beta channel via PREFERRED_CHANNEL env var
  * - Automatically detects version channel from version string (beta/alpha/rc indicators)
  *
- * Updates the following files atomically:
- * - apps/docs/public/version-index.json (primary)
- * - apps/website/public/version-index.json (secondary)
+ * Updates the following file:
+ * - apps/website/public/version-index.json
  *
  * Environment Variables:
  * - VERSION_SOURCE_URL: URL to fetch version data (default: https://desktop.dl.hagicode.com/index.json)
@@ -48,10 +50,10 @@ const config = {
   retryDelay: 1000 // Base retry delay in milliseconds
 };
 
-// Local version data file paths for both sites
+// Local version data file path for website site
+// Note: docs app has been migrated to HagiCode-org/docs repository
 const VERSION_INDEX_FILES = [
-  'apps/docs/public/version-index.json',  // Primary: documentation site
-  'apps/website/public/version-index.json' // Secondary: marketing site
+  'apps/website/public/version-index.json' // Website site
 ];
 const VERSION_INDEX_PRIMARY = VERSION_INDEX_FILES[0];
 

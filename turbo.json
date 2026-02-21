@@ -12,9 +12,6 @@
     "clean": {
       "cache": false
     },
-    "clean:docs": {
-      "cache": false
-    },
     "clean:website": {
       "cache": false
     },

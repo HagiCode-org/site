@@ -11,7 +11,6 @@
  *
  * 输入文件（按优先级读取）：
  * - all-build.log（合并的构建日志）
- * - docs-build.log（docs 站点构建日志）
  * - website-build.log（website 站点构建日志）
  *
  * 输出文件：
@@ -35,7 +34,6 @@ const __dirname = dirname(__filename);
 const CONFIG = {
   logFiles: [
     'all-build.log',
-    'docs-build.log',
     'website-build.log',
   ],
   outputFile: 'broken-links.json',
@@ -91,7 +89,7 @@ function parseBrokenLinks(logContent) {
     const lines = content.split('\n');
 
     // 确定站点类型
-    const site = file.includes('docs') ? 'docs' : 'website';
+    const site = 'website';
 
     let currentLink = null;
 
