@@ -1,0 +1,476 @@
+---
+import Clarity from "@/components/Clarity.astro";
+// 导入首页样式系统
+import '@/styles/homepage.css';
+// 导入 Container 页面专属样式
+import '@/styles/container.css';
+// 导入首页组件
+import Navbar from '@/components/home/Navbar';
+import Footer from '@/components/home/Footer';
+// 导入图标组件
+import FeatureIcon from '@/components/desktop/FeatureIcon.astro';
+import FeatureTagIcon from '@/components/desktop/FeatureTagIcon.astro';
+import { getLink } from '@/lib/shared/links';
+import { fetchDesktopVersions, groupAssetsByPlatform } from "@/lib/shared/desktop-utils";
+import { setDesktopServerData } from "@/lib/shared/version-manager";
+import type { DesktopVersion, PlatformGroup } from "@/lib/shared/desktop";
+
+// SEO 元数据
+const title = "Hagicode Container - 容器部署";
+const description = "通过 Docker Compose Builder 部署 Hagicode，配置简单，开箱即用。支持多种镜像源和自动更新。";
+
+// 获取站点基础路径
+const siteBase = import.meta.env.VITE_SITE_BASE || "/";
+const dockerComposeDocsUrl = getLink('dockerCompose');
+
+// 获取桌面版本信息（用于 Navbar 的 Install Button）
+let desktopVersionData: {
+  latest: DesktopVersion | null;
+  platforms: PlatformGroup[];
+  error: string | null;
+  channels: {
+    stable: { latest: DesktopVersion | null; all: DesktopVersion[] };
+    beta: { latest: DesktopVersion | null; all: DesktopVersion[] };
+  };
+} = {
+  latest: null,
+  platforms: [],
+  error: null,
+  channels: {
+    stable: { latest: null, all: [] },
+    beta: { latest: null, all: [] }
+  }
+};
+
+try {
+  const data = await fetchDesktopVersions();
+
+  // 注入数据到 VersionManager（用于客户端组件）
+  setDesktopServerData(data);
+
+  // 优先使用 channels.stable.latest 作为默认显示的版本
+  if (data.channels && data.channels.stable && data.channels.stable.latest) {
+    const stableLatestVersion = data.channels.stable.latest;
+    desktopVersionData.latest = data.versions.find(v => v.version === stableLatestVersion) || data.versions[0] || null;
+  } else {
+    desktopVersionData.latest = data.versions[0] || null;
+  }
+
+  if (desktopVersionData.latest) {
+    desktopVersionData.platforms = groupAssetsByPlatform(desktopVersionData.latest.files);
+  }
+
+  // 处理渠道数据（如果存在）
+  if (data.channels) {
+    // 从 channels 数据中提取版本信息
+    const stableVersions = data.channels.stable?.versions || [];
+    const betaVersions = data.channels.beta?.versions || [];
+    const stableLatest = data.channels.stable?.latest;
+    const betaLatest = data.channels.beta?.latest;
+
+    // 查找对应的版本对象
+    if (stableLatest) {
+      desktopVersionData.channels.stable.latest = data.versions.find(v => v.version === stableLatest) || null;
+    }
+    if (betaLatest) {
+      desktopVersionData.channels.beta.latest = data.versions.find(v => v.version === betaLatest) || null;
+    }
+
+    // 获取渠道的所有版本
+    desktopVersionData.channels.stable.all = data.versions.filter(v => stableVersions.includes(v.version));
+    desktopVersionData.channels.beta.all = data.versions.filter(v => betaVersions.includes(v.version));
+  }
+} catch (e) {
+  desktopVersionData.error = e instanceof Error ? e.message : String(e);
+  console.error("Failed to fetch desktop versions:", e);
+}
+---
+
+<!doctype html>
+<html lang="zh-CN" data-site-base={siteBase}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <!-- 百度搜索引擎验证 -->
+    <meta name="baidu-site-verification" content="codeva-A9s3yT3z5m" />
+    <meta name="og:title" content={title} />
+    <meta name="og:description" content={description} />
+    <meta name="og:type" content="website" />
+    <script is:inline>
+      // 初始化主题 - 与主页保持一致
+      (function() {
+        function isLunarNewYearPeriod() {
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = now.getMonth() + 1;
+          const day = now.getDate();
+
+          if (year === 2025) {
+            if (month === 1 && day >= 29) return true;
+            if (month === 2 && day <= 12) return true;
+          }
+          if (year === 2026) {
+            if (month === 2 && day >= 17) return true;
+            if (month === 3 && day <= 3) return true;
+          }
+          return false;
+        }
+
+        const stored = localStorage.getItem('starlight-theme');
+        const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        let theme;
+
+        if (stored) {
+          theme = stored;
+        } else {
+          theme = isLunarNewYearPeriod() ? 'lunar-new-year' : system;
+        }
+
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body class="homepage">
+    <Navbar
+      client:load
+      desktopVersion={desktopVersionData.latest}
+      desktopPlatforms={desktopVersionData.platforms}
+      desktopVersionError={desktopVersionData.error}
+      desktopChannels={desktopVersionData.channels}
+    />
+
+    <main class="homepage">
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="tech-grid-bg" />
+        <div class="bgGlow" />
+        <div class="hero-content">
+          <div class="hero-badge">容器版</div>
+          <h1>Hagicode Container</h1>
+          <p class="hero-tagline">使用 Docker Compose Builder 快速部署，配置简单，开箱即用</p>
+
+          <div class="hero-value-prop">
+            <div class="value-point">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 7h-9m1 4h-8m8 4h-8m5 4h-8" stroke-linecap="round" stroke-linejoin="round"/>
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              </svg>
+              <span>可视化配置，无需编程</span>
+            </div>
+            <div class="value-point">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+              <span>环境隔离，数据安全</span>
+            </div>
+            <div class="value-point">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>一键部署，快速启动</span>
+            </div>
+          </div>
+
+          <!-- Docker Compose Builder CTA -->
+          <div class="hero-cta">
+            <a href={dockerComposeDocsUrl} class="btn btn-primary btn-large">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186h-2.12a.186.186 0 00-.185.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z"/>
+              </svg>
+              使用 Docker Compose Builder 部署
+            </a>
+          </div>
+
+          <div class="hero-features">
+            <span class="feature-tag">
+              <FeatureTagIcon name="lock" />
+              环境隔离
+            </span>
+            <span class="feature-tag">
+              <FeatureTagIcon name="bolt" />
+              一键部署
+            </span>
+            <span class="feature-tag">
+              <FeatureTagIcon name="computer" />
+              快速启动
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 功能特性区域 -->
+      <section class="features">
+        <h2>为什么选择容器部署？</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="lock" size={48} />
+            </div>
+            <h3>环境隔离</h3>
+            <p>容器化部署，避免依赖冲突，不影响系统环境，保持系统整洁</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="rocket" size={48} />
+            </div>
+            <h3>配置简单</h3>
+            <p>使用 Docker Compose Builder 可视化配置，无需编写复杂脚本</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="computer" size={48} />
+            </div>
+            <h3>跨平台支持</h3>
+            <p>支持 x86_64 架构，适用于各种服务器和云平台</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="globe" size={48} />
+            </div>
+            <h3>数据持久化</h3>
+            <p>支持 Volume 挂载，数据安全可靠，容器重启不丢失</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="arrow-path" size={48} />
+            </div>
+            <h3>自动更新</h3>
+            <p>支持 watchtower 自动更新，轻松获取最新版本</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="bolt" size={48} />
+            </div>
+            <h3>生产就绪</h3>
+            <p>专为生产环境设计，支持高可用和横向扩展</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Docker Compose Builder 介绍区域 -->
+      <section class="builder-intro">
+        <h2>Docker Compose Builder</h2>
+        <p class="section-description">最简单、最推荐的容器部署方式</p>
+
+        <div class="builder-content">
+          <div class="builder-feature">
+            <div class="builder-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+            </div>
+            <h3>可视化配置</h3>
+            <p>通过友好的 Web 界面配置所有参数，无需手动编辑 YAML 文件</p>
+          </div>
+
+          <div class="builder-feature">
+            <div class="builder-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>一键生成配置</h3>
+            <p>自动生成完整的 docker-compose.yml 文件，包含最佳实践配置</p>
+          </div>
+
+          <div class="builder-feature">
+            <div class="builder-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>快速部署</h3>
+            <p>一键下载配置文件并启动服务，几分钟内完成部署</p>
+          </div>
+
+          <div class="builder-feature">
+            <div class="builder-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>安全可靠</h3>
+            <p>内置安全最佳实践，自动配置数据卷和重启策略</p>
+          </div>
+        </div>
+
+        <div class="builder-cta">
+          <a href={dockerComposeDocsUrl} class="btn btn-primary btn-large">
+            前往 Docker Compose Builder
+            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <!-- 镜像源选择区域 -->
+      <section class="mirror-sources">
+        <h2>镜像源选择</h2>
+        <p class="section-description">根据您的网络环境和地理位置选择最适合的镜像源</p>
+
+        <div class="mirror-grid">
+          <div class="mirror-card">
+            <div class="mirror-header">
+              <svg class="mirror-logo" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186h-2.12a.186.186 0 00-.185.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z"/>
+              </svg>
+              <h3>Docker Hub</h3>
+            </div>
+            <p>全球最大的容器镜像仓库，适合国际网络用户</p>
+            <div class="mirror-command">
+              <code>newbe36524/hagicode:0</code>
+            </div>
+          </div>
+
+          <div class="mirror-card">
+            <div class="mirror-header">
+              <svg class="mirror-logo" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4.5 9.75V9A3.75 3.75 0 018.25 5.25h7.5A3.75 3.75 0 0119.5 9v.75m-15 0h15m-15 0A2.25 2.25 0 003.75 12v6.75A2.25 2.25 0 006 20.25h12a2.25 2.25 0 002.25-2.25V12A2.25 2.25 0 0018 9.75H6A2.25 2.25 0 003.75 9.75z"/>
+              </svg>
+              <h3>Azure ACR</h3>
+            </div>
+            <p>微软 Azure 提供的镜像服务，国内访问速度较快</p>
+            <div class="mirror-command">
+              <code>hagicode.azurecr.io/hagicode:0</code>
+            </div>
+          </div>
+
+          <div class="mirror-card">
+            <div class="mirror-header">
+              <svg class="mirror-logo" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4.5 9.75V9A3.75 3.75 0 018.25 5.25h7.5A3.75 3.75 0 0119.5 9v.75m-15 0h15m-15 0A2.25 2.25 0 003.75 12v6.75A2.25 2.25 0 006 20.25h12a2.25 2.25 0 002.25-2.25V12A2.25 2.25 0 0018 9.75H6A2.25 2.25 0 003.75 9.75z"/>
+              </svg>
+              <h3>阿里云 ACR</h3>
+            </div>
+            <p>阿里云国内镜像加速，中国大陆用户推荐</p>
+            <div class="mirror-command">
+              <code>registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0</code>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 常见问题区域 -->
+      <section class="faq">
+        <h2>常见问题</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>容器版本和 Desktop 版本有什么区别？</summary>
+            <div class="faq-content">
+              <p>两种版本各有优势，您可以根据使用场景选择：</p>
+              <h4>Desktop 版本</h4>
+              <ul>
+                <li>在本地电脑上运行，更加轻便</li>
+                <li>无需配置服务器，开箱即用</li>
+                <li>适合个人开发者和轻量使用场景</li>
+                <li>所有数据完全本地化</li>
+              </ul>
+              <h4>Container 版本</h4>
+              <ul>
+                <li>可部署在服务器上，支持远程访问</li>
+                <li>环境隔离，不影响系统环境</li>
+                <li>更适合团队协作和生产环境</li>
+                <li>支持自动化部署和横向扩展</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>什么是 Docker Compose Builder？</summary>
+            <div class="faq-content">
+              <p>Docker Compose Builder 是我们提供的可视化配置工具，帮助您：</p>
+              <ul>
+                <li>通过 Web 界面配置所有容器参数</li>
+                <li>自动生成 docker-compose.yml 文件</li>
+                <li>内置最佳实践和安全配置</li>
+                <li>一键下载并启动服务</li>
+              </ul>
+              <p>无需手动编写复杂的 YAML 配置，即使是 Docker 初学者也能轻松部署。</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>容器版本支持哪些系统架构？</summary>
+            <div class="faq-content">
+              <p>当前 Hagicode 容器镜像支持 <strong>x86_64 (amd64)</strong> 架构，适用于大多数服务器和 PC。</p>
+              <p>拉取镜像时 Docker 会自动选择适合您系统的架构。</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>如何更新容器？</summary>
+            <div class="faq-content">
+              <p>使用 Docker Compose 部署时，更新非常简单：</p>
+              <pre><code>docker-compose pull
+docker-compose up -d</code></pre>
+              <p>或者使用 Watchtower 实现自动更新。</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>如何配置数据持久化？</summary>
+            <div class="faq-content">
+              <p>Docker Compose Builder 会自动配置数据卷。默认情况下，您的数据将存储在 Docker Volume 中，确保：</p>
+              <ul>
+                <li>容器删除后数据不丢失</li>
+                <li>容器升级时数据保留</li>
+                <li>可以轻松备份和恢复</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>容器启动失败怎么办？</summary>
+            <div class="faq-content">
+              <p>排查容器启动失败的步骤：</p>
+              <ol>
+                <li><strong>查看容器状态：</strong>
+                  <pre><code>docker-compose ps</code></pre>
+                </li>
+                <li><strong>查看容器日志：</strong>
+                  <pre><code>docker-compose logs hagicode</code></pre>
+                </li>
+                <li><strong>检查端口占用：</strong>
+                  <p>如果您的服务端口是 3000，使用以下命令检查：</p>
+                  <pre><code>netstat -tlnp | grep 3000</code></pre>
+                  <p>如果端口被占用，可以：</p>
+                  <ul>
+                    <li>停止占用端口的进程</li>
+                    <li>或在 Docker Compose Builder 中配置其他端口</li>
+                  </ul>
+                </li>
+              </ol>
+              <p>如果问题仍未解决，请查看<a href={dockerComposeDocsUrl}>详细文档</a>或联系技术支持。</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- CTA 区域 -->
+      <section class="cta-section">
+        <h2>开始使用 Docker Compose Builder</h2>
+        <p>最简单、最推荐的容器部署方式</p>
+        <div class="cta-buttons">
+          <a href={dockerComposeDocsUrl} class="btn btn-primary">
+            前往部署指南
+          </a>
+          <a href="https://github.com/HagiCode-org/site" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            GitHub 仓库
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <Footer client:load />
+
+    <!-- Microsoft Clarity 分析 -->
+    <Clarity />
+  </body>
+</html>

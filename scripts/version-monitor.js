@@ -17,7 +17,7 @@
  * - Automatically detects version channel from version string (beta/alpha/rc indicators)
  *
  * Updates the following file:
- * - apps/website/public/version-index.json
+ * - public/version-index.json
  *
  * Environment Variables:
  * - VERSION_SOURCE_URL: URL to fetch version data (default: https://desktop.dl.hagicode.com/index.json)
@@ -53,7 +53,7 @@ const config = {
 // Local version data file path for website site
 // Note: docs app has been migrated to HagiCode-org/docs repository
 const VERSION_INDEX_FILES = [
-  'apps/website/public/version-index.json' // Website site
+  'public/version-index.json' // Website site
 ];
 const VERSION_INDEX_PRIMARY = VERSION_INDEX_FILES[0];
 

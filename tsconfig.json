@@ -1,19 +1,25 @@
 {
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "composite": true,
-    "declarationMap": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "baseUrl": ".",
     "paths": {
-      "@docs/*": ["apps/docs/src/*"],
-      "@website/*": ["apps/website/src/*"],
-      "@shared/*": ["packages/shared/src/*"]
-    }
+      "@/*": ["./src/*"],
+      "@/lib/shared/*": ["./src/lib/shared/*"]
+    },
+    "module": "es2020",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true
   },
-  "references": [
-    { "path": "./apps/docs" },
-    { "path": "./apps/website" },
-    { "path": "./packages/shared" }
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
   ]
 }

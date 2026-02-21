@@ -82,8 +82,7 @@ jobs:
       - name: Commit version changes
         if: steps.monitor.outputs.update_needed == 'true' && steps.check_branch.outputs.branch_exists != 'true'
         run: |
-          git add apps/docs/public/version-index.json
-          git add apps/website/public/version-index.json
+          git add public/version-index.json
           git commit -m "chore: update version to ${{ steps.monitor.outputs.new_version }}"
 
       - name: Push branch

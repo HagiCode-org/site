@@ -35,10 +35,9 @@ jobs:
 
       - name: Install playwright browsers
         run: npx playwright install --with-deps
-        working-directory: apps/website
 
       - name: Build website
-        run: NODE_ENV=production npm run build:website
+        run: NODE_ENV=production npm run build
         env:
           VITE_CLARITY_PROJECT_ID: ${{ secrets.CLARITY_PROJECT_ID }}
           # BAIDU_ANALYTICS_ID: ${{ secrets.WEBSITE_BAIDU_ANALYTICS_ID }} # Disabled, migrated to 51LA
@@ -56,7 +55,7 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "apps/website/dist" # Build output directory for website app (since skip_app_build: true)
+          app_location: "dist" # Build output directory
           api_location: "" # Api source code path - optional
           ###### End of Repository/Build Configurations ######
           skip_app_build: true
