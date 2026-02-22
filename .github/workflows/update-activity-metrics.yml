@@ -280,10 +280,10 @@ jobs:
 
       - name: Summary
         run: |
-          PULL_COUNT=$(jq -r '.dockerHub.pullCount' apps/website/public/activity-metrics.json)
-          ACTIVE_USERS=$(jq -r '.clarity.activeUsers' apps/website/public/activity-metrics.json)
-          ACTIVE_SESSIONS=$(jq -r '.clarity.activeSessions' apps/website/public/activity-metrics.json)
-          LAST_UPDATED=$(jq -r '.lastUpdated' apps/website/public/activity-metrics.json)
+          PULL_COUNT=$(jq -r '.dockerHub.pullCount' public/activity-metrics.json)
+          ACTIVE_USERS=$(jq -r '.clarity.activeUsers' public/activity-metrics.json)
+          ACTIVE_SESSIONS=$(jq -r '.clarity.activeSessions' public/activity-metrics.json)
+          LAST_UPDATED=$(jq -r '.lastUpdated' public/activity-metrics.json)
 
           echo "### 活动指标更新 :rocket:" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY

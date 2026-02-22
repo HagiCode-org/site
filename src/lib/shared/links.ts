@@ -57,7 +57,7 @@ export interface LinkConfig {
 export const SITE_LINKS = {
     /** 文档站点 */
     docs: {
-        dev: 'http://localhost:31265/', // docs 应用开发环境端口
+        dev: 'https://docs.hagicode.com/', // 使用生产 URL（跨仓库链接）
         prod: 'https://docs.hagicode.com/',
         external: false,
     } as LinkConfig,
@@ -85,14 +85,14 @@ export const SITE_LINKS = {
 
     /** 博客页面（相对于文档站点） */
     blog: {
-        dev: 'http://localhost:31265/blog/',
+        dev: 'https://docs.hagicode.com/blog/', // 使用生产 URL（跨仓库链接）
         prod: 'https://docs.hagicode.com/blog/',
         external: false,
     } as LinkConfig,
 
     /** 产品概述（相对于文档站点） */
     productOverview: {
-        dev: 'http://localhost:31265/product-overview/',
+        dev: 'https://docs.hagicode.com/product-overview/', // 使用生产 URL（跨仓库链接）
         prod: 'https://docs.hagicode.com/product-overview/',
         external: false,
     } as LinkConfig,
@@ -106,7 +106,7 @@ export const SITE_LINKS = {
 
     /** Docker Compose 安装指南（相对于文档站点） */
     dockerCompose: {
-        dev: 'http://localhost:31265/installation/docker-compose/',
+        dev: 'https://docs.hagicode.com/installation/docker-compose/', // 使用生产 URL（跨仓库链接）
         prod: 'https://docs.hagicode.com/installation/docker-compose/',
         external: false,
     } as LinkConfig,
@@ -120,7 +120,7 @@ export const SITE_LINKS = {
 
     /** 博客 RSS 订阅（相对于文档站点） */
     rss: {
-        dev: 'http://localhost:31265/blog/rss.xml',
+        dev: 'https://docs.hagicode.com/blog/rss.xml', // 使用生产 URL（跨仓库链接）
         prod: 'https://docs.hagicode.com/blog/rss.xml',
         external: false,
     } as LinkConfig,
