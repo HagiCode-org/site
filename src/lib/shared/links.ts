@@ -157,7 +157,7 @@ export const GLM_PROMO_LINKS = {
 export const ALIYUN_PROMO_LINKS = {
     /** 阿里云千问 Coding Plan 订阅链接（带推广码） */
     aistar: {
-        url: 'https://www.aliyun.com/benefit/ai/aistar?userCode=vmx5szbq&clubBiz=subTask..12384055..10263',
+        url: 'https://www.aliyun.com/benefit/ai/aistar?userCode=vmx5szbq&clubBiz=subTask..12384055..10263..',
         label: '立即订阅',
         title: '阿里云千问 Coding Plan 上线',
         description: '阿里云千问 Coding Plan 已上线，满足开发日常需求。推荐 + Hagicode，完美实现开发过程中的各项需求。',
