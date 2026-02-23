@@ -6,7 +6,7 @@
  */
 import { useMemo } from 'react';
 import styles from './Footer.module.css';
-import { getLink, getLinkTarget, getLinkRel } from '@/lib/shared/links';
+import { getLink, getLinkTarget, getLinkRel, ALIYUN_PROMO_LINKS } from '@/lib/shared/links';
 
 /**
  * Footer 组件 Props
@@ -91,6 +91,7 @@ export default function Footer({ className = '' }: FooterProps) {
   const githubLink = getLink('github');
   const qqGroupLink = getLink('qqGroup');
   const rssLink = getLink('rss');
+  const { aistar } = ALIYUN_PROMO_LINKS;
 
   // 外部链接属性
   const externalTarget = getLinkTarget('github');
@@ -185,6 +186,26 @@ export default function Footer({ className = '' }: FooterProps) {
             <span className={styles.copyright}>
               © {currentYear} Hagicode. All rights reserved.
             </span>
+          </div>
+        </div>
+
+        {/* 分隔线 */}
+        <div className={styles.divider} />
+
+        {/* 推广链接区域 */}
+        <div className={styles.promoSection}>
+          <div className={styles.promoCard}>
+            <h4 className={styles.promoTitle}>🚀 {aistar.title}</h4>
+            <p className={styles.promoDescription}>{aistar.description}</p>
+            <a
+              href={aistar.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.promoButton}
+              aria-label={`访问 ${aistar.title} 页面`}
+            >
+              {aistar.label}
+            </a>
           </div>
         </div>
 

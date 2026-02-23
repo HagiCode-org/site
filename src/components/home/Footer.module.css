@@ -5,8 +5,8 @@
  */
 
 /* ============================================
-   FOOTER 容器样式
-   ============================================ */
+  FOOTER 容器样式
+  ============================================ */
 
 .footer {
   position: relative;
@@ -46,8 +46,8 @@
 }
 
 /* ============================================
-   主容器
-   ============================================ */
+  主容器
+  ============================================ */
 
 .container {
   max-width: 1200px;
@@ -56,8 +56,8 @@
 }
 
 /* ============================================
-   Header 行 - Logo 和版权
-   ============================================ */
+  Header 行 - Logo 和版权
+  ============================================ */
 
 .headerRow {
   display: flex;
@@ -86,8 +86,8 @@
 }
 
 /* ============================================
-   分隔线
-   ============================================ */
+  分隔线
+  ============================================ */
 
 .divider {
   height: 1px;
@@ -97,8 +97,68 @@
 }
 
 /* ============================================
-   三栏布局
-   ============================================ */
+  推广链接区域
+  ============================================ */
+
+.promoSection {
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, #FF6B00 15%, transparent),
+    color-mix(in srgb, #FF8C42 8%, transparent));
+  border: 1px solid color-mix(in srgb, #FF6B00 30%, var(--sl-color-gray-5));
+}
+
+.promoCard {
+  text-align: center;
+  color: var(--color-text-high);
+}
+
+.promoTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: #FF6B00;
+}
+
+.promoDescription {
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  margin: 0 0 1rem 0;
+  line-height: 1.5;
+}
+
+.promoButton {
+  display: inline-block;
+  padding: 0.625rem 1.5rem;
+  background: linear-gradient(135deg, #FF6B00, #FF8C42);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.promoButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255, 107, 0, 0.3);
+}
+
+.promoButton:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-full);
+}
+
+.promoButton:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+  三栏布局
+  ============================================ */
 
 .sections {
   display: grid;
@@ -131,8 +191,8 @@
 }
 
 /* ============================================
-   区块样式
-   ============================================ */
+  区块样式
+  ============================================ */
 
 .section {
   display: flex;
@@ -203,8 +263,8 @@
 }
 
 /* ============================================
-   备案信息区块
-   ============================================ */
+  备案信息区块
+  ============================================ */
 
 .icpSection {
   display: flex;
@@ -238,8 +298,8 @@
 }
 
 /* ============================================
-   响应式优化
-   ============================================ */
+  响应式优化
+  ============================================ */
 
 /* 移动端优化 */
 @media (max-width: 767px) {
@@ -272,6 +332,19 @@
     flex-direction: column;
     gap: 0.75rem;
   }
+
+  /* 推广区域响应式调整 */
+  .promoSection {
+    padding: 1.25rem;
+  }
+
+  .promoTitle {
+    font-size: 1rem;
+  }
+
+  .promoDescription {
+    font-size: 0.875rem;
+  }
 }
 
 /* 平板优化 */
@@ -289,8 +362,8 @@
 }
 
 /* ============================================
-   可访问性增强
-   ============================================ */
+  可访问性增强
+  ============================================ */
 
 /* 减少动画偏好 */
 @media (prefers-reduced-motion: reduce) {
@@ -300,12 +373,14 @@
   }
 
   .sectionLink,
-  .icpLink {
+  .icpLink,
+  .promoButton {
     transition: color 0.2s ease;
   }
 
   .sectionLink:hover,
-  .sectionLink::before {
+  .sectionLink::before,
+  .promoButton:hover {
     transform: none;
   }
 }
@@ -317,14 +392,15 @@
   }
 
   .sectionLink:focus,
-  .icpLink:focus {
+  .icpLink:focus,
+  .promoButton:focus {
     outline-width: 3px;
   }
 }
 
 /* ============================================
-   打印样式
-   ============================================ */
+  打印样式
+  ============================================ */
 
 @media print {
   .footer {
@@ -335,5 +411,19 @@
 
   .sectionLink {
     color: #000;
+  }
+
+  .promoSection {
+    background: #fff5eb;
+    border: 1px solid #ff6b00;
+  }
+
+  .promoTitle {
+    color: #ff6b00;
+  }
+
+  .promoButton {
+    background: #ff6b00;
+    color: white;
   }
 }
