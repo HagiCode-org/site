@@ -1,7 +1,17 @@
 /**
  * Hagicode Desktop 相关类型定义
  * 基于 desktop.dl.hagicode.com/index.json 的实际数据结构
+ * 支持多架构包 (x64, ARM64)
  */
+
+/**
+ * CPU 架构类型
+ */
+export enum CpuArchitecture {
+  X64 = "x64",
+  ARM64 = "arm64",
+  Unknown = "unknown",
+}
 
 /**
  * 资源类型枚举
@@ -13,9 +23,12 @@ export enum AssetType {
   WindowsStore = "windows-store", // Microsoft Store
   MacOSApple = "macos-apple", // macOS Apple Silicon (推荐)
   MacOSIntel = "macos-intel", // macOS Intel/通用
-  LinuxAppImage = "linux-appimage", // Linux AppImage (推荐)
-  LinuxDeb = "linux-deb", // Linux Debian 包
-  LinuxTarball = "linux-tarball", // Linux 压缩包
+  LinuxAppImage = "linux-appimage", // Linux AppImage x64 (推荐)
+  LinuxArm64AppImage = "linux-arm64-appimage", // Linux AppImage ARM64
+  LinuxDeb = "linux-deb", // Linux Debian 包 x64
+  LinuxArm64Deb = "linux-arm64-deb", // Linux Debian 包 ARM64
+  LinuxTarball = "linux-tarball", // Linux 压缩包 x64
+  LinuxArm64Tarball = "linux-arm64-tarball", // Linux 压缩包 ARM64
   Source = "source", // 源代码
   Unknown = "unknown",
 }
@@ -86,17 +99,21 @@ export interface PlatformDownload {
   filename: string;
   /** 资源类型 */
   assetType: AssetType;
+  /** CPU 架构 */
+  architecture: CpuArchitecture;
 }
 
 /**
  * 平台分组信息
- * 按平台分组的下载资源
+ * 按平台分组的下载资源，支持多架构
  */
 export interface PlatformGroup {
   /** 平台名称 */
   platform: "windows" | "macos" | "linux";
   /** 该平台的下载资源列表 */
   downloads: PlatformDownload[];
+  /** 可用的架构列表 */
+  architectures: CpuArchitecture[];
 }
 
 /**
@@ -112,4 +129,18 @@ export interface PlatformRecommendation {
   label: string;
   /** Starlight 图标名称 */
   icon: string;
+  /** 推荐的 CPU 架构 */
+  recommendedArchitecture: CpuArchitecture;
+}
+
+/**
+ * 架构选择配置
+ */
+export interface ArchitectureSelection {
+  /** 选中的架构 */
+  architecture: CpuArchitecture;
+  /** 架构是否自动检测 */
+  isAutoDetected: boolean;
+  /** 检测置信度 (0-1) */
+  confidence: number;
 }

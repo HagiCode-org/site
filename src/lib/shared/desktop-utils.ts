@@ -1,6 +1,7 @@
 /**
  * Hagicode Desktop 工具函数
  * 用于获取和处理版本数据
+ * 支持多架构包 (x64, ARM64)
  */
 
 import type {
@@ -10,7 +11,7 @@ import type {
   PlatformGroup,
   DesktopVersion,
 } from './types/desktop';
-import { AssetType } from './types/desktop';
+import { AssetType, CpuArchitecture } from './types/desktop';
 import semver from 'semver';
 
 const INDEX_JSON_URL = "https://desktop.dl.hagicode.com/index.json";
@@ -18,25 +19,32 @@ const LOCAL_VERSION_INDEX = "/version-index.json";
 const DOWNLOAD_BASE_URL = "https://desktop.dl.hagicode.com/";
 const TIMEOUT_MS = 30000;
 
+// LocalStorage keys
+const ARCHITECTURE_STORAGE_KEY = "hagicode-architecture-selection";
+
 /**
  * 平台推荐配置
+ * 支持多架构推荐
  */
 export const PLATFORM_RECOMMENDATIONS: Record<
   "windows" | "macos" | "linux",
-  { recommendedType: AssetType; label: string; icon: string }
+  { recommendedType: AssetType; recommendedArchitecture: CpuArchitecture; label: string; icon: string }
 > = {
   windows: {
     recommendedType: AssetType.WindowsSetup,
+    recommendedArchitecture: CpuArchitecture.X64,
     label: "Windows",
     icon: "seti:windows",
   },
   macos: {
     recommendedType: AssetType.MacOSApple,
+    recommendedArchitecture: CpuArchitecture.ARM64,
     label: "macOS",
     icon: "seti:apple",
   },
   linux: {
     recommendedType: AssetType.LinuxAppImage,
+    recommendedArchitecture: CpuArchitecture.X64,
     label: "Linux",
     icon: "seti:linux",
   },
@@ -61,6 +69,7 @@ function compareVersions(v1: string, v2: string): number {
 
 /**
  * 从文件名推断资源类型
+ * 支持 ARM64 架构检测
  * @param filename - 文件名
  * @returns 资源类型枚举值
  */
@@ -92,18 +101,52 @@ export function inferAssetType(filename: string): AssetType {
     return AssetType.MacOSIntel;
   }
 
-  // Linux
+  // Linux - 支持多架构
+  if (name.includes("arm64") && name.endsWith(".appimage")) {
+    return AssetType.LinuxArm64AppImage;
+  }
   if (name.endsWith(".appimage")) {
     return AssetType.LinuxAppImage;
   }
+  if (name.includes("arm64") && name.includes(".deb")) {
+    return AssetType.LinuxArm64Deb;
+  }
   if (name.includes("_amd64.deb")) {
     return AssetType.LinuxDeb;
+  }
+  if (name.includes("arm64") && name.includes(".tar.gz")) {
+    return AssetType.LinuxArm64Tarball;
   }
   if (name.includes(".tar.gz")) {
     return AssetType.LinuxTarball;
   }
 
   return AssetType.Unknown;
+}
+
+/**
+ * 从资源类型推断 CPU 架构
+ * @param assetType - 资源类型
+ * @returns CPU 架构
+ */
+export function inferArchitecture(assetType: AssetType): CpuArchitecture {
+  switch (assetType) {
+    case AssetType.MacOSApple:
+    case AssetType.LinuxArm64AppImage:
+    case AssetType.LinuxArm64Deb:
+    case AssetType.LinuxArm64Tarball:
+      return CpuArchitecture.ARM64;
+    case AssetType.WindowsSetup:
+    case AssetType.WindowsPortable:
+    case AssetType.WindowsStore:
+    case AssetType.MacOSIntel:
+    case AssetType.LinuxAppImage:
+    case AssetType.LinuxDeb:
+    case AssetType.LinuxTarball:
+      return CpuArchitecture.X64;
+    default:
+      return CpuArchitecture.Unknown;
+  }
 }
 
 /**
@@ -141,9 +184,12 @@ export function getArchitectureLabel(assetType: AssetType): string {
     [AssetType.WindowsSetup]: 'x64',
     [AssetType.WindowsPortable]: 'x64',
     [AssetType.WindowsStore]: '',
-    [AssetType.LinuxAppImage]: '通用',
-    [AssetType.LinuxDeb]: 'amd64',
-    [AssetType.LinuxTarball]: '通用',
+    [AssetType.LinuxAppImage]: 'x64',
+    [AssetType.LinuxArm64AppImage]: 'ARM64',
+    [AssetType.LinuxDeb]: 'x64',
+    [AssetType.LinuxArm64Deb]: 'ARM64',
+    [AssetType.LinuxTarball]: 'x64',
+    [AssetType.LinuxArm64Tarball]: 'ARM64',
     [AssetType.Source]: '',
     [AssetType.Unknown]: '',
   };
@@ -163,8 +209,11 @@ export function getFileExtension(assetType: AssetType): string {
     [AssetType.MacOSApple]: '.dmg',
     [AssetType.MacOSIntel]: '.dmg',
     [AssetType.LinuxAppImage]: '.AppImage',
+    [AssetType.LinuxArm64AppImage]: '.AppImage',
     [AssetType.LinuxDeb]: '.deb',
+    [AssetType.LinuxArm64Deb]: '.deb',
     [AssetType.LinuxTarball]: '.tar.gz',
+    [AssetType.LinuxArm64Tarball]: '.tar.gz',
     [AssetType.Source]: '.zip',
     [AssetType.Unknown]: '',
   };
@@ -183,13 +232,138 @@ export function getAssetTypeLabel(assetType: AssetType): string {
     [AssetType.WindowsStore]: "Microsoft Store",
     [AssetType.MacOSApple]: "Apple Silicon",
     [AssetType.MacOSIntel]: "Intel 版",
-    [AssetType.LinuxAppImage]: "AppImage",
-    [AssetType.LinuxDeb]: "Debian 包",
-    [AssetType.LinuxTarball]: "压缩包",
+    [AssetType.LinuxAppImage]: "AppImage (x64)",
+    [AssetType.LinuxArm64AppImage]: "AppImage (ARM64)",
+    [AssetType.LinuxDeb]: "Debian 包 (x64)",
+    [AssetType.LinuxArm64Deb]: "Debian 包 (ARM64)",
+    [AssetType.LinuxTarball]: "压缩包 (x64)",
+    [AssetType.LinuxArm64Tarball]: "压缩包 (ARM64)",
     [AssetType.Source]: "源代码",
     [AssetType.Unknown]: "其他",
   };
   return labels[assetType] || "未知";
+}
+
+/**
+ * CPU 架构检测
+ * 基于 UserAgent hints 和客户端提示 API
+ * @returns 检测到的 CPU 架构
+ */
+export function detectArchitecture(): CpuArchitecture {
+  if (typeof window === "undefined") {
+    return CpuArchitecture.Unknown;
+  }
+
+  // 优先检查 URL 查询参数
+  const urlParams = new URLSearchParams(window.location.search);
+  const archParam = urlParams.get("arch");
+  if (archParam) {
+    const normalizedParam = archParam.toLowerCase();
+    if (normalizedParam === "arm64" || normalizedParam === "aarch64") {
+      return CpuArchitecture.ARM64;
+    }
+    if (normalizedParam === "x64" || normalizedParam === "amd64") {
+      return CpuArchitecture.X64;
+    }
+  }
+
+  // 尝试使用客户端提示 API (Chrome/Edge)
+  if ("userAgentData" in navigator && (navigator as any).userAgentData) {
+    const data = (navigator as any).userAgentData;
+    if (data.platform === "Linux" && data.architecture) {
+      const arch = data.architecture.toLowerCase();
+      if (arch === "arm" || arch === "arm64") {
+        return CpuArchitecture.ARM64;
+      }
+      if (arch === "x86-64") {
+        return CpuArchitecture.X64;
+      }
+    }
+  }
+
+  // UserAgent 基于 Heuristic 检测
+  const userAgent = navigator.userAgent;
+
+  // Apple Silicon detection
+  if (userAgent.includes("Mac") && (userAgent.includes("iPhone") || userAgent.includes("iPad") || /Mac OS X.*Arm/.test(userAgent))) {
+    return CpuArchitecture.ARM64;
+  }
+
+  // Linux ARM64 detection (某些 Android 设备或其他 ARM64 Linux)
+  if (userAgent.includes("Linux") && (userAgent.includes("aarch64") || /armv8/i.test(userAgent))) {
+    return CpuArchitecture.ARM64;
+  }
+
+  // 默认返回 x64 (最常见)
+  return CpuArchitecture.X64;
+}
+
+/**
+ * 保存用户的架构选择到 localStorage
+ * @param architecture - 选择的架构
+ */
+export function saveArchitectureSelection(architecture: CpuArchitecture): void {
+  if (typeof window !== "undefined" && window.localStorage) {
+    try {
+      localStorage.setItem(ARCHITECTURE_STORAGE_KEY, architecture);
+    } catch (error) {
+      console.warn("Failed to save architecture selection:", error);
+    }
+  }
+}
+
+/**
+ * 从 localStorage 获取用户的架构选择
+ * @returns 保存的架构，如果没有则返回 null
+ */
+export function getSavedArchitectureSelection(): CpuArchitecture | null {
+  if (typeof window !== "undefined" && window.localStorage) {
+    try {
+      const saved = localStorage.getItem(ARCHITECTURE_STORAGE_KEY);
+      if (saved && (saved === CpuArchitecture.X64 || saved === CpuArchitecture.ARM64)) {
+        return saved as CpuArchitecture;
+      }
+    } catch (error) {
+      console.warn("Failed to read saved architecture selection:", error);
+    }
+  }
+  return null;
+}
+
+/**
+ * 清除保存的架构选择
+ */
+export function clearArchitectureSelection(): void {
+  if (typeof window !== "undefined" && window.localStorage) {
+    try {
+      localStorage.removeItem(ARCHITECTURE_STORAGE_KEY);
+    } catch (error) {
+      console.warn("Failed to clear architecture selection:", error);
+    }
+  }
+}
+
+/**
+ * 获取推荐的架构
+ * 优先级: 用户保存的选择 > 自动检测 > 默认值
+ * @param platform - 操作系统平台
+ * @returns 推荐的 CPU 架构
+ */
+export function getRecommendedArchitecture(platform: "windows" | "macos" | "linux"): CpuArchitecture {
+  // 1. 检查用户保存的选择
+  const saved = getSavedArchitectureSelection();
+  if (saved) {
+    return saved;
+  }
+
+  // 2. 检查自动检测
+  const detected = detectArchitecture();
+  if (detected !== CpuArchitecture.Unknown) {
+    return detected;
+  }
+
+  // 3. 使用平台默认值
+  return PLATFORM_RECOMMENDATIONS[platform].recommendedArchitecture;
 }
 
 /**
@@ -324,17 +498,21 @@ export async function getAllChannelVersions(
 
 /**
  * 将资源按平台分组
+ * 支持多架构资源
  * @param assets - 文件资源数组
+ * @param selectedArchitecture - 选中的架构 (可选，用于过滤)
  * @returns 按平台分组的资源
  */
 export function groupAssetsByPlatform(
-  assets: DesktopAsset[] | undefined
+  assets: DesktopAsset[] | undefined,
+  selectedArchitecture?: CpuArchitecture
 ): PlatformGroup[] {
   if (!assets || !Array.isArray(assets)) {
     return [];
   }
 
   const platformGroups = new Map<string, PlatformDownload[]>();
+  const architectures = new Map<string, Set<CpuArchitecture>>();
 
   for (const asset of assets) {
     const assetType = inferAssetType(asset.name);
@@ -354,8 +532,11 @@ export function groupAssetsByPlatform(
         platform = "macos";
         break;
       case AssetType.LinuxAppImage:
+      case AssetType.LinuxArm64AppImage:
       case AssetType.LinuxDeb:
+      case AssetType.LinuxArm64Deb:
       case AssetType.LinuxTarball:
+      case AssetType.LinuxArm64Tarball:
         platform = "linux";
         break;
       default:
@@ -364,8 +545,16 @@ export function groupAssetsByPlatform(
 
     if (!platform) continue;
 
+    const architecture = inferArchitecture(assetType);
+
+    // 如果指定了架构选择，过滤不匹配的资源
+    if (selectedArchitecture && architecture !== selectedArchitecture) {
+      continue;
+    }
+
     if (!platformGroups.has(platform)) {
       platformGroups.set(platform, []);
+      architectures.set(platform, new Set());
     }
 
     platformGroups.get(platform)!.push({
@@ -373,7 +562,10 @@ export function groupAssetsByPlatform(
       size: formatFileSize(asset.size),
       filename: asset.name,
       assetType,
+      architecture,
     });
+
+    architectures.get(platform)!.add(architecture);
   }
 
   // 转换为数组并按推荐类型排序
@@ -385,14 +577,20 @@ export function groupAssetsByPlatform(
 
     // 将推荐类型排在前面
     downloads.sort((a, b) => {
-      if (a.assetType === recommendation.recommendedType) return -1;
-      if (b.assetType === recommendation.recommendedType) return 1;
+      const aRecommended = a.assetType === recommendation.recommendedType &&
+                          a.architecture === recommendation.recommendedArchitecture;
+      const bRecommended = b.assetType === recommendation.recommendedType &&
+                          b.architecture === recommendation.recommendedArchitecture;
+
+      if (aRecommended && !bRecommended) return -1;
+      if (!aRecommended && bRecommended) return 1;
       return 0;
     });
 
     result.push({
       platform: platform as "windows" | "macos" | "linux",
       downloads,
+      architectures: Array.from(architectures.get(platform)!),
     });
   }
 
@@ -401,19 +599,32 @@ export function groupAssetsByPlatform(
 
 /**
  * 获取平台的推荐下载项
+ * 支持按架构过滤
  * @param platform - 平台名称
  * @param downloads - 下载资源列表
+ * @param architecture - CPU 架构 (可选)
  * @returns 推荐的下载项，如果没有则返回第一个
  */
 export function getRecommendedDownload(
   platform: "windows" | "macos" | "linux",
-  downloads: PlatformDownload[]
+  downloads: PlatformDownload[],
+  architecture?: CpuArchitecture
 ): PlatformDownload | null {
   const recommendation = PLATFORM_RECOMMENDATIONS[platform];
-  const recommended = downloads.find(
-    (d) => d.assetType === recommendation.recommendedType
+
+  // 过滤出匹配架构的资源
+  let filteredDownloads = downloads;
+  if (architecture) {
+    filteredDownloads = downloads.filter(d => d.architecture === architecture);
+  }
+
+  // 查找推荐类型和架构
+  const recommended = filteredDownloads.find(
+    (d) => d.assetType === recommendation.recommendedType &&
+           (architecture ? d.architecture === architecture : true)
   );
-  return recommended || downloads[0] || null;
+
+  return recommended || filteredDownloads[0] || null;
 }
 
 /**
@@ -453,4 +664,36 @@ export function detectOS(): "windows" | "macos" | "linux" | "unknown" {
   }
 
   return "unknown";
+}
+
+/**
+ * 检查两个架构是否兼容
+ * @param targetArchitecture - 目标架构
+ * @param userArchitecture - 用户系统架构
+ * @returns 是否兼容 (大多数情况下不兼容，除非相同)
+ */
+export function isArchitectureCompatible(
+  targetArchitecture: CpuArchitecture,
+  userArchitecture: CpuArchitecture
+): boolean {
+  if (targetArchitecture === CpuArchitecture.Unknown || userArchitecture === CpuArchitecture.Unknown) {
+    return true; // 无法确定时假设兼容
+  }
+  return targetArchitecture === userArchitecture;
+}
+
+/**
+ * 获取架构不兼容警告消息
+ * @param targetArchitecture - 目标架构
+ * @param userArchitecture - 用户系统架构
+ * @returns 警告消息或 null
+ */
+export function getArchitectureIncompatibilityWarning(
+  targetArchitecture: CpuArchitecture,
+  userArchitecture: CpuArchitecture
+): string | null {
+  if (!isArchitectureCompatible(targetArchitecture, userArchitecture)) {
+    return `警告：您正在下载 ${targetArchitecture} 版本，但您的系统是 ${userArchitecture} 架构。这可能会导致性能问题或无法运行。`;
+  }
+  return null;
 }
