@@ -1,0 +1,92 @@
+/**
+ * LanguageSwitcher 样式
+ * 语言切换按钮
+ * 设计系统: HUD/Sci-Fi UI + Glassmorphism
+ */
+.languageSwitcher {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: var(--color-surface-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  position: relative;
+}
+
+.languageSwitcher:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-primary);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-glow);
+}
+
+.languageSwitcher:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+[data-theme='dark'] .languageSwitcher {
+  background: rgba(15, 23, 42, 0.8);
+  border-color: rgba(0, 255, 255, 0.15);
+  color: var(--color-secondary);
+}
+
+[data-theme='dark'] .languageSwitcher:hover {
+  background: rgba(21, 30, 50, 0.9);
+  border-color: var(--color-secondary);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+[data-theme='lunar-new-year'] .languageSwitcher {
+  background: rgba(45, 10, 10, 0.85);
+  border-color: rgba(255, 160, 0, 0.4);
+  color: var(--color-text);
+}
+
+[data-theme='lunar-new-year'] .languageSwitcher:hover {
+  background: rgba(61, 14, 14, 0.9);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
+}
+
+/* 语言文本样式 */
+.languageSwitcher span:not(.sr-only) {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: opacity var(--duration-fast) ease;
+}
+
+.languageSwitcher:hover span:not(.sr-only) {
+  opacity: 0.9;
+}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  .languageSwitcher:hover {
+    transform: none;
+  }
+
+  .languageSwitcher:hover span:not(.sr-only) {
+    opacity: 1;
+  }
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .languageSwitcher {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+}

@@ -6,6 +6,8 @@
  */
 import { motion } from 'framer-motion';
 import { useMemo, useState, useEffect } from 'react';
+import { useTranslation } from '@/i18n/ui';
+import { useLocale } from '@/lib/useLocale';
 import styles from './HeroSection.module.css';
 import { withBasePath } from '../../utils/path';
 import { getLink } from '@/lib/shared/links';
@@ -32,6 +34,8 @@ interface HeroSectionProps {
   desktopChannels?: any;
   /** @deprecated 不再使用 InstallButton，保留这些 props 仅用于向后兼容 */
   [key: string]: any;
+  /** Current locale from Astro context */
+  locale?: 'zh-CN' | 'en';
 }
 
 // Icon props type
@@ -116,23 +120,6 @@ function UsersIcon({ className = '' }: IconProps) {
   );
 }
 
-// 普通主题打字机效果的标语
-const normalTaglines = [
-  '智能 · 便捷 · 有趣',
-  'AI 驱动 · 效率倍增',
-  'OpenSpec · 工作流革新',
-  '多线程 · 会话管理',
-];
-
-// 农历新年主题标语
-const lunarNewYearTaglines = [
-  '新春快乐 · 马年大吉',
-  'AI 赋能 · 码到成功',
-  '智能编码 · 万事如意',
-  'OpenSpec · 财源滚滚',
-  '效率倍增 · 恭喜发财',
-];
-
 // 动画变体
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -158,8 +145,14 @@ export default function HeroSection({
   desktopVersion = null,
   desktopPlatforms = [],
   desktopVersionError = null,
-  desktopChannels
+  desktopChannels,
+  locale: propLocale
 }: HeroSectionProps) {
+  const { locale: detectedLocale } = useLocale();
+  // Use prop locale if provided, otherwise use detected locale
+  const locale = propLocale || detectedLocale;
+  const { t } = useTranslation(locale);
+
   const [currentTagline, setCurrentTagline] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -170,7 +163,23 @@ export default function HeroSection({
   const docsUrl = useMemo(() => getLink('productOverview'), []);
 
   // 根据主题选择标语数组
-  const taglines = theme === 'lunar-new-year' ? lunarNewYearTaglines : normalTaglines;
+  const taglines = useMemo(() => {
+    if (theme === 'lunar-new-year') {
+      return [
+        t('hero.lunarTaglines.happyNewYear'),
+        t('hero.lunarTaglines.aiPowered'),
+        t('hero.lunarTaglines.smartCoding'),
+        t('hero.lunarTaglines.openspecLuck'),
+        t('hero.lunarTaglines.efficiency'),
+      ];
+    }
+    return [
+      t('hero.taglines.smart'),
+      t('hero.taglines.aiDriven'),
+      t('hero.taglines.openspec'),
+      t('hero.taglines.multiThread'),
+    ];
+  }, [theme, t]);
 
   // 检测主题变化
   useEffect(() => {
@@ -332,16 +341,16 @@ export default function HeroSection({
 
         {/* 增强的描述 - 问题-解决方案-收益框架 */}
         <motion.p className={styles.heroDescription}>
-            传统 AI 编码工具的<span className={styles.highlight}>痛点</span>：
-            上下文受限、会话混乱、缺乏协作。
+            {t('hero.problem')}<span className={styles.highlight}>{t('hero.painPoint')}</span>
+            {t('hero.painPoints')}
         </motion.p>
 
         <motion.p className={styles.heroDescriptionSecondary}>
-          <span className={styles.highlightPrimary}>Hagicode</span> 用
-          <span className={styles.highlight}>OpenSpec 工作流</span>、
-          <span className={styles.highlight}>多线程会话管理</span>、
-          <span className={styles.highlight}>成就系统</span>
-          重新定义 AI 编码体验。
+          <span className={styles.highlightPrimary}>Hagicode</span> {t('hero.solution')}
+          <span className={styles.highlight}>{t('hero.features.0')}</span>、
+          <span className={styles.highlight}>{t('hero.features.1')}</span>、
+          <span className={styles.highlight}>{t('hero.features.2')}</span>
+          {t('hero.redefine')}
         </motion.p>
 
         {/* 核心价值卡片 */}
@@ -353,8 +362,8 @@ export default function HeroSection({
               </svg>
             </div>
             <div className={styles.valueContent}>
-              <h4>效率提升 300%</h4>
-              <p>多线程并发处理</p>
+              <h4>{t('hero.valueCards.efficiency.title')}</h4>
+              <p>{t('hero.valueCards.efficiency.description')}</p>
             </div>
           </motion.div>
           <motion.div className={styles.valueCard} variants={itemVariants}>
@@ -364,8 +373,8 @@ export default function HeroSection({
               </svg>
             </div>
             <div className={styles.valueContent}>
-              <h4>数据隐私保障</h4>
-              <p>完全本地化部署</p>
+              <h4>{t('hero.valueCards.privacy.title')}</h4>
+              <p>{t('hero.valueCards.privacy.description')}</p>
             </div>
           </motion.div>
           <motion.div className={styles.valueCard} variants={itemVariants}>
@@ -377,8 +386,8 @@ export default function HeroSection({
               </svg>
             </div>
             <div className={styles.valueContent}>
-              <h4>团队协作</h4>
-              <p>OpenSpec 标准化流程</p>
+              <h4>{t('hero.valueCards.collaboration.title')}</h4>
+              <p>{t('hero.valueCards.collaboration.description')}</p>
             </div>
           </motion.div>
         </motion.div>
@@ -399,7 +408,7 @@ export default function HeroSection({
                 strokeLinejoin="round"
               />
             </svg>
-            <span>立即安装桌面应用</span>
+            <span>{t('hero.buttons.desktopApp')}</span>
           </a>
 
           {/* 容器应用安装按钮 - 次要按钮 */}
@@ -410,7 +419,7 @@ export default function HeroSection({
             <svg className={styles.dockerIcon} viewBox="0 0 24 24" fill="currentColor">
               <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186h-2.12a.186.186 0 00-.185.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z"/>
             </svg>
-            <span>立即安装容器应用</span>
+            <span>{t('hero.buttons.containerApp')}</span>
           </a>
 
           {/* 了解更多按钮 */}
@@ -418,13 +427,13 @@ export default function HeroSection({
             className={styles.buttonSecondary}
             href={docsUrl}
           >
-            <span className={styles.buttonText}>了解更多</span>
+            <span className={styles.buttonText}>{t('hero.buttons.learnMore')}</span>
           </a>
         </motion.div>
 
         {/* 技术栈标签 */}
         <motion.div className={styles.techStack}>
-          <span className={styles.techLabel}>Powered by</span>
+          <span className={styles.techLabel}>{t('hero.techStack.poweredBy')}</span>
           <span className={styles.techTag}>Claude AI</span>
           <span className={styles.techTag}>OpenSpec</span>
           <span className={styles.techTag}>GLM Pro</span>
@@ -440,9 +449,9 @@ export default function HeroSection({
           <div className={styles.qqGroupIcon}>
             <UsersIcon />
           </div>
-          <h3 className={styles.qqGroupTitle}>加入技术支持群组</h3>
+          <h3 className={styles.qqGroupTitle}>{t('hero.qqGroup.title')}</h3>
           <p className={styles.qqGroupDescription}>
-            Hagicode 技术支持 QQ 群
+            {t('hero.qqGroup.description')}
             <span className={styles.groupNumber}>610394020</span>
           </p>
           <a
@@ -451,7 +460,7 @@ export default function HeroSection({
             rel="noopener noreferrer"
             className={styles.buttonSmall}
           >
-            <span>立即加入</span>
+            <span>{t('hero.qqGroup.joinButton')}</span>
             <ExternalLinkIcon />
           </a>
         </motion.div>

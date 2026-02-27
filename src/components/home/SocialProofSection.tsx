@@ -4,34 +4,9 @@
  * 设计系统: 更激进的科技风
  */
 import { motion } from 'framer-motion';
+import { useTranslation } from '@/i18n/ui';
+import { useLocale } from '@/lib/useLocale';
 import styles from './SocialProofSection.module.css';
-
-// 产品特性亮点 - 展示核心功能
-const highlights = [
-  { icon: '⚡', title: '多线程并发', description: '同时处理多个编码任务' },
-  { icon: '🔒', title: '隐私优先', description: '本地化部署，代码不上传' },
-  { icon: '📋', title: 'OpenSpec 工作流', description: '标准化提案与协作流程' },
-  { icon: '🎯', title: '成就系统', description: '游戏化编码体验' },
-];
-
-// 技术标识徽章
-const techBadges = [
-  {
-    name: 'Claude AI',
-    description: 'Powered by',
-    icon: 'C',
-  },
-  {
-    name: 'Open Source',
-    description: 'GitHub',
-    icon: 'G',
-  },
-  {
-    name: 'SSL Secure',
-    description: '安全加密',
-    icon: '🔒',
-  },
-];
 
 // 动画变体
 const containerVariants = {
@@ -54,7 +29,37 @@ const itemVariants = {
   },
 };
 
-export default function SocialProofSection() {
+export default function SocialProofSection({ locale: propLocale }: { locale?: 'zh-CN' | 'en' }) {
+  const { locale: detectedLocale } = useLocale();
+  const locale = propLocale || detectedLocale;
+  const { t } = useTranslation(locale);
+
+  // 产品特性亮点 - 展示核心功能
+  const highlights = [
+    { icon: '⚡', title: t('socialProof.highlights.multiThread'), description: t('socialProof.highlights.multiThreadDesc') },
+    { icon: '🔒', title: t('socialProof.highlights.privacy'), description: t('socialProof.highlights.privacyDesc') },
+    { icon: '📋', title: t('socialProof.highlights.openspec'), description: t('socialProof.highlights.openspecDesc') },
+    { icon: '🎯', title: t('socialProof.highlights.achievements'), description: t('socialProof.highlights.achievementsDesc') },
+  ];
+
+  // 技术标识徽章
+  const techBadges = [
+    {
+      name: t('socialProof.badges.claude'),
+      description: t('socialProof.badges.claudeDesc'),
+      icon: 'C',
+    },
+    {
+      name: t('socialProof.badges.opensource'),
+      description: t('socialProof.badges.opensourceDesc'),
+      icon: 'G',
+    },
+    {
+      name: t('socialProof.badges.ssl'),
+      description: t('socialProof.badges.sslDesc'),
+      icon: '🔒',
+    },
+  ];
   return (
     <section className={styles.socialProofSection}>
       {/* 背景装饰 */}

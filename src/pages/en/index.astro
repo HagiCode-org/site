@@ -1,24 +1,24 @@
 ---
 /**
- * Hagicode 首页
- * 集成所有首页组件,展示产品特性和功能
+ * Hagicode Homepage (English)
+ * Integrates all homepage components to showcase product features and functionality
  */
-import Navbar from '../components/home/Navbar';
-import HeroSection from '../components/home/HeroSection';
-import SocialProofSection from '../components/home/SocialProofSection';
-import ActivityMetricsSection from '../components/home/ActivityMetricsSection';
-import FeaturesShowcase from '../components/home/FeaturesShowcase';
-import ShowcaseSection from '../components/home/ShowcaseSection';
-import VideoShowcase from '../components/home/VideoShowcase';
-import InstallOptionsSection from '../components/home/InstallOptionsSection';
-import Footer from '../components/home/Footer';
-import LunarNewYearDecorations from '../components/home/LunarNewYearDecorations';
-import { LunarNewYearCardGroup } from '../components/home/LunarNewYearCard';
-import Clarity from '../components/Clarity.astro';
-// import BaiduAnalytics from '../components/BaiduAnalytics.astro'; // Disabled, migrated to 51LA
-import Analytics51LA from '../components/51LAAnalytics.astro';
+import Navbar from '../../components/home/Navbar';
+import HeroSection from '../../components/home/HeroSection';
+import SocialProofSection from '../../components/home/SocialProofSection';
+import ActivityMetricsSection from '../../components/home/ActivityMetricsSection';
+import FeaturesShowcase from '../../components/home/FeaturesShowcase';
+import ShowcaseSection from '../../components/home/ShowcaseSection';
+import VideoShowcase from '../../components/home/VideoShowcase';
+import InstallOptionsSection from '../../components/home/InstallOptionsSection';
+import Footer from '../../components/home/Footer';
+import LunarNewYearDecorations from '../../components/home/LunarNewYearDecorations';
+import { LunarNewYearCardGroup } from '../../components/home/LunarNewYearCard';
+import Clarity from '../../components/Clarity.astro';
+// import BaiduAnalytics from '../../components/BaiduAnalytics.astro'; // Disabled, migrated to 51LA
+import Analytics51LA from '../../components/51LAAnalytics.astro';
 // 导入首页样式
-import '../styles/homepage.css';
+import '../../styles/homepage.css';
 
 // 导入版本数据工具函数
 import { fetchDesktopVersions, groupAssetsByPlatform } from "@/lib/shared/desktop-utils";
@@ -26,18 +26,19 @@ import { setDesktopServerData } from "@/lib/shared/version-manager";
 import type { DesktopVersion, PlatformGroup } from "@/lib/shared/desktop";
 
 // 页面元数据
-const title = 'Hagicode - 智能 · 便捷 · 有趣的 AI 编码助手';
-const description = '用 AI 重新定义代码开发体验。OpenSpec 工作流、多线程会话管理、成就系统,让编码更高效、更有趣';
+const title = 'Hagicode - Smart · Convenient · Fun AI Coding Assistant';
+const description = 'Redefine the coding experience with AI. OpenSpec workflows, multi-threaded session management, and achievement systems make coding more efficient and fun';
 
 // 获取当前语言环境
-const currentLocale = 'zh-CN';
+const currentLocale = 'en';
 
 // 获取站点基础路径
 const siteBase = import.meta.env.VITE_SITE_BASE || '';
 
 // 直接构造完整的 URL 字符串，避免 new URL 的路径解析问题
-const canonicalUrl = `https://hagicode.com${siteBase || '/'}`;
-const englishUrl = `https://hagicode.com${siteBase ? `${siteBase}en/` : '/en/'}`;
+const enPathRaw = siteBase ? `${siteBase}en/` : '/en/';
+const canonicalUrl = `https://hagicode.com${enPathRaw}`;
+const chineseUrl = `https://hagicode.com${siteBase || '/'}`;
 
 // 在构建时获取版本数据（用于 InstallButton）
 let desktopVersionData: {
@@ -103,7 +104,7 @@ try {
 ---
 
 <!doctype html>
-<html lang={currentLocale} data-site-base={siteBase}>
+<html lang={currentLocale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -113,10 +114,10 @@ try {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     <!-- SEO hreflang tags -->
-    <link rel="alternate" hreflang="zh-CN" href={canonicalUrl} />
-    <link rel="alternate" hreflang="en" href={englishUrl} />
-    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
-    <!-- 百度搜索引擎验证 -->
+    <link set:html rel="alternate" hreflang="zh-CN" href={chineseUrl} />
+    <link set:html rel="alternate" hreflang="en" href={canonicalUrl} />
+    <link set:html rel="alternate" hreflang="x-default" href={chineseUrl} />
+    <!-- Baidu search engine verification -->
     <meta name="baidu-site-verification" content="codeva-A9s3yT3z5m" />
     <meta name="og:title" content={title} />
     <meta name="og:description" content={description} />
@@ -181,7 +182,7 @@ try {
       desktopPlatforms={desktopVersionData.platforms}
       desktopVersionError={desktopVersionData.error}
       desktopChannels={desktopVersionData.channels}
-      locale="zh-CN"
+      locale="en"
     />
 
     <main class="homepage">
@@ -191,6 +192,7 @@ try {
         desktopPlatforms={desktopVersionData.platforms}
         desktopVersionError={desktopVersionData.error}
         desktopChannels={desktopVersionData.channels}
+        locale="en"
         client:load
       />
 
@@ -198,22 +200,22 @@ try {
       <LunarNewYearCardGroup client:load />
 
       <!-- Social Proof Section - 社交证明 -->
-      <SocialProofSection locale="zh-CN" client:load />
+      <SocialProofSection locale="en" client:load />
 
       <!-- Activity Metrics Section -->
-      <ActivityMetricsSection locale="zh-CN" client:load />
+      <ActivityMetricsSection locale="en" client:load />
 
       <!-- Features Showcase -->
-      <FeaturesShowcase locale="zh-CN" client:load />
+      <FeaturesShowcase locale="en" client:load />
 
       <!-- Showcase Section -->
-      <ShowcaseSection locale="zh-CN" client:load />
+      <ShowcaseSection locale="en" client:load />
 
       <!-- Video Showcase -->
       <VideoShowcase
         videoId="BV1pirZBuEzq"
-        title="每天哈基半小时,AI多任务编程实战"
-        description="通过视频快速了解 Hagicode 的核心功能和使用方法"
+        title="Daily Hagi Half-Hour: AI Multi-Task Programming Practice"
+        description="Quickly understand Hagicode's core features and usage through video"
         client:load
       />
 
@@ -222,7 +224,7 @@ try {
     </main>
 
     <!-- Footer -->
-    <Footer locale="zh-CN" client:load />
+    <Footer locale="en" client:load />
 
     <!-- Microsoft Clarity 分析 -->
     <Clarity />

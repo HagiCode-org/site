@@ -19,10 +19,10 @@
  * @returns 'development' | 'production'
  */
 export function getEnvironment(): 'development' | 'production' {
-    // 优先使用 NODE_ENV 环境变量
-    // 如果没有设置，则根据 import.meta.env.MODE 判断（Astro 内置）
-    const nodeEnv = import.meta.env.NODE_ENV || import.meta.env.MODE;
-    if (nodeEnv === 'development') {
+  // 优先使用 NODE_ENV 环境变量
+  // 如果没有设置，则根据 import.meta.env.MODE 判断（Astro 内置）
+  const nodeEnv = import.meta.env.NODE_ENV || import.meta.env.MODE;
+  if (nodeEnv === 'development') {
         return 'development';
     }
     return 'production';
@@ -38,10 +38,28 @@ export function getDocsBasePath(): string {
 }
 
 /**
+ * 获取正确的 base 路径（考虑 locale 和站点配置）
+ * 在英文页面（/en/）需要拼接 /en/，中文页面（/）不需要
+ * @param locale - 当前语言环境
+ * @returns base 路径
+ */
+export function getCorrectBasePath(locale: string): string {
+  const siteBase = import.meta.env.VITE_SITE_BASE || '';
+
+  // 如果是英文，需要添加 /en/ 前缀
+  if (locale === 'en') {
+    return siteBase ? `${siteBase}en/` : '/en/';
+  }
+
+  // 中文页面直接返回 siteBase
+  return siteBase;
+}
+
+/**
  * 链接配置接口
  */
 export interface LinkConfig {
-    /** 开发环境链接 */
+  /** 开发环境链接 */
     dev: string;
     /** 生产环境链接 */
     prod: string;
@@ -61,63 +79,54 @@ export const SITE_LINKS = {
         prod: 'https://docs.hagicode.com/',
         external: false,
     } as LinkConfig,
-
     /** 官方营销站点 */
     website: {
-        dev: 'http://localhost:31264/', // website 应用开发环境端口
-        prod: 'https://hagicode.com/',
+        dev: '/', // 本站点根路径
+        prod: '/', // 本站点根路径
         external: false,
     } as LinkConfig,
-
     /** GitHub 仓库 */
     github: {
         dev: 'https://github.com/HagiCode-org/site',
         prod: 'https://github.com/HagiCode-org/site',
         external: true,
     } as LinkConfig,
-
     /** 技术支持群 QQ */
     qqGroup: {
         dev: 'https://qm.qq.com/q/Fwb0o094kw',
         prod: 'https://qm.qq.com/q/Fwb0o094kw',
         external: true,
     } as LinkConfig,
-
     /** 博客页面（相对于文档站点） */
     blog: {
         dev: 'https://docs.hagicode.com/blog/', // 使用生产 URL（跨仓库链接）
         prod: 'https://docs.hagicode.com/blog/',
         external: false,
     } as LinkConfig,
-
     /** 产品概述（相对于文档站点） */
     productOverview: {
         dev: 'https://docs.hagicode.com/product-overview/', // 使用生产 URL（跨仓库链接）
         prod: 'https://docs.hagicode.com/product-overview/',
         external: false,
     } as LinkConfig,
-
     /** 桌面应用下载页 */
     desktop: {
-        dev: 'http://localhost:31264/desktop/',
-        prod: 'https://hagicode.com/desktop/',
+        dev: '/desktop/', // 相对路径，开发环境使用 localhost:31264
+        prod: '/desktop/', // 相对路径，支持 locale 前缀
         external: false,
     } as LinkConfig,
-
     /** Docker Compose 安装指南（相对于文档站点） */
     dockerCompose: {
-        dev: 'https://docs.hagicode.com/installation/docker-compose/', // 使用生产 URL（跨仓库链接）
+        dev: 'https://docs.hagicode.com/installation/docker-compose/',
         prod: 'https://docs.hagicode.com/installation/docker-compose/',
         external: false,
     } as LinkConfig,
-
     /** 容器部署落地页 */
     container: {
-        dev: 'http://localhost:31264/container/',
-        prod: 'https://hagicode.com/container/',
+        dev: '/container/', // 相对路径，开发环境使用 localhost:31264
+        prod: '/container/', // 相对路径，支持 locale 前缀
         external: false,
     } as LinkConfig,
-
     /** 博客 RSS 订阅（相对于文档站点） */
     rss: {
         dev: 'https://docs.hagicode.com/blog/rss.xml', // 使用生产 URL（跨仓库链接）
@@ -139,7 +148,6 @@ export const GLM_PROMO_LINKS = {
         description: 'Claude Code、Cline 等 20+ 大编程工具无缝支持，"码力"全开，越拼越爽！',
         discount: '10% 优惠',
     },
-
     /** Docker Compose 部署指南链接 */
     dockerComposeGuide: {
         url: '/installation/docker-compose/',
@@ -147,21 +155,6 @@ export const GLM_PROMO_LINKS = {
         title: 'Docker Compose 部署: 一键部署 Hagicode',
         description: '一键部署 Hagicode，快速体验 AI 编程助手',
         isInternal: true,
-    },
-} as const;
-
-/**
- * 阿里云（Aliyun）推广链接配置
- * 用于博客广告区域和其他推广位置
- */
-export const ALIYUN_PROMO_LINKS = {
-    /** 阿里云千问 Coding Plan 订阅链接（带推广码） */
-    aistar: {
-        url: 'https://www.aliyun.com/benefit/ai/aistar?userCode=vmx5szbq&clubBiz=subTask..12384055..10263..',
-        label: '立即订阅',
-        title: '阿里云千问 Coding Plan 上线',
-        description: '阿里云千问 Coding Plan 已上线，满足开发日常需求。推荐 + Hagicode，完美实现开发过程中的各项需求。',
-        external: true,
     },
 } as const;
 
@@ -178,15 +171,15 @@ export function getGlmCodingUrl(): string {
  * @returns 阿里云千问 Coding Plan 推广链接 URL
  */
 export function getAliyunPromoUrl(): string {
-    return ALIYUN_PROMO_LINKS.aistar.url;
+    return '';
 }
 
 /**
- * 获取 Docker Compose 指南链接（带 base 路径）
- * @returns Docker Compose 指南完整 URL
+ * 获取 Docker Compose 部署指南链接（带 base 路径）
+ * @returns Docker Compose 部署指南完整 URL
  */
 export function getDockerComposeGuideUrl(): string {
-    const basePath = getDocsBasePath();
+    const basePath = getCorrectBasePath('zh-CN');
     const path = GLM_PROMO_LINKS.dockerComposeGuide.url;
     // 确保 base 路径和链接路径正确拼接
     if (basePath === '/') {
@@ -201,18 +194,44 @@ export function getDockerComposeGuideUrl(): string {
 export type PublicLinkKey = keyof typeof SITE_LINKS;
 
 /**
- * 获取指定链接的当前环境 URL
- * @param key - 链接键名
- * @returns 当前环境下的完整 URL
+ * Get the correct link URL for the specified key and locale
+ * @param key - Link key name
+ * @param locale - Current locale (optional, defaults to client-side detection)
+ * @returns Correct URL with proper base path for locale
+ */
+export function getLinkWithLocale(key: PublicLinkKey, locale?: string): string {
+  const config = SITE_LINKS[key];
+  const env = getEnvironment();
+  const basePath = getCorrectBasePath(locale || 'zh-CN');
+
+  // Get the base URL based on environment
+  let url = env === 'development' ? config.dev : config.prod;
+
+  // If it's an absolute URL (starts with http:// or https://), return as-is
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+
+  // For relative paths, prepend the base path
+  // Remove leading slashes from the relative path
+  const relativePath = url.replace(/^\/+/, '');
+
+  // If basePath is empty, just return the relative path with leading slash
+  if (!basePath) {
+    return `/${relativePath}`;
+  }
+
+  // Ensure no double slashes when concatenating
+  return `${basePath}${relativePath}`.replace(/\/+/g, '/');
+}
+
+/**
+ * Backward compatible function: Get link URL for specified key (defaults to zh-CN)
+ * @param key - Link key name
+ * @returns Link URL
  */
 export function getLink(key: PublicLinkKey): string {
-    const config = SITE_LINKS[key];
-    const env = getEnvironment();
-
-    if (env === 'development') {
-        return config.dev;
-    }
-    return config.prod;
+  return getLinkWithLocale(key, 'zh-CN');
 }
 
 /**

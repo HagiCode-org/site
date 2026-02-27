@@ -33,6 +33,7 @@
     "astro-seo": "^1.1.0",
     "dotenv": "^17.2.3",
     "framer-motion": "^12.29.2",
+    "lucide-react": "^0.562.0",
     "mermaid": "^11.12.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",

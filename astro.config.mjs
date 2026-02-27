@@ -12,6 +12,14 @@ export default defineConfig({
     site: 'https://hagicode.com',
     // 营销站点部署在根路径
     base: '/',
+    // 国际化配置
+    i18n: {
+        defaultLocale: 'zh-CN',
+        locales: ['zh-CN', 'en'],
+        routing: {
+            prefixDefaultLocale: false,
+        },
+    },
     markdown: {
         syntaxHighlight: {
             type: 'shiki',

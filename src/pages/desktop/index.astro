@@ -19,8 +19,15 @@ import PlatformIcon from '@/components/desktop/PlatformIcon.astro';
 const title = "Hagicode Desktop - 下载";
 const description = "下载 Hagicode Desktop，本地化的 AI 代码助手。支持 Windows、macOS 和 Linux，保护隐私，快速响应。";
 
+// 获取当前语言环境
+const currentLocale = 'zh-CN';
+
 // 获取站点基础路径
-const siteBase = import.meta.env.VITE_SITE_BASE || "/";
+const siteBase = import.meta.env.VITE_SITE_BASE || '';
+
+// 直接构造完整的 URL 字符串，避免 new URL 的路径解析问题
+const canonicalUrl = `https://hagicode.com${siteBase ? `${siteBase}desktop/` : '/desktop/'}`;
+const englishUrl = `https://hagicode.com${siteBase ? `${siteBase}en/desktop/` : '/en/desktop/'}`;
 
 // 在服务端获取版本数据并传递到客户端
 let desktopVersionData = null;
@@ -39,7 +46,7 @@ const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData
 ---
 
 <!doctype html>
-<html lang="zh-CN" data-site-base={siteBase}>
+<html lang={currentLocale} data-site-base={siteBase}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,6 +54,11 @@ const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <!-- SEO hreflang tags -->
+    <link rel="alternate" hreflang="zh-CN" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
     <!-- 百度搜索引擎验证 -->
     <meta name="baidu-site-verification" content="codeva-A9s3yT3z5m" />
     <meta name="og:title" content={title} />
@@ -95,7 +107,7 @@ const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData
     </script>
   </head>
   <body class="homepage">
-    <Navbar client:load />
+    <Navbar client:load locale="zh-CN" />
 
     <main class="homepage">
       <!-- Hero Section - 使用 React 组件 -->
@@ -343,7 +355,7 @@ const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData
       </section>
     </main>
 
-    <Footer />
+    <Footer locale="zh-CN" />
 
     <!-- Microsoft Clarity 分析 -->
     <Clarity />

@@ -5,8 +5,10 @@
  * 使用共享链接库管理所有站点间链接
  */
 import { useMemo } from 'react';
+import { useTranslation } from '@/i18n/ui';
+import { useLocale } from '@/lib/useLocale';
 import styles from './Footer.module.css';
-import { getLink, getLinkTarget, getLinkRel, ALIYUN_PROMO_LINKS } from '@/lib/shared/links';
+import { getLinkWithLocale, getLinkTarget, getLinkRel } from '@/lib/shared/links';
 
 /**
  * Footer 组件 Props
@@ -16,6 +18,7 @@ interface FooterProps {
    * 额外的 CSS 类名
    */
   className?: string;
+  locale?: 'zh-CN' | 'en';
 }
 
 /**
@@ -84,18 +87,23 @@ function HagicodeLogo({ className = '' }: { className?: string }) {
  * 三栏高栏布局：产品信息、快速链接、社区与支持
  * 使用共享链接库管理站点间链接
  */
-export default function Footer({ className = '' }: FooterProps) {
+export default function Footer({ className = '', locale: propLocale }: FooterProps & { locale?: 'zh-CN' | 'en' }) {
+  const { locale: detectedLocale } = useLocale();
+  const locale = propLocale || detectedLocale;
+  const { t } = useTranslation(locale);
+
   // 从共享库获取链接
-  const docsLink = getLink('docs');
-  const desktopLink = getLink('desktop');
-  const githubLink = getLink('github');
-  const qqGroupLink = getLink('qqGroup');
-  const rssLink = getLink('rss');
-  const { aistar } = ALIYUN_PROMO_LINKS;
+  const docsLink = getLinkWithLocale('docs', locale);
+  const desktopLink = getLinkWithLocale('desktop', locale);
+  const githubLink = getLinkWithLocale('github', locale);
+  const qqGroupLink = getLinkWithLocale('qqGroup', locale);
+  const rssLink = getLinkWithLocale('rss', locale);
 
   // 外部链接属性
   const externalTarget = getLinkTarget('github');
   const externalRel = getLinkRel('github');
+
+  const currentYear = new Date().getFullYear();
 
   // 定义三栏内容数据结构
   const footerData = useMemo((): {
@@ -104,77 +112,75 @@ export default function Footer({ className = '' }: FooterProps) {
     community: FooterSection;
   } => ({
     productInfo: {
-      title: '产品',
+      title: t('footer.product'),
       links: [
         {
-          label: 'Hagicode 简介',
+          label: t('footer.productInfo'),
           href: docsLink + 'product-overview/',
           external: false,
-          ariaLabel: '查看 Hagicode 产品简介',
+          ariaLabel: t('footer.productInfo'),
         },
       ],
     },
     quickLinks: {
-      title: '快速链接',
+      title: t('footer.quickLinks'),
       links: [
         {
-          label: '下载客户端',
+          label: t('footer.downloadClient'),
           href: desktopLink,
           external: false,
-          ariaLabel: '下载 Hagicode 桌面客户端',
+          ariaLabel: t('footer.downloadClient'),
         },
         {
-          label: '产品文档',
+          label: t('footer.productDocs'),
           href: docsLink + 'product-overview/',
           external: false,
-          ariaLabel: '查看产品文档',
+          ariaLabel: t('footer.productDocs'),
         },
         {
-          label: '博客文章',
-          href: getLink('blog'),
+          label: t('footer.blogPosts'),
+          href: getLinkWithLocale('blog', locale),
           external: false,
-          ariaLabel: '查看博客文章',
+          ariaLabel: t('footer.blogPosts'),
         },
         {
-          label: 'RSS 订阅',
+          label: t('footer.rssSubscribe'),
           href: rssLink,
           external: false,
-          ariaLabel: '订阅博客 RSS 更新',
+          ariaLabel: t('footer.rssSubscribe'),
         },
       ],
     },
     community: {
-      title: '社区',
+      title: t('footer.community'),
       links: [
         {
-          label: 'GitHub',
+          label: t('footer.github'),
           href: githubLink,
           external: true,
-          ariaLabel: '访问 GitHub 仓库',
+          ariaLabel: t('footer.github'),
         },
         {
-          label: '问题反馈',
+          label: t('footer.issueFeedback'),
           href: 'https://github.com/HagiCode-org/site/issues',
           external: true,
-          ariaLabel: '提交问题反馈',
+          ariaLabel: t('footer.issueFeedback'),
         },
         {
-          label: '联系邮箱',
+          label: t('footer.contactEmail'),
           href: 'mailto:support@hagicode.com',
           external: true,
-          ariaLabel: '通过邮件联系我们',
+          ariaLabel: t('footer.contactEmail'),
         },
         {
-          label: 'QQ 群 610394020',
+          label: t('footer.qqGroup'),
           href: qqGroupLink,
           external: true,
-          ariaLabel: '加入 QQ 群',
+          ariaLabel: t('footer.qqGroup'),
         },
       ],
     },
-  }), []);
-
-  const currentYear = new Date().getFullYear();
+  }), [t, docsLink, desktopLink, rssLink, qqGroupLink]);
 
   return (
     <footer className={`${styles.footer} ${className}`}>
@@ -184,28 +190,8 @@ export default function Footer({ className = '' }: FooterProps) {
           <div className={styles.logoWrapper}>
             <HagicodeLogo className={styles.logo} />
             <span className={styles.copyright}>
-              © {currentYear} Hagicode. All rights reserved.
+              {t('footer.copyright').replace('{year}', currentYear.toString())}
             </span>
-          </div>
-        </div>
-
-        {/* 分隔线 */}
-        <div className={styles.divider} />
-
-        {/* 推广链接区域 */}
-        <div className={styles.promoSection}>
-          <div className={styles.promoCard}>
-            <h4 className={styles.promoTitle}>🚀 {aistar.title}</h4>
-            <p className={styles.promoDescription}>{aistar.description}</p>
-            <a
-              href={aistar.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.promoButton}
-              aria-label={`访问 ${aistar.title} 页面`}
-            >
-              {aistar.label}
-            </a>
           </div>
         </div>
 
@@ -280,7 +266,7 @@ export default function Footer({ className = '' }: FooterProps) {
           href="https://beian.miit.gov.cn/"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="查看 ICP 备案信息"
+          aria-label={t('footer.icpLabel')}
         >
           闽ICP备2026004153号-1
         </a>
@@ -289,7 +275,7 @@ export default function Footer({ className = '' }: FooterProps) {
           href="http://www.beian.gov.cn/portal/registerSystemInfo"
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="查看公安备案信息"
+          aria-label={t('footer.gonganLabel')}
         >
           闽公网安备35011102351148号
         </a>

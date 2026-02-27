@@ -10,6 +10,8 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { getDesktopVersionData, type DesktopVersionData } from '@/lib/shared/version-manager';
 import { detectOS, getAssetTypeLabel, groupAssetsByPlatform } from '@/lib/shared/desktop-utils';
+import { useTranslation } from '@/i18n/ui';
+import { useLocale } from '@/lib/useLocale';
 import type { DesktopVersion, AssetType } from '@/lib/shared/types/desktop';
 import styles from './DesktopHero.module.css';
 
@@ -42,7 +44,7 @@ const MacIcon = () => (
 
 const LinuxIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-    <path d="M19.15 8a2 2 0 0 0-2-2H4.85a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12.3a2 2 0 0 0 2-2V8M5.85 14.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2m2-3.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m9 3.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2m2-3.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
+    <path d="M19.15 8a2 2 0 0 0-2-2H4.85a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12.3a2 2 0 0 0 2-2V8M5.85 14.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2m2-3.5a1 1 0 1 1 0-3 1.5 1.5 0 0 1 0 2m9 3.5a1 1 0 1 1 0-2 1 1.5 1.5 0 0 1 0 2m2-3.5a1 1 0 1 1 0-3 1.5 1.5 0 0 1 0 2m9 3.5a1 1 0 1 1 0-3 1.5 1.5 0 0 1 0 3m9 3.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2m2-3.5a1 1 0 1 1 0-3 1.5 1.5 0 0 1 0 2"/>
   </svg>
 );
 
@@ -54,7 +56,7 @@ const ChevronDownIcon = () => (
 
 const DownloadIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2 2v-4"/>
     <polyline points="7,10 12,15 17,10"/>
     <line x1="12" y1="15" x2="12" y2="3"/>
   </svg>
@@ -87,7 +89,17 @@ function convertVersionToPlatformDownloads(version: DesktopVersion): PlatformDow
   }));
 }
 
-export default function DesktopHero() {
+interface DesktopHeroProps {
+  desktopVersion?: any;
+  desktopPlatforms?: any;
+  desktopVersionError?: any;
+  desktopChannels?: any;
+  locale?: 'zh-CN' | 'en';
+}
+
+export default function DesktopHero(props: DesktopHeroProps) {
+  const { locale } = useLocale();
+  const { t } = useTranslation(locale);
   const [versionData, setVersionData] = useState<DesktopVersionData | null>(null);
   const [currentChannel, setCurrentChannel] = useState<'stable' | 'beta'>('stable');
   const [loading, setLoading] = useState(true);
@@ -123,7 +135,7 @@ export default function DesktopHero() {
         }
       } catch (err) {
         if (mounted) {
-          setError(err instanceof Error ? err.message : '未知错误');
+          setError(err instanceof Error ? err.message : t('desktopHero.error.unknown'));
           setLoading(false);
         }
       }
@@ -163,7 +175,7 @@ export default function DesktopHero() {
         <div className="bgGlow" />
         <div className={styles.loadingState}>
           <div className={styles.loadingSpinner} />
-          <p>正在加载版本信息...</p>
+          <p>{t('desktopHero.loading')}</p>
         </div>
       </section>
     );
@@ -175,13 +187,13 @@ export default function DesktopHero() {
         <div className="tech-grid-bg" />
         <div className="bgGlow" />
         <div className="hero-content">
-          <div className="hero-badge">桌面版</div>
+          <div className="hero-badge">{t('desktopHero.badge')}</div>
           <h1>Hagicode Desktop</h1>
-          <p className="hero-tagline">本地化的 AI 代码助手，保护隐私，提升效率</p>
+          <p className="hero-tagline">{t('desktopHero.tagline')}</p>
 
           <div className={styles.errorState}>
             <div className={styles.errorIcon}>⚠️</div>
-            <h3>无法加载版本信息</h3>
+            <h3>{t('desktopHero.error.title')}</h3>
             <p>{error}</p>
             <a
               href="https://desktop.dl.hagicode.com/"
@@ -189,7 +201,7 @@ export default function DesktopHero() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              前往下载页面
+              {t('desktopHero.error.gotoDownload')}
             </a>
           </div>
         </div>
@@ -201,11 +213,10 @@ export default function DesktopHero() {
     <section className="hero">
       <div className="tech-grid-bg" />
       <div className="bgGlow" />
-
       <div className="hero-content">
-        <div className="hero-badge">桌面版</div>
-        <h1>Hagicode Desktop</h1>
-        <p className="hero-tagline">本地化的 AI 代码助手，保护隐私，提升效率</p>
+        <div className="hero-badge">{t('desktopHero.badge')}</div>
+        <h1>{t('desktopHero.title')}</h1>
+        <p className="hero-tagline">{t('desktopHero.tagline')}</p>
 
         <div className="hero-value-prop">
           <div className="value-point">
@@ -213,19 +224,19 @@ export default function DesktopHero() {
               <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
               <circle cx="12" cy="12" r="10"/>
             </svg>
-            <span>100% 本地运行，代码不上传</span>
+            <span>{t('desktopHero.valuePoints.local')}</span>
           </div>
           <div className="value-point">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
               <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            <span>毫秒级响应，无需等待</span>
+            <span>{t('desktopHero.valuePoints.fast')}</span>
           </div>
           <div className="value-point">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
               <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            <span>一键安装，开箱即用</span>
+            <span>{t('desktopHero.valuePoints.oneClick')}</span>
           </div>
         </div>
 
@@ -254,10 +265,10 @@ export default function DesktopHero() {
                           className={styles.btnDownloadMain}
                           download
                           onClick={() => setOpenDropdown(null)}
-                          aria-label={`下载 ${platform.platformLabel} 版本`}
+                          aria-label={t('desktopHero.download.ariaLabel', { platform: platform.platformLabel })}
                         >
                           <span className={styles.platformButtonLabel}>
-                            {isPrimary && <span className={styles.recommendedBadge}>推荐</span>}
+                            {isPrimary && <span className={styles.recommendedBadge}>{t('desktopHero.download.recommended')}</span>}
                             <span className={styles.platformName}>{platform.platformLabel}</span>
                           </span>
                         </a>
@@ -269,7 +280,7 @@ export default function DesktopHero() {
                           onClick={() => toggleDropdown(platform.platform)}
                           aria-expanded={isOpen}
                           aria-haspopup="listbox"
-                          aria-label={`选择 ${platform.platformLabel} 其他版本`}
+                          aria-label={t('desktopHero.selectOtherVersions', { platform: platform.platformLabel })}
                         >
                           <ChevronDownIcon />
                         </button>
@@ -307,8 +318,8 @@ export default function DesktopHero() {
 
             {/* 版本信息 */}
             <p className="version-info">
-              当前版本: <strong>{currentVersion.version}</strong>
-              {currentChannel === 'beta' && ' (测试版)'}
+              {t('desktopHero.versionInfo', { version: currentVersion.version })}
+              {currentChannel === 'beta' && ` ${t('desktopHero.testVersion')}`}
             </p>
 
             {/* 渠道选择器 */}
@@ -321,7 +332,7 @@ export default function DesktopHero() {
                     aria-selected={currentChannel === 'stable'}
                   >
                     <span className="channel-icon">🟢</span>
-                    <span className="channel-label">稳定版</span>
+                    <span className="channel-label">{t('desktopHero.channels.stable')}</span>
                   </button>
                   <button
                     className={`channel-tab ${currentChannel === 'beta' ? 'channel-tab--active' : ''}`}
@@ -329,7 +340,7 @@ export default function DesktopHero() {
                     aria-selected={currentChannel === 'beta'}
                   >
                     <span className="channel-icon">🧪</span>
-                    <span className="channel-label">测试版 Beta</span>
+                    <span className="channel-label">{t('desktopHero.channels.beta')}</span>
                   </button>
                 </div>
 
@@ -337,11 +348,11 @@ export default function DesktopHero() {
                 {isBeta && (
                   <div className="beta-warning">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="warning-icon">
-                      <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77-1.333.192 3.1.732 3z" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                     <div className="warning-content">
-                      <strong>测试版警告</strong>
-                      <p>这是一个测试版本，可能存在不稳定问题。建议用于测试环境，生产环境请使用稳定版。</p>
+                      <strong>{t('desktopHero.betaWarning.title')}</strong>
+                      <p>{t('desktopHero.betaWarning.description')}</p>
                     </div>
                   </div>
                 )}
@@ -349,11 +360,10 @@ export default function DesktopHero() {
             )}
           </>
         )}
-
         <div className="hero-features">
-          <span className="feature-tag">🔒 隐私保护</span>
-          <span className="feature-tag">⚡ 快速响应</span>
-          <span className="feature-tag">💻 跨平台支持</span>
+          <span className="feature-tag">{t('desktopHero.features.privacy')}</span>
+          <span className="feature-tag">{t('desktopHero.features.fast')}</span>
+          <span className="feature-tag">{t('desktopHero.features.crossPlatform')}</span>
         </div>
       </div>
     </section>

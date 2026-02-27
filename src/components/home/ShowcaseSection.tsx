@@ -9,6 +9,8 @@
  * - 成就系统
  */
 import { withBasePath } from '../../utils/path';
+import { useTranslation } from '@/i18n/ui';
+import { useLocale } from '@/lib/useLocale';
 import styles from './ShowcaseSection.module.css';
 
 interface ScreenshotItem {
@@ -17,46 +19,6 @@ interface ScreenshotItem {
   description: string;
   alt: string;
 }
-
-// 产品截图数据,按推荐顺序排列
-const screenshots: ScreenshotItem[] = [
-  {
-    src: withBasePath('/img/home/亮色主题主界面.png'),
-    title: '亮色主题主界面',
-    description: '简洁直观的界面设计,让 AI 编码体验更加舒适流畅',
-    alt: 'Hagicode 亮色主题主界面截图'
-  },
-  {
-    src: withBasePath('/img/home/暗色主题主界面.png'),
-    title: '暗色主题主界面',
-    description: '护眼暗色模式,支持一键切换主题,适应不同使用场景',
-    alt: 'Hagicode 暗色主题主界面截图'
-  },
-  {
-    src: withBasePath('/img/home/实时token消耗报告.png'),
-    title: '实时 token 消耗报告',
-    description: '透明化成本监控,实时追踪每次会话的 AI 使用量',
-    alt: 'Hagicode 实时 token 消耗报告截图'
-  },
-  {
-    src: withBasePath('/img/home/使用 AI 的效率提升报告.png'),
-    title: '使用 AI 的效率提升报告',
-    description: '数据驱动效率分析,量化 AI 辅助编程带来的生产力提升',
-    alt: 'Hagicode 使用 AI 的效率提升报告截图'
-  },
-  {
-    src: withBasePath('/img/home/每日成就报告.png'),
-    title: '每日成就报告',
-    description: '游戏化激励机制,让编码过程充满乐趣和成就感',
-    alt: 'Hagicode 每日成就报告截图'
-  },
-  {
-    src: withBasePath('/img/home/每日编写代码获得的成就.png'),
-    title: '每日编写代码获得的成就',
-    description: '成就系统见证成长轨迹,记录每一次编码里程碑',
-    alt: 'Hagicode 每日编写代码获得的成就截图'
-  }
-];
 
 // 图片加载错误处理
 const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -73,14 +35,58 @@ const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
   }
 };
 
-export default function ShowcaseSection() {
+export default function ShowcaseSection({ locale: propLocale }: { locale?: 'zh-CN' | 'en' }) {
+  const { locale: detectedLocale } = useLocale();
+  const locale = propLocale || detectedLocale;
+  const { t } = useTranslation(locale);
+
+  // 产品截图数据,按推荐顺序排列
+  const screenshots: ScreenshotItem[] = [
+    {
+      src: withBasePath('/img/home/亮色主题主界面.png'),
+      title: t('showcase.screenshots.lightTheme.title'),
+      description: t('showcase.screenshots.lightTheme.description'),
+      alt: t('showcase.screenshots.lightTheme.alt')
+    },
+    {
+      src: withBasePath('/img/home/暗色主题主界面.png'),
+      title: t('showcase.screenshots.darkTheme.title'),
+      description: t('showcase.screenshots.darkTheme.description'),
+      alt: t('showcase.screenshots.darkTheme.alt')
+    },
+    {
+      src: withBasePath('/img/home/实时token消耗报告.png'),
+      title: t('showcase.screenshots.tokenReport.title'),
+      description: t('showcase.screenshots.tokenReport.description'),
+      alt: t('showcase.screenshots.tokenReport.alt')
+    },
+    {
+      src: withBasePath('/img/home/使用 AI 的效率提升报告.png'),
+      title: t('showcase.screenshots.efficiencyReport.title'),
+      description: t('showcase.screenshots.efficiencyReport.description'),
+      alt: t('showcase.screenshots.efficiencyReport.alt')
+    },
+    {
+      src: withBasePath('/img/home/每日成就报告.png'),
+      title: t('showcase.screenshots.dailyAchievements.title'),
+      description: t('showcase.screenshots.dailyAchievements.description'),
+      alt: t('showcase.screenshots.dailyAchievements.alt')
+    },
+    {
+      src: withBasePath('/img/home/每日编写代码获得的成就.png'),
+      title: t('showcase.screenshots.codingAchievements.title'),
+      description: t('showcase.screenshots.codingAchievements.description'),
+      alt: t('showcase.screenshots.codingAchievements.alt')
+    }
+  ];
+
   return (
     <section className={styles.showcaseSection}>
       <div className="container">
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>产品展示</h2>
+          <h2 className={styles.sectionTitle}>{t('showcase.title')}</h2>
           <p className={styles.sectionDescription}>
-            探索 Hagicode 的强大功能和精美界面
+            {t('showcase.description')}
           </p>
         </div>
 

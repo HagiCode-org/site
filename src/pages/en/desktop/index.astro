@@ -1,0 +1,347 @@
+---
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+import Clarity from "@/components/Clarity.astro";
+import '@/styles/homepage.css';
+import '@/styles/desktop.css';
+import Navbar from '@/components/home/Navbar';
+import Footer from '@/components/home/Footer';
+import DesktopHero from '@/components/desktop/DesktopHero';
+import FeatureIcon from '@/components/desktop/FeatureIcon.astro';
+import FeatureTagIcon from '@/components/desktop/FeatureTagIcon.astro';
+import PlatformIcon from '@/components/desktop/PlatformIcon.astro';
+import { getTranslation } from '@/i18n/ui';
+
+// SEO 元数据
+const title = "Hagicode Desktop - Download";
+const description = "Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.";
+
+// 获取当前语言环境
+const currentLocale = 'en';
+const { t } = getTranslation('en');
+
+// 获取站点基础路径
+const siteBase = import.meta.env.VITE_SITE_BASE || '';
+
+// 直接构造完整的 URL 字符串，避免 new URL 的路径解析问题
+const canonicalUrl = `https://hagicode.com${siteBase ? `${siteBase}en/desktop/` : '/en/desktop/'}`;
+const chineseUrl = `https://hagicode.com${siteBase ? `${siteBase}desktop/` : '/desktop/'}`;
+
+// 在服务端获取版本数据并传递到客户端
+let desktopVersionData = null;
+try {
+  // 在服务端直接读取文件，避免使用 fetch
+  const fs = await import('fs/promises');
+  const path = await import('path');
+  const versionIndexPath = path.join(process.cwd(), 'public', 'version-index.json');
+  desktopVersionData = JSON.parse(await fs.readFile(versionIndexPath, 'utf-8'));
+} catch (e) {
+  console.error("Failed to fetch desktop versions for desktop page:", e);
+}
+
+// 将数据序列化为 JSON，以便在客户端脚本中使用
+const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData) : 'null';
+---
+
+<!doctype html>
+<html lang={currentLocale} data-site-base={siteBase}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <!-- SEO hreflang tags -->
+    <link rel="alternate" hreflang="zh-CN" href={chineseUrl} />
+    <link rel="alternate" hreflang="en" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={chineseUrl} />
+    <!-- Baidu search engine verification -->
+    <meta name="baidu-site-verification" content="codeva-A9s3yT3z5m" />
+    <meta name="og:title" content={title} />
+    <meta name="og:description" content={description} />
+    <meta name="og:type" content="website" />
+    <script set:html={`window.__DESKTOP_VERSION_DATA__ = ${desktopVersionData ? JSON.stringify(desktopVersionData) : 'null'};`} is:inline></script>
+    <script is:inline>
+      // Initialize language for English pages to prevent incorrect locale detection
+      localStorage.setItem('lang', 'en');
+    // Initialize theme - consistent with homepage
+      (function() {
+        // Check if it's Lunar New Year period
+        // Snake Year 2025: 2025-01-29 to 2025-02-12 (Lantern Festival)
+        // Horse Year 2026: 2026-02-17 to 2026-03-03 (Lantern Festival)
+        function isLunarNewYearPeriod() {
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = now.getMonth() + 1; // 1-12
+          const day = now.getDate();
+
+          // 2025 Snake Year New Year period (Jan 29 - Feb 12)
+          if (year === 2025) {
+            if (month === 1 && day >= 29) return true;
+            if (month === 2 && day <= 12) return true;
+          }
+          // 2026 Horse Year New Year period (Feb 17 - Mar 3)
+          if (year === 2026) {
+            if (month === 2 && day >= 17) return true;
+            if (month === 3 && day <= 3) return true;
+          }
+          return false;
+        }
+
+        const stored = localStorage.getItem('starlight-theme');
+        const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        let theme;
+
+        if (stored) {
+          // User has theme preference, use their choice
+          theme = stored;
+        } else {
+          // User has no theme preference, apply smart default
+          theme = isLunarNewYearPeriod() ? 'lunar-new-year' : system;
+        }
+
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body class="homepage">
+    <Navbar client:load locale="en" />
+
+    <main class="homepage">
+      <!-- Hero Section - Use React component -->
+      <DesktopHero client:load locale="en" />
+
+      <!-- Features Section -->
+      <section class="features">
+        <h2>{t('desktop.features.title')}</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="rocket" size={48} />
+            </div>
+            <h3>{t('desktop.features.local.title')}</h3>
+            <p>{t('desktop.features.local.description')}</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="lock" size={48} />
+            </div>
+            <h3>{t('desktop.features.privacy.title')}</h3>
+            <p>{t('desktop.features.privacy.description')}</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="bolt" size={48} />
+            </div>
+            <h3>{t('desktop.features.fast.title')}</h3>
+            <p>{t('desktop.features.fast.description')}</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="computer" size={48} />
+            </div>
+            <h3>{t('desktop.features.crossPlatform.title')}</h3>
+            <p>{t('desktop.features.crossPlatform.description')}</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="arrow-path" size={48} />
+            </div>
+            <h3>{t('desktop.features.autoUpdate.title')}</h3>
+            <p>{t('desktop.features.autoUpdate.description')}</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper">
+              <FeatureIcon name="globe" size={48} />
+            </div>
+            <h3>{t('desktop.features.multiLanguage.title')}</h3>
+            <p>{t('desktop.features.multiLanguage.description')}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- System Requirements -->
+      <section class="system-requirements">
+        <h2>{t('desktop.systemRequirements.title')}</h2>
+        <Tabs>
+          <TabItem label={t('desktop.systemRequirements.windows')}>
+            <div class="requirements-content">
+              <p>
+                <strong>{t('desktop.systemRequirements.os')}:</strong> {t('desktop.systemRequirements.windowsOs')}
+              </p>
+              <p>
+                <strong>{t('desktop.systemRequirements.processor')}:</strong> {t('desktop.systemRequirements.windowsProcessor')}
+              </p>
+              <p>
+                <strong>{t('desktop.systemRequirements.memory')}:</strong> {t('desktop.systemRequirements.memoryRec')}
+              </p>
+              <p>
+                <strong>{t('desktop.systemRequirements.diskSpace')}:</strong> {t('desktop.systemRequirements.disk')}
+              </p>
+              <p>
+                <strong>{t('desktop.systemRequirements.network')}:</strong> {t('desktop.systemRequirements.networkDesc')}
+              </p>
+            </div>
+          </TabItem>
+          <TabItem label={t('desktop.systemRequirements.macos')}>
+            <div class="requirements-content">
+              <p>
+                <strong>{t('desktop.systemRequirements.os')}:</strong> {t('desktop.systemRequirements.macosOs')}
+              </p>
+              <p>
+                <strong>{t('desktop.systemRequirements.processor')}:</strong> {t('desktop.systemRequirements.macosProcessor')}
+              </p>
+              <p>
+                <strong>{t('desktop.systemRequirements.memory')}:</strong> {t('desktop.systemRequirements.memoryRec')}
+              </p>
+              <p>
+                <strong>{t('desktop.systemRequirements.diskSpace')}:</strong> {t('desktop.systemRequirements.disk')}
+              </p>
+              <p>
+                <strong>{t('desktop.systemRequirements.network')}:</strong> {t('desktop.systemRequirements.networkDesc')}
+              </p>
+            </div>
+          </TabItem>
+          <TabItem label={t('desktop.systemRequirements.linux')}>
+            <div class="requirements-content">
+              <p>
+                <strong>{t('desktop.systemRequirements.os')}:</strong> {t('desktop.systemRequirements.linuxOs')}
+              </p>
+              <p>
+                <strong>{t('desktop.systemRequirements.processor')}:</strong> {t('desktop.systemRequirements.linuxProcessor')}
+              </p>
+              <p>
+                <strong>{t('desktop.systemRequirements.memory')}:</strong> {t('desktop.systemRequirements.memoryRec')}
+              </p>
+              <p>
+                <strong>{t('desktop.systemRequirements.diskSpace')}:</strong> {t('desktop.systemRequirements.disk')}
+              </p>
+              <p>
+                <strong>{t('desktop.systemRequirements.network')}:</strong> {t('desktop.systemRequirements.networkDesc')}
+              </p>
+            </div>
+          </TabItem>
+        </Tabs>
+      </section>
+
+      <!-- Installation Steps -->
+      <section class="installation-steps">
+        <h2>{t('desktop.installation.title')}</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">{t('desktop.installation.step1.number')}</div>
+            <h3>{t('desktop.installation.step1.title')}</h3>
+            <p>{t('desktop.installation.step1.description')}</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">{t('desktop.installation.step2.number')}</div>
+            <h3>{t('desktop.installation.step2.title')}</h3>
+            <p>{t('desktop.installation.step2.description')}</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">{t('desktop.installation.step3.number')}</div>
+            <h3>{t('desktop.installation.step3.title')}</h3>
+            <p>{t('desktop.installation.step3.description')}</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">{t('desktop.installation.step4.number')}</div>
+            <h3>{t('desktop.installation.step4.title')}</h3>
+            <p>{t('desktop.installation.step4.description')}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq">
+        <h2>{t('desktop.faq.title')}</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>{t('desktop.faq.q1.question')}</summary>
+            <div class="faq-content">
+              <p set:html={t('desktop.faq.q1.intro')}></p>
+              <h4>{t('desktop.faq.q1.desktopTitle')}</h4>
+              <ul>
+                <li>{t('desktop.faq.q1.desktop1')}</li>
+                <li>{t('desktop.faq.q1.desktop2')}</li>
+                <li>{t('desktop.faq.q1.desktop3')}</li>
+                <li>{t('desktop.faq.q1.desktop4')}</li>
+              </ul>
+              <h4>{t('desktop.faq.q1.serverTitle')}</h4>
+              <ul>
+                <li>{t('desktop.faq.q1.server1')}</li>
+                <li>{t('desktop.faq.q1.server2')}</li>
+                <li>{t('desktop.faq.q1.server3')}</li>
+                <li>{t('desktop.faq.q1.server4')}</li>
+              </ul>
+              <p set:html={t('desktop.faq.q1.conclusion')}></p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>{t('desktop.faq.q2.question')}</summary>
+            <div class="faq-content">
+              <p set:html={t('desktop.faq.q2.intro')}></p>
+              <ul>
+                <li set:html={t('desktop.faq.q2.step1')}></li>
+                <li set:html={t('desktop.faq.q2.step2')}></li>
+                <li set:html={t('desktop.faq.q2.step3')}></li>
+              </ul>
+              <p set:html={t('desktop.faq.q2.note')}></p>
+              <p set:html={t('desktop.faq.q2.done')}></p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>{t('desktop.faq.q3.question')}</summary>
+            <div class="faq-content">
+              <p set:html={t('desktop.faq.q3.answer')}></p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>{t('desktop.faq.q4.question')}</summary>
+            <div class="faq-content">
+              <p set:html={t('desktop.faq.q4.intro')}></p>
+              <ul>
+                <li set:html={t('desktop.faq.q4.current')}></li>
+                <li set:html={t('desktop.faq.q4.upcoming')}></li>
+              </ul>
+              <p set:html={t('desktop.faq.q4.closing')}></p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>{t('desktop.faq.q5.question')}</summary>
+            <div class="faq-content">
+              <p set:html={t('desktop.faq.q5.intro')}></p>
+              <ul>
+                <li>{t('desktop.faq.q5.point1')}</li>
+                <li>{t('desktop.faq.q5.point2')}</li>
+                <li>{t('desktop.faq.q5.point3')}</li>
+                <li>{t('desktop.faq.q5.point4')}</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>{t('desktop.faq.q6.question')}</summary>
+            <div class="faq-content">
+              <p set:html={t('desktop.faq.q6.intro')}></p>
+              <ul>
+                <li set:html={t('desktop.faq.q6.point1')}></li>
+                <li set:html={t('desktop.faq.q6.point2')}></li>
+                <li set:html={t('desktop.faq.q6.point3')}></li>
+              </ul>
+            </div>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <Footer locale="en" />
+
+    <!-- Microsoft Clarity analytics -->
+    <Clarity />
+  </body>
+</html>

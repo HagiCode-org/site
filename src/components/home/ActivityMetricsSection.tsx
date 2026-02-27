@@ -5,6 +5,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { withBasePath } from '../../utils/path';
+import { useTranslation } from '@/i18n/ui';
+import { useLocale } from '@/lib/useLocale';
 import styles from './ActivityMetricsSection.module.css';
 
 interface ActivityMetricsData {
@@ -89,13 +91,15 @@ function MetricCardSkeleton() {
  * 空状态展示
  */
 function EmptyState() {
+  const { locale } = useLocale();
+  const { t } = useTranslation(locale);
+
   return (
     <div className={styles.emptyState}>
       <div className={styles.emptyIcon}>📊</div>
-      <h3 className={styles.emptyTitle}>数据即将上线</h3>
+      <h3 className={styles.emptyTitle}>{t('activityMetrics.emptyState.title')}</h3>
       <p className={styles.emptyDescription}>
-        活动数据将在数据可用后显示在这里。
-        敬请期待社区的成长！
+        {t('activityMetrics.emptyState.description')}
       </p>
       <motion.div
         className={styles.pulseIndicator}
@@ -216,7 +220,10 @@ function ActivityMetricCard({
 /**
  * 主组件: 活动指标数据展示
  */
-export default function ActivityMetricsSection() {
+export default function ActivityMetricsSection({ locale: propLocale }: { locale?: 'zh-CN' | 'en' }) {
+  const { locale: detectedLocale } = useLocale();
+  const locale = propLocale || detectedLocale;
+  const { t } = useTranslation(locale);
   const [data, setData] = useState<ActivityMetricsData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -247,7 +254,7 @@ export default function ActivityMetricsSection() {
       <section className={styles.activityMetricsSection}>
         <div className="container">
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>活动指标</h2>
+            <h2 className={styles.sectionTitle}>{t('activityMetrics.title')}</h2>
           </div>
           <EmptyState />
         </div>
@@ -278,27 +285,27 @@ export default function ActivityMetricsSection() {
   const metrics: ActivityMetricCardProps[] = [
     {
       icon: '🐳',
-      title: 'Docker Hub',
+      title: t('activityMetrics.dockerHub'),
       value: currentData.dockerHub.pullCount,
-      description: '拉取次数',
+      description: t('activityMetrics.pullCount'),
       gradient: 'linear-gradient(135deg, #4ECDC4, #45B7D1)',
       index: 0,
       isLoading,
     },
     {
       icon: '👥',
-      title: '活跃用户',
+      title: t('activityMetrics.activeUsers'),
       value: currentData.clarity.activeUsers,
-      description: '近三天',
+      description: t('activityMetrics.recentDays'),
       gradient: 'linear-gradient(135deg, #FF6B6B, #6C5CE7)',
       index: 1,
       isLoading,
     },
     {
       icon: '💬',
-      title: '活跃会话',
+      title: t('activityMetrics.activeSessions'),
       value: currentData.clarity.activeSessions,
-      description: '近三天',
+      description: t('activityMetrics.recentDays'),
       gradient: 'linear-gradient(135deg, #A29BFE, #FD79A8)',
       index: 2,
       isLoading,
@@ -313,9 +320,9 @@ export default function ActivityMetricsSection() {
 
       <div className="container">
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>活动指标</h2>
+          <h2 className={styles.sectionTitle}>{t('activityMetrics.title')}</h2>
           <p className={styles.sectionDescription}>
-            社区持续成长,感谢每一位贡献者
+            {t('activityMetrics.description')}
           </p>
         </div>
 

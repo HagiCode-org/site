@@ -6,12 +6,16 @@
 import { useState, useEffect, useMemo } from "react";
 import ThemeToggle from "./ThemeToggle";
 import InstallButton from "./InstallButton";
+import { LanguageSwitcher } from "../LanguageSwitcher";
+import { useLocale } from "@/lib/useLocale";
+import { useTranslation } from "@/i18n/ui";
 import styles from "./Navbar.module.css";
 import { withBasePath } from "../../utils/path";
-import { navLinks } from "@/config/navigation";
+import { getLinkWithLocale, type PublicLinkKey } from '@/lib/shared/links';
 
 interface NavbarProps {
   className?: string;
+  locale?: 'zh-CN' | 'en';
 }
 
 /**
@@ -91,9 +95,47 @@ const NavIcon = ({ name }: { name: string }): JSX.Element | null => {
 
 export default function Navbar({
   className = "",
+  locale: propLocale
 }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { locale: detectedLocale } = useLocale();
+  const locale = propLocale || detectedLocale;
+  const { t } = useTranslation(locale);
+
+  // 构建导航链接 - 根据语言动态生成
+  const navLinks = useMemo(() => [
+    {
+      label: t('navbar.docs'),
+      href: getLinkWithLocale('docs', locale),
+      external: false,
+      icon: 'open-book',
+    },
+    {
+      label: t('navbar.desktop'),
+      href: getLinkWithLocale('desktop', locale),
+      external: false,
+      icon: 'desktop',
+    },
+    {
+      label: t('navbar.container'),
+      href: getLinkWithLocale('container', locale),
+      external: false,
+      icon: 'seti:docker',
+    },
+    {
+      label: locale === 'zh-CN' ? '技术支持群' : 'Support',
+      href: getLinkWithLocale('qqGroup', locale),
+      external: true,
+      icon: 'comment',
+    },
+    {
+      label: 'GitHub',
+      href: getLinkWithLocale('github', locale),
+      external: true,
+      icon: 'github',
+    },
+  ], [locale, t]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -128,7 +170,7 @@ export default function Navbar({
 
       <div className={styles.container}>
         {/* Logo */}
-        <a href={homeUrl} className={styles.logo} aria-label="Hagicode 首页">
+        <a href={homeUrl} className={styles.logo} aria-label={t('navbar.home')}>
           <div className={styles.logoIcon}>
             <img
               src="/logo.png"
@@ -167,10 +209,11 @@ export default function Navbar({
         {/* Actions */}
         <div className={styles.actions}>
           <ThemeToggle />
+          <LanguageSwitcher locale={locale} />
           <button
             className={styles.mobileMenuBtn}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? "关闭菜单" : "打开菜单"}
+            aria-label={isMobileMenuOpen ? (locale === 'zh-CN' ? '关闭菜单' : 'Close menu') : (locale === 'zh-CN' ? '打开菜单' : 'Open menu')}
             aria-expanded={isMobileMenuOpen}
           >
             <span className={styles.hamburger}>

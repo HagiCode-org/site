@@ -10,6 +10,8 @@
  */
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from '@/i18n/ui';
+import { useLocale } from '@/lib/useLocale';
 import styles from './FeaturesShowcase.module.css';
 
 // 定义 Variants 类型
@@ -88,20 +90,22 @@ const workflowIcons: Record<string, React.ReactElement> = {
  * 优化: 添加暂停交互、增强视觉反馈、数据流动画
  */
 function SmartFeature() {
+  const { locale } = useLocale();
+  const { t } = useTranslation(locale);
   const [activeStage, setActiveStage] = useState(0);
   const [efficiencyAnimating, setEfficiencyAnimating] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
 
   const stages = [
-    { id: 'idea', label: 'Idea', desc: '从想法开始', icon: '💡' },
-    { id: 'proposal', label: 'Proposal', desc: 'AI 生成提案', icon: '📋' },
-    { id: 'review', label: 'Review', desc: '自动评审', icon: '👁️' },
-    { id: 'tasks', label: 'Tasks', desc: '任务分解', icon: '✂️' },
-    { id: 'code', label: 'Code', desc: '智能编码', icon: '⌨️' },
-    { id: 'test', label: 'Test', desc: '自动测试', icon: '🧪' },
-    { id: 'refactor', label: 'Refactor', desc: '代码重构', icon: '🔄' },
-    { id: 'docs', label: 'Docs', desc: '文档生成', icon: '📚' },
-    { id: 'archive', label: 'Archive', desc: '知识归档', icon: '🏆' },
+    { id: 'idea', label: 'Idea', desc: t('features.smart.workflow.idea.desc'), icon: '💡' },
+    { id: 'proposal', label: 'Proposal', desc: t('features.smart.workflow.proposal.desc'), icon: '📋' },
+    { id: 'review', label: 'Review', desc: t('features.smart.workflow.review.desc'), icon: '👁️' },
+    { id: 'tasks', label: 'Tasks', desc: t('features.smart.workflow.tasks.desc'), icon: '✂️' },
+    { id: 'code', label: 'Code', desc: t('features.smart.workflow.code.desc'), icon: '⌨️' },
+    { id: 'test', label: 'Test', desc: t('features.smart.workflow.test.desc'), icon: '🧪' },
+    { id: 'refactor', label: 'Refactor', desc: t('features.smart.workflow.refactor.desc'), icon: '🔄' },
+    { id: 'docs', label: 'Docs', desc: t('features.smart.workflow.docs.desc'), icon: '📚' },
+    { id: 'archive', label: 'Archive', desc: t('features.smart.workflow.archive.desc'), icon: '🏆' },
   ];
 
   useEffect(() => {
@@ -151,9 +155,9 @@ function SmartFeature() {
       <div className={styles.featureContent}>
         <div className={styles.featureText}>
           <div>
-            <span className={styles.featureBadge}>SMART</span>
-            <h2 className={styles.featureTitle}>智能</h2>
-            <p className={styles.featureSubtitle}>OpenSpec 工作流，AI 编码效率提升</p>
+            <span className={styles.featureBadge}>{t('features.smart.badge')}</span>
+            <h2 className={styles.featureTitle}>{t('features.smart.title')}</h2>
+            <p className={styles.featureSubtitle}>{t('features.smart.subtitle')}</p>
           </div>
 
           <div className={styles.efficiencyHighlight}>
@@ -166,7 +170,7 @@ function SmartFeature() {
               <span className={styles.efficiencyNumber}>300</span>
               <span className={styles.efficiencyPercent}>%</span>
             </motion.div>
-            <div className={styles.efficiencyLabel}>效率提升</div>
+            <div className={styles.efficiencyLabel}>{t('features.smart.efficiency')}</div>
             <div className={styles.efficiencyChart}>
               <motion.div
                 className={`${styles.chartBar} ${styles.barShort}`}
@@ -174,7 +178,7 @@ function SmartFeature() {
                 animate={efficiencyAnimating ? { height: '30%' } : {}}
                 transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
               >
-                <span className={styles.chartLabel}>传统</span>
+                <span className={styles.chartLabel}>{t('features.smart.traditional')}</span>
               </motion.div>
               <motion.div
                 className={`${styles.chartBar} ${styles.barFull}`}
@@ -182,14 +186,13 @@ function SmartFeature() {
                 animate={efficiencyAnimating ? { height: '100%' } : {}}
                 transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
               >
-                <span className={styles.chartLabel}>Hagicode</span>
+                <span className={styles.chartLabel}>{t('features.smart.hagicode')}</span>
               </motion.div>
             </div>
           </div>
 
           <p className={styles.featureDesc}>
-            9 个阶段的完整提案流程，从想法到归档，AI 全流程辅助，
-            让你的编码效率提升 3 倍。
+            {t('features.smart.description')}
           </p>
         </div>
 
@@ -244,7 +247,7 @@ function SmartFeature() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <span>已暂停 - 点击节点切换</span>
+              <span>{t('features.smart.paused')}</span>
             </motion.div>
           )}
         </div>
@@ -258,6 +261,8 @@ function SmartFeature() {
  * 优化: 增强线程可视化、添加暂停交互、改进数据对比展示
  */
 function ConvenientFeature() {
+  const { locale } = useLocale();
+  const { t } = useTranslation(locale);
   const [animateBars, setAnimateBars] = useState(true);
 
   // 设置为初始状态即为动画完成
@@ -297,9 +302,9 @@ function ConvenientFeature() {
       <div className={styles.featureContent}>
         <div className={styles.featureText}>
           <div>
-            <span className={styles.featureBadge}>CONVENIENT</span>
-            <h2 className={styles.featureTitle}>便捷</h2>
-            <p className={styles.featureSubtitle}>多线程操作，充分利用 AI 额度</p>
+            <span className={styles.featureBadge}>{t('features.convenient.badge')}</span>
+            <h2 className={styles.featureTitle}>{t('features.convenient.title')}</h2>
+            <p className={styles.featureSubtitle}>{t('features.convenient.subtitle')}</p>
           </div>
 
           <div className={styles.quotaComparison}>
@@ -313,7 +318,7 @@ function ConvenientFeature() {
                 />
                 <div className={styles.quotaGlow} />
               </div>
-              <span className={styles.quotaLabel}>传统单线程 20%</span>
+              <span className={styles.quotaLabel}>{t('features.convenient.traditional')}</span>
             </div>
             <div className={styles.quotaArrow}>
               <motion.span
@@ -333,7 +338,7 @@ function ConvenientFeature() {
                 />
                 <div className={styles.quotaGlow} />
               </div>
-              <span className={styles.quotaLabel}>Hagicode 多线程 100%</span>
+              <span className={styles.quotaLabel}>{t('features.convenient.multiThread')}</span>
             </div>
           </div>
 
@@ -343,13 +348,12 @@ function ConvenientFeature() {
             animate={animateBars ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.7 }}
           >
-            <span className={styles.boostLabel}>体验提升</span>
-            <span className={styles.boostValue}>1.5x - 5x</span>
+            <span className={styles.boostLabel}>{t('features.convenient.boost')}</span>
+            <span className={styles.boostValue}>{t('features.convenient.boostValue')}</span>
           </motion.div>
 
           <p className={styles.featureDesc}>
-            多线程并发操作让你同时处理多个任务，充分利用 GLM Pro 额度，
-            从原本只能利用 20% 提升到 100%，实际体验提升 1.5 到 5 倍。
+            {t('features.convenient.description')}
           </p>
         </div>
 
@@ -387,7 +391,7 @@ function ConvenientFeature() {
             transition={{ duration: 2, repeat: Infinity }}
           >
             <span className={styles.statusDot} />
-            多线程并发处理
+            {t('features.convenient.multiThread')}
           </motion.div>
         </div>
       </div>
@@ -400,6 +404,8 @@ function ConvenientFeature() {
  * 优化: 增强成就卡片交互、添加闪烁动画、改进评级展示
  */
 function InterestingFeature() {
+  const { locale } = useLocale();
+  const { t } = useTranslation(locale);
   const containerVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -419,12 +425,12 @@ function InterestingFeature() {
   };
 
   const achievements = [
-    { icon: <ZapIcon className="" />, name: '初次起飞', rarity: 'common', glow: 'rgba(156, 163, 175, 0.5)' },
-    { icon: <BrainIcon className="" />, name: '代码大师', rarity: 'rare', glow: 'rgba(59, 130, 246, 0.5)' },
-    { icon: <FlameIcon className="" />, name: '连续编码', rarity: 'epic', glow: 'rgba(168, 85, 247, 0.5)' },
-    { icon: <TrophyIcon className="" />, name: '传奇开发者', rarity: 'legendary', glow: 'rgba(245, 158, 11, 0.5)' },
-    { icon: <TargetIcon className="" />, name: '精准打击', rarity: 'epic', glow: 'rgba(168, 85, 247, 0.5)' },
-    { icon: <AwardIcon className="" />, name: '全勤奖励', rarity: 'rare', glow: 'rgba(59, 130, 246, 0.5)' },
+    { icon: <ZapIcon className="" />, name: t('features.interesting.achievements.firstFlight'), rarity: 'common', glow: 'rgba(156, 163, 175, 0.5)' },
+    { icon: <BrainIcon className="" />, name: t('features.interesting.achievements.codeMaster'), rarity: 'rare', glow: 'rgba(59, 130, 246, 0.5)' },
+    { icon: <FlameIcon className="" />, name: t('features.interesting.achievements.streak'), rarity: 'epic', glow: 'rgba(168, 85, 247, 0.5)' },
+    { icon: <TrophyIcon className="" />, name: t('features.interesting.achievements.legendary'), rarity: 'legendary', glow: 'rgba(245, 158, 11, 0.5)' },
+    { icon: <TargetIcon className="" />, name: t('features.interesting.achievements.precision'), rarity: 'epic', glow: 'rgba(168, 85, 247, 0.5)' },
+    { icon: <AwardIcon className="" />, name: t('features.interesting.achievements.fullAttendance'), rarity: 'rare', glow: 'rgba(59, 130, 246, 0.5)' },
   ];
 
   return (
@@ -444,16 +450,16 @@ function InterestingFeature() {
       <div className={styles.featureContent}>
         <div className={styles.featureText}>
           <div>
-            <span className={styles.featureBadge}>INTERESTING</span>
-            <h2 className={styles.featureTitle}>有趣</h2>
-            <p className={styles.featureSubtitle}>游戏化机制，让编码不再枯燥</p>
+            <span className={styles.featureBadge}>{t('features.interesting.badge')}</span>
+            <h2 className={styles.featureTitle}>{t('features.interesting.title')}</h2>
+            <p className={styles.featureSubtitle}>{t('features.interesting.subtitle')}</p>
           </div>
 
           <div className={styles.gameFeatures}>
             {[
-              { icon: <TrophyIcon className={styles.gameIcon} />, label: '成就系统', desc: '解锁 50+ 成就徽章' },
-              { icon: <TargetIcon className={styles.gameIcon} />, label: '每日评级', desc: 'S/A/B/C 等级评定' },
-              { icon: <FlameIcon className={styles.gameIcon} />, label: '游戏 UI', desc: '沉浸式游戏体验' },
+              { icon: <TrophyIcon className={styles.gameIcon} />, label: t('features.interesting.features.achievements.label'), desc: t('features.interesting.features.achievements.desc') },
+              { icon: <TargetIcon className={styles.gameIcon} />, label: t('features.interesting.features.rating.label'), desc: t('features.interesting.features.rating.desc') },
+              { icon: <FlameIcon className={styles.gameIcon} />, label: t('features.interesting.features.gameUI.label'), desc: t('features.interesting.features.gameUI.desc') },
             ].map((feature, index) => (
               <motion.div
                 key={feature.label}
@@ -469,8 +475,7 @@ function InterestingFeature() {
           </div>
 
           <p className={styles.featureDesc}>
-            告别单调的 IDE 体验，我们引入成就系统、每日评级和游戏化 UI，
-            让每一次编码都充满乐趣，拥有更高的扩展性和未来性。
+            {t('features.interesting.description')}
           </p>
         </div>
 
@@ -512,7 +517,7 @@ function InterestingFeature() {
             className={styles.dailyReport}
           >
             <div className={styles.reportHeader}>
-              <span className={styles.reportTitle}>今日评级</span>
+              <span className={styles.reportTitle}>{t('features.interesting.dailyReport.title')}</span>
               <motion.span
                 className={`${styles.reportGrade} ${styles.gradeS}`}
                 animate={{
@@ -529,9 +534,9 @@ function InterestingFeature() {
             </div>
             <div className={styles.reportStats}>
               {[
-                { value: '1,234', label: 'Tokens', delay: 0 },
-                { value: '12', label: '成就', delay: 0.1 },
-                { value: '89%', label: '效率', delay: 0.2 },
+                { value: '1,234', label: t('features.interesting.dailyReport.stats.tokens'), delay: 0 },
+                { value: '12', label: t('features.interesting.dailyReport.stats.achievements'), delay: 0.1 },
+                { value: '89%', label: t('features.interesting.dailyReport.stats.efficiency'), delay: 0.2 },
               ].map((stat) => (
                 <div
                 key={stat.label}
@@ -555,16 +560,20 @@ function InterestingFeature() {
  * 主组件: 三大特性展示
  * 优化: 添加头部进入动画、增强视觉层次
  */
-export default function FeaturesShowcase() {
+export default function FeaturesShowcase({ locale: propLocale }: { locale?: 'zh-CN' | 'en' }) {
+  const { locale: detectedLocale } = useLocale();
+  const locale = propLocale || detectedLocale;
+  const { t } = useTranslation(locale);
+
   return (
     <section className={styles.featuresShowcase}>
       <div className="container">
         <div className={styles.showcaseHeader}>
           <h2 className={styles.showcaseTitle}>
-            <span className={styles.titleHighlight}>三大核心特性</span>
+            <span className={styles.titleHighlight}>{t('features.showcase.title')}</span>
           </h2>
           <p className={styles.showcaseSubtitle}>
-            重新定义你的 AI 编码体验
+            {t('features.showcase.subtitle')}
           </p>
         </div>
 
