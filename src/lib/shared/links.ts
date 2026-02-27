@@ -195,9 +195,10 @@ export type PublicLinkKey = keyof typeof SITE_LINKS;
 
 /**
  * Get the correct link URL for the specified key and locale
+ * For cross-site links (docs, blog, etc.), adds the current language parameter
  * @param key - Link key name
  * @param locale - Current locale (optional, defaults to client-side detection)
- * @returns Correct URL with proper base path for locale
+ * @returns Correct URL with proper base path for locale and language parameter for cross-site links
  */
 export function getLinkWithLocale(key: PublicLinkKey, locale?: string): string {
   const config = SITE_LINKS[key];
@@ -207,9 +208,13 @@ export function getLinkWithLocale(key: PublicLinkKey, locale?: string): string {
   // Get the base URL based on environment
   let url = env === 'development' ? config.dev : config.prod;
 
-  // If it's an absolute URL (starts with http:// or https://), return as-is
+  // If it's an absolute URL (starts with http:// or https://)
   if (url.startsWith('http://') || url.startsWith('https://')) {
-    return url;
+    // For cross-site links, add the language parameter
+    const currentLocale = locale || getCurrentLocale();
+    const urlObj = new URL(url);
+    urlObj.searchParams.set('lang', currentLocale);
+    return urlObj.toString();
   }
 
   // For relative paths, prepend the base path
@@ -223,6 +228,24 @@ export function getLinkWithLocale(key: PublicLinkKey, locale?: string): string {
 
   // Ensure no double slashes when concatenating
   return `${basePath}${relativePath}`.replace(/\/+/g, '/');
+}
+
+/**
+ * Get the current locale from localStorage
+ * @returns Current locale ('en' or 'zh-CN')
+ */
+export function getCurrentLocale(): string {
+  if (typeof window !== 'undefined') {
+    try {
+      const lang = localStorage.getItem('lang');
+      if (lang === 'en' || lang === 'zh-CN') {
+        return lang;
+      }
+    } catch (e) {
+      // Silent fallback when localStorage is unavailable
+    }
+  }
+  return 'zh-CN'; // Default to Chinese
 }
 
 /**

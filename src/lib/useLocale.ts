@@ -33,19 +33,25 @@ export function useLocale() {
     if (typeof window !== 'undefined') {
       localStorage.setItem('lang', newLocale);
 
-      // Update URL
+      // Get current path, search params, and hash
       const currentPath = window.location.pathname;
-      if (newLocale === 'zh-CN') {
-        // Remove /en/ prefix
-        let newPath = currentPath.replace(/^\/en\//, '/');
-        // If path was just /en/, make it /
-        if (newPath === '') newPath = '/';
-        window.location.href = newPath;
-      } else {
-        // Add /en/ prefix
-        let newPath = currentPath === '/' ? '/en' : `/en${currentPath}`;
-        window.location.href = newPath;
-      }
+      const searchParams = window.location.search;
+      const hash = window.location.hash;
+
+      // Unified path preprocessing: remove all language prefixes
+      let cleanPath = currentPath
+        .replace(/^\/en(\/|$)/, '/')
+        .replace(/^\/zh(\/|$)/, '/');
+      // Ensure root path is always '/'
+      if (cleanPath === '') cleanPath = '/';
+
+      // Add new language prefix
+      let newPath = newLocale === 'en'
+        ? (cleanPath === '/' ? '/en' : `/en${cleanPath}`)
+        : cleanPath;
+
+      // Append search params and hash
+      window.location.href = `${newPath}${searchParams}${hash}`;
     }
   };
 

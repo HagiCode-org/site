@@ -98,6 +98,7 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
   const githubLink = getLinkWithLocale('github', locale);
   const qqGroupLink = getLinkWithLocale('qqGroup', locale);
   const rssLink = getLinkWithLocale('rss', locale);
+  const productOverviewLink = getLinkWithLocale('productOverview', locale);
 
   // 外部链接属性
   const externalTarget = getLinkTarget('github');
@@ -116,7 +117,7 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
       links: [
         {
           label: t('footer.productInfo'),
-          href: docsLink + 'product-overview/',
+          href: productOverviewLink,
           external: false,
           ariaLabel: t('footer.productInfo'),
         },
@@ -133,7 +134,7 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
         },
         {
           label: t('footer.productDocs'),
-          href: docsLink + 'product-overview/',
+          href: productOverviewLink,
           external: false,
           ariaLabel: t('footer.productDocs'),
         },
