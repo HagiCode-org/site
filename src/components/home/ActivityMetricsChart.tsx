@@ -1,0 +1,327 @@
+/**
+ * ActivityMetricsChart 组件
+ *
+ * 使用 Chart.js 展示活动指标的历史趋势图
+ *
+ * 功能特性:
+ * - 支持折线图 (line) 和面积图 (area) 两种类型
+ * - 自动适配时间轴显示
+ * - 支持 Tooltip 显示详细数值
+ * - 响应式布局
+ * - 平滑的曲线动画
+ *
+ * 使用示例:
+ * ```tsx
+ * <ActivityMetricsChart
+ *   type="area"
+ *   data={historyData}
+ *   title="Docker Hub 拉取量"
+ *   currentValue={2250}
+ *   icon="🐳"
+ *   color="#4ECDC4"
+ *   dataKey="dockerHub"
+ *   valueKey="pullCount"
+ * />
+ * ```
+ */
+import { useEffect, useRef } from 'react';
+import {
+  Chart,
+  LineController,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler,
+  TimeScale,
+} from 'chart.js';
+import 'chartjs-adapter-date-fns';
+
+// 注册 Chart.js 模块
+Chart.register(
+  LineController,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+  Filler,
+  TimeScale
+);
+
+/** 图表类型 */
+export type ChartType = 'line' | 'area';
+
+/**
+ * 历史数据条目
+ *
+ * @property date - ISO 8601 格式的日期字符串
+ * @property dockerHub - Docker Hub 指标数据
+ * @property clarity - Microsoft Clarity 指标数据
+ */
+export interface HistoryEntry {
+  date: string;
+  dockerHub?: {
+    pullCount: number;
+  };
+  clarity?: {
+    activeUsers: number;
+    activeSessions: number;
+  };
+}
+
+/**
+ * ActivityMetricsChart 组件属性
+ *
+ * @property type - 图表类型：'line' 折线图 或 'area' 面积图
+ * @property data - 历史数据数组
+ * @property title - 图表标题
+ * @property currentValue - 当前数值（显示在图表上方）
+ * @property icon - 图标 emoji
+ * @property color - 图表颜色（十六进制）
+ * @property dataKey - 数据键名：'dockerHub' 或 'clarity'
+ * @property valueKey - 数值键名：'pullCount', 'activeUsers' 或 'activeSessions'
+ */
+export interface ActivityMetricsChartProps {
+  type: ChartType;
+  data: HistoryEntry[];
+  title: string;
+  currentValue: number;
+  icon: string;
+  color: string;
+  dataKey: 'dockerHub' | 'clarity';
+  valueKey: 'pullCount' | 'activeUsers' | 'activeSessions';
+}
+
+interface ChartDataPoint {
+  x: Date;
+  y: number;
+}
+
+/**
+ * 格式化数值为中文显示
+ */
+function formatValue(val: number): string {
+  if (val >= 100000000) return `${(val / 100000000).toFixed(1)}亿`;
+  if (val >= 10000) return `${(val / 10000).toFixed(1)}万`;
+  return val.toString();
+}
+
+/**
+ * 活动指标图表组件
+ */
+export default function ActivityMetricsChart({
+  type,
+  data,
+  title,
+  currentValue,
+  icon,
+  color,
+  dataKey,
+  valueKey,
+}: ActivityMetricsChartProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const chartRef = useRef<Chart | null>(null);
+
+  useEffect(() => {
+    if (!canvasRef.current) return;
+
+    // 销毁旧图表
+    if (chartRef.current) {
+      chartRef.current.destroy();
+    }
+
+    // 准备图表数据
+    const chartData: ChartDataPoint[] = data
+      .filter((entry) => {
+        const entryData = dataKey === 'dockerHub' ? entry.dockerHub : entry.clarity;
+        const value = entryData?.[valueKey as keyof typeof entryData];
+        return value !== undefined && Number(value) > 0;
+      })
+      .map((entry) => {
+        const entryData = dataKey === 'dockerHub' ? entry.dockerHub : entry.clarity;
+        const value = entryData?.[valueKey as keyof typeof entryData];
+        return {
+          x: new Date(entry.date),
+          y: Number(value) || 0,
+        };
+      })
+      .sort((a, b) => a.x.getTime() - b.x.getTime());
+
+    // 如果没有数据，显示空状态
+    if (chartData.length === 0) {
+      return;
+    }
+
+    // 获取颜色配置
+    const borderColor = color;
+    const backgroundColor = type === 'area'
+      ? `${color}33` // 添加透明度
+      : 'transparent';
+
+    // 创建图表
+    const ctx = canvasRef.current.getContext('2d');
+    if (!ctx) return;
+
+    chartRef.current = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: chartData.map((d) => d.x),
+        datasets: [
+          {
+            label: title,
+            data: chartData.map((d) => d.y),
+            borderColor,
+            backgroundColor,
+            fill: type === 'area',
+            tension: 0.4, // 平滑曲线
+            pointRadius: chartData.length > 15 ? 2 : 4,
+            pointHoverRadius: 6,
+            pointBackgroundColor: borderColor,
+            pointBorderColor: '#ffffff',
+            pointBorderWidth: 2,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            enabled: true,
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            titleColor: '#ffffff',
+            bodyColor: '#ffffff',
+            padding: 12,
+            cornerRadius: 8,
+            displayColors: false,
+            callbacks: {
+              title: (items) => {
+                if (items.length > 0) {
+                  const date = new Date(items[0].label);
+                  return date.toLocaleDateString('zh-CN', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  });
+                }
+                return '';
+              },
+              label: (item) => {
+                return `${title}: ${formatValue(item.raw as number)}`;
+              },
+            },
+          },
+        },
+        scales: {
+          x: {
+            type: 'time',
+            time: {
+              unit: chartData.length > 30 ? 'week' : 'day',
+              displayFormats: {
+                day: 'MM/dd',
+                week: 'MM/dd',
+              },
+            },
+            grid: {
+              display: false,
+            },
+            ticks: {
+              color: 'rgba(255, 255, 255, 0.6)',
+              maxRotation: 0,
+              maxTicksLimit: 8,
+            },
+          },
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(255, 255, 255, 0.1)',
+            },
+            ticks: {
+              color: 'rgba(255, 255, 255, 0.6)',
+              callback: (value) => formatValue(value as number),
+            },
+          },
+        },
+      },
+    });
+
+    // 清理函数
+    return () => {
+      if (chartRef.current) {
+        chartRef.current.destroy();
+        chartRef.current = null;
+      }
+    };
+  }, [data, type, color, dataKey, valueKey, title]);
+
+  // 检查是否有有效数据
+  const hasData = data.some((entry) => {
+    const entryData = dataKey === 'dockerHub' ? entry.dockerHub : entry.clarity;
+    const value = entryData?.[valueKey as keyof typeof entryData];
+    return value !== undefined && Number(value) > 0;
+  });
+
+  if (!hasData) {
+    return (
+      <div
+        style={{
+          background: 'rgba(255, 255, 255, 0.05)',
+          borderRadius: '16px',
+          padding: '24px',
+          minHeight: '300px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+        }}
+      >
+        <div style={{ fontSize: '32px', marginBottom: '12px' }}>{icon}</div>
+        <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '14px' }}>{title}</div>
+        <div style={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: '12px', marginTop: '8px' }}>
+          暂无历史数据
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      style={{
+        background: 'rgba(255, 255, 255, 0.05)',
+        borderRadius: '16px',
+        padding: '24px',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+      }}
+    >
+      {/* 标题和当前值 */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ fontSize: '24px' }}>{icon}</span>
+          <span style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '14px' }}>{title}</span>
+        </div>
+        <div style={{ color: color, fontSize: '24px', fontWeight: 'bold' }}>
+          {formatValue(currentValue)}
+        </div>
+      </div>
+
+      {/* 图表 */}
+      <div style={{ height: '200px', position: 'relative' }}>
+        <canvas ref={canvasRef} />
+      </div>
+    </div>
+  );
+}

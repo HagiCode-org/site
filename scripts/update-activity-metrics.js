@@ -279,6 +279,63 @@ function loadExistingData() {
 }
 
 /**
+ * 更新历史数据
+ * - 检查同一天是否已有记录，如有则更新
+ * - 添加新记录
+ * - 移除 90 天前的数据
+ */
+function updateHistoryData(existingData, newMetrics) {
+  // 初始化历史数组
+  const history = existingData?.history || [];
+
+  // 获取今天的日期字符串（只比较年-月-日）
+  const today = new Date().toISOString().split('T')[0];
+
+  // 检查今天是否已有记录
+  const existingEntryIndex = history.findIndex(entry =>
+    entry.date.startsWith(today)
+  );
+
+  const newHistoryEntry = {
+    date: new Date().toISOString(),
+    dockerHub: { pullCount: newMetrics.dockerHub.pullCount },
+    clarity: { activeUsers: newMetrics.clarity.activeUsers, activeSessions: newMetrics.clarity.activeSessions }
+  };
+
+  if (existingEntryIndex >= 0) {
+    // 更新现有记录
+    console.log(`  ↻ 更新今天的历史记录`);
+    history[existingEntryIndex] = {
+      ...history[existingEntryIndex],
+      ...newHistoryEntry,
+      dockerHub: { pullCount: newMetrics.dockerHub.pullCount },
+      clarity: {
+        activeUsers: newMetrics.clarity.activeUsers,
+        activeSessions: newMetrics.clarity.activeSessions
+      }
+    };
+  } else {
+    // 添加新记录
+    console.log(`  + 添加新的历史记录`);
+    history.push(newHistoryEntry);
+  }
+
+  // 移除 90 天前的数据
+  const ninetyDaysAgo = new Date();
+  ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+  const cutoffDate = ninetyDaysAgo.toISOString().split('T')[0];
+
+  const originalLength = history.length;
+  const filteredHistory = history.filter(entry => entry.date.split('T')[0] >= cutoffDate);
+
+  if (filteredHistory.length < originalLength) {
+    console.log(`  - 移除 ${originalLength - filteredHistory.length} 条过期记录（90天前）`);
+  }
+
+  return filteredHistory;
+}
+
+/**
  * 将指标数据写入 JSON 文件
  */
 /**
@@ -299,6 +356,18 @@ function writeMetricsData(data) {
     if (data.clarity.activeUsers === 0 && data.clarity.activeSessions === 0) {
       console.log('\n⚠ Clarity 数据为空，保留现有数据');
       data.clarity = existingData.clarity;
+
+      // 同时保留历史中的 clarity 数据
+      if (data.history && existingData.history) {
+        const today = new Date().toISOString().split('T')[0];
+        const dataTodayEntry = data.history.find(entry => entry.date.startsWith(today));
+        const existingTodayEntry = existingData.history.find(entry => entry.date.startsWith(today));
+
+        if (dataTodayEntry && existingTodayEntry &&
+            (existingTodayEntry.clarity.activeUsers > 0 || existingTodayEntry.clarity.activeSessions > 0)) {
+          dataTodayEntry.clarity = existingTodayEntry.clarity;
+        }
+      }
     }
   }
 
@@ -331,12 +400,52 @@ async function main() {
   const dockerHubMetrics = await fetchDockerHubMetrics();
   const clarityMetrics = await fetchClarityMetrics();
 
+  // 加载现有数据（包含历史）
+  const existingData = loadExistingData();
+
+  // 获取今天的日期字符串（只比较年-月-日）
+  const today = new Date().toISOString().split('T')[0];
+
   // 准备输出数据
   const metricsData = {
     lastUpdated: new Date().toISOString(),
     dockerHub: dockerHubMetrics,
     clarity: clarityMetrics,
   };
+
+  // 更新历史数据
+  if (existingData) {
+    console.log(`\n正在更新历史数据...`);
+    metricsData.history = updateHistoryData(existingData, metricsData);
+    console.log(`  当前历史记录数: ${metricsData.history.length}`);
+  } else {
+    // 首次运行，创建第一条历史记录
+    console.log(`\n首次运行，创建历史数据...`);
+    metricsData.history = [{
+      date: new Date().toISOString(),
+      dockerHub: { pullCount: metricsData.dockerHub.pullCount },
+      clarity: {
+        activeUsers: metricsData.clarity.activeUsers,
+        activeSessions: metricsData.clarity.activeSessions
+      }
+    }];
+  }
+
+  // 检查并保留历史中今天的 clarity 数据（如果 API 返回为 0）
+  if (metricsData.history && metricsData.history.length > 0) {
+    const todayEntry = metricsData.history.find(entry => entry.date.startsWith(today));
+    if (todayEntry) {
+      // 如果 API 返回的 clarity 数据为 0，但历史中有有效数据，保留历史数据
+      if (metricsData.clarity.activeUsers === 0 && metricsData.clarity.activeSessions === 0) {
+        if (existingData?.history) {
+          const existingTodayEntry = existingData.history.find(entry => entry.date.startsWith(today));
+          if (existingTodayEntry?.clarity?.activeUsers > 0 || existingTodayEntry?.clarity?.activeSessions > 0) {
+            todayEntry.clarity = existingTodayEntry.clarity;
+          }
+        }
+      }
+    }
+  }
 
   // 写入文件
   writeMetricsData(metricsData);

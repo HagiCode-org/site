@@ -2,12 +2,13 @@
  * ActivityMetricsSection 组件
  * 展示活动指标数据 (Docker Hub 拉取量、Clarity 活跃用户等)
  */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { withBasePath } from '../../utils/path';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import styles from './ActivityMetricsSection.module.css';
+import ActivityMetricsChart, { type HistoryEntry } from './ActivityMetricsChart';
 
 interface ActivityMetricsData {
   lastUpdated: string;
@@ -20,7 +21,10 @@ interface ActivityMetricsData {
     activeSessions: number;
     dateRange: string;
   };
+  history?: HistoryEntry[];
 }
+
+type TimeRange = 7 | 30 | 90;
 
 interface ActivityMetricCardProps {
   icon: string;
@@ -227,6 +231,7 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
   const [data, setData] = useState<ActivityMetricsData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const [timeRange, setTimeRange] = useState<TimeRange>(7);
 
   useEffect(() => {
     // 从 public 目录加载数据
@@ -247,6 +252,31 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
         setIsLoading(false);
       });
   }, []);
+
+  // 根据时间范围过滤历史数据
+  const filteredHistory = useMemo(() => {
+    if (!data?.history) return [];
+
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - timeRange);
+
+    return data.history.filter((entry) => new Date(entry.date) >= cutoffDate);
+  }, [data?.history, timeRange]);
+
+  // 时间范围选择器
+  const TimeRangeSelector = () => (
+    <div className={styles.timeRangeSelector}>
+      {([7, 30, 90] as TimeRange[]).map((days) => (
+        <button
+          key={days}
+          className={`${styles.timeRangeButton} ${timeRange === days ? styles.active : ''}`}
+          onClick={() => setTimeRange(days)}
+        >
+          {days}天
+        </button>
+      ))}
+    </div>
+  );
 
   // 错误状态
   if (error) {
@@ -312,6 +342,40 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
     },
   ];
 
+  // 定义图表配置
+  const chartConfigs = [
+    {
+      type: 'area' as const,
+      title: t('activityMetrics.dockerHub'),
+      currentValue: currentData.dockerHub.pullCount,
+      icon: '🐳',
+      color: '#4ECDC4',
+      dataKey: 'dockerHub' as const,
+      valueKey: 'pullCount' as const,
+    },
+    {
+      type: 'line' as const,
+      title: t('activityMetrics.activeUsers'),
+      currentValue: currentData.clarity.activeUsers,
+      icon: '👥',
+      color: '#6C5CE7',
+      dataKey: 'clarity' as const,
+      valueKey: 'activeUsers' as const,
+    },
+    {
+      type: 'line' as const,
+      title: t('activityMetrics.activeSessions'),
+      currentValue: currentData.clarity.activeSessions,
+      icon: '💬',
+      color: '#FD79A8',
+      dataKey: 'clarity' as const,
+      valueKey: 'activeSessions' as const,
+    },
+  ];
+
+  // 检查是否有历史数据
+  const hasHistoryData = data?.history && data.history.length > 0;
+
   return (
     <section className={styles.activityMetricsSection}>
       {/* 动画背景网格 */}
@@ -326,11 +390,39 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
           </p>
         </div>
 
+        {/* 时间范围选择器 */}
+        {hasHistoryData && !isLoading && (
+          <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'flex-end' }}>
+            <TimeRangeSelector />
+          </div>
+        )}
+
         <div className={styles.metricsGrid}>
           <AnimatePresence mode="wait">
             {!hasRealData && !isLoading ? (
               <EmptyState />
+            ) : isLoading ? (
+              // 加载状态显示骨架屏
+              [...Array(3)].map((_, i) => (
+                <MetricCardSkeleton key={i} />
+              ))
+            ) : hasHistoryData ? (
+              // 显示图表
+              chartConfigs.map((config, index) => (
+                <ActivityMetricsChart
+                  key={config.title}
+                  type={config.type}
+                  data={filteredHistory}
+                  title={config.title}
+                  currentValue={config.currentValue}
+                  icon={config.icon}
+                  color={config.color}
+                  dataKey={config.dataKey}
+                  valueKey={config.valueKey}
+                />
+              ))
             ) : (
+              // 没有历史数据时显示静态卡片（向后兼容）
               metrics.map((metric) => (
                 <ActivityMetricCard key={metric.title} {...metric} />
               ))
