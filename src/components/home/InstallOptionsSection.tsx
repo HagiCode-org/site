@@ -87,8 +87,8 @@ const itemVariants = {
 };
 
 export default function InstallOptionsSection() {
-  const { t } = useTranslation('en');
   const { locale } = useLocale();
+  const { t } = useTranslation(locale);
 
   const options: InstallOption[] = [
     {
