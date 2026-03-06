@@ -589,141 +589,6 @@
 }
 
 /* ==========================================================================
-   QQ GROUP CARD (Glassmorphism + Tech)
-   ========================================================================== */
-
-.qqGroupCard {
-  position: relative;
-  background: var(--color-surface-glass);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  padding: 2rem;
-  max-width: 480px;
-  margin: 0 auto;
-  box-shadow: var(--shadow-lg);
-  transition: all var(--duration-normal) var(--ease-out);
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.qqGroupCard::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--gradient-primary);
-  opacity: 0;
-  transition: opacity var(--duration-normal) var(--ease-out);
-  z-index: 0;
-}
-
-.qqGroupCard:hover {
-  border-color: var(--color-primary);
-  transform: translateY(-4px);
-}
-
-.qqGroupCard:hover::before {
-  opacity: 0.05;
-}
-
-[data-theme='dark'] .qqGroupCard {
-  background: rgba(20, 25, 50, 0.7);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-[data-theme='dark'] .qqGroupCard:hover {
-  border-color: var(--color-secondary);
-  box-shadow:
-    0 15px 50px rgba(0, 0, 0, 0.7),
-    0 0 25px rgba(0, 255, 255, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-}
-
-/* 卡片发光效果 */
-.cardGlow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 255, 255, 0.15), transparent 50%);
-  opacity: 0;
-  transition: opacity var(--duration-normal) var(--ease-out);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.qqGroupCard:hover .cardGlow {
-  opacity: 1;
-}
-
-.qqGroupIcon {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 1rem;
-  background: var(--gradient-primary);
-  border-radius: var(--radius-lg);
-  color: white;
-  box-shadow: 0 4px 15px rgba(0, 128, 255, 0.3);
-}
-
-[data-theme='dark'] .qqGroupIcon {
-  box-shadow: 0 4px 15px rgba(0, 128, 255, 0.4);
-}
-
-.qqGroupIcon svg {
-  width: 28px;
-  height: 28px;
-}
-
-.qqGroupTitle {
-  position: relative;
-  z-index: 2;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-text);
-  margin: 0 0 0.5rem 0;
-  font-family: var(--font-display);
-}
-
-.qqGroupDescription {
-  position: relative;
-  z-index: 2;
-  color: var(--color-text-secondary);
-  margin: 0 0 1.5rem 0;
-  font-size: 0.9375rem;
-  line-height: 1.6;
-}
-
-.groupNumber {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 1.125rem;
-  color: var(--color-primary);
-  font-weight: 700;
-  margin-top: 0.25rem;
-}
-
-[data-theme='dark'] .groupNumber {
-  color: var(--color-secondary);
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-}
-
-.qqGroupCard .buttonSmall {
-  position: relative;
-  z-index: 2;
-  width: auto;
-  min-width: fit-content;
-  justify-content: center;
-}
-
-/* ==========================================================================
    VALUE CARDS - 核心价值展示
    ========================================================================== */
 
@@ -929,10 +794,6 @@
 }
 
 @media (max-width: 480px) {
-  .qqGroupCard {
-    padding: 1.5rem;
-  }
-
   .hudTopLeft,
   .hudTopRight,
   .hudBottomLeft,
@@ -951,8 +812,7 @@
   .techOrb2,
   .heroLogo,
   .titleGradient,
-  .cursor,
-  .qqGroupCard {
+  .cursor {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

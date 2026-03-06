@@ -77,6 +77,12 @@
     "pause": "暂停",
     "fullscreen": "全屏"
   },
+  "architectureDiagram": {
+    "title": "工作架构",
+    "titleEn": "Workflow Architecture",
+    "subtitle": "HagiCode 如何连接多 Agent 与多模型",
+    "subtitleEn": "How HagiCode connects multiple Agents and Models"
+  },
   "footer": {
     "copyright": "© 2024 HagiCode. 保留所有权利。"
   },

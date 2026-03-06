@@ -93,33 +93,6 @@ function ArrowRightIcon({ className = '' }: IconProps) {
   );
 }
 
-/**
- * External Link Icon SVG
- */
-function ExternalLinkIcon({ className = '' }: IconProps) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" />
-      <path d="M15 3H21V9" />
-      <path d="M10 14L21 3" />
-    </svg>
-  );
-}
-
-/**
- * Users Icon SVG
- */
-function UsersIcon({ className = '' }: IconProps) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M17 21V19C17 16.7909 15.2091 15 13 15H5C2.79086 15 1 16.7909 1 19V21" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M23 21V19C22.9993 17.1784 21.7658 15.5499 19.98 14.89" />
-      <path d="M16 3.13C17.7898 3.79003 19.0263 5.41998 19.0263 7.24C19.0263 9.06002 17.7898 10.69 16 11.35" />
-    </svg>
-  );
-}
-
 // 动画变体
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -437,32 +410,6 @@ export default function HeroSection({
           <span className={styles.techTag}>Claude AI</span>
           <span className={styles.techTag}>OpenSpec</span>
           <span className={styles.techTag}>GLM Pro</span>
-        </motion.div>
-
-        {/* QQ 群卡片 - 玻璃态设计 */}
-        <motion.div
-          className={styles.qqGroupCard}
-          whileHover={{ y: -4 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className={styles.cardGlow} />
-          <div className={styles.qqGroupIcon}>
-            <UsersIcon />
-          </div>
-          <h3 className={styles.qqGroupTitle}>{t('hero.qqGroup.title')}</h3>
-          <p className={styles.qqGroupDescription}>
-            {t('hero.qqGroup.description')}
-            <span className={styles.groupNumber}>610394020</span>
-          </p>
-          <a
-            href="https://qm.qq.com/q/Wk6twXHdyS"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.buttonSmall}
-          >
-            <span>{t('hero.qqGroup.joinButton')}</span>
-            <ExternalLinkIcon />
-          </a>
         </motion.div>
       </motion.div>
     </section>
