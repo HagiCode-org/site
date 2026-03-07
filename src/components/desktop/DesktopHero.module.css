@@ -22,6 +22,20 @@
   margin-right: auto;
 }
 
+.macNotice {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  max-width: 900px;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 177, 66, 0.45);
+  background: rgba(255, 177, 66, 0.12);
+  color: #FFDFA7;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: center;
+}
+
 /* ==========================================================================
    按钮组布局
    ========================================================================== */

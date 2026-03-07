@@ -8,6 +8,8 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import styles from './InstallButton.module.css';
 import { withBasePath } from '@/utils/path';
+import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
+import { MAC_DOWNLOAD_DISABLED_NOTICE } from '@/constants/downloadMessages';
 import type { DesktopVersion, PlatformGroup } from '@/lib/shared/desktop';
 import { getDesktopVersionData } from '@/lib/shared/version-manager';
 import { getAssetTypeLabel, detectOS, getArchitectureLabel, PLATFORM_ICONS, getFileExtension } from '@/lib/shared/desktop-utils';
@@ -139,10 +141,23 @@ export default function InstallButton({
   const buttonId = useMemo(() => `install-button-${Math.random().toString(36).substring(2, 11)}`, []);
 
   // 转换平台数据格式
-  const platformData = useMemo(() => {
+  const allPlatformData = useMemo(() => {
     if (!currentPlatforms || currentPlatforms.length === 0) return [];
     return convertPlatformGroups(currentPlatforms);
   }, [currentPlatforms]);
+
+  const platformData = useMemo(() => {
+    if (FEATURE_MAC_DOWNLOAD_ENABLED) {
+      return allPlatformData;
+    }
+
+    return allPlatformData.filter((platform) => platform.platform !== 'macos');
+  }, [allPlatformData]);
+
+  const macPlatform = useMemo(
+    () => allPlatformData.find((platform) => platform.platform === 'macos') || null,
+    [allPlatformData]
+  );
 
   // 根据用户系统设置默认下载链接
   const currentUrl = useMemo(() => {
@@ -151,6 +166,11 @@ export default function InstallButton({
     }
 
     const userOS = detectOS();
+
+    if (!FEATURE_MAC_DOWNLOAD_ENABLED && userOS === 'macos') {
+      return withBasePath('/desktop');
+    }
+
     const userPlatform = platformData.find(p => p.platform === userOS);
 
     if (userPlatform) {
@@ -349,6 +369,30 @@ export default function InstallButton({
                   })}
                 </React.Fragment>
               ))}
+              {!FEATURE_MAC_DOWNLOAD_ENABLED && macPlatform && (
+                <>
+                  <div
+                    className={`${styles.dropdownGroupLabel} ${styles['platform--macos']}`}
+                    role="presentation"
+                  >
+                    <span className={styles.platformIcon}>{PLATFORM_ICONS.macos}</span>
+                    <span className={styles.platformName}>{macPlatform.platformLabel}</span>
+                    {currentVersion?.version && (
+                      <span className={styles.versionTag}>{currentVersion.version}</span>
+                    )}
+                  </div>
+                  <li role="none">
+                    <span
+                      className={`${styles.dropdownItem} ${styles.dropdownItemDisabled}`}
+                      role="option"
+                      aria-disabled="true"
+                    >
+                      <span className={styles.dropdownItemLabel}>macOS</span>
+                      <span className={styles.dropdownItemDisabledNotice}>{MAC_DOWNLOAD_DISABLED_NOTICE}</span>
+                    </span>
+                  </li>
+                </>
+              )}
               {/* Docker 版本选项 - 带分隔线 */}
               <li role="separator" className={styles.dropdownSeparator} />
               <li role="none">

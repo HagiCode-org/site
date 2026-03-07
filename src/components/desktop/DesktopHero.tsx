@@ -10,6 +10,8 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { getDesktopVersionData, type DesktopVersionData } from '@/lib/shared/version-manager';
 import { detectOS, getAssetTypeLabel, groupAssetsByPlatform } from '@/lib/shared/desktop-utils';
+import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
+import { MAC_DOWNLOAD_DISABLED_NOTICE } from '@/constants/downloadMessages';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import type { DesktopVersion, AssetType } from '@/lib/shared/types/desktop';
@@ -160,6 +162,20 @@ export default function DesktopHero(props: DesktopHeroProps) {
     return convertVersionToPlatformDownloads(currentVersion);
   }, [versionData, currentChannel]);
 
+  const visiblePlatformData = useMemo(() => {
+    if (FEATURE_MAC_DOWNLOAD_ENABLED) {
+      return platformData;
+    }
+    return platformData.filter((platform) => platform.platform !== 'macos');
+  }, [platformData]);
+
+  const showMacDownloadNotice = useMemo(() => {
+    if (FEATURE_MAC_DOWNLOAD_ENABLED) {
+      return false;
+    }
+    return platformData.some((platform) => platform.platform === 'macos');
+  }, [platformData]);
+
   const toggleDropdown = useCallback((platform: 'windows' | 'macos' | 'linux') => {
     setOpenDropdown(prev => prev === platform ? null : platform);
   }, []);
@@ -240,80 +256,87 @@ export default function DesktopHero(props: DesktopHeroProps) {
           </div>
         </div>
 
-        {currentVersion && platformData.length > 0 && (
+        {currentVersion && (visiblePlatformData.length > 0 || showMacDownloadNotice) && (
           <>
             {/* 统一下载按钮组 */}
             <div className={styles.downloadSection}>
-              <div className={styles.buttonGroup}>
-                {platformData.map((platform) => {
-                  const isPrimary = userOS !== 'unknown' && platform.platform === userOS;
-                  const isOpen = openDropdown === platform.platform;
+              {visiblePlatformData.length > 0 && (
+                <div className={styles.buttonGroup}>
+                  {visiblePlatformData.map((platform) => {
+                    const isPrimary = userOS !== 'unknown' && platform.platform === userOS;
+                    const isOpen = openDropdown === platform.platform;
 
-                  // 获取该平台的默认下载选项（优先推荐版本）
-                  const defaultOption = platform.options[0];
+                    // 获取该平台的默认下载选项（优先推荐版本）
+                    const defaultOption = platform.options[0];
 
-                  return (
-                    <div
-                      key={platform.platform}
-                      className={`${styles.platformButton} ${isPrimary ? styles.platformButtonPrimary : styles.platformButtonSecondary}`}
-                      aria-expanded={isOpen}
-                    >
-                      <div className={styles.splitButtonContainer}>
-                        {/* 主下载按钮 - 左侧 */}
-                        <a
-                          href={defaultOption.url}
-                          className={styles.btnDownloadMain}
-                          download
-                          onClick={() => setOpenDropdown(null)}
-                          aria-label={t('desktopHero.download.ariaLabel', { platform: platform.platformLabel })}
-                        >
-                          <span className={styles.platformButtonLabel}>
-                            {isPrimary && <span className={styles.recommendedBadge}>{t('desktopHero.download.recommended')}</span>}
-                            <span className={styles.platformName}>{platform.platformLabel}</span>
-                          </span>
-                        </a>
+                    return (
+                      <div
+                        key={platform.platform}
+                        className={`${styles.platformButton} ${isPrimary ? styles.platformButtonPrimary : styles.platformButtonSecondary}`}
+                        aria-expanded={isOpen}
+                      >
+                        <div className={styles.splitButtonContainer}>
+                          {/* 主下载按钮 - 左侧 */}
+                          <a
+                            href={defaultOption.url}
+                            className={styles.btnDownloadMain}
+                            download
+                            onClick={() => setOpenDropdown(null)}
+                            aria-label={t('desktopHero.download.ariaLabel', { platform: platform.platformLabel })}
+                          >
+                            <span className={styles.platformButtonLabel}>
+                              {isPrimary && <span className={styles.recommendedBadge}>{t('desktopHero.download.recommended')}</span>}
+                              <span className={styles.platformName}>{platform.platformLabel}</span>
+                            </span>
+                          </a>
 
-                        {/* 下拉切换按钮 - 右侧 */}
-                        <button
-                          type="button"
-                          className={styles.btnDropdownToggle}
-                          onClick={() => toggleDropdown(platform.platform)}
-                          aria-expanded={isOpen}
-                          aria-haspopup="listbox"
-                          aria-label={t('desktopHero.selectOtherVersions', { platform: platform.platformLabel })}
-                        >
-                          <ChevronDownIcon />
-                        </button>
+                          {/* 下拉切换按钮 - 右侧 */}
+                          <button
+                            type="button"
+                            className={styles.btnDropdownToggle}
+                            onClick={() => toggleDropdown(platform.platform)}
+                            aria-expanded={isOpen}
+                            aria-haspopup="listbox"
+                            aria-label={t('desktopHero.selectOtherVersions', { platform: platform.platformLabel })}
+                          >
+                            <ChevronDownIcon />
+                          </button>
 
-                        {/* 下拉菜单 */}
-                        {isOpen && (
-                          <div className={styles.dropdownMenu}>
-                            <div
-                              className={`${styles.dropdownGroupLabel} ${styles[`platform--${platform.platform}`]}`}
-                            >
-                              <span className={styles.platformLabel}>{platform.platformLabel}</span>
+                          {/* 下拉菜单 */}
+                          {isOpen && (
+                            <div className={styles.dropdownMenu}>
+                              <div
+                                className={`${styles.dropdownGroupLabel} ${styles[`platform--${platform.platform}`]}`}
+                              >
+                                <span className={styles.platformLabel}>{platform.platformLabel}</span>
+                              </div>
+                              <div className={styles.dropdownList}>
+                                {platform.options.map((option, idx) => (
+                                  <a
+                                    key={idx}
+                                    href={option.url}
+                                    className={styles.dropdownItem}
+                                    download
+                                    onClick={() => setOpenDropdown(null)}
+                                  >
+                                    <span className={styles.dropdownItemLabel}>{getAssetTypeLabel(option.assetType)}</span>
+                                    <DownloadIcon />
+                                  </a>
+                                ))}
+                              </div>
                             </div>
-                            <div className={styles.dropdownList}>
-                              {platform.options.map((option, idx) => (
-                                <a
-                                  key={idx}
-                                  href={option.url}
-                                  className={styles.dropdownItem}
-                                  download
-                                  onClick={() => setOpenDropdown(null)}
-                                >
-                                  <span className={styles.dropdownItemLabel}>{getAssetTypeLabel(option.assetType)}</span>
-                                  <DownloadIcon />
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        )}
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              )}
+              {showMacDownloadNotice && (
+                <p className={styles.macNotice} role="status">
+                  ⚠ {MAC_DOWNLOAD_DISABLED_NOTICE}
+                </p>
+              )}
             </div>
 
             {/* 版本信息 */}

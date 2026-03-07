@@ -267,6 +267,20 @@
   color: var(--color-text);
 }
 
+.dropdownItemDisabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  background: rgba(148, 163, 184, 0.1);
+  color: var(--color-text-muted);
+  border: 1px dashed rgba(148, 163, 184, 0.35);
+}
+
+.dropdownItemDisabledNotice {
+  font-size: 0.75rem;
+  color: #f59e0b;
+  font-weight: 600;
+}
+
 .dropdownItemLabel {
   flex: 1;
   display: flex;
@@ -378,6 +392,12 @@
   border-color: rgba(255, 255, 255, 0.12);
 }
 
+[data-theme='dark'] .dropdownItemDisabled {
+  background: rgba(51, 65, 85, 0.5);
+  border-color: rgba(148, 163, 184, 0.3);
+  color: #94A3B8;
+}
+
 /* 暗色主题下的平台色栏 - 更柔和 */
 [data-theme='dark'] .platform--windows::before {
   background: linear-gradient(180deg, #0066CC 0%, #004C99 100%);
@@ -431,6 +451,12 @@
   background: #521818;
   background-color: #521818;
   border-color: rgba(255, 193, 7, 0.4);
+}
+
+[data-theme='lunar-new-year'] .dropdownItemDisabled {
+  background: rgba(120, 53, 15, 0.35);
+  border-color: rgba(251, 191, 36, 0.35);
+  color: #FCD34D;
 }
 
 /* 新年主题下的平台色栏 - 金色系 */
