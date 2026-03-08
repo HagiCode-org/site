@@ -11,7 +11,7 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import { getDesktopVersionData, type DesktopVersionData } from '@/lib/shared/version-manager';
 import { detectOS, getAssetTypeLabel, groupAssetsByPlatform } from '@/lib/shared/desktop-utils';
 import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
-import { MAC_DOWNLOAD_DISABLED_NOTICE } from '@/constants/downloadMessages';
+import { MAC_DOWNLOAD_DISABLED_NOTICE, MAC_DOWNLOAD_DISABLED_NOTICE_EN } from '@/constants/downloadMessages';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import type { DesktopVersion, AssetType } from '@/lib/shared/types/desktop';
@@ -183,6 +183,9 @@ export default function DesktopHero(props: DesktopHeroProps) {
   const currentVersion = getCurrentVersion();
   const hasChannels = versionData?.channels.stable.latest || versionData?.channels.beta.latest;
   const isBeta = currentChannel === 'beta';
+  const macDownloadNotice = locale === 'en'
+    ? `For macOS users: ${MAC_DOWNLOAD_DISABLED_NOTICE_EN}`
+    : `Mac 用户：${MAC_DOWNLOAD_DISABLED_NOTICE}`;
 
   if (loading) {
     return (
@@ -334,7 +337,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
               )}
               {showMacDownloadNotice && (
                 <p className={styles.macNotice} role="status">
-                  ⚠ {MAC_DOWNLOAD_DISABLED_NOTICE}
+                  ⚠ {macDownloadNotice}
                 </p>
               )}
             </div>

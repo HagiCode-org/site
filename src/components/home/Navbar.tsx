@@ -185,7 +185,7 @@ export default function Navbar({
         {/* Desktop Navigation */}
         <nav className={styles.navDesktop}>
           {/* CTA 按钮 - 放在导航链接之前 */}
-          <InstallButton variant="compact" />
+          <InstallButton variant="compact" locale={locale} />
 
           {navLinks.map((item) => (
             <a
@@ -235,6 +235,7 @@ export default function Navbar({
           <InstallButton
             variant="compact"
             className={styles.mobileCtaButton}
+            locale={locale}
           />
 
           {navLinks.map((item) => (

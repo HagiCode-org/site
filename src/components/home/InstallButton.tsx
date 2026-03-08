@@ -9,7 +9,8 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import styles from './InstallButton.module.css';
 import { withBasePath } from '@/utils/path';
 import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
-import { MAC_DOWNLOAD_DISABLED_NOTICE } from '@/constants/downloadMessages';
+import { getLinkWithLocale } from '@/lib/shared/links';
+import { MAC_DOWNLOAD_DISABLED_NOTICE, MAC_DOWNLOAD_DISABLED_NOTICE_EN } from '@/constants/downloadMessages';
 import type { DesktopVersion, PlatformGroup } from '@/lib/shared/desktop';
 import { getDesktopVersionData } from '@/lib/shared/version-manager';
 import { getAssetTypeLabel, detectOS, getArchitectureLabel, PLATFORM_ICONS, getFileExtension } from '@/lib/shared/desktop-utils';
@@ -67,6 +68,11 @@ interface InstallButtonProps {
    * - beta: 测试版
    */
   channel?: 'stable' | 'beta';
+
+  /**
+   * 页面语言环境
+   */
+  locale?: 'zh-CN' | 'en';
 }
 
 /**
@@ -94,7 +100,8 @@ export default function InstallButton({
   variant = 'full',
   showDropdown = true,
   className = '',
-  channel = 'stable'
+  channel = 'stable',
+  locale = 'zh-CN'
 }: InstallButtonProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [currentVersion, setCurrentVersion] = useState<DesktopVersion | null>(version);
@@ -158,6 +165,10 @@ export default function InstallButton({
     () => allPlatformData.find((platform) => platform.platform === 'macos') || null,
     [allPlatformData]
   );
+  const containerUrl = useMemo(() => getLinkWithLocale('container', locale), [locale]);
+  const macDisabledNotice = locale === 'en' ? MAC_DOWNLOAD_DISABLED_NOTICE_EN : MAC_DOWNLOAD_DISABLED_NOTICE;
+  const containerDeploymentLabel = locale === 'en' ? 'Container Deployment' : '容器部署';
+  const goToContainerLabel = locale === 'en' ? 'Go to Container page' : '前往 Container 页面';
 
   // 根据用户系统设置默认下载链接
   const currentUrl = useMemo(() => {
@@ -388,8 +399,18 @@ export default function InstallButton({
                       aria-disabled="true"
                     >
                       <span className={styles.dropdownItemLabel}>macOS</span>
-                      <span className={styles.dropdownItemDisabledNotice}>{MAC_DOWNLOAD_DISABLED_NOTICE}</span>
+                      <span className={styles.dropdownItemDisabledNotice}>{macDisabledNotice}</span>
                     </span>
+                  </li>
+                  <li role="none">
+                    <a
+                      href={containerUrl}
+                      className={styles.dropdownItem}
+                      role="option"
+                      onClick={handleLinkClick}
+                    >
+                      <span className={styles.dropdownItemLabel}>{goToContainerLabel}</span>
+                    </a>
                   </li>
                 </>
               )}
@@ -397,7 +418,7 @@ export default function InstallButton({
               <li role="separator" className={styles.dropdownSeparator} />
               <li role="none">
                 <a
-                  href={withBasePath('/container')}
+                  href={containerUrl}
                   className={`${styles.dropdownItem} ${styles.dropdownItemDocker}`}
                   role="option"
                   onClick={handleLinkClick}
@@ -405,7 +426,7 @@ export default function InstallButton({
                   <svg className={styles.dockerIcon} viewBox="0 0 24 24" fill="currentColor">
                     <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186h-2.12a.186.186 0 00-.185.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z"/>
                   </svg>
-                  <span className={styles.dropdownItemLabel}>容器部署</span>
+                  <span className={styles.dropdownItemLabel}>{containerDeploymentLabel}</span>
                   <svg className={styles.externalIcon} viewBox="0 0 24 24" fill="none">
                     <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M15 3H21V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
