@@ -22,6 +22,7 @@
     "regenerate:product-images": "bash scripts/generate-image.sh --batch-config scripts/product-images-batch.json --force"
   },
   "dependencies": {
+    "@lobehub/icons": "^5.0.1",
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/react": "^4.4.2",
