@@ -1,14 +1,14 @@
 import { AssetType } from '../shared/types/desktop';
 
 export const WEBSITE_TRACKING_EVENTS = {
-  downloadDesktop: 'download-desktop',
-  openDesktopPage: 'open-desktop-page',
-  openContainerPage: 'open-container-page',
-  downloadDesktopWindows: 'download-desktop-windows',
-  downloadDesktopMacOS: 'download-desktop-macos',
-  downloadDesktopLinux: 'download-desktop-linux',
-  openContainerDeploymentGuide: 'open-container-deployment-guide',
-  openContainerSourceRepo: 'open-container-source-repo',
+  downloadDesktop: 'download_desktop',
+  openDesktopPage: 'open_desktop_page',
+  openContainerPage: 'open_container_page',
+  downloadDesktopWindows: 'download_desktop_windows',
+  downloadDesktopMacOS: 'download_desktop_macos',
+  downloadDesktopLinux: 'download_desktop_linux',
+  openContainerDeploymentGuide: 'open_container_deployment_guide',
+  openContainerSourceRepo: 'open_container_source_repo',
 } as const;
 
 export type WebsiteTrackingEventName =
