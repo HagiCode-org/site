@@ -1,5 +1,5 @@
 ---
-import Clarity from "@/components/Clarity.astro";
+import AnalyticsScripts from "@/components/AnalyticsScripts.astro";
 import '@/styles/homepage.css';
 import '@/styles/container.css';
 import Navbar from '@/components/home/Navbar';
@@ -464,7 +464,7 @@ try {
                   </ul>
                 </li>
               </ol>
-              <p set:html={t('container.faq.q6.help')}></p>
+              <p>If the issue persists, please check the <a href={dockerComposeDocsUrl} data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">detailed documentation</a> or contact technical support.</p>
             </div>
           </details>
         </div>
@@ -475,10 +475,10 @@ try {
         <h2>{t('container.cta.title')}</h2>
         <p>{t('container.cta.subtitle')}</p>
         <div class="cta-buttons">
-          <a href={dockerComposeDocsUrl} class="btn btn-primary">
+          <a href={dockerComposeDocsUrl} class="btn btn-primary" data-track-event="open-container-deployment-guide" data-track-source="container-cta-primary">
             {t('container.cta.button')}
           </a>
-          <a href="https://github.com/HagiCode-org/site" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <a href="https://github.com/HagiCode-org/site" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-track-event="open-container-source-repo" data-track-source="container-cta-secondary">
             {t('container.cta.github')}
           </a>
         </div>
@@ -487,7 +487,6 @@ try {
 
     <Footer locale="en" client:load />
 
-    <!-- Microsoft Clarity analytics -->
-    <Clarity />
+    <AnalyticsScripts />
   </body>
 </html>

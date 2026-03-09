@@ -15,6 +15,8 @@ import { MAC_DOWNLOAD_DISABLED_NOTICE, MAC_DOWNLOAD_DISABLED_NOTICE_EN } from '@
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import type { DesktopVersion, AssetType } from '@/lib/shared/types/desktop';
+import { getDesktopDownloadEventName } from '@/lib/analytics/events';
+import { trackEvent } from '@/lib/analytics/tracker';
 import styles from './DesktopHero.module.css';
 
 // 下载选项接口
@@ -284,7 +286,12 @@ export default function DesktopHero(props: DesktopHeroProps) {
                             href={defaultOption.url}
                             className={styles.btnDownloadMain}
                             download
-                            onClick={() => setOpenDropdown(null)}
+                            onClick={() => {
+                              trackEvent(getDesktopDownloadEventName(defaultOption.assetType), {
+                                source: `desktop-hero-${platform.platform}-primary`,
+                              });
+                              setOpenDropdown(null);
+                            }}
                             aria-label={t('desktopHero.download.ariaLabel', { platform: platform.platformLabel })}
                           >
                             <span className={styles.platformButtonLabel}>
@@ -320,7 +327,12 @@ export default function DesktopHero(props: DesktopHeroProps) {
                                     href={option.url}
                                     className={styles.dropdownItem}
                                     download
-                                    onClick={() => setOpenDropdown(null)}
+                                    onClick={() => {
+                                      trackEvent(getDesktopDownloadEventName(option.assetType), {
+                                        source: `desktop-hero-${platform.platform}-dropdown`,
+                                      });
+                                      setOpenDropdown(null);
+                                    }}
                                   >
                                     <span className={styles.dropdownItemLabel}>{getAssetTypeLabel(option.assetType)}</span>
                                     <DownloadIcon />

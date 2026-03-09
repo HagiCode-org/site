@@ -6,7 +6,9 @@ import { motion } from 'framer-motion';
 import styles from './InstallOptionsSection.module.css';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
-import { getLink, getLinkWithLocale } from '@/lib/shared/links';
+import { getLinkWithLocale } from '@/lib/shared/links';
+import { WEBSITE_TRACKING_EVENTS } from '@/lib/analytics/events';
+import { trackEvent } from '@/lib/analytics/tracker';
 
 // 定义选项类型
 interface InstallOption {
@@ -189,6 +191,14 @@ export default function InstallOptionsSection() {
               <a
                 href={option.ctaLink}
                 className={`${styles.ctaButton} ${option.popular ? styles.ctaButtonPrimary : styles.ctaButtonSecondary}`}
+                onClick={() =>
+                  trackEvent(
+                    option.id === 'desktop'
+                      ? WEBSITE_TRACKING_EVENTS.openDesktopPage
+                      : WEBSITE_TRACKING_EVENTS.openContainerPage,
+                    { source: `install-options-${option.id}` },
+                  )
+                }
               >
                 <span>{option.ctaText}</span>
                 <ArrowRightIcon />

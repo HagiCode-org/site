@@ -1,5 +1,5 @@
 ---
-import Clarity from "@/components/Clarity.astro";
+import AnalyticsScripts from "@/components/AnalyticsScripts.astro";
 // 导入首页样式系统
 import '@/styles/homepage.css';
 // 导入 Container 页面专属样式
@@ -460,7 +460,7 @@ docker-compose up -d</code></pre>
                   </ul>
                 </li>
               </ol>
-              <p>如果问题仍未解决，请查看<a href={dockerComposeDocsUrl}>详细文档</a>或联系技术支持。</p>
+              <p>如果问题仍未解决，请查看<a href={dockerComposeDocsUrl} data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">详细文档</a>或联系技术支持。</p>
             </div>
           </details>
         </div>
@@ -471,10 +471,10 @@ docker-compose up -d</code></pre>
         <h2>开始使用 Docker Compose Builder</h2>
         <p>最简单、最推荐的容器部署方式</p>
         <div class="cta-buttons">
-          <a href={dockerComposeDocsUrl} class="btn btn-primary">
+          <a href={dockerComposeDocsUrl} class="btn btn-primary" data-track-event="open-container-deployment-guide" data-track-source="container-cta-primary">
             前往部署指南
           </a>
-          <a href="https://github.com/HagiCode-org/site" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <a href="https://github.com/HagiCode-org/site" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-track-event="open-container-source-repo" data-track-source="container-cta-secondary">
             GitHub 仓库
           </a>
         </div>
@@ -483,7 +483,6 @@ docker-compose up -d</code></pre>
 
     <Footer locale="zh-CN" client:load />
 
-    <!-- Microsoft Clarity 分析 -->
-    <Clarity />
+    <AnalyticsScripts />
   </body>
 </html>
