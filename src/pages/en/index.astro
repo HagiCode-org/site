@@ -8,6 +8,7 @@ import HeroSection from '../../components/home/HeroSection';
 import SocialProofSection from '../../components/home/SocialProofSection';
 import ActivityMetricsSection from '../../components/home/ActivityMetricsSection';
 import FeaturesShowcase from '../../components/home/FeaturesShowcase';
+import CopilotCliSection from '../../components/home/CopilotCliSection';
 import ShowcaseSection from '../../components/home/ShowcaseSection';
 import ArchitectureDiagram from '../../components/home/ArchitectureDiagram';
 import VideoShowcase from '../../components/home/VideoShowcase';
@@ -15,9 +16,7 @@ import InstallOptionsSection from '../../components/home/InstallOptionsSection';
 import Footer from '../../components/home/Footer';
 import LunarNewYearDecorations from '../../components/home/LunarNewYearDecorations';
 import { LunarNewYearCardGroup } from '../../components/home/LunarNewYearCard';
-import Clarity from '../../components/Clarity.astro';
-// import BaiduAnalytics from '../../components/BaiduAnalytics.astro'; // Disabled, migrated to 51LA
-import Analytics51LA from '../../components/51LAAnalytics.astro';
+import AnalyticsScripts from '../../components/AnalyticsScripts.astro';
 // 导入首页样式
 import '../../styles/homepage.css';
 
@@ -212,6 +211,9 @@ try {
       <!-- Features Showcase -->
       <FeaturesShowcase locale="en" client:load />
 
+      <!-- Copilot CLI Integration Entry -->
+      <CopilotCliSection locale="en" client:load />
+
       <!-- Showcase Section -->
       <ShowcaseSection locale="en" client:load />
 
@@ -230,13 +232,6 @@ try {
     <!-- Footer -->
     <Footer locale="en" client:load />
 
-    <!-- Microsoft Clarity 分析 -->
-    <Clarity />
-
-    <!-- 51LA Analytics 分析 -->
-    <Analytics51LA />
-
-    <!-- Baidu Analytics 分析 (Disabled, migrated to 51LA) -->
-    <!-- <BaiduAnalytics /> -->
+    <AnalyticsScripts />
   </body>
 </html>
