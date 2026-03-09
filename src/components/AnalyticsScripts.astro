@@ -1,0 +1,13 @@
+---
+import Analytics51LA from './51LAAnalytics.astro';
+import Clarity from './Clarity.astro';
+---
+
+<Clarity />
+<Analytics51LA />
+
+<script>
+  import { initializeWebsiteAnalytics } from '@/lib/analytics/tracker';
+
+  initializeWebsiteAnalytics();
+</script>

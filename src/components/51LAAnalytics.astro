@@ -31,7 +31,10 @@ if (import.meta.env.VITE_51LA_DEBUG) {
   <>
     <script is:inline charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
     <script is:inline define:vars={{laId}}>
-      LA.init({id:laId,ck:laId,autoTrack:true,hashMode:true,screenRecord:true})
+      if (typeof LA !== 'undefined' && typeof LA.init === 'function') {
+        LA.init({id:laId,ck:laId,autoTrack:true,hashMode:true,screenRecord:true});
+        window.dispatchEvent(new Event('hagicode:analytics-ready'));
+      }
     </script>
   </>
 )}
