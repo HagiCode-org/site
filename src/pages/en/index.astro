@@ -8,7 +8,6 @@ import HeroSection from '../../components/home/HeroSection';
 import SocialProofSection from '../../components/home/SocialProofSection';
 import ActivityMetricsSection from '../../components/home/ActivityMetricsSection';
 import FeaturesShowcase from '../../components/home/FeaturesShowcase';
-import CopilotCliSection from '../../components/home/CopilotCliSection';
 import ShowcaseSection from '../../components/home/ShowcaseSection';
 import ArchitectureDiagram from '../../components/home/ArchitectureDiagram';
 import VideoShowcase from '../../components/home/VideoShowcase';
@@ -26,8 +25,8 @@ import { setDesktopServerData } from "@/lib/shared/version-manager";
 import type { DesktopVersion, PlatformGroup } from "@/lib/shared/desktop";
 
 // 页面元数据
-const title = 'Hagicode - Smart · Convenient · Fun AI Coding Assistant';
-const description = 'Redefine the coding experience with AI. OpenSpec workflows, multi-threaded session management, and achievement systems make coding more efficient and fun';
+const title = 'Hagicode - Smart · Efficient · Fun AI Coding Assistant';
+const description = 'Redefine coding with AI. OpenSpec workflows, multi-agent multi-instance execution, and Hero Dungeon gameplay make building faster and more engaging';
 
 // 获取当前语言环境
 const currentLocale = 'en';
@@ -212,7 +211,6 @@ try {
       <FeaturesShowcase locale="en" client:load />
 
       <!-- Copilot CLI Integration Entry -->
-      <CopilotCliSection locale="en" client:load />
 
       <!-- Showcase Section -->
       <ShowcaseSection locale="en" client:load />
