@@ -83,8 +83,13 @@ repos/site/
 ├── static/                 # 公共文件（根路径服务）
 ├── scripts/                # 构建脚本
 │   ├── copy-version-index.js
+│   ├── generate-image.mjs
+│   ├── generate-image.sh   # 兼容转发到 generate-image.mjs
+│   ├── image-base-prompt.json
+│   ├── product-images-batch.json
+│   ├── prompts/            # ImgBin 消费的 prompt.json 目录
 │   ├── update-activity-metrics.js
-│   └── generate-image.sh
+│   └── ...
 ├── astro.config.mjs        # Astro 配置
 ├── package.json            # 项目依赖
 ├── tsconfig.json           # TypeScript 配置
@@ -146,6 +151,11 @@ VITE_CLARITY_DEBUG=false
 # 51LA Analytics
 LI_51LA_ID=L6b88a5yK4h2Xnci
 LI_51LA_DEBUG=false
+
+# ImgBin-backed image generation
+IMGBIN_WORKDIR=../imgbin
+IMGBIN_EXECUTABLE=../imgbin/dist/cli.js
+IMGBIN_LIBRARY_ROOT=.imgbin-library
 
 # CI 环境（启用链接验证）
 CI=true
@@ -321,11 +331,13 @@ npm run build
 ### update-activity-metrics.js
 更新活动指标数据（用于 ActivityMetricsSection）
 
-### generate-image.sh
-生成 OG 图片和产品图片
+### generate-image.mjs
+通过 ImgBin 生成站点图片，并保持默认手绘风格与 Claude metadata 流程
 - 单张生成: `npm run generate:image`
 - 批量生成: `npm run generate:product-images`
 - 强制重新生成: `npm run regenerate:product-images`
+- 默认通过 `../imgbin/dist/cli.js` 调用 ImgBin，可通过 `IMGBIN_EXECUTABLE` / `IMGBIN_WORKDIR` 覆盖
+- GPT Image 1.5 仅负责出图，metadata 仍依赖 Claude 分析步骤
 
 ## Troubleshooting
 
@@ -333,7 +345,7 @@ npm run build
 
 1. **端口冲突**: 使用 `PORT_WEBSITE` 环境变量更改端口
 2. **构建失败**: 检查 Node 版本（>=18.0）和 npm 版本（>=9.0）
-3. **图片生成失败**: 确保 Sharp 依赖正确安装
+3. **图片生成失败**: 确保 `repos/imgbin` 已构建，或正确设置 `IMGBIN_EXECUTABLE` / `IMGBIN_WORKDIR`
 4. **链接检查超时**: 本地开发禁用，CI 中启用
 
 ## References

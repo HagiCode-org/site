@@ -182,6 +182,51 @@
 
 ---
 
+## AI 图片生成
+
+站点当前的图片生成流程已经切换为 **ImgBin-backed workflow**：
+
+- `npm run generate:image`：单张生成
+- `npm run generate:product-images`：批量生成
+- `npm run regenerate:product-images`：强制重新生成
+
+### 环境变量
+
+通常需要在 `repos/imgbin/.env` 中配置：
+
+```bash
+IMGBIN_IMAGE_API_URL="https://<resource>.openai.azure.com/openai/deployments/<deployment>/images/generations?api-version=<version>"
+IMGBIN_IMAGE_API_KEY="<azure-api-key>"
+IMGBIN_ANALYSIS_API_MODEL="glm-5"
+```
+
+也支持旧变量名：
+
+```bash
+AZURE_ENDPOINT="https://<resource>.openai.azure.com/openai/deployments/<deployment>/images/generations?api-version=<version>"
+AZURE_API_KEY="<azure-api-key>"
+```
+
+### 使用说明
+
+```bash
+cd repos/site
+
+# 单张生成
+npm run generate:image -- --prompt "A cheerful hand-drawn AI coding scene" --output public/img/generated/example.png --force
+
+# 批量生成
+npm run generate:product-images
+```
+
+说明：
+
+- GPT Image 只负责出图
+- metadata 仍由 Claude-compatible 本地分析步骤生成
+- 默认风格继续沿用当前手绘风格 prompt 体系
+
+---
+
 ## 有趣 · 游戏化机制
 
 <table>
