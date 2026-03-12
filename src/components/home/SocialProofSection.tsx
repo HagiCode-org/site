@@ -36,10 +36,10 @@ export default function SocialProofSection({ locale: propLocale }: { locale?: 'z
 
   // 产品特性亮点 - 展示核心功能
   const highlights = [
-    { icon: '⚡', title: t('socialProof.highlights.multiThread'), description: t('socialProof.highlights.multiThreadDesc') },
+    { icon: '⚡', title: t('socialProof.highlights.multiAgent'), description: t('socialProof.highlights.multiAgentDesc') },
     { icon: '🔒', title: t('socialProof.highlights.privacy'), description: t('socialProof.highlights.privacyDesc') },
     { icon: '📋', title: t('socialProof.highlights.openspec'), description: t('socialProof.highlights.openspecDesc') },
-    { icon: '🎯', title: t('socialProof.highlights.achievements'), description: t('socialProof.highlights.achievementsDesc') },
+    { icon: '🎮', title: t('socialProof.highlights.heroDungeons'), description: t('socialProof.highlights.heroDungeonsDesc') },
   ];
 
   // 技术标识徽章

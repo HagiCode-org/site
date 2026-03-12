@@ -5,8 +5,8 @@
  * 展示 Hagicode 的核心功能界面截图,包括:
  * - 亮色/暗色主题主界面
  * - Token 消耗报告
- * - 效率提升报告
- * - 成就系统
+ * - 多 Agent 并行工作台
+ * - Hero Dungeon / Hero Battle 当前界面
  */
 import { withBasePath } from '../../utils/path';
 import { useTranslation } from '@/i18n/ui';
@@ -41,6 +41,7 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: 'zh-C
   const { t } = useTranslation(locale);
 
   // 产品截图数据,按推荐顺序排列
+  // 这里统一使用当前仍存在的工作台/副本/战报视图。
   const screenshots: ScreenshotItem[] = [
     {
       src: withBasePath('/img/home/亮色主题主界面.png'),
@@ -61,22 +62,22 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: 'zh-C
       alt: t('showcase.screenshots.tokenReport.alt')
     },
     {
-      src: withBasePath('/img/home/使用 AI 的效率提升报告.png'),
-      title: t('showcase.screenshots.efficiencyReport.title'),
-      description: t('showcase.screenshots.efficiencyReport.description'),
-      alt: t('showcase.screenshots.efficiencyReport.alt')
+      src: withBasePath('/img/home/multi-agent-workspace.svg'),
+      title: t('showcase.screenshots.multiAgentWorkspace.title'),
+      description: t('showcase.screenshots.multiAgentWorkspace.description'),
+      alt: t('showcase.screenshots.multiAgentWorkspace.alt')
     },
     {
-      src: withBasePath('/img/home/每日成就报告.png'),
-      title: t('showcase.screenshots.dailyAchievements.title'),
-      description: t('showcase.screenshots.dailyAchievements.description'),
-      alt: t('showcase.screenshots.dailyAchievements.alt')
+      src: withBasePath('/img/home/hero-dungeon-workspace.svg'),
+      title: t('showcase.screenshots.heroDungeonWorkspace.title'),
+      description: t('showcase.screenshots.heroDungeonWorkspace.description'),
+      alt: t('showcase.screenshots.heroDungeonWorkspace.alt')
     },
     {
-      src: withBasePath('/img/home/每日编写代码获得的成就.png'),
-      title: t('showcase.screenshots.codingAchievements.title'),
-      description: t('showcase.screenshots.codingAchievements.description'),
-      alt: t('showcase.screenshots.codingAchievements.alt')
+      src: withBasePath('/img/home/hero-battle-report.svg'),
+      title: t('showcase.screenshots.heroBattleReport.title'),
+      description: t('showcase.screenshots.heroBattleReport.description'),
+      alt: t('showcase.screenshots.heroBattleReport.alt')
     }
   ];
 

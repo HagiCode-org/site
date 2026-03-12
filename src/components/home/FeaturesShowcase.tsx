@@ -1,6 +1,6 @@
 /**
  * FeaturesShowcase 组件 - 科技感设计风格
- * 展示产品三大特性: 智能、便捷、有趣
+ * 展示产品三大特性: 智能、高效、有趣
  * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
  *
  * 优化要点:
@@ -24,6 +24,10 @@ type Variants = {
 // Icon props type
 interface IconProps {
   className?: string;
+}
+
+interface CliIconProps {
+  providerKey: string;
 }
 
 // SVG Icons
@@ -84,6 +88,103 @@ const workflowIcons: Record<string, React.ReactElement> = {
   docs: <TargetIcon className={styles.workflowIcon} />,
   archive: <AwardIcon className={styles.workflowIcon} />,
 };
+
+type GalleryAsset = {
+  src: string;
+  label: string;
+};
+
+const humanizeGalleryLabel = (fileName: string) => fileName
+  .replace(/\.(webp|png|jpe?g)$/i, '')
+  .split('-')
+  .map((part) => (part ? part[0].toUpperCase() + part.slice(1) : part))
+  .join(' ');
+
+const buildGalleryAssets = (group: 'dungeons' | 'heroes', files: string[]): GalleryAsset[] => (
+  files.map((file) => ({
+    src: `/img/home/interesting/${group}/${file}`,
+    label: humanizeGalleryLabel(file),
+  }))
+);
+
+const interestingDungeonGallery = buildGalleryAssets('dungeons', [
+  'docs-editorial-still-life.webp',
+  'proposal-ff-futurist-poster.webp',
+  'annotation-notebook-scrapbook.webp',
+  'proposal-name-badge-forge.webp',
+  'proposal-new-fantasy-sketch.webp',
+  'index-blueprint-network.webp',
+  'proposal-apply-cyber-forge.webp',
+  'description-soft-editorial-room.webp',
+  'title-minimal-editorial.webp',
+  'proposal-explore-abstract-atlas.webp',
+]);
+
+const interestingHeroGallery = buildGalleryAssets('heroes', [
+  'cat-line-03.webp',
+  'cat-ink-09.webp',
+  'cat-sticker-02.webp',
+  'cat-sticker-08.webp',
+  'thorn-06.webp',
+  'cat-paper-04.webp',
+  'tide-09.webp',
+  'royal-10.webp',
+  'cat-oil-09.webp',
+  'aurora-04.webp',
+]);
+
+function SupportedCliIcon({ providerKey }: CliIconProps) {
+  switch (providerKey) {
+    case 'ClaudeCodeCli':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 6.5C6.62 6.5 5.5 7.62 5.5 9v6c0 1.38 1.12 2.5 2.5 2.5h1.25a2.25 2.25 0 0 0 2.25-2.25v-6.5A2.25 2.25 0 0 0 9.25 6.5H8Z" fill="currentColor" />
+          <path d="M16 6.5c1.38 0 2.5 1.12 2.5 2.5v6c0 1.38-1.12 2.5-2.5 2.5h-1.25a2.25 2.25 0 0 1-2.25-2.25v-6.5a2.25 2.25 0 0 1 2.25-2.25H16Z" fill="currentColor" opacity="0.75" />
+        </svg>
+      );
+    case 'CodexCli':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3.5 19 7.5v9L12 20.5 5 16.5v-9L12 3.5Z" stroke="currentColor" strokeWidth="2" />
+          <path d="m8.5 10.2 3.5-2.2 3.5 2.2v3.6L12 16l-3.5-2.2v-3.6Z" fill="currentColor" opacity="0.45" />
+        </svg>
+      );
+    case 'GitHubCopilot':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="9" cy="11" r="3" fill="currentColor" />
+          <circle cx="15" cy="11" r="3" fill="currentColor" opacity="0.7" />
+          <path d="M7 17c1.4-1.33 2.96-2 5-2 2.04 0 3.6.67 5 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case 'OpenCodeCli':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="m9 7-4 5 4 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="m15 7 4 5-4 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="m13.5 5.5-3 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case 'CodebuddyCli':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="4.5" y="7" width="6.5" height="10" rx="3.25" stroke="currentColor" strokeWidth="2" />
+          <rect x="13" y="7" width="6.5" height="10" rx="3.25" stroke="currentColor" strokeWidth="2" />
+          <path d="M11 12h2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case 'IFlowCli':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 9.5c1.8-2 4.1-3 7-3 2.4 0 4.72.64 7 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <path d="M5 14c1.8-2 4.1-3 7-3 2.4 0 4.72.64 7 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.78" />
+          <path d="M5 18.5c1.8-2 4.1-3 7-3 2.4 0 4.72.64 7 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.55" />
+        </svg>
+      );
+    default:
+      return <span className={styles.supportedProviderFallback}>CLI</span>;
+  }
+}
 
 /**
  * 智能特性区域 - OpenSpec 工作流
@@ -257,42 +358,88 @@ function SmartFeature() {
 }
 
 /**
- * 便捷特性区域 - 多线程操作
- * 优化: 增强线程可视化、添加暂停交互、改进数据对比展示
+ * 高效特性区域 - 多 Agent / 多实例并行
+ * 优化: 让并行能力从抽象效率数字变成可读的 Agent x Instance 视图
  */
 function ConvenientFeature() {
   const { locale } = useLocale();
   const { t } = useTranslation(locale);
   const [animateBars, setAnimateBars] = useState(true);
 
-  // 设置为初始状态即为动画完成
   useEffect(() => {
     setAnimateBars(true);
   }, []);
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.4, 0, 0.2, 1],
-        staggerChildren: 0.1,
-      },
-    },
-  };
 
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   };
 
+  const agentLanes = [
+    {
+      key: 'claude',
+      icon: <BrainIcon className={styles.agentLaneIcon} />,
+      name: t('features.convenient.agentMatrix.agents.claude.name'),
+      role: t('features.convenient.agentMatrix.agents.claude.role'),
+      instances: [
+        t('features.convenient.agentMatrix.agents.claude.instances.0'),
+        t('features.convenient.agentMatrix.agents.claude.instances.1'),
+        t('features.convenient.agentMatrix.agents.claude.instances.2'),
+      ],
+    },
+    {
+      key: 'codex',
+      icon: <ZapIcon className={styles.agentLaneIcon} />,
+      name: t('features.convenient.agentMatrix.agents.codex.name'),
+      role: t('features.convenient.agentMatrix.agents.codex.role'),
+      instances: [
+        t('features.convenient.agentMatrix.agents.codex.instances.0'),
+        t('features.convenient.agentMatrix.agents.codex.instances.1'),
+        t('features.convenient.agentMatrix.agents.codex.instances.2'),
+      ],
+    },
+    {
+      key: 'router',
+      icon: <TargetIcon className={styles.agentLaneIcon} />,
+      name: t('features.convenient.agentMatrix.agents.router.name'),
+      role: t('features.convenient.agentMatrix.agents.router.role'),
+      instances: [
+        t('features.convenient.agentMatrix.agents.router.instances.0'),
+        t('features.convenient.agentMatrix.agents.router.instances.1'),
+        t('features.convenient.agentMatrix.agents.router.instances.2'),
+      ],
+    },
+  ];
+
+  const supportedProviders = [
+    {
+      key: 'ClaudeCodeCli',
+      name: t('features.convenient.agentMatrix.supportedNames.names.0'),
+    },
+    {
+      key: 'CodexCli',
+      name: t('features.convenient.agentMatrix.supportedNames.names.1'),
+    },
+    {
+      key: 'GitHubCopilot',
+      name: t('features.convenient.agentMatrix.supportedNames.names.2'),
+    },
+    {
+      key: 'CodebuddyCli',
+      name: t('features.convenient.agentMatrix.supportedNames.names.3'),
+    },
+    {
+      key: 'OpenCodeCli',
+      name: t('features.convenient.agentMatrix.supportedNames.names.4'),
+    },
+    {
+      key: 'IFlowCli',
+      name: t('features.convenient.agentMatrix.supportedNames.names.5'),
+    },
+  ];
+
   return (
-    <motion.div
-      className={`${styles.featureZone} ${styles.convenient}`}
-    >
-      {/* HUD 角标装饰 */}
+    <motion.div className={`${styles.featureZone} ${styles.convenient}`}>
       <div className={styles.hudCorner} data-position="top-left" />
       <div className={styles.hudCorner} data-position="top-right" />
       <div className={styles.hudCorner} data-position="bottom-left" />
@@ -313,7 +460,7 @@ function ConvenientFeature() {
                 <motion.div
                   className={styles.quotaFill}
                   style={{ background: 'linear-gradient(135deg, #666, #999)' }}
-                  animate={{ width: animateBars ? '20%' : '0%' }}
+                  animate={{ width: animateBars ? '22%' : '0%' }}
                   transition={{ duration: 1, delay: 0.3 }}
                 />
                 <div className={styles.quotaGlow} />
@@ -352,46 +499,73 @@ function ConvenientFeature() {
             <span className={styles.boostValue}>{t('features.convenient.boostValue')}</span>
           </motion.div>
 
-          <p className={styles.featureDesc}>
-            {t('features.convenient.description')}
-          </p>
+          <p className={styles.featureDesc}>{t('features.convenient.description')}</p>
         </div>
 
-        <div
-          className={styles.threadVisualization}
-        >
-          <div className={styles.threadContainer}>
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className={styles.thread}>
-                <div className={styles.threadTask}>
-                  <ZapIcon className={styles.threadIcon} />
-                  <span className={styles.threadLabel}>Task {i}</span>
+        <div className={styles.parallelShowcase}>
+          <div className={styles.parallelHeader}>
+            <span className={styles.parallelTitle}>{t('features.convenient.agentMatrix.title')}</span>
+            <span className={styles.parallelBadge}>{t('features.convenient.agentMatrix.badge')}</span>
+          </div>
+
+          <div className={styles.supportedProvidersPanel}>
+            <div className={styles.supportedProvidersTitle}>
+              {t('features.convenient.agentMatrix.supportedNames.title')}
+            </div>
+            <div className={styles.supportedProvidersGrid}>
+              {supportedProviders.map((provider) => (
+                <span key={provider.key} className={styles.supportedProviderPill}>
+                  <span className={styles.supportedProviderIcon} data-provider={provider.key} aria-hidden="true">
+                    <SupportedCliIcon providerKey={provider.key} />
+                  </span>
+                  <span className={styles.supportedProviderName}>{provider.name}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.agentMatrix}>
+            {agentLanes.map((lane, index) => (
+              <motion.div
+                key={lane.key}
+                className={styles.agentLane}
+                data-agent={lane.key}
+                initial="hidden"
+                animate="visible"
+                variants={itemVariants}
+                transition={{ delay: 0.15 * index }}
+              >
+                <div className={styles.agentInfo}>
+                  <div className={styles.agentIconBadge}>{lane.icon}</div>
+                  <div>
+                    <div className={styles.agentName}>{lane.name}</div>
+                    <div className={styles.agentRole}>{lane.role}</div>
+                  </div>
                 </div>
-                <motion.div
-                  className={styles.threadProgress}
-                  style={{ background: 'var(--gradient-primary)' }}
-                  animate={['20%', '100%', '20%']}
-                  transition={{
-                    duration: 2 + Math.random() * 0.3,
-                    delay: 0.3 * i,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                >
-                  <div className={styles.threadGlow} />
-                </motion.div>
-              </div>
+
+                <div className={styles.instanceStrip}>
+                  {lane.instances.map((instance) => (
+                    <motion.span
+                      key={instance}
+                      className={styles.instancePill}
+                      animate={{ opacity: [0.82, 1, 0.82] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                    >
+                      {instance}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.div>
             ))}
           </div>
+
           <motion.div
-            className={styles.threadLabel}
-            animate={{
-              opacity: [1, 0.7, 1],
-            }}
+            className={styles.agentStatus}
+            animate={{ opacity: [1, 0.72, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
             <span className={styles.statusDot} />
-            {t('features.convenient.multiThread')}
+            {t('features.convenient.agentMatrix.status')}
           </motion.div>
         </div>
       </div>
@@ -400,52 +574,89 @@ function ConvenientFeature() {
 }
 
 /**
- * 有趣特性区域 - 游戏化
- * 优化: 增强成就卡片交互、添加闪烁动画、改进评级展示
+ * 有趣特性区域 - Hero Dungeon 游戏化工作流
  */
 function InterestingFeature() {
   const { locale } = useLocale();
   const { t } = useTranslation(locale);
-  const containerVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.4, 0, 0.2, 1],
-        staggerChildren: 0.08,
-      },
-    },
-  };
-
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   };
+  const dungeonGalleryLoop = [...interestingDungeonGallery, ...interestingDungeonGallery];
+  const heroGalleryLoop = [...interestingHeroGallery, ...interestingHeroGallery];
 
-  const achievements = [
-    { icon: <ZapIcon className="" />, name: t('features.interesting.achievements.firstFlight'), rarity: 'common', glow: 'rgba(156, 163, 175, 0.5)' },
-    { icon: <BrainIcon className="" />, name: t('features.interesting.achievements.codeMaster'), rarity: 'rare', glow: 'rgba(59, 130, 246, 0.5)' },
-    { icon: <FlameIcon className="" />, name: t('features.interesting.achievements.streak'), rarity: 'epic', glow: 'rgba(168, 85, 247, 0.5)' },
-    { icon: <TrophyIcon className="" />, name: t('features.interesting.achievements.legendary'), rarity: 'legendary', glow: 'rgba(245, 158, 11, 0.5)' },
-    { icon: <TargetIcon className="" />, name: t('features.interesting.achievements.precision'), rarity: 'epic', glow: 'rgba(168, 85, 247, 0.5)' },
-    { icon: <AwardIcon className="" />, name: t('features.interesting.achievements.fullAttendance'), rarity: 'rare', glow: 'rgba(59, 130, 246, 0.5)' },
+  const dungeonCards = [
+    {
+      key: 'proposal',
+      icon: <TargetIcon className={styles.gameIcon} />,
+      title: t('features.interesting.dungeonCards.proposal.title'),
+      desc: t('features.interesting.dungeonCards.proposal.desc'),
+      status: t('features.interesting.dungeonCards.proposal.status'),
+    },
+    {
+      key: 'autotask',
+      icon: <ZapIcon className={styles.gameIcon} />,
+      title: t('features.interesting.dungeonCards.autotask.title'),
+      desc: t('features.interesting.dungeonCards.autotask.desc'),
+      status: t('features.interesting.dungeonCards.autotask.status'),
+    },
+    {
+      key: 'prompt',
+      icon: <FlameIcon className={styles.gameIcon} />,
+      title: t('features.interesting.dungeonCards.prompt.title'),
+      desc: t('features.interesting.dungeonCards.prompt.desc'),
+      status: t('features.interesting.dungeonCards.prompt.status'),
+    },
+  ];
+
+  const rosterHeroes = [
+    {
+      key: 'strategist',
+      icon: <BrainIcon className={styles.gameIcon} />,
+      name: t('features.interesting.roster.heroes.strategist.name'),
+      role: t('features.interesting.roster.heroes.strategist.role'),
+    },
+    {
+      key: 'runner',
+      icon: <ZapIcon className={styles.gameIcon} />,
+      name: t('features.interesting.roster.heroes.runner.name'),
+      role: t('features.interesting.roster.heroes.runner.role'),
+    },
+    {
+      key: 'artist',
+      icon: <AwardIcon className={styles.gameIcon} />,
+      name: t('features.interesting.roster.heroes.artist.name'),
+      role: t('features.interesting.roster.heroes.artist.role'),
+    },
+  ];
+
+  const battleMetrics = [
+    {
+      key: 'dungeons',
+      value: t('features.interesting.battleReport.metrics.dungeons.value'),
+      label: t('features.interesting.battleReport.metrics.dungeons.label'),
+    },
+    {
+      key: 'level',
+      value: t('features.interesting.battleReport.metrics.level.value'),
+      label: t('features.interesting.battleReport.metrics.level.label'),
+    },
+    {
+      key: 'xp',
+      value: t('features.interesting.battleReport.metrics.xp.value'),
+      label: t('features.interesting.battleReport.metrics.xp.label'),
+    },
   ];
 
   return (
-    <motion.div
-      className={`${styles.featureZone} ${styles.interesting}`}
-    >
-      {/* HUD 角标装饰 */}
+    <motion.div className={`${styles.featureZone} ${styles.interesting}`}>
       <div className={styles.hudCorner} data-position="top-left" />
       <div className={styles.hudCorner} data-position="top-right" />
       <div className={styles.hudCorner} data-position="bottom-left" />
       <div className={styles.hudCorner} data-position="bottom-right" />
 
-      {/* 粒子装饰 */}
       <div className={styles.particleDecoration} />
-
       <div className={styles.featurePattern} />
       <div className={styles.featureContent}>
         <div className={styles.featureText}>
@@ -457,10 +668,10 @@ function InterestingFeature() {
 
           <div className={styles.gameFeatures}>
             {[
-              { icon: <TrophyIcon className={styles.gameIcon} />, label: t('features.interesting.features.achievements.label'), desc: t('features.interesting.features.achievements.desc') },
-              { icon: <TargetIcon className={styles.gameIcon} />, label: t('features.interesting.features.rating.label'), desc: t('features.interesting.features.rating.desc') },
-              { icon: <FlameIcon className={styles.gameIcon} />, label: t('features.interesting.features.gameUI.label'), desc: t('features.interesting.features.gameUI.desc') },
-            ].map((feature, index) => (
+              { icon: <TrophyIcon className={styles.gameIcon} />, label: t('features.interesting.features.dungeons.label'), desc: t('features.interesting.features.dungeons.desc') },
+              { icon: <TargetIcon className={styles.gameIcon} />, label: t('features.interesting.features.captains.label'), desc: t('features.interesting.features.captains.desc') },
+              { icon: <FlameIcon className={styles.gameIcon} />, label: t('features.interesting.features.battle.label'), desc: t('features.interesting.features.battle.desc') },
+            ].map((feature) => (
               <motion.div
                 key={feature.label}
                 className={styles.gameFeature}
@@ -474,81 +685,118 @@ function InterestingFeature() {
             ))}
           </div>
 
-          <p className={styles.featureDesc}>
-            {t('features.interesting.description')}
-          </p>
+          <p className={styles.featureDesc}>{t('features.interesting.description')}</p>
+
+          <div className={styles.interestingLowerGrid}>
+            <div className={styles.battlePanel}>
+              <div className={styles.reportHeader}>
+                <span className={styles.reportTitle}>{t('features.interesting.battleReport.title')}</span>
+                <span className={styles.parallelBadge}>{t('features.interesting.battleReport.badge')}</span>
+              </div>
+              <div className={styles.battleMetrics}>
+                {battleMetrics.map((metric) => (
+                  <div key={metric.key} className={styles.battleMetric}>
+                    <span className={styles.battleMetricValue}>{metric.value}</span>
+                    <span className={styles.battleMetricLabel}>{metric.label}</span>
+                  </div>
+                ))}
+              </div>
+              <div className={styles.battleProgressTrack}>
+                <motion.div
+                  className={styles.battleProgressFill}
+                  animate={{ width: ['38%', '84%', '62%'] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                />
+              </div>
+              <p className={styles.battleNote}>{t('features.interesting.battleReport.note')}</p>
+            </div>
+          </div>
         </div>
 
-        <div
-          className={styles.achievementShowcase}
-        >
-          <div className={styles.achievementGrid}>
-            {achievements.map((achievement, index) => (
+        <div className={styles.dungeonShowcase}>
+          <div className={styles.dungeonGrid}>
+            {dungeonCards.map((card, index) => (
               <motion.div
-                key={achievement.name}
-                className={`${styles.achievementCard} ${styles[achievement.rarity]}`}
-                whileHover={{
-                  y: -8,
-                  scale: 1.05,
-                  transition: { duration: 0.2 },
-                }}
+                key={card.key}
+                className={styles.dungeonCard}
+                whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.98 }}
-                style={{ cursor: 'pointer' }}
+                initial="hidden"
+                animate="visible"
+                variants={itemVariants}
+                transition={{ delay: 0.12 * index }}
               >
-                {/* 发光背景 */}
-                <motion.div
-                  className={styles.achievementGlow}
-                  style={{ background: achievement.glow }}
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: [0.5, 0.8, 0.5] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                />
-                <span className={styles.achievementIcon}>{achievement.icon}</span>
-                <span className={styles.achievementName}>{achievement.name}</span>
-                <span className={styles.achievementRarity}>{achievement.rarity}</span>
-                {/* 稀有度光晕 */}
-                <div className={styles.rarityGlow} data-rarity={achievement.rarity} />
+                <div className={styles.dungeonCardTop}>
+                  <span className={styles.dungeonCardIcon}>{card.icon}</span>
+                  <span className={styles.dungeonStatus}>{card.status}</span>
+                </div>
+                <span className={styles.dungeonName}>{card.title}</span>
+                <p className={styles.dungeonDesc}>{card.desc}</p>
               </motion.div>
             ))}
           </div>
 
-          {/* 每日评级卡片 */}
-          <div
-            className={styles.dailyReport}
-          >
-            <div className={styles.reportHeader}>
-              <span className={styles.reportTitle}>{t('features.interesting.dailyReport.title')}</span>
-              <motion.span
-                className={`${styles.reportGrade} ${styles.gradeS}`}
-                animate={{
-                  textShadow: [
-                    '0 0 10px rgba(0, 255, 255, 0.3)',
-                    '0 0 20px rgba(0, 255, 255, 0.6)',
-                    '0 0 10px rgba(0, 255, 255, 0.3)',
-                  ],
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                S
-              </motion.span>
+          <div className={styles.galleryShowcase}>
+            <div className={styles.galleryPanel}>
+              <div className={styles.galleryViewport}>
+                <div className={styles.galleryTrack}>
+                  {dungeonGalleryLoop.map((asset, index) => (
+                    <div
+                      key={`${asset.src}-${index}`}
+                      className={styles.galleryCard}
+                      data-kind="dungeon"
+                    >
+                      <img
+                        src={asset.src}
+                        alt={asset.label}
+                        className={styles.galleryImage}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className={styles.reportStats}>
-              {[
-                { value: '1,234', label: t('features.interesting.dailyReport.stats.tokens'), delay: 0 },
-                { value: '12', label: t('features.interesting.dailyReport.stats.achievements'), delay: 0.1 },
-                { value: '89%', label: t('features.interesting.dailyReport.stats.efficiency'), delay: 0.2 },
-              ].map((stat) => (
-                <div
-                key={stat.label}
-                className={styles.stat}
-              >
-                  <span className={styles.statValue}>{stat.value}</span>
-                  <span className={styles.statLabel}>{stat.label}</span>
+
+            <div className={styles.galleryPanel}>
+              <div className={styles.galleryViewport}>
+                <div className={`${styles.galleryTrack} ${styles.galleryTrackReverse}`}>
+                  {heroGalleryLoop.map((asset, index) => (
+                    <div
+                      key={`${asset.src}-${index}`}
+                      className={styles.galleryCard}
+                      data-kind="hero"
+                    >
+                      <img
+                        src={asset.src}
+                        alt={asset.label}
+                        className={styles.galleryImage}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.rosterPanel}>
+            <div className={styles.rosterHeader}>
+              <span className={styles.reportTitle}>{t('features.interesting.roster.title')}</span>
+            </div>
+            <div className={styles.rosterList}>
+              {rosterHeroes.map((hero) => (
+                <div key={hero.key} className={styles.rosterHero}>
+                  <span className={styles.rosterAvatar}>{hero.icon}</span>
+                  <div>
+                    <div className={styles.rosterName}>{hero.name}</div>
+                    <div className={styles.rosterRole}>{hero.role}</div>
+                  </div>
                 </div>
               ))}
             </div>
-            {/* 级别光效 */}
-            <div className={styles.gradeShine} />
           </div>
         </div>
       </div>

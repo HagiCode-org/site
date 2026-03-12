@@ -1,0 +1,78 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Multi-agent workspace</title>
+  <desc id="desc">Illustration of multiple agents driving multiple coding instances in parallel.</desc>
+  <rect width="1600" height="900" rx="36" fill="#08111F"/>
+  <rect x="28" y="28" width="1544" height="844" rx="28" fill="url(#bg)" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="64" y="72" width="1472" height="72" rx="20" fill="#0D1A2F" stroke="#1F3552"/>
+  <circle cx="104" cy="108" r="10" fill="#F97316"/>
+  <circle cx="136" cy="108" r="10" fill="#25C2A0"/>
+  <circle cx="168" cy="108" r="10" fill="#22D3EE"/>
+  <text x="220" y="116" fill="#E6F1FF" font-size="30" font-family="Arial, sans-serif" font-weight="700">Agent Matrix</text>
+  <text x="1296" y="116" fill="#8FB4D8" font-size="22" font-family="Arial, sans-serif">3 agents · 9 instances</text>
+
+  <rect x="64" y="188" width="432" height="624" rx="28" fill="#0C172A" stroke="#1B3150"/>
+  <rect x="520" y="188" width="432" height="624" rx="28" fill="#0C172A" stroke="#1B3150"/>
+  <rect x="976" y="188" width="560" height="624" rx="28" fill="#0C172A" stroke="#1B3150"/>
+
+  <g>
+    <rect x="96" y="224" width="368" height="92" rx="22" fill="#0F223A"/>
+    <circle cx="144" cy="270" r="24" fill="#25C2A0"/>
+    <text x="186" y="262" fill="#F5FBFF" font-size="28" font-family="Arial, sans-serif" font-weight="700">Claude Code</text>
+    <text x="186" y="294" fill="#8FB4D8" font-size="20" font-family="Arial, sans-serif">Proposal / Review</text>
+    <rect x="96" y="344" width="368" height="118" rx="24" fill="#132944"/>
+    <text x="126" y="384" fill="#DFF7FF" font-size="22" font-family="Arial, sans-serif">Spec Draft Instance</text>
+    <text x="126" y="420" fill="#8FB4D8" font-size="18" font-family="Arial, sans-serif">OpenSpec proposal and design review</text>
+    <rect x="96" y="490" width="368" height="118" rx="24" fill="#132944"/>
+    <text x="126" y="530" fill="#DFF7FF" font-size="22" font-family="Arial, sans-serif">Archive Review Instance</text>
+    <text x="126" y="566" fill="#8FB4D8" font-size="18" font-family="Arial, sans-serif">QA and spec cleanup</text>
+    <rect x="96" y="636" width="368" height="18" rx="9" fill="#1B3150"/>
+    <rect x="96" y="636" width="278" height="18" rx="9" fill="#25C2A0"/>
+  </g>
+
+  <g>
+    <rect x="552" y="224" width="368" height="92" rx="22" fill="#0F223A"/>
+    <circle cx="600" cy="270" r="24" fill="#22D3EE"/>
+    <text x="642" y="262" fill="#F5FBFF" font-size="28" font-family="Arial, sans-serif" font-weight="700">Codex</text>
+    <text x="642" y="294" fill="#8FB4D8" font-size="20" font-family="Arial, sans-serif">Implementation / Fixes</text>
+    <rect x="552" y="344" width="368" height="118" rx="24" fill="#12263F"/>
+    <text x="582" y="384" fill="#DFF7FF" font-size="22" font-family="Arial, sans-serif">Feature A Instance</text>
+    <text x="582" y="420" fill="#8FB4D8" font-size="18" font-family="Arial, sans-serif">Homepage copy + component patch</text>
+    <rect x="552" y="490" width="368" height="118" rx="24" fill="#12263F"/>
+    <text x="582" y="530" fill="#DFF7FF" font-size="22" font-family="Arial, sans-serif">Regression Fix Instance</text>
+    <text x="582" y="566" fill="#8FB4D8" font-size="18" font-family="Arial, sans-serif">Responsive polish + build validation</text>
+    <rect x="552" y="636" width="368" height="18" rx="9" fill="#1B3150"/>
+    <rect x="552" y="636" width="334" height="18" rx="9" fill="#22D3EE"/>
+  </g>
+
+  <g>
+    <rect x="1008" y="224" width="496" height="92" rx="22" fill="#0F223A"/>
+    <circle cx="1056" cy="270" r="24" fill="#F97316"/>
+    <text x="1098" y="262" fill="#F5FBFF" font-size="28" font-family="Arial, sans-serif" font-weight="700">Support Agents</text>
+    <text x="1098" y="294" fill="#8FB4D8" font-size="20" font-family="Arial, sans-serif">Qwen · GLM · Routing</text>
+
+    <rect x="1016" y="350" width="220" height="122" rx="24" fill="#132944"/>
+    <text x="1048" y="388" fill="#DFF7FF" font-size="20" font-family="Arial, sans-serif">Issue Trace</text>
+    <text x="1048" y="420" fill="#8FB4D8" font-size="17" font-family="Arial, sans-serif">Logs, context, blockers</text>
+    <rect x="1016" y="496" width="220" height="122" rx="24" fill="#132944"/>
+    <text x="1048" y="534" fill="#DFF7FF" font-size="20" font-family="Arial, sans-serif">Copy Polish</text>
+    <text x="1048" y="566" fill="#8FB4D8" font-size="17" font-family="Arial, sans-serif">Bilingual homepage messaging</text>
+
+    <rect x="1268" y="350" width="220" height="122" rx="24" fill="#132944"/>
+    <text x="1300" y="388" fill="#DFF7FF" font-size="20" font-family="Arial, sans-serif">Asset Queue</text>
+    <text x="1300" y="420" fill="#8FB4D8" font-size="17" font-family="Arial, sans-serif">New visuals for showcase</text>
+    <rect x="1268" y="496" width="220" height="122" rx="24" fill="#132944"/>
+    <text x="1300" y="534" fill="#DFF7FF" font-size="20" font-family="Arial, sans-serif">Knowledge Notes</text>
+    <text x="1300" y="566" fill="#8FB4D8" font-size="17" font-family="Arial, sans-serif">Findings fed back upward</text>
+
+    <rect x="1016" y="672" width="472" height="96" rx="24" fill="#0E223A" stroke="#234567"/>
+    <text x="1054" y="724" fill="#DFF7FF" font-size="24" font-family="Arial, sans-serif" font-weight="700">Parallel Throughput Active</text>
+    <text x="1054" y="754" fill="#8FB4D8" font-size="18" font-family="Arial, sans-serif">Multiple agents, multiple instances, one coordinated delivery flow</text>
+  </g>
+
+  <defs>
+    <linearGradient id="bg" x1="120" y1="84" x2="1458" y2="844" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A162A"/>
+      <stop offset="1" stop-color="#091624"/>
+    </linearGradient>
+  </defs>
+</svg>
