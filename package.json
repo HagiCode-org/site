@@ -16,10 +16,10 @@
     "test": "vitest run",
     "test:ui": "vitest --ui",
     "test:watch": "vitest",
-    "generate:image": "bash scripts/generate-image.sh",
-    "generate:image:custom": "bash scripts/generate-image.sh",
-    "generate:product-images": "bash scripts/generate-image.sh --batch-config scripts/product-images-batch.json",
-    "regenerate:product-images": "bash scripts/generate-image.sh --batch-config scripts/product-images-batch.json --force"
+    "generate:image": "node scripts/generate-image.mjs",
+    "generate:image:custom": "node scripts/generate-image.mjs",
+    "generate:product-images": "node scripts/generate-image.mjs --batch-config scripts/product-images-batch.json",
+    "regenerate:product-images": "node scripts/generate-image.mjs --batch-config scripts/product-images-batch.json --force"
   },
   "dependencies": {
     "@lobehub/icons": "^5.0.1",
