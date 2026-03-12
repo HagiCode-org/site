@@ -1,0 +1,19 @@
+{
+  "_comment": "Site-maintained ImgBin prompt configuration for hand-drawn product illustrations.",
+  "basePrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.",
+  "context": "api-integration",
+  "customPrompt": "Draw connected stack layers with cute labels and icons, like building blocks or a friendly tower.",
+  "userPrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.\n\nIllustrate connectivity with playful dotted lines and cute icons connecting to each other. Keep it simple like a child's drawing of how things connect, with clear but friendly visual metaphors for data exchange.\n\nDraw connected stack layers with cute labels and icons, like building blocks or a friendly tower.\n\nA simple hand-drawn stack showing Hagicode's three layers of features. Bottom: basic features (sessions, chat), Middle: helper features (proposals, diagrams), Top: user experience (themes, settings). Draw like a friendly tower with connected levels, using simple doodle icons for each feature group. Like building blocks stacked neatly.",
+  "generationParams": {
+    "size": "1536x1024",
+    "quality": "high",
+    "format": "png"
+  },
+  "_metadata": {
+    "source": "site-product-images-manifest",
+    "promptInput": "A simple hand-drawn stack showing Hagicode's three layers of features. Bottom: basic features (sessions, chat), Middle: helper features (proposals, diagrams), Top: user experience (themes, settings). Draw like a friendly tower with connected levels, using simple doodle icons for each feature group. Like building blocks stacked neatly.",
+    "contextPrompt": "Illustrate connectivity with playful dotted lines and cute icons connecting to each other. Keep it simple like a child's drawing of how things connect, with clear but friendly visual metaphors for data exchange.",
+    "defaultStyle": "hand-drawn",
+    "migratedFrom": "scripts/product-images-batch.json"
+  }
+}

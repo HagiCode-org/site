@@ -1,0 +1,19 @@
+{
+  "_comment": "Site-maintained ImgBin prompt configuration for hand-drawn product illustrations.",
+  "basePrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.",
+  "context": "code-generation",
+  "customPrompt": "Use cheerful contrasting colors: blue for reading, green for editing, like colored pencils on paper.",
+  "userPrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.\n\nHighlight code creation with simplified code blocks drawn in crayon style. Include hand-drawn elements like lightbulbs for ideas and checkmarks for completed tasks, keeping technical concepts accessible and fun.\n\nUse cheerful contrasting colors: blue for reading, green for editing, like colored pencils on paper.\n\nA simple hand-drawn side-by-side comparison showing two conversation modes. Left side: read-only mode with a magnifying glass and 'read' symbols, drawn like a child's doodle. Right side: edit mode with tools and 'write' symbols. Use a friendly hand-drawn line to separate them, like dividing a notebook page.",
+  "generationParams": {
+    "size": "1024x1024",
+    "quality": "high",
+    "format": "png"
+  },
+  "_metadata": {
+    "source": "site-product-images-manifest",
+    "promptInput": "A simple hand-drawn side-by-side comparison showing two conversation modes. Left side: read-only mode with a magnifying glass and 'read' symbols, drawn like a child's doodle. Right side: edit mode with tools and 'write' symbols. Use a friendly hand-drawn line to separate them, like dividing a notebook page.",
+    "contextPrompt": "Highlight code creation with simplified code blocks drawn in crayon style. Include hand-drawn elements like lightbulbs for ideas and checkmarks for completed tasks, keeping technical concepts accessible and fun.",
+    "defaultStyle": "hand-drawn",
+    "migratedFrom": "scripts/product-images-batch.json"
+  }
+}

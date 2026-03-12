@@ -1,0 +1,19 @@
+{
+  "_comment": "Site-maintained ImgBin prompt configuration for hand-drawn product illustrations.",
+  "basePrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.",
+  "context": "code-generation",
+  "customPrompt": "Emphasize friendship and collaboration with warm, inviting character interactions.",
+  "userPrompt": "Children's hand-drawing style illustration with crayon or colored pencil texture. Use simple, playful lines with a friendly and educational aesthetic. Incorporate bright, cheerful colors that maintain good contrast for accessibility. Keep technical concepts clear while presenting them in an approachable, non-intimidating way. Style should feel like a warm classroom illustration that makes technology feel friendly and accessible to newcomers.\n\nHighlight code creation with simplified code blocks drawn in crayon style. Include hand-drawn elements like lightbulbs for ideas and checkmarks for completed tasks, keeping technical concepts accessible and fun.\n\nEmphasize friendship and collaboration with warm, inviting character interactions.\n\nA friendly doodle showing a developer and AI helper working together like study buddies. Draw them side by side with simple conversation bubbles, code snippets drawn in crayon, and happy expressions. Include interconnected elements showing they're helping each other understand code, like a classroom partnership.",
+  "generationParams": {
+    "size": "1024x1024",
+    "quality": "high",
+    "format": "png"
+  },
+  "_metadata": {
+    "source": "site-product-images-manifest",
+    "promptInput": "A friendly doodle showing a developer and AI helper working together like study buddies. Draw them side by side with simple conversation bubbles, code snippets drawn in crayon, and happy expressions. Include interconnected elements showing they're helping each other understand code, like a classroom partnership.",
+    "contextPrompt": "Highlight code creation with simplified code blocks drawn in crayon style. Include hand-drawn elements like lightbulbs for ideas and checkmarks for completed tasks, keeping technical concepts accessible and fun.",
+    "defaultStyle": "hand-drawn",
+    "migratedFrom": "scripts/product-images-batch.json"
+  }
+}
