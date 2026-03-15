@@ -24,7 +24,7 @@
  * />
  * ```
  */
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Chart,
   LineController,
@@ -39,6 +39,7 @@ import {
   TimeScale,
 } from 'chart.js';
 import 'chartjs-adapter-date-fns';
+import styles from './ActivityMetricsSection.module.css';
 
 // 注册 Chart.js 模块
 Chart.register(
@@ -103,6 +104,37 @@ interface ChartDataPoint {
   y: number;
 }
 
+interface ThemeTokens {
+  text: string;
+  textSecondary: string;
+  textMuted: string;
+  border: string;
+  surface: string;
+}
+
+function readThemeTokens(): ThemeTokens {
+  if (typeof window === 'undefined') {
+    return {
+      text: '#0F172A',
+      textSecondary: '#475569',
+      textMuted: '#94A3B8',
+      border: 'rgba(0, 0, 0, 0.1)',
+      surface: '#FFFFFF',
+    };
+  }
+
+  const computed = getComputedStyle(document.documentElement);
+  const token = (name: string, fallback: string) => computed.getPropertyValue(name).trim() || fallback;
+
+  return {
+    text: token('--color-text', '#0F172A'),
+    textSecondary: token('--color-text-secondary', '#475569'),
+    textMuted: token('--color-text-muted', '#94A3B8'),
+    border: token('--color-border', 'rgba(0, 0, 0, 0.1)'),
+    surface: token('--color-surface', '#FFFFFF'),
+  };
+}
+
 /**
  * 格式化数值为中文显示
  */
@@ -127,6 +159,25 @@ export default function ActivityMetricsChart({
 }: ActivityMetricsChartProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<Chart | null>(null);
+  const [themeTokens, setThemeTokens] = useState<ThemeTokens>(() => readThemeTokens());
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const updateThemeTokens = () => {
+      setThemeTokens(readThemeTokens());
+    };
+
+    updateThemeTokens();
+
+    const observer = new MutationObserver(updateThemeTokens);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -183,7 +234,7 @@ export default function ActivityMetricsChart({
             pointRadius: chartData.length > 15 ? 2 : 4,
             pointHoverRadius: 6,
             pointBackgroundColor: borderColor,
-            pointBorderColor: '#ffffff',
+            pointBorderColor: themeTokens.surface,
             pointBorderWidth: 2,
           },
         ],
@@ -201,9 +252,11 @@ export default function ActivityMetricsChart({
           },
           tooltip: {
             enabled: true,
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            titleColor: '#ffffff',
-            bodyColor: '#ffffff',
+            backgroundColor: themeTokens.surface,
+            titleColor: themeTokens.text,
+            bodyColor: themeTokens.textSecondary,
+            borderColor: themeTokens.border,
+            borderWidth: 1,
             padding: 12,
             cornerRadius: 8,
             displayColors: false,
@@ -239,7 +292,7 @@ export default function ActivityMetricsChart({
               display: false,
             },
             ticks: {
-              color: 'rgba(255, 255, 255, 0.6)',
+              color: themeTokens.textSecondary,
               maxRotation: 0,
               maxTicksLimit: 8,
             },
@@ -247,10 +300,10 @@ export default function ActivityMetricsChart({
           y: {
             beginAtZero: true,
             grid: {
-              color: 'rgba(255, 255, 255, 0.1)',
+              color: themeTokens.border,
             },
             ticks: {
-              color: 'rgba(255, 255, 255, 0.6)',
+              color: themeTokens.textSecondary,
               callback: (value) => formatValue(value as number),
             },
           },
@@ -265,7 +318,7 @@ export default function ActivityMetricsChart({
         chartRef.current = null;
       }
     };
-  }, [data, type, color, dataKey, valueKey, title]);
+  }, [data, type, color, dataKey, valueKey, title, themeTokens]);
 
   // 检查是否有有效数据
   const hasData = data.some((entry) => {
@@ -276,22 +329,10 @@ export default function ActivityMetricsChart({
 
   if (!hasData) {
     return (
-      <div
-        style={{
-          background: 'rgba(255, 255, 255, 0.05)',
-          borderRadius: '16px',
-          padding: '24px',
-          minHeight: '300px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-        }}
-      >
-        <div style={{ fontSize: '32px', marginBottom: '12px' }}>{icon}</div>
-        <div style={{ color: 'rgba(255, 255, 255, 0.6)', fontSize: '14px' }}>{title}</div>
-        <div style={{ color: 'rgba(255, 255, 255, 0.4)', fontSize: '12px', marginTop: '8px' }}>
+      <div className={styles.chartCardEmpty}>
+        <div className={styles.chartEmptyIcon}>{icon}</div>
+        <div className={styles.chartEmptyTitle}>{title}</div>
+        <div className={styles.chartEmptyDescription}>
           暂无历史数据
         </div>
       </div>
@@ -299,27 +340,20 @@ export default function ActivityMetricsChart({
   }
 
   return (
-    <div
-      style={{
-        background: 'rgba(255, 255, 255, 0.05)',
-        borderRadius: '16px',
-        padding: '24px',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
-      }}
-    >
+    <div className={styles.chartCard}>
       {/* 标题和当前值 */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ fontSize: '24px' }}>{icon}</span>
-          <span style={{ color: 'rgba(255, 255, 255, 0.8)', fontSize: '14px' }}>{title}</span>
+      <div className={styles.chartHeader}>
+        <div className={styles.chartMeta}>
+          <span className={styles.chartHeaderIcon}>{icon}</span>
+          <span className={styles.chartHeaderTitle}>{title}</span>
         </div>
-        <div style={{ color: color, fontSize: '24px', fontWeight: 'bold' }}>
+        <div className={styles.chartCurrentValue} style={{ color }}>
           {formatValue(currentValue)}
         </div>
       </div>
 
       {/* 图表 */}
-      <div style={{ height: '200px', position: 'relative' }}>
+      <div className={styles.chartCanvasWrap}>
         <canvas ref={canvasRef} />
       </div>
     </div>
