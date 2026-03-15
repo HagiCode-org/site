@@ -31,11 +31,11 @@ quickRef:
       desc: "Astro 框架配置 - i18n、React、MDX、Sitemap"
       path: "astro.config.mjs"
     - title: "Homepage Entry"
-      desc: "主首页 (中文)"
+      desc: "主首页 (英文默认入口)"
       path: "src/pages/index.astro"
-    - title: "English Homepage"
-      desc: "英文首页"
-      path: "src/pages/en/index.astro"
+    - title: "Chinese Homepage"
+      desc: "中文首页 (/zh-CN/)"
+      path: "src/pages/zh-CN/index.astro"
 
   configFiles:
     - title: "Package Configuration"
@@ -73,7 +73,7 @@ quickRef:
 
   pages:
     - title: "Homepage"
-      desc: "主首页 - 产品介绍、下载按钮、活动指标"
+      desc: "主首页（英文默认入口）- 产品介绍、下载按钮、活动指标"
       path: "src/pages/index.astro"
     - title: "Desktop Download"
       desc: "桌面应用下载页面"
@@ -81,9 +81,9 @@ quickRef:
     - title: "Container Deployment"
       desc: "容器部署页面"
       path: "src/pages/container/index.astro"
-    - title: "English Homepage"
-      desc: "英文版首页"
-      path: "src/pages/en/index.astro"
+    - title: "Chinese Homepage"
+      desc: "中文版首页"
+      path: "src/pages/zh-CN/index.astro"
 
   components:
     - title: "HeroSection"
