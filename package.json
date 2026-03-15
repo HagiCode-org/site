@@ -7,9 +7,10 @@
   "scripts": {
     "dev": "astro dev --port ${PORT_WEBSITE:-31264}",
     "start": "astro dev",
-    "build": "node scripts/copy-version-index.js && astro build",
+    "build": "node scripts/copy-version-index.js && astro build && npm run seo:audit",
     "preview": "astro preview --port ${PORT_WEBSITE:-31264}",
     "astro": "astro",
+    "seo:audit": "node scripts/seo-audit.mjs",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf .astro dist",
     "update-metrics": "node scripts/update-activity-metrics.js",

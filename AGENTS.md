@@ -121,6 +121,9 @@ npm run dev
 # 生产构建
 npm run build
 
+# 构建产物 SEO 审计
+npm run seo:audit
+
 # 预览生产构建
 npm run preview
 
@@ -321,6 +324,13 @@ npm run build
 构建步骤：
 1. 复制版本索引（`copy-version-index.js`）
 2. Astro 静态生成
+3. 审计 `dist/**/*.html` 中受管营销页的 `meta description`、唯一 `h1`、canonical/hreflang，以及 `/en/*` 旧路径页禁用 `meta refresh`
+
+### SEO 审计约定
+- `npm run seo:audit` 会检查官网营销页与 `/en/*` 旧英文别名页的最终 HTML，而不是只检查源码。
+- 受管页面必须保留非空 `meta description`、唯一且可抓取的 `h1`，并输出正确的 canonical。
+- `/en/`、`/en/desktop/`、`/en/container/` 只能使用 JavaScript 跳转，必须保留 `noindex,follow`、可见迁移说明和手动继续链接。
+- `npm run build` 已默认串联 SEO 审计，因此改动这些页面时应以构建通过为最低验证基线。
 3. 输出到 `dist/` 目录
 
 ## Scripts
