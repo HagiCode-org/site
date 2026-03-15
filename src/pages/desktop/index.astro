@@ -1,33 +1,31 @@
 ---
 import { Tabs, TabItem } from "@astrojs/starlight/components";
 import AnalyticsScripts from "@/components/AnalyticsScripts.astro";
-// 导入首页样式系统
 import '@/styles/homepage.css';
-// 导入 Desktop 页面专属样式
 import '@/styles/desktop.css';
-// 导入首页组件
 import Navbar from '@/components/home/Navbar';
 import Footer from '@/components/home/Footer';
-// 导入 Desktop Hero 组件
 import DesktopHero from '@/components/desktop/DesktopHero';
-// 导入图标组件
 import FeatureIcon from '@/components/desktop/FeatureIcon.astro';
 import FeatureTagIcon from '@/components/desktop/FeatureTagIcon.astro';
 import PlatformIcon from '@/components/desktop/PlatformIcon.astro';
+import { getTranslation } from '@/i18n/ui';
+import { getAbsoluteSiteUrl } from '@/lib/locale-routing';
 
 // SEO 元数据
-const title = "Hagicode Desktop - 下载";
-const description = "下载 Hagicode Desktop，本地化的 AI 代码助手。支持 Windows、macOS 和 Linux，保护隐私，快速响应。";
+const title = "Hagicode Desktop - Download";
+const description = "Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.";
 
 // 获取当前语言环境
-const currentLocale = 'zh-CN';
+const currentLocale = 'en';
+const { t } = getTranslation('en');
 
 // 获取站点基础路径
 const siteBase = import.meta.env.VITE_SITE_BASE || '';
 
 // 直接构造完整的 URL 字符串，避免 new URL 的路径解析问题
-const canonicalUrl = `https://hagicode.com${siteBase ? `${siteBase}desktop/` : '/desktop/'}`;
-const englishUrl = `https://hagicode.com${siteBase ? `${siteBase}en/desktop/` : '/en/desktop/'}`;
+const canonicalUrl = getAbsoluteSiteUrl('/desktop/', 'en', siteBase);
+const chineseUrl = getAbsoluteSiteUrl('/desktop/', 'zh-CN', siteBase);
 
 // 在服务端获取版本数据并传递到客户端
 let desktopVersionData = null;
@@ -56,33 +54,33 @@ const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     <!-- SEO hreflang tags -->
-    <link rel="alternate" hreflang="zh-CN" href={canonicalUrl} />
-    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="zh-CN" href={chineseUrl} />
+    <link rel="alternate" hreflang="en" href={canonicalUrl} />
     <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
-    <!-- 百度搜索引擎验证 -->
+    <!-- Baidu search engine verification -->
     <meta name="baidu-site-verification" content="codeva-A9s3yT3z5m" />
     <meta name="og:title" content={title} />
     <meta name="og:description" content={description} />
     <meta name="og:type" content="website" />
     <script set:html={`window.__DESKTOP_VERSION_DATA__ = ${desktopVersionData ? JSON.stringify(desktopVersionData) : 'null'};`} is:inline></script>
     <script is:inline>
-      // 初始化主题 - 与主页保持一致
+      // Initialize theme - consistent with homepage
       (function() {
-        // 判断是否在农历新年期间
-        // 蛇年2025: 2025-01-29 至 2025-02-12 (元宵节)
-        // 马年2026: 2026-02-17 至 2026-03-03 (元宵节)
+        // Check if it's Lunar New Year period
+        // Snake Year 2025: 2025-01-29 to 2025-02-12 (Lantern Festival)
+        // Horse Year 2026: 2026-02-17 to 2026-03-03 (Lantern Festival)
         function isLunarNewYearPeriod() {
           const now = new Date();
           const year = now.getFullYear();
           const month = now.getMonth() + 1; // 1-12
           const day = now.getDate();
 
-          // 2025年蛇年新年期间 (1月29日 - 2月12日)
+          // 2025 Snake Year New Year period (Jan 29 - Feb 12)
           if (year === 2025) {
             if (month === 1 && day >= 29) return true;
             if (month === 2 && day <= 12) return true;
           }
-          // 2026年马年新年期间 (2月17日 - 3月3日)
+          // 2026 Horse Year New Year period (Feb 17 - Mar 3)
           if (year === 2026) {
             if (month === 2 && day >= 17) return true;
             if (month === 3 && day <= 3) return true;
@@ -95,10 +93,10 @@ const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData
         let theme;
 
         if (stored) {
-          // 用户已有主题偏好,使用其选择
+          // User has theme preference, use their choice
           theme = stored;
         } else {
-          // 用户无主题偏好,应用智能默认
+          // User has no theme preference, apply smart default
           theme = isLunarNewYearPeriod() ? 'lunar-new-year' : system;
         }
 
@@ -107,247 +105,232 @@ const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData
     </script>
   </head>
   <body class="homepage">
-    <Navbar client:load locale="zh-CN" />
+    <Navbar client:load locale="en" />
 
     <main class="homepage">
-      <!-- Hero Section - 使用 React 组件 -->
-      <DesktopHero client:load />
+      <!-- Hero Section - Use React component -->
+      <DesktopHero client:load locale="en" />
 
-      <!-- 功能特性区域 -->
+      <!-- Features Section -->
       <section class="features">
-        <h2>核心功能</h2>
+        <h2>{t('desktop.features.title')}</h2>
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon-wrapper">
               <FeatureIcon name="rocket" size={48} />
             </div>
-            <h3>本地运行</h3>
-            <p>所有数据本地处理，无需上传到云端，确保代码隐私安全</p>
+            <h3>{t('desktop.features.local.title')}</h3>
+            <p>{t('desktop.features.local.description')}</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon-wrapper">
               <FeatureIcon name="lock" size={48} />
             </div>
-            <h3>隐私保护</h3>
-            <p>代码完全不上传，支持离线使用，保护你的知识产权</p>
+            <h3>{t('desktop.features.privacy.title')}</h3>
+            <p>{t('desktop.features.privacy.description')}</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon-wrapper">
               <FeatureIcon name="bolt" size={48} />
             </div>
-            <h3>快速响应</h3>
-            <p>毫秒级响应时间，无需等待网络请求，提升开发效率</p>
+            <h3>{t('desktop.features.fast.title')}</h3>
+            <p>{t('desktop.features.fast.description')}</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon-wrapper">
               <FeatureIcon name="computer" size={48} />
             </div>
-            <h3>跨平台支持</h3>
-            <p>支持 Windows、macOS 和 Linux，满足不同开发环境需求</p>
+            <h3>{t('desktop.features.crossPlatform.title')}</h3>
+            <p>{t('desktop.features.crossPlatform.description')}</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon-wrapper">
               <FeatureIcon name="arrow-path" size={48} />
             </div>
-            <h3>自动更新</h3>
-            <p>自动检查更新，一键升级到最新版本，获取最新功能</p>
+            <h3>{t('desktop.features.autoUpdate.title')}</h3>
+            <p>{t('desktop.features.autoUpdate.description')}</p>
           </div>
           <div class="feature-card">
             <div class="feature-icon-wrapper">
               <FeatureIcon name="globe" size={48} />
             </div>
-            <h3>多语言支持</h3>
-            <p>内置中英文界面，支持国际化开发团队协作</p>
+            <h3>{t('desktop.features.multiLanguage.title')}</h3>
+            <p>{t('desktop.features.multiLanguage.description')}</p>
           </div>
         </div>
       </section>
 
-      <!-- 系统要求 -->
+      <!-- System Requirements -->
       <section class="system-requirements">
-        <h2>系统要求</h2>
+        <h2>{t('desktop.systemRequirements.title')}</h2>
         <Tabs>
-          <TabItem label="Windows">
+          <TabItem label={t('desktop.systemRequirements.windows')}>
             <div class="requirements-content">
               <p>
-                <strong>操作系统:</strong> Windows 10/11 (64-bit)
+                <strong>{t('desktop.systemRequirements.os')}:</strong> {t('desktop.systemRequirements.windowsOs')}
               </p>
               <p>
-                <strong>处理器:</strong> Intel Core i3 或同等性能处理器
+                <strong>{t('desktop.systemRequirements.processor')}:</strong> {t('desktop.systemRequirements.windowsProcessor')}
               </p>
               <p>
-                <strong>内存:</strong> 4GB RAM (推荐 8GB)
+                <strong>{t('desktop.systemRequirements.memory')}:</strong> {t('desktop.systemRequirements.memoryRec')}
               </p>
               <p>
-                <strong>磁盘空间:</strong> 2GB 可用空间
+                <strong>{t('desktop.systemRequirements.diskSpace')}:</strong> {t('desktop.systemRequirements.disk')}
               </p>
               <p>
-                <strong>网络:</strong> 初始下载需要网络连接（后续可离线使用）
+                <strong>{t('desktop.systemRequirements.network')}:</strong> {t('desktop.systemRequirements.networkDesc')}
               </p>
             </div>
           </TabItem>
-          <TabItem label="macOS">
+          <TabItem label={t('desktop.systemRequirements.macos')}>
             <div class="requirements-content">
               <p>
-                <strong>操作系统:</strong> macOS 12+ (Monterey 或更高版本)
+                <strong>{t('desktop.systemRequirements.os')}:</strong> {t('desktop.systemRequirements.macosOs')}
               </p>
               <p>
-                <strong>处理器:</strong> Apple Silicon (M1/M2/M3) 或 Intel
-                Core i3+
+                <strong>{t('desktop.systemRequirements.processor')}:</strong> {t('desktop.systemRequirements.macosProcessor')}
               </p>
               <p>
-                <strong>内存:</strong> 4GB RAM (推荐 8GB)
+                <strong>{t('desktop.systemRequirements.memory')}:</strong> {t('desktop.systemRequirements.memoryRec')}
               </p>
               <p>
-                <strong>磁盘空间:</strong> 2GB 可用空间
+                <strong>{t('desktop.systemRequirements.diskSpace')}:</strong> {t('desktop.systemRequirements.disk')}
               </p>
               <p>
-                <strong>网络:</strong> 初始下载需要网络连接（后续可离线使用）
+                <strong>{t('desktop.systemRequirements.network')}:</strong> {t('desktop.systemRequirements.networkDesc')}
               </p>
             </div>
           </TabItem>
-          <TabItem label="Linux">
+          <TabItem label={t('desktop.systemRequirements.linux')}>
             <div class="requirements-content">
               <p>
-                <strong>操作系统:</strong> Ubuntu 20.04+ / Debian 11+ / 其他主流发行版
+                <strong>{t('desktop.systemRequirements.os')}:</strong> {t('desktop.systemRequirements.linuxOs')}
               </p>
               <p>
-                <strong>处理器:</strong> Intel Core i3 或同等性能处理器
+                <strong>{t('desktop.systemRequirements.processor')}:</strong> {t('desktop.systemRequirements.linuxProcessor')}
               </p>
               <p>
-                <strong>内存:</strong> 4GB RAM (推荐 8GB)
+                <strong>{t('desktop.systemRequirements.memory')}:</strong> {t('desktop.systemRequirements.memoryRec')}
               </p>
               <p>
-                <strong>磁盘空间:</strong> 2GB 可用空间
+                <strong>{t('desktop.systemRequirements.diskSpace')}:</strong> {t('desktop.systemRequirements.disk')}
               </p>
               <p>
-                <strong>网络:</strong> 初始下载需要网络连接（后续可离线使用）
+                <strong>{t('desktop.systemRequirements.network')}:</strong> {t('desktop.systemRequirements.networkDesc')}
               </p>
             </div>
           </TabItem>
         </Tabs>
       </section>
 
-      <!-- 安装步骤 -->
+      <!-- Installation Steps -->
       <section class="installation-steps">
-        <h2>快速安装</h2>
+        <h2>{t('desktop.installation.title')}</h2>
         <div class="steps-grid">
           <div class="step-card">
-            <div class="step-number">1</div>
-            <h3>下载安装包</h3>
-            <p>根据你的操作系统选择对应的安装包</p>
+            <div class="step-number">{t('desktop.installation.step1.number')}</div>
+            <h3>{t('desktop.installation.step1.title')}</h3>
+            <p>{t('desktop.installation.step1.description')}</p>
           </div>
           <div class="step-card">
-            <div class="step-number">2</div>
-            <h3>运行安装程序</h3>
-            <p>双击下载的安装包，按照提示完成安装</p>
+            <div class="step-number">{t('desktop.installation.step2.number')}</div>
+            <h3>{t('desktop.installation.step2.title')}</h3>
+            <p>{t('desktop.installation.step2.description')}</p>
           </div>
           <div class="step-card">
-            <div class="step-number">3</div>
-            <h3>启动应用</h3>
-            <p>首次启动时会引导你完成初始配置</p>
+            <div class="step-number">{t('desktop.installation.step3.number')}</div>
+            <h3>{t('desktop.installation.step3.title')}</h3>
+            <p>{t('desktop.installation.step3.description')}</p>
           </div>
           <div class="step-card">
-            <div class="step-number">4</div>
-            <h3>开始使用</h3>
-            <p>配置完成后即可开始使用 Hagicode Desktop</p>
+            <div class="step-number">{t('desktop.installation.step4.number')}</div>
+            <h3>{t('desktop.installation.step4.title')}</h3>
+            <p>{t('desktop.installation.step4.description')}</p>
           </div>
         </div>
       </section>
 
       <!-- FAQ -->
       <section class="faq">
-        <h2>常见问题</h2>
+        <h2>{t('desktop.faq.title')}</h2>
         <div class="faq-list">
           <details class="faq-item">
-            <summary>
-              Desktop 版本和 Server 版本有什么区别？
-            </summary>
+            <summary>{t('desktop.faq.q1.question')}</summary>
             <div class="faq-content">
-              <p>
-                Hagicode 提供两种部署方式：Desktop 版本和 Server 版本。两种版本各有优势，但都采用用户自主管理服务器和数据的方式，因此都具备更好的数据保护特性。
-              </p>
-              <h4>Desktop 版本</h4>
+              <p set:html={t('desktop.faq.q1.intro')}></p>
+              <h4>{t('desktop.faq.q1.desktopTitle')}</h4>
               <ul>
-                <li>在本地电脑上运行，更加轻便</li>
-                <li>无需配置服务器，开箱即用</li>
-                <li>适合个人开发者和轻量使用场景</li>
-                <li>所有数据完全本地化</li>
+                <li>{t('desktop.faq.q1.desktop1')}</li>
+                <li>{t('desktop.faq.q1.desktop2')}</li>
+                <li>{t('desktop.faq.q1.desktop3')}</li>
+                <li>{t('desktop.faq.q1.desktop4')}</li>
               </ul>
-              <h4>Server 版本</h4>
+              <h4>{t('desktop.faq.q1.serverTitle')}</h4>
               <ul>
-                <li>可部署在远程服务器上</li>
-                <li>支持多用户远程访问</li>
-                <li>更适合团队协作和广泛扩展</li>
-                <li>为未来的企业级功能和多设备同步做准备</li>
+                <li>{t('desktop.faq.q1.server1')}</li>
+                <li>{t('desktop.faq.q1.server2')}</li>
+                <li>{t('desktop.faq.q1.server3')}</li>
+                <li>{t('desktop.faq.q1.server4')}</li>
               </ul>
-              <p>
-                无论选择哪种版本，你都完全掌控自己的服务器和数据，享受更好的隐私保护和数据安全。
-              </p>
+              <p set:html={t('desktop.faq.q1.conclusion')}></p>
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>安装后还需要做什么？</summary>
+            <summary>{t('desktop.faq.q2.question')}</summary>
             <div class="faq-content">
-              <p>
-                Hagicode Desktop 本质上是一个启动器，安装完成后首次启动时，它会引导你完成以下步骤：
-              </p>
+              <p set:html={t('desktop.faq.q2.intro')}></p>
               <ul>
-                <li><strong>下载 Hagicode Core：</strong> Desktop 会自动检测并提示下载 Hagicode 核心组件</li>
-                <li><strong>安装核心组件：</strong> 按照界面提示完成核心组件的安装</li>
-                <li><strong>配置 AI 编码助手：</strong> 根据需要配置 Claude Code 等助手</li>
+                <li set:html={t('desktop.faq.q2.step1')}></li>
+                <li set:html={t('desktop.faq.q2.step2')}></li>
+                <li set:html={t('desktop.faq.q2.step3')}></li>
               </ul>
-              <p>
-                整个过程在 Desktop 界面中都有清晰的提示指引，请确保在首次启动时保持网络连接以完成核心组件的下载。
-              </p>
-              <p>
-                完成这些步骤后，你就可以正常使用 Hagicode Desktop 的所有功能了。
-              </p>
+              <p set:html={t('desktop.faq.q2.note')}></p>
+              <p set:html={t('desktop.faq.q2.done')}></p>
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>如何检查更新？</summary>
+            <summary>{t('desktop.faq.q3.question')}</summary>
             <div class="faq-content">
-              <p>
-                Desktop 会自动检查更新。当有新版本可用时，会在界面右上角显示提示。你也可以在"设置"中手动检查更新。
-              </p>
+              <p set:html={t('desktop.faq.q3.answer')}></p>
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>支持哪些 AI 模型？</summary>
+            <summary>{t('desktop.faq.q4.question')}</summary>
             <div class="faq-content">
-              <p>Hagicode Desktop 通过 Agent CLI 提供强大的 AI 编码助手支持：</p>
+              <p set:html={t('desktop.faq.q4.intro')}></p>
               <ul>
-                <li><strong>当前支持：</strong>Claude Code（主要支持）</li>
-                <li><strong>即将支持：</strong>Copilot、Gemini、Kimi Code 等各类 CLI Agent</li>
+                <li set:html={t('desktop.faq.q4.current')}></li>
+                <li set:html={t('desktop.faq.q4.upcoming')}></li>
               </ul>
-              <p>我们正在积极扩展对更多 AI 编码助手的支持，敬请期待后续版本的更新。</p>
+              <p set:html={t('desktop.faq.q4.closing')}></p>
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>是否支持离线使用？</summary>
+            <summary>{t('desktop.faq.q5.question')}</summary>
             <div class="faq-content">
-              <p>是的！Hagicode Desktop 支持完全离线使用：</p>
+              <p set:html={t('desktop.faq.q5.intro')}></p>
               <ul>
-                <li>首次安装和配置需要网络连接（下载核心组件和 AI 模型）</li>
-                <li>配置完成后可断网使用所有功能</li>
-                <li>你的代码和数据永远不会上传到云端</li>
-                <li>所有 AI 处理都在本地完成</li>
+                <li>{t('desktop.faq.q5.point1')}</li>
+                <li>{t('desktop.faq.q5.point2')}</li>
+                <li>{t('desktop.faq.q5.point3')}</li>
+                <li>{t('desktop.faq.q5.point4')}</li>
               </ul>
             </div>
           </details>
 
           <details class="faq-item">
-            <summary>遇到问题如何获取帮助？</summary>
+            <summary>{t('desktop.faq.q6.question')}</summary>
             <div class="faq-content">
-              <p>如果你在使用 Hagicode Desktop 时遇到问题，可以通过以下方式获取帮助：</p>
+              <p set:html={t('desktop.faq.q6.intro')}></p>
               <ul>
-                <li><strong>技术支持群：</strong>加入 QQ 群 610394020</li>
-                <li><strong>在线文档：</strong>查看完整的使用文档和教程</li>
-                <li><strong>GitHub Issues：</strong>在项目仓库提交问题报告</li>
+                <li set:html={t('desktop.faq.q6.point1')}></li>
+                <li set:html={t('desktop.faq.q6.point2')}></li>
+                <li set:html={t('desktop.faq.q6.point3')}></li>
               </ul>
             </div>
           </details>
@@ -355,7 +338,7 @@ const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData
       </section>
     </main>
 
-    <Footer locale="zh-CN" />
+    <Footer locale="en" />
 
     <AnalyticsScripts />
   </body>
