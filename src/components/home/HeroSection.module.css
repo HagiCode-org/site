@@ -605,6 +605,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   padding: 2rem 1.5rem;
   background: var(--color-surface-glass);
   backdrop-filter: blur(20px);
@@ -672,6 +673,27 @@
   height: 28px;
 }
 
+[data-theme='dark'] .valueCard[data-pillar='smart'] .valueIcon {
+  box-shadow:
+    0 4px 20px rgba(34, 197, 94, 0.32),
+    0 0 18px rgba(34, 197, 94, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+[data-theme='dark'] .valueCard[data-pillar='efficient'] .valueIcon {
+  box-shadow:
+    0 4px 20px rgba(14, 165, 233, 0.38),
+    0 0 18px rgba(34, 211, 238, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+[data-theme='dark'] .valueCard[data-pillar='interesting'] .valueIcon {
+  box-shadow:
+    0 4px 20px rgba(251, 191, 36, 0.34),
+    0 0 18px rgba(249, 115, 22, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
 [data-theme='dark'] .valueIcon {
   box-shadow:
     0 4px 20px rgba(0, 128, 255, 0.5),
@@ -679,23 +701,212 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-.valueContent h4 {
+.valueContent {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 0.7rem;
+}
+
+.valueContent h4 {
   font-size: 1.125rem;
   font-weight: 700;
   color: var(--color-text);
-  margin: 0 0 0.5rem 0;
+  margin: 0;
   font-family: var(--font-display);
 }
 
 .valueContent p {
-  position: relative;
-  z-index: 1;
   font-size: 0.875rem;
   color: var(--color-text-secondary);
   margin: 0;
   line-height: 1.5;
+  max-width: 22ch;
+}
+
+.motionCue {
+  position: relative;
+  width: 100%;
+  max-width: 184px;
+  height: 42px;
+  border: 1px solid rgba(37, 194, 160, 0.2);
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
+    rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+}
+
+[data-theme='dark'] .motionCue {
+  border-color: rgba(0, 255, 255, 0.14);
+  background:
+    linear-gradient(135deg, rgba(9, 15, 40, 0.72), rgba(9, 15, 40, 0.24)),
+    rgba(7, 12, 24, 0.58);
+}
+
+.motionCue::before {
+  content: '';
+  position: absolute;
+  inset: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.smartCue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smartLinkHorizontal,
+.smartLinkVertical {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.5), transparent);
+}
+
+.smartLinkHorizontal {
+  top: 50%;
+  left: 30px;
+  width: calc(100% - 60px);
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.smartLinkVertical {
+  left: 50%;
+  top: 9px;
+  width: 1px;
+  height: calc(100% - 18px);
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, transparent, rgba(34, 197, 94, 0.5), transparent);
+}
+
+.smartNode,
+.smartPulse {
+  position: absolute;
+}
+
+.smartNode {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 12px rgba(74, 222, 128, 0.45);
+}
+
+.smartNodeLeft {
+  left: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.smartNodeTop {
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.smartNodeRight {
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.smartNodeBottom {
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.smartPulse {
+  top: 50%;
+  left: calc(50% - 18px);
+  width: 36px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(134, 239, 172, 0.95), transparent);
+  transform: translateY(-50%);
+}
+
+.efficientCue {
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  padding: 9px 12px;
+}
+
+.efficientLane {
+  position: relative;
+  display: block;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(14, 165, 233, 0.14);
+  overflow: hidden;
+}
+
+.efficientPulse {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 34%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0), rgba(56, 189, 248, 0.95), rgba(14, 165, 233, 0));
+}
+
+.interestingCue {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.interestingTrail {
+  position: absolute;
+  inset: auto 22px 13px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(249, 115, 22, 0.1), rgba(251, 191, 36, 0.7), rgba(249, 115, 22, 0.1));
+}
+
+.interestingToken,
+.interestingSpark {
+  position: absolute;
+}
+
+.interestingToken {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.95), rgba(249, 115, 22, 0.85));
+  box-shadow: 0 0 12px rgba(249, 115, 22, 0.22);
+}
+
+.interestingToken1 {
+  left: 42px;
+  bottom: 10px;
+}
+
+.interestingToken2 {
+  left: calc(50% - 5px);
+  top: 9px;
+}
+
+.interestingToken3 {
+  right: 42px;
+  bottom: 10px;
+}
+
+.interestingSpark {
+  width: 16px;
+  height: 16px;
+  right: 28px;
+  top: 6px;
+  background:
+    linear-gradient(90deg, transparent 47%, rgba(255, 241, 118, 0.95) 47%, rgba(255, 241, 118, 0.95) 53%, transparent 53%),
+    linear-gradient(0deg, transparent 47%, rgba(255, 241, 118, 0.95) 47%, rgba(255, 241, 118, 0.95) 53%, transparent 53%);
+  filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.4));
 }
 
 /* ==========================================================================
@@ -712,6 +923,7 @@
   .valueCard {
     padding: 1.5rem 1rem;
     flex-direction: row;
+    align-items: center;
     text-align: left;
   }
 
@@ -734,6 +946,15 @@
 
   .valueContent p {
     font-size: 0.8125rem;
+    max-width: none;
+  }
+
+  .valueContent {
+    align-items: flex-start;
+  }
+
+  .motionCue {
+    max-width: 100%;
   }
 
   .heroSection {
@@ -812,7 +1033,11 @@
   .techOrb2,
   .heroLogo,
   .titleGradient,
-  .cursor {
+  .cursor,
+  .smartPulse,
+  .efficientPulse,
+  .interestingToken,
+  .interestingSpark {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

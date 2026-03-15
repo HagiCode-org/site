@@ -4,8 +4,8 @@
  * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
  * 支持农历新年主题
  */
-import { motion } from 'framer-motion';
-import { useMemo, useState, useEffect } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { useMemo, useState, useEffect, type ReactElement } from 'react';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import styles from './HeroSection.module.css';
@@ -41,6 +41,8 @@ interface HeroSectionProps {
 interface IconProps {
   className?: string;
 }
+
+type ValueCardKey = 'smart' | 'efficient' | 'interesting';
 
 /**
  * Code/Terminal Icon SVG - 科技感代码图标
@@ -80,15 +82,90 @@ function ChipIcon({ className = '' }: IconProps) {
   );
 }
 
-/**
- * ArrowRight Icon SVG
- */
-function ArrowRightIcon({ className = '' }: IconProps) {
+function SmartCardIcon({ className = '' }: IconProps) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5 12H19" />
-      <path d="M12 5L19 12L12 19" />
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="6" cy="12" r="2.25" stroke="currentColor" strokeWidth="2" />
+      <circle cx="12" cy="6.5" r="2.25" stroke="currentColor" strokeWidth="2" />
+      <circle cx="18" cy="12" r="2.25" stroke="currentColor" strokeWidth="2" />
+      <circle cx="12" cy="17.5" r="2.25" stroke="currentColor" strokeWidth="2" />
+      <path d="M7.8 10.6L10.2 7.9M13.8 7.9L16.2 10.6M16.2 13.4L13.8 16.1M10.2 16.1L7.8 13.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
+  );
+}
+
+function EfficientCardIcon({ className = '' }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 7.5H20M4 12H20M4 16.5H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M13 4L20 7.5L13 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M10 8.5L4 12L10 15.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.75" />
+    </svg>
+  );
+}
+
+function InterestingCardIcon({ className = '' }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 4.5L13.8 8.5L18.2 9L15 12L15.9 16.3L12 14.1L8.1 16.3L9 12L5.8 9L10.2 8.5L12 4.5Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      <path d="M18 4.5V8.5M20 6.5H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M6 14.5V18.5M8 16.5H4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.7" />
+    </svg>
+  );
+}
+
+function SmartMotionCue({ reducedMotion }: { reducedMotion: boolean }) {
+  return (
+    <div className={`${styles.motionCue} ${styles.smartCue}`} aria-hidden="true">
+      <span className={`${styles.smartNode} ${styles.smartNodeLeft}`} />
+      <span className={`${styles.smartNode} ${styles.smartNodeTop}`} />
+      <span className={`${styles.smartNode} ${styles.smartNodeRight}`} />
+      <span className={`${styles.smartNode} ${styles.smartNodeBottom}`} />
+      <span className={styles.smartLinkHorizontal} />
+      <span className={styles.smartLinkVertical} />
+      <motion.span
+        className={styles.smartPulse}
+        animate={reducedMotion ? { opacity: 0.6 } : { x: ['-130%', '130%'], opacity: [0, 1, 0] }}
+        transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+      />
+    </div>
+  );
+}
+
+function EfficientMotionCue({ reducedMotion }: { reducedMotion: boolean }) {
+  return (
+    <div className={`${styles.motionCue} ${styles.efficientCue}`} aria-hidden="true">
+      {[0, 1, 2].map((index) => (
+        <span key={index} className={styles.efficientLane}>
+          <motion.span
+            className={styles.efficientPulse}
+            animate={reducedMotion ? { opacity: 0.55 } : { x: ['-130%', '130%'], opacity: [0.1, 1, 0.1] }}
+            transition={{ duration: 1.9, repeat: Infinity, ease: 'linear', delay: index * 0.2 }}
+          />
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function InterestingMotionCue({ reducedMotion }: { reducedMotion: boolean }) {
+  return (
+    <div className={`${styles.motionCue} ${styles.interestingCue}`} aria-hidden="true">
+      <span className={styles.interestingTrail} />
+      {[0, 1, 2].map((index) => (
+        <motion.span
+          key={index}
+          className={`${styles.interestingToken} ${styles[`interestingToken${index + 1}` as const]}`}
+          animate={reducedMotion ? { opacity: 0.7 } : { y: [0, -4, 0], scale: [1, 1.06, 1], opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut', delay: index * 0.18 }}
+        />
+      ))}
+      <motion.span
+        className={styles.interestingSpark}
+        animate={reducedMotion ? { opacity: 0.65 } : { rotate: [0, 18, 0], scale: [0.96, 1.08, 0.96], opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+      />
+    </div>
   );
 }
 
@@ -124,6 +201,7 @@ export default function HeroSection({
   // Use prop locale if provided, otherwise use detected locale
   const locale = propLocale || detectedLocale;
   const { t } = useTranslation(locale);
+  const shouldReduceMotion = Boolean(useReducedMotion());
 
   const [currentTagline, setCurrentTagline] = useState(0);
   const [displayText, setDisplayText] = useState('');
@@ -134,6 +212,26 @@ export default function HeroSection({
   const desktopUrl = useMemo(() => getLinkWithLocale('desktop', locale), [locale]);
   const containerUrl = useMemo(() => getLinkWithLocale('container', locale), [locale]);
   const docsUrl = useMemo(() => getLinkWithLocale('productOverview', locale), [locale]);
+  const valueCards = useMemo<Array<{ key: ValueCardKey; icon: ReactElement; cue: ReactElement }>>(
+    () => [
+      {
+        key: 'smart' as const,
+        icon: <SmartCardIcon />,
+        cue: <SmartMotionCue reducedMotion={shouldReduceMotion} />,
+      },
+      {
+        key: 'efficient' as const,
+        icon: <EfficientCardIcon />,
+        cue: <EfficientMotionCue reducedMotion={shouldReduceMotion} />,
+      },
+      {
+        key: 'interesting' as const,
+        icon: <InterestingCardIcon />,
+        cue: <InterestingMotionCue reducedMotion={shouldReduceMotion} />,
+      },
+    ],
+    [shouldReduceMotion],
+  );
 
   // 根据主题选择标语数组
   const taglines = useMemo(() => {
@@ -328,41 +426,21 @@ export default function HeroSection({
 
         {/* 核心价值卡片 */}
         <motion.div className={styles.valueCards} variants={containerVariants} initial="hidden" animate="visible">
-          <motion.div className={styles.valueCard} variants={itemVariants}>
-            <div className={styles.valueIcon}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <div className={styles.valueContent}>
-              <h4>{t('hero.valueCards.efficiency.title')}</h4>
-              <p>{t('hero.valueCards.efficiency.description')}</p>
-            </div>
-          </motion.div>
-          <motion.div className={styles.valueCard} variants={itemVariants}>
-            <div className={styles.valueIcon}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <div className={styles.valueContent}>
-              <h4>{t('hero.valueCards.privacy.title')}</h4>
-              <p>{t('hero.valueCards.privacy.description')}</p>
-            </div>
-          </motion.div>
-          <motion.div className={styles.valueCard} variants={itemVariants}>
-            <div className={styles.valueIcon}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M17 21V19a2 2 0 00-2-2H5a2 2 0 00-2 2v2" strokeLinecap="round" strokeLinejoin="round"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a2 2 0 00-2-2-3-3 0 01-3-3" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <div className={styles.valueContent}>
-              <h4>{t('hero.valueCards.collaboration.title')}</h4>
-              <p>{t('hero.valueCards.collaboration.description')}</p>
-            </div>
-          </motion.div>
+          {valueCards.map((card) => (
+            <motion.div
+              key={card.key}
+              className={styles.valueCard}
+              data-pillar={card.key}
+              variants={itemVariants}
+            >
+              <div className={styles.valueIcon}>{card.icon}</div>
+              <div className={styles.valueContent}>
+                <h4>{t(`hero.valueCards.${card.key}.title` as const)}</h4>
+                {card.cue}
+                <p>{t(`hero.valueCards.${card.key}.description` as const)}</p>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* CTA 按钮组 */}

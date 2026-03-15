@@ -1016,10 +1016,11 @@
 .supportedProvidersPanel {
   padding: 0.95rem 1rem;
   border-radius: var(--radius-lg, 0.75rem);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--color-border);
   background:
-    linear-gradient(135deg, rgba(37, 194, 160, 0.08) 0%, rgba(249, 115, 22, 0.06) 100%),
-    var(--color-surface-hover);
+    linear-gradient(135deg, rgba(37, 194, 160, 0.1) 0%, rgba(249, 115, 22, 0.08) 100%),
+    var(--color-surface-glass);
+  box-shadow: var(--shadow-sm);
 }
 
 .supportedProvidersTitle {
@@ -1044,12 +1045,28 @@
   min-height: 2.35rem;
   padding: 0.42rem 0.7rem 0.42rem 0.5rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(8, 15, 32, 0.52);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.92) 100%);
   color: var(--color-text);
   font-size: 0.76rem;
   font-weight: 700;
   line-height: 1.2;
+  box-shadow:
+    0 8px 24px -18px rgba(15, 23, 42, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  transition:
+    transform var(--duration-fast, 0.15s) var(--ease-out, cubic-bezier(0.4, 0, 0.2, 1)),
+    border-color var(--duration-fast, 0.15s) var(--ease-out, cubic-bezier(0.4, 0, 0.2, 1)),
+    box-shadow var(--duration-fast, 0.15s) var(--ease-out, cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.supportedProviderPill:hover {
+  transform: translateY(-1px);
+  border-color: rgba(0, 128, 255, 0.22);
+  box-shadow:
+    0 12px 28px -18px rgba(0, 128, 255, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .supportedProviderIcon {
@@ -1059,9 +1076,11 @@
   width: 1.85rem;
   height: 1.85rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  color: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--color-text-secondary);
   flex-shrink: 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
 }
 
 .supportedProviderIcon :global(svg) {
@@ -1070,37 +1089,157 @@
 }
 
 .supportedProviderIcon[data-provider='ClaudeCodeCli'] {
+  background: rgba(255, 237, 213, 0.96);
+  color: #c2410c;
+}
+
+.supportedProviderIcon[data-provider='CodexCli'] {
+  background: rgba(207, 250, 254, 0.96);
+  color: #0f766e;
+}
+
+.supportedProviderIcon[data-provider='GitHubCopilot'] {
+  background: rgba(209, 250, 229, 0.96);
+  color: #047857;
+}
+
+.supportedProviderIcon[data-provider='CodebuddyCli'] {
+  background: rgba(252, 231, 243, 0.96);
+  color: #be185d;
+}
+
+.supportedProviderIcon[data-provider='OpenCodeCli'] {
+  background: rgba(254, 249, 195, 0.96);
+  color: #a16207;
+}
+
+.supportedProviderIcon[data-provider='IFlowCli'] {
+  background: rgba(237, 233, 254, 0.96);
+  color: #6d28d9;
+}
+
+.supportedProviderName {
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+[data-theme='dark'] .supportedProvidersPanel {
+  border-color: rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(135deg, rgba(37, 194, 160, 0.08) 0%, rgba(249, 115, 22, 0.06) 100%),
+    var(--color-surface-hover);
+  box-shadow: none;
+}
+
+[data-theme='dark'] .supportedProviderPill {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(8, 15, 32, 0.52);
+  box-shadow: none;
+}
+
+[data-theme='dark'] .supportedProviderPill:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 12px 24px -18px rgba(0, 0, 0, 0.55);
+}
+
+[data-theme='dark'] .supportedProviderIcon {
+  border-color: transparent;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+  box-shadow: none;
+}
+
+[data-theme='dark'] .supportedProviderIcon[data-provider='ClaudeCodeCli'] {
   background: rgba(251, 146, 60, 0.14);
   color: #fb923c;
 }
 
-.supportedProviderIcon[data-provider='CodexCli'] {
+[data-theme='dark'] .supportedProviderIcon[data-provider='CodexCli'] {
   background: rgba(34, 211, 238, 0.14);
   color: #22d3ee;
 }
 
-.supportedProviderIcon[data-provider='GitHubCopilot'] {
+[data-theme='dark'] .supportedProviderIcon[data-provider='GitHubCopilot'] {
   background: rgba(16, 185, 129, 0.14);
   color: #34d399;
 }
 
-.supportedProviderIcon[data-provider='CodebuddyCli'] {
+[data-theme='dark'] .supportedProviderIcon[data-provider='CodebuddyCli'] {
   background: rgba(244, 114, 182, 0.14);
   color: #f472b6;
 }
 
-.supportedProviderIcon[data-provider='OpenCodeCli'] {
+[data-theme='dark'] .supportedProviderIcon[data-provider='OpenCodeCli'] {
   background: rgba(250, 204, 21, 0.14);
   color: #facc15;
 }
 
-.supportedProviderIcon[data-provider='IFlowCli'] {
+[data-theme='dark'] .supportedProviderIcon[data-provider='IFlowCli'] {
   background: rgba(167, 139, 250, 0.14);
   color: #a78bfa;
 }
 
-.supportedProviderName {
-  white-space: nowrap;
+[data-theme='lunar-new-year'] .supportedProvidersPanel {
+  border-color: rgba(255, 193, 7, 0.3);
+  background:
+    linear-gradient(135deg, rgba(229, 57, 53, 0.18) 0%, rgba(255, 160, 0, 0.12) 100%),
+    var(--color-surface-glass);
+  box-shadow:
+    0 16px 32px -24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 236, 179, 0.08);
+}
+
+[data-theme='lunar-new-year'] .supportedProviderPill {
+  border-color: rgba(255, 193, 7, 0.26);
+  background:
+    linear-gradient(180deg, rgba(104, 28, 28, 0.92) 0%, rgba(82, 24, 24, 0.96) 100%);
+  box-shadow:
+    0 12px 26px -20px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 236, 179, 0.12);
+}
+
+[data-theme='lunar-new-year'] .supportedProviderPill:hover {
+  border-color: rgba(255, 213, 79, 0.55);
+  box-shadow:
+    0 16px 30px -20px rgba(229, 57, 53, 0.35),
+    inset 0 1px 0 rgba(255, 249, 196, 0.16);
+}
+
+[data-theme='lunar-new-year'] .supportedProviderIcon {
+  border-color: rgba(255, 193, 7, 0.22);
+  background: rgba(255, 249, 196, 0.12);
+  color: #ffe082;
+  box-shadow: none;
+}
+
+[data-theme='lunar-new-year'] .supportedProviderIcon[data-provider='ClaudeCodeCli'] {
+  background: rgba(255, 224, 178, 0.18);
+  color: #ffcc80;
+}
+
+[data-theme='lunar-new-year'] .supportedProviderIcon[data-provider='CodexCli'] {
+  background: rgba(255, 236, 179, 0.16);
+  color: #ffe082;
+}
+
+[data-theme='lunar-new-year'] .supportedProviderIcon[data-provider='GitHubCopilot'] {
+  background: rgba(255, 241, 118, 0.16);
+  color: #fff59d;
+}
+
+[data-theme='lunar-new-year'] .supportedProviderIcon[data-provider='CodebuddyCli'] {
+  background: rgba(255, 205, 210, 0.16);
+  color: #ffccbc;
+}
+
+[data-theme='lunar-new-year'] .supportedProviderIcon[data-provider='OpenCodeCli'] {
+  background: rgba(255, 213, 79, 0.2);
+  color: #ffd54f;
+}
+
+[data-theme='lunar-new-year'] .supportedProviderIcon[data-provider='IFlowCli'] {
+  background: rgba(255, 224, 130, 0.18);
+  color: #ffe082;
 }
 
 .supportedProviderFallback {
@@ -1121,7 +1260,9 @@
   background:
     linear-gradient(135deg, rgba(37, 194, 160, 0.08) 0%, rgba(6, 182, 212, 0.05) 100%),
     var(--color-surface-hover);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 12px 28px -24px rgba(15, 23, 42, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 .agentLane[data-agent='codex'] {
@@ -1150,10 +1291,28 @@
   align-items: center;
   justify-content: center;
   border-radius: 0.85rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(8, 15, 32, 0.58);
-  color: #6ee7f9;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(241, 245, 249, 0.95) 100%);
+  color: #0f766e;
   flex-shrink: 0;
+  box-shadow:
+    0 10px 22px -18px rgba(15, 23, 42, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.agentLane[data-agent='claude'] .agentIconBadge {
+  background: linear-gradient(180deg, rgba(224, 242, 254, 0.96) 0%, rgba(207, 250, 254, 0.95) 100%);
+  color: #0891b2;
+}
+
+.agentLane[data-agent='codex'] .agentIconBadge {
+  background: linear-gradient(180deg, rgba(255, 237, 213, 0.96) 0%, rgba(254, 249, 195, 0.95) 100%);
+  color: #d97706;
+}
+
+.agentLane[data-agent='router'] .agentIconBadge {
+  background: linear-gradient(180deg, rgba(237, 233, 254, 0.96) 0%, rgba(224, 231, 255, 0.95) 100%);
+  color: #7c3aed;
 }
 
 .agentLaneIcon {
@@ -1185,12 +1344,119 @@
   min-height: 2rem;
   padding: 0.4rem 0.7rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(8, 15, 32, 0.48);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.95) 100%);
   color: var(--color-text);
   font-size: 0.76rem;
   font-weight: 600;
   line-height: 1.3;
+  box-shadow:
+    0 8px 20px -18px rgba(15, 23, 42, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+.agentLane[data-agent='claude'] .instancePill {
+  border-color: rgba(8, 145, 178, 0.14);
+  background: linear-gradient(180deg, rgba(236, 254, 255, 0.94) 0%, rgba(224, 242, 254, 0.96) 100%);
+}
+
+.agentLane[data-agent='codex'] .instancePill {
+  border-color: rgba(217, 119, 6, 0.14);
+  background: linear-gradient(180deg, rgba(255, 251, 235, 0.94) 0%, rgba(255, 237, 213, 0.96) 100%);
+}
+
+.agentLane[data-agent='router'] .instancePill {
+  border-color: rgba(124, 58, 237, 0.14);
+  background: linear-gradient(180deg, rgba(245, 243, 255, 0.94) 0%, rgba(237, 233, 254, 0.96) 100%);
+}
+
+[data-theme='dark'] .agentLane {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] .agentIconBadge {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(8, 15, 32, 0.58);
+  color: #6ee7f9;
+  box-shadow: none;
+}
+
+[data-theme='dark'] .agentLane[data-agent='claude'] .agentIconBadge,
+[data-theme='dark'] .agentLane[data-agent='codex'] .agentIconBadge,
+[data-theme='dark'] .agentLane[data-agent='router'] .agentIconBadge {
+  background: rgba(8, 15, 32, 0.58);
+}
+
+[data-theme='dark'] .agentLane[data-agent='codex'] .agentIconBadge {
+  color: #67e8f9;
+}
+
+[data-theme='dark'] .agentLane[data-agent='router'] .agentIconBadge {
+  color: #a78bfa;
+}
+
+[data-theme='dark'] .instancePill {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(8, 15, 32, 0.48);
+  box-shadow: none;
+}
+
+[data-theme='dark'] .agentLane[data-agent='claude'] .instancePill,
+[data-theme='dark'] .agentLane[data-agent='codex'] .instancePill,
+[data-theme='dark'] .agentLane[data-agent='router'] .instancePill {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(8, 15, 32, 0.48);
+}
+
+[data-theme='lunar-new-year'] .agentLane {
+  border-color: rgba(255, 193, 7, 0.24);
+  background:
+    linear-gradient(135deg, rgba(229, 57, 53, 0.16) 0%, rgba(255, 160, 0, 0.1) 100%),
+    var(--color-surface-hover);
+  box-shadow:
+    0 16px 30px -24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 236, 179, 0.08);
+}
+
+[data-theme='lunar-new-year'] .agentLane[data-agent='codex'] {
+  background:
+    linear-gradient(135deg, rgba(198, 40, 40, 0.2) 0%, rgba(255, 193, 7, 0.1) 100%),
+    var(--color-surface-hover);
+}
+
+[data-theme='lunar-new-year'] .agentLane[data-agent='router'] {
+  background:
+    linear-gradient(135deg, rgba(183, 28, 28, 0.18) 0%, rgba(255, 213, 79, 0.1) 100%),
+    var(--color-surface-hover);
+}
+
+[data-theme='lunar-new-year'] .agentIconBadge {
+  border-color: rgba(255, 193, 7, 0.22);
+  background: linear-gradient(180deg, rgba(255, 213, 79, 0.22) 0%, rgba(229, 57, 53, 0.18) 100%);
+  color: #ffe082;
+  box-shadow: none;
+}
+
+[data-theme='lunar-new-year'] .agentLane[data-agent='claude'] .agentIconBadge,
+[data-theme='lunar-new-year'] .agentLane[data-agent='codex'] .agentIconBadge,
+[data-theme='lunar-new-year'] .agentLane[data-agent='router'] .agentIconBadge {
+  background: linear-gradient(180deg, rgba(255, 213, 79, 0.22) 0%, rgba(229, 57, 53, 0.18) 100%);
+  color: #ffe082;
+}
+
+[data-theme='lunar-new-year'] .instancePill {
+  border-color: rgba(255, 193, 7, 0.2);
+  background: linear-gradient(180deg, rgba(99, 31, 31, 0.92) 0%, rgba(82, 24, 24, 0.96) 100%);
+  box-shadow:
+    0 10px 18px -16px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 236, 179, 0.1);
+}
+
+[data-theme='lunar-new-year'] .agentLane[data-agent='claude'] .instancePill,
+[data-theme='lunar-new-year'] .agentLane[data-agent='codex'] .instancePill,
+[data-theme='lunar-new-year'] .agentLane[data-agent='router'] .instancePill {
+  border-color: rgba(255, 193, 7, 0.2);
+  background: linear-gradient(180deg, rgba(99, 31, 31, 0.92) 0%, rgba(82, 24, 24, 0.96) 100%);
 }
 
 .agentStatus {
