@@ -1,44 +1,83 @@
 /**
  * VideoShowcase 组件
  * 视频展示区块 - 集成 Bilibili 视频
+ * 首页视频按精选数组维护,并默认将第一条作为主展示位
  * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
  */
-import { motion } from 'framer-motion';
+import { ExternalLink } from 'lucide-react';
 import BilibiliVideo from './BilibiliVideo';
 import styles from './VideoShowcase.module.css';
 
-// 定义 Variants 类型
-type Variants = {
-  [key: string]: {
-    [key: string]: any;
-  };
-};
+export interface VideoShowcaseItem {
+  bvid: string;
+  title: string;
+  description: string;
+  url: string;
+}
 
 interface VideoShowcaseProps {
+  eyebrow?: string;
   title?: string;
   description?: string;
-  videoId: string;
+  ctaLabel?: string;
+  featuredLabel?: string;
+  supportingLabel?: string;
+  videos: VideoShowcaseItem[];
 }
 
 export default function VideoShowcase({
-  title = '每天哈基半小时,AI多任务编程实战',
-  description = '通过视频快速了解 Hagicode 的核心功能和使用方法',
-  videoId = 'BV1pirZBuEzq',
+  eyebrow = 'Real Product Walkthroughs',
+  title = 'See Hagicode in real coding sessions',
+  description = 'Start with the daily workflow, then compare two focused demos that show how playful and capable the product feels in practice.',
+  ctaLabel = 'Open on Bilibili',
+  featuredLabel = 'Featured walkthrough',
+  supportingLabel = 'Focused demo',
+  videos,
 }: VideoShowcaseProps) {
   return (
     <section className={styles.videoShowcase} aria-labelledby="video-showcase-title">
       <div className={styles.container}>
-        {/* 区块头部 */}
         <div className={styles.header}>
+          <span className={styles.eyebrow}>{eyebrow}</span>
           <h2 id="video-showcase-title" className={styles.title}>
             {title}
           </h2>
           <p className={styles.description}>{description}</p>
         </div>
 
-        {/* 视频包装器 */}
-        <div className={styles.videoWrapper}>
-          <BilibiliVideo bvid={videoId} title={title} />
+        <div className={styles.videoGrid}>
+          {videos.map((video, index) => {
+            const isFeatured = index === 0;
+
+            return (
+              <article
+                key={video.bvid}
+                className={`${styles.videoCard} ${isFeatured ? styles.featuredCard : styles.supportingCard}`}
+              >
+                <div className={styles.videoPanel}>
+                  <BilibiliVideo bvid={video.bvid} title={video.title} />
+                </div>
+
+                <div className={styles.cardContent}>
+                  <span className={styles.cardLabel}>
+                    {isFeatured ? featuredLabel : supportingLabel}
+                  </span>
+                  <h3 className={styles.cardTitle}>{video.title}</h3>
+                  <p className={styles.cardDescription}>{video.description}</p>
+                  <a
+                    className={styles.cardAction}
+                    href={video.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${ctaLabel}: ${video.title}`}
+                  >
+                    <span>{ctaLabel}</span>
+                    <ExternalLink size={18} aria-hidden="true" />
+                  </a>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

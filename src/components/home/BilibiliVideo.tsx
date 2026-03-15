@@ -6,9 +6,9 @@ import VideoPlayer from './VideoPlayer';
 
 interface BilibiliVideoProps {
   bvid: string;
-  title?: string;
+  title: string;
 }
 
-export default function BilibiliVideo({ bvid, title = 'Bilibili Video' }: BilibiliVideoProps) {
-  return <VideoPlayer videoId={bvid} title={title} />;
+export default function BilibiliVideo({ bvid, title }: BilibiliVideoProps) {
+  return <VideoPlayer bvid={bvid} title={title} />;
 }
