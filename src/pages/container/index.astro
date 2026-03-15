@@ -1,5 +1,6 @@
 ---
 import AnalyticsScripts from "@/components/AnalyticsScripts.astro";
+import GoogleAnalytics from "@/components/GoogleAnalytics.astro";
 import '@/styles/homepage.css';
 import '@/styles/container.css';
 import Navbar from '@/components/home/Navbar';
@@ -111,6 +112,7 @@ try {
     <meta name="og:title" content={title} />
     <meta name="og:description" content={description} />
     <meta name="og:type" content="website" />
+    <GoogleAnalytics />
     <script is:inline>
       // Initialize theme - consistent with homepage
       (function() {

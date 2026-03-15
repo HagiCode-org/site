@@ -1,5 +1,6 @@
 ---
 import AnalyticsScripts from "@/components/AnalyticsScripts.astro";
+import GoogleAnalytics from "@/components/GoogleAnalytics.astro";
 // 导入首页样式系统
 import '@/styles/homepage.css';
 // 导入 Container 页面专属样式
@@ -113,6 +114,7 @@ try {
     <meta name="og:title" content={title} />
     <meta name="og:description" content={description} />
     <meta name="og:type" content="website" />
+    <GoogleAnalytics />
     <script is:inline>
       // 初始化主题 - 与主页保持一致
       (function() {

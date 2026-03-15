@@ -14,6 +14,7 @@ import InstallOptionsSection from '@/components/home/InstallOptionsSection';
 import Footer from '@/components/home/Footer';
 import LunarNewYearDecorations from '@/components/home/LunarNewYearDecorations';
 import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
+import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 // 导入首页样式
 import '@/styles/homepage.css';
 
@@ -141,6 +142,7 @@ try {
     <meta name="og:title" content={title} />
     <meta name="og:description" content={description} />
     <meta name="og:type" content="website" />
+    <GoogleAnalytics />
     <script is:inline>
       // 禁用浏览器的自动滚动恢复，并强制滚动到顶部
       // 防止刷新页面后跳到之前的滚动位置

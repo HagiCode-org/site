@@ -1,6 +1,7 @@
 ---
 import { Tabs, TabItem } from "@astrojs/starlight/components";
 import AnalyticsScripts from "@/components/AnalyticsScripts.astro";
+import GoogleAnalytics from "@/components/GoogleAnalytics.astro";
 import '@/styles/homepage.css';
 import '@/styles/desktop.css';
 import Navbar from '@/components/home/Navbar';
@@ -62,6 +63,7 @@ const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData
     <meta name="og:title" content={title} />
     <meta name="og:description" content={description} />
     <meta name="og:type" content="website" />
+    <GoogleAnalytics />
     <script set:html={`window.__DESKTOP_VERSION_DATA__ = ${desktopVersionData ? JSON.stringify(desktopVersionData) : 'null'};`} is:inline></script>
     <script is:inline>
       // Initialize theme - consistent with homepage

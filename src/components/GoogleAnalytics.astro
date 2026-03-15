@@ -1,0 +1,22 @@
+---
+const measurementId = 'G-EN03FMT2Q4';
+const shouldRender = import.meta.env.PROD;
+---
+
+{
+  shouldRender && (
+    <>
+      <script
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+      ></script>
+      <script
+        is:inline
+        set:html={`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${measurementId}');`}
+      ></script>
+    </>
+  )
+}
