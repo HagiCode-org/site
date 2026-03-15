@@ -1,0 +1,33 @@
+---
+import { getAbsoluteSiteUrl, joinWithSiteBase } from '@/lib/locale-routing';
+
+interface Props {
+  targetPath: string;
+}
+
+const { targetPath } = Astro.props;
+const siteBase = import.meta.env.VITE_SITE_BASE || '';
+const redirectPath = joinWithSiteBase(siteBase, targetPath);
+const canonicalUrl = getAbsoluteSiteUrl(targetPath, 'en', siteBase);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,follow" />
+    <title>Redirecting...</title>
+    <link rel="canonical" href={canonicalUrl} />
+    <meta http-equiv="refresh" content={`0;url=${redirectPath}`} />
+    <script is:inline define:vars={{ redirectPath }}>
+      const nextUrl = `${redirectPath}${window.location.search}${window.location.hash}`;
+      window.location.replace(nextUrl);
+    </script>
+  </head>
+  <body>
+    <p>
+      Redirecting to <a href={redirectPath}>{redirectPath}</a>.
+    </p>
+  </body>
+</html>
