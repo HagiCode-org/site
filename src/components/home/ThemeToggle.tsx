@@ -63,7 +63,7 @@ export default function ThemeToggle({ className = '', locale: propLocale }: Them
     // 监听 Starlight 主题变化（从其他页面切换回来时）
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === 'starlight-theme' && e.newValue) {
-        const newTheme = e.newValue as Theme;
+        const newTheme = e.newValue as Exclude<Theme, undefined>;
         setTheme(newTheme);
         document.documentElement.setAttribute('data-theme', newTheme);
       }
@@ -75,7 +75,7 @@ export default function ThemeToggle({ className = '', locale: propLocale }: Them
 
   // 切换主题 - 与 Starlight 同步
   const toggleTheme = () => {
-    let newTheme: Theme;
+    let newTheme: Exclude<Theme, undefined>;
     if (theme === 'light') {
       newTheme = 'dark';
     } else if (theme === 'dark') {

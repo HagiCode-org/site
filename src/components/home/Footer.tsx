@@ -97,6 +97,7 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
   const desktopLink = getLinkWithLocale('desktop', locale);
   const githubLink = getLinkWithLocale('github', locale);
   const qqGroupLink = getLinkWithLocale('qqGroup', locale);
+  const discordLink = getLinkWithLocale('discord', locale);
   const rssLink = getLinkWithLocale('rss', locale);
   const productOverviewLink = getLinkWithLocale('productOverview', locale);
 
@@ -162,6 +163,12 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
           ariaLabel: t('footer.github'),
         },
         {
+          label: t('footer.discord'),
+          href: discordLink,
+          external: true,
+          ariaLabel: t('footer.discord'),
+        },
+        {
           label: t('footer.issueFeedback'),
           href: 'https://github.com/HagiCode-org/site/issues',
           external: true,
@@ -181,7 +188,7 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
         },
       ],
     },
-  }), [t, docsLink, desktopLink, rssLink, qqGroupLink]);
+  }), [t, docsLink, desktopLink, githubLink, discordLink, productOverviewLink, rssLink, qqGroupLink, locale]);
 
   return (
     <footer className={`${styles.footer} ${className}`}>

@@ -190,8 +190,7 @@ function SupportedCliIcon({ providerKey }: CliIconProps) {
  * 智能特性区域 - OpenSpec 工作流
  * 优化: 添加暂停交互、增强视觉反馈、数据流动画
  */
-function SmartFeature() {
-  const { locale } = useLocale();
+function SmartFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
   const { t } = useTranslation(locale);
   const [activeStage, setActiveStage] = useState(0);
   const [efficiencyAnimating, setEfficiencyAnimating] = useState(true);
@@ -361,8 +360,7 @@ function SmartFeature() {
  * 高效特性区域 - 多 Agent / 多实例并行
  * 优化: 让并行能力从抽象效率数字变成可读的 Agent x Instance 视图
  */
-function ConvenientFeature() {
-  const { locale } = useLocale();
+function ConvenientFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
   const { t } = useTranslation(locale);
   const [animateBars, setAnimateBars] = useState(true);
 
@@ -576,8 +574,7 @@ function ConvenientFeature() {
 /**
  * 有趣特性区域 - Hero Dungeon 游戏化工作流
  */
-function InterestingFeature() {
-  const { locale } = useLocale();
+function InterestingFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
   const { t } = useTranslation(locale);
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -826,9 +823,9 @@ export default function FeaturesShowcase({ locale: propLocale }: { locale?: 'zh-
         </div>
 
         <div className={styles.zonesContainer}>
-          <SmartFeature />
-          <ConvenientFeature />
-          <InterestingFeature />
+          <SmartFeature locale={locale} />
+          <ConvenientFeature locale={locale} />
+          <InterestingFeature locale={locale} />
         </div>
       </div>
     </section>

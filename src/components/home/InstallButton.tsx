@@ -7,7 +7,6 @@
  */
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import styles from './InstallButton.module.css';
-import { withBasePath } from '@/utils/path';
 import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
 import { getLinkWithLocale } from '@/lib/shared/links';
 import { MAC_DOWNLOAD_DISABLED_NOTICE, MAC_DOWNLOAD_DISABLED_NOTICE_EN } from '@/constants/downloadMessages';
@@ -167,21 +166,28 @@ export default function InstallButton({
     () => allPlatformData.find((platform) => platform.platform === 'macos') || null,
     [allPlatformData]
   );
+  const desktopPageUrl = useMemo(() => getLinkWithLocale('desktop', locale), [locale]);
   const containerUrl = useMemo(() => getLinkWithLocale('container', locale), [locale]);
   const macDisabledNotice = locale === 'en' ? MAC_DOWNLOAD_DISABLED_NOTICE_EN : MAC_DOWNLOAD_DISABLED_NOTICE;
   const containerDeploymentLabel = locale === 'en' ? 'Container Deployment' : '容器部署';
   const goToContainerLabel = locale === 'en' ? 'Go to Container page' : '前往 Container 页面';
+  const installButtonLabel = locale === 'en' ? 'Install now' : '立即安装';
+  const installDesktopAriaLabel =
+    locale === 'en' ? 'Install Hagicode Desktop' : '立即安装 Hagicode Desktop';
+  const selectOtherVersionsLabel = locale === 'en' ? 'Choose other versions' : '选择其他版本';
+  const selectDownloadVersionLabel = locale === 'en' ? 'Choose download version' : '选择下载版本';
+  const recommendedLabel = locale === 'en' ? 'Recommended' : '推荐';
 
   // 根据用户系统设置默认下载链接
   const currentUrl = useMemo(() => {
     if (platformData.length === 0) {
-      return withBasePath('/desktop');
+      return desktopPageUrl;
     }
 
     const userOS = detectOS();
 
     if (!FEATURE_MAC_DOWNLOAD_ENABLED && userOS === 'macos') {
-      return withBasePath('/desktop');
+      return desktopPageUrl;
     }
 
     const userPlatform = platformData.find(p => p.platform === userOS);
@@ -199,7 +205,7 @@ export default function InstallButton({
     }
 
     return platformData[0].options[0].url;
-  }, [platformData]);
+  }, [desktopPageUrl, platformData]);
 
   // 点击外部关闭下拉菜单
   useEffect(() => {
@@ -266,7 +272,7 @@ export default function InstallButton({
     return (
       <div className={`${styles.installButtonWrapper} ${styles[`installButtonWrapper--${variant}`]} ${className}`}>
         <div className={styles.splitButtonContainer}>
-          <a href={withBasePath('/desktop')} className={styles.btnDownloadMain} onClick={handlePrimaryInstallClick}>
+          <a href={desktopPageUrl} className={styles.btnDownloadMain} onClick={handlePrimaryInstallClick}>
             <svg className={styles.downloadIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
@@ -276,7 +282,7 @@ export default function InstallButton({
                 strokeLinejoin="round"
               />
             </svg>
-            <span className={styles.btnText}>立即安装</span>
+            <span className={styles.btnText}>{installButtonLabel}</span>
           </a>
         </div>
       </div>
@@ -288,7 +294,7 @@ export default function InstallButton({
     return (
       <div className={`${styles.installButtonWrapper} ${styles[`installButtonWrapper--${variant}`]} ${className}`}>
         <div className={styles.splitButtonContainer}>
-          <a href={withBasePath('/desktop')} className={styles.btnDownloadMain} onClick={handlePrimaryInstallClick}>
+          <a href={desktopPageUrl} className={styles.btnDownloadMain} onClick={handlePrimaryInstallClick}>
             <svg className={styles.downloadIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
@@ -298,7 +304,7 @@ export default function InstallButton({
                 strokeLinejoin="round"
               />
             </svg>
-            <span className={styles.btnText}>立即安装</span>
+            <span className={styles.btnText}>{installButtonLabel}</span>
           </a>
         </div>
       </div>
@@ -312,7 +318,7 @@ export default function InstallButton({
         <a
           href={currentUrl}
           className={styles.btnDownloadMain}
-          aria-label="立即安装 Hagicode Desktop"
+          aria-label={installDesktopAriaLabel}
           onClick={handlePrimaryInstallClick}
         >
           <svg className={styles.downloadIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -324,7 +330,7 @@ export default function InstallButton({
               strokeLinejoin="round"
             />
           </svg>
-          <span className={styles.btnText}>立即安装</span>
+          <span className={styles.btnText}>{installButtonLabel}</span>
         </a>
 
         {/* 下拉切换按钮 */}
@@ -336,7 +342,7 @@ export default function InstallButton({
               aria-expanded={isDropdownOpen}
               aria-controls={`${buttonId}-menu`}
               aria-haspopup="listbox"
-              aria-label="选择其他版本"
+              aria-label={selectOtherVersionsLabel}
               onClick={handleToggleDropdown}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -349,7 +355,7 @@ export default function InstallButton({
               className={`${styles.dropdownMenu} ${isDropdownOpen ? styles.dropdownMenuOpen : ''}`}
               id={`${buttonId}-menu`}
               role="listbox"
-              aria-label="选择下载版本"
+              aria-label={selectDownloadVersionLabel}
               style={
                 dropdownPosition
                   ? { top: `${dropdownPosition.top}px`, left: `${dropdownPosition.left}px` }
@@ -386,7 +392,11 @@ export default function InstallButton({
                             {getAssetTypeLabel(option.assetType)}
                             {archLabel && <span className={styles.archLabel}> ({archLabel})</span>}
                             {fileExt && <span className={styles.fileExtBadge}>{fileExt}</span>}
-                            {isRecommended && <span className={styles.recommendedBadge}>⭐推荐</span>}
+                            {isRecommended && (
+                              <span className={styles.recommendedBadge}>
+                                ⭐{recommendedLabel}
+                              </span>
+                            )}
                           </span>
                           {option.size && (
                             <span className={styles.dropdownItemSize}>{option.size}</span>

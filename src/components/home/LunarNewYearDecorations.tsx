@@ -19,7 +19,11 @@ interface LanternDecorationProps {
 /**
  * 单个灯笼组件
  */
-function Lantern({ size = 'medium', delay = 0 }: { size?: 'small' | 'medium' | 'large'; delay?: number }) {
+function Lantern({
+  position,
+  size = 'medium',
+  delay = 0,
+}: LanternDecorationProps) {
   const sizeClasses = {
     small: { width: '30px', height: '40px' },
     medium: { width: '50px', height: '65px' },

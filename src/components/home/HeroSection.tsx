@@ -9,8 +9,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import styles from './HeroSection.module.css';
-import { withBasePath } from '../../utils/path';
-import { getLink } from '@/lib/shared/links';
+import { getLinkWithLocale } from '@/lib/shared/links';
 
 // 定义 Variants 类型
 type Variants = {
@@ -132,8 +131,9 @@ export default function HeroSection({
   const [theme, setTheme] = useState<Theme>(undefined);
 
   // 根据当前 base path 动态生成链接
-  const installUrl = useMemo(() => getLink('dockerCompose'), []);
-  const docsUrl = useMemo(() => getLink('productOverview'), []);
+  const desktopUrl = useMemo(() => getLinkWithLocale('desktop', locale), [locale]);
+  const containerUrl = useMemo(() => getLinkWithLocale('container', locale), [locale]);
+  const docsUrl = useMemo(() => getLinkWithLocale('productOverview', locale), [locale]);
 
   // 根据主题选择标语数组
   const taglines = useMemo(() => {
@@ -369,7 +369,7 @@ export default function HeroSection({
         <motion.div className={styles.heroButtons}>
           {/* 桌面应用安装按钮 - 主按钮 */}
           <a
-            href={withBasePath('/desktop')}
+            href={desktopUrl}
             className={styles.buttonPrimary}
           >
             <svg className={styles.downloadIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -386,7 +386,7 @@ export default function HeroSection({
 
           {/* 容器应用安装按钮 - 次要按钮 */}
           <a
-            href={withBasePath('/container')}
+            href={containerUrl}
             className={styles.buttonSecondary}
           >
             <svg className={styles.dockerIcon} viewBox="0 0 24 24" fill="currentColor">

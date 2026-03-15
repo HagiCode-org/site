@@ -34,12 +34,21 @@ interface ActivityMetricCardProps {
   gradient: string;
   index: number;
   isLoading: boolean;
+  locale: 'zh-CN' | 'en';
 }
 
 /**
  * 数字滚动动画组件
  */
-function CountUp({ value, duration = 1.5 }: { value: number; duration?: number }) {
+function CountUp({
+  value,
+  duration = 1.5,
+  locale,
+}: {
+  value: number;
+  duration?: number;
+  locale: 'zh-CN' | 'en';
+}) {
   const [displayValue, setDisplayValue] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
 
@@ -69,9 +78,10 @@ function CountUp({ value, duration = 1.5 }: { value: number; duration?: number }
   }, [hasAnimated, value, duration]);
 
   const formatValue = (val: number): string => {
-    if (val >= 100000000) return `${(val / 100000000).toFixed(1)}亿`;
-    if (val >= 10000) return `${(val / 10000).toFixed(1)}万`;
-    return val.toString();
+    return new Intl.NumberFormat(locale === 'zh-CN' ? 'zh-CN' : 'en', {
+      notation: 'compact',
+      maximumFractionDigits: 1,
+    }).format(val);
   };
 
   return <span>{formatValue(displayValue)}</span>;
@@ -94,8 +104,7 @@ function MetricCardSkeleton() {
 /**
  * 空状态展示
  */
-function EmptyState() {
-  const { locale } = useLocale();
+function EmptyState({ locale }: { locale: 'zh-CN' | 'en' }) {
   const { t } = useTranslation(locale);
 
   return (
@@ -132,6 +141,7 @@ function ActivityMetricCard({
   gradient,
   index,
   isLoading,
+  locale,
 }: ActivityMetricCardProps) {
   if (isLoading) {
     return <MetricCardSkeleton />;
@@ -183,7 +193,7 @@ function ActivityMetricCard({
 
         <div className={styles.metricValue}>
           {typeof value === 'number' && value > 0 ? (
-            <CountUp value={value} />
+            <CountUp value={value} locale={locale} />
           ) : (
             getValue()
           )}
@@ -272,7 +282,7 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
           className={`${styles.timeRangeButton} ${timeRange === days ? styles.active : ''}`}
           onClick={() => setTimeRange(days)}
         >
-          {days}天
+          {locale === 'en' ? `${days}d` : `${days}天`}
         </button>
       ))}
     </div>
@@ -286,7 +296,7 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>{t('activityMetrics.title')}</h2>
           </div>
-          <EmptyState />
+          <EmptyState locale={locale} />
         </div>
       </section>
     );
@@ -321,6 +331,7 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
       gradient: 'linear-gradient(135deg, #4ECDC4, #45B7D1)',
       index: 0,
       isLoading,
+      locale,
     },
     {
       icon: '👥',
@@ -330,6 +341,7 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
       gradient: 'linear-gradient(135deg, #FF6B6B, #6C5CE7)',
       index: 1,
       isLoading,
+      locale,
     },
     {
       icon: '💬',
@@ -339,6 +351,7 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
       gradient: 'linear-gradient(135deg, #A29BFE, #FD79A8)',
       index: 2,
       isLoading,
+      locale,
     },
   ];
 
@@ -400,7 +413,7 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
         <div className={styles.metricsGrid}>
           <AnimatePresence mode="wait">
             {!hasRealData && !isLoading ? (
-              <EmptyState />
+              <EmptyState locale={locale} />
             ) : isLoading ? (
               // 加载状态显示骨架屏
               [...Array(3)].map((_, i) => (

@@ -169,6 +169,61 @@
   cursor: pointer;
 }
 
+.navLinkSupport,
+.navLinkGithub {
+  padding: 0.625rem 0.95rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  transition:
+    color var(--duration-fast, 0.15s) ease,
+    border-color var(--duration-fast, 0.15s) ease,
+    box-shadow var(--duration-fast, 0.15s) ease,
+    transform var(--duration-fast, 0.15s) ease;
+}
+
+.navLinkSupport {
+  border-color: color-mix(in srgb, var(--color-primary) 34%, transparent);
+}
+
+.navLinkSupport:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 58%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
+.navLinkGithub {
+  color: var(--color-text);
+  border-color: color-mix(in srgb, var(--color-primary) 44%, transparent);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, white 16%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
+.navLinkGithub .navLinkIcon {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.navLinkGithub::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 24px color-mix(in srgb, var(--color-primary) 18%, transparent);
+  opacity: 0.9;
+}
+
+.navLinkGithub:hover {
+  color: var(--color-primary);
+  border-color: color-mix(in srgb, var(--color-primary) 72%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-primary) 24%, transparent),
+    0 0 26px color-mix(in srgb, var(--color-primary) 22%, transparent);
+  transform: translateY(-1px);
+}
+
 .navLinkIcon {
   display: inline-flex;
   align-items: center;
@@ -198,6 +253,36 @@
   text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
+[data-theme='dark'] .navLinkSupport {
+  border-color: rgba(0, 255, 255, 0.22);
+}
+
+[data-theme='dark'] .navLinkSupport:hover {
+  border-color: rgba(0, 255, 255, 0.42);
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.12);
+}
+
+[data-theme='dark'] .navLinkGithub {
+  color: #f8fafc;
+  border-color: rgba(0, 255, 255, 0.3);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 0 1px rgba(0, 255, 255, 0.08),
+    0 0 20px rgba(0, 255, 255, 0.08);
+}
+
+[data-theme='dark'] .navLinkGithub::before {
+  box-shadow: 0 0 28px rgba(0, 255, 255, 0.18);
+}
+
+[data-theme='dark'] .navLinkGithub:hover {
+  color: var(--color-secondary);
+  border-color: rgba(0, 255, 255, 0.52);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 255, 255, 0.22),
+    0 0 32px rgba(0, 255, 255, 0.16);
+}
+
 /* 底部指示器动画 */
 .navLinkIndicator {
   position: absolute;
@@ -214,6 +299,11 @@
 .navLink:hover .navLinkIndicator {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+.navLinkSupport .navLinkIndicator,
+.navLinkGithub .navLinkIndicator {
+  display: none;
 }
 
 /* ==========================================================================
@@ -386,6 +476,22 @@
   cursor: pointer;
 }
 
+.mobileNavLinkSupport,
+.mobileNavLinkGithub {
+  border: 1px solid transparent;
+}
+
+.mobileNavLinkSupport {
+  border-color: color-mix(in srgb, var(--color-primary) 28%, transparent);
+}
+
+.mobileNavLinkGithub {
+  border-color: color-mix(in srgb, var(--color-primary) 45%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, white 14%, transparent),
+    0 0 20px color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
 .mobileNavIcon {
   display: inline-flex;
   align-items: center;
@@ -416,6 +522,17 @@
   background: rgba(0, 255, 255, 0.1);
   color: var(--color-secondary);
   box-shadow: var(--shadow-glow-cyan);
+}
+
+[data-theme='dark'] .mobileNavLinkSupport {
+  border-color: rgba(0, 255, 255, 0.2);
+}
+
+[data-theme='dark'] .mobileNavLinkGithub {
+  border-color: rgba(0, 255, 255, 0.34);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 24px rgba(0, 255, 255, 0.12);
 }
 
 .mobileNavText {

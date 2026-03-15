@@ -88,8 +88,9 @@ const itemVariants = {
   },
 };
 
-export default function InstallOptionsSection() {
-  const { locale } = useLocale();
+export default function InstallOptionsSection({ locale: propLocale }: { locale?: 'zh-CN' | 'en' }) {
+  const { locale: detectedLocale } = useLocale();
+  const locale = propLocale || detectedLocale;
   const { t } = useTranslation(locale);
 
   const options: InstallOption[] = [

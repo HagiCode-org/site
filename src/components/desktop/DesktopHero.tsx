@@ -102,7 +102,8 @@ interface DesktopHeroProps {
 }
 
 export default function DesktopHero(props: DesktopHeroProps) {
-  const { locale } = useLocale();
+  const { locale: detectedLocale } = useLocale();
+  const locale = props.locale || detectedLocale;
   const { t } = useTranslation(locale);
   const [versionData, setVersionData] = useState<DesktopVersionData | null>(null);
   const [currentChannel, setCurrentChannel] = useState<'stable' | 'beta'>('stable');
@@ -188,6 +189,11 @@ export default function DesktopHero(props: DesktopHeroProps) {
   const macDownloadNotice = locale === 'en'
     ? `For macOS users: ${MAC_DOWNLOAD_DISABLED_NOTICE_EN}`
     : `Mac 用户：${MAC_DOWNLOAD_DISABLED_NOTICE}`;
+  const getDownloadAriaLabel = (platformLabel: string) =>
+    t('desktopHero.download.ariaLabel').replace('{platform}', platformLabel);
+  const getSelectOtherVersionsLabel = (platformLabel: string) =>
+    t('desktopHero.selectOtherVersions').replace('{platform}', platformLabel);
+  const versionInfoLabel = t('desktopHero.versionInfo').replace('{version}', currentVersion?.version ?? '');
 
   if (loading) {
     return (
@@ -292,7 +298,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
                               });
                               setOpenDropdown(null);
                             }}
-                            aria-label={t('desktopHero.download.ariaLabel', { platform: platform.platformLabel })}
+                            aria-label={getDownloadAriaLabel(platform.platformLabel)}
                           >
                             <span className={styles.platformButtonLabel}>
                               {isPrimary && <span className={styles.recommendedBadge}>{t('desktopHero.download.recommended')}</span>}
@@ -307,7 +313,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
                             onClick={() => toggleDropdown(platform.platform)}
                             aria-expanded={isOpen}
                             aria-haspopup="listbox"
-                            aria-label={t('desktopHero.selectOtherVersions', { platform: platform.platformLabel })}
+                            aria-label={getSelectOtherVersionsLabel(platform.platformLabel)}
                           >
                             <ChevronDownIcon />
                           </button>
@@ -356,7 +362,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
 
             {/* 版本信息 */}
             <p className="version-info">
-              {t('desktopHero.versionInfo', { version: currentVersion.version })}
+              {versionInfoLabel}
               {currentChannel === 'beta' && ` ${t('desktopHero.testVersion')}`}
             </p>
 

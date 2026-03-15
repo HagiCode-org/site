@@ -7,14 +7,17 @@ interface LanguageSwitcherProps {
 }
 
 export function LanguageSwitcher({ locale: propLocale }: LanguageSwitcherProps = {}) {
-  const { locale, toggleLocale } = useLocale();
-  const { t } = useTranslation(locale);
-  // Use prop locale if provided (from SSR), otherwise use hook locale
-  const currentLocale = propLocale || locale;
+  const { locale: detectedLocale, toggleLocale } = useLocale();
+  const currentLocale = propLocale || detectedLocale;
+  const { t } = useTranslation(currentLocale);
+  const switchLabel =
+    currentLocale === 'zh-CN'
+      ? t('languageSwitcher.switchToEnglish')
+      : t('languageSwitcher.switchToChinese');
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
       toggleLocale();
     }
   };
@@ -23,9 +26,10 @@ export function LanguageSwitcher({ locale: propLocale }: LanguageSwitcherProps =
     <button
       onClick={toggleLocale}
       onKeyDown={handleKeyDown}
-      aria-label={t('languageSwitcher.label')}
-      title={currentLocale === 'zh-CN' ? t('languageSwitcher.switchToEnglish') : t('languageSwitcher.switchToChinese')}
+      aria-label={switchLabel}
+      title={switchLabel}
       className={styles.languageSwitcher}
+      data-current-locale={currentLocale}
     >
       <span>{currentLocale === 'zh-CN' ? '中' : 'EN'}</span>
     </button>

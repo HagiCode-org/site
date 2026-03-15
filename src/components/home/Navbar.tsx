@@ -3,26 +3,27 @@
  * 首页导航栏，包含 Logo、导航链接和主题切换
  * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
  */
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, type ReactElement } from "react";
 import ThemeToggle from "./ThemeToggle";
 import InstallButton from "./InstallButton";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useLocale } from "@/lib/useLocale";
 import { useTranslation } from "@/i18n/ui";
 import styles from "./Navbar.module.css";
-import { withBasePath } from "../../utils/path";
-import { getLinkWithLocale, type PublicLinkKey } from '@/lib/shared/links';
+import { getLinkWithLocale } from '@/lib/shared/links';
 
 interface NavbarProps {
   className?: string;
   locale?: 'zh-CN' | 'en';
 }
 
+type NavLinkTone = 'default' | 'support' | 'github';
+
 /**
  * SVG 图标组件
  */
-const NavIcon = ({ name }: { name: string }): JSX.Element | null => {
-  const icons: Record<string, JSX.Element> = {
+const NavIcon = ({ name }: { name: string }): ReactElement | null => {
+  const icons: Record<string, ReactElement> = {
     "open-book": (
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -110,30 +111,42 @@ export default function Navbar({
       href: getLinkWithLocale('docs', locale),
       external: false,
       icon: 'open-book',
+      tone: 'default' as NavLinkTone,
     },
     {
       label: t('navbar.desktop'),
       href: getLinkWithLocale('desktop', locale),
       external: false,
       icon: 'desktop',
+      tone: 'default' as NavLinkTone,
     },
     {
       label: t('navbar.container'),
       href: getLinkWithLocale('container', locale),
       external: false,
       icon: 'seti:docker',
+      tone: 'default' as NavLinkTone,
     },
     {
       label: locale === 'zh-CN' ? '技术支持群' : 'Support',
       href: getLinkWithLocale('qqGroup', locale),
       external: true,
       icon: 'comment',
+      tone: 'support' as NavLinkTone,
+    },
+    {
+      label: t('navbar.discord'),
+      href: getLinkWithLocale('discord', locale),
+      external: true,
+      icon: 'comment',
+      tone: 'support' as NavLinkTone,
     },
     {
       label: 'GitHub',
       href: getLinkWithLocale('github', locale),
       external: true,
       icon: 'github',
+      tone: 'github' as NavLinkTone,
     },
   ], [locale, t]);
 
@@ -159,7 +172,7 @@ export default function Navbar({
   }, [isMobileMenuOpen]);
 
   // 获取首页链接（适配 base path）
-  const homeUrl = useMemo(() => withBasePath("/"), []);
+  const homeUrl = useMemo(() => getLinkWithLocale('website', locale), [locale]);
 
   return (
     <header
@@ -191,7 +204,11 @@ export default function Navbar({
             <a
               key={item.href}
               href={item.href}
-              className={styles.navLink}
+              className={[
+                styles.navLink,
+                item.tone === 'support' ? styles.navLinkSupport : '',
+                item.tone === 'github' ? styles.navLinkGithub : '',
+              ].filter(Boolean).join(' ')}
               target={item.external ? "_blank" : undefined}
               rel={item.external ? "noopener noreferrer" : undefined}
             >
@@ -208,7 +225,7 @@ export default function Navbar({
 
         {/* Actions */}
         <div className={styles.actions}>
-          <ThemeToggle />
+          <ThemeToggle locale={locale} />
           <LanguageSwitcher locale={locale} />
           <button
             className={styles.mobileMenuBtn}
@@ -242,7 +259,11 @@ export default function Navbar({
             <a
               key={item.href}
               href={item.href}
-              className={styles.mobileNavLink}
+              className={[
+                styles.mobileNavLink,
+                item.tone === 'support' ? styles.mobileNavLinkSupport : '',
+                item.tone === 'github' ? styles.mobileNavLinkGithub : '',
+              ].filter(Boolean).join(' ')}
               onClick={() => setIsMobileMenuOpen(false)}
               target={item.external ? "_blank" : undefined}
               rel={item.external ? "noopener noreferrer" : undefined}
