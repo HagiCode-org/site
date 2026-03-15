@@ -5,16 +5,14 @@
  */
 import Navbar from '@/components/home/Navbar';
 import HeroSection from '@/components/home/HeroSection';
-import SocialProofSection from '@/components/home/SocialProofSection';
 import ActivityMetricsSection from '@/components/home/ActivityMetricsSection';
 import FeaturesShowcase from '@/components/home/FeaturesShowcase';
 import ShowcaseSection from '@/components/home/ShowcaseSection';
-import ArchitectureDiagram from '@/components/home/ArchitectureDiagram';
 import VideoShowcase from '@/components/home/VideoShowcase';
+import type { VideoShowcaseItem } from '@/components/home/VideoShowcase';
 import InstallOptionsSection from '@/components/home/InstallOptionsSection';
 import Footer from '@/components/home/Footer';
 import LunarNewYearDecorations from '@/components/home/LunarNewYearDecorations';
-import { LunarNewYearCardGroup } from '@/components/home/LunarNewYearCard';
 import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
 // 导入首页样式
 import '@/styles/homepage.css';
@@ -38,6 +36,28 @@ const siteBase = import.meta.env.VITE_SITE_BASE || '';
 // 直接构造完整的 URL 字符串，避免 new URL 的路径解析问题
 const canonicalUrl = getAbsoluteSiteUrl('/', 'zh-CN', siteBase);
 const englishUrl = getAbsoluteSiteUrl('/', 'en', siteBase);
+
+// 首页视频在这里按精选数组维护，第一条保持原有总览视频，后两条补充演示。
+const homepageVideos: VideoShowcaseItem[] = [
+  {
+    bvid: 'BV1pirZBuEzq',
+    title: '每天哈基半小时,AI多任务编程实战',
+    description: '用一条总览视频快速了解 Hagicode 的核心工作流、常见操作路径和多任务编程体验。',
+    url: 'https://www.bilibili.com/video/BV1pirZBuEzq/',
+  },
+  {
+    bvid: 'BV1KxwMzxEVK',
+    title: 'AI 居然 写代码时 玩游戏',
+    description: '展示 AI 在真实写代码过程中出现的有趣互动，让首页第一眼就更有记忆点。',
+    url: 'https://www.bilibili.com/video/BV1KxwMzxEVK/',
+  },
+  {
+    bvid: 'BV1yqPmzTEqP',
+    title: 'GPT Codex in Hagicode 实测',
+    description: '聚焦 GPT Codex 在 Hagicode 中的实际表现，帮助你判断模型接入后的真实效果。',
+    url: 'https://www.bilibili.com/video/BV1yqPmzTEqP/',
+  }
+];
 
 // 在构建时获取版本数据（用于 InstallButton）
 let desktopVersionData: {
@@ -195,15 +215,6 @@ try {
         client:load
       />
 
-      <!-- Architecture Diagram -->
-      <ArchitectureDiagram locale="zh-CN" client:only="react" />
-
-      <!-- 新年主题卡片组 - 仅在农历新年主题下显示 -->
-      <LunarNewYearCardGroup client:load />
-
-      <!-- Social Proof Section - 社交证明 -->
-      <SocialProofSection locale="zh-CN" client:load />
-
       <!-- Activity Metrics Section -->
       <ActivityMetricsSection locale="zh-CN" client:load />
 
@@ -217,9 +228,13 @@ try {
 
       <!-- Video Showcase -->
       <VideoShowcase
-        videoId="BV1pirZBuEzq"
-        title="每天哈基半小时,AI多任务编程实战"
-        description="通过视频快速了解 Hagicode 的核心功能和使用方法"
+        eyebrow="真实视频演示"
+        title="视频实测：看看 Hagicode 真正怎么工作"
+        description="先看原有基础视频，再补充趣味互动与 Codex 实测，三条精选视频一起帮你快速理解产品能力。"
+        ctaLabel="打开 Bilibili"
+        featuredLabel="主推荐视频"
+        supportingLabel="补充演示"
+        videos={homepageVideos}
         client:load
       />
 

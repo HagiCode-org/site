@@ -5,16 +5,14 @@
  */
 import Navbar from '@/components/home/Navbar';
 import HeroSection from '@/components/home/HeroSection';
-import SocialProofSection from '@/components/home/SocialProofSection';
 import ActivityMetricsSection from '@/components/home/ActivityMetricsSection';
 import FeaturesShowcase from '@/components/home/FeaturesShowcase';
 import ShowcaseSection from '@/components/home/ShowcaseSection';
-import ArchitectureDiagram from '@/components/home/ArchitectureDiagram';
 import VideoShowcase from '@/components/home/VideoShowcase';
+import type { VideoShowcaseItem } from '@/components/home/VideoShowcase';
 import InstallOptionsSection from '@/components/home/InstallOptionsSection';
 import Footer from '@/components/home/Footer';
 import LunarNewYearDecorations from '@/components/home/LunarNewYearDecorations';
-import { LunarNewYearCardGroup } from '@/components/home/LunarNewYearCard';
 import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
 // 导入首页样式
 import '@/styles/homepage.css';
@@ -38,6 +36,29 @@ const siteBase = import.meta.env.VITE_SITE_BASE || '';
 // 直接构造完整的 URL 字符串，避免 new URL 的路径解析问题
 const canonicalUrl = getAbsoluteSiteUrl('/', 'en', siteBase);
 const chineseUrl = getAbsoluteSiteUrl('/', 'zh-CN', siteBase);
+
+// Homepage videos are curated here as a three-item array so marketing can
+// keep the featured walkthrough and the two supporting demos in sync.
+const homepageVideos: VideoShowcaseItem[] = [
+  {
+    bvid: 'BV1pirZBuEzq',
+    title: 'Daily Hagi Half-Hour: AI Multi-Task Programming Practice',
+    description: 'A guided overview of Hagicode\'s everyday workflow, agent orchestration, and the core experience new visitors should understand first.',
+    url: 'https://www.bilibili.com/video/BV1pirZBuEzq/',
+  },
+  {
+    bvid: 'BV1KxwMzxEVK',
+    title: 'AI Playing Games While Coding',
+    description: 'A playful clip that shows how the assistant can stay lively and surprising during real coding sessions instead of feeling like a dry code generator.',
+    url: 'https://www.bilibili.com/video/BV1KxwMzxEVK/',
+  },
+  {
+    bvid: 'BV1yqPmzTEqP',
+    title: 'GPT Codex in Hagicode: Live Trial',
+    description: 'A focused validation run of GPT Codex inside Hagicode so prospective users can judge how the model performs in the actual product.',
+    url: 'https://www.bilibili.com/video/BV1yqPmzTEqP/',
+  }
+];
 
 // 在构建时获取版本数据（用于 InstallButton）
 let desktopVersionData: {
@@ -195,15 +216,6 @@ try {
         client:load
       />
 
-      <!-- Architecture Diagram -->
-      <ArchitectureDiagram locale="en" client:only="react" />
-
-      <!-- 新年主题卡片组 - 仅在农历新年主题下显示 -->
-      <LunarNewYearCardGroup client:load />
-
-      <!-- Social Proof Section - 社交证明 -->
-      <SocialProofSection locale="en" client:load />
-
       <!-- Activity Metrics Section -->
       <ActivityMetricsSection locale="en" client:load />
 
@@ -217,9 +229,13 @@ try {
 
       <!-- Video Showcase -->
       <VideoShowcase
-        videoId="BV1pirZBuEzq"
-        title="Daily Hagi Half-Hour: AI Multi-Task Programming Practice"
-        description="Quickly understand Hagicode's core features and usage through video"
+        eyebrow="Real Product Walkthroughs"
+        title="See Hagicode in real coding sessions"
+        description="Start with the core daily workflow, then jump into a playful AI side quest and a GPT Codex validation run inside Hagicode."
+        ctaLabel="Open on Bilibili"
+        featuredLabel="Featured walkthrough"
+        supportingLabel="Focused demo"
+        videos={homepageVideos}
         client:load
       />
 
