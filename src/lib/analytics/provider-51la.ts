@@ -29,7 +29,12 @@ export function sendTo51LA(
   }
 
   try {
-    target.LA.track(eventName);
+    const la = target?.LA;
+    if (!la) {
+      return false;
+    }
+
+    la.track(eventName);
     return true;
   } catch {
     return false;

@@ -1,63 +1,66 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import {
+  DEFAULT_LOCALE,
+  getLocaleSwitchPath,
+  resolveLocaleFromPathname,
+  type SiteLocale,
+} from './locale-routing';
+
+function getClientLocale(): SiteLocale {
+  if (typeof window === 'undefined') {
+    return DEFAULT_LOCALE;
+  }
+
+  return resolveLocaleFromPathname(window.location.pathname);
+}
 
 export function useLocale() {
-  const [locale, setLocaleState] = useState<'zh-CN' | 'en'>(() => {
-    // Check localStorage first
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('lang') as 'zh-CN' | 'en' | null;
-      if (stored && (stored === 'zh-CN' || stored === 'en')) {
-        return stored;
-      }
+  const [locale, setLocaleState] = useState<SiteLocale>(() => getClientLocale());
 
-      // Fallback to browser detection
-      const browserLang = navigator.language;
-      return browserLang.startsWith('en') ? 'en' : 'zh-CN';
-    }
-
-    return 'zh-CN';
-  });
-
-  // Update locale when URL changes (for client-side navigation)
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const path = window.location.pathname;
-      // Check if path starts with /en/ (but not just /en/ at root)
-      const newLocale = (path === '/en' || path.startsWith('/en/')) ? 'en' : 'zh-CN';
-      // Only update if different to avoid loops
-      setLocaleState(prev => prev !== newLocale ? newLocale : prev);
+    if (typeof window === 'undefined') {
+      return undefined;
     }
+
+    const syncLocale = () => {
+      const nextLocale = resolveLocaleFromPathname(window.location.pathname);
+      setLocaleState((previousLocale) =>
+        previousLocale === nextLocale ? previousLocale : nextLocale,
+      );
+    };
+
+    syncLocale();
+    window.addEventListener('popstate', syncLocale);
+    window.addEventListener('hashchange', syncLocale);
+
+    return () => {
+      window.removeEventListener('popstate', syncLocale);
+      window.removeEventListener('hashchange', syncLocale);
+    };
   }, []);
 
-  const setLocale = (newLocale: 'zh-CN' | 'en') => {
+  const setLocale = (newLocale: SiteLocale) => {
     setLocaleState(newLocale);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('lang', newLocale);
 
-      // Get current path, search params, and hash
-      const currentPath = window.location.pathname;
-      const searchParams = window.location.search;
-      const hash = window.location.hash;
+    if (typeof window === 'undefined') {
+      return;
+    }
 
-      // Unified path preprocessing: remove all language prefixes
-      let cleanPath = currentPath
-        .replace(/^\/en(\/|$)/, '/')
-        .replace(/^\/zh(\/|$)/, '/');
-      // Ensure root path is always '/'
-      if (cleanPath === '') cleanPath = '/';
+    localStorage.setItem('lang', newLocale);
 
-      // Add new language prefix
-      let newPath = newLocale === 'en'
-        ? (cleanPath === '/' ? '/en' : `/en${cleanPath}`)
-        : cleanPath;
+    const nextUrl = getLocaleSwitchPath(newLocale, {
+      pathname: window.location.pathname,
+      search: window.location.search,
+      hash: window.location.hash,
+    });
 
-      // Append search params and hash
-      window.location.href = `${newPath}${searchParams}${hash}`;
+    if (nextUrl !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
+      window.location.assign(nextUrl);
     }
   };
 
   const toggleLocale = () => {
-    const newLocale = locale === 'zh-CN' ? 'en' : 'zh-CN';
-    setLocale(newLocale);
+    setLocale(locale === 'zh-CN' ? 'en' : 'zh-CN');
   };
 
   return { locale, setLocale, toggleLocale };
