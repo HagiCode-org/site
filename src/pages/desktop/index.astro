@@ -20,6 +20,9 @@ const description = "Download Hagicode Desktop, a localized AI code assistant. S
 // 获取当前语言环境
 const currentLocale = 'en';
 const { t } = getTranslation('en');
+const heroBadge = t('desktopHero.badge');
+const heroTitle = t('desktopHero.title');
+const heroTagline = t('desktopHero.tagline');
 
 // 获取站点基础路径
 const siteBase = import.meta.env.VITE_SITE_BASE || '';
@@ -110,8 +113,17 @@ const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData
     <Navbar client:load locale="en" />
 
     <main class="homepage">
-      <!-- Hero Section - Use React component -->
-      <DesktopHero client:load locale="en" />
+      <!-- Hero Section - SSR heading stays visible before hydration -->
+      <section class="hero">
+        <div class="tech-grid-bg" />
+        <div class="bgGlow" />
+        <div class="hero-content">
+          <div class="hero-badge">{heroBadge}</div>
+          <h1>{heroTitle}</h1>
+          <p class="hero-tagline">{heroTagline}</p>
+          <DesktopHero client:load locale="en" />
+        </div>
+      </section>
 
       <!-- Features Section -->
       <section class="features">

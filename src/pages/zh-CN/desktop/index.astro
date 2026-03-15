@@ -15,6 +15,7 @@ import DesktopHero from '@/components/desktop/DesktopHero';
 import FeatureIcon from '@/components/desktop/FeatureIcon.astro';
 import FeatureTagIcon from '@/components/desktop/FeatureTagIcon.astro';
 import PlatformIcon from '@/components/desktop/PlatformIcon.astro';
+import { getTranslation } from '@/i18n/ui';
 import { getAbsoluteSiteUrl } from '@/lib/locale-routing';
 
 // SEO 元数据
@@ -23,6 +24,10 @@ const description = "下载 Hagicode Desktop，本地化的 AI 代码助手。�
 
 // 获取当前语言环境
 const currentLocale = 'zh-CN';
+const { t } = getTranslation('zh-CN');
+const heroBadge = t('desktopHero.badge');
+const heroTitle = t('desktopHero.title');
+const heroTagline = t('desktopHero.tagline');
 
 // 获取站点基础路径
 const siteBase = import.meta.env.VITE_SITE_BASE || '';
@@ -113,8 +118,17 @@ const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData
     <Navbar client:load locale="zh-CN" />
 
     <main class="homepage">
-      <!-- Hero Section - 使用 React 组件 -->
-      <DesktopHero locale="zh-CN" client:load />
+      <!-- Hero Section - 页面壳层始终输出 SSR 主标题 -->
+      <section class="hero">
+        <div class="tech-grid-bg" />
+        <div class="bgGlow" />
+        <div class="hero-content">
+          <div class="hero-badge">{heroBadge}</div>
+          <h1>{heroTitle}</h1>
+          <p class="hero-tagline">{heroTagline}</p>
+          <DesktopHero locale="zh-CN" client:load />
+        </div>
+      </section>
 
       <!-- 功能特性区域 -->
       <section class="features">

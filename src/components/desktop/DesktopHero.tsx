@@ -197,75 +197,54 @@ export default function DesktopHero(props: DesktopHeroProps) {
 
   if (loading) {
     return (
-      <section className="hero">
-        <div className="tech-grid-bg" />
-        <div className="bgGlow" />
-        <div className={styles.loadingState}>
-          <div className={styles.loadingSpinner} />
-          <p>{t('desktopHero.loading')}</p>
-        </div>
-      </section>
+      <div className={styles.loadingState}>
+        <div className={styles.loadingSpinner} />
+        <p>{t('desktopHero.loading')}</p>
+      </div>
     );
   }
 
   if (error) {
     return (
-      <section className="hero">
-        <div className="tech-grid-bg" />
-        <div className="bgGlow" />
-        <div className="hero-content">
-          <div className="hero-badge">{t('desktopHero.badge')}</div>
-          <h1>Hagicode Desktop</h1>
-          <p className="hero-tagline">{t('desktopHero.tagline')}</p>
-
-          <div className={styles.errorState}>
-            <div className={styles.errorIcon}>⚠️</div>
-            <h3>{t('desktopHero.error.title')}</h3>
-            <p>{error}</p>
-            <a
-              href="https://desktop.dl.hagicode.com/"
-              className="btn btn-primary"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t('desktopHero.error.gotoDownload')}
-            </a>
-          </div>
-        </div>
-      </section>
+      <div className={styles.errorState}>
+        <div className={styles.errorIcon}>⚠️</div>
+        <h3>{t('desktopHero.error.title')}</h3>
+        <p>{error}</p>
+        <a
+          href="https://desktop.dl.hagicode.com/"
+          className="btn btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t('desktopHero.error.gotoDownload')}
+        </a>
+      </div>
     );
   }
 
   return (
-    <section className="hero">
-      <div className="tech-grid-bg" />
-      <div className="bgGlow" />
-      <div className="hero-content">
-        <div className="hero-badge">{t('desktopHero.badge')}</div>
-        <h1>{t('desktopHero.title')}</h1>
-        <p className="hero-tagline">{t('desktopHero.tagline')}</p>
-
-        <div className="hero-value-prop">
-          <div className="value-point">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-              <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
-              <circle cx="12" cy="12" r="10"/>
-            </svg>
-            <span>{t('desktopHero.valuePoints.local')}</span>
-          </div>
-          <div className="value-point">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-              <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <span>{t('desktopHero.valuePoints.fast')}</span>
-          </div>
-          <div className="value-point">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
-              <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <span>{t('desktopHero.valuePoints.oneClick')}</span>
-          </div>
+    <>
+      <div className="hero-value-prop">
+        <div className="value-point">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+            <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="12" cy="12" r="10"/>
+          </svg>
+          <span>{t('desktopHero.valuePoints.local')}</span>
         </div>
+        <div className="value-point">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <span>{t('desktopHero.valuePoints.fast')}</span>
+        </div>
+        <div className="value-point">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5">
+            <path d="M12 15V3m0 12l-4-4m4 4l4-4M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <span>{t('desktopHero.valuePoints.oneClick')}</span>
+        </div>
+      </div>
 
         {currentVersion && (visiblePlatformData.length > 0 || showMacDownloadNotice) && (
           <>
@@ -404,12 +383,11 @@ export default function DesktopHero(props: DesktopHeroProps) {
             )}
           </>
         )}
-        <div className="hero-features">
-          <span className="feature-tag">{t('desktopHero.features.privacy')}</span>
-          <span className="feature-tag">{t('desktopHero.features.fast')}</span>
-          <span className="feature-tag">{t('desktopHero.features.crossPlatform')}</span>
-        </div>
+      <div className="hero-features">
+        <span className="feature-tag">{t('desktopHero.features.privacy')}</span>
+        <span className="feature-tag">{t('desktopHero.features.fast')}</span>
+        <span className="feature-tag">{t('desktopHero.features.crossPlatform')}</span>
       </div>
-    </section>
+    </>
   );
 }
