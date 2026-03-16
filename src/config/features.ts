@@ -20,5 +20,5 @@ function parseBooleanFlag(value: string | boolean | undefined, defaultValue: boo
 
 export const FEATURE_MAC_DOWNLOAD_ENABLED = parseBooleanFlag(
   import.meta.env.VITE_FEATURE_MAC_DOWNLOAD_ENABLED,
-  false
+  true
 );
