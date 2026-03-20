@@ -5,6 +5,7 @@
  * 使用共享链接库管理所有站点间链接
  */
 import { useMemo } from 'react';
+import { hagicodeCompliance } from '@/config/compliance';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import styles from './Footer.module.css';
@@ -97,6 +98,7 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
   const desktopLink = getLinkWithLocale('desktop', locale);
   const githubLink = getLinkWithLocale('github', locale);
   const qqGroupLink = getLinkWithLocale('qqGroup', locale);
+  const costCalculatorLink = getLinkWithLocale('costCalculator', locale);
   const discordLink = getLinkWithLocale('discord', locale);
   const rssLink = getLinkWithLocale('rss', locale);
   const productOverviewLink = getLinkWithLocale('productOverview', locale);
@@ -186,9 +188,15 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
           external: true,
           ariaLabel: t('footer.qqGroup'),
         },
+        {
+          label: t('footer.costCalculator'),
+          href: costCalculatorLink,
+          external: true,
+          ariaLabel: t('footer.costCalculator'),
+        },
       ],
     },
-  }), [t, docsLink, desktopLink, githubLink, discordLink, productOverviewLink, rssLink, qqGroupLink, locale]);
+  }), [t, docsLink, desktopLink, githubLink, discordLink, productOverviewLink, rssLink, qqGroupLink, costCalculatorLink, locale]);
 
   return (
     <footer className={`${styles.footer} ${className}`}>
@@ -271,21 +279,21 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
       <div className={styles.icpSection}>
         <a
           className={styles.icpLink}
-          href="https://beian.miit.gov.cn/"
+          href={hagicodeCompliance.icp.href}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={t('footer.icpLabel')}
         >
-          闽ICP备2026004153号-1
+          {hagicodeCompliance.icp.label}
         </a>
         <a
           className={styles.icpLink}
-          href="http://www.beian.gov.cn/portal/registerSystemInfo"
+          href={hagicodeCompliance.publicSecurity.href}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={t('footer.gonganLabel')}
         >
-          闽公网安备35011102351148号
+          {hagicodeCompliance.publicSecurity.label}
         </a>
       </div>
     </footer>

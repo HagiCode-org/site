@@ -89,6 +89,11 @@ export const SITE_LINKS = {
     prod: 'https://docs.hagicode.com/blog/rss.xml',
     external: false,
   } as LinkConfig,
+  costCalculator: {
+    dev: 'https://cost.hagicode.com',
+    prod: 'https://cost.hagicode.com',
+    external: true,
+  } as LinkConfig,
 } as const;
 
 export const GLM_PROMO_LINKS = {
