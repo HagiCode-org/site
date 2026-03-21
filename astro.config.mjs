@@ -4,7 +4,6 @@ import partytown from '@astrojs/partytown';
 import robotsTxt from 'astro-robots-txt';
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
-import linkValidator from 'astro-link-validator';
 
 // https://astro.build/config
 export default defineConfig({
@@ -73,20 +72,6 @@ export default defineConfig({
         partytown(),
         react(),
         mdx(),
-        // 链接验证集成 - 在 CI 环境中启用外部链接检查
-        linkValidator({
-            // 仅在 CI 环境中启用外部链接检查，避免本地构建时间过长
-            checkExternal: process.env.CI === 'true',
-            // 外部链接超时时间（毫秒）
-            externalTimeout: 10000,
-            // 链接检查不再阻塞构建，仅发出警告
-            // 独立的链接检查由 .github/workflows/link-check.yml 负责
-            failOnBrokenLinks: false,
-            // 详细输出（用于调试）
-            verbose: process.env.CI === 'true',
-            // 排除某些路径（如 API 端点、管理后台）
-            exclude: [],
-        })
     ],
     scopedStyleStrategy: 'where',
 });

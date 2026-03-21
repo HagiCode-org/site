@@ -23,13 +23,11 @@
     "regenerate:product-images": "node scripts/generate-image.mjs --batch-config scripts/product-images-batch.json --force"
   },
   "dependencies": {
-    "@lobehub/icons": "^5.0.1",
     "@astrojs/mdx": "^5.0.2",
     "@astrojs/partytown": "^2.1.5",
     "@astrojs/react": "^5.0.1",
     "@astrojs/sitemap": "^3.7.1",
     "astro": "^6.0.7",
-    "astro-link-validator": "github:rodgtr1/astro-link-validator",
     "astro-og-canvas": "^0.10.1",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^1.1.0",
