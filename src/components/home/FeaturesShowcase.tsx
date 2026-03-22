@@ -173,14 +173,6 @@ function SupportedCliIcon({ providerKey }: CliIconProps) {
           <path d="M11 12h2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </svg>
       );
-    case 'IFlowCli':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M5 9.5c1.8-2 4.1-3 7-3 2.4 0 4.72.64 7 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          <path d="M5 14c1.8-2 4.1-3 7-3 2.4 0 4.72.64 7 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.78" />
-          <path d="M5 18.5c1.8-2 4.1-3 7-3 2.4 0 4.72.64 7 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.55" />
-        </svg>
-      );
     default:
       return <span className={styles.supportedProviderFallback}>CLI</span>;
   }
@@ -429,10 +421,6 @@ function ConvenientFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
     {
       key: 'OpenCodeCli',
       name: t('features.convenient.agentMatrix.supportedNames.names.4'),
-    },
-    {
-      key: 'IFlowCli',
-      name: t('features.convenient.agentMatrix.supportedNames.names.5'),
     },
   ];
 
@@ -747,6 +735,8 @@ function InterestingFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
                         src={asset.src}
                         alt={asset.label}
                         className={styles.galleryImage}
+                        width={128}
+                        height={128}
                         loading="lazy"
                         decoding="async"
                       />
@@ -769,6 +759,8 @@ function InterestingFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
                         src={asset.src}
                         alt={asset.label}
                         className={styles.galleryImage}
+                        width={128}
+                        height={128}
                         loading="lazy"
                         decoding="async"
                       />

@@ -1113,11 +1113,6 @@
   color: #a16207;
 }
 
-.supportedProviderIcon[data-provider='IFlowCli'] {
-  background: rgba(237, 233, 254, 0.96);
-  color: #6d28d9;
-}
-
 .supportedProviderName {
   color: var(--color-text);
   white-space: nowrap;
@@ -1172,11 +1167,6 @@
 [data-theme='dark'] .supportedProviderIcon[data-provider='OpenCodeCli'] {
   background: rgba(250, 204, 21, 0.14);
   color: #facc15;
-}
-
-[data-theme='dark'] .supportedProviderIcon[data-provider='IFlowCli'] {
-  background: rgba(167, 139, 250, 0.14);
-  color: #a78bfa;
 }
 
 [data-theme='lunar-new-year'] .supportedProvidersPanel {
@@ -1235,11 +1225,6 @@
 [data-theme='lunar-new-year'] .supportedProviderIcon[data-provider='OpenCodeCli'] {
   background: rgba(255, 213, 79, 0.2);
   color: #ffd54f;
-}
-
-[data-theme='lunar-new-year'] .supportedProviderIcon[data-provider='IFlowCli'] {
-  background: rgba(255, 224, 130, 0.18);
-  color: #ffe082;
 }
 
 .supportedProviderFallback {
@@ -1608,8 +1593,10 @@
 
 .galleryCard {
   position: relative;
-  flex: 0 0 clamp(10rem, 20vw, 13rem);
+  flex: 0 0 128px;
   overflow: hidden;
+  width: 128px;
+  height: 128px;
   border-radius: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(8, 15, 32, 0.6);
@@ -1617,11 +1604,11 @@
 }
 
 .galleryCard[data-kind='dungeon'] {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 1;
 }
 
 .galleryCard[data-kind='hero'] {
-  flex-basis: clamp(8.5rem, 16vw, 10rem);
+  flex-basis: 128px;
   aspect-ratio: 1;
 }
 
