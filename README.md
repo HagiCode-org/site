@@ -34,6 +34,29 @@
 - **Built for parallel throughput** - the current product showcase highlights real-time token tracking, multi-agent workspaces, and execution views that are designed for multiple streams at once.
 - **Memorable to use** - Hero Dungeon and Hero Battle report views add narrative, feedback, and momentum to team workflows.
 
+## Star History
+
+Track how the `HagiCode-org/site` repository has grown over time:
+
+<p align="center">
+  <a href="https://star-history.com/#HagiCode-org/site&Date">
+    <picture>
+      <source
+        media="(prefers-color-scheme: dark)"
+        srcset="https://api.star-history.com/svg?repos=HagiCode-org/site&type=Date&theme=dark"
+      />
+      <source
+        media="(prefers-color-scheme: light)"
+        srcset="https://api.star-history.com/svg?repos=HagiCode-org/site&type=Date"
+      />
+      <img
+        alt="Star History Chart for HagiCode-org/site"
+        src="https://api.star-history.com/svg?repos=HagiCode-org/site&type=Date"
+      />
+    </picture>
+  </a>
+</p>
+
 ## Getting Started
 
 Start with the official product entry points:

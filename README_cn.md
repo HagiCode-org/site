@@ -34,6 +34,29 @@
 - **为并行吞吐而设计** - 当前产品展示突出实时 Token 跟踪、多 Agent 工作台，以及为多线程协作准备的执行视图。
 - **体验更有记忆点** - Hero Dungeon 和 Hero Battle 战报界面为团队工作流加入叙事感、反馈感和推进节奏。
 
+## Star 历史
+
+可以直接查看 `HagiCode-org/site` 仓库的 GitHub Star 增长曲线：
+
+<p align="center">
+  <a href="https://star-history.com/#HagiCode-org/site&Date">
+    <picture>
+      <source
+        media="(prefers-color-scheme: dark)"
+        srcset="https://api.star-history.com/svg?repos=HagiCode-org/site&type=Date&theme=dark"
+      />
+      <source
+        media="(prefers-color-scheme: light)"
+        srcset="https://api.star-history.com/svg?repos=HagiCode-org/site&type=Date"
+      />
+      <img
+        alt="HagiCode-org/site 的 Star 历史图"
+        src="https://api.star-history.com/svg?repos=HagiCode-org/site&type=Date"
+      />
+    </picture>
+  </a>
+</p>
+
 ## 开始使用
 
 先从这些官方入口开始：
