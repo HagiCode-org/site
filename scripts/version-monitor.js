@@ -20,7 +20,7 @@
  * - public/version-index.json
  *
  * Environment Variables:
- * - VERSION_SOURCE_URL: URL to fetch version data (default: https://desktop.dl.hagicode.com/index.json)
+ * - VERSION_SOURCE_URL: URL to fetch version data (default: https://index.hagicode.com/desktop/index.json)
  * - REQUEST_TIMEOUT: HTTP request timeout in milliseconds (default: 30000)
  * - MAX_RETRIES: Maximum number of retry attempts (default: 3)
  * - PREFERRED_CHANNEL: Preferred channel to monitor ('stable' or 'beta', default: 'stable')
@@ -44,7 +44,7 @@ const logger = {
 
 // Configuration from environment variables
 const config = {
-  sourceUrl: process.env.VERSION_SOURCE_URL || 'https://desktop.dl.hagicode.com/index.json',
+  sourceUrl: process.env.VERSION_SOURCE_URL || 'https://index.hagicode.com/desktop/index.json',
   timeout: parseInt(process.env.REQUEST_TIMEOUT || '30000', 10),
   maxRetries: parseInt(process.env.MAX_RETRIES || '3', 10),
   retryDelay: 1000 // Base retry delay in milliseconds

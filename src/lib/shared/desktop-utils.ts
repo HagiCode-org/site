@@ -14,7 +14,7 @@ import type {
 import { AssetType, CpuArchitecture } from './types/desktop';
 import semver from 'semver';
 
-const INDEX_JSON_URL = "https://desktop.dl.hagicode.com/index.json";
+const INDEX_JSON_URL = "https://index.hagicode.com/desktop/index.json";
 const LOCAL_VERSION_INDEX = "/version-index.json";
 const DOWNLOAD_BASE_URL = "https://desktop.dl.hagicode.com/";
 const TIMEOUT_MS = 30000;
