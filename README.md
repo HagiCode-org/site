@@ -28,6 +28,67 @@
 - **Efficient** - Claude Code, Codex, and other CLI agents can drive multiple agents and instances in parallel, so proposals, fixes, and reviews keep moving together.
 - **Interesting** - Hero Dungeon rosters, battle reports, and visual workspaces make daily AI coding feel more like a coordinated adventure than a pile of disconnected chats.
 
+## Visual Tour
+
+The gallery below uses site-owned assets copied into `repos/site`, so GitHub can render current product evidence without deep-linking into the docs repository.
+Instead of relying on one hero screenshot or old metrics cards, this tour walks through the active proposal flow, quick execution mode, skill safety surfaces, Hero identity, and desktop controls.
+
+<p>
+  <img src="./public/img/readme/proposal-nine-stage-overview.png" alt="Nine-stage HagiCode proposal timeline showing optimization, drafting, review, execution, and archive states." width="100%" />
+  <br />
+  <strong>Proposal stages at a glance</strong><br />
+  <sub><strong>UI screenshot.</strong> Track proposal work from optimization through archive in one nine-stage timeline.</sub>
+</p>
+
+<p>
+  <img src="./public/img/readme/review-inline-comments.png" alt="HagiCode review view showing an inline file comment editor with optimization and issue tags." width="100%" />
+  <br />
+  <strong>Inline review and annotations</strong><br />
+  <sub><strong>UI screenshot.</strong> Review files with inline annotations before sending focused feedback back to AI.</sub>
+</p>
+
+<p>
+  <img src="./public/img/readme/execution-code-changes.png" alt="Git diff view in HagiCode after proposal execution, showing applied documentation changes." width="100%" />
+  <br />
+  <strong>Execution result with code diff</strong><br />
+  <sub><strong>UI screenshot.</strong> Inspect the applied diff immediately after plan execution finishes.</sub>
+</p>
+
+<p>
+  <img src="./public/img/readme/normal-session-result.png" alt="HagiCode normal chat session showing a completed project analysis result card." width="100%" />
+  <br />
+  <strong>Normal session execution result</strong><br />
+  <sub><strong>UI screenshot.</strong> Use quick chat sessions for focused tasks when you do not need a full proposal flow.</sub>
+</p>
+
+<p>
+  <img src="./public/img/readme/skill-management.png" alt="Skill details panel showing trust status, install metadata, and the managed command that HagiCode will run." width="100%" />
+  <br />
+  <strong>Skill trust and managed command</strong><br />
+  <sub><strong>UI screenshot.</strong> Verify the install source, trust status, and exact managed command for every skill.</sub>
+</p>
+
+<p>
+  <img src="./public/img/readme/hero-highlights.webp" alt="Stylized rune mage cat hero illustration representing HagiCode's Hero Dungeon theme." width="100%" />
+  <br />
+  <strong>Hero highlight and personality layer</strong><br />
+  <sub><strong>Product visual.</strong> Hero Dungeon personas and battle-report theming give long-running AI sessions a memorable identity.</sub>
+</p>
+
+<p>
+  <img src="./public/img/readme/desktop-start-service.png" alt="HagiCode Desktop dashboard with the start service control and service status card." width="100%" />
+  <br />
+  <strong>Desktop start service control</strong><br />
+  <sub><strong>UI screenshot.</strong> Start or monitor the local HagiCode service from the desktop dashboard.</sub>
+</p>
+
+<p>
+  <img src="./public/img/readme/desktop-version-management.png" alt="HagiCode Desktop version management view showing installed packages, dependencies, and available releases." width="100%" />
+  <br />
+  <strong>Desktop version management</strong><br />
+  <sub><strong>UI screenshot.</strong> Switch installed packages, dependencies, and release tracks from the desktop version center.</sub>
+</p>
+
 ## Why HagiCode
 
 - **Proposal-driven by default** - OpenSpec keeps scope, tasks, and archive history connected so AI work stays reviewable.

@@ -28,6 +28,67 @@
 - **Efficient** - Claude Code、Codex 以及其他 CLI Agent 可以并行驱动多个 Agent 和实例，让提案、修复与评审持续推进。
 - **Interesting** - Hero Dungeon 队伍编组、战报和可视化工作台，让日常 AI 编码更像一次有组织的冒险，而不是一堆割裂的对话记录。
 
+## 视觉导览
+
+下面的导览全部使用复制到 `repos/site` 的自有资源，这样 GitHub README 就能直接展示当前产品证据，而不必依赖 docs 仓库的深层图片链接。
+现在不再让单张 hero 图或旧的报表卡片承担全部功能说明，而是把提案流程、快速执行、技能安全、Hero 个性和桌面控制面板分开呈现。
+
+<p>
+  <img src="./public/img/readme/proposal-nine-stage-overview.png" alt="HagiCode 提案九阶段流程图，展示优化、起草、审阅、执行和归档状态。" width="100%" />
+  <br />
+  <strong>提案九阶段总览</strong><br />
+  <sub><strong>真实界面截图。</strong> 用一条九阶段时间线查看提案从优化、起草、审阅、执行到归档的推进状态。</sub>
+</p>
+
+<p>
+  <img src="./public/img/readme/review-inline-comments.png" alt="HagiCode 审阅界面，展示带优化建议与问题修复标签的行内批注编辑器。" width="100%" />
+  <br />
+  <strong>行内审阅与批注</strong><br />
+  <sub><strong>真实界面截图。</strong> 在把反馈交回 AI 之前，先通过行内批注逐段审阅文件内容。</sub>
+</p>
+
+<p>
+  <img src="./public/img/readme/execution-code-changes.png" alt="HagiCode 中的 Git 差异视图，展示提案执行后的文档代码变更。" width="100%" />
+  <br />
+  <strong>执行结果与代码差异</strong><br />
+  <sub><strong>真实界面截图。</strong> 计划执行完成后，立即检查实际落地的代码差异。</sub>
+</p>
+
+<p>
+  <img src="./public/img/readme/normal-session-result.png" alt="HagiCode 普通聊天会话界面，展示已完成的项目分析结果卡片。" width="100%" />
+  <br />
+  <strong>普通会话执行结果</strong><br />
+  <sub><strong>真实界面截图。</strong> 当任务不需要完整提案流程时，可以直接用普通会话快速完成执行。</sub>
+</p>
+
+<p>
+  <img src="./public/img/readme/skill-management.png" alt="技能详情面板，展示信任状态、安装元数据与 HagiCode 将运行的托管命令。" width="100%" />
+  <br />
+  <strong>技能信任状态与托管命令</strong><br />
+  <sub><strong>真实界面截图。</strong> 为每个技能确认安装来源、信任状态，以及 HagiCode 实际会执行的托管命令。</sub>
+</p>
+
+<p>
+  <img src="./public/img/readme/hero-highlights.webp" alt="风格化的符文法师猫咪 Hero 插画，用来表达 HagiCode 的 Hero Dungeon 主题。" width="100%" />
+  <br />
+  <strong>Hero 亮点与产品个性</strong><br />
+  <sub><strong>产品视觉素材。</strong> Hero Dungeon 人设与战报主题，让长流程 AI 协作拥有更鲜明的记忆点。</sub>
+</p>
+
+<p>
+  <img src="./public/img/readme/desktop-start-service.png" alt="HagiCode Desktop 仪表盘，展示启动服务按钮与服务状态卡片。" width="100%" />
+  <br />
+  <strong>桌面端服务启动控制</strong><br />
+  <sub><strong>真实界面截图。</strong> 直接在桌面控制台中启动或监控本地 HagiCode 服务。</sub>
+</p>
+
+<p>
+  <img src="./public/img/readme/desktop-version-management.png" alt="HagiCode Desktop 版本管理界面，展示已安装包、依赖与可用版本列表。" width="100%" />
+  <br />
+  <strong>桌面端版本管理</strong><br />
+  <sub><strong>真实界面截图。</strong> 在桌面版本中心切换已安装包、依赖状态与可用发布版本。</sub>
+</p>
+
 ## 为什么选择 HagiCode
 
 - **默认提案驱动** - OpenSpec 把范围、任务和归档历史串联起来，让 AI 协作过程更容易评审与追踪。
