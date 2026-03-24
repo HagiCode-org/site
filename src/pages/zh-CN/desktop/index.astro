@@ -358,6 +358,16 @@ const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData
           </details>
 
           <details class="faq-item">
+            <summary>macOS 提示应用已损坏或无法打开，怎么办？</summary>
+            <div class="faq-content">
+              <p>如果你已经将 Hagicode Desktop 安装到默认路径 <code>/Applications/Hagicode.app</code>，但首次启动时被 macOS Gatekeeper 拦截，常见原因是系统为从互联网下载的应用附加了 <code>com.apple.quarantine</code> 隔离属性。</p>
+              <p>这属于 macOS 的安全隔离机制，不是 Hagicode 安装向导下载失败或应用本体缺失。</p>
+              <pre><code>sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app</code></pre>
+              <p>请在终端中以管理员权限执行这条命令。执行完成后，重新启动 Hagicode Desktop 即可。</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
             <summary>遇到问题如何获取帮助？</summary>
             <div class="faq-content">
               <p>如果你在使用 Hagicode Desktop 时遇到问题，可以通过以下方式获取帮助：</p>

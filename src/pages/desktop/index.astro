@@ -340,11 +340,21 @@ const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData
           <details class="faq-item">
             <summary>{t('desktop.faq.q6.question')}</summary>
             <div class="faq-content">
-              <p set:html={t('desktop.faq.q6.intro')}></p>
+              <p>{t('desktop.faq.q6.intro')}</p>
+              <p>{t('desktop.faq.q6.cause')}</p>
+              <pre><code>{t('desktop.faq.q6.command')}</code></pre>
+              <p>{t('desktop.faq.q6.note')}</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>{t('desktop.faq.q7.question')}</summary>
+            <div class="faq-content">
+              <p set:html={t('desktop.faq.q7.intro')}></p>
               <ul>
-                <li set:html={t('desktop.faq.q6.point1')}></li>
-                <li set:html={t('desktop.faq.q6.point2')}></li>
-                <li set:html={t('desktop.faq.q6.point3')}></li>
+                <li set:html={t('desktop.faq.q7.point1')}></li>
+                <li set:html={t('desktop.faq.q7.point2')}></li>
+                <li set:html={t('desktop.faq.q7.point3')}></li>
               </ul>
             </div>
           </details>
