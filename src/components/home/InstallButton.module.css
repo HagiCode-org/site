@@ -177,20 +177,12 @@
   box-sizing: border-box;
   overflow-y: auto;
   overscroll-behavior: contain;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.2s ease-out;
   /* 超高 z-index 确保在所有内容之上 */
   z-index: 999999;
 }
 
 .dropdownMenuOpen {
   pointer-events: auto;
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
 }
 
 /* ==========================================================================

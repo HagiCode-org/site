@@ -172,6 +172,10 @@ export default function DesktopHero(props: DesktopHeroProps) {
     }
     return platformData.filter((platform) => platform.platform !== 'macos');
   }, [platformData]);
+  const buttonGroupColumns = useMemo(
+    () => Math.min(Math.max(visiblePlatformData.length, 1), 3),
+    [visiblePlatformData.length],
+  );
 
   const showMacDownloadNotice = useMemo(() => {
     if (FEATURE_MAC_DOWNLOAD_ENABLED) {
@@ -194,7 +198,8 @@ export default function DesktopHero(props: DesktopHeroProps) {
   const containerPageUrl = useMemo(() => getLinkWithLocale('container', locale), [locale]);
   const fallbackCtaLabel = locale === 'en' ? 'Open Desktop page' : '前往 Desktop 页面';
   const fallbackContainerLabel = locale === 'en' ? 'Open Container page' : '前往 Container 页面';
-  const fallbackError = error || versionData?.error || t('desktopHero.download.unknown');
+  const runtimeError = error || versionData?.error || null;
+  const fallbackError = runtimeError || t('desktopHero.download.unknown');
   const getDownloadAriaLabel = (platformLabel: string) =>
     t('desktopHero.download.ariaLabel').replace('{platform}', platformLabel);
   const getSelectOtherVersionsLabel = (platformLabel: string) =>
@@ -218,7 +223,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
     );
   }
 
-  if (fallbackError || (!currentVersion && !loading)) {
+  if (runtimeError || (!currentVersion && !loading)) {
     return (
       <div className={styles.errorState}>
         <div className={styles.errorIcon}>⚠️</div>
@@ -265,7 +270,10 @@ export default function DesktopHero(props: DesktopHeroProps) {
             {/* 统一下载按钮组 */}
             <div className={styles.downloadSection}>
               {visiblePlatformData.length > 0 && (
-                <div className={styles.buttonGroup}>
+                <div
+                  className={styles.buttonGroup}
+                  style={{ gridTemplateColumns: `repeat(${buttonGroupColumns}, minmax(0, 1fr))` }}
+                >
                   {visiblePlatformData.map((platform) => {
                     const isPrimary = userOS !== 'unknown' && platform.platform === userOS;
                     const isOpen = openDropdown === platform.platform;
