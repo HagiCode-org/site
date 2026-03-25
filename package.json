@@ -5,8 +5,8 @@
   "type": "module",
   "packageManager": "npm@11.10.1",
   "scripts": {
-    "dev": "astro dev --port ${PORT_WEBSITE:-31264}",
-    "start": "astro dev",
+    "dev": "astro dev --host 0.0.0.0 --port ${PORT_WEBSITE:-31264}",
+    "start": "astro dev --host 0.0.0.0",
     "build": "astro build && npm run seo:audit",
     "preview": "astro preview --port ${PORT_WEBSITE:-31264}",
     "astro": "astro",
