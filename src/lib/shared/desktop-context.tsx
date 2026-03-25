@@ -6,14 +6,8 @@
  */
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import type {
-  DesktopVersion,
-  PlatformGroup,
-  DesktopIndexResponse,
-} from './types/desktop';
-import type { DesktopVersionData } from './version-manager';
+import type { DesktopVersion, PlatformGroup } from './types/desktop';
 import {
-  setDesktopServerData,
   getDesktopVersionData,
   isDesktopVersionInitialized,
 } from './version-manager';
@@ -69,8 +63,6 @@ export interface DesktopVersionProviderProps {
   children: React.ReactNode;
   /** 渠道选择（可选） */
   channel?: 'stable' | 'beta';
-  /** 服务端数据（用于 SSR） */
-  serverData?: DesktopIndexResponse;
 }
 
 /**
@@ -83,11 +75,6 @@ export interface DesktopVersionProviderProps {
  *   <YourComponent />
  * </DesktopVersionProvider>
  *
- * // 服务端模式
- * <DesktopVersionProvider serverData={serverData}>
- *   <YourComponent />
- * </DesktopVersionProvider>
- *
  * // 指定渠道
  * <DesktopVersionProvider channel="beta">
  *   <YourComponent />
@@ -97,72 +84,54 @@ export interface DesktopVersionProviderProps {
 export const DesktopVersionProvider: React.FC<DesktopVersionProviderProps> = ({
   children,
   channel,
-  serverData,
 }) => {
   const [data, setData] = useState<DesktopVersionContextValue>(defaultValue);
 
   useEffect(() => {
     let isMounted = true;
 
+    const applyVersionData = (versionData: Awaited<ReturnType<typeof getDesktopVersionData>>) => {
+      if (!isMounted) return;
+
+      setData({
+        latest: versionData.latest,
+        platforms: versionData.platforms,
+        error: versionData.error,
+        loading: false,
+        stable: {
+          latest: versionData.channels.stable.latest,
+          all: versionData.channels.stable.all,
+        },
+        beta: {
+          latest: versionData.channels.beta.latest,
+          all: versionData.channels.beta.all,
+        },
+      });
+    };
+
+    const applyError = (error: unknown) => {
+      if (!isMounted) return;
+
+      setData({
+        latest: null,
+        platforms: [],
+        error: error instanceof Error ? error.message : 'Unknown error',
+        loading: false,
+        stable: { latest: null, all: [] },
+        beta: { latest: null, all: [] },
+      });
+    };
+
     const loadData = async () => {
-      // 如果有服务端数据，先注入
-      if (serverData) {
-        setDesktopServerData(serverData);
-      }
-
       try {
-        const versionData = await getDesktopVersionData();
-
-        if (!isMounted) return;
-
-        setData({
-          latest: versionData.latest,
-          platforms: versionData.platforms,
-          error: versionData.error,
-          loading: false,
-          stable: {
-            latest: versionData.channels.stable.latest,
-            all: versionData.channels.stable.all,
-          },
-          beta: {
-            latest: versionData.channels.beta.latest,
-            all: versionData.channels.beta.all,
-          },
-        });
+        applyVersionData(await getDesktopVersionData());
       } catch (error) {
-        if (!isMounted) return;
-
-        setData({
-          latest: null,
-          platforms: [],
-          error: error instanceof Error ? error.message : 'Unknown error',
-          loading: false,
-          stable: { latest: null, all: [] },
-          beta: { latest: null, all: [] },
-        });
+        applyError(error);
       }
     };
 
-    // 如果已经初始化且有服务端数据，直接使用
-    if (isDesktopVersionInitialized() && !serverData) {
-      getDesktopVersionData().then((versionData) => {
-        if (isMounted) {
-          setData({
-            latest: versionData.latest,
-            platforms: versionData.platforms,
-            error: versionData.error,
-            loading: false,
-            stable: {
-              latest: versionData.channels.stable.latest,
-              all: versionData.channels.stable.all,
-            },
-            beta: {
-              latest: versionData.channels.beta.latest,
-              all: versionData.channels.beta.all,
-            },
-          });
-        }
-      });
+    if (isDesktopVersionInitialized()) {
+      getDesktopVersionData().then(applyVersionData).catch(applyError);
     } else {
       loadData();
     }
@@ -170,7 +139,7 @@ export const DesktopVersionProvider: React.FC<DesktopVersionProviderProps> = ({
     return () => {
       isMounted = false;
     };
-  }, [serverData]);
+  }, []);
 
   const contextValue: DesktopVersionContextValue = {
     ...data,

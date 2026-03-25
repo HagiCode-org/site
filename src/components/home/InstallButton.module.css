@@ -108,6 +108,12 @@
   white-space: nowrap;
 }
 
+.installButtonStatus {
+  margin: 0.625rem 0 0;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
 /* ==========================================================================
    下拉切换按钮
    ========================================================================== */
@@ -154,8 +160,9 @@
      这样可以确保下拉菜单始终显示在最顶层，不受任何父元素影响 */
   position: fixed;
   /* top 和 left 将通过内联样式动态设置 */
-  width: 40vw;
-  max-width: 400px;
+  width: min(400px, max(280px, 40vw));
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 32px);
   background: var(--color-surface);
   /* 强制指定背景色，确保在 Starlight 中生效 */
   background-color: #ffffff;
@@ -167,6 +174,10 @@
   list-style: none;
   margin: 0;
   padding: 0.75rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  pointer-events: none;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
@@ -176,6 +187,7 @@
 }
 
 .dropdownMenuOpen {
+  pointer-events: auto;
   opacity: 1;
   visibility: visible;
   transform: translateY(0);

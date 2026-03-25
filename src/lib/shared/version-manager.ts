@@ -1,16 +1,11 @@
 /**
  * Desktop 版本数据管理器
  *
- * 提供单例模式的版本数据管理，支持服务端注入和客户端获取
+ * 提供单例模式的版本数据管理，支持客户端获取与请求复用
  * 用于统一管理 Desktop 版本信息，避免重复请求
  */
 
-import type {
-  DesktopIndexResponse,
-  DesktopVersion,
-  PlatformGroup,
-  ChannelInfo,
-} from './types/desktop';
+import type { DesktopIndexResponse, DesktopVersion, PlatformGroup } from './types/desktop';
 import {
   fetchDesktopVersions,
   groupAssetsByPlatform,
@@ -75,24 +70,6 @@ class VersionManager {
   }
 
   /**
-   * 设置服务端注入的数据（用于 SSR）
-   * 在 Astro 页面的服务端调用此方法，将版本数据注入到客户端
-   *
-   * @param data - 从服务端获取的版本数据
-   */
-  setServerData(data: DesktopIndexResponse): void {
-    const versionData = this.transformToVersionData(data);
-    this.data = versionData;
-    this.initialized = true;
-
-    // 解析所有等待的 Promise
-    for (const { resolve } of this.pendingPromises) {
-      resolve(versionData);
-    }
-    this.pendingPromises = [];
-  }
-
-  /**
    * 获取版本数据
    * 如果数据已初始化，直接返回缓存数据
    * 否则发起请求获取数据
@@ -103,19 +80,6 @@ class VersionManager {
     // 如果数据已初始化，直接返回
     if (this.initialized && this.data) {
       return this.data;
-    }
-
-    // 检查是否有服务端注入的全局数据
-    if (typeof window !== 'undefined' && (window as any).__DESKTOP_VERSION_DATA__) {
-      const serverData = (window as any).__DESKTOP_VERSION_DATA__;
-      if (serverData) {
-        const versionData = this.transformToVersionData(serverData);
-        this.data = versionData;
-        this.initialized = true;
-        // 清除全局数据以避免内存泄漏
-        delete (window as any).__DESKTOP_VERSION_DATA__;
-        return versionData;
-      }
     }
 
     // 如果正在获取数据，等待结果
@@ -143,24 +107,16 @@ class VersionManager {
 
       return versionData;
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      const errorData: DesktopVersionData = {
-        latest: null,
-        platforms: [],
-        error: errorMessage,
-        channels: {
-          stable: { latest: null, all: [] },
-          beta: { latest: null, all: [] },
-        },
-      };
+      const normalizedError =
+        error instanceof Error ? error : new Error('Unknown error');
 
       // 拒绝所有等待的 Promise
       for (const { reject } of this.pendingPromises) {
-        reject(error instanceof Error ? error : new Error(errorMessage));
+        reject(normalizedError);
       }
       this.pendingPromises = [];
 
-      throw error;
+      throw normalizedError;
     } finally {
       this.fetching = false;
     }
@@ -291,11 +247,6 @@ class VersionManager {
 // 导出单例获取方法
 export const getVersionManager = (): VersionManager => {
   return VersionManager.getInstance();
-};
-
-// 导出便捷方法
-export const setDesktopServerData = (data: DesktopIndexResponse): void => {
-  getVersionManager().setServerData(data);
 };
 
 export const getDesktopVersionData = (): Promise<DesktopVersionData> => {

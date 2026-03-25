@@ -18,10 +18,6 @@ import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 // 导入首页样式
 import '@/styles/homepage.css';
 
-// 导入版本数据工具函数
-import { fetchDesktopVersions, groupAssetsByPlatform } from "@/lib/shared/desktop-utils";
-import { setDesktopServerData } from "@/lib/shared/version-manager";
-import type { DesktopVersion, PlatformGroup } from "@/lib/shared/desktop";
 import { getAbsoluteSiteUrl } from "@/lib/locale-routing";
 
 // 页面元数据
@@ -60,67 +56,6 @@ const homepageVideos: VideoShowcaseItem[] = [
   }
 ];
 
-// 在构建时获取版本数据（用于 InstallButton）
-let desktopVersionData: {
-  latest: DesktopVersion | null;
-  platforms: PlatformGroup[];
-  error: string | null;
-  channels: {
-    stable: { latest: DesktopVersion | null; all: DesktopVersion[] };
-    beta: { latest: DesktopVersion | null; all: DesktopVersion[] };
-  };
-} = {
-  latest: null,
-  platforms: [],
-  error: null,
-  channels: {
-    stable: { latest: null, all: [] },
-    beta: { latest: null, all: [] }
-  }
-};
-
-try {
-  const data = await fetchDesktopVersions();
-
-  // 注入数据到 VersionManager（用于客户端组件）
-  setDesktopServerData(data);
-
-  // 优先使用 channels.stable.latest 作为默认显示的版本
-  if (data.channels && data.channels.stable && data.channels.stable.latest) {
-    const stableLatestVersion = data.channels.stable.latest;
-    desktopVersionData.latest = data.versions.find(v => v.version === stableLatestVersion) || data.versions[0] || null;
-  } else {
-    desktopVersionData.latest = data.versions[0] || null;
-  }
-
-  if (desktopVersionData.latest) {
-    desktopVersionData.platforms = groupAssetsByPlatform(desktopVersionData.latest.files);
-  }
-
-  // 处理渠道数据（如果存在）
-  if (data.channels) {
-    // 从 channels 数据中提取版本信息
-    const stableVersions = data.channels.stable?.versions || [];
-    const betaVersions = data.channels.beta?.versions || [];
-    const stableLatest = data.channels.stable?.latest;
-    const betaLatest = data.channels.beta?.latest;
-
-    // 查找对应的版本对象
-    if (stableLatest) {
-      desktopVersionData.channels.stable.latest = data.versions.find(v => v.version === stableLatest) || null;
-    }
-    if (betaLatest) {
-      desktopVersionData.channels.beta.latest = data.versions.find(v => v.version === betaLatest) || null;
-    }
-
-    // 获取渠道的所有版本
-    desktopVersionData.channels.stable.all = data.versions.filter(v => stableVersions.includes(v.version));
-    desktopVersionData.channels.beta.all = data.versions.filter(v => betaVersions.includes(v.version));
-  }
-} catch (e) {
-  desktopVersionData.error = e instanceof Error ? e.message : String(e);
-  console.error("Failed to fetch desktop versions for homepage:", e);
-}
 ---
 
 <!doctype html>
@@ -197,25 +132,11 @@ try {
     <!-- 新年主题装饰 - 仅在农历新年主题下显示 -->
     <LunarNewYearDecorations client:load />
 
-    <Navbar
-      client:load
-      desktopVersion={desktopVersionData.latest}
-      desktopPlatforms={desktopVersionData.platforms}
-      desktopVersionError={desktopVersionData.error}
-      desktopChannels={desktopVersionData.channels}
-      locale="zh-CN"
-    />
+    <Navbar client:load locale="zh-CN" />
 
     <main class="homepage">
       <!-- Hero Section - 首屏必需 -->
-      <HeroSection
-        desktopVersion={desktopVersionData.latest}
-        desktopPlatforms={desktopVersionData.platforms}
-        desktopVersionError={desktopVersionData.error}
-        desktopChannels={desktopVersionData.channels}
-        locale="zh-CN"
-        client:load
-      />
+      <HeroSection locale="zh-CN" client:load />
 
       <!-- Activity Metrics Section -->
       <ActivityMetricsSection locale="zh-CN" client:load />

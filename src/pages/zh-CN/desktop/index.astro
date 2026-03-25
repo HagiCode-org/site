@@ -36,20 +36,6 @@ const siteBase = import.meta.env.VITE_SITE_BASE || '';
 const canonicalUrl = getAbsoluteSiteUrl('/desktop/', 'zh-CN', siteBase);
 const englishUrl = getAbsoluteSiteUrl('/desktop/', 'en', siteBase);
 
-// 在服务端获取版本数据并传递到客户端
-let desktopVersionData = null;
-try {
-  // 在服务端直接读取文件，避免使用 fetch
-  const fs = await import('fs/promises');
-  const path = await import('path');
-  const versionIndexPath = path.join(process.cwd(), 'public', 'version-index.json');
-  desktopVersionData = JSON.parse(await fs.readFile(versionIndexPath, 'utf-8'));
-} catch (e) {
-  console.error("Failed to fetch desktop versions for desktop page:", e);
-}
-
-// 将数据序列化为 JSON，以便在客户端脚本中使用
-const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData) : 'null';
 ---
 
 <!doctype html>
@@ -72,7 +58,6 @@ const versionDataScript = desktopVersionData ? JSON.stringify(desktopVersionData
     <meta name="og:description" content={description} />
     <meta name="og:type" content="website" />
     <GoogleAnalytics />
-    <script set:html={`window.__DESKTOP_VERSION_DATA__ = ${desktopVersionData ? JSON.stringify(desktopVersionData) : 'null'};`} is:inline></script>
     <script is:inline>
       // 初始化主题 - 与主页保持一致
       (function() {

@@ -82,13 +82,11 @@ repos/site/
 ├── public/                 # 静态资源（图片、字体等）
 ├── static/                 # 公共文件（根路径服务）
 ├── scripts/                # 构建脚本
-│   ├── copy-version-index.js
 │   ├── generate-image.mjs
 │   ├── generate-image.sh   # 兼容转发到 generate-image.mjs
 │   ├── image-base-prompt.json
 │   ├── product-images-batch.json
 │   ├── prompts/            # ImgBin 消费的 prompt.json 目录
-│   ├── update-activity-metrics.js
 │   └── ...
 ├── astro.config.mjs        # Astro 配置
 ├── package.json            # 项目依赖
@@ -137,9 +135,6 @@ npm run test:ui
 # 生成 OG 图片
 npm run generate:image
 npm run generate:product-images
-
-# 更新活动指标
-npm run update-metrics
 ```
 
 ### Environment Variables
@@ -234,6 +229,8 @@ lang: en
    - 大号数字展示
    - 渐变进度条
    - 流畅计数动画
+   - 运行时请求 `https://index.hagicode.com/activity-metrics.json`
+   - 数据生成职责归属 `repos/index`，site 仅负责消费与展示
 
 3. **FeaturesShowcase**: 特性展示
    - 3 列网格布局
@@ -322,9 +319,8 @@ npm run build
 ```
 
 构建步骤：
-1. 复制版本索引（`copy-version-index.js`）
-2. Astro 静态生成
-3. 审计 `dist/**/*.html` 中受管营销页的 `meta description`、唯一 `h1`、canonical/hreflang，以及 `/en/*` 旧路径页禁用 `meta refresh`
+1. Astro 静态生成
+2. 审计 `dist/**/*.html` 中受管营销页的 `meta description`、唯一 `h1`、canonical/hreflang，以及 `/en/*` 旧路径页禁用 `meta refresh`
 
 ### SEO 审计约定
 - `npm run seo:audit` 会检查官网营销页与 `/en/*` 旧英文别名页的最终 HTML，而不是只检查源码。
@@ -335,12 +331,6 @@ npm run build
 
 ## Scripts
 
-### copy-version-index.js
-复制版本索引文件到构建目录
-
-### update-activity-metrics.js
-更新活动指标数据（用于 ActivityMetricsSection）
-
 ### generate-image.mjs
 通过 ImgBin 生成站点图片，并保持默认手绘风格与 Claude metadata 流程
 - 单张生成: `npm run generate:image`
@@ -348,6 +338,13 @@ npm run build
 - 强制重新生成: `npm run regenerate:product-images`
 - 默认通过 `../imgbin/dist/cli.js` 调用 ImgBin，可通过 `IMGBIN_EXECUTABLE` / `IMGBIN_WORKDIR` 覆盖
 - GPT Image 1.5 仅负责出图，metadata 仍依赖 Claude 分析步骤
+
+## Activity Metrics Ownership
+
+- 首页活动统计运行时读取 `https://index.hagicode.com/activity-metrics.json`
+- `repos/site` 不再维护活动统计本地 JSON、副本刷新脚本或定时 workflow
+- 如果首页统计异常，优先排查 `repos/index` 的数据生成链路与部署结果
+- 不要在 `repos/site` 重新添加本地刷新命令或回写第二份 `activity-metrics.json`
 
 ## Troubleshooting
 

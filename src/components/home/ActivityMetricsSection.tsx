@@ -4,27 +4,17 @@
  */
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { withBasePath } from '../../utils/path';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
+import {
+  ACTIVITY_METRICS_TIME_RANGES,
+  filterActivityMetricsHistory,
+  loadActivityMetricsData,
+  type ActivityMetricsData,
+  type ActivityMetricsTimeRange,
+} from '@/lib/activity-metrics-source';
 import styles from './ActivityMetricsSection.module.css';
-import ActivityMetricsChart, { type HistoryEntry } from './ActivityMetricsChart';
-
-interface ActivityMetricsData {
-  lastUpdated: string;
-  dockerHub: {
-    pullCount: number;
-    repository: string;
-  };
-  clarity: {
-    activeUsers: number;
-    activeSessions: number;
-    dateRange: string;
-  };
-  history?: HistoryEntry[];
-}
-
-type TimeRange = 7 | 30 | 90;
+import ActivityMetricsChart from './ActivityMetricsChart';
 
 interface ActivityMetricCardProps {
   icon: string;
@@ -308,42 +298,40 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
   const [data, setData] = useState<ActivityMetricsData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [timeRange, setTimeRange] = useState<TimeRange>(7);
+  const [timeRange, setTimeRange] = useState<ActivityMetricsTimeRange>(7);
 
   useEffect(() => {
-    // 从 public 目录加载数据
-    fetch(withBasePath('/activity-metrics.json'))
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('Failed to load activity metrics');
-        }
-        return res.json();
-      })
-      .then((jsonData: ActivityMetricsData) => {
-        setData(jsonData);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.error('Error loading activity metrics:', err);
-        setError(err);
-        setIsLoading(false);
-      });
+    let isMounted = true;
+
+    void loadActivityMetricsData().then(({ data: nextData, error: nextError }) => {
+      if (!isMounted) {
+        return;
+      }
+
+      if (nextError) {
+        console.error('Error loading activity metrics:', nextError);
+        setError(nextError);
+      } else {
+        setData(nextData);
+      }
+
+      setIsLoading(false);
+    });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // 根据时间范围过滤历史数据
   const filteredHistory = useMemo(() => {
-    if (!data?.history) return [];
-
-    const cutoffDate = new Date();
-    cutoffDate.setDate(cutoffDate.getDate() - timeRange);
-
-    return data.history.filter((entry) => new Date(entry.date) >= cutoffDate);
+    return filterActivityMetricsHistory(data?.history ?? [], timeRange);
   }, [data?.history, timeRange]);
 
   // 时间范围选择器
   const TimeRangeSelector = () => (
     <div className={styles.timeRangeSelector}>
-      {([7, 30, 90] as TimeRange[]).map((days) => (
+      {ACTIVITY_METRICS_TIME_RANGES.map((days) => (
         <button
           key={days}
           className={`${styles.timeRangeButton} ${timeRange === days ? styles.active : ''}`}
@@ -381,6 +369,7 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
       activeSessions: 0,
       dateRange: '3Days',
     },
+    history: [],
   };
 
   const currentData = data || defaultData;
@@ -454,7 +443,8 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
   ];
 
   // 检查是否有历史数据
-  const hasHistoryData = data?.history && data.history.length > 0;
+  const hasAnyHistoryData = (data?.history.length ?? 0) > 0;
+  const hasFilteredHistoryData = filteredHistory.length > 0;
 
   return (
     <section className={styles.activityMetricsSection}>
@@ -471,7 +461,7 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
         </div>
 
         {/* 时间范围选择器 */}
-        {hasHistoryData && !isLoading && (
+        {hasAnyHistoryData && !isLoading && (
           <div style={{ marginBottom: '24px', display: 'flex', justifyContent: 'flex-end' }}>
             <TimeRangeSelector />
           </div>
@@ -486,7 +476,7 @@ export default function ActivityMetricsSection({ locale: propLocale }: { locale?
               [...Array(3)].map((_, i) => (
                 <MetricCardSkeleton key={i} />
               ))
-            ) : hasHistoryData ? (
+            ) : hasFilteredHistoryData ? (
               // 显示图表
               chartConfigs.map((config) => (
                 <ActivityMetricsChart

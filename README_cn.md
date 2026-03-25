@@ -138,6 +138,15 @@ npm run preview
 
 本地开发服务器默认运行在 `http://localhost:31264`。如果你需要贡献者视角的更多说明，请先阅读 [`AGENTS.md`](./AGENTS.md) 和 [`CLAUDE.md`](./CLAUDE.md)。
 
+## 首页活动统计
+
+首页活动统计模块现在会在运行时读取 index 站点托管的 canonical JSON：
+
+- 数据源：`https://index.hagicode.com/activity-metrics.json`
+- 归属边界：数据由 `repos/index` 生成并发布，`repos/site` 只负责消费与展示
+- 失败回退：如果远程资产不可用，首页继续使用现有空状态降级，而不会影响其他区块渲染
+- 排障顺序：如果首页统计看起来为空、过旧或异常，优先排查 index 仓库的数据生成链路和 index 部署结果，而不是在本仓库重新加本地刷新脚本或本地 JSON 副本
+
 ## 许可协议
 
 本仓库遵循 [LICENSE](./LICENSE) 中的许可条款。

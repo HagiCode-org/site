@@ -15,7 +15,6 @@ import { AssetType, CpuArchitecture } from './types/desktop';
 import semver from 'semver';
 
 const INDEX_JSON_URL = "https://index.hagicode.com/desktop/index.json";
-const LOCAL_VERSION_INDEX = "/version-index.json";
 const DOWNLOAD_BASE_URL = "https://desktop.dl.hagicode.com/";
 const TIMEOUT_MS = 30000;
 
@@ -366,45 +365,31 @@ export function getRecommendedArchitecture(platform: "windows" | "macos" | "linu
   return PLATFORM_RECOMMENDATIONS[platform].recommendedArchitecture;
 }
 
+function normalizeDesktopIndexResponse(
+  data: DesktopIndexResponse
+): DesktopIndexResponse {
+  if (!data || typeof data !== "object" || !Array.isArray(data.versions)) {
+    throw new Error("Invalid desktop index payload: missing versions array");
+  }
+
+  data.versions.sort((a, b) => compareVersions(b.version, a.version));
+  return data;
+}
+
 /**
  * 获取版本数据
- * 优先使用本地文件，确保构建过程不依赖外部服务
+ * 仅在浏览器运行时请求公开 desktop index，并对响应做结构校验
  * 返回的版本数组已按版本号从高到低排序
  * @returns 版本数据响应
- * @throws 当请求失败或超时时抛出错误，或在非浏览器环境调用时抛出错误
+ * @throws 当请求失败、超时、结构无效，或在非浏览器环境调用时抛出错误
  */
 export async function fetchDesktopVersions(): Promise<DesktopIndexResponse> {
-  // 检查是否在浏览器环境中
-  const isBrowser = typeof window !== 'undefined' && typeof fetch !== 'undefined';
+  const isBrowser = typeof window !== "undefined" && typeof fetch !== "undefined";
 
   if (!isBrowser) {
-    // 在 SSR/构建环境中，抛出错误而不是返回空数据
-    // 这样可以避免水合不匹配的问题
     throw new Error("fetchDesktopVersions cannot be called in SSR environment");
   }
 
-  // Try to load from local file first
-  try {
-    const response = await fetch(LOCAL_VERSION_INDEX);
-    if (response.ok) {
-      const data: DesktopIndexResponse = await response.json();
-
-      // 验证数据结构
-      if (!Array.isArray(data.versions)) {
-        throw new Error("Invalid data structure: missing versions array");
-      }
-
-      // 按版本号排序（从高到低）
-      data.versions.sort((a, b) => compareVersions(b.version, a.version));
-
-      return data;
-    }
-  } catch (error) {
-    // Local file not available, fall back to online API
-    console.warn("Local version index not available, falling back to online API");
-  }
-
-  // Fallback to online API
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
@@ -412,28 +397,20 @@ export async function fetchDesktopVersions(): Promise<DesktopIndexResponse> {
     const response = await fetch(INDEX_JSON_URL, {
       signal: controller.signal,
     });
-    clearTimeout(timeoutId);
 
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
 
-    const data: DesktopIndexResponse = await response.json();
-
-    // 验证数据结构
-    if (!Array.isArray(data.versions)) {
-      throw new Error("Invalid data structure: missing versions array");
-    }
-
-    // 按版本号排序（从高到低）
-    data.versions.sort((a, b) => compareVersions(b.version, a.version));
-
-    return data;
+    const data = (await response.json()) as DesktopIndexResponse;
+    return normalizeDesktopIndexResponse(data);
   } catch (error) {
     if (error instanceof Error && error.name === "AbortError") {
       throw new Error("Request timeout: failed to fetch version data");
     }
     throw error;
+  } finally {
+    clearTimeout(timeoutId);
   }
 }
 

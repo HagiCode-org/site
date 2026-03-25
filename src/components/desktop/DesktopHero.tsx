@@ -14,6 +14,7 @@ import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
 import { MAC_DOWNLOAD_DISABLED_NOTICE, MAC_DOWNLOAD_DISABLED_NOTICE_EN } from '@/constants/downloadMessages';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
+import { getLinkWithLocale } from '@/lib/shared/links';
 import type { DesktopVersion, AssetType } from '@/lib/shared/types/desktop';
 import { getDesktopDownloadEventName } from '@/lib/analytics/events';
 import { trackEvent } from '@/lib/analytics/tracker';
@@ -140,7 +141,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
         }
       } catch (err) {
         if (mounted) {
-          setError(err instanceof Error ? err.message : t('desktopHero.error.unknown'));
+          setError(err instanceof Error ? err.message : t('desktopHero.download.unknown'));
           setLoading(false);
         }
       }
@@ -189,6 +190,11 @@ export default function DesktopHero(props: DesktopHeroProps) {
   const macDownloadNotice = locale === 'en'
     ? `For macOS users: ${MAC_DOWNLOAD_DISABLED_NOTICE_EN}`
     : `Mac 用户：${MAC_DOWNLOAD_DISABLED_NOTICE}`;
+  const desktopPageUrl = useMemo(() => getLinkWithLocale('desktop', locale), [locale]);
+  const containerPageUrl = useMemo(() => getLinkWithLocale('container', locale), [locale]);
+  const fallbackCtaLabel = locale === 'en' ? 'Open Desktop page' : '前往 Desktop 页面';
+  const fallbackContainerLabel = locale === 'en' ? 'Open Container page' : '前往 Container 页面';
+  const fallbackError = error || versionData?.error || t('desktopHero.download.unknown');
   const getDownloadAriaLabel = (platformLabel: string) =>
     t('desktopHero.download.ariaLabel').replace('{platform}', platformLabel);
   const getSelectOtherVersionsLabel = (platformLabel: string) =>
@@ -200,24 +206,32 @@ export default function DesktopHero(props: DesktopHeroProps) {
       <div className={styles.loadingState}>
         <div className={styles.loadingSpinner} />
         <p>{t('desktopHero.loading')}</p>
+        <div className="flex flex-wrap justify-center gap-3">
+          <a href={desktopPageUrl} className="btn btn-primary">
+            {fallbackCtaLabel}
+          </a>
+          <a href={containerPageUrl} className="btn btn-secondary">
+            {fallbackContainerLabel}
+          </a>
+        </div>
       </div>
     );
   }
 
-  if (error) {
+  if (fallbackError || (!currentVersion && !loading)) {
     return (
       <div className={styles.errorState}>
         <div className={styles.errorIcon}>⚠️</div>
         <h3>{t('desktopHero.error.title')}</h3>
-        <p>{error}</p>
-        <a
-          href="https://desktop.dl.hagicode.com/"
-          className="btn btn-primary"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {t('desktopHero.error.gotoDownload')}
-        </a>
+        <p>{fallbackError}</p>
+        <div className="flex flex-wrap justify-center gap-3">
+          <a href={desktopPageUrl} className="btn btn-primary">
+            {t('desktopHero.error.gotoDownload')}
+          </a>
+          <a href={containerPageUrl} className="btn btn-secondary">
+            {fallbackContainerLabel}
+          </a>
+        </div>
       </div>
     );
   }
