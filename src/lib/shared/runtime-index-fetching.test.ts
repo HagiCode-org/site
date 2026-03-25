@@ -1,4 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import {
+  BACKUP_INDEX_JSON_URL,
+  LOCAL_VERSION_INDEX,
+  PRIMARY_INDEX_JSON_URL,
+} from './desktop-utils';
 import {
   clearDesktopVersionCache as clearSiteDesktopVersionCache,
   getDesktopVersionData as getSiteDesktopVersionData,
@@ -54,11 +60,14 @@ const targets = [
   },
 ] as const;
 
-function createJsonResponse(body: unknown) {
+function createJsonResponse(
+  body: unknown,
+  options?: { ok?: boolean; status?: number; statusText?: string },
+) {
   return {
-    ok: true,
-    status: 200,
-    statusText: 'OK',
+    ok: options?.ok ?? true,
+    status: options?.status ?? 200,
+    statusText: options?.statusText ?? 'OK',
     json: vi.fn().mockResolvedValue(body),
   };
 }
@@ -74,7 +83,7 @@ describe.each(targets)('$label runtime index fetching', (target) => {
     vi.restoreAllMocks();
   });
 
-  it('returns the latest version data and reuses the cached result', async () => {
+  it('uses the primary source and reuses the cached result', async () => {
     const fetchMock = vi
       .fn()
       .mockResolvedValue(createJsonResponse(structuredClone(desktopIndexFixture)));
@@ -85,17 +94,99 @@ describe.each(targets)('$label runtime index fetching', (target) => {
     const second = await target.getDesktopVersionData();
 
     expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledWith(
+      PRIMARY_INDEX_JSON_URL,
+      expect.objectContaining({ signal: expect.any(AbortSignal) }),
+    );
     expect(first).toBe(second);
+    expect(first.source).toBe('primary');
+    expect(first.status).toBe('ready');
+    expect(first.attempts).toEqual([]);
     expect(first.latest?.version).toBe('v1.2.3');
     expect(first.platforms).toHaveLength(3);
     expect(first.channels.stable.latest?.version).toBe('v1.2.3');
   });
 
+  it('falls back to the backup source when the primary payload is invalid', async () => {
+    const fetchMock = vi.fn().mockImplementation(async (url: string) => {
+      if (url === PRIMARY_INDEX_JSON_URL) {
+        return createJsonResponse({ updatedAt: '2026-03-24T00:00:00Z' });
+      }
+
+      if (url === BACKUP_INDEX_JSON_URL) {
+        return createJsonResponse(structuredClone(desktopIndexFixture));
+      }
+
+      throw new Error(`Unexpected fetch: ${url}`);
+    });
+
+    vi.stubGlobal('fetch', fetchMock);
+
+    const data = await target.getDesktopVersionData();
+
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(data.source).toBe('backup');
+    expect(data.status).toBe('degraded');
+    expect(data.attempts).toEqual([
+      expect.objectContaining({ source: 'primary' }),
+    ]);
+    expect(data.error).toBeNull();
+  });
+
+  it('falls back to the local snapshot after both remote sources fail', async () => {
+    const fetchMock = vi.fn().mockImplementation(async (url: string) => {
+      if (url === PRIMARY_INDEX_JSON_URL) {
+        throw new Error('primary down');
+      }
+
+      if (url === BACKUP_INDEX_JSON_URL) {
+        return createJsonResponse({}, { ok: false, status: 503, statusText: 'Service Unavailable' });
+      }
+
+      if (url === LOCAL_VERSION_INDEX) {
+        return createJsonResponse(structuredClone(desktopIndexFixture));
+      }
+
+      throw new Error(`Unexpected fetch: ${url}`);
+    });
+
+    vi.stubGlobal('fetch', fetchMock);
+
+    const data = await target.getDesktopVersionData();
+
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(data.source).toBe('local');
+    expect(data.status).toBe('local_snapshot');
+    expect(data.attempts).toEqual([
+      expect.objectContaining({ source: 'primary', error: 'primary down' }),
+      expect.objectContaining({ source: 'backup' }),
+    ]);
+    expect(data.latest?.version).toBe('v1.2.3');
+  });
+
+  it('returns a fatal state when every source fails', async () => {
+    const fetchMock = vi.fn().mockImplementation(async (url: string) => {
+      throw new Error(`failed:${url}`);
+    });
+
+    vi.stubGlobal('fetch', fetchMock);
+
+    const data = await target.getDesktopVersionData();
+
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(data.status).toBe('fatal');
+    expect(data.source).toBeNull();
+    expect(data.latest).toBeNull();
+    expect(data.platforms).toEqual([]);
+    expect(data.error).toContain('Failed to load desktop versions');
+    expect(data.attempts).toHaveLength(3);
+  });
+
   it('deduplicates concurrent in-flight requests', async () => {
-    let resolveResponse: ((value: ReturnType<typeof createJsonResponse>) => void) | null = null;
+    let resolveResponse: (value: ReturnType<typeof createJsonResponse>) => void = () => {};
     const fetchMock = vi.fn().mockImplementation(
       () =>
-        new Promise((resolve) => {
+        new Promise<ReturnType<typeof createJsonResponse>>((resolve) => {
           resolveResponse = resolve;
         }),
     );
@@ -109,35 +200,38 @@ describe.each(targets)('$label runtime index fetching', (target) => {
 
     expect(fetchMock).toHaveBeenCalledTimes(1);
 
-    resolveResponse?.(createJsonResponse(structuredClone(desktopIndexFixture)));
+    resolveResponse(createJsonResponse(structuredClone(desktopIndexFixture)));
 
     const [first, second] = await pending;
-
     expect(first).toBe(second);
-    expect(first.latest?.version).toBe('v1.2.3');
+    expect(first.source).toBe('primary');
+  });
+});
+
+describe('site runtime index fetching fatal caching', () => {
+  beforeEach(() => {
+    vi.stubGlobal('window', {});
   });
 
-  it('rejects invalid JSON payloads', async () => {
-    const fetchMock = vi.fn().mockResolvedValue(
-      createJsonResponse({
-        updatedAt: '2026-03-24T00:00:00Z',
-        channels: desktopIndexFixture.channels,
-      }),
-    );
+  afterEach(() => {
+    clearSiteDesktopVersionCache();
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+  });
+
+  it('reuses the cached fatal state until the cache is cleared', async () => {
+    const fetchMock = vi.fn().mockImplementation(async (url: string) => {
+      throw new Error(`failed:${url}`);
+    });
 
     vi.stubGlobal('fetch', fetchMock);
 
-    await expect(target.getDesktopVersionData()).rejects.toThrow(
-      'Invalid desktop index payload: missing versions array',
-    );
-  });
+    const first = await getSiteDesktopVersionData();
+    const second = await getSiteDesktopVersionData();
 
-  it('surfaces request failures', async () => {
-    const fetchMock = vi.fn().mockRejectedValue(new Error('network down'));
-
-    vi.stubGlobal('fetch', fetchMock);
-
-    await expect(target.getDesktopVersionData()).rejects.toThrow('network down');
-    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(first).toBe(second);
+    expect(second.status).toBe('fatal');
+    expect(second.attempts).toHaveLength(3);
   });
 });
