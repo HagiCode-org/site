@@ -118,8 +118,9 @@ main.homepage section div.container,
 
 /* 新年主题下的字体设置 */
 [data-theme='lunar-new-year'] .homepage {
-  --font-display: 'Noto Serif SC', var(--font-cn-serif);
-  --font-body: 'Noto Sans SC', var(--font-cn-sans);
+  /* Theme pages still inherit the shared Chinese fallback policy. */
+  --font-display: var(--font-cn-serif);
+  --font-body: var(--font-cn-sans);
 }
 
 /* 新年主题发光边框 */

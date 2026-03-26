@@ -19,39 +19,28 @@
 
   /* 无衬线中文字体 - 正文/UI */
   --font-cn-sans:
-    /* macOS 优先 */
-    -apple-system,
-    BlinkMacSystemFont,
     "PingFang SC",
     "Hiragino Sans GB",
-    /* Windows 11+ */
     "Microsoft YaHei UI",
-    /* Windows 10 及以下 */
     "Microsoft YaHei",
-    /* Windows XP 老系统 */
-    "Segoe UI",
-    /* Android */
+    "Noto Sans CJK SC",
     "Noto Sans SC",
-    "Roboto",
-    /* Linux */
+    "Source Han Sans SC",
     "WenQuanYi Micro Hei",
-    /* 通用回退 */
+    "Segoe UI",
+    system-ui,
     sans-serif;
 
   /* 衬线中文字体 - 标题/特殊场景 */
   --font-cn-serif:
-    /* macOS */
     "Songti SC",
+    "STSong",
     "Hiragino Mincho ProN",
-    /* Windows */
     "SimSun",
     "NSimSun",
-    /* Android */
+    "Noto Serif CJK SC",
     "Noto Serif SC",
-    /* Linux */
-    "WenQuanYi Zen Hei",
-    /* 通用回退 */
-    "STSong",
+    "Source Han Serif SC",
     serif;
 
   /* 等宽中文字体 - 代码/数据 */
@@ -128,12 +117,10 @@
      ============================================ */
 
   /* 正文/UI 字体 - 中英文混排优先 */
-  --font-body:
-    var(--font-cn-sans);
+  --font-body: var(--font-cn-sans);
 
   /* 标题字体 - 更粗的显示效果 */
-  --font-heading:
-    var(--font-cn-sans);
+  --font-heading: var(--font-cn-sans);
 
   /* 代码字体 - 等宽优先 */
   --font-code:
@@ -141,8 +128,7 @@
     var(--font-cn-mono);
 
   /* 引用/特殊文字 - 衬线字体 */
-  --font-quote:
-    var(--font-cn-serif);
+  --font-quote: var(--font-cn-serif);
 
   /* ============================================
      数字字体 - 表格数据/数字显示
@@ -162,34 +148,13 @@
      ============================================ */
 
   /* 按钮文字 - 更粗更醒目 */
-  --font-button:
-    /* macOS */
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "PingFang SC",
-    "Microsoft YaHei UI",
-    system-ui,
-    sans-serif;
+  --font-button: var(--font-cn-sans);
 
   /* 标签/徽章文字 */
-  --font-tag:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Text",
-    "PingFang SC",
-    "Segoe UI",
-    "Roboto",
-    sans-serif;
+  --font-tag: var(--font-cn-sans);
 
   /* 小字/说明文字 */
-  --font-small:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Text",
-    "PingFang SC",
-    "Microsoft YaHei",
-    sans-serif;
+  --font-small: var(--font-cn-sans);
 }
 
 /* ==========================================================================
