@@ -143,6 +143,7 @@ The dev server runs on `http://localhost:31264` by default. For contributor-orie
 The homepage activity metrics module is now a runtime consumer of the canonical JSON hosted by the index site:
 
 - Source: `https://index.hagicode.com/activity-metrics.json`
+- Single source of truth: `repos/index` generates and publishes the only homepage metrics asset that `repos/site` is allowed to consume
 - Ownership: the data is generated and published from `repos/index`, not from `repos/site`
 - Failure mode: if the remote asset is unavailable, the homepage keeps the existing empty-state fallback instead of breaking the rest of the page
 - Maintenance boundary: if homepage metrics look wrong or stale, investigate the index repository and index deployment first instead of re-adding a local refresh script or local JSON copy in this repository

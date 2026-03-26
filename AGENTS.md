@@ -342,6 +342,7 @@ npm run build
 ## Activity Metrics Ownership
 
 - 首页活动统计运行时读取 `https://index.hagicode.com/activity-metrics.json`
+- `repos/index` 是首页活动统计的唯一事实来源，`repos/site` 只能消费这份 canonical JSON
 - `repos/site` 不再维护活动统计本地 JSON、副本刷新脚本或定时 workflow
 - 如果首页统计异常，优先排查 `repos/index` 的数据生成链路与部署结果
 - 不要在 `repos/site` 重新添加本地刷新命令或回写第二份 `activity-metrics.json`
