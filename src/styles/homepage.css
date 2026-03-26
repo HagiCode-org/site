@@ -67,7 +67,8 @@ main.homepage {
 /* 内容区域限制 - 各个 section 的直接子元素容器 */
 .homepage > section > * {
   max-width: 1200px !important;
-  margin: 0 auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   padding: 0 1.5rem !important;
   box-sizing: border-box;
 }
@@ -78,7 +79,8 @@ main.homepage section div.container,
 .homepage section > .container,
 .homepage section div.container {
   max-width: 1200px !important;
-  margin: 0 auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   padding: 0 1.5rem !important;
   box-sizing: border-box;
 }
