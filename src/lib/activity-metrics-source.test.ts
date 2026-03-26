@@ -103,6 +103,23 @@ describe('activity metrics source', () => {
     expect(result.error?.message).toBe('network down');
   });
 
+  it('treats invalid canonical payloads as fallback errors instead of returning partial data', async () => {
+    const fetchMock = vi
+      .fn<typeof fetch>()
+      .mockResolvedValue(createJsonResponse({
+        lastUpdated: '2026-03-24T01:16:43.021Z',
+        dockerHub: {
+          pullCount: 4747,
+          repository: 'newbe36524/hagicode',
+        },
+      }) as Awaited<ReturnType<typeof fetch>>);
+
+    const result = await loadActivityMetricsData(fetchMock);
+
+    expect(result.data).toBeNull();
+    expect(result.error?.message).toBe('Invalid activity metrics payload: clarity must be an object');
+  });
+
   it('filters history by the selected time range and ignores invalid dates', () => {
     const filtered = filterActivityMetricsHistory(
       [
