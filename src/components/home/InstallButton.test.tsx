@@ -50,14 +50,14 @@ describe('InstallButton runtime state helpers', () => {
     });
   });
 
-  it('keeps degraded runtime data downloadable by reusing precomputed platform groups', () => {
+  it('keeps ready runtime data downloadable by reusing precomputed platform groups', () => {
     const data: DesktopVersionData = {
       latest: latestVersion,
       platforms: platformGroups,
       error: null,
-      source: 'backup',
-      status: 'degraded',
-      attempts: [{ source: 'primary', error: 'primary down' }],
+      source: 'primary',
+      status: 'ready',
+      attempts: [],
       channels: {
         stable: { latest: latestVersion, all: [latestVersion] },
         beta: { latest: latestVersion, all: [latestVersion] },
@@ -68,7 +68,7 @@ describe('InstallButton runtime state helpers', () => {
 
     expect(snapshot.platforms).toBe(platformGroups);
     expect(getInstallButtonMenuState(snapshot, snapshot.platforms.length)).toEqual({
-      mode: 'degraded',
+      mode: 'ready',
       hasDownloads: true,
     });
   });

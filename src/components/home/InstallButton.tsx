@@ -53,7 +53,7 @@ export interface InstallButtonRuntimeSnapshot {
 }
 
 export interface InstallButtonMenuState {
-  mode: 'loading' | 'ready' | 'degraded' | 'fatal';
+  mode: 'loading' | 'ready' | 'fatal';
   hasDownloads: boolean;
 }
 
@@ -195,18 +195,14 @@ export function getInstallButtonMenuState(
   }
 
   if (snapshot.version && visiblePlatformCount > 0) {
-    if (snapshot.status === 'ready') {
-      return { mode: 'ready', hasDownloads: true };
-    }
-
-    return { mode: 'degraded', hasDownloads: true };
+    return { mode: 'ready', hasDownloads: true };
   }
 
   if (snapshot.status === 'fatal' || snapshot.error) {
     return { mode: 'fatal', hasDownloads: false };
   }
 
-  return { mode: 'degraded', hasDownloads: false };
+  return { mode: 'fatal', hasDownloads: false };
 }
 
 function createFatalRuntimeData(message: string): DesktopVersionData {
@@ -258,14 +254,6 @@ export default function InstallButton({
     locale === 'en'
       ? 'Latest version is unavailable, use Desktop page instead'
       : '暂时无法获取最新版本，请先前往 Desktop 页面';
-  const degradedFallbackLabel =
-    locale === 'en'
-      ? 'Using mirrored version data; downloads remain available.'
-      : '当前使用镜像版本数据，下载仍然可用。';
-  const localSnapshotLabel =
-    locale === 'en'
-      ? 'Using a local snapshot while the live index recovers.'
-      : '当前使用本地快照，等待在线索引恢复。';
   const desktopFallbackCta = locale === 'en' ? 'Open Desktop page' : '前往 Desktop 页面';
   const pendingMenuLabel = locale === 'en' ? 'Versions are still loading' : '版本数据仍在加载';
   const unavailableMenuLabel = locale === 'en' ? 'Version data is temporarily unavailable' : '版本数据暂时不可用';
@@ -343,23 +331,12 @@ export default function InstallButton({
       return runtimeSnapshot.error || errorFallbackLabel;
     }
 
-    if (menuState.mode === 'degraded') {
-      if (runtimeSnapshot.source === 'local') {
-        return localSnapshotLabel;
-      }
-
-      return degradedFallbackLabel;
-    }
-
     return null;
   }, [
-    degradedFallbackLabel,
     errorFallbackLabel,
     loadingLatestLabel,
-    localSnapshotLabel,
     menuState.mode,
     runtimeSnapshot.error,
-    runtimeSnapshot.source,
   ]);
 
   const currentUrl = useMemo(() => {
