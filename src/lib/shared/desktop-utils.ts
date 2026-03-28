@@ -2,7 +2,7 @@
  * Hagicode Desktop 工具函数
  * 用于获取和处理版本数据。
  *
- * 官网运行时会按主索引站 -> 备用下载站 -> 本地快照的顺序获取版本索引。
+ * 官网运行时仅请求 index 站的 canonical desktop 索引。
  */
 
 import semver from 'semver';
@@ -17,15 +17,13 @@ import type {
 import { AssetType, CpuArchitecture } from './types/desktop';
 
 export const PRIMARY_INDEX_JSON_URL = 'https://index.hagicode.com/desktop/index.json';
-export const BACKUP_INDEX_JSON_URL = 'https://desktop.dl.hagicode.com/index.json';
-export const LOCAL_VERSION_INDEX = '/version-index.json';
 const DOWNLOAD_BASE_URL = 'https://desktop.dl.hagicode.com/';
 const TIMEOUT_MS = 30000;
 
 // LocalStorage keys
 const ARCHITECTURE_STORAGE_KEY = 'hagicode-architecture-selection';
 
-export type DesktopVersionSource = 'primary' | 'backup' | 'local';
+export type DesktopVersionSource = 'primary' | 'server';
 
 export interface DesktopVersionFetchAttempt {
   source: DesktopVersionSource;
@@ -50,8 +48,6 @@ export class DesktopVersionFetchError extends Error {
 
 const SOURCE_CONFIGS: Array<{ source: DesktopVersionSource; url: string }> = [
   { source: 'primary', url: PRIMARY_INDEX_JSON_URL },
-  { source: 'backup', url: BACKUP_INDEX_JSON_URL },
-  { source: 'local', url: LOCAL_VERSION_INDEX },
 ];
 
 /**
@@ -146,16 +142,20 @@ function normalizeDesktopIndexPayload(payload: unknown): DesktopIndexResponse {
   }
 
   for (const version of data.versions) {
-    if (!version || typeof version.version !== 'string' || !Array.isArray(version.files)) {
+    if (!version || typeof version.version !== 'string' || !Array.isArray(version.assets)) {
       throw new Error('Invalid desktop index payload: malformed version entry');
     }
 
-    for (const file of version.files) {
+    if (version.files && !Array.isArray(version.files)) {
+      throw new Error('Invalid desktop index payload: malformed file path list');
+    }
+
+    for (const asset of version.assets) {
       if (
-        !file ||
-        typeof file.name !== 'string' ||
-        typeof file.path !== 'string' ||
-        typeof file.size !== 'number'
+        !asset ||
+        typeof asset.name !== 'string' ||
+        typeof asset.path !== 'string' ||
+        typeof asset.size !== 'number'
       ) {
         throw new Error('Invalid desktop index payload: malformed asset entry');
       }
@@ -170,7 +170,13 @@ function normalizeDesktopIndexPayload(payload: unknown): DesktopIndexResponse {
 
   return {
     ...data,
-    versions: [...data.versions].sort((a, b) => compareVersions(b.version, a.version)),
+    versions: [...data.versions]
+      .map((version) => ({
+        ...version,
+        assets: [...version.assets],
+        files: Array.isArray(version.files) ? [...version.files] : undefined,
+      }))
+      .sort((a, b) => compareVersions(b.version, a.version)),
     channels: data.channels
       ? {
           stable: {
@@ -196,7 +202,7 @@ async function fetchDesktopIndexPayload(
   try {
     const response = await fetch(url, {
       signal: controller.signal,
-      headers: source === 'local' ? undefined : { Accept: 'application/json' },
+      headers: { Accept: 'application/json' },
     });
 
     if (!response.ok) {
@@ -646,7 +652,7 @@ export function groupAssetsByPlatform(
     }
 
     platformGroups.get(platform)?.push({
-      url: `${DOWNLOAD_BASE_URL}${asset.path}`,
+      url: asset.directUrl || `${DOWNLOAD_BASE_URL}${asset.path}`,
       size: formatFileSize(asset.size),
       filename: asset.name,
       assetType,

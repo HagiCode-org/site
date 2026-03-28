@@ -139,7 +139,7 @@ export function createInstallButtonPropSnapshot({
   if (versionError) {
     return {
       version: version ?? null,
-      platforms: platforms.length > 0 ? platforms : version ? groupAssetsByPlatform(version.files) : [],
+      platforms: platforms.length > 0 ? platforms : version ? groupAssetsByPlatform(version.assets) : [],
       error: versionError,
       status: 'fatal',
       source: null,
@@ -149,7 +149,7 @@ export function createInstallButtonPropSnapshot({
   if (version || platforms.length > 0) {
     return {
       version: version ?? null,
-      platforms: platforms.length > 0 ? platforms : version ? groupAssetsByPlatform(version.files) : [],
+      platforms: platforms.length > 0 ? platforms : version ? groupAssetsByPlatform(version.assets) : [],
       error: null,
       status: 'ready',
       source: null,
@@ -175,7 +175,7 @@ export function resolveInstallButtonRuntimeSnapshot(
     ? []
     : channel === 'stable' && stableVersion?.version === version.version && data.platforms.length > 0
       ? data.platforms
-      : groupAssetsByPlatform(version.files);
+      : groupAssetsByPlatform(version.assets);
 
   return {
     version,

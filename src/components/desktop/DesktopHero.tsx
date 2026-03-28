@@ -71,13 +71,13 @@ const DownloadIcon = () => (
 function convertVersionToPlatformDownloads(version: DesktopVersion): PlatformDownloads[] {
   const platformLabels = { windows: 'Windows', macos: 'macOS', linux: 'Linux' };
 
-  // 检查 version.files 是否存在
-  if (!version.files || !Array.isArray(version.files)) {
+  // index 站的新结构以 assets 为准
+  if (!version.assets || !Array.isArray(version.assets)) {
     return [];
   }
 
   // 使用已有的平台分组逻辑
-  const platformGroups = groupAssetsByPlatform(version.files);
+  const platformGroups = groupAssetsByPlatform(version.assets);
 
   if (!platformGroups || !Array.isArray(platformGroups)) {
     return [];

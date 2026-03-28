@@ -2,7 +2,7 @@
  * Desktop 版本数据管理器
  *
  * 提供单例模式的版本数据管理，支持服务端注入和客户端获取。
- * 运行时结果会保留数据来源、降级链路和并发请求复用状态。
+ * 官网仅消费 canonical index，并复用并发中的同一请求结果。
  */
 
 import type { DesktopIndexResponse, DesktopVersion, PlatformGroup } from './types/desktop';
@@ -16,7 +16,7 @@ import {
   groupAssetsByPlatform,
 } from './desktop-utils';
 
-export type DesktopVersionState = 'ready' | 'degraded' | 'local_snapshot' | 'fatal';
+export type DesktopVersionState = 'ready' | 'fatal';
 
 /**
  * 版本数据接口
@@ -69,10 +69,10 @@ class VersionManager {
 
   /**
    * 设置服务端注入的数据（用于 SSR）。
-   * 服务端注入的数据本质上等价于本地快照。
+   * 服务端注入的数据视为已解析的 canonical snapshot。
    */
   setServerData(data: DesktopIndexResponse): void {
-    const versionData = this.transformToVersionData(data, 'local', []);
+    const versionData = this.transformToVersionData(data, 'server', []);
     this.setResolvedData(versionData);
   }
 
@@ -87,7 +87,7 @@ class VersionManager {
     ) {
       const serverData = (window as { __DESKTOP_VERSION_DATA__?: DesktopIndexResponse }).__DESKTOP_VERSION_DATA__;
       if (serverData) {
-        const versionData = this.transformToVersionData(serverData, 'local', []);
+        const versionData = this.transformToVersionData(serverData, 'server', []);
         this.data = versionData;
         this.initialized = true;
         delete (window as { __DESKTOP_VERSION_DATA__?: DesktopIndexResponse }).__DESKTOP_VERSION_DATA__;
@@ -139,7 +139,7 @@ class VersionManager {
     return {
       latest,
       all: data.channels[channel].all,
-      platforms: latest ? groupAssetsByPlatform(latest.files) : [],
+      platforms: latest ? groupAssetsByPlatform(latest.assets) : [],
       error: data.error,
       source: data.source,
       status: data.status,
@@ -205,7 +205,7 @@ class VersionManager {
       latest = data.versions[0];
     }
 
-    const platforms = latest ? groupAssetsByPlatform(latest.files) : [];
+    const platforms = latest ? groupAssetsByPlatform(latest.assets) : [];
     const channels = {
       stable: this.processChannel(data, 'stable'),
       beta: this.processChannel(data, 'beta'),
@@ -223,15 +223,11 @@ class VersionManager {
   }
 
   private mapSourceToStatus(source: DesktopVersionSource): DesktopVersionState {
-    if (source === 'primary') {
+    if (source === 'primary' || source === 'server') {
       return 'ready';
     }
 
-    if (source === 'backup') {
-      return 'degraded';
-    }
-
-    return 'local_snapshot';
+    return 'fatal';
   }
 
   private processChannel(

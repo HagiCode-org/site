@@ -12,7 +12,7 @@ import InstallButton, {
 
 const latestVersion = {
   version: 'v1.2.3',
-  files: [
+  assets: [
     {
       name: 'Hagicode.Desktop.Setup.1.2.3.exe',
       path: 'v1.2.3/Hagicode.Desktop.Setup.1.2.3.exe',
@@ -34,7 +34,7 @@ const latestVersion = {
   ],
 };
 
-const platformGroups = groupAssetsByPlatform(latestVersion.files);
+const platformGroups = groupAssetsByPlatform(latestVersion.assets);
 
 describe('InstallButton runtime state helpers', () => {
   it('treats an unresolved runtime state as loading instead of frozen', () => {
