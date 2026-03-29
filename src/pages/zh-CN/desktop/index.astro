@@ -43,7 +43,7 @@ const englishUrl = getAbsoluteSiteUrl('/desktop/', 'en', siteBase);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -112,6 +112,10 @@ const englishUrl = getAbsoluteSiteUrl('/desktop/', 'en', siteBase);
           <h1>{heroTitle}</h1>
           <p class="hero-tagline">{heroTagline}</p>
           <DesktopHero locale="zh-CN" client:load />
+          <p class="hero-runtime-note">
+            若此页加载安装包失败，将自动跳转到 canonical 的 Index Desktop 版本历史页：
+            <a href="https://index.hagicode.com/desktop/history/">https://index.hagicode.com/desktop/history/</a>
+          </p>
         </div>
       </section>
 

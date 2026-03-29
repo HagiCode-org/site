@@ -38,7 +38,7 @@ const chineseUrl = getAbsoluteSiteUrl('/desktop/', 'zh-CN', siteBase);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -107,6 +107,10 @@ const chineseUrl = getAbsoluteSiteUrl('/desktop/', 'zh-CN', siteBase);
           <h1>{heroTitle}</h1>
           <p class="hero-tagline">{heroTagline}</p>
           <DesktopHero client:load locale="en" />
+          <p class="hero-runtime-note">
+            If package loading fails here, this page redirects to the canonical Index Desktop version history:
+            <a href="https://index.hagicode.com/desktop/history/"> https://index.hagicode.com/desktop/history/</a>
+          </p>
         </div>
       </section>
 
