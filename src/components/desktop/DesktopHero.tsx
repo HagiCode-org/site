@@ -8,7 +8,11 @@
  * - 版本历史需要注册/登录后访问
  */
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { getDesktopVersionData, type DesktopVersionData } from '@/lib/shared/version-manager';
+import {
+  DESKTOP_HISTORY_FALLBACK_URL,
+  getDesktopVersionData,
+  type DesktopVersionData,
+} from '@/lib/shared/version-manager';
 import { detectOS, getAssetTypeLabel, groupAssetsByPlatform } from '@/lib/shared/desktop-utils';
 import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
 import { MAC_DOWNLOAD_DISABLED_NOTICE, MAC_DOWNLOAD_DISABLED_NOTICE_EN } from '@/constants/downloadMessages';
@@ -102,6 +106,38 @@ interface DesktopHeroProps {
   locale?: 'zh-CN' | 'en';
 }
 
+export interface DesktopHeroFallbackState {
+  fallbackTarget: string;
+  shouldAutoRedirect: boolean;
+  message: string;
+  detail: string | null;
+}
+
+export function resolveDesktopHeroFallbackState(
+  locale: 'zh-CN' | 'en',
+  versionData: DesktopVersionData | null,
+  runtimeError: string | null,
+  hasCurrentVersion: boolean,
+): DesktopHeroFallbackState | null {
+  const fallbackTarget = versionData?.fallbackTarget ?? DESKTOP_HISTORY_FALLBACK_URL;
+  const detail = versionData?.failedAttemptSummary ?? runtimeError;
+  const isFatal = Boolean(runtimeError) || versionData?.status === 'fatal' || !hasCurrentVersion;
+
+  if (!isFatal) {
+    return null;
+  }
+
+  return {
+    fallbackTarget,
+    shouldAutoRedirect: true,
+    message:
+      locale === 'en'
+        ? 'Unable to load desktop packages here. Redirecting to the Index version history...'
+        : '此页暂无法加载桌面端安装包，正在跳转到 Index 版本历史页。',
+    detail,
+  };
+}
+
 export default function DesktopHero(props: DesktopHeroProps) {
   const { locale: detectedLocale } = useLocale();
   const locale = props.locale || detectedLocale;
@@ -112,6 +148,35 @@ export default function DesktopHero(props: DesktopHeroProps) {
   const [error, setError] = useState<string | null>(null);
   const [userOS, setUserOS] = useState<'windows' | 'macos' | 'linux' | 'unknown'>(() => detectOS());
   const [openDropdown, setOpenDropdown] = useState<'windows' | 'macos' | 'linux' | null>(null);
+
+  const loadVersionData = useCallback(() => {
+    let mounted = true;
+
+    setLoading(true);
+    setError(null);
+
+    getDesktopVersionData()
+      .then((data) => {
+        if (!mounted) {
+          return;
+        }
+
+        setVersionData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (!mounted) {
+          return;
+        }
+
+        setError(err instanceof Error ? err.message : t('desktopHero.download.unknown'));
+        setLoading(false);
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [t]);
 
   // 点击外部关闭下拉菜单
   useEffect(() => {
@@ -130,26 +195,8 @@ export default function DesktopHero(props: DesktopHeroProps) {
   }, [openDropdown]);
 
   useEffect(() => {
-    let mounted = true;
-
-    async function loadVersionData() {
-      try {
-        const data = await getDesktopVersionData();
-        if (mounted) {
-          setVersionData(data);
-          setLoading(false);
-        }
-      } catch (err) {
-        if (mounted) {
-          setError(err instanceof Error ? err.message : t('desktopHero.download.unknown'));
-          setLoading(false);
-        }
-      }
-    }
-
-    loadVersionData();
-    return () => { mounted = false; };
-  }, []);
+    return loadVersionData();
+  }, [loadVersionData]);
 
   const getCurrentVersion = (): DesktopVersion | null => {
     if (!versionData) return null;
@@ -194,17 +241,31 @@ export default function DesktopHero(props: DesktopHeroProps) {
   const macDownloadNotice = locale === 'en'
     ? `For macOS users: ${MAC_DOWNLOAD_DISABLED_NOTICE_EN}`
     : `Mac 用户：${MAC_DOWNLOAD_DISABLED_NOTICE}`;
-  const desktopPageUrl = useMemo(() => getLinkWithLocale('desktop', locale), [locale]);
   const containerPageUrl = useMemo(() => getLinkWithLocale('container', locale), [locale]);
-  const fallbackCtaLabel = locale === 'en' ? 'Open Desktop page' : '前往 Desktop 页面';
+  const fallbackCtaLabel = locale === 'en' ? 'Open version history' : '打开版本历史页';
   const fallbackContainerLabel = locale === 'en' ? 'Open Container page' : '前往 Container 页面';
   const runtimeError = error || versionData?.error || null;
-  const fallbackError = runtimeError || t('desktopHero.download.unknown');
+  const fallbackState = resolveDesktopHeroFallbackState(locale, versionData, runtimeError, Boolean(currentVersion));
+  const fallbackError = fallbackState?.message || runtimeError || t('desktopHero.download.unknown');
   const getDownloadAriaLabel = (platformLabel: string) =>
     t('desktopHero.download.ariaLabel').replace('{platform}', platformLabel);
   const getSelectOtherVersionsLabel = (platformLabel: string) =>
     t('desktopHero.selectOtherVersions').replace('{platform}', platformLabel);
   const versionInfoLabel = t('desktopHero.versionInfo').replace('{version}', currentVersion?.version ?? '');
+
+  useEffect(() => {
+    if (!fallbackState?.shouldAutoRedirect || typeof window === 'undefined') {
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      window.location.assign(fallbackState.fallbackTarget);
+    }, 1200);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [fallbackState]);
 
   if (loading) {
     return (
@@ -212,7 +273,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
         <div className={styles.loadingSpinner} />
         <p>{t('desktopHero.loading')}</p>
         <div className="flex flex-wrap justify-center gap-3">
-          <a href={desktopPageUrl} className="btn btn-primary">
+          <a href={DESKTOP_HISTORY_FALLBACK_URL} className="btn btn-primary">
             {fallbackCtaLabel}
           </a>
           <a href={containerPageUrl} className="btn btn-secondary">
@@ -229,10 +290,14 @@ export default function DesktopHero(props: DesktopHeroProps) {
         <div className={styles.errorIcon}>⚠️</div>
         <h3>{t('desktopHero.error.title')}</h3>
         <p>{fallbackError}</p>
+        {fallbackState?.detail && <p>{fallbackState.detail}</p>}
         <div className="flex flex-wrap justify-center gap-3">
-          <a href={desktopPageUrl} className="btn btn-primary">
-            {t('desktopHero.error.gotoDownload')}
+          <a href={fallbackState?.fallbackTarget ?? DESKTOP_HISTORY_FALLBACK_URL} className="btn btn-primary">
+            {fallbackCtaLabel}
           </a>
+          <button type="button" className="btn btn-secondary" onClick={loadVersionData}>
+            {locale === 'en' ? 'Retry' : '重试'}
+          </button>
           <a href={containerPageUrl} className="btn btn-secondary">
             {fallbackContainerLabel}
           </a>

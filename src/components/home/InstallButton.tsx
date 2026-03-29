@@ -26,7 +26,10 @@ import type {
   DesktopVersionData,
   DesktopVersionState,
 } from '@/lib/shared/version-manager';
-import { getDesktopVersionData } from '@/lib/shared/version-manager';
+import {
+  DESKTOP_HISTORY_FALLBACK_URL,
+  getDesktopVersionData,
+} from '@/lib/shared/version-manager';
 import type { AssetType } from '@/lib/shared/desktop';
 import { getDesktopDownloadEventName, WEBSITE_TRACKING_EVENTS } from '@/lib/analytics/events';
 import { trackEvent } from '@/lib/analytics/tracker';
@@ -50,6 +53,8 @@ export interface InstallButtonRuntimeSnapshot {
   error: string | null;
   status: DesktopVersionState | 'loading';
   source: DesktopVersionSource | null;
+  fallbackTarget: string | null;
+  failedAttemptSummary: string | null;
 }
 
 export interface InstallButtonMenuState {
@@ -143,6 +148,8 @@ export function createInstallButtonPropSnapshot({
       error: versionError,
       status: 'fatal',
       source: null,
+      fallbackTarget: DESKTOP_HISTORY_FALLBACK_URL,
+      failedAttemptSummary: versionError,
     };
   }
 
@@ -153,6 +160,8 @@ export function createInstallButtonPropSnapshot({
       error: null,
       status: 'ready',
       source: null,
+      fallbackTarget: null,
+      failedAttemptSummary: null,
     };
   }
 
@@ -162,6 +171,8 @@ export function createInstallButtonPropSnapshot({
     error: null,
     status: 'loading',
     source: null,
+    fallbackTarget: null,
+    failedAttemptSummary: null,
   };
 }
 
@@ -183,6 +194,8 @@ export function resolveInstallButtonRuntimeSnapshot(
     error: data.error,
     status: data.status,
     source: data.source,
+    fallbackTarget: data.fallbackTarget,
+    failedAttemptSummary: data.failedAttemptSummary,
   };
 }
 
@@ -213,6 +226,8 @@ function createFatalRuntimeData(message: string): DesktopVersionData {
     source: null,
     status: 'fatal',
     attempts: [],
+    fallbackTarget: DESKTOP_HISTORY_FALLBACK_URL,
+    failedAttemptSummary: message,
     channels: {
       stable: { latest: null, all: [] },
       beta: { latest: null, all: [] },
@@ -252,12 +267,12 @@ export default function InstallButton({
   const loadingLatestLabel = locale === 'en' ? 'Fetching latest version...' : '正在获取最新版本...';
   const errorFallbackLabel =
     locale === 'en'
-      ? 'Latest version is unavailable, use Desktop page instead'
-      : '暂时无法获取最新版本，请先前往 Desktop 页面';
-  const desktopFallbackCta = locale === 'en' ? 'Open Desktop page' : '前往 Desktop 页面';
+      ? 'Latest version is unavailable. Use the Index version history instead.'
+      : '暂时无法获取最新版本，请改用 Index 版本历史页。';
+  const desktopFallbackCta = locale === 'en' ? 'Open version history' : '打开版本历史页';
   const pendingMenuLabel = locale === 'en' ? 'Versions are still loading' : '版本数据仍在加载';
   const unavailableMenuLabel = locale === 'en' ? 'Version data is temporarily unavailable' : '版本数据暂时不可用';
-  const desktopFallbackMenuLabel = locale === 'en' ? 'Browse Desktop downloads' : '浏览 Desktop 下载页';
+  const desktopFallbackMenuLabel = locale === 'en' ? 'Open version history' : '打开版本历史页';
   const loadingPrimaryLabel = locale === 'en' ? 'Loading...' : '获取中...';
 
   useEffect(() => {
@@ -321,6 +336,7 @@ export default function InstallButton({
     () => getInstallButtonMenuState(runtimeSnapshot, platformData.length),
     [runtimeSnapshot, platformData.length],
   );
+  const historyFallbackTarget = runtimeSnapshot.fallbackTarget ?? DESKTOP_HISTORY_FALLBACK_URL;
 
   const statusMessage = useMemo(() => {
     if (menuState.mode === 'loading') {
@@ -328,15 +344,30 @@ export default function InstallButton({
     }
 
     if (menuState.mode === 'fatal') {
-      return runtimeSnapshot.error || errorFallbackLabel;
+      return runtimeSnapshot.failedAttemptSummary || runtimeSnapshot.error || errorFallbackLabel;
+    }
+
+    if (runtimeSnapshot.status === 'local_snapshot') {
+      return locale === 'en'
+        ? 'Primary sources are unavailable. Showing the local snapshot, which may be stale.'
+        : '主版本源暂不可用，当前显示站内快照，信息可能滞后。';
+    }
+
+    if (runtimeSnapshot.status === 'degraded') {
+      return locale === 'en'
+        ? 'Primary source is unavailable. Showing the backup index.'
+        : '主版本源暂不可用，当前显示备用索引数据。';
     }
 
     return null;
   }, [
     errorFallbackLabel,
     loadingLatestLabel,
+    locale,
     menuState.mode,
     runtimeSnapshot.error,
+    runtimeSnapshot.failedAttemptSummary,
+    runtimeSnapshot.status,
   ]);
 
   const currentUrl = useMemo(() => {
@@ -366,7 +397,12 @@ export default function InstallButton({
     return platformData[0].options[0].url;
   }, [desktopPageUrl, platformData]);
 
-  const primaryHref = menuState.hasDownloads ? currentUrl : desktopPageUrl;
+  const primaryHref =
+    menuState.mode === 'fatal'
+      ? historyFallbackTarget
+      : menuState.hasDownloads
+        ? currentUrl
+        : desktopPageUrl;
   const primaryText =
     menuState.mode === 'fatal'
       ? desktopFallbackCta
@@ -626,7 +662,7 @@ export default function InstallButton({
             {!menuState.hasDownloads && (
               <li role="none">
                 <a
-                  href={desktopPageUrl}
+                  href={historyFallbackTarget}
                   className={styles.dropdownItem}
                   role="option"
                   onClick={handleLinkClick}
