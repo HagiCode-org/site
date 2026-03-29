@@ -148,6 +148,13 @@ The homepage activity metrics module is now a runtime consumer of the canonical 
 - Failure mode: if the remote asset is unavailable, the homepage keeps the existing empty-state fallback instead of breaking the rest of the page
 - Maintenance boundary: if homepage metrics look wrong or stale, investigate the index repository and index deployment first instead of re-adding a local refresh script or local JSON copy in this repository
 
+## Desktop version fallback
+
+- The homepage install entry and the standalone Desktop page both consume runtime Desktop package data instead of maintaining a site-local release list
+- When package loading reaches terminal failure, the canonical fallback target is `https://index.hagicode.com/desktop/history/`
+- `repos/index` remains a referenced dependency only; treat `https://index.hagicode.com/desktop/history/` and `https://index.hagicode.com/desktop/index.json` as the stable fallback surface
+- Do not add a second in-site Desktop history page here; if the fallback flow looks wrong, inspect the runtime fetch chain and the index deployment first
+
 ## License
 
 This repository is released under the terms in [LICENSE](./LICENSE).

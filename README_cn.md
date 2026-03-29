@@ -148,6 +148,13 @@ npm run preview
 - 失败回退：如果远程资产不可用，首页继续使用现有空状态降级，而不会影响其他区块渲染
 - 排障顺序：如果首页统计看起来为空、过旧或异常，优先排查 index 仓库的数据生成链路和 index 部署结果，而不是在本仓库重新加本地刷新脚本或本地 JSON 副本
 
+## Desktop 版本 fallback
+
+- 首页安装入口与独立 Desktop 页面都在运行时消费 Desktop 包数据，而不再维护 site 内部的发布列表副本
+- 当包列表加载最终失败时，canonical fallback 目标固定为 `https://index.hagicode.com/desktop/history/`
+- `repos/index` 在此仅作为被引用依赖；稳定 fallback surface 为 `https://index.hagicode.com/desktop/history/` 与 `https://index.hagicode.com/desktop/index.json`
+- 不要在 `repos/site` 再新增第二套 Desktop 历史页；若 fallback 行为异常，优先检查运行时拉取链路与 index 部署
+
 ## 许可协议
 
 本仓库遵循 [LICENSE](./LICENSE) 中的许可条款。
