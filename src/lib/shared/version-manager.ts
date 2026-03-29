@@ -16,7 +16,9 @@ import {
   groupAssetsByPlatform,
 } from './desktop-utils';
 
-export type DesktopVersionState = 'ready' | 'fatal';
+export const DESKTOP_HISTORY_FALLBACK_URL = 'https://index.hagicode.com/desktop/history/';
+
+export type DesktopVersionState = 'ready' | 'degraded' | 'local_snapshot' | 'fatal';
 
 /**
  * 版本数据接口
@@ -35,6 +37,10 @@ export interface DesktopVersionData {
   status: DesktopVersionState;
   /** 本次获取过程中发生过的失败尝试 */
   attempts: DesktopVersionFetchAttempt[];
+  /** 终态失败时的版本历史 fallback 目标 */
+  fallbackTarget: string | null;
+  /** 本次失败尝试摘要 */
+  failedAttemptSummary: string | null;
   /** 渠道信息 */
   channels: {
     stable: {
@@ -132,6 +138,8 @@ class VersionManager {
     source: DesktopVersionSource | null;
     status: DesktopVersionState;
     attempts: DesktopVersionFetchAttempt[];
+    fallbackTarget: string | null;
+    failedAttemptSummary: string | null;
   }> {
     const data = await this.getVersionData();
     const latest = data.channels[channel].latest;
@@ -144,6 +152,8 @@ class VersionManager {
       source: data.source,
       status: data.status,
       attempts: data.attempts,
+      fallbackTarget: data.fallbackTarget,
+      failedAttemptSummary: data.failedAttemptSummary,
     };
   }
 
@@ -183,6 +193,8 @@ class VersionManager {
       source: null,
       status: 'fatal',
       attempts,
+      fallbackTarget: DESKTOP_HISTORY_FALLBACK_URL,
+      failedAttemptSummary: this.buildAttemptSummary(attempts),
       channels: {
         stable: { latest: null, all: [] },
         beta: { latest: null, all: [] },
@@ -218,6 +230,8 @@ class VersionManager {
       source,
       status: this.mapSourceToStatus(source),
       attempts,
+      fallbackTarget: null,
+      failedAttemptSummary: attempts.length > 0 ? this.buildAttemptSummary(attempts) : null,
       channels,
     };
   }
@@ -228,6 +242,16 @@ class VersionManager {
     }
 
     return 'fatal';
+  }
+
+  private buildAttemptSummary(attempts: DesktopVersionFetchAttempt[]): string | null {
+    if (attempts.length === 0) {
+      return null;
+    }
+
+    return attempts
+      .map((attempt) => `${attempt.source}=${attempt.error}`)
+      .join('; ');
   }
 
   private processChannel(
@@ -275,6 +299,8 @@ export const getDesktopChannelData = (
   source: DesktopVersionSource | null;
   status: DesktopVersionState;
   attempts: DesktopVersionFetchAttempt[];
+  fallbackTarget: string | null;
+  failedAttemptSummary: string | null;
 }> => {
   return getVersionManager().getChannelVersionData(channel);
 };
