@@ -153,6 +153,7 @@ describe.each(targets)('$label runtime index fetching', (target) => {
     expect(first.source).toBe('primary');
     expect(first.status).toBe('ready');
     expect(first.attempts).toEqual([]);
+    expect(first.fallbackTarget).toBeNull();
     expect(first.latest?.version).toBe('v1.2.3');
     expect(first.platforms).toHaveLength(3);
     expect(first.channels.stable.latest?.version).toBe('v1.2.3');
@@ -182,6 +183,7 @@ describe.each(targets)('$label runtime index fetching', (target) => {
       expect(data.latest).toBeNull();
       expect(data.platforms).toEqual([]);
       expect(data.error).toContain('Failed to load desktop versions');
+      expect(data.fallbackTarget).toBe('https://index.hagicode.com/desktop/history/');
       expect(data.attempts).toEqual([
         expect.objectContaining({ source: 'primary' }),
       ]);
@@ -257,6 +259,7 @@ describe.each(targets)('$label runtime index fetching', (target) => {
     expect(data.platforms).toEqual([]);
     expect(data.error).toContain('Failed to load desktop versions');
     expect(data.attempts).toHaveLength(target.runtimeSourceCount);
+    expect(data.fallbackTarget).toBe('https://index.hagicode.com/desktop/history/');
   });
 
   it('deduplicates concurrent in-flight requests', async () => {

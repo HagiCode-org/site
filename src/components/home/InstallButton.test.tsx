@@ -10,6 +10,8 @@ import InstallButton, {
   resolveInstallButtonRuntimeSnapshot,
 } from './InstallButton';
 
+const fallbackUrl = 'https://index.hagicode.com/desktop/history/';
+
 const latestVersion = {
   version: 'v1.2.3',
   assets: [
@@ -58,6 +60,8 @@ describe('InstallButton runtime state helpers', () => {
       source: 'primary',
       status: 'ready',
       attempts: [],
+      fallbackTarget: null,
+      failedAttemptSummary: null,
       channels: {
         stable: { latest: latestVersion, all: [latestVersion] },
         beta: { latest: latestVersion, all: [latestVersion] },
@@ -67,9 +71,26 @@ describe('InstallButton runtime state helpers', () => {
     const snapshot = resolveInstallButtonRuntimeSnapshot(data, 'stable');
 
     expect(snapshot.platforms).toBe(platformGroups);
+    expect(snapshot.fallbackTarget).toBeNull();
     expect(getInstallButtonMenuState(snapshot, snapshot.platforms.length)).toEqual({
       mode: 'ready',
       hasDownloads: true,
+    });
+  });
+
+  it('preserves the Index history fallback contract for fatal runtime data', () => {
+    const snapshot = createInstallButtonPropSnapshot({
+      version: null,
+      platforms: [],
+      versionError: 'network down',
+    });
+
+    expect(snapshot.status).toBe('fatal');
+    expect(snapshot.fallbackTarget).toBe(fallbackUrl);
+    expect(snapshot.failedAttemptSummary).toBe('network down');
+    expect(getInstallButtonMenuState(snapshot, 0)).toEqual({
+      mode: 'fatal',
+      hasDownloads: false,
     });
   });
 });
@@ -95,7 +116,7 @@ describe('InstallButton markup', () => {
 
     expect(markup).toContain('data-runtime-state="ready"');
     expect(markup).toContain('Hagicode.Desktop.Setup.1.2.3.exe');
-    expect(markup).not.toContain('Open Desktop page');
+    expect(markup).not.toContain('Open version history');
   });
 
   it('keeps the fallback CTA and dropdown trigger available when runtime data is unavailable', () => {
@@ -104,7 +125,8 @@ describe('InstallButton markup', () => {
     );
 
     expect(markup).toContain('data-runtime-state="fatal"');
-    expect(markup).toContain('Open Desktop page');
+    expect(markup).toContain('Open version history');
+    expect(markup).toContain(fallbackUrl);
     expect(markup).toContain('network down');
   });
 });
