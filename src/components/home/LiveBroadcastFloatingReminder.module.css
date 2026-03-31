@@ -1,0 +1,148 @@
+.reminder {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 1.15rem;
+  z-index: 40;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+  pointer-events: none;
+  --live-reminder-bg: rgba(255, 255, 255, 0.9);
+  --live-reminder-border: rgba(0, 128, 255, 0.18);
+  --live-reminder-shadow: 0 22px 60px rgba(15, 23, 42, 0.18);
+  --live-reminder-kicker: rgba(0, 128, 255, 0.76);
+  --live-reminder-body: var(--color-text);
+  --live-reminder-dot: linear-gradient(135deg, #0080ff, #00b7a8);
+  --live-reminder-ring: rgba(0, 128, 255, 0.24);
+  --live-reminder-cta: linear-gradient(135deg, #0080ff, #00b7a8);
+}
+
+[data-theme='dark'] .reminder {
+  --live-reminder-bg: rgba(7, 16, 30, 0.92);
+  --live-reminder-border: rgba(67, 214, 178, 0.26);
+  --live-reminder-shadow: 0 22px 60px rgba(2, 8, 18, 0.35);
+  --live-reminder-kicker: rgba(151, 252, 226, 0.8);
+  --live-reminder-body: #f2f8fb;
+  --live-reminder-dot: linear-gradient(135deg, #00d4ff, #22c55e);
+  --live-reminder-ring: rgba(67, 214, 178, 0.32);
+  --live-reminder-cta: linear-gradient(135deg, #00d4ff, #22c55e);
+}
+
+[data-theme='lunar-new-year'] .reminder {
+  --live-reminder-bg: rgba(74, 18, 18, 0.94);
+  --live-reminder-border: rgba(255, 193, 7, 0.28);
+  --live-reminder-shadow: 0 24px 64px rgba(39, 5, 5, 0.36);
+  --live-reminder-kicker: rgba(255, 224, 130, 0.88);
+  --live-reminder-body: #fff6d6;
+  --live-reminder-dot: linear-gradient(135deg, #e53935, #ffb300);
+  --live-reminder-ring: rgba(255, 193, 7, 0.32);
+  --live-reminder-cta: linear-gradient(135deg, #e53935, #ffb300);
+}
+
+.shell {
+  pointer-events: auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  width: min(920px, 100%);
+  padding: 0.9rem 1rem 0.9rem 0.85rem;
+  border-radius: 24px;
+  background: var(--live-reminder-bg);
+  border: 1px solid var(--live-reminder-border);
+  box-shadow: var(--live-reminder-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.signal {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+}
+
+.signalDot,
+.signalRing {
+  position: absolute;
+  border-radius: 999px;
+}
+
+.signalDot {
+  width: 14px;
+  height: 14px;
+  background: var(--live-reminder-dot);
+}
+
+.signalRing {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--live-reminder-ring);
+  animation: reminderPulse 1.8s ease-out infinite;
+}
+
+.copy {
+  min-width: 0;
+}
+
+.kicker,
+.body {
+  margin: 0;
+}
+
+.kicker {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--live-reminder-kicker);
+}
+
+.body {
+  margin-top: 0.25rem;
+  color: var(--live-reminder-body);
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 118px;
+  min-height: 44px;
+  padding: 0 1.15rem;
+  border-radius: 999px;
+  background: var(--live-reminder-cta);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+@keyframes reminderPulse {
+  0% {
+    opacity: 0.75;
+    transform: scale(0.9);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.32);
+  }
+}
+
+@media (max-width: 640px) {
+  .shell {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .body {
+    font-size: 0.92rem;
+  }
+
+  .cta {
+    width: 100%;
+  }
+}

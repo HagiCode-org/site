@@ -1,0 +1,301 @@
+.section {
+  position: relative;
+  padding: 2rem 0 3.5rem;
+  --live-glow-a: rgba(0, 128, 255, 0.14);
+  --live-glow-b: rgba(0, 204, 204, 0.16);
+  --live-section-wash: rgba(0, 128, 255, 0.08);
+  --live-card-border: rgba(0, 128, 255, 0.18);
+  --live-card-bg:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(235, 247, 255, 0.9)),
+    rgba(255, 255, 255, 0.78);
+  --live-card-shadow:
+    0 28px 80px rgba(15, 23, 42, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+  --live-card-overlay:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.2));
+  --live-pill-bg: linear-gradient(135deg, rgba(0, 128, 255, 0.16), rgba(0, 204, 204, 0.22));
+  --live-pill-text: var(--color-text);
+  --live-schedule-bg: rgba(255, 255, 255, 0.74);
+  --live-schedule-border: rgba(0, 128, 255, 0.12);
+  --live-qr-bg:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(236, 247, 245, 0.78));
+  --live-qr-border: rgba(0, 128, 255, 0.14);
+  --live-qr-shadow: 0 16px 42px rgba(15, 23, 42, 0.12);
+  --live-cta-bg: linear-gradient(135deg, #0080ff, #00b7a8);
+  --live-cta-shadow: 0 18px 30px rgba(0, 128, 255, 0.2);
+  --live-cta-shadow-hover: 0 24px 34px rgba(0, 128, 255, 0.26);
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 12% 18%, var(--live-glow-a), transparent 26%),
+    radial-gradient(circle at 88% 14%, var(--live-glow-b), transparent 28%),
+    linear-gradient(135deg, var(--live-section-wash), rgba(7, 18, 32, 0));
+  pointer-events: none;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(250px, 0.8fr);
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 30px;
+  border: 1px solid var(--live-card-border);
+  background: var(--live-card-bg);
+  box-shadow: var(--live-card-shadow);
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: 28px;
+  background: var(--live-card-overlay);
+  pointer-events: none;
+}
+
+[data-theme='dark'] .section {
+  --live-glow-a: rgba(0, 212, 255, 0.18);
+  --live-glow-b: rgba(74, 222, 128, 0.14);
+  --live-section-wash: rgba(0, 212, 255, 0.1);
+  --live-card-border: rgba(67, 214, 178, 0.28);
+  --live-card-bg:
+    linear-gradient(135deg, rgba(7, 16, 30, 0.92), rgba(10, 26, 42, 0.86)),
+    rgba(5, 12, 26, 0.78);
+  --live-card-shadow:
+    0 28px 80px rgba(2, 8, 18, 0.48),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --live-card-overlay:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  --live-pill-bg: linear-gradient(135deg, rgba(0, 212, 255, 0.18), rgba(74, 222, 128, 0.18));
+  --live-pill-text: #f8fafc;
+  --live-schedule-bg: rgba(255, 255, 255, 0.03);
+  --live-schedule-border: rgba(255, 255, 255, 0.08);
+  --live-qr-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+  --live-qr-border: rgba(255, 255, 255, 0.08);
+  --live-qr-shadow: 0 18px 42px rgba(2, 8, 18, 0.36);
+  --live-cta-bg: linear-gradient(135deg, #00d4ff, #22c55e);
+  --live-cta-shadow: 0 18px 30px rgba(0, 212, 255, 0.2);
+  --live-cta-shadow-hover: 0 24px 34px rgba(0, 212, 255, 0.28);
+}
+
+[data-theme='dark'] .card {
+  background: var(--live-card-bg);
+  border-color: var(--live-card-border);
+  box-shadow: var(--live-card-shadow);
+}
+
+[data-theme='lunar-new-year'] .section {
+  --live-glow-a: rgba(229, 57, 53, 0.22);
+  --live-glow-b: rgba(255, 193, 7, 0.2);
+  --live-section-wash: rgba(229, 57, 53, 0.16);
+  --live-card-border: rgba(255, 193, 7, 0.34);
+  --live-card-bg:
+    linear-gradient(135deg, rgba(90, 22, 22, 0.94), rgba(120, 26, 26, 0.88)),
+    rgba(74, 18, 18, 0.9);
+  --live-card-shadow:
+    0 30px 82px rgba(39, 5, 5, 0.46),
+    inset 0 1px 0 rgba(255, 235, 179, 0.12);
+  --live-card-overlay:
+    linear-gradient(120deg, rgba(255, 214, 102, 0.12), rgba(255, 255, 255, 0.02));
+  --live-pill-bg: linear-gradient(135deg, rgba(229, 57, 53, 0.24), rgba(255, 193, 7, 0.26));
+  --live-pill-text: #fff7d6;
+  --live-schedule-bg: rgba(255, 248, 220, 0.08);
+  --live-schedule-border: rgba(255, 193, 7, 0.18);
+  --live-qr-bg: linear-gradient(180deg, rgba(107, 30, 30, 0.88), rgba(74, 18, 18, 0.78));
+  --live-qr-border: rgba(255, 193, 7, 0.24);
+  --live-qr-shadow: 0 18px 42px rgba(39, 5, 5, 0.3);
+  --live-cta-bg: linear-gradient(135deg, #e53935, #ffb300);
+  --live-cta-shadow: 0 18px 30px rgba(229, 57, 53, 0.28);
+  --live-cta-shadow-hover: 0 24px 34px rgba(255, 160, 0, 0.3);
+}
+
+.copyColumn,
+.qrColumn {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.headerRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  line-height: 1.04;
+  font-family: var(--font-display);
+  color: var(--color-text);
+}
+
+.statusPill {
+  flex-shrink: 0;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: var(--live-pill-bg);
+  color: var(--live-pill-text);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.description,
+.stateCopy {
+  max-width: 58ch;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.description {
+  margin: 1rem 0 0;
+}
+
+.stateCopy {
+  margin: 0.9rem 0 0;
+}
+
+.scheduleGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.7rem 0 0;
+}
+
+.scheduleCard {
+  padding: 1rem 1rem 1.1rem;
+  border-radius: 18px;
+  background: var(--live-schedule-bg);
+  border: 1px solid var(--live-schedule-border);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme='dark'] .scheduleCard {
+  background: var(--live-schedule-bg);
+  border-color: var(--live-schedule-border);
+}
+
+.scheduleCard dt {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.scheduleCard dd {
+  margin: 0.55rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.qrColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.qrFrame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 1.25rem;
+  border-radius: 24px;
+  background: var(--live-qr-bg);
+  border: 1px solid var(--live-qr-border);
+}
+
+[data-theme='dark'] .qrFrame {
+  background: var(--live-qr-bg);
+  border-color: var(--live-qr-border);
+}
+
+.qrImage {
+  width: min(100%, 220px);
+  height: auto;
+  border-radius: 18px;
+  box-shadow: var(--live-qr-shadow);
+  object-fit: contain;
+}
+
+.qrFallback {
+  display: grid;
+  place-items: center;
+  gap: 0.75rem;
+  min-height: 220px;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.qrFallbackIcon {
+  font-size: 2rem;
+  color: var(--color-primary);
+}
+
+.qrCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  border-radius: 999px;
+  background: var(--live-cta-bg);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: var(--live-cta-shadow);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.qrCta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--live-cta-shadow-hover);
+}
+
+@media (max-width: 920px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .scheduleGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .qrColumn {
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 1rem 0 2.5rem;
+  }
+
+  .card {
+    padding: 1.35rem;
+    border-radius: 24px;
+  }
+
+  .headerRow {
+    flex-direction: column;
+  }
+}
