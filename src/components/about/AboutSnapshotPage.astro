@@ -1,0 +1,423 @@
+---
+import type { AboutPageEntry, AboutPageModel, AboutPageSection } from '@/lib/about-page-model';
+
+interface Props {
+  model: AboutPageModel;
+}
+
+const { model } = Astro.props;
+
+const entryAccents = [
+  'var(--about-accent-1)',
+  'var(--about-accent-2)',
+  'var(--about-accent-3)',
+  'var(--about-accent-4)',
+];
+
+function getStringSeed(value: string) {
+  return Array.from(value).reduce((seed, char) => seed + char.charCodeAt(0), 0);
+}
+
+function getEntryStyle(entry: AboutPageEntry, index: number) {
+  const accent = entryAccents[(getStringSeed(entry.id) + index) % entryAccents.length];
+  return `--entry-accent:${accent};`;
+}
+
+function getEntryClass(entry: AboutPageEntry) {
+  const classes = ['entry-item', `entry-kind-${entry.kind}`];
+
+  if (entry.kind === 'combo' || entry.kind === 'media') {
+    classes.push('entry-item-with-preview');
+  }
+
+  return classes.join(' ');
+}
+---
+
+<main class="about-page">
+  <section class="about-sections">
+    <div class="about-shell section-stack">
+      {model.sections.map((section) => (
+        <section class="section-block" id={`about-${section.id}`}>
+          <header class="section-header">
+            <h2>{section.title}</h2>
+          </header>
+
+          <div class="entry-list" role="list">
+            {section.entries.map((entry, index) =>
+              entry.href ? (
+                <a
+                  class={getEntryClass(entry)}
+                  style={getEntryStyle(entry, index)}
+                  href={entry.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  role="listitem"
+                >
+                  <div class="entry-main">
+                    <div class="entry-heading">
+                      <span class="entry-kind">{entry.kindLabel}</span>
+                      <h3>{entry.label}</h3>
+                    </div>
+
+                    {entry.kind === 'contact' ? <p class="entry-value">{entry.value}</p> : null}
+                    {entry.kind === 'combo' ? <p class="entry-value">{entry.value}</p> : null}
+
+                    {'detail' in entry ? <p class="entry-detail">{entry.detail}</p> : null}
+                    <p class="entry-link">{entry.href}</p>
+                  </div>
+
+                  {entry.kind === 'media' || entry.kind === 'combo' ? (
+                    <div class="entry-preview">
+                      <img
+                        src={entry.imageUrl}
+                        alt={entry.alt}
+                        width={entry.width}
+                        height={entry.height}
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : null}
+                </a>
+              ) : (
+                <article class={getEntryClass(entry)} style={getEntryStyle(entry, index)} role="listitem">
+                  <div class="entry-main">
+                    <div class="entry-heading">
+                      <span class="entry-kind">{entry.kindLabel}</span>
+                      <h3>{entry.label}</h3>
+                    </div>
+
+                    {entry.kind === 'contact' ? <p class="entry-value">{entry.value}</p> : null}
+                    {entry.kind === 'combo' ? <p class="entry-value">{entry.value}</p> : null}
+
+                    {'detail' in entry ? <p class="entry-detail">{entry.detail}</p> : null}
+                    {'href' in entry && entry.href ? <p class="entry-link">{entry.href}</p> : null}
+                  </div>
+
+                  {entry.kind === 'media' || entry.kind === 'combo' ? (
+                    <div class="entry-preview">
+                      <img
+                        src={entry.imageUrl}
+                        alt={entry.alt}
+                        width={entry.width}
+                        height={entry.height}
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : null}
+                </article>
+              ),
+            )}
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
+</main>
+
+<style>
+  .about-page {
+    --page-border: color-mix(in srgb, var(--color-border) 100%, transparent);
+    --page-surface: color-mix(in srgb, var(--color-surface-glass) 88%, var(--color-background) 12%);
+    --page-surface-strong: color-mix(in srgb, var(--color-surface) 82%, var(--color-background) 18%);
+    --page-foreground: var(--color-text);
+    --page-text-soft: var(--color-text-secondary);
+    --page-shadow: 0 20px 60px color-mix(in srgb, var(--color-background) 18%, transparent);
+    --cyber-panel: linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--page-surface-strong) 88%, var(--color-background) 12%) 0%,
+      color-mix(in srgb, var(--page-surface) 92%, var(--color-background) 8%) 100%
+    );
+    --cyber-grid: linear-gradient(color-mix(in srgb, var(--color-border) 55%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--color-border) 45%, transparent) 1px, transparent 1px);
+    --cyber-scan: repeating-linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-text) 0%, transparent) 0,
+      color-mix(in srgb, var(--color-text) 0%, transparent) 9px,
+      color-mix(in srgb, var(--color-primary) 8%, transparent) 10px,
+      color-mix(in srgb, var(--color-primary) 8%, transparent) 11px
+    );
+    --cyber-glow: 0 0 0 1px color-mix(in srgb, var(--color-primary) 14%, transparent),
+      0 18px 44px color-mix(in srgb, var(--color-background) 64%, transparent);
+    --cyber-edge: color-mix(in srgb, var(--color-primary) 50%, var(--color-secondary) 50%);
+    --about-accent-1: var(--color-primary);
+    --about-accent-2: var(--color-secondary);
+    --about-accent-3: var(--color-success);
+    --about-accent-4: var(--color-accent);
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at top left, color-mix(in srgb, var(--color-primary) 16%, transparent), transparent 30%),
+      radial-gradient(circle at top right, color-mix(in srgb, var(--color-secondary) 14%, transparent), transparent 24%),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-background) 92%, white 8%) 0%,
+        color-mix(in srgb, var(--color-background) 96%, var(--color-surface) 4%) 100%
+      );
+    color: var(--page-foreground);
+    min-height: 100vh;
+  }
+
+  [data-theme='dark'] .about-page {
+    --page-surface: color-mix(in srgb, var(--color-surface-glass) 90%, var(--color-background) 10%);
+    --page-surface-strong: color-mix(in srgb, var(--color-surface) 90%, var(--color-background) 10%);
+    --page-foreground: var(--color-text);
+    --page-text-soft: var(--color-text-secondary);
+    --page-shadow: 0 24px 72px rgba(0, 0, 0, 0.32);
+    --cyber-panel: linear-gradient(
+      145deg,
+      color-mix(in srgb, #07101f 82%, var(--color-primary) 18%) 0%,
+      color-mix(in srgb, #050a15 84%, var(--color-secondary) 16%) 100%
+    );
+    --cyber-grid: linear-gradient(rgba(0, 212, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.06) 1px, transparent 1px);
+    --cyber-scan: repeating-linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 10px,
+      rgba(0, 212, 255, 0.08) 11px,
+      rgba(0, 212, 255, 0.08) 12px
+    );
+    --cyber-glow: 0 0 0 1px rgba(0, 212, 255, 0.14), 0 18px 44px rgba(0, 0, 0, 0.62), 0 0 42px rgba(0, 212, 255, 0.08);
+    --cyber-edge: color-mix(in srgb, var(--color-primary) 55%, var(--color-secondary) 45%);
+    background:
+      radial-gradient(circle at top left, rgba(0, 212, 255, 0.14), transparent 30%),
+      radial-gradient(circle at top right, rgba(0, 255, 255, 0.12), transparent 24%),
+      linear-gradient(180deg, #030712 0%, #07101f 42%, #030712 100%);
+  }
+
+  [data-theme='lunar-new-year'] .about-page {
+    --page-surface: color-mix(in srgb, var(--color-surface-glass) 92%, var(--color-background) 8%);
+    --page-surface-strong: color-mix(in srgb, var(--color-surface) 86%, var(--color-background) 14%);
+    --page-foreground: var(--color-text);
+    --page-text-soft: var(--color-text-secondary);
+    --page-shadow: 0 24px 72px rgba(34, 5, 5, 0.24);
+    --cyber-panel: linear-gradient(
+      145deg,
+      color-mix(in srgb, #5a1818 82%, var(--color-secondary) 18%) 0%,
+      color-mix(in srgb, #3a0d0d 86%, var(--color-primary) 14%) 100%
+    );
+    --cyber-grid: linear-gradient(rgba(255, 213, 79, 0.11) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(229, 57, 53, 0.09) 1px, transparent 1px);
+    --cyber-scan: repeating-linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 10px,
+      rgba(255, 213, 79, 0.09) 11px,
+      rgba(255, 213, 79, 0.09) 12px
+    );
+    --cyber-glow: 0 0 0 1px rgba(255, 213, 79, 0.18), 0 20px 52px rgba(34, 5, 5, 0.46), 0 0 42px rgba(255, 213, 79, 0.08);
+    --cyber-edge: color-mix(in srgb, var(--color-secondary) 62%, var(--color-primary) 38%);
+    --about-accent-1: var(--color-secondary);
+    --about-accent-2: var(--color-primary);
+    --about-accent-3: color-mix(in srgb, var(--color-secondary) 70%, white 30%);
+    --about-accent-4: var(--color-accent);
+    background:
+      radial-gradient(circle at top left, rgba(229, 57, 53, 0.2), transparent 32%),
+      radial-gradient(circle at top right, rgba(255, 213, 79, 0.14), transparent 26%),
+      linear-gradient(180deg, #351010 0%, #471616 42%, var(--color-background) 100%);
+  }
+
+  .about-shell {
+    width: min(1100px, calc(100% - 2rem));
+    margin: 0 auto;
+  }
+
+  .about-sections {
+    padding: 7rem 0 5rem;
+  }
+
+  .section-stack {
+    display: grid;
+    gap: 1.4rem;
+  }
+
+  .section-block {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    overflow: visible;
+  }
+
+  .section-header {
+    padding: 1.2rem 1.25rem 0.9rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--page-border) 100%, transparent);
+    background: transparent;
+  }
+
+  .section-header h2 {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+
+  .entry-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+    padding: 0.9rem;
+  }
+
+  .entry-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    padding: 1rem 1.05rem;
+    border: 1px solid color-mix(in srgb, var(--page-border) 100%, transparent);
+    border-left: 3px solid var(--entry-accent);
+    background: transparent;
+    box-shadow: none;
+    color: inherit;
+    text-decoration: none;
+    overflow: hidden;
+    transition:
+      background 180ms ease,
+      border-color 180ms ease,
+      transform 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  a.entry-item:hover {
+    transform: translateX(3px) translateY(-1px);
+    background: color-mix(in srgb, var(--entry-accent) 4%, transparent);
+    border-left-color: color-mix(in srgb, var(--entry-accent) 82%, white 18%);
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--entry-accent) 18%, transparent),
+      0 10px 24px color-mix(in srgb, var(--color-background) 18%, transparent);
+  }
+
+  .entry-item-with-preview {
+    grid-template-columns: minmax(0, 1fr) 7.5rem;
+    align-items: center;
+  }
+
+  .entry-main {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  .entry-heading {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .entry-kind {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 0.18rem 0.48rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--entry-accent) 28%, transparent);
+    background: color-mix(in srgb, var(--entry-accent) 12%, transparent);
+    color: var(--color-text-secondary);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--entry-accent) 8%, transparent);
+    font-size: 0.75rem;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .entry-heading h3 {
+    margin: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+  }
+
+  .entry-value {
+    margin: 0;
+    color: var(--color-text);
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.95rem;
+    word-break: break-all;
+  }
+
+  .entry-detail {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+
+  .entry-link {
+    margin: 0;
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    word-break: break-all;
+  }
+
+  .entry-preview {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 7.5rem;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 1rem;
+    border: 1px solid color-mix(in srgb, var(--entry-accent) 24%, var(--page-border) 76%);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, white 92%, var(--entry-accent) 8%), white 100%);
+    box-shadow:
+      inset 0 0 0 1px color-mix(in srgb, var(--entry-accent) 10%, transparent),
+      0 10px 24px color-mix(in srgb, var(--color-background) 24%, transparent);
+    padding: 0.65rem;
+  }
+
+  .entry-preview img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  [data-theme='dark'] .entry-preview {
+    background: color-mix(in srgb, white 96%, var(--color-primary) 4%);
+  }
+
+  [data-theme='lunar-new-year'] .entry-preview {
+    background: color-mix(in srgb, #fff6d5 92%, white 8%);
+  }
+
+  @media (max-width: 720px) {
+    .about-shell {
+      width: min(100% - 1rem, 100%);
+    }
+
+    .about-sections {
+      padding: 6rem 0 4rem;
+    }
+
+    .section-header,
+    .entry-item {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .entry-list {
+      grid-template-columns: 1fr;
+      padding: 0.75rem;
+    }
+
+    .entry-item-with-preview {
+      grid-template-columns: 1fr;
+    }
+
+    .entry-preview {
+      width: 6.5rem;
+    }
+  }
+</style>

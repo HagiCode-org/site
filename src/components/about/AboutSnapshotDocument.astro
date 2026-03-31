@@ -1,0 +1,74 @@
+---
+import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
+import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
+import Footer from '@/components/home/Footer';
+import Navbar from '@/components/home/Navbar';
+import type { AboutPageModel } from '@/lib/about-page-model';
+import AboutSnapshotPage from './AboutSnapshotPage.astro';
+import '@/styles/homepage.css';
+
+interface Props {
+  model: AboutPageModel;
+}
+
+const { model } = Astro.props;
+const siteBase = import.meta.env.VITE_SITE_BASE || '';
+const currentLocale = model.locale;
+const xDefaultUrl = currentLocale === 'en' ? model.seo.canonicalUrl : model.seo.alternateUrl;
+---
+
+<!doctype html>
+<html lang={currentLocale} data-site-base={siteBase}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{model.seo.title}</title>
+    <meta name="description" content={model.seo.description} />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={model.seo.canonicalUrl} />
+    <link rel="alternate" hreflang="zh-CN" href={currentLocale === 'zh-CN' ? model.seo.canonicalUrl : model.seo.alternateUrl} />
+    <link rel="alternate" hreflang="en" href={currentLocale === 'en' ? model.seo.canonicalUrl : model.seo.alternateUrl} />
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+    <meta name="baidu-site-verification" content="codeva-A9s3yT3z5m" />
+    <meta name="og:title" content={model.seo.title} />
+    <meta name="og:description" content={model.seo.description} />
+    <meta name="og:type" content="website" />
+    <meta name="og:url" content={model.seo.canonicalUrl} />
+    <GoogleAnalytics />
+    <script is:inline>
+      (function() {
+        function isLunarNewYearPeriod() {
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = now.getMonth() + 1;
+          const day = now.getDate();
+
+          if (year === 2025) {
+            if (month === 1 && day >= 29) return true;
+            if (month === 2 && day <= 12) return true;
+          }
+
+          if (year === 2026) {
+            if (month === 2 && day >= 17) return true;
+            if (month === 3 && day <= 3) return true;
+          }
+
+          return false;
+        }
+
+        const stored = localStorage.getItem('starlight-theme');
+        const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const theme = stored || (isLunarNewYearPeriod() ? 'lunar-new-year' : system);
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body class="homepage about-route-shell">
+    <Navbar client:load locale={model.locale} />
+    <AboutSnapshotPage model={model} />
+    <Footer client:load locale={model.locale} />
+    <AnalyticsScripts />
+  </body>
+</html>
