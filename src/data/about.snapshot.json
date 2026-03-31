@@ -1,0 +1,148 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-03-31T00:00:00.000Z",
+  "entries": [
+    {
+      "id": "bilibili",
+      "type": "link",
+      "label": "Bilibili",
+      "url": "https://space.bilibili.com/272265720"
+    },
+    {
+      "id": "xiaoheihe",
+      "type": "link",
+      "label": "小黑盒",
+      "url": "https://www.xiaoheihe.cn/app/user/profile/92527604"
+    },
+    {
+      "id": "infoq",
+      "type": "link",
+      "label": "InfoQ",
+      "url": "https://www.infoq.cn/u/newbe36524/publish"
+    },
+    {
+      "id": "xiaohongshu",
+      "type": "contact",
+      "label": "小红书",
+      "value": "11671904293",
+      "url": "https://www.xiaohongshu.com/user/profile/665e764800000000030320b6"
+    },
+    {
+      "id": "segmentfault",
+      "type": "link",
+      "label": "思否",
+      "url": "https://segmentfault.com/u/newbe36524"
+    },
+    {
+      "id": "csdn",
+      "type": "link",
+      "label": "CSDN",
+      "url": "https://blog.csdn.net/pianzide1117"
+    },
+    {
+      "id": "tencent-cloud",
+      "type": "link",
+      "label": "腾讯云",
+      "url": "https://cloud.tencent.com/developer/user/1583778"
+    },
+    {
+      "id": "oschina",
+      "type": "link",
+      "label": "OSCHINA",
+      "url": "https://my.oschina.net/newbe36524"
+    },
+    {
+      "id": "juejin",
+      "type": "link",
+      "label": "掘金",
+      "url": "https://juejin.cn/user/2682464104098654"
+    },
+    {
+      "id": "cnblogs",
+      "type": "link",
+      "label": "博客园",
+      "url": "https://www.cnblogs.com/newbe36524"
+    },
+    {
+      "id": "zhihu",
+      "type": "link",
+      "label": "知乎",
+      "url": "https://www.zhihu.com/people/newbe36524"
+    },
+    {
+      "id": "douyin-account",
+      "type": "contact",
+      "label": "抖音",
+      "value": "hagicode"
+    },
+    {
+      "id": "douyin-qr",
+      "type": "qr",
+      "label": "抖音二维码",
+      "description": "扫码查看 Hagicode 抖音账号。",
+      "imageUrl": "/_astro/douyin.Bz-aFxQW.png",
+      "width": 1061,
+      "height": 1059,
+      "alt": "HagiCode 抖音二维码"
+    },
+    {
+      "id": "qq-group",
+      "type": "contact",
+      "label": "QQ群",
+      "description": "点击链接加入群聊【HagiCode】。",
+      "value": "610394020",
+      "url": "https://qm.qq.com/q/ZWPYvrYRYQ"
+    },
+    {
+      "id": "feishu-group",
+      "type": "qr",
+      "label": "飞书群",
+      "description": "newbe36524 邀请你加入飞书群。",
+      "imageUrl": "/_astro/feishu.L0Y_T1U2.png",
+      "width": 778,
+      "height": 724,
+      "alt": "HagiCode 飞书群二维码",
+      "url": "https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=238gb3f7-6820-43b8-9f1f-e0f2e704a000"
+    },
+    {
+      "id": "discord",
+      "type": "link",
+      "label": "Discord",
+      "url": "https://discord.gg/b5kDHUcUZY"
+    },
+    {
+      "id": "devto",
+      "type": "link",
+      "label": "Dev.to",
+      "url": "https://dev.to/newbe36524"
+    },
+    {
+      "id": "x",
+      "type": "link",
+      "label": "X",
+      "url": "https://x.com/newbe36524"
+    },
+    {
+      "id": "linkedin",
+      "type": "link",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/newbe36524/"
+    },
+    {
+      "id": "facebook",
+      "type": "link",
+      "label": "Facebook",
+      "url": "https://www.facebook.com/people/Justin-Yu/pfbid033bU66WV6A8LHVUp1sDTGFHo6io5NdRQ7ThCj6Euo56FMx76WcVdJ3dMbGbtcoLgCl/"
+    },
+    {
+      "id": "wechat-account",
+      "type": "qr",
+      "label": "微信公众号",
+      "description": "扫描二维码即可在微信中查看 NEWBE 账号。",
+      "imageUrl": "/_astro/wechat-account.C8BO4ktE.jpg",
+      "width": 430,
+      "height": 430,
+      "alt": "HagiCode 微信公众号二维码"
+    }
+  ]
+}
