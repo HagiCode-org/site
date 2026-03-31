@@ -11,10 +11,12 @@ import ShowcaseSection from '@/components/home/ShowcaseSection';
 import VideoShowcase from '@/components/home/VideoShowcase';
 import type { VideoShowcaseItem } from '@/components/home/VideoShowcase';
 import InstallOptionsSection from '@/components/home/InstallOptionsSection';
+import LiveBroadcastSection from '@/components/home/LiveBroadcastSection';
 import Footer from '@/components/home/Footer';
 import LunarNewYearDecorations from '@/components/home/LunarNewYearDecorations';
 import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
+import { getBundledLiveBroadcastData } from '@/lib/live-broadcast-source';
 // 导入首页样式
 import '@/styles/homepage.css';
 
@@ -33,6 +35,7 @@ const siteBase = import.meta.env.VITE_SITE_BASE || '';
 // 直接构造完整的 URL 字符串，避免 new URL 的路径解析问题
 const canonicalUrl = getAbsoluteSiteUrl('/', 'zh-CN', siteBase);
 const englishUrl = getAbsoluteSiteUrl('/', 'en', siteBase);
+const liveBroadcastData = getBundledLiveBroadcastData();
 
 // 首页视频在这里按精选数组维护，第一条保持原有总览视频，后两条补充演示。
 const homepageVideos: VideoShowcaseItem[] = [
@@ -137,6 +140,8 @@ const homepageVideos: VideoShowcaseItem[] = [
     <main class="homepage">
       <!-- Hero Section - 首屏必需 -->
       <HeroSection locale="zh-CN" client:load />
+
+      <LiveBroadcastSection locale="zh-CN" initialData={liveBroadcastData} client:load />
 
       <!-- Activity Metrics Section -->
       <ActivityMetricsSection locale="zh-CN" client:load />

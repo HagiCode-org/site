@@ -11,10 +11,12 @@ import ShowcaseSection from '@/components/home/ShowcaseSection';
 import VideoShowcase from '@/components/home/VideoShowcase';
 import type { VideoShowcaseItem } from '@/components/home/VideoShowcase';
 import InstallOptionsSection from '@/components/home/InstallOptionsSection';
+import LiveBroadcastSection from '@/components/home/LiveBroadcastSection';
 import Footer from '@/components/home/Footer';
 import LunarNewYearDecorations from '@/components/home/LunarNewYearDecorations';
 import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
+import { getBundledLiveBroadcastData } from '@/lib/live-broadcast-source';
 // 导入首页样式
 import '@/styles/homepage.css';
 
@@ -33,6 +35,7 @@ const siteBase = import.meta.env.VITE_SITE_BASE || '';
 // 直接构造完整的 URL 字符串，避免 new URL 的路径解析问题
 const canonicalUrl = getAbsoluteSiteUrl('/', 'en', siteBase);
 const chineseUrl = getAbsoluteSiteUrl('/', 'zh-CN', siteBase);
+const liveBroadcastData = getBundledLiveBroadcastData();
 
 // Homepage videos are curated here as a three-item array so marketing can
 // keep the featured walkthrough and the two supporting demos in sync.
@@ -138,6 +141,8 @@ const homepageVideos: VideoShowcaseItem[] = [
     <main class="homepage">
       <!-- Hero Section - 首屏必需 -->
       <HeroSection locale="en" client:load />
+
+      <LiveBroadcastSection locale="en" initialData={liveBroadcastData} client:load />
 
       <!-- Activity Metrics Section -->
       <ActivityMetricsSection locale="en" client:load />
