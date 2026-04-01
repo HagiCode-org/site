@@ -12,18 +12,27 @@ const tempDirs = [];
 
 const fixture = {
   version: '1.0.0',
-  updatedAt: '2026-03-31T00:00:00.000Z',
+  updatedAt: '2026-04-01T00:00:00.000Z',
   entries: [
+    {
+      id: 'youtube',
+      type: 'link',
+      label: 'YouTube',
+      regionPriority: 'international-first',
+      url: 'https://www.youtube.com/@hagicode',
+    },
     {
       id: 'bilibili',
       type: 'link',
       label: 'Bilibili',
+      regionPriority: 'china-first',
       url: 'https://space.bilibili.com/272265720',
     },
     {
       id: 'xiaohongshu',
       type: 'contact',
       label: '小红书',
+      regionPriority: 'china-first',
       value: '11671904293',
       url: 'https://www.xiaohongshu.com/user/profile/demo',
     },
@@ -31,12 +40,14 @@ const fixture = {
       id: 'douyin-account',
       type: 'contact',
       label: '抖音',
+      regionPriority: 'china-first',
       value: 'hagicode',
     },
     {
       id: 'douyin-qr',
       type: 'qr',
       label: '抖音二维码',
+      regionPriority: 'china-first',
       description: '扫码查看 Hagicode 抖音账号。',
       imageUrl: '/_astro/douyin.hash.png',
       width: 1061,
@@ -47,6 +58,7 @@ const fixture = {
       id: 'qq-group',
       type: 'contact',
       label: 'QQ群',
+      regionPriority: 'china-first',
       value: '610394020',
       url: 'https://qm.qq.com/q/ZWPYvrYRYQ',
     },
@@ -54,6 +66,7 @@ const fixture = {
       id: 'feishu-group',
       type: 'qr',
       label: '飞书群',
+      regionPriority: 'china-first',
       imageUrl: '/_astro/feishu.hash.png',
       width: 778,
       height: 724,
@@ -64,12 +77,14 @@ const fixture = {
       id: 'discord',
       type: 'link',
       label: 'Discord',
+      regionPriority: 'international-first',
       url: 'https://discord.gg/demo',
     },
     {
       id: 'wechat-account',
       type: 'qr',
       label: '微信公众号',
+      regionPriority: 'china-first',
       imageUrl: '/_astro/wechat.hash.jpg',
       width: 430,
       height: 430,
@@ -110,9 +125,10 @@ describe('about snapshot workflow', () => {
         accept: 'application/json',
       },
     });
-    expect(result.payload.entries).toHaveLength(8);
-    expect(written.updatedAt).toBe('2026-03-31T00:00:00.000Z');
-    expect(written.entries[3].imageUrl).toBe('/_astro/douyin.hash.png');
+    expect(result.payload.entries).toHaveLength(9);
+    expect(written.updatedAt).toBe('2026-04-01T00:00:00.000Z');
+    expect(written.entries[4].imageUrl).toBe('/_astro/douyin.hash.png');
+    expect(written.entries[0].regionPriority).toBe('international-first');
   });
 
   it('rejects invalid payloads before writing a new snapshot file', async () => {
@@ -120,14 +136,13 @@ describe('about snapshot workflow', () => {
     const outputPath = path.join(outputDir, 'about.snapshot.json');
     const fetchMock = vi.fn().mockResolvedValue(
       createJsonResponse({
-        version: '1.0.0',
-        updatedAt: '2026-03-31T00:00:00.000Z',
-        entries: [],
+        ...structuredClone(fixture),
+        entries: fixture.entries.filter((entry) => entry.id !== 'youtube'),
       }),
     );
 
     await expect(updateAboutSnapshot({ fetchImpl: fetchMock, outputPath })).rejects.toThrow(
-      'missing required entries',
+      'missing required entries youtube',
     );
     await expect(fs.readFile(outputPath, 'utf8')).rejects.toThrow();
   });
@@ -135,8 +150,8 @@ describe('about snapshot workflow', () => {
   it('validates media dimensions and asset paths during normalization', () => {
     const normalized = normalizeAboutSnapshotPayload(structuredClone(fixture));
 
-    expect(normalized.entries[0].id).toBe('bilibili');
-    expect(normalized.entries[3].width).toBe(1061);
+    expect(normalized.entries[0].id).toBe('youtube');
+    expect(normalized.entries[4].width).toBe(1061);
 
     expect(() =>
       normalizeAboutSnapshotPayload({
@@ -148,5 +163,18 @@ describe('about snapshot workflow', () => {
         ),
       }),
     ).toThrow('wechat-account.imageUrl');
+  });
+
+  it('rejects payloads missing region priority markers during normalization', () => {
+    expect(() =>
+      normalizeAboutSnapshotPayload({
+        ...structuredClone(fixture),
+        entries: fixture.entries.map((entry) =>
+          entry.id === 'discord'
+            ? { ...entry, regionPriority: undefined }
+            : entry,
+        ),
+      }),
+    ).toThrow('discord.regionPriority');
   });
 });

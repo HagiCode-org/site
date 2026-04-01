@@ -3,7 +3,9 @@ import bundledPayload from '@/data/about.snapshot.json';
 export const ABOUT_SNAPSHOT_URL = 'https://index.hagicode.com/about.json';
 export const ABOUT_SNAPSHOT_ORIGIN = 'https://index.hagicode.com';
 export const ABOUT_SNAPSHOT_VERSION = '1.0.0';
+export const ABOUT_SNAPSHOT_REGION_PRIORITIES = ['china-first', 'international-first'] as const;
 export const REQUIRED_ABOUT_ENTRY_IDS = [
+  'youtube',
   'bilibili',
   'xiaohongshu',
   'douyin-account',
@@ -16,11 +18,13 @@ export const REQUIRED_ABOUT_ENTRY_IDS = [
 
 export type AboutSnapshotRequiredEntryId = (typeof REQUIRED_ABOUT_ENTRY_IDS)[number];
 export type AboutSnapshotEntryType = 'link' | 'contact' | 'qr' | 'image';
+export type AboutSnapshotRegionPriority = (typeof ABOUT_SNAPSHOT_REGION_PRIORITIES)[number];
 
 interface AboutSnapshotBaseEntry {
   readonly id: string;
   readonly type: AboutSnapshotEntryType;
   readonly label: string;
+  readonly regionPriority: AboutSnapshotRegionPriority;
   readonly description?: string;
 }
 
@@ -90,6 +94,15 @@ function readPositiveInteger(value: unknown, fieldName: string): number {
   return Number(value);
 }
 
+function readRegionPriority(value: unknown, fieldName: string): AboutSnapshotRegionPriority {
+  const regionPriority = readNonEmptyString(value, fieldName);
+  assert(
+    ABOUT_SNAPSHOT_REGION_PRIORITIES.includes(regionPriority as AboutSnapshotRegionPriority),
+    `Invalid about snapshot payload: ${fieldName} must be ${ABOUT_SNAPSHOT_REGION_PRIORITIES.join(' or ')}`,
+  );
+  return regionPriority as AboutSnapshotRegionPriority;
+}
+
 function readMediaUrl(value: unknown, fieldName: string): string {
   const imageUrl = readNonEmptyString(value, fieldName);
   assert(
@@ -130,6 +143,7 @@ function normalizeAboutEntry(
     id,
     type: type as AboutSnapshotEntryType,
     label: readNonEmptyString(entry.label, `${id}.label`),
+    regionPriority: readRegionPriority(entry.regionPriority, `${id}.regionPriority`),
     description: readOptionalNonEmptyString(entry.description, `${id}.description`),
   };
 

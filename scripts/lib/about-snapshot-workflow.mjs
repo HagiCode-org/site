@@ -5,7 +5,9 @@ import { fileURLToPath } from 'node:url';
 export const ABOUT_SNAPSHOT_URL = 'https://index.hagicode.com/about.json';
 export const ABOUT_SNAPSHOT_VERSION = '1.0.0';
 export const ABOUT_SNAPSHOT_OUTPUT_PATH = 'src/data/about.snapshot.json';
+export const ABOUT_SNAPSHOT_REGION_PRIORITIES = ['china-first', 'international-first'];
 export const REQUIRED_ABOUT_ENTRY_IDS = [
+  'youtube',
   'bilibili',
   'xiaohongshu',
   'douyin-account',
@@ -52,6 +54,15 @@ function readPositiveInteger(value, fieldName) {
   return value;
 }
 
+function readRegionPriority(value, fieldName) {
+  const regionPriority = readNonEmptyString(value, fieldName);
+  assert(
+    ABOUT_SNAPSHOT_REGION_PRIORITIES.includes(regionPriority),
+    `Invalid about snapshot payload: ${fieldName} must be ${ABOUT_SNAPSHOT_REGION_PRIORITIES.join(' or ')}`,
+  );
+  return regionPriority;
+}
+
 function readImageUrl(value, fieldName) {
   const imageUrl = readNonEmptyString(value, fieldName);
   assert(
@@ -79,6 +90,7 @@ function normalizeAboutEntry(entry, index, seenIds, remainingIds) {
     id,
     type,
     label: readNonEmptyString(entry.label, `${id}.label`),
+    regionPriority: readRegionPriority(entry.regionPriority, `${id}.regionPriority`),
     description: readOptionalNonEmptyString(entry.description, `${id}.description`),
   };
 
