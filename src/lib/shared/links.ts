@@ -84,6 +84,11 @@ export const SITE_LINKS = {
     prod: '/container/',
     external: false,
   } as LinkConfig,
+  about: {
+    dev: '/about/',
+    prod: '/about/',
+    external: false,
+  } as LinkConfig,
   rss: {
     dev: 'https://docs.hagicode.com/blog/rss.xml',
     prod: 'https://docs.hagicode.com/blog/rss.xml',
