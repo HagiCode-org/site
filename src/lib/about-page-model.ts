@@ -6,6 +6,19 @@ import {
   type AboutSnapshotLinkEntry,
   type AboutSnapshotMediaEntry,
 } from '@/lib/about-snapshot-source';
+import {
+  getLocaleRegionPriority,
+  getLocalizedAboutEntryAlt,
+  getLocalizedAboutEntryDetail,
+  getLocalizedAboutEntryLabel,
+  getLocalizedAboutEntryLinkText,
+} from '@/lib/about-page-media-catalog';
+
+export interface AboutPageEntryPresentation {
+  readonly theme: 'default' | 'youtube';
+  readonly icon?: 'youtube';
+  readonly badgeLabel?: string;
+}
 
 export interface AboutPageLinkCard {
   readonly id: string;
@@ -14,6 +27,8 @@ export interface AboutPageLinkCard {
   readonly label: string;
   readonly detail: string;
   readonly href: string;
+  readonly linkText: string;
+  readonly presentation?: AboutPageEntryPresentation;
 }
 
 export interface AboutPageContactCard {
@@ -24,6 +39,8 @@ export interface AboutPageContactCard {
   readonly detail: string;
   readonly value: string;
   readonly href?: string;
+  readonly linkText?: string;
+  readonly presentation?: AboutPageEntryPresentation;
 }
 
 export interface AboutPageMediaCard {
@@ -31,11 +48,14 @@ export interface AboutPageMediaCard {
   readonly kind: 'media';
   readonly kindLabel: string;
   readonly label: string;
+  readonly detail: string;
   readonly href: string;
+  readonly linkText: string;
   readonly imageUrl: string;
   readonly alt: string;
   readonly width: number;
   readonly height: number;
+  readonly presentation?: AboutPageEntryPresentation;
 }
 
 export interface AboutPageComboCard {
@@ -46,10 +66,12 @@ export interface AboutPageComboCard {
   readonly value: string;
   readonly detail: string;
   readonly href: string;
+  readonly linkText: string;
   readonly imageUrl: string;
   readonly alt: string;
   readonly width: number;
   readonly height: number;
+  readonly presentation?: AboutPageEntryPresentation;
 }
 
 export type AboutPageEntry = AboutPageLinkCard | AboutPageContactCard | AboutPageMediaCard | AboutPageComboCard;
@@ -82,6 +104,7 @@ const ENTRY_ORDER = [
   'feishu-group',
   'qq-group',
   'discord',
+  'youtube',
   'bilibili',
   'xiaohongshu',
   'douyin-account',
@@ -89,9 +112,9 @@ const ENTRY_ORDER = [
   'wechat-account',
   'juejin',
   'zhihu',
+  'devto',
   'x',
   'linkedin',
-  'devto',
   'infoq',
   'csdn',
   'cnblogs',
@@ -124,7 +147,11 @@ const localeCopy = {
       qr: 'QR Card',
       image: 'Image Card',
     },
+    contactFallbackDetail: 'Use this handle in the app',
     comboLabel: 'Channel + QR',
+    platformBadges: {
+      youtube: 'Official channel',
+    },
   },
   'zh-CN': {
     seoTitle: '关于 HagiCode 团队',
@@ -144,7 +171,11 @@ const localeCopy = {
       qr: '二维码卡片',
       image: '图片卡片',
     },
+    contactFallbackDetail: '在应用内搜索该账号',
     comboLabel: '账号 + 二维码',
+    platformBadges: {
+      youtube: '官方频道',
+    },
   },
 } as const;
 
@@ -160,6 +191,25 @@ function getHostnameLabel(url: string): string {
   }
 }
 
+function getEntryPresentation(
+  locale: SiteLocale,
+  entry: Pick<AboutSnapshotEntry, 'id'>,
+): AboutPageEntryPresentation | undefined {
+  if (entry.id !== 'youtube') {
+    return undefined;
+  }
+
+  return {
+    theme: 'youtube',
+    icon: 'youtube',
+    badgeLabel: localeCopy[locale].platformBadges.youtube,
+  };
+}
+
+function isMediaEntry(entry: AboutSnapshotEntry | undefined): entry is AboutSnapshotMediaEntry {
+  return entry?.type === 'qr' || entry?.type === 'image';
+}
+
 function buildLinkCard(locale: SiteLocale, entry: AboutSnapshotLinkEntry): AboutPageLinkCard {
   const copy = localeCopy[locale];
 
@@ -167,9 +217,11 @@ function buildLinkCard(locale: SiteLocale, entry: AboutSnapshotLinkEntry): About
     id: entry.id,
     kind: 'link',
     kindLabel: copy.kindLabels.link,
-    label: entry.label,
-    detail: getHostnameLabel(entry.url),
+    label: getLocalizedAboutEntryLabel(locale, entry),
+    detail: getLocalizedAboutEntryDetail(locale, entry, getHostnameLabel(entry.url)),
     href: entry.url,
+    linkText: getLocalizedAboutEntryLinkText(locale, entry),
+    presentation: getEntryPresentation(locale, entry),
   };
 }
 
@@ -180,10 +232,16 @@ function buildContactCard(locale: SiteLocale, entry: AboutSnapshotContactEntry):
     id: entry.id,
     kind: 'contact',
     kindLabel: copy.kindLabels.contact,
-    label: entry.label,
-    detail: entry.url ? getHostnameLabel(entry.url) : entry.value,
+    label: getLocalizedAboutEntryLabel(locale, entry),
+    detail: getLocalizedAboutEntryDetail(
+      locale,
+      entry,
+      entry.description ?? (entry.url ? getHostnameLabel(entry.url) : copy.contactFallbackDetail),
+    ),
     value: entry.value,
     href: entry.url,
+    linkText: entry.url ? getLocalizedAboutEntryLinkText(locale, entry) : undefined,
+    presentation: getEntryPresentation(locale, entry),
   };
 }
 
@@ -195,12 +253,15 @@ function buildMediaCard(locale: SiteLocale, entry: AboutSnapshotMediaEntry): Abo
     id: entry.id,
     kind: 'media',
     kindLabel,
-    label: entry.label,
+    label: getLocalizedAboutEntryLabel(locale, entry),
+    detail: getLocalizedAboutEntryDetail(locale, entry, entry.description ?? entry.alt),
     href: entry.url ?? entry.resolvedImageUrl,
+    linkText: getLocalizedAboutEntryLinkText(locale, entry),
     imageUrl: entry.resolvedImageUrl,
-    alt: entry.alt,
+    alt: getLocalizedAboutEntryAlt(locale, entry),
     width: entry.width,
     height: entry.height,
+    presentation: getEntryPresentation(locale, entry),
   };
 }
 
@@ -215,14 +276,16 @@ function buildDouyinComboCard(
     id: 'douyin',
     kind: 'combo',
     kindLabel: copy.comboLabel,
-    label: accountEntry.label,
+    label: getLocalizedAboutEntryLabel(locale, accountEntry),
     value: accountEntry.value,
-    detail: qrEntry.label,
+    detail: getLocalizedAboutEntryDetail(locale, qrEntry, qrEntry.description ?? qrEntry.alt),
     href: accountEntry.url ?? qrEntry.url ?? qrEntry.resolvedImageUrl,
+    linkText: getLocalizedAboutEntryLinkText(locale, qrEntry),
     imageUrl: qrEntry.resolvedImageUrl,
-    alt: qrEntry.alt,
+    alt: getLocalizedAboutEntryAlt(locale, qrEntry),
     width: qrEntry.width,
     height: qrEntry.height,
+    presentation: getEntryPresentation(locale, accountEntry),
   };
 }
 
@@ -238,8 +301,17 @@ function buildAboutPageEntry(locale: SiteLocale, entry: AboutSnapshotEntry): Abo
   return buildMediaCard(locale, entry);
 }
 
-function sortEntries(entries: readonly AboutSnapshotEntry[]): AboutSnapshotEntry[] {
+function sortEntries(locale: SiteLocale, entries: readonly AboutSnapshotEntry[]): AboutSnapshotEntry[] {
+  const preferredRegionPriority = getLocaleRegionPriority(locale);
+
   return [...entries].sort((left, right) => {
+    const leftLocalePriority = left.regionPriority === preferredRegionPriority ? 0 : 1;
+    const rightLocalePriority = right.regionPriority === preferredRegionPriority ? 0 : 1;
+
+    if (leftLocalePriority !== rightLocalePriority) {
+      return leftLocalePriority - rightLocalePriority;
+    }
+
     const leftPriority = ENTRY_PRIORITY.get(left.id) ?? Number.MAX_SAFE_INTEGER;
     const rightPriority = ENTRY_PRIORITY.get(right.id) ?? Number.MAX_SAFE_INTEGER;
 
@@ -256,21 +328,22 @@ function isCommunityEntry(entry: AboutSnapshotEntry): boolean {
 }
 
 function buildContentEntries(locale: SiteLocale, entries: readonly AboutSnapshotEntry[]): AboutPageEntry[] {
-  const contentEntries = sortEntries(entries.filter((entry) => !isCommunityEntry(entry)));
+  const contentEntries = sortEntries(locale, entries.filter((entry) => !isCommunityEntry(entry)));
   const douyinAccount = contentEntries.find((entry) => entry.id === 'douyin-account');
   const douyinQr = contentEntries.find((entry) => entry.id === 'douyin-qr');
+  const canBuildDouyinCombo = locale === 'zh-CN' && douyinAccount?.type === 'contact' && isMediaEntry(douyinQr);
 
   return contentEntries.flatMap((entry) => {
-    if (entry.id === 'douyin-account') {
-      if (douyinAccount?.type === 'contact' && douyinQr?.type !== undefined && douyinQr.type !== 'link' && douyinQr.type !== 'contact') {
-        return [buildDouyinComboCard(locale, douyinAccount, douyinQr)];
-      }
-
-      return [buildAboutPageEntry(locale, entry)];
+    if (canBuildDouyinCombo && entry.id === 'douyin-account') {
+      return [buildDouyinComboCard(locale, douyinAccount, douyinQr)];
     }
 
-    if (entry.id === 'douyin-qr') {
+    if (canBuildDouyinCombo && entry.id === 'douyin-qr') {
       return [];
+    }
+
+    if (locale === 'zh-CN' && entry.id === 'douyin-account') {
+      return [buildAboutPageEntry(locale, entry)];
     }
 
     return [buildAboutPageEntry(locale, entry)];
@@ -281,7 +354,7 @@ export function buildAboutPageModel(locale: SiteLocale): AboutPageModel {
   const copy = localeCopy[locale];
   const alternateLocale: SiteLocale = locale === 'zh-CN' ? 'en' : 'zh-CN';
   const snapshot = getBundledAboutSnapshot();
-  const communityEntries = sortEntries(snapshot.entries.filter((entry) => isCommunityEntry(entry)));
+  const communityEntries = sortEntries(locale, snapshot.entries.filter((entry) => isCommunityEntry(entry)));
   const contentEntries = buildContentEntries(locale, snapshot.entries);
 
   return {
