@@ -624,9 +624,14 @@
 }
 
 .starHistoryCard {
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  display: block;
+  width: min(100%, 34rem);
+  aspect-ratio: 1 / 1;
   min-width: 0;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
   color: inherit;
   text-decoration: none;
   transition:
@@ -657,18 +662,39 @@
   color: #f59e0b;
 }
 
+.starHistoryCard .chartHeader {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 2;
+  margin-bottom: 0;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.46));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+[data-theme='dark'] .starHistoryCard .chartHeader,
+[data-theme='lunar-new-year'] .starHistoryCard .chartHeader {
+  background: linear-gradient(180deg, rgba(10, 15, 30, 0.78), rgba(10, 15, 30, 0.46));
+}
+
 .starHistoryCanvasWrap {
-  position: relative;
-  flex: 0 0 auto;
-  width: min(100%, 34rem);
-  aspect-ratio: 1 / 1;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   min-width: 0;
   overflow: hidden;
-  margin: 0 auto;
-  padding: clamp(0.75rem, 1.8vw, 1rem);
+  padding:
+    clamp(4.8rem, 10vw, 5.8rem)
+    clamp(0.75rem, 1.8vw, 1rem)
+    clamp(4.6rem, 10vw, 5.6rem);
   box-sizing: border-box;
-  border-radius: 1rem;
-  border: 1px solid rgba(245, 158, 11, 0.16);
+  border-radius: inherit;
+  border: 0;
   background:
     radial-gradient(circle at top left, rgba(245, 158, 11, 0.1), transparent 32%),
     linear-gradient(180deg, #ffffff, #fdfdfd);
@@ -718,11 +744,26 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 0.9rem;
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  margin-top: 0;
+  padding: 0.85rem 1rem;
+  border-radius: 1rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.44));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .starHistoryFooter .metricDescription {
   margin-bottom: 0;
+}
+
+[data-theme='dark'] .starHistoryFooter,
+[data-theme='lunar-new-year'] .starHistoryFooter {
+  background: linear-gradient(180deg, rgba(10, 15, 30, 0.74), rgba(10, 15, 30, 0.46));
 }
 
 .starHistoryLink {
@@ -749,6 +790,10 @@
 
   .starHistoryCanvasWrap {
     width: 100%;
+    padding:
+      clamp(4.3rem, 16vw, 5.2rem)
+      0.75rem
+      clamp(5rem, 17vw, 5.8rem);
   }
 
   .starHistoryImage {
@@ -760,5 +805,6 @@
   .starHistoryFooter {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.5rem;
   }
 }
