@@ -640,6 +640,12 @@
     box-shadow var(--duration-normal) var(--ease-out);
 }
 
+@media (min-width: 768px) {
+  .starHistoryCard {
+    width: min(100%, 51rem);
+  }
+}
+
 .starHistoryRow {
   margin-top: 1.5rem;
 }
