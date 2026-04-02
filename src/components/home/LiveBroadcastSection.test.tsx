@@ -114,8 +114,16 @@ const offlineThursdayRuntime: LiveBroadcastRuntime = {
 };
 
 describe('LiveBroadcastSectionBody markup', () => {
-  it('renders the static live broadcast card when initial data is provided', () => {
+  it('stays hidden by default when the live broadcast feature flag is disabled', () => {
     const markup = renderToStaticMarkup(<LiveBroadcastSection locale="en" initialData={data} />);
+
+    expect(markup).toBe('');
+  });
+
+  it('renders the static live broadcast card when the feature flag is explicitly enabled', () => {
+    const markup = renderToStaticMarkup(
+      <LiveBroadcastSection locale="en" enabled={true} initialData={data} />,
+    );
 
     expect(markup).toContain('Daily Hagi Live Coding Room');
     expect(markup).toContain('Open QR');

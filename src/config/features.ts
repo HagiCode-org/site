@@ -22,3 +22,8 @@ export const FEATURE_MAC_DOWNLOAD_ENABLED = parseBooleanFlag(
   import.meta.env.VITE_FEATURE_MAC_DOWNLOAD_ENABLED,
   true
 );
+
+export const FEATURE_LIVE_BROADCAST_ENABLED = parseBooleanFlag(
+  import.meta.env.VITE_FEATURE_LIVE_BROADCAST_ENABLED,
+  false
+);
