@@ -30,6 +30,20 @@ interface CliIconProps {
   providerKey: string;
 }
 
+const SUPPORTED_PROVIDER_KEYS = [
+  'ClaudeCodeCli',
+  'CodexCli',
+  'GitHubCopilot',
+  'OpenCodeCli',
+  'HermesCli',
+  'QoderCli',
+  'KiroCli',
+  'KimiCli',
+  'GeminiCli',
+  'DeepAgentsCli',
+  'CodebuddyCli',
+] as const;
+
 // SVG Icons
 const BrainIcon = ({ className = '' }: IconProps) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -163,6 +177,52 @@ function SupportedCliIcon({ providerKey }: CliIconProps) {
           <path d="m9 7-4 5 4 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           <path d="m15 7 4 5-4 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           <path d="m13.5 5.5-3 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case 'HermesCli':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M7 6v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <path d="M17 6v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <path d="M7 12h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case 'QoderCli':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="11" cy="11" r="5.5" stroke="currentColor" strokeWidth="2" />
+          <path d="m15.5 15.5 3 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case 'KiroCli':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 4 6 9.5 12 20l6-10.5L12 4Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+          <path d="M12 8v7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case 'KimiCli':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M14.5 4.5a7 7 0 1 0 5 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <path d="M15 8.5h4.5V13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'GeminiCli':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 4.5 14 10l5.5 2-5.5 2-2 5.5-2-5.5L4.5 12 10 10 12 4.5Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'DeepAgentsCli':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="7" cy="8" r="2" fill="currentColor" />
+          <circle cx="17" cy="8" r="2" fill="currentColor" opacity="0.75" />
+          <circle cx="12" cy="17" r="2" fill="currentColor" opacity="0.55" />
+          <path d="M8.6 9.2 10.9 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <path d="M15.4 9.2 13.1 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          <path d="M9 8h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </svg>
       );
     case 'CodebuddyCli':
@@ -401,28 +461,10 @@ function ConvenientFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
     },
   ];
 
-  const supportedProviders = [
-    {
-      key: 'ClaudeCodeCli',
-      name: t('features.convenient.agentMatrix.supportedNames.names.0'),
-    },
-    {
-      key: 'CodexCli',
-      name: t('features.convenient.agentMatrix.supportedNames.names.1'),
-    },
-    {
-      key: 'GitHubCopilot',
-      name: t('features.convenient.agentMatrix.supportedNames.names.2'),
-    },
-    {
-      key: 'CodebuddyCli',
-      name: t('features.convenient.agentMatrix.supportedNames.names.3'),
-    },
-    {
-      key: 'OpenCodeCli',
-      name: t('features.convenient.agentMatrix.supportedNames.names.4'),
-    },
-  ];
+  const supportedProviders = SUPPORTED_PROVIDER_KEYS.map((providerKey, index) => ({
+    key: providerKey,
+    name: t(`features.convenient.agentMatrix.supportedNames.names.${index}`),
+  }));
 
   return (
     <motion.div className={`${styles.featureZone} ${styles.convenient}`}>
