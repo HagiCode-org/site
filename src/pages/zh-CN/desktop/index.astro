@@ -295,20 +295,14 @@ const englishUrl = getAbsoluteSiteUrl('/desktop/', 'en', siteBase);
           <details class="faq-item">
             <summary>安装后还需要做什么？</summary>
             <div class="faq-content">
-              <p>
-                Hagicode Desktop 本质上是一个启动器，安装完成后首次启动时，它会引导你完成以下步骤：
-              </p>
+              <p set:html={t('desktop.faq.q2.intro')}></p>
               <ul>
-                <li><strong>下载 Hagicode Core：</strong> Desktop 会自动检测并提示下载 Hagicode 核心组件</li>
-                <li><strong>安装核心组件：</strong> 按照界面提示完成核心组件的安装</li>
-                <li><strong>配置 AI 编码助手：</strong> 根据需要配置 Claude Code 等助手</li>
+                <li set:html={t('desktop.faq.q2.step1')}></li>
+                <li set:html={t('desktop.faq.q2.step2')}></li>
+                <li set:html={t('desktop.faq.q2.step3')}></li>
               </ul>
-              <p>
-                整个过程在 Desktop 界面中都有清晰的提示指引，请确保在首次启动时保持网络连接以完成核心组件的下载。
-              </p>
-              <p>
-                完成这些步骤后，你就可以正常使用 Hagicode Desktop 的所有功能了。
-              </p>
+              <p set:html={t('desktop.faq.q2.note')}></p>
+              <p set:html={t('desktop.faq.q2.done')}></p>
             </div>
           </details>
 
@@ -322,14 +316,15 @@ const englishUrl = getAbsoluteSiteUrl('/desktop/', 'en', siteBase);
           </details>
 
           <details class="faq-item">
-            <summary>支持哪些 AI 模型？</summary>
+            <summary>{t('desktop.faq.q4.question')}</summary>
             <div class="faq-content">
-              <p>Hagicode Desktop 通过 Agent CLI 提供强大的 AI 编码助手支持：</p>
+              <p set:html={t('desktop.faq.q4.intro')}></p>
               <ul>
-                <li><strong>当前支持：</strong>Claude Code（主要支持）</li>
-                <li><strong>即将支持：</strong>Copilot、Gemini、Kimi Code 等各类 CLI Agent</li>
+                <li set:html={t('desktop.faq.q4.active')}></li>
+                <li set:html={t('desktop.faq.q4.manual')}></li>
+                <li set:html={t('desktop.faq.q4.legacy')}></li>
               </ul>
-              <p>我们正在积极扩展对更多 AI 编码助手的支持，敬请期待后续版本的更新。</p>
+              <p set:html={t('desktop.faq.q4.closing')}></p>
             </div>
           </details>
 
