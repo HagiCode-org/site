@@ -1,12 +1,18 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import type { DesktopVersionData } from '../../lib/shared/version-manager';
-import { groupAssetsByPlatform } from '../../lib/shared/desktop-utils';
+import {
+  ensureGithubReachabilityProbe,
+  groupAssetsByPlatform,
+  resetGithubReachabilityProbeCache,
+} from '../../lib/shared/desktop-utils';
 import InstallButton, {
+  convertPlatformGroups,
   createInstallButtonPropSnapshot,
   getInstallButtonMenuState,
+  resolveInstallButtonPrimaryTarget,
   resolveInstallButtonRuntimeSnapshot,
 } from './InstallButton';
 
@@ -37,6 +43,32 @@ const latestVersion = {
 };
 
 const platformGroups = groupAssetsByPlatform(latestVersion.assets);
+
+const multiSourceVersion = {
+  version: 'v1.2.4',
+  assets: [
+    {
+      name: 'Hagicode.Desktop.Setup.1.2.4.exe',
+      path: 'v1.2.4/Hagicode.Desktop.Setup.1.2.4.exe',
+      size: 1048576,
+      lastModified: null,
+      torrentUrl: 'v1.2.4/Hagicode.Desktop.Setup.1.2.4.exe.torrent',
+      downloadSources: [
+        {
+          kind: 'official',
+          label: 'Official Download',
+          url: 'https://desktop.dl.hagicode.com/v1.2.4/Hagicode.Desktop.Setup.1.2.4.exe',
+          primary: true,
+        },
+        {
+          kind: 'github-release',
+          label: 'GitHub Release',
+          url: 'https://github.com/HagiCode-org/releases/download/v1.2.4/Hagicode.Desktop.Setup.1.2.4.exe',
+        },
+      ],
+    },
+  ],
+};
 
 describe('InstallButton runtime state helpers', () => {
   it('treats an unresolved runtime state as loading instead of frozen', () => {
@@ -119,6 +151,52 @@ describe('InstallButton markup', () => {
     expect(markup).not.toContain('Open version history');
   });
 
+  it('projects multi-source actions without duplicating the asset row contract', () => {
+    const platformData = convertPlatformGroups(groupAssetsByPlatform(multiSourceVersion.assets));
+    const windowsOption = platformData[0]?.options[0];
+
+    expect(windowsOption?.sourceActions.map((action) => action.kind)).toEqual([
+      'official',
+      'github-release',
+      'torrent',
+    ]);
+  });
+
+  it('prefers GitHub when the probe is reachable and falls back to official when it is not', () => {
+    const platformData = convertPlatformGroups(groupAssetsByPlatform(multiSourceVersion.assets));
+
+    const reachable = resolveInstallButtonPrimaryTarget(
+      platformData,
+      'reachable',
+      'windows',
+      '/desktop/',
+    );
+    const unreachable = resolveInstallButtonPrimaryTarget(
+      platformData,
+      'unreachable',
+      'windows',
+      '/desktop/',
+    );
+
+    expect(reachable.action?.kind).toBe('github-release');
+    expect(reachable.href).toContain('github.com');
+    expect(unreachable.action?.kind).toBe('official');
+    expect(unreachable.href).toContain('desktop.dl.hagicode.com');
+  });
+
+  it('keeps legacy single-source assets downloadable', () => {
+    const legacyPlatformData = convertPlatformGroups(platformGroups);
+    const primary = resolveInstallButtonPrimaryTarget(
+      legacyPlatformData,
+      'unreachable',
+      'windows',
+      '/desktop/',
+    );
+
+    expect(primary.action?.kind).toBe('legacy');
+    expect(primary.href).toContain('desktop.dl.hagicode.com');
+  });
+
   it('keeps the fallback CTA and dropdown trigger available when runtime data is unavailable', () => {
     const markup = renderToStaticMarkup(
       <InstallButton locale="en" versionError="network down" />,
@@ -128,5 +206,27 @@ describe('InstallButton markup', () => {
     expect(markup).toContain('Open version history');
     expect(markup).toContain(fallbackUrl);
     expect(markup).toContain('network down');
+  });
+});
+
+describe('GitHub probe cache', () => {
+  it('reuses the page-lifecycle probe result after the first success', async () => {
+    resetGithubReachabilityProbeCache();
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true });
+    vi.stubGlobal('fetch', fetchMock);
+    vi.stubGlobal('window', {
+      setTimeout,
+      clearTimeout,
+    });
+
+    await expect(
+      ensureGithubReachabilityProbe('https://github.com/HagiCode-org/releases/download/v1.2.4/file.exe'),
+    ).resolves.toBe('reachable');
+    await expect(
+      ensureGithubReachabilityProbe('https://github.com/HagiCode-org/releases/download/v1.2.4/file.exe'),
+    ).resolves.toBe('reachable');
+
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    vi.unstubAllGlobals();
   });
 });

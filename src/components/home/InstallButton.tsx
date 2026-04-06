@@ -11,15 +11,26 @@ import { createPortal } from 'react-dom';
 import styles from './InstallButton.module.css';
 import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
 import { MAC_DOWNLOAD_DISABLED_NOTICE, MAC_DOWNLOAD_DISABLED_NOTICE_EN } from '@/constants/downloadMessages';
-import type { DesktopVersion, PlatformGroup } from '@/lib/shared/desktop';
+import type {
+  AssetType,
+  DesktopVersion,
+  DownloadAction,
+  GithubReachabilityState,
+  PlatformGroup,
+} from '@/lib/shared/desktop';
 import type { DesktopVersionSource } from '@/lib/shared/desktop-utils';
 import {
+  ensureGithubReachabilityProbe,
   detectOS,
+  findFirstGithubReleaseUrl,
+  getCachedGithubReachabilityState,
+  getDownloadActionLabel,
   getArchitectureLabel,
   getAssetTypeLabel,
   getFileExtension,
   groupAssetsByPlatform,
   PLATFORM_ICONS,
+  resolvePrimaryDownloadAction,
 } from '@/lib/shared/desktop-utils';
 import { getLinkWithLocale } from '@/lib/shared/links';
 import type {
@@ -30,7 +41,6 @@ import {
   DESKTOP_HISTORY_FALLBACK_URL,
   getDesktopVersionData,
 } from '@/lib/shared/version-manager';
-import type { AssetType } from '@/lib/shared/desktop';
 import { getDesktopDownloadEventName, WEBSITE_TRACKING_EVENTS } from '@/lib/analytics/events';
 import { trackEvent } from '@/lib/analytics/tracker';
 
@@ -39,12 +49,19 @@ export interface DownloadOption {
   url: string;
   size?: string;
   assetType: AssetType;
+  sourceActions: DownloadAction[];
 }
 
 export interface PlatformDownloads {
   platform: 'windows' | 'macos' | 'linux';
   platformLabel: string;
   options: DownloadOption[];
+}
+
+export interface InstallButtonPrimaryTarget {
+  href: string;
+  option: DownloadOption | null;
+  action: DownloadAction | null;
 }
 
 export interface InstallButtonRuntimeSnapshot {
@@ -128,8 +145,37 @@ export function convertPlatformGroups(platforms: PlatformGroup[]): PlatformDownl
       url: download.url,
       size: download.size,
       assetType: download.assetType,
+      sourceActions: download.sourceActions,
     })),
   }));
+}
+
+export function resolveInstallButtonPrimaryTarget(
+  platformData: PlatformDownloads[],
+  githubState: GithubReachabilityState,
+  userOS: 'windows' | 'macos' | 'linux' | 'unknown',
+  desktopPageUrl: string,
+): InstallButtonPrimaryTarget {
+  if (platformData.length === 0) {
+    return {
+      href: desktopPageUrl,
+      option: null,
+      action: null,
+    };
+  }
+
+  const userPlatform = platformData.find((platform) => platform.platform === userOS);
+  const preferredPlatform = userPlatform ?? platformData[0];
+  const preferredOption = preferredPlatform.options[0] ?? null;
+  const action = preferredOption
+    ? resolvePrimaryDownloadAction({ sourceActions: preferredOption.sourceActions }, githubState)
+    : null;
+
+  return {
+    href: action?.url ?? preferredOption?.url ?? desktopPageUrl,
+    option: preferredOption,
+    action,
+  };
 }
 
 export function createInstallButtonPropSnapshot({
@@ -248,6 +294,9 @@ export default function InstallButton({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [fetchedData, setFetchedData] = useState<DesktopVersionData | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState<DropdownPosition | null>(null);
+  const [githubReachabilityState, setGithubReachabilityState] = useState<GithubReachabilityState>(
+    () => getCachedGithubReachabilityState(),
+  );
   const buttonRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLUListElement>(null);
 
@@ -338,6 +387,27 @@ export default function InstallButton({
   );
   const historyFallbackTarget = runtimeSnapshot.fallbackTarget ?? DESKTOP_HISTORY_FALLBACK_URL;
 
+  useEffect(() => {
+    const probeUrl = findFirstGithubReleaseUrl(runtimeSnapshot.platforms);
+    const cachedState = getCachedGithubReachabilityState();
+    setGithubReachabilityState(cachedState);
+
+    if (!probeUrl || (cachedState !== 'unknown' && cachedState !== 'probing')) {
+      return;
+    }
+
+    let mounted = true;
+    void ensureGithubReachabilityProbe(probeUrl).then((state) => {
+      if (mounted) {
+        setGithubReachabilityState(state);
+      }
+    });
+
+    return () => {
+      mounted = false;
+    };
+  }, [runtimeSnapshot.platforms]);
+
   const statusMessage = useMemo(() => {
     if (menuState.mode === 'loading') {
       return loadingLatestLabel;
@@ -370,38 +440,29 @@ export default function InstallButton({
     runtimeSnapshot.status,
   ]);
 
-  const currentUrl = useMemo(() => {
-    if (platformData.length === 0) {
-      return desktopPageUrl;
-    }
-
+  const primaryTarget = useMemo(() => {
     const userOS = detectOS();
-
     if (!FEATURE_MAC_DOWNLOAD_ENABLED && userOS === 'macos') {
-      return desktopPageUrl;
+      return {
+        href: desktopPageUrl,
+        option: null,
+        action: null,
+      };
     }
 
-    const userPlatform = platformData.find((platform) => platform.platform === userOS);
-
-    if (userPlatform) {
-      const recommended = userPlatform.options.find((option) => {
-        const label = option.label.toLowerCase();
-        if (userOS === 'windows') return label.includes('setup');
-        if (userOS === 'macos') return label.includes('arm64');
-        if (userOS === 'linux') return label.includes('appimage');
-        return false;
-      });
-      return recommended ? recommended.url : userPlatform.options[0].url;
-    }
-
-    return platformData[0].options[0].url;
-  }, [desktopPageUrl, platformData]);
+    return resolveInstallButtonPrimaryTarget(
+      platformData,
+      githubReachabilityState,
+      userOS,
+      desktopPageUrl,
+    );
+  }, [desktopPageUrl, githubReachabilityState, platformData]);
 
   const primaryHref =
     menuState.mode === 'fatal'
       ? historyFallbackTarget
       : menuState.hasDownloads
-        ? currentUrl
+        ? primaryTarget.href
         : desktopPageUrl;
   const primaryText =
     menuState.mode === 'fatal'
@@ -410,7 +471,7 @@ export default function InstallButton({
         ? loadingPrimaryLabel
         : installButtonLabel;
   const primaryAriaLabel = menuState.hasDownloads
-    ? installDesktopAriaLabel
+    ? `${installDesktopAriaLabel}${primaryTarget.action ? ` (${getDownloadActionLabel(primaryTarget.action.kind, locale)})` : ''}`
     : menuState.mode === 'loading'
       ? loadingLatestLabel
       : desktopFallbackCta;
@@ -528,11 +589,19 @@ export default function InstallButton({
   };
 
   const handlePrimaryInstallClick = () => {
-    trackEvent(WEBSITE_TRACKING_EVENTS.downloadDesktop, { source: `install-button-${variant}-primary` });
+    if (!menuState.hasDownloads || !primaryTarget.option) {
+      return;
+    }
+
+    trackEvent(getDesktopDownloadEventName(primaryTarget.option.assetType), {
+      source: `install-button-${variant}-primary-${primaryTarget.action?.kind ?? 'official'}`,
+    });
   };
 
-  const handlePlatformDownloadClick = (assetType: AssetType) => {
-    trackEvent(getDesktopDownloadEventName(assetType), { source: `install-button-${variant}-platform` });
+  const handlePlatformDownloadClick = (assetType: AssetType, sourceKind: DownloadAction['kind']) => {
+    trackEvent(getDesktopDownloadEventName(assetType), {
+      source: `install-button-${variant}-source-${sourceKind}`,
+    });
     handleLinkClick();
   };
 
@@ -549,7 +618,7 @@ export default function InstallButton({
       <li role="none">
         <span
           className={`${styles.dropdownItem} ${styles.dropdownItemDisabled}`}
-          role="option"
+          role="presentation"
           aria-disabled="true"
         >
           <span className={styles.dropdownItemLabel}>{title}</span>
@@ -567,7 +636,7 @@ export default function InstallButton({
             ref={menuRef}
             className={`${styles.dropdownMenu} ${styles.dropdownMenuOpen}`}
             id={`${buttonId}-menu`}
-            role="listbox"
+            role="menu"
             aria-label={selectDownloadVersionLabel}
             style={{
               top: dropdownPosition ? `${dropdownPosition.top}px` : '16px',
@@ -596,29 +665,54 @@ export default function InstallButton({
                     const archLabel = getArchitectureLabel(option.assetType);
                     const fileExt = getFileExtension(option.assetType);
                     const isRecommended = idx === 0;
+                    const resolvedAction = resolvePrimaryDownloadAction(
+                      { sourceActions: option.sourceActions },
+                      githubReachabilityState,
+                    );
                     return (
                       <li key={`${platformGroup.platform}-${option.url}`} role="none">
-                        <a
-                          href={option.url}
-                          className={`${styles.dropdownItem} ${isRecommended ? styles.dropdownItemRecommended : ''}`}
-                          role="option"
-                          download
-                          onClick={() => handlePlatformDownloadClick(option.assetType)}
+                        <div
+                          className={`${styles.dropdownItem} ${styles.dropdownItemMultiSource} ${isRecommended ? styles.dropdownItemRecommended : ''}`}
                         >
-                          <span className={styles.dropdownItemLabel}>
-                            {getAssetTypeLabel(option.assetType)}
-                            {archLabel && <span className={styles.archLabel}> ({archLabel})</span>}
-                            {fileExt && <span className={styles.fileExtBadge}>{fileExt}</span>}
-                            {isRecommended && (
-                              <span className={styles.recommendedBadge}>
-                                ⭐{recommendedLabel}
-                              </span>
+                          <div className={styles.dropdownItemMeta}>
+                            <span className={styles.dropdownItemLabel}>
+                              {getAssetTypeLabel(option.assetType)}
+                              {archLabel && <span className={styles.archLabel}> ({archLabel})</span>}
+                              {fileExt && <span className={styles.fileExtBadge}>{fileExt}</span>}
+                              {isRecommended && (
+                                <span className={styles.recommendedBadge}>
+                                  ⭐{recommendedLabel}
+                                </span>
+                              )}
+                            </span>
+                            {option.size && (
+                              <span className={styles.dropdownItemSize}>{option.size}</span>
                             )}
-                          </span>
-                          {option.size && (
-                            <span className={styles.dropdownItemSize}>{option.size}</span>
-                          )}
-                        </a>
+                          </div>
+                          <div className={styles.dropdownSourceActions}>
+                            {option.sourceActions.map((action) => {
+                              const isSmartDefault = resolvedAction?.kind === action.kind;
+                              return (
+                                <a
+                                  key={`${option.url}-${action.kind}`}
+                                  href={action.url}
+                                  className={`${styles.dropdownSourceAction} ${isSmartDefault ? styles.dropdownSourceActionDefault : ''}`}
+                                  role="menuitem"
+                                  download
+                                  aria-label={`${getAssetTypeLabel(option.assetType)} ${getDownloadActionLabel(action.kind, locale)}`}
+                                  onClick={() => handlePlatformDownloadClick(option.assetType, action.kind)}
+                                >
+                                  <span>{getDownloadActionLabel(action.kind, locale)}</span>
+                                  {isSmartDefault && (
+                                    <span className={styles.dropdownSourceActionBadge}>
+                                      {locale === 'en' ? 'Default' : '默认'}
+                                    </span>
+                                  )}
+                                </a>
+                              );
+                            })}
+                          </div>
+                        </div>
                       </li>
                     );
                   })}
@@ -639,7 +733,7 @@ export default function InstallButton({
                 <li role="none">
                   <span
                     className={`${styles.dropdownItem} ${styles.dropdownItemDisabled}`}
-                    role="option"
+                    role="presentation"
                     aria-disabled="true"
                   >
                     <span className={styles.dropdownItemLabel}>macOS</span>
@@ -650,7 +744,7 @@ export default function InstallButton({
                   <a
                     href={containerUrl}
                     className={styles.dropdownItem}
-                    role="option"
+                    role="menuitem"
                     onClick={() => handleContainerNavigationClick('install-button-macos-fallback')}
                   >
                     <span className={styles.dropdownItemLabel}>{goToContainerLabel}</span>
@@ -664,7 +758,7 @@ export default function InstallButton({
                 <a
                   href={historyFallbackTarget}
                   className={styles.dropdownItem}
-                  role="option"
+                  role="menuitem"
                   onClick={handleLinkClick}
                 >
                   <span className={styles.dropdownItemLabel}>{desktopFallbackMenuLabel}</span>
@@ -675,7 +769,7 @@ export default function InstallButton({
               <a
                 href={containerUrl}
                 className={`${styles.dropdownItem} ${styles.dropdownItemDocker}`}
-                role="option"
+                role="menuitem"
                 onClick={() => handleContainerNavigationClick('install-button-container-link')}
               >
                 <svg className={styles.dockerIcon} viewBox="0 0 24 24" fill="currentColor">
@@ -725,7 +819,7 @@ export default function InstallButton({
             type="button"
             aria-expanded={isDropdownOpen}
             aria-controls={`${buttonId}-menu`}
-            aria-haspopup="listbox"
+            aria-haspopup="menu"
             aria-busy={menuState.mode === 'loading'}
             aria-label={selectOtherVersionsLabel}
             data-runtime-state={menuState.mode}

@@ -13,13 +13,27 @@ import {
   getDesktopVersionData,
   type DesktopVersionData,
 } from '@/lib/shared/version-manager';
-import { detectOS, getAssetTypeLabel, groupAssetsByPlatform } from '@/lib/shared/desktop-utils';
+import {
+  detectOS,
+  ensureGithubReachabilityProbe,
+  findFirstGithubReleaseUrl,
+  getCachedGithubReachabilityState,
+  getAssetTypeLabel,
+  getDownloadActionLabel,
+  groupAssetsByPlatform,
+  resolvePrimaryDownloadAction,
+} from '@/lib/shared/desktop-utils';
 import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
 import { MAC_DOWNLOAD_DISABLED_NOTICE, MAC_DOWNLOAD_DISABLED_NOTICE_EN } from '@/constants/downloadMessages';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import { getLinkWithLocale } from '@/lib/shared/links';
-import type { DesktopVersion, AssetType } from '@/lib/shared/types/desktop';
+import type {
+  AssetType,
+  DesktopVersion,
+  DownloadAction,
+  GithubReachabilityState,
+} from '@/lib/shared/types/desktop';
 import { getDesktopDownloadEventName } from '@/lib/analytics/events';
 import { trackEvent } from '@/lib/analytics/tracker';
 import styles from './DesktopHero.module.css';
@@ -29,6 +43,7 @@ interface DownloadOption {
   label: string;
   url: string;
   assetType: AssetType;
+  sourceActions: DownloadAction[];
 }
 
 // 平台下载数据接口
@@ -36,6 +51,11 @@ interface PlatformDownloads {
   platform: 'windows' | 'macos' | 'linux';
   platformLabel: string;
   options: DownloadOption[];
+}
+
+export interface DesktopHeroPrimaryTarget {
+  href: string;
+  action: DownloadAction | null;
 }
 
 // SVG 图标组件
@@ -72,7 +92,7 @@ const DownloadIcon = () => (
 );
 
 // 将版本文件转换为平台下载数据
-function convertVersionToPlatformDownloads(version: DesktopVersion): PlatformDownloads[] {
+export function convertVersionToPlatformDownloads(version: DesktopVersion): PlatformDownloads[] {
   const platformLabels = { windows: 'Windows', macos: 'macOS', linux: 'Linux' };
 
   // index 站的新结构以 assets 为准
@@ -93,9 +113,28 @@ function convertVersionToPlatformDownloads(version: DesktopVersion): PlatformDow
     options: platform.downloads.map(download => ({
       label: download.filename,
       url: download.url,
-      assetType: download.assetType
+      assetType: download.assetType,
+      sourceActions: download.sourceActions,
     }))
   }));
+}
+
+export function resolveDesktopHeroPrimaryTarget(
+  option: DownloadOption | null,
+  githubState: GithubReachabilityState,
+): DesktopHeroPrimaryTarget {
+  if (!option) {
+    return {
+      href: '',
+      action: null,
+    };
+  }
+
+  const action = resolvePrimaryDownloadAction({ sourceActions: option.sourceActions }, githubState);
+  return {
+    href: action?.url ?? option.url,
+    action,
+  };
 }
 
 interface DesktopHeroProps {
@@ -146,6 +185,9 @@ export default function DesktopHero(props: DesktopHeroProps) {
   const [currentChannel, setCurrentChannel] = useState<'stable' | 'beta'>('stable');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [githubReachabilityState, setGithubReachabilityState] = useState<GithubReachabilityState>(
+    () => getCachedGithubReachabilityState(),
+  );
   const [userOS, setUserOS] = useState<'windows' | 'macos' | 'linux' | 'unknown'>(() => detectOS());
   const [openDropdown, setOpenDropdown] = useState<'windows' | 'macos' | 'linux' | null>(null);
 
@@ -230,6 +272,29 @@ export default function DesktopHero(props: DesktopHeroProps) {
     }
     return platformData.some((platform) => platform.platform === 'macos');
   }, [platformData]);
+
+  useEffect(() => {
+    const currentVersion = getCurrentVersion();
+    const platformGroups = currentVersion ? groupAssetsByPlatform(currentVersion.assets) : [];
+    const probeUrl = findFirstGithubReleaseUrl(platformGroups);
+    const cachedState = getCachedGithubReachabilityState();
+    setGithubReachabilityState(cachedState);
+
+    if (!probeUrl || (cachedState !== 'unknown' && cachedState !== 'probing')) {
+      return;
+    }
+
+    let mounted = true;
+    void ensureGithubReachabilityProbe(probeUrl).then((state) => {
+      if (mounted) {
+        setGithubReachabilityState(state);
+      }
+    });
+
+    return () => {
+      mounted = false;
+    };
+  }, [versionData, currentChannel]);
 
   const toggleDropdown = useCallback((platform: 'windows' | 'macos' | 'linux') => {
     setOpenDropdown(prev => prev === platform ? null : platform);
@@ -342,9 +407,11 @@ export default function DesktopHero(props: DesktopHeroProps) {
                   {visiblePlatformData.map((platform) => {
                     const isPrimary = userOS !== 'unknown' && platform.platform === userOS;
                     const isOpen = openDropdown === platform.platform;
-
-                    // 获取该平台的默认下载选项（优先推荐版本）
                     const defaultOption = platform.options[0];
+                    const primaryTarget = resolveDesktopHeroPrimaryTarget(
+                      defaultOption ?? null,
+                      githubReachabilityState,
+                    );
 
                     return (
                       <div
@@ -355,16 +422,18 @@ export default function DesktopHero(props: DesktopHeroProps) {
                         <div className={styles.splitButtonContainer}>
                           {/* 主下载按钮 - 左侧 */}
                           <a
-                            href={defaultOption.url}
+                            href={primaryTarget.href}
                             className={styles.btnDownloadMain}
                             download
                             onClick={() => {
-                              trackEvent(getDesktopDownloadEventName(defaultOption.assetType), {
-                                source: `desktop-hero-${platform.platform}-primary`,
-                              });
+                              if (defaultOption) {
+                                trackEvent(getDesktopDownloadEventName(defaultOption.assetType), {
+                                  source: `desktop-hero-${platform.platform}-primary-${primaryTarget.action?.kind ?? 'official'}`,
+                                });
+                              }
                               setOpenDropdown(null);
                             }}
-                            aria-label={getDownloadAriaLabel(platform.platformLabel)}
+                            aria-label={`${getDownloadAriaLabel(platform.platformLabel)}${primaryTarget.action ? ` (${getDownloadActionLabel(primaryTarget.action.kind, locale)})` : ''}`}
                           >
                             <span className={styles.platformButtonLabel}>
                               {isPrimary && <span className={styles.recommendedBadge}>{t('desktopHero.download.recommended')}</span>}
@@ -378,7 +447,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
                             className={styles.btnDropdownToggle}
                             onClick={() => toggleDropdown(platform.platform)}
                             aria-expanded={isOpen}
-                            aria-haspopup="listbox"
+                            aria-haspopup="menu"
                             aria-label={getSelectOtherVersionsLabel(platform.platformLabel)}
                           >
                             <ChevronDownIcon />
@@ -393,23 +462,50 @@ export default function DesktopHero(props: DesktopHeroProps) {
                                 <span className={styles.platformLabel}>{platform.platformLabel}</span>
                               </div>
                               <div className={styles.dropdownList}>
-                                {platform.options.map((option, idx) => (
-                                  <a
-                                    key={idx}
-                                    href={option.url}
-                                    className={styles.dropdownItem}
-                                    download
-                                    onClick={() => {
-                                      trackEvent(getDesktopDownloadEventName(option.assetType), {
-                                        source: `desktop-hero-${platform.platform}-dropdown`,
-                                      });
-                                      setOpenDropdown(null);
-                                    }}
-                                  >
-                                    <span className={styles.dropdownItemLabel}>{getAssetTypeLabel(option.assetType)}</span>
-                                    <DownloadIcon />
-                                  </a>
-                                ))}
+                                {platform.options.map((option, idx) => {
+                                  const resolvedAction = resolvePrimaryDownloadAction(
+                                    { sourceActions: option.sourceActions },
+                                    githubReachabilityState,
+                                  );
+
+                                  return (
+                                    <div
+                                      key={`${platform.platform}-${option.url}-${idx}`}
+                                      className={styles.dropdownItem}
+                                    >
+                                      <div className={styles.dropdownItemLabelRow}>
+                                        <span className={styles.dropdownItemLabel}>{getAssetTypeLabel(option.assetType)}</span>
+                                        <DownloadIcon />
+                                      </div>
+                                      <div className={styles.dropdownSourceActions}>
+                                        {option.sourceActions.map((action) => {
+                                          const isSmartDefault = resolvedAction?.kind === action.kind;
+                                          return (
+                                            <a
+                                              key={`${option.url}-${action.kind}`}
+                                              href={action.url}
+                                              className={`${styles.dropdownSourceAction} ${isSmartDefault ? styles.dropdownSourceActionDefault : ''}`}
+                                              download
+                                              onClick={() => {
+                                                trackEvent(getDesktopDownloadEventName(option.assetType), {
+                                                  source: `desktop-hero-${platform.platform}-source-${action.kind}`,
+                                                });
+                                                setOpenDropdown(null);
+                                              }}
+                                            >
+                                              <span>{getDownloadActionLabel(action.kind, locale)}</span>
+                                              {isSmartDefault && (
+                                                <span className={styles.dropdownSourceActionBadge}>
+                                                  {locale === 'en' ? 'Default' : '默认'}
+                                                </span>
+                                              )}
+                                            </a>
+                                          );
+                                        })}
+                                      </div>
+                                    </div>
+                                  );
+                                })}
                               </div>
                             </div>
                           )}

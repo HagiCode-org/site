@@ -160,25 +160,51 @@
      这样可以确保下拉菜单始终显示在最顶层，不受任何父元素影响 */
   position: fixed;
   /* top 和 left 将通过内联样式动态设置 */
-  width: min(400px, max(280px, 40vw));
+  --dropdown-surface: #ffffff;
+  --dropdown-surface-strong: #f8fafc;
+  --dropdown-border: rgba(148, 163, 184, 0.34);
+  --dropdown-shadow: none;
+  --dropdown-header-surface: #f8fafc;
+  --dropdown-header-text: #475569;
+  --dropdown-card-surface: #ffffff;
+  --dropdown-card-border: rgba(148, 163, 184, 0.28);
+  --dropdown-card-shadow: none;
+  --dropdown-card-hover-surface: #f8fbff;
+  --dropdown-card-hover-border: rgba(59, 130, 246, 0.32);
+  --dropdown-card-hover-shadow: none;
+  --dropdown-text: #0f172a;
+  --dropdown-muted: #64748b;
+  --dropdown-chip-surface: #f8fbff;
+  --dropdown-chip-border: rgba(59, 130, 246, 0.22);
+  --dropdown-chip-text: #0f172a;
+  --dropdown-chip-hover-surface: #eff6ff;
+  --dropdown-chip-hover-border: rgba(37, 99, 235, 0.34);
+  --dropdown-chip-default-surface: #f8fbff;
+  --dropdown-chip-default-border: rgba(59, 130, 246, 0.22);
+  --dropdown-chip-default-text: #0f172a;
+  --dropdown-badge-surface: rgba(255, 255, 255, 0.96);
+  --dropdown-badge-text: currentColor;
+  --dropdown-disabled-surface: rgba(148, 163, 184, 0.1);
+  --dropdown-disabled-border: rgba(148, 163, 184, 0.35);
+  --dropdown-disabled-text: #94a3b8;
+  --dropdown-disabled-accent: #f59e0b;
+  --dropdown-separator: rgba(148, 163, 184, 0.24);
+  width: min(600px, max(420px, 60vw));
   max-width: calc(100vw - 32px);
   max-height: calc(100vh - 32px);
-  background: var(--color-surface);
-  /* 强制指定背景色，确保在 Starlight 中生效 */
-  background-color: #ffffff;
-  border: 1px solid var(--color-border);
-  border-color: rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
-  box-shadow: var(--shadow-lg);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  background: var(--dropdown-surface);
+  border: 1px solid var(--dropdown-border);
+  border-radius: 1rem;
+  box-shadow: var(--dropdown-shadow);
   list-style: none;
   margin: 0;
-  padding: 0.75rem;
+  padding: 1rem;
   box-sizing: border-box;
   overflow-y: auto;
   overscroll-behavior: contain;
   /* 超高 z-index 确保在所有内容之上 */
   z-index: 999999;
+  font-size: 1rem;
 }
 
 .dropdownMenuOpen {
@@ -194,14 +220,17 @@
   display: flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.5rem 0.75rem;
-  margin: 0.25rem -0.75rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-text-muted);
+  padding: 0.75rem 0.9rem 0.75rem 1rem;
+  margin: 0.125rem 0 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--dropdown-header-text);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  /* 左侧色栏 */
+  letter-spacing: 0.08em;
+  background: var(--dropdown-header-surface);
+  border: 1px solid var(--dropdown-card-border);
+  border-radius: 0.9rem;
+  box-shadow: none;
 }
 
 .dropdownGroupLabel::before {
@@ -216,17 +245,17 @@
 
 /* Windows - 蓝色 */
 .platform--windows::before {
-  background: linear-gradient(180deg, #0080FF 0%, #0066CC 100%);
+  background: #2563eb;
 }
 
 /* macOS - 紫色 */
 .platform--macos::before {
-  background: linear-gradient(180deg, #9B59B6 0%, #8E44AD 100%);
+  background: #9333ea;
 }
 
 /* Linux - 橙色 */
 .platform--linux::before {
-  background: linear-gradient(180deg, #E67E22 0%, #D35400 100%);
+  background: #ea580c;
 }
 
 .platformIcon {
@@ -241,10 +270,9 @@
 
 .versionTag {
   margin-left: auto;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--color-text-muted);
-  opacity: 0.7;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--dropdown-muted);
 }
 
 /* ==========================================================================
@@ -255,33 +283,44 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 0.75rem;
   min-height: 40px;
-  padding: 0.75rem 0.875rem;
-  color: var(--color-text-secondary);
+  padding: 0.95rem 1rem;
+  color: var(--dropdown-text);
   text-decoration: none;
-  border-radius: 0.375rem;
-  transition: all 0.15s ease-out;
-  font-size: 0.875rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--dropdown-card-border);
+  background: var(--dropdown-card-surface);
+  box-shadow: var(--dropdown-card-shadow);
+  transition: all 0.18s ease-out;
+  font-size: 1rem;
   cursor: pointer;
 }
 
 .dropdownItem:hover {
-  background: var(--color-surface-hover);
-  color: var(--color-text);
+  background: var(--dropdown-card-hover-surface);
+  border-color: var(--dropdown-card-hover-border);
+  box-shadow: var(--dropdown-card-hover-shadow);
+  color: var(--dropdown-text);
+}
+
+.dropdownItemRecommended {
+  border-color: var(--dropdown-card-border);
+  background: var(--dropdown-card-surface);
 }
 
 .dropdownItemDisabled {
   cursor: not-allowed;
   pointer-events: none;
-  background: rgba(148, 163, 184, 0.1);
-  color: var(--color-text-muted);
-  border: 1px dashed rgba(148, 163, 184, 0.35);
+  background: var(--dropdown-disabled-surface);
+  color: var(--dropdown-disabled-text);
+  border: 1px dashed var(--dropdown-disabled-border);
+  box-shadow: none;
 }
 
 .dropdownItemDisabledNotice {
-  font-size: 0.75rem;
-  color: #f59e0b;
+  font-size: 0.875rem;
+  color: var(--dropdown-disabled-accent);
   font-weight: 600;
 }
 
@@ -289,12 +328,13 @@
   flex: 1;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.25rem;
 }
 
 .archLabel {
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  color: var(--dropdown-muted);
   font-weight: 400;
 }
 
@@ -303,9 +343,9 @@
   align-items: center;
   padding: 0.125rem 0.375rem;
   margin-left: 0.25rem;
-  font-size: 0.65rem;
+  font-size: 0.8125rem;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--dropdown-chip-text);
   background: rgba(0, 128, 255, 0.08);
   border-radius: 0.25rem;
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
@@ -315,15 +355,77 @@
 .recommendedBadge {
   display: inline-flex;
   align-items: center;
-  font-size: 0.7rem;
-  color: #FFA000;
-  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--dropdown-muted);
+  font-weight: 700;
   margin-left: 0.25rem;
 }
 
 .dropdownItemSize {
-  font-size: 0.75rem;
-  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  color: var(--dropdown-muted);
+  font-weight: 600;
+}
+
+.dropdownItemMultiSource {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+.dropdownItemMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.dropdownSourceActions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+  gap: 0.625rem;
+}
+
+.dropdownSourceAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 38px;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.8rem;
+  border: 1px solid var(--dropdown-chip-border);
+  background: var(--dropdown-chip-surface);
+  color: var(--dropdown-chip-text);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: none;
+  transition: all 0.15s ease-out;
+}
+
+.dropdownSourceAction:hover {
+  background: var(--dropdown-chip-hover-surface);
+  border-color: var(--dropdown-chip-hover-border);
+  color: var(--dropdown-text);
+}
+
+.dropdownSourceActionDefault {
+  background: var(--dropdown-chip-default-surface);
+  border-color: var(--dropdown-chip-default-border);
+  color: var(--dropdown-chip-default-text);
+}
+
+.dropdownSourceActionBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.375rem;
+  border-radius: 999px;
+  background: var(--dropdown-badge-surface);
+  color: var(--dropdown-badge-text);
+  font-size: 0.8125rem;
+  font-weight: 700;
 }
 
 /* ==========================================================================
@@ -331,8 +433,8 @@
    ========================================================================== */
 
 .dropdownSeparator {
-  margin: 0.5rem 0;
-  border-top: 1px solid var(--color-border-light);
+  margin: 0.75rem 0;
+  border-top: 1px solid var(--dropdown-separator);
 }
 
 /* ==========================================================================
@@ -346,7 +448,8 @@
 }
 
 .dropdownItemDocker:hover {
-  background: var(--gradient-tech);
+  background: #f0f7ff;
+  border-color: rgba(59, 130, 246, 0.3);
 }
 
 .dockerIcon {
@@ -391,28 +494,53 @@
 }
 
 [data-theme='dark'] .dropdownMenu {
-  background: #0a0f1e;
-  background-color: #0a0f1e;
-  border-color: rgba(255, 255, 255, 0.12);
+  --dropdown-surface: #0f172a;
+  --dropdown-surface-strong: #162033;
+  --dropdown-border: rgba(96, 165, 250, 0.28);
+  --dropdown-shadow: none;
+  --dropdown-header-surface: #162033;
+  --dropdown-header-text: #bfdbfe;
+  --dropdown-card-surface: #0f172a;
+  --dropdown-card-border: rgba(96, 165, 250, 0.22);
+  --dropdown-card-shadow: none;
+  --dropdown-card-hover-surface: #132033;
+  --dropdown-card-hover-border: rgba(96, 165, 250, 0.38);
+  --dropdown-card-hover-shadow: none;
+  --dropdown-text: #e2e8f0;
+  --dropdown-muted: #94a3b8;
+  --dropdown-chip-surface: #132033;
+  --dropdown-chip-border: rgba(34, 211, 238, 0.26);
+  --dropdown-chip-text: #e2e8f0;
+  --dropdown-chip-hover-surface: #163047;
+  --dropdown-chip-hover-border: rgba(34, 211, 238, 0.34);
+  --dropdown-chip-default-surface: #132033;
+  --dropdown-chip-default-border: rgba(34, 211, 238, 0.26);
+  --dropdown-chip-default-text: #e2e8f0;
+  --dropdown-badge-surface: rgba(255, 255, 255, 0.08);
+  --dropdown-disabled-surface: rgba(51, 65, 85, 0.5);
+  --dropdown-disabled-border: rgba(148, 163, 184, 0.3);
+  --dropdown-disabled-text: #94A3B8;
+  --dropdown-disabled-accent: #fbbf24;
+  --dropdown-separator: rgba(71, 85, 105, 0.68);
 }
 
 [data-theme='dark'] .dropdownItemDisabled {
-  background: rgba(51, 65, 85, 0.5);
-  border-color: rgba(148, 163, 184, 0.3);
-  color: #94A3B8;
+  background: var(--dropdown-disabled-surface);
+  border-color: var(--dropdown-disabled-border);
+  color: var(--dropdown-disabled-text);
 }
 
 /* 暗色主题下的平台色栏 - 更柔和 */
 [data-theme='dark'] .platform--windows::before {
-  background: linear-gradient(180deg, #0066CC 0%, #004C99 100%);
+  background: #3b82f6;
 }
 
 [data-theme='dark'] .platform--macos::before {
-  background: linear-gradient(180deg, #7B3996 0%, #6E349D 100%);
+  background: #a855f7;
 }
 
 [data-theme='dark'] .platform--linux::before {
-  background: linear-gradient(180deg, #C66E12 0%, #B34400 100%);
+  background: #f97316;
 }
 
 /* ==========================================================================
@@ -452,28 +580,53 @@
 }
 
 [data-theme='lunar-new-year'] .dropdownMenu {
-  background: #521818;
-  background-color: #521818;
-  border-color: rgba(255, 193, 7, 0.4);
+  --dropdown-surface: #521818;
+  --dropdown-surface-strong: #681c1c;
+  --dropdown-border: rgba(251, 191, 36, 0.32);
+  --dropdown-shadow: none;
+  --dropdown-header-surface: #7f1d1d;
+  --dropdown-header-text: #fde68a;
+  --dropdown-card-surface: #681c1c;
+  --dropdown-card-border: rgba(251, 191, 36, 0.24);
+  --dropdown-card-shadow: none;
+  --dropdown-card-hover-surface: #7f1d1d;
+  --dropdown-card-hover-border: rgba(253, 224, 71, 0.34);
+  --dropdown-card-hover-shadow: none;
+  --dropdown-text: #fff7ed;
+  --dropdown-muted: #fcd34d;
+  --dropdown-chip-surface: #92400e;
+  --dropdown-chip-border: rgba(252, 211, 77, 0.24);
+  --dropdown-chip-text: #fef3c7;
+  --dropdown-chip-hover-surface: #b45309;
+  --dropdown-chip-hover-border: rgba(253, 224, 71, 0.34);
+  --dropdown-chip-default-surface: #92400e;
+  --dropdown-chip-default-border: rgba(252, 211, 77, 0.24);
+  --dropdown-chip-default-text: #fef3c7;
+  --dropdown-badge-surface: rgba(255, 251, 235, 0.14);
+  --dropdown-disabled-surface: rgba(120, 53, 15, 0.35);
+  --dropdown-disabled-border: rgba(251, 191, 36, 0.35);
+  --dropdown-disabled-text: #FCD34D;
+  --dropdown-disabled-accent: #fde68a;
+  --dropdown-separator: rgba(251, 191, 36, 0.24);
 }
 
 [data-theme='lunar-new-year'] .dropdownItemDisabled {
-  background: rgba(120, 53, 15, 0.35);
-  border-color: rgba(251, 191, 36, 0.35);
-  color: #FCD34D;
+  background: var(--dropdown-disabled-surface);
+  border-color: var(--dropdown-disabled-border);
+  color: var(--dropdown-disabled-text);
 }
 
 /* 新年主题下的平台色栏 - 金色系 */
 [data-theme='lunar-new-year'] .platform--windows::before {
-  background: linear-gradient(180deg, #FFD54F 0%, #FFA000 100%);
+  background: #ffd54f;
 }
 
 [data-theme='lunar-new-year'] .platform--macos::before {
-  background: linear-gradient(180deg, #FFECB3 0%, #FFCA28 100%);
+  background: #ffecb3;
 }
 
 [data-theme='lunar-new-year'] .platform--linux::before {
-  background: linear-gradient(180deg, #FFF9C4 0%, #FFEE58 100%);
+  background: #fff9c4;
 }
 
 [data-theme='lunar-new-year'] .dropdownItemDocker {
@@ -498,6 +651,15 @@
   .installButtonWrapper--full .btnDropdownToggle {
     width: 40px;
     min-width: 40px;
+  }
+
+  .dropdownMenu {
+    width: min(92vw, 34rem);
+    padding: 0.875rem;
+  }
+
+  .dropdownSourceActions {
+    grid-template-columns: 1fr;
   }
 }
 
