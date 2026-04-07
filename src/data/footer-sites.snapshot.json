@@ -1,0 +1,113 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-04-07T00:00:00.000Z",
+  "groups": [
+    {
+      "id": "core-sites",
+      "label": "核心站点",
+      "description": "项目官网、正式文档与长期内容站点，适合作为进入 HagiCode 生态的主路径。"
+    },
+    {
+      "id": "data-and-tools",
+      "label": "数据与工具",
+      "description": "保留公开数据镜像、部署工具、状态页与辅助实验站点，便于核对服务与入口。"
+    },
+    {
+      "id": "creator-studios",
+      "label": "创作实验",
+      "description": "围绕人格与特质构建的独立体验站点。"
+    }
+  ],
+  "entries": [
+    {
+      "id": "hagicode-main",
+      "title": "HagiCode 主站",
+      "label": "官网",
+      "description": "产品入口",
+      "groupId": "core-sites",
+      "url": "https://hagicode.com/",
+      "actionLabel": "进入主站"
+    },
+    {
+      "id": "hagicode-docs",
+      "title": "HagiCode Docs",
+      "label": "文档",
+      "description": "使用指南",
+      "groupId": "core-sites",
+      "url": "https://docs.hagicode.com/",
+      "actionLabel": "查看文档"
+    },
+    {
+      "id": "newbe-blog",
+      "title": "newbe",
+      "label": "newbe",
+      "description": "作者博客",
+      "groupId": "core-sites",
+      "url": "https://newbe.hagicode.com/",
+      "actionLabel": "打开 newbe"
+    },
+    {
+      "id": "index-data",
+      "title": "Index Data Mirror",
+      "label": "数据镜像",
+      "description": "公开数据",
+      "groupId": "data-and-tools",
+      "url": "https://index.hagicode.com/data/",
+      "actionLabel": "打开数据页"
+    },
+    {
+      "id": "compose-builder",
+      "title": "Docker Compose Builder",
+      "label": "Builder",
+      "description": "Docker 部署 Hagicode",
+      "groupId": "data-and-tools",
+      "url": "https://builder.hagicode.com/",
+      "actionLabel": "打开 Builder"
+    },
+    {
+      "id": "cost-calculator",
+      "title": "AI Replacement Calculator",
+      "label": "Cost",
+      "description": "我要被AI淘汰了？！",
+      "groupId": "data-and-tools",
+      "url": "https://cost.hagicode.com/",
+      "actionLabel": "打开 Cost"
+    },
+    {
+      "id": "status-page",
+      "title": "HagiCode Status",
+      "label": "Status",
+      "description": "服务状态",
+      "groupId": "data-and-tools",
+      "url": "https://status.hagicode.com/",
+      "actionLabel": "查看状态"
+    },
+    {
+      "id": "awesome-design-gallery",
+      "title": "Awesome Design MD",
+      "label": "Design",
+      "description": "超酷的AI Web 设计",
+      "groupId": "data-and-tools",
+      "url": "https://design.hagicode.com/",
+      "actionLabel": "打开 Design"
+    },
+    {
+      "id": "soul-builder",
+      "title": "Soul Builder",
+      "label": "Soul",
+      "description": "Agent之魂",
+      "groupId": "creator-studios",
+      "url": "https://soul.hagicode.com/",
+      "actionLabel": "打开 Soul"
+    },
+    {
+      "id": "trait-builder",
+      "title": "Trait Builder",
+      "label": "Trait",
+      "description": "Agent之能",
+      "groupId": "creator-studios",
+      "url": "https://trait.hagicode.com/",
+      "actionLabel": "打开 Trait"
+    }
+  ]
+}
