@@ -9,7 +9,8 @@ import { hagicodeCompliance } from '@/config/compliance';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import styles from './Footer.module.css';
-import { getLinkWithLocale, getLinkTarget, getLinkRel } from '@/lib/shared/links';
+import { getLinkWithLocale } from '@/lib/shared/links';
+import { resolveSiteFooterCatalogLinks } from '@/lib/footer-site-links';
 
 /**
  * Footer 组件 Props
@@ -28,6 +29,8 @@ interface FooterProps {
 interface FooterLink {
   /** 链接显示文字 */
   label: string;
+  /** 链接简介 */
+  description?: string;
   /** 链接目标 URL */
   href: string;
   /** 是否外部链接 */
@@ -44,23 +47,6 @@ interface FooterSection {
   title: string;
   /** 区块链接列表 */
   links: FooterLink[];
-}
-
-/**
- * GitHub 图标组件
- */
-function GitHubIcon({ className = '' }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-    </svg>
-  );
 }
 
 /**
@@ -93,8 +79,6 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
   const locale = propLocale || detectedLocale;
   const { t } = useTranslation(locale);
 
-  // 从共享库获取链接
-  const docsLink = getLinkWithLocale('docs', locale);
   const desktopLink = getLinkWithLocale('desktop', locale);
   const githubLink = getLinkWithLocale('github', locale);
   const qqGroupLink = getLinkWithLocale('qqGroup', locale);
@@ -103,30 +87,69 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
   const rssLink = getLinkWithLocale('rss', locale);
   const productOverviewLink = getLinkWithLocale('productOverview', locale);
 
-  // 外部链接属性
-  const externalTarget = getLinkTarget('github');
-  const externalRel = getLinkRel('github');
-
   const currentYear = new Date().getFullYear();
 
   // 定义三栏内容数据结构
   const footerData = useMemo((): {
-    productInfo: FooterSection;
+    relatedSites: FooterSection;
     quickLinks: FooterSection;
     community: FooterSection;
-  } => ({
-    productInfo: {
-      title: t('footer.product'),
-      links: [
-        {
-          label: t('footer.productInfo'),
-          href: productOverviewLink,
-          external: false,
-          ariaLabel: t('footer.productInfo'),
-        },
-      ],
-    },
-    quickLinks: {
+  } => {
+    const communityLinks: FooterLink[] = [
+      {
+        label: t('footer.github'),
+        href: githubLink,
+        external: true,
+        ariaLabel: t('footer.github'),
+      },
+      {
+        label: t('footer.discord'),
+        href: discordLink,
+        external: true,
+        ariaLabel: t('footer.discord'),
+      },
+      {
+        label: t('footer.issueFeedback'),
+        href: 'https://github.com/HagiCode-org/site/issues',
+        external: true,
+        ariaLabel: t('footer.issueFeedback'),
+      },
+      {
+        label: t('footer.contactEmail'),
+        href: 'mailto:support@hagicode.com',
+        external: true,
+        ariaLabel: t('footer.contactEmail'),
+      },
+      {
+        label: t('footer.qqGroup'),
+        href: qqGroupLink,
+        external: true,
+        ariaLabel: t('footer.qqGroup'),
+      },
+      {
+        label: t('footer.costCalculator'),
+        href: costCalculatorLink,
+        external: true,
+        ariaLabel: t('footer.costCalculator'),
+      },
+    ];
+
+    const relatedSiteLinks: FooterLink[] = resolveSiteFooterCatalogLinks({
+      localLinks: communityLinks.map((link) => ({ href: link.href })),
+    }).map((link) => ({
+      label: link.title,
+      description: link.description,
+      href: link.href,
+      external: true,
+      ariaLabel: t('footer.visitPage').replace('{title}', link.title),
+    }));
+
+    return {
+      relatedSites: {
+        title: locale === 'en' ? 'Related Sites' : '生态站点',
+        links: relatedSiteLinks,
+      },
+      quickLinks: {
       title: t('footer.quickLinks'),
       links: [
         {
@@ -157,46 +180,10 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
     },
     community: {
       title: t('footer.community'),
-      links: [
-        {
-          label: t('footer.github'),
-          href: githubLink,
-          external: true,
-          ariaLabel: t('footer.github'),
-        },
-        {
-          label: t('footer.discord'),
-          href: discordLink,
-          external: true,
-          ariaLabel: t('footer.discord'),
-        },
-        {
-          label: t('footer.issueFeedback'),
-          href: 'https://github.com/HagiCode-org/site/issues',
-          external: true,
-          ariaLabel: t('footer.issueFeedback'),
-        },
-        {
-          label: t('footer.contactEmail'),
-          href: 'mailto:support@hagicode.com',
-          external: true,
-          ariaLabel: t('footer.contactEmail'),
-        },
-        {
-          label: t('footer.qqGroup'),
-          href: qqGroupLink,
-          external: true,
-          ariaLabel: t('footer.qqGroup'),
-        },
-        {
-          label: t('footer.costCalculator'),
-          href: costCalculatorLink,
-          external: true,
-          ariaLabel: t('footer.costCalculator'),
-        },
-      ],
+      links: communityLinks,
     },
-  }), [t, docsLink, desktopLink, githubLink, discordLink, productOverviewLink, rssLink, qqGroupLink, costCalculatorLink, locale]);
+  };
+  }, [t, desktopLink, githubLink, discordLink, productOverviewLink, rssLink, qqGroupLink, costCalculatorLink, locale]);
 
   return (
     <footer className={`${styles.footer} ${className}`}>
@@ -218,9 +205,9 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
         <div className={styles.sections}>
           {/* 产品信息 */}
           <div className={styles.section}>
-            <h3 className={styles.sectionTitle}>{footerData.productInfo.title}</h3>
-            <nav className={styles.sectionLinks} aria-label={`${footerData.productInfo.title}链接`}>
-              {footerData.productInfo.links.map((link) => (
+            <h3 className={styles.sectionTitle}>{footerData.relatedSites.title}</h3>
+            <nav className={styles.sectionLinks} aria-label={`${footerData.relatedSites.title}链接`}>
+              {footerData.relatedSites.links.map((link) => (
                 <a
                   key={link.href}
                   className={styles.sectionLink}
@@ -229,7 +216,10 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
                   rel={link.external ? 'noopener noreferrer' : undefined}
                   aria-label={link.ariaLabel}
                 >
-                  {link.label}
+                  <span className={styles.sectionLinkText}>{link.label}</span>
+                  {link.description ? (
+                    <span className={styles.sectionLinkDescription}>{link.description}</span>
+                  ) : null}
                 </a>
               ))}
             </nav>

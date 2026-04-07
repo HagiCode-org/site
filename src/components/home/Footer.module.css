@@ -226,7 +226,21 @@
   font-weight: 400;
   min-height: 44px; /* 触控目标最小高度 */
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.125rem;
+}
+
+.sectionLinkText {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.sectionLinkDescription {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--footer-link-color);
 }
 
 /* 链接悬停状态 */
