@@ -1,7 +1,11 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
+  ABOUT_SNAPSHOT_URL,
   ABOUT_SNAPSHOT_ORIGIN,
+  fetchCanonicalAboutSnapshot,
   getBundledAboutSnapshot,
+  getAboutSnapshotMaterialChangeSummary,
+  hasAboutSnapshotMaterialChange,
   normalizeAboutSnapshotData,
   partitionAboutEntries,
 } from './about-snapshot-source';
@@ -134,5 +138,63 @@ describe('about snapshot source', () => {
     expect(grouped.media.length).toBe(3);
     expect(grouped.links.some((entry) => entry.id === 'youtube')).toBe(true);
     expect(grouped.media[0]?.resolvedImageUrl.startsWith(`${ABOUT_SNAPSHOT_ORIGIN}/_astro/`)).toBe(true);
+  });
+
+  it('loads the canonical payload with runtime-safe fetch options', async () => {
+    const fetcher = vi.fn().mockResolvedValue({
+      ok: true,
+      json: vi.fn().mockResolvedValue(structuredClone(fixture)),
+    });
+
+    const snapshot = await fetchCanonicalAboutSnapshot(fetcher as typeof fetch);
+
+    expect(fetcher).toHaveBeenCalledWith(
+      ABOUT_SNAPSHOT_URL,
+      expect.objectContaining({
+        cache: 'no-store',
+        headers: expect.objectContaining({
+          accept: 'application/json',
+        }),
+      }),
+    );
+    expect(snapshot.updatedAt).toBe(fixture.updatedAt);
+    expect(snapshot.entries.find((entry) => entry.id === 'wechat-account')).toMatchObject({
+      type: 'qr',
+      resolvedImageUrl: `${ABOUT_SNAPSHOT_ORIGIN}/_astro/wechat.hash.jpg`,
+    });
+  });
+
+  it('detects freshness and image URL changes between bundled and fetched payloads', () => {
+    const current = normalizeAboutSnapshotData(structuredClone(fixture));
+    const candidate = normalizeAboutSnapshotData({
+      ...structuredClone(fixture),
+      updatedAt: '2026-04-03T00:00:00.000Z',
+      entries: fixture.entries.map((entry) =>
+        entry.id === 'wechat-account'
+          ? { ...entry, imageUrl: '/_astro/wechat.next.jpg' }
+          : entry,
+      ),
+    });
+
+    const summary = getAboutSnapshotMaterialChangeSummary(current, candidate);
+
+    expect(summary.freshnessChanged).toBe(true);
+    expect(summary.entriesChanged).toBe(true);
+    expect(summary.imageUrlsChanged).toBe(true);
+    expect(summary.changedEntryIds).toContain('wechat-account');
+    expect(hasAboutSnapshotMaterialChange(current, candidate)).toBe(true);
+  });
+
+  it('treats identical canonical payloads as a no-op', () => {
+    const current = normalizeAboutSnapshotData(structuredClone(fixture));
+    const candidate = normalizeAboutSnapshotData(structuredClone(fixture));
+
+    expect(getAboutSnapshotMaterialChangeSummary(current, candidate)).toEqual({
+      freshnessChanged: false,
+      entriesChanged: false,
+      imageUrlsChanged: false,
+      changedEntryIds: [],
+    });
+    expect(hasAboutSnapshotMaterialChange(current, candidate)).toBe(false);
   });
 });

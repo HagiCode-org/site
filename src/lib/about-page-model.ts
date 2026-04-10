@@ -1,6 +1,7 @@
 import { getAbsoluteSiteUrl, type SiteLocale } from '@/lib/locale-routing';
 import {
   getBundledAboutSnapshot,
+  type AboutSnapshotData,
   type AboutSnapshotContactEntry,
   type AboutSnapshotEntry,
   type AboutSnapshotLinkEntry,
@@ -86,6 +87,10 @@ export interface AboutPageModel {
   readonly locale: SiteLocale;
   readonly routePath: string;
   readonly alternatePath: string;
+  readonly snapshot: {
+    readonly version: string;
+    readonly updatedAt: string;
+  };
   readonly seo: {
     readonly title: string;
     readonly description: string;
@@ -350,10 +355,12 @@ function buildContentEntries(locale: SiteLocale, entries: readonly AboutSnapshot
   });
 }
 
-export function buildAboutPageModel(locale: SiteLocale): AboutPageModel {
+export function buildAboutPageModel(
+  locale: SiteLocale,
+  snapshot: AboutSnapshotData = getBundledAboutSnapshot(),
+): AboutPageModel {
   const copy = localeCopy[locale];
   const alternateLocale: SiteLocale = locale === 'zh-CN' ? 'en' : 'zh-CN';
-  const snapshot = getBundledAboutSnapshot();
   const communityEntries = sortEntries(locale, snapshot.entries.filter((entry) => isCommunityEntry(entry)));
   const contentEntries = buildContentEntries(locale, snapshot.entries);
 
@@ -361,6 +368,10 @@ export function buildAboutPageModel(locale: SiteLocale): AboutPageModel {
     locale,
     routePath: getRoutePath(locale),
     alternatePath: getRoutePath(alternateLocale),
+    snapshot: {
+      version: snapshot.version,
+      updatedAt: snapshot.updatedAt,
+    },
     seo: {
       title: copy.seoTitle,
       description: copy.seoDescription,
@@ -383,4 +394,130 @@ export function buildAboutPageModel(locale: SiteLocale): AboutPageModel {
       },
     ],
   };
+}
+
+function getAboutPageEntrySignature(entry: AboutPageEntry): string {
+  switch (entry.kind) {
+    case 'link':
+      return JSON.stringify([
+        entry.kind,
+        entry.id,
+        entry.kindLabel,
+        entry.label,
+        entry.detail,
+        entry.href,
+        entry.linkText,
+        entry.presentation?.theme ?? null,
+        entry.presentation?.icon ?? null,
+        entry.presentation?.badgeLabel ?? null,
+      ]);
+    case 'contact':
+      return JSON.stringify([
+        entry.kind,
+        entry.id,
+        entry.kindLabel,
+        entry.label,
+        entry.detail,
+        entry.value,
+        entry.href ?? null,
+        entry.linkText ?? null,
+        entry.presentation?.theme ?? null,
+        entry.presentation?.icon ?? null,
+        entry.presentation?.badgeLabel ?? null,
+      ]);
+    case 'media':
+      return JSON.stringify([
+        entry.kind,
+        entry.id,
+        entry.kindLabel,
+        entry.label,
+        entry.detail,
+        entry.href,
+        entry.linkText,
+        entry.imageUrl,
+        entry.alt,
+        entry.width,
+        entry.height,
+        entry.presentation?.theme ?? null,
+        entry.presentation?.icon ?? null,
+        entry.presentation?.badgeLabel ?? null,
+      ]);
+    case 'combo':
+      return JSON.stringify([
+        entry.kind,
+        entry.id,
+        entry.kindLabel,
+        entry.label,
+        entry.value,
+        entry.detail,
+        entry.href,
+        entry.linkText,
+        entry.imageUrl,
+        entry.alt,
+        entry.width,
+        entry.height,
+        entry.presentation?.theme ?? null,
+        entry.presentation?.icon ?? null,
+        entry.presentation?.badgeLabel ?? null,
+      ]);
+  }
+}
+
+export function hasAboutPageModelMaterialChange(
+  current: AboutPageModel,
+  candidate: AboutPageModel,
+): boolean {
+  if (current.locale !== candidate.locale) {
+    return true;
+  }
+
+  if (
+    current.routePath !== candidate.routePath ||
+    current.alternatePath !== candidate.alternatePath ||
+    current.snapshot.version !== candidate.snapshot.version ||
+    current.snapshot.updatedAt !== candidate.snapshot.updatedAt ||
+    current.header.title !== candidate.header.title ||
+    current.seo.title !== candidate.seo.title ||
+    current.seo.description !== candidate.seo.description ||
+    current.seo.canonicalUrl !== candidate.seo.canonicalUrl ||
+    current.seo.alternateUrl !== candidate.seo.alternateUrl
+  ) {
+    return true;
+  }
+
+  if (current.sections.length !== candidate.sections.length) {
+    return true;
+  }
+
+  for (let sectionIndex = 0; sectionIndex < current.sections.length; sectionIndex += 1) {
+    const currentSection = current.sections[sectionIndex];
+    const candidateSection = candidate.sections[sectionIndex];
+
+    if (!currentSection || !candidateSection) {
+      return true;
+    }
+
+    if (
+      currentSection.id !== candidateSection.id ||
+      currentSection.title !== candidateSection.title ||
+      currentSection.entries.length !== candidateSection.entries.length
+    ) {
+      return true;
+    }
+
+    for (let entryIndex = 0; entryIndex < currentSection.entries.length; entryIndex += 1) {
+      const currentEntry = currentSection.entries[entryIndex];
+      const candidateEntry = candidateSection.entries[entryIndex];
+
+      if (!currentEntry || !candidateEntry) {
+        return true;
+      }
+
+      if (getAboutPageEntrySignature(currentEntry) !== getAboutPageEntrySignature(candidateEntry)) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 }

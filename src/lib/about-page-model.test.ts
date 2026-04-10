@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { buildAboutPageModel } from './about-page-model';
+import { buildAboutPageModel, hasAboutPageModelMaterialChange } from './about-page-model';
+import { normalizeAboutSnapshotData } from './about-snapshot-source';
 
 describe('about page model', () => {
   it('builds the English about route with international entries first while keeping all entries visible', () => {
@@ -102,5 +103,202 @@ describe('about page model', () => {
     expect(
       contentIds?.indexOf('facebook') ?? Number.MAX_SAFE_INTEGER,
     ).toBeGreaterThan(contentIds?.indexOf('xiaoheihe') ?? Number.MIN_SAFE_INTEGER);
+  });
+
+  it('rebuilds the English page model from an injected fetched snapshot payload', () => {
+    const fetchedSnapshot = normalizeAboutSnapshotData({
+      version: '1.0.0',
+      updatedAt: '2026-04-05T00:00:00.000Z',
+      entries: [
+        {
+          id: 'youtube',
+          type: 'link',
+          label: 'YouTube',
+          regionPriority: 'international-first',
+          url: 'https://www.youtube.com/@hagicode',
+        },
+        {
+          id: 'bilibili',
+          type: 'link',
+          label: 'Bilibili',
+          regionPriority: 'china-first',
+          url: 'https://space.bilibili.com/272265720',
+        },
+        {
+          id: 'xiaohongshu',
+          type: 'contact',
+          label: '小红书',
+          regionPriority: 'china-first',
+          value: '11671904293',
+          url: 'https://www.xiaohongshu.com/user/profile/demo',
+        },
+        {
+          id: 'douyin-account',
+          type: 'contact',
+          label: '抖音',
+          regionPriority: 'china-first',
+          value: 'hagicode',
+        },
+        {
+          id: 'douyin-qr',
+          type: 'qr',
+          label: '抖音二维码',
+          regionPriority: 'china-first',
+          imageUrl: '/_astro/douyin.runtime.png',
+          width: 1061,
+          height: 1059,
+          alt: 'HagiCode 抖音二维码',
+        },
+        {
+          id: 'qq-group',
+          type: 'contact',
+          label: 'QQ群',
+          regionPriority: 'china-first',
+          value: '610394020',
+          url: 'https://qm.qq.com/q/demo',
+        },
+        {
+          id: 'feishu-group',
+          type: 'qr',
+          label: '飞书群',
+          regionPriority: 'china-first',
+          imageUrl: '/_astro/feishu.runtime.png',
+          width: 778,
+          height: 724,
+          alt: 'HagiCode 飞书群二维码',
+          url: 'https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=demo',
+        },
+        {
+          id: 'discord',
+          type: 'link',
+          label: 'Discord',
+          regionPriority: 'international-first',
+          url: 'https://discord.gg/demo',
+        },
+        {
+          id: 'wechat-account',
+          type: 'qr',
+          label: '微信公众号',
+          regionPriority: 'china-first',
+          imageUrl: '/_astro/wechat.runtime.jpg',
+          width: 430,
+          height: 430,
+          alt: 'HagiCode 微信公众号二维码',
+        },
+      ],
+    });
+
+    const runtimeModel = buildAboutPageModel('en', fetchedSnapshot);
+
+    expect(runtimeModel.snapshot).toEqual({
+      version: '1.0.0',
+      updatedAt: '2026-04-05T00:00:00.000Z',
+    });
+    expect(runtimeModel.sections[1]?.entries.find((entry) => entry.id === 'douyin-qr')).toMatchObject({
+      kind: 'media',
+      imageUrl: 'https://index.hagicode.com/_astro/douyin.runtime.png',
+    });
+  });
+
+  it('rebuilds the Chinese page model from an injected fetched snapshot while preserving the Douyin combo logic', () => {
+    const baselineModel = buildAboutPageModel('zh-CN');
+    const fetchedSnapshot = normalizeAboutSnapshotData({
+      version: '1.0.0',
+      updatedAt: '2026-04-06T00:00:00.000Z',
+      entries: [
+        {
+          id: 'youtube',
+          type: 'link',
+          label: 'YouTube',
+          regionPriority: 'international-first',
+          url: 'https://www.youtube.com/@hagicode',
+        },
+        {
+          id: 'bilibili',
+          type: 'link',
+          label: 'Bilibili',
+          regionPriority: 'china-first',
+          url: 'https://space.bilibili.com/272265720',
+        },
+        {
+          id: 'xiaohongshu',
+          type: 'contact',
+          label: '小红书',
+          regionPriority: 'china-first',
+          value: '11671904293',
+          url: 'https://www.xiaohongshu.com/user/profile/demo',
+        },
+        {
+          id: 'douyin-account',
+          type: 'contact',
+          label: '抖音',
+          regionPriority: 'china-first',
+          value: 'hagicode',
+          url: 'https://www.douyin.com/user/demo',
+        },
+        {
+          id: 'douyin-qr',
+          type: 'qr',
+          label: '抖音二维码',
+          regionPriority: 'china-first',
+          imageUrl: '/_astro/douyin.runtime-next.png',
+          width: 1061,
+          height: 1059,
+          alt: 'HagiCode 抖音二维码',
+          url: 'https://www.douyin.com/user/demo',
+        },
+        {
+          id: 'qq-group',
+          type: 'contact',
+          label: 'QQ群',
+          regionPriority: 'china-first',
+          value: '610394020',
+          url: 'https://qm.qq.com/q/demo',
+        },
+        {
+          id: 'feishu-group',
+          type: 'qr',
+          label: '飞书群',
+          regionPriority: 'china-first',
+          imageUrl: '/_astro/feishu.runtime-next.png',
+          width: 778,
+          height: 724,
+          alt: 'HagiCode 飞书群二维码',
+          url: 'https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=demo',
+        },
+        {
+          id: 'discord',
+          type: 'link',
+          label: 'Discord',
+          regionPriority: 'international-first',
+          url: 'https://discord.gg/demo',
+        },
+        {
+          id: 'wechat-account',
+          type: 'qr',
+          label: '微信公众号',
+          regionPriority: 'china-first',
+          imageUrl: '/_astro/wechat.runtime-next.jpg',
+          width: 430,
+          height: 430,
+          alt: 'HagiCode 微信公众号二维码',
+        },
+      ],
+    });
+
+    const runtimeModel = buildAboutPageModel('zh-CN', fetchedSnapshot);
+    const contentIds = runtimeModel.sections[1]?.entries.map((entry) => entry.id);
+    const douyinEntry = runtimeModel.sections[1]?.entries.find((entry) => entry.id === 'douyin');
+
+    expect(contentIds).toContain('douyin');
+    expect(contentIds).not.toContain('douyin-account');
+    expect(contentIds).not.toContain('douyin-qr');
+    expect(douyinEntry).toMatchObject({
+      kind: 'combo',
+      imageUrl: 'https://index.hagicode.com/_astro/douyin.runtime-next.png',
+      href: 'https://www.douyin.com/user/demo',
+    });
+    expect(runtimeModel.snapshot.updatedAt).toBe('2026-04-06T00:00:00.000Z');
+    expect(hasAboutPageModelMaterialChange(baselineModel, runtimeModel)).toBe(true);
   });
 });

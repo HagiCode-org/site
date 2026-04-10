@@ -60,6 +60,13 @@ export interface AboutSnapshotData {
   readonly entries: readonly AboutSnapshotEntry[];
 }
 
+export interface AboutSnapshotMaterialChangeSummary {
+  readonly freshnessChanged: boolean;
+  readonly entriesChanged: boolean;
+  readonly imageUrlsChanged: boolean;
+  readonly changedEntryIds: readonly string[];
+}
+
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
     throw new Error(message);
@@ -168,7 +175,7 @@ function normalizeAboutEntry(
 
   return {
     ...baseEntry,
-    type,
+    type: type as AboutSnapshotMediaEntry['type'],
     imageUrl,
     resolvedImageUrl: resolveImageUrl(imageUrl),
     width: readPositiveInteger(entry.width, `${id}.width`),
@@ -206,6 +213,105 @@ export function normalizeAboutSnapshotData(payload: unknown): AboutSnapshotData 
   };
 }
 
+function getEntryContentSignature(entry: AboutSnapshotEntry): string {
+  switch (entry.type) {
+    case 'link':
+      return JSON.stringify([
+        entry.type,
+        entry.label,
+        entry.regionPriority,
+        entry.description ?? null,
+        entry.url,
+      ]);
+    case 'contact':
+      return JSON.stringify([
+        entry.type,
+        entry.label,
+        entry.regionPriority,
+        entry.description ?? null,
+        entry.value,
+        entry.url ?? null,
+      ]);
+    default:
+      return JSON.stringify([
+        entry.type,
+        entry.label,
+        entry.regionPriority,
+        entry.description ?? null,
+        entry.imageUrl,
+        entry.resolvedImageUrl,
+        entry.width,
+        entry.height,
+        entry.alt,
+        entry.url ?? null,
+      ]);
+  }
+}
+
+export function getAboutSnapshotMaterialChangeSummary(
+  current: AboutSnapshotData,
+  candidate: AboutSnapshotData,
+): AboutSnapshotMaterialChangeSummary {
+  const currentEntriesById = new Map(current.entries.map((entry) => [entry.id, entry]));
+  const candidateEntriesById = new Map(candidate.entries.map((entry) => [entry.id, entry]));
+  const changedEntryIds = new Set<string>();
+
+  let entriesChanged = current.entries.length !== candidate.entries.length;
+  let imageUrlsChanged = false;
+
+  const allEntryIds = new Set([
+    ...currentEntriesById.keys(),
+    ...candidateEntriesById.keys(),
+  ]);
+
+  allEntryIds.forEach((entryId) => {
+    const currentEntry = currentEntriesById.get(entryId);
+    const candidateEntry = candidateEntriesById.get(entryId);
+
+    if (!currentEntry || !candidateEntry) {
+      entriesChanged = true;
+      changedEntryIds.add(entryId);
+      return;
+    }
+
+    if (getEntryContentSignature(currentEntry) !== getEntryContentSignature(candidateEntry)) {
+      entriesChanged = true;
+      changedEntryIds.add(entryId);
+    }
+
+    const currentImageUrl =
+      currentEntry.type === 'qr' || currentEntry.type === 'image'
+        ? currentEntry.resolvedImageUrl
+        : null;
+    const candidateImageUrl =
+      candidateEntry.type === 'qr' || candidateEntry.type === 'image'
+        ? candidateEntry.resolvedImageUrl
+        : null;
+
+    if (currentImageUrl !== candidateImageUrl) {
+      imageUrlsChanged = true;
+      changedEntryIds.add(entryId);
+    }
+  });
+
+  return {
+    freshnessChanged:
+      current.version !== candidate.version ||
+      current.updatedAt !== candidate.updatedAt,
+    entriesChanged,
+    imageUrlsChanged,
+    changedEntryIds: Array.from(changedEntryIds).sort(),
+  };
+}
+
+export function hasAboutSnapshotMaterialChange(
+  current: AboutSnapshotData,
+  candidate: AboutSnapshotData,
+): boolean {
+  const summary = getAboutSnapshotMaterialChangeSummary(current, candidate);
+  return summary.freshnessChanged || summary.entriesChanged || summary.imageUrlsChanged;
+}
+
 let bundledSnapshotCache: AboutSnapshotData | null = null;
 
 export function getBundledAboutSnapshot(): AboutSnapshotData {
@@ -215,6 +321,26 @@ export function getBundledAboutSnapshot(): AboutSnapshotData {
 
   bundledSnapshotCache = normalizeAboutSnapshotData(bundledPayload);
   return bundledSnapshotCache;
+}
+
+export async function fetchCanonicalAboutSnapshot(
+  fetcher: typeof fetch = fetch,
+  requestInit: RequestInit = {},
+): Promise<AboutSnapshotData> {
+  const response = await fetcher(ABOUT_SNAPSHOT_URL, {
+    ...requestInit,
+    cache: 'no-store',
+    headers: {
+      accept: 'application/json',
+      ...(requestInit.headers ?? {}),
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to load canonical about snapshot: ${response.status}`);
+  }
+
+  return normalizeAboutSnapshotData(await response.json());
 }
 
 export function partitionAboutEntries(entries: readonly AboutSnapshotEntry[]) {

@@ -65,7 +65,11 @@ const xDefaultUrl = currentLocale === 'en' ? model.seo.canonicalUrl : model.seo.
       })();
     </script>
   </head>
-  <body class="homepage about-route-shell">
+  <body
+    class="homepage about-route-shell"
+    data-about-locale={model.locale}
+    data-about-snapshot-version={model.snapshot.version}
+  >
     <Navbar client:load locale={model.locale} />
     <AboutSnapshotPage model={model} />
     <Footer client:load locale={model.locale} />
