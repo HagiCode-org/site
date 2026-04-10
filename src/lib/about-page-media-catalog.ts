@@ -131,7 +131,8 @@ const entryCopyOverrides = {
 } as const satisfies Record<SiteLocale, Partial<Record<string, AboutEntryCopyOverride>>>;
 
 function getEntryCopyOverride(locale: SiteLocale, entryId: string): AboutEntryCopyOverride | undefined {
-  return entryCopyOverrides[locale][entryId];
+  const localeOverrides = entryCopyOverrides[locale] as Partial<Record<string, AboutEntryCopyOverride>>;
+  return localeOverrides[entryId];
 }
 
 export function getLocaleRegionPriority(locale: SiteLocale): AboutSnapshotRegionPriority {

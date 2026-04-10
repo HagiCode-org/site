@@ -54,7 +54,7 @@ describe('activity metrics source', () => {
   it('requests the canonical activity metrics URL and returns normalized data', async () => {
     const fetchMock = vi
       .fn<typeof fetch>()
-      .mockResolvedValue(createJsonResponse(structuredClone(activityMetricsFixture)) as Awaited<ReturnType<typeof fetch>>);
+      .mockResolvedValue(createJsonResponse(structuredClone(activityMetricsFixture)) as unknown as Awaited<ReturnType<typeof fetch>>);
 
     const data = await fetchActivityMetricsData(fetchMock);
 
@@ -72,7 +72,7 @@ describe('activity metrics source', () => {
       ok: false,
       status: 503,
       json: vi.fn(),
-    } as Awaited<ReturnType<typeof fetch>>);
+    } as unknown as Awaited<ReturnType<typeof fetch>>);
 
     await expect(fetchActivityMetricsData(fetchMock)).rejects.toThrow('Failed to load activity metrics: 503');
   });
@@ -112,7 +112,7 @@ describe('activity metrics source', () => {
           pullCount: 4747,
           repository: 'newbe36524/hagicode',
         },
-      }) as Awaited<ReturnType<typeof fetch>>);
+      }) as unknown as Awaited<ReturnType<typeof fetch>>);
 
     const result = await loadActivityMetricsData(fetchMock);
 

@@ -103,7 +103,7 @@ describe('live broadcast source', () => {
       ok: true,
       status: 200,
       json: vi.fn().mockResolvedValue(structuredClone(fixture)),
-    } as Awaited<ReturnType<typeof fetch>>);
+    } as unknown as Awaited<ReturnType<typeof fetch>>);
 
     const data = await fetchLiveBroadcastData(fetchMock);
 
