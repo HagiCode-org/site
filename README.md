@@ -122,7 +122,7 @@ For contributor-focused details, start with [`AGENTS.md`](./AGENTS.md) and [`CLA
 ## Build and deployment notes
 
 This repository now focuses on building the static site and related content.
-It no longer publishes to Azure Static Web Apps from this repo.
+Deployment now follows the active hosting pipeline rather than a legacy repo-local static-site flow.
 
 - Build output is generated into `dist/` with `npm run build`.
 - Homepage activity metrics are consumed at runtime from `https://index.hagicode.com/activity-metrics.json`.

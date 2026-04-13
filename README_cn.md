@@ -122,7 +122,7 @@ npm run preview
 ## 构建与部署说明
 
 当前这个仓库只负责官网静态站点及相关内容的构建。
-它已经不再从本仓库发布到 Azure Static Web Apps。
+部署现在遵循当前生效的托管流水线，而不是仓库内的旧静态站点发布流程。
 
 - 运行 `npm run build` 后，构建产物输出到 `dist/`
 - 首页活动统计在运行时读取 `https://index.hagicode.com/activity-metrics.json`
