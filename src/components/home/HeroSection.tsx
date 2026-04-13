@@ -86,34 +86,12 @@ export default function HeroSection({
   const locale = propLocale || detectedLocale;
   const { t } = useTranslation(locale);
 
-  const [currentTagline, setCurrentTagline] = useState(0);
-  const [displayText, setDisplayText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
   const [theme, setTheme] = useState<Theme>(undefined);
 
   // 根据当前 base path 动态生成链接
   const desktopUrl = useMemo(() => getLinkWithLocale('desktop', locale), [locale]);
   const containerUrl = useMemo(() => getLinkWithLocale('container', locale), [locale]);
   const docsUrl = useMemo(() => getLinkWithLocale('productOverview', locale), [locale]);
-
-  // 根据主题选择标语数组
-  const taglines = useMemo(() => {
-    if (theme === 'lunar-new-year') {
-      return [
-        t('hero.lunarTaglines.happyNewYear'),
-        t('hero.lunarTaglines.aiPowered'),
-        t('hero.lunarTaglines.smartCoding'),
-        t('hero.lunarTaglines.openspecLuck'),
-        t('hero.lunarTaglines.efficiency'),
-      ];
-    }
-    return [
-      t('hero.taglines.smart'),
-      t('hero.taglines.aiDriven'),
-      t('hero.taglines.openspec'),
-      t('hero.taglines.multiThread'),
-    ];
-  }, [theme, t]);
 
   // 检测主题变化
   useEffect(() => {
@@ -132,36 +110,6 @@ export default function HeroSection({
 
     return () => observer.disconnect();
   }, []);
-
-  // 重置打字机状态当主题切换时
-  useEffect(() => {
-    setCurrentTagline(0);
-    setDisplayText('');
-    setIsDeleting(false);
-  }, [theme]);
-
-  // 打字机效果
-  useEffect(() => {
-    const currentText = taglines[currentTagline];
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        if (displayText.length < currentText.length) {
-          setDisplayText(currentText.slice(0, displayText.length + 1));
-        } else {
-          setTimeout(() => setIsDeleting(true), 2000);
-        }
-      } else {
-        if (displayText.length > 0) {
-          setDisplayText(currentText.slice(0, displayText.length - 1));
-        } else {
-          setIsDeleting(false);
-          setCurrentTagline((prev) => (prev + 1) % taglines.length);
-        }
-      }
-    }, isDeleting ? 50 : 100);
-
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, currentTagline, taglines]);
 
   // 新年主题图标渲染
   const renderLogoIcons = () => {
@@ -266,22 +214,6 @@ export default function HeroSection({
           <span className={styles.titlePrefix}>Hagi</span>
           <span className={styles.titleGradient}>code</span>
         </motion.h1>
-
-        {/* 打字机效果副标题 */}
-        <motion.p className={styles.heroTagline}>
-          <span className={styles.taglineText}>{displayText}</span>
-          <span className={styles.cursor} />
-        </motion.p>
-
-        {/* 增强的描述 - 问题-解决方案-收益框架 */}
-        <motion.p className={styles.heroDescription}>
-            {t('hero.problem')}<span className={styles.highlight}>{t('hero.painPoint')}</span>
-            {t('hero.painPoints')}
-        </motion.p>
-
-        <motion.p className={styles.heroDescriptionSecondary}>
-          {t('hero.secondaryLine')}
-        </motion.p>
 
         {/* CTA 按钮组 */}
         <motion.div className={styles.heroButtons}>

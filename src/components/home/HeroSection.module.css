@@ -265,92 +265,6 @@
   }
 }
 
-/* 打字机效果副标题 */
-.heroTagline {
-  font-size: clamp(1.25rem, 4vw, 2rem);
-  font-weight: 600;
-  margin: 0 0 1.5rem 0;
-  min-height: 2.5em;
-  font-family: var(--font-display);
-  letter-spacing: 0.05em;
-}
-
-.taglineText {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.cursor {
-  display: inline-block;
-  width: 3px;
-  height: 1em;
-  background: var(--color-primary);
-  margin-left: 4px;
-  vertical-align: middle;
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-  0%, 50% {
-    opacity: 1;
-  }
-  51%, 100% {
-    opacity: 0;
-  }
-}
-
-/* 描述 - 问题陈述样式 */
-.heroDescription {
-  font-size: clamp(1rem, 2.5vw, 1.125rem);
-  color: var(--color-text-secondary);
-  margin: 0 auto 1rem auto;
-  max-width: 650px;
-  line-height: 1.7;
-}
-
-.heroDescription .highlight {
-  color: #EF4444;
-  font-weight: 600;
-  position: relative;
-}
-
-[data-theme='dark'] .heroDescription .highlight {
-  color: #F87171;
-  text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
-}
-
-/* 次要描述 - 解决方案样式 */
-.heroDescriptionSecondary {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: var(--color-text);
-  margin: 0 auto 2.5rem auto;
-  max-width: 700px;
-  line-height: 1.7;
-}
-
-.heroDescriptionSecondary .highlightPrimary {
-  color: var(--color-primary);
-  font-weight: 700;
-}
-
-.heroDescriptionSecondary .highlight {
-  color: var(--color-primary);
-  font-weight: 600;
-  position: relative;
-}
-
-[data-theme='dark'] .heroDescriptionSecondary .highlightPrimary {
-  color: var(--color-secondary);
-  text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
-}
-
-[data-theme='dark'] .heroDescriptionSecondary .highlight {
-  color: var(--color-secondary);
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
-}
-
 /* ==========================================================================
    BUTTONS
    ========================================================================== */
@@ -360,7 +274,7 @@
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem;
 }
 
 /* 主按钮 - 科技感发光 */

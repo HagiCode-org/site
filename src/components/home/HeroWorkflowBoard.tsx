@@ -36,8 +36,7 @@ type SimulationSnapshot = {
 };
 
 type BoardCopy = {
-  badge: string;
-  title: string;
+  titleLines: string[];
   taskLabel: string;
   headerSummary: string;
   steps: string[];
@@ -91,8 +90,7 @@ const HERO_IMAGES = [
 
 const COPY: Record<Locale, BoardCopy> = {
   'zh-CN': {
-    badge: 'Parallel Agent Lanes',
-    title: '主流 Agent 全面支持，并行管理效率10X，OpenSpec 减少幻觉',
+    titleLines: ['主流 Agent 全面支持', '并行管理效率10X', 'OpenSpec 减少幻觉'],
     taskLabel: '任务',
     headerSummary: '任务 / Agent',
     steps: ['新建主意', '生成提案', '执行提案', '归档提案'],
@@ -108,8 +106,7 @@ const COPY: Record<Locale, BoardCopy> = {
     },
   },
   en: {
-    badge: 'Parallel Agent Lanes',
-    title: 'Mainstream agents supported, parallel management doubles throughput, OpenSpec reduces hallucinations',
+    titleLines: ['Mainstream Agents Supported', '10x Parallel Management Efficiency', 'OpenSpec Reduces Hallucinations'],
     taskLabel: 'Task',
     headerSummary: 'Task / Agent',
     steps: ['Ideate', 'Propose', 'Execute', 'Archive'],
@@ -371,9 +368,10 @@ export default function HeroWorkflowBoard({ locale = 'zh-CN' }: HeroWorkflowBoar
       aria-labelledby="hero-workflow-title"
     >
       <div className={styles.boardHeader}>
-        <span className={styles.badge}>{copy.badge}</span>
         <h3 id="hero-workflow-title" className={styles.title}>
-          <span>{copy.title}</span>
+          {copy.titleLines.map((line) => (
+            <span key={line} className={styles.titleLine}>{line}</span>
+          ))}
         </h3>
       </div>
 
