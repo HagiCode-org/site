@@ -100,8 +100,8 @@ describe('DesktopHero fallback contract', () => {
     const platformData = convertVersionToPlatformDownloads(multiSourceVersion);
     const windowsOption = platformData[0]?.options[0] ?? null;
 
-    const reachable = resolveDesktopHeroPrimaryTarget(windowsOption, 'reachable');
-    const unreachable = resolveDesktopHeroPrimaryTarget(windowsOption, 'unreachable');
+    const reachable = resolveDesktopHeroPrimaryTarget(windowsOption, { 'github-release': 'reachable' });
+    const unreachable = resolveDesktopHeroPrimaryTarget(windowsOption, { 'github-release': 'unreachable' });
 
     expect(reachable.action?.kind).toBe('github-release');
     expect(reachable.href).toContain('github.com');

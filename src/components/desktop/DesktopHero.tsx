@@ -15,9 +15,9 @@ import {
 } from '@/lib/shared/version-manager';
 import {
   detectOS,
-  ensureGithubReachabilityProbe,
-  findFirstGithubReleaseUrl,
-  getCachedGithubReachabilityState,
+  ensureDownloadSourceProbes,
+  collectDownloadSourceProbeTargets,
+  getCachedDownloadSourceProbeStates,
   getAssetTypeLabel,
   getDownloadActionLabel,
   groupAssetsByPlatform,
@@ -32,7 +32,7 @@ import type {
   AssetType,
   DesktopVersion,
   DownloadAction,
-  GithubReachabilityState,
+  DownloadSourceProbeStateMap,
 } from '@/lib/shared/types/desktop';
 import { getDesktopDownloadEventName } from '@/lib/analytics/events';
 import { trackEvent } from '@/lib/analytics/tracker';
@@ -121,7 +121,7 @@ export function convertVersionToPlatformDownloads(version: DesktopVersion): Plat
 
 export function resolveDesktopHeroPrimaryTarget(
   option: DownloadOption | null,
-  githubState: GithubReachabilityState,
+  probeStates: DownloadSourceProbeStateMap,
 ): DesktopHeroPrimaryTarget {
   if (!option) {
     return {
@@ -130,7 +130,7 @@ export function resolveDesktopHeroPrimaryTarget(
     };
   }
 
-  const action = resolvePrimaryDownloadAction({ sourceActions: option.sourceActions }, githubState);
+  const action = resolvePrimaryDownloadAction({ sourceActions: option.sourceActions }, probeStates);
   return {
     href: action?.url ?? option.url,
     action,
@@ -185,9 +185,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
   const [currentChannel, setCurrentChannel] = useState<'stable' | 'beta'>('stable');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [githubReachabilityState, setGithubReachabilityState] = useState<GithubReachabilityState>(
-    () => getCachedGithubReachabilityState(),
-  );
+  const [downloadSourceProbeStates, setDownloadSourceProbeStates] = useState<DownloadSourceProbeStateMap>({});
   const [userOS, setUserOS] = useState<'windows' | 'macos' | 'linux' | 'unknown'>(() => detectOS());
   const [openDropdown, setOpenDropdown] = useState<'windows' | 'macos' | 'linux' | null>(null);
 
@@ -276,18 +274,22 @@ export default function DesktopHero(props: DesktopHeroProps) {
   useEffect(() => {
     const currentVersion = getCurrentVersion();
     const platformGroups = currentVersion ? groupAssetsByPlatform(currentVersion.assets) : [];
-    const probeUrl = findFirstGithubReleaseUrl(platformGroups);
-    const cachedState = getCachedGithubReachabilityState();
-    setGithubReachabilityState(cachedState);
+    const probeTargets = collectDownloadSourceProbeTargets(platformGroups);
+    const cachedStates = getCachedDownloadSourceProbeStates(probeTargets);
+    setDownloadSourceProbeStates(cachedStates);
 
-    if (!probeUrl || (cachedState !== 'unknown' && cachedState !== 'probing')) {
+    const hasPendingProbe = Object.values(cachedStates).some(
+      (state) => state === 'unknown' || state === 'probing',
+    );
+
+    if (Object.keys(probeTargets).length === 0 || !hasPendingProbe) {
       return;
     }
 
     let mounted = true;
-    void ensureGithubReachabilityProbe(probeUrl).then((state) => {
+    void ensureDownloadSourceProbes(probeTargets).then((states) => {
       if (mounted) {
-        setGithubReachabilityState(state);
+        setDownloadSourceProbeStates(states);
       }
     });
 
@@ -410,7 +412,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
                     const defaultOption = platform.options[0];
                     const primaryTarget = resolveDesktopHeroPrimaryTarget(
                       defaultOption ?? null,
-                      githubReachabilityState,
+                      downloadSourceProbeStates,
                     );
 
                     return (
@@ -465,7 +467,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
                                 {platform.options.map((option, idx) => {
                                   const resolvedAction = resolvePrimaryDownloadAction(
                                     { sourceActions: option.sourceActions },
-                                    githubReachabilityState,
+                                    downloadSourceProbeStates,
                                   );
 
                                   return (

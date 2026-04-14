@@ -19,7 +19,9 @@ export type DesktopStructuredSourceKind = "official" | "github-release";
 
 export type DownloadSourceKind = DesktopStructuredSourceKind | "torrent" | "legacy";
 
-export type GithubReachabilityState = "unknown" | "probing" | "reachable" | "unreachable";
+export type DownloadSourceProbeState = "unknown" | "probing" | "reachable" | "unreachable";
+export type DownloadSourceProbeStateMap = Partial<Record<DownloadSourceKind, DownloadSourceProbeState>>;
+export type GithubReachabilityState = DownloadSourceProbeState;
 
 /**
  * 资源类型枚举

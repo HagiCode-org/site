@@ -14,7 +14,8 @@ import type {
   DesktopPlatform,
   DesktopStructuredSourceKind,
   DownloadSourceKind,
-  GithubReachabilityState,
+  DownloadSourceProbeState,
+  DownloadSourceProbeStateMap,
   PlatformDownload,
   PlatformGroup,
   DesktopVersion,
@@ -24,7 +25,7 @@ import { AssetType, CpuArchitecture } from './types/desktop';
 export const PRIMARY_INDEX_JSON_URL = 'https://index.hagicode.com/desktop/index.json';
 const DOWNLOAD_BASE_URL = 'https://desktop.dl.hagicode.com/';
 const TIMEOUT_MS = 30000;
-const GITHUB_PROBE_TIMEOUT_MS = 1800;
+const DOWNLOAD_SOURCE_PROBE_TIMEOUT_MS = 1800;
 
 // LocalStorage keys
 const ARCHITECTURE_STORAGE_KEY = 'hagicode-architecture-selection';
@@ -34,10 +35,12 @@ const SOURCE_ACTION_ORDER: Record<DownloadSourceKind, number> = {
   'github-release': 2,
   torrent: 3,
 };
+const PROBE_ACTION_PRIORITY: DownloadSourceKind[] = ['github-release', 'official', 'legacy'];
+const PROBEABLE_SOURCE_KINDS = new Set<DownloadSourceKind>(['official', 'legacy', 'github-release']);
+const DEFAULT_PROBE_STATE: DownloadSourceProbeState = 'unknown';
 
-let githubProbeState: GithubReachabilityState = 'unknown';
-let githubProbePromise: Promise<GithubReachabilityState> | null = null;
-let githubProbeTarget: string | null = null;
+const downloadSourceProbeStateByTarget = new Map<string, DownloadSourceProbeState>();
+const downloadSourceProbePromiseByTarget = new Map<string, Promise<DownloadSourceProbeState>>();
 
 export type DesktopVersionSource = 'primary' | 'server';
 
@@ -288,105 +291,166 @@ function getSafeFallbackAction(
   );
 }
 
+function isProbeableDownloadSourceKind(kind: DownloadSourceKind): boolean {
+  return PROBEABLE_SOURCE_KINDS.has(kind);
+}
+
+function getProbeStateForAction(
+  action: DownloadAction | null,
+  probeStates: DownloadSourceProbeStateMap,
+): DownloadSourceProbeState {
+  if (!action || !isProbeableDownloadSourceKind(action.kind)) {
+    return DEFAULT_PROBE_STATE;
+  }
+
+  return probeStates[action.kind] ?? DEFAULT_PROBE_STATE;
+}
+
 export function resolvePrimaryDownloadAction(
   download: Pick<PlatformDownload, 'sourceActions'> | null | undefined,
-  githubState: GithubReachabilityState,
+  probeStates: DownloadSourceProbeStateMap = {},
 ): DownloadAction | null {
   if (!download) {
     return null;
   }
 
-  const githubAction = getDownloadAction(download, 'github-release');
-  if (githubState === 'reachable' && githubAction) {
-    return githubAction;
+  for (const kind of PROBE_ACTION_PRIORITY) {
+    const action = getDownloadAction(download, kind);
+    if (action && getProbeStateForAction(action, probeStates) === 'reachable') {
+      return action;
+    }
   }
 
-  return getSafeFallbackAction(download) ?? githubAction ?? null;
+  return getSafeFallbackAction(download) ?? null;
 }
 
-export function findFirstGithubReleaseUrl(platformGroups: PlatformGroup[] | undefined): string | null {
+export function collectDownloadSourceProbeTargets(
+  platformGroups: PlatformGroup[] | undefined,
+): Partial<Record<DownloadSourceKind, string>> {
+  const targets: Partial<Record<DownloadSourceKind, string>> = {};
   if (!platformGroups) {
-    return null;
+    return targets;
   }
 
   for (const platformGroup of platformGroups) {
     for (const download of platformGroup.downloads) {
-      const githubAction = getDownloadAction(download, 'github-release');
-      if (githubAction) {
-        return githubAction.url;
+      for (const action of download.sourceActions) {
+        if (!isProbeableDownloadSourceKind(action.kind) || targets[action.kind]) {
+          continue;
+        }
+
+        const normalizedTarget = normalizeDownloadSourceProbeUrl(action.url);
+        if (normalizedTarget) {
+          targets[action.kind] = normalizedTarget;
+        }
       }
     }
   }
 
-  return null;
+  return targets;
 }
 
-function normalizeGithubProbeUrl(urlValue?: string | null): string {
-  if (typeof urlValue === 'string' && urlValue.trim().length > 0) {
-    try {
-      const parsed = new URL(urlValue);
-      if (parsed.hostname.endsWith('github.com')) {
-        return new URL('/favicon.ico', parsed.origin).toString();
-      }
-    } catch {
-      // ignore invalid values and fall back to the default target
-    }
+function normalizeDownloadSourceProbeUrl(urlValue?: string | null): string | null {
+  if (typeof urlValue !== 'string' || urlValue.trim().length === 0) {
+    return null;
   }
 
-  return 'https://github.com/favicon.ico';
+  try {
+    const parsed = new URL(urlValue);
+    return new URL('/favicon.ico', parsed.origin).toString();
+  } catch {
+    return null;
+  }
 }
 
-export function getCachedGithubReachabilityState(): GithubReachabilityState {
-  return githubProbeState;
+function getCachedProbeStateByTarget(target: string): DownloadSourceProbeState {
+  return downloadSourceProbeStateByTarget.get(target) ?? DEFAULT_PROBE_STATE;
 }
 
-export function resetGithubReachabilityProbeCache(): void {
-  githubProbeState = 'unknown';
-  githubProbePromise = null;
-  githubProbeTarget = null;
+export function getCachedDownloadSourceProbeStates(
+  probeTargets: Partial<Record<DownloadSourceKind, string>> = {},
+): DownloadSourceProbeStateMap {
+  const states: DownloadSourceProbeStateMap = {};
+
+  for (const kind of Object.keys(probeTargets) as DownloadSourceKind[]) {
+    const target = probeTargets[kind];
+    if (!target) {
+      continue;
+    }
+
+    states[kind] = getCachedProbeStateByTarget(target);
+  }
+
+  return states;
 }
 
-export async function ensureGithubReachabilityProbe(
-  probeUrl?: string | null,
-): Promise<GithubReachabilityState> {
+export function resetDownloadSourceProbeCache(): void {
+  downloadSourceProbeStateByTarget.clear();
+  downloadSourceProbePromiseByTarget.clear();
+}
+
+async function ensureDownloadSourceProbeTarget(target: string): Promise<DownloadSourceProbeState> {
   if (typeof window === 'undefined' || typeof fetch === 'undefined') {
-    return 'unknown';
+    return DEFAULT_PROBE_STATE;
   }
 
-  if (githubProbeState === 'reachable' || githubProbeState === 'unreachable') {
-    return githubProbeState;
+  const cachedState = getCachedProbeStateByTarget(target);
+  if (cachedState === 'reachable' || cachedState === 'unreachable') {
+    return cachedState;
   }
 
-  const normalizedTarget = normalizeGithubProbeUrl(probeUrl);
-  if (githubProbePromise && githubProbeTarget === normalizedTarget) {
-    return githubProbePromise;
+  const cachedPromise = downloadSourceProbePromiseByTarget.get(target);
+  if (cachedPromise) {
+    return cachedPromise;
   }
 
-  githubProbeState = 'probing';
-  githubProbeTarget = normalizedTarget;
-  githubProbePromise = (async () => {
+  downloadSourceProbeStateByTarget.set(target, 'probing');
+  const probePromise = (async () => {
     const controller = new AbortController();
-    const timeoutId = window.setTimeout(() => controller.abort(), GITHUB_PROBE_TIMEOUT_MS);
+    const timeoutId = window.setTimeout(() => controller.abort(), DOWNLOAD_SOURCE_PROBE_TIMEOUT_MS);
 
     try {
-      await fetch(normalizedTarget, {
+      await fetch(target, {
         method: 'GET',
         mode: 'no-cors',
         cache: 'no-store',
         signal: controller.signal,
       });
-      githubProbeState = 'reachable';
-      return githubProbeState;
+      downloadSourceProbeStateByTarget.set(target, 'reachable');
+      return 'reachable';
     } catch {
-      githubProbeState = 'unreachable';
-      return githubProbeState;
+      downloadSourceProbeStateByTarget.set(target, 'unreachable');
+      return 'unreachable';
     } finally {
       window.clearTimeout(timeoutId);
-      githubProbePromise = null;
+      downloadSourceProbePromiseByTarget.delete(target);
     }
   })();
 
-  return githubProbePromise;
+  downloadSourceProbePromiseByTarget.set(target, probePromise);
+  return probePromise;
+}
+
+export async function ensureDownloadSourceProbes(
+  probeTargets: Partial<Record<DownloadSourceKind, string>> = {},
+): Promise<DownloadSourceProbeStateMap> {
+  const kinds = Object.keys(probeTargets) as DownloadSourceKind[];
+  if (kinds.length === 0) {
+    return {};
+  }
+
+  await Promise.all(
+    kinds.map(async (kind) => {
+      const target = probeTargets[kind];
+      if (!target) {
+        return;
+      }
+
+      await ensureDownloadSourceProbeTarget(target);
+    }),
+  );
+
+  return getCachedDownloadSourceProbeStates(probeTargets);
 }
 
 /**

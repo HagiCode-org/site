@@ -4,9 +4,10 @@ import { describe, expect, it, vi } from 'vitest';
 
 import type { DesktopVersionData } from '../../lib/shared/version-manager';
 import {
-  ensureGithubReachabilityProbe,
+  collectDownloadSourceProbeTargets,
+  ensureDownloadSourceProbes,
   groupAssetsByPlatform,
-  resetGithubReachabilityProbeCache,
+  resetDownloadSourceProbeCache,
 } from '../../lib/shared/desktop-utils';
 import InstallButton, {
   convertPlatformGroups,
@@ -167,13 +168,13 @@ describe('InstallButton markup', () => {
 
     const reachable = resolveInstallButtonPrimaryTarget(
       platformData,
-      'reachable',
+      { 'github-release': 'reachable' },
       'windows',
       '/desktop/',
     );
     const unreachable = resolveInstallButtonPrimaryTarget(
       platformData,
-      'unreachable',
+      { 'github-release': 'unreachable' },
       'windows',
       '/desktop/',
     );
@@ -188,7 +189,7 @@ describe('InstallButton markup', () => {
     const legacyPlatformData = convertPlatformGroups(platformGroups);
     const primary = resolveInstallButtonPrimaryTarget(
       legacyPlatformData,
-      'unreachable',
+      { legacy: 'unreachable' },
       'windows',
       '/desktop/',
     );
@@ -209,9 +210,9 @@ describe('InstallButton markup', () => {
   });
 });
 
-describe('GitHub probe cache', () => {
+describe('Download source probe cache', () => {
   it('reuses the page-lifecycle probe result after the first success', async () => {
-    resetGithubReachabilityProbeCache();
+    resetDownloadSourceProbeCache();
     const fetchMock = vi.fn().mockResolvedValue({ ok: true });
     vi.stubGlobal('fetch', fetchMock);
     vi.stubGlobal('window', {
@@ -219,14 +220,55 @@ describe('GitHub probe cache', () => {
       clearTimeout,
     });
 
-    await expect(
-      ensureGithubReachabilityProbe('https://github.com/HagiCode-org/releases/download/v1.2.4/file.exe'),
-    ).resolves.toBe('reachable');
-    await expect(
-      ensureGithubReachabilityProbe('https://github.com/HagiCode-org/releases/download/v1.2.4/file.exe'),
-    ).resolves.toBe('reachable');
+    const probeTargets = collectDownloadSourceProbeTargets(platformGroups);
+
+    await expect(ensureDownloadSourceProbes(probeTargets)).resolves.toEqual({
+      legacy: 'reachable',
+    });
+    await expect(ensureDownloadSourceProbes(probeTargets)).resolves.toEqual({
+      legacy: 'reachable',
+    });
 
     expect(fetchMock).toHaveBeenCalledTimes(1);
+    vi.unstubAllGlobals();
+  });
+
+  it('probes multiple source hosts independently and returns keyed states', async () => {
+    resetDownloadSourceProbeCache();
+    const fetchMock = vi.fn().mockImplementation(async (url: string) => {
+      if (url === 'https://desktop.dl.hagicode.com/favicon.ico') {
+        return { ok: true };
+      }
+
+      if (url === 'https://github.com/favicon.ico') {
+        throw new Error('github blocked');
+      }
+
+      throw new Error(`Unexpected fetch: ${url}`);
+    });
+
+    vi.stubGlobal('fetch', fetchMock);
+    vi.stubGlobal('window', {
+      setTimeout,
+      clearTimeout,
+    });
+
+    const probeTargets = collectDownloadSourceProbeTargets(groupAssetsByPlatform(multiSourceVersion.assets));
+
+    await expect(ensureDownloadSourceProbes(probeTargets)).resolves.toEqual({
+      official: 'reachable',
+      'github-release': 'unreachable',
+    });
+
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock).toHaveBeenCalledWith(
+      'https://desktop.dl.hagicode.com/favicon.ico',
+      expect.objectContaining({ signal: expect.any(AbortSignal) }),
+    );
+    expect(fetchMock).toHaveBeenCalledWith(
+      'https://github.com/favicon.ico',
+      expect.objectContaining({ signal: expect.any(AbortSignal) }),
+    );
     vi.unstubAllGlobals();
   });
 });

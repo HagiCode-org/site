@@ -15,15 +15,15 @@ import type {
   AssetType,
   DesktopVersion,
   DownloadAction,
-  GithubReachabilityState,
+  DownloadSourceProbeStateMap,
   PlatformGroup,
 } from '@/lib/shared/desktop';
 import type { DesktopVersionSource } from '@/lib/shared/desktop-utils';
 import {
-  ensureGithubReachabilityProbe,
+  ensureDownloadSourceProbes,
   detectOS,
-  findFirstGithubReleaseUrl,
-  getCachedGithubReachabilityState,
+  collectDownloadSourceProbeTargets,
+  getCachedDownloadSourceProbeStates,
   getDownloadActionLabel,
   getArchitectureLabel,
   getAssetTypeLabel,
@@ -152,7 +152,7 @@ export function convertPlatformGroups(platforms: PlatformGroup[]): PlatformDownl
 
 export function resolveInstallButtonPrimaryTarget(
   platformData: PlatformDownloads[],
-  githubState: GithubReachabilityState,
+  probeStates: DownloadSourceProbeStateMap,
   userOS: 'windows' | 'macos' | 'linux' | 'unknown',
   desktopPageUrl: string,
 ): InstallButtonPrimaryTarget {
@@ -168,7 +168,7 @@ export function resolveInstallButtonPrimaryTarget(
   const preferredPlatform = userPlatform ?? platformData[0];
   const preferredOption = preferredPlatform.options[0] ?? null;
   const action = preferredOption
-    ? resolvePrimaryDownloadAction({ sourceActions: preferredOption.sourceActions }, githubState)
+    ? resolvePrimaryDownloadAction({ sourceActions: preferredOption.sourceActions }, probeStates)
     : null;
 
   return {
@@ -294,9 +294,7 @@ export default function InstallButton({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [fetchedData, setFetchedData] = useState<DesktopVersionData | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState<DropdownPosition | null>(null);
-  const [githubReachabilityState, setGithubReachabilityState] = useState<GithubReachabilityState>(
-    () => getCachedGithubReachabilityState(),
-  );
+  const [downloadSourceProbeStates, setDownloadSourceProbeStates] = useState<DownloadSourceProbeStateMap>({});
   const buttonRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLUListElement>(null);
 
@@ -388,18 +386,22 @@ export default function InstallButton({
   const historyFallbackTarget = runtimeSnapshot.fallbackTarget ?? DESKTOP_HISTORY_FALLBACK_URL;
 
   useEffect(() => {
-    const probeUrl = findFirstGithubReleaseUrl(runtimeSnapshot.platforms);
-    const cachedState = getCachedGithubReachabilityState();
-    setGithubReachabilityState(cachedState);
+    const probeTargets = collectDownloadSourceProbeTargets(runtimeSnapshot.platforms);
+    const cachedStates = getCachedDownloadSourceProbeStates(probeTargets);
+    setDownloadSourceProbeStates(cachedStates);
 
-    if (!probeUrl || (cachedState !== 'unknown' && cachedState !== 'probing')) {
+    const hasPendingProbe = Object.values(cachedStates).some(
+      (state) => state === 'unknown' || state === 'probing',
+    );
+
+    if (Object.keys(probeTargets).length === 0 || !hasPendingProbe) {
       return;
     }
 
     let mounted = true;
-    void ensureGithubReachabilityProbe(probeUrl).then((state) => {
+    void ensureDownloadSourceProbes(probeTargets).then((states) => {
       if (mounted) {
-        setGithubReachabilityState(state);
+        setDownloadSourceProbeStates(states);
       }
     });
 
@@ -452,11 +454,11 @@ export default function InstallButton({
 
     return resolveInstallButtonPrimaryTarget(
       platformData,
-      githubReachabilityState,
+      downloadSourceProbeStates,
       userOS,
       desktopPageUrl,
     );
-  }, [desktopPageUrl, githubReachabilityState, platformData]);
+  }, [desktopPageUrl, downloadSourceProbeStates, platformData]);
 
   const primaryHref =
     menuState.mode === 'fatal'
@@ -667,7 +669,7 @@ export default function InstallButton({
                     const isRecommended = idx === 0;
                     const resolvedAction = resolvePrimaryDownloadAction(
                       { sourceActions: option.sourceActions },
-                      githubReachabilityState,
+                      downloadSourceProbeStates,
                     );
                     return (
                       <li key={`${platformGroup.platform}-${option.url}`} role="none">
