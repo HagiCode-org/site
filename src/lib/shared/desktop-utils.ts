@@ -106,6 +106,14 @@ export const PLATFORM_ICONS: Record<string, string> = {
   linux: '🐧',
 };
 
+export type PrimaryDownloadSourceKey = 'accelerated' | 'github';
+
+export interface PrimaryDownloadActionPair {
+  accelerated: DownloadAction | null;
+  github: DownloadAction | null;
+  secondary: DownloadAction[];
+}
+
 function isKnownStructuredSourceKind(kind: string): kind is DesktopStructuredSourceKind {
   return kind === 'official' || kind === 'github-release';
 }
@@ -168,19 +176,30 @@ export function getDownloadActionLabel(
   locale: 'zh-CN' | 'en' = 'zh-CN',
 ): string {
   const zhLabels: Record<DownloadSourceKind, string> = {
-    official: '官方下载',
-    legacy: '官方下载',
-    'github-release': 'GitHub Release',
+    official: '中国大陆加速下载',
+    legacy: '中国大陆加速下载',
+    'github-release': 'GitHub 下载',
     torrent: '种子下载',
   };
   const enLabels: Record<DownloadSourceKind, string> = {
-    official: 'Official Download',
-    legacy: 'Official Download',
-    'github-release': 'GitHub Release',
+    official: 'China',
+    legacy: 'China',
+    'github-release': 'GitHub Download',
     torrent: 'Torrent',
   };
 
   return (locale === 'en' ? enLabels : zhLabels)[kind];
+}
+
+export function getPrimaryDownloadSourceLabel(
+  source: PrimaryDownloadSourceKey,
+  locale: 'zh-CN' | 'en' = 'zh-CN',
+): string {
+  if (source === 'accelerated') {
+    return locale === 'en' ? 'China' : '中国大陆加速';
+  }
+
+  return locale === 'en' ? 'GitHub' : 'GitHub';
 }
 
 export function normalizeDownloadActions(asset: DesktopAsset): DownloadAction[] {
@@ -275,6 +294,22 @@ export function getDownloadAction(
   }
 
   return download.sourceActions.find((action) => action.kind === kind) ?? null;
+}
+
+export function resolvePrimaryDownloadActionPair(
+  download: Pick<PlatformDownload, 'sourceActions'> | null | undefined,
+): PrimaryDownloadActionPair {
+  const sourceActions = download?.sourceActions ?? [];
+  const accelerated =
+    getDownloadAction(download, 'official') ?? getDownloadAction(download, 'legacy');
+  const github = getDownloadAction(download, 'github-release');
+  const primaryActions = new Set([accelerated, github].filter(Boolean));
+
+  return {
+    accelerated,
+    github,
+    secondary: sourceActions.filter((action) => !primaryActions.has(action)),
+  };
 }
 
 export function hasGithubReleaseSource(download: Pick<PlatformDownload, 'sourceActions'> | null | undefined): boolean {
