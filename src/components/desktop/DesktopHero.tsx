@@ -7,7 +7,8 @@
  * - 每个按钮支持下拉菜单选择版本
  * - 版本历史需要注册/登录后访问
  */
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import {
   DESKTOP_HISTORY_FALLBACK_URL,
   getDesktopVersionData,
@@ -15,13 +16,11 @@ import {
 } from '@/lib/shared/version-manager';
 import {
   detectOS,
-  ensureDownloadSourceProbes,
-  collectDownloadSourceProbeTargets,
-  getCachedDownloadSourceProbeStates,
   getAssetTypeLabel,
   getDownloadActionLabel,
+  getPrimaryDownloadSourceLabel,
   groupAssetsByPlatform,
-  resolvePrimaryDownloadAction,
+  resolvePrimaryDownloadActionPair,
 } from '@/lib/shared/desktop-utils';
 import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
 import { MAC_DOWNLOAD_DISABLED_NOTICE, MAC_DOWNLOAD_DISABLED_NOTICE_EN } from '@/constants/downloadMessages';
@@ -32,10 +31,13 @@ import type {
   AssetType,
   DesktopVersion,
   DownloadAction,
-  DownloadSourceProbeStateMap,
 } from '@/lib/shared/types/desktop';
 import { getDesktopDownloadEventName } from '@/lib/analytics/events';
 import { trackEvent } from '@/lib/analytics/tracker';
+import type {
+  PrimaryDownloadActionPair,
+  PrimaryDownloadSourceKey,
+} from '@/lib/shared/desktop-utils';
 import styles from './DesktopHero.module.css';
 
 // 下载选项接口
@@ -53,9 +55,20 @@ interface PlatformDownloads {
   options: DownloadOption[];
 }
 
-export interface DesktopHeroPrimaryTarget {
-  href: string;
-  action: DownloadAction | null;
+type DesktopPlatformKey = 'windows' | 'macos' | 'linux';
+
+interface DesktopDropdownPosition {
+  top: number;
+  left: number;
+  width: number;
+  maxHeight: number;
+}
+
+export interface DesktopHeroVisiblePrimaryAction {
+  source: PrimaryDownloadSourceKey;
+  action: DownloadAction;
+  label: string;
+  ariaLabel: string;
 }
 
 // SVG 图标组件
@@ -91,6 +104,12 @@ const DownloadIcon = () => (
   </svg>
 );
 
+const platformIcons = {
+  windows: WindowsIcon,
+  macos: MacIcon,
+  linux: LinuxIcon,
+} as const;
+
 // 将版本文件转换为平台下载数据
 export function convertVersionToPlatformDownloads(version: DesktopVersion): PlatformDownloads[] {
   const platformLabels = { windows: 'Windows', macos: 'macOS', linux: 'Linux' };
@@ -119,22 +138,81 @@ export function convertVersionToPlatformDownloads(version: DesktopVersion): Plat
   }));
 }
 
-export function resolveDesktopHeroPrimaryTarget(
+export function resolveDesktopHeroPrimaryActions(
   option: DownloadOption | null,
-  probeStates: DownloadSourceProbeStateMap,
-): DesktopHeroPrimaryTarget {
-  if (!option) {
-    return {
-      href: '',
-      action: null,
-    };
+): PrimaryDownloadActionPair {
+  return resolvePrimaryDownloadActionPair(
+    option ? { sourceActions: option.sourceActions } : null,
+  );
+}
+
+export function resolveDesktopHeroCurrentVersion(
+  versionData: DesktopVersionData | null,
+): DesktopVersion | null {
+  if (!versionData) {
+    return null;
   }
 
-  const action = resolvePrimaryDownloadAction({ sourceActions: option.sourceActions }, probeStates);
-  return {
-    href: action?.url ?? option.url,
-    action,
-  };
+  return versionData.channels.stable.latest || versionData.latest;
+}
+
+interface DesktopHeroActionBarProps {
+  isOpen: boolean;
+  locale: 'zh-CN' | 'en';
+  toggleLabel: string;
+  visiblePrimaryActions: DesktopHeroVisiblePrimaryAction[];
+  onToggle: () => void;
+  onPrimaryActionClick: (action: DesktopHeroVisiblePrimaryAction) => void;
+}
+
+export function DesktopHeroActionBar({
+  isOpen,
+  locale,
+  toggleLabel,
+  visiblePrimaryActions,
+  onToggle,
+  onPrimaryActionClick,
+}: DesktopHeroActionBarProps) {
+  return (
+    <div className={styles.actionBar} data-action-bar="platform">
+      <div className={styles.primarySourceActions} data-segment-role="primary-actions">
+        {visiblePrimaryActions.map((entry) => (
+          <a
+            key={entry.source}
+            href={entry.action.url}
+            className={`${styles.sourceActionButton} ${styles[`sourceActionButton--${entry.source}`]}`}
+            download
+            onClick={() => onPrimaryActionClick(entry)}
+            aria-label={entry.ariaLabel}
+          >
+            <svg className={styles.downloadIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span>{entry.label}</span>
+          </a>
+        ))}
+      </div>
+
+      <button
+        type="button"
+        className={styles.btnDropdownToggle}
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-haspopup="menu"
+        aria-label={toggleLabel}
+        data-segment-role="toggle"
+      >
+        <span>{locale === 'en' ? 'More versions' : '更多版本 / 架构'}</span>
+        <ChevronDownIcon />
+      </button>
+    </div>
+  );
 }
 
 interface DesktopHeroProps {
@@ -182,12 +260,13 @@ export default function DesktopHero(props: DesktopHeroProps) {
   const locale = props.locale || detectedLocale;
   const { t } = useTranslation(locale);
   const [versionData, setVersionData] = useState<DesktopVersionData | null>(null);
-  const [currentChannel, setCurrentChannel] = useState<'stable' | 'beta'>('stable');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [downloadSourceProbeStates, setDownloadSourceProbeStates] = useState<DownloadSourceProbeStateMap>({});
-  const [userOS, setUserOS] = useState<'windows' | 'macos' | 'linux' | 'unknown'>(() => detectOS());
-  const [openDropdown, setOpenDropdown] = useState<'windows' | 'macos' | 'linux' | null>(null);
+  const userOS = useMemo(() => detectOS(), []);
+  const [openDropdown, setOpenDropdown] = useState<DesktopPlatformKey | null>(null);
+  const [dropdownPosition, setDropdownPosition] = useState<DesktopDropdownPosition | null>(null);
+  const dropdownMenuRef = useRef<HTMLDivElement | null>(null);
+  const dropdownTriggerRefs = useRef<Partial<Record<DesktopPlatformKey, HTMLButtonElement | null>>>({});
 
   const loadVersionData = useCallback(() => {
     let mounted = true;
@@ -218,14 +297,49 @@ export default function DesktopHero(props: DesktopHeroProps) {
     };
   }, [t]);
 
+  const updateDropdownPosition = useCallback((platform: DesktopPlatformKey) => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    const trigger = dropdownTriggerRefs.current[platform];
+    if (!trigger) {
+      setDropdownPosition(null);
+      return;
+    }
+
+    const rect = trigger.getBoundingClientRect();
+    const preferredWidth = Math.max(rect.width, 520);
+    const width = Math.min(preferredWidth, window.innerWidth - 32);
+    const left = Math.min(
+      Math.max(16, rect.right - width),
+      Math.max(16, window.innerWidth - width - 16),
+    );
+    const top = rect.bottom + 8;
+    const maxHeight = Math.max(180, window.innerHeight - top - 16);
+
+    setDropdownPosition({
+      top,
+      left,
+      width,
+      maxHeight,
+    });
+  }, []);
+
   // 点击外部关闭下拉菜单
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      // 检查点击是否在下拉菜单或按钮外部
-      if (openDropdown && !target.closest(`.${styles.platformButton}`)) {
-        setOpenDropdown(null);
+      const target = event.target as Node;
+      if (!openDropdown) {
+        return;
       }
+
+      const trigger = dropdownTriggerRefs.current[openDropdown];
+      if (dropdownMenuRef.current?.contains(target) || trigger?.contains(target as Node)) {
+        return;
+      }
+
+      setOpenDropdown(null);
     };
 
     if (openDropdown) {
@@ -235,23 +349,48 @@ export default function DesktopHero(props: DesktopHeroProps) {
   }, [openDropdown]);
 
   useEffect(() => {
+    if (!openDropdown) {
+      setDropdownPosition(null);
+      return;
+    }
+
+    const syncDropdownPosition = () => {
+      updateDropdownPosition(openDropdown);
+    };
+
+    syncDropdownPosition();
+    window.addEventListener('resize', syncDropdownPosition);
+    window.addEventListener('scroll', syncDropdownPosition, true);
+
+    return () => {
+      window.removeEventListener('resize', syncDropdownPosition);
+      window.removeEventListener('scroll', syncDropdownPosition, true);
+    };
+  }, [openDropdown, updateDropdownPosition]);
+
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpenDropdown(null);
+      }
+    };
+
+    if (openDropdown) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [openDropdown]);
+
+  useEffect(() => {
     return loadVersionData();
   }, [loadVersionData]);
 
-  const getCurrentVersion = (): DesktopVersion | null => {
-    if (!versionData) return null;
-    if (currentChannel === 'stable') {
-      return versionData.channels.stable.latest || versionData.latest;
-    }
-    return versionData.channels.beta.latest || versionData.latest;
-  };
-
   // 转换平台数据格式
   const platformData = useMemo(() => {
-    const currentVersion = getCurrentVersion();
+    const currentVersion = resolveDesktopHeroCurrentVersion(versionData);
     if (!currentVersion) return [];
     return convertVersionToPlatformDownloads(currentVersion);
-  }, [versionData, currentChannel]);
+  }, [versionData]);
 
   const visiblePlatformData = useMemo(() => {
     if (FEATURE_MAC_DOWNLOAD_ENABLED) {
@@ -259,10 +398,6 @@ export default function DesktopHero(props: DesktopHeroProps) {
     }
     return platformData.filter((platform) => platform.platform !== 'macos');
   }, [platformData]);
-  const buttonGroupColumns = useMemo(
-    () => Math.min(Math.max(visiblePlatformData.length, 1), 3),
-    [visiblePlatformData.length],
-  );
 
   const showMacDownloadNotice = useMemo(() => {
     if (FEATURE_MAC_DOWNLOAD_ENABLED) {
@@ -271,40 +406,12 @@ export default function DesktopHero(props: DesktopHeroProps) {
     return platformData.some((platform) => platform.platform === 'macos');
   }, [platformData]);
 
-  useEffect(() => {
-    const currentVersion = getCurrentVersion();
-    const platformGroups = currentVersion ? groupAssetsByPlatform(currentVersion.assets) : [];
-    const probeTargets = collectDownloadSourceProbeTargets(platformGroups);
-    const cachedStates = getCachedDownloadSourceProbeStates(probeTargets);
-    setDownloadSourceProbeStates(cachedStates);
-
-    const hasPendingProbe = Object.values(cachedStates).some(
-      (state) => state === 'unknown' || state === 'probing',
-    );
-
-    if (Object.keys(probeTargets).length === 0 || !hasPendingProbe) {
-      return;
-    }
-
-    let mounted = true;
-    void ensureDownloadSourceProbes(probeTargets).then((states) => {
-      if (mounted) {
-        setDownloadSourceProbeStates(states);
-      }
-    });
-
-    return () => {
-      mounted = false;
-    };
-  }, [versionData, currentChannel]);
-
-  const toggleDropdown = useCallback((platform: 'windows' | 'macos' | 'linux') => {
+  const toggleDropdown = useCallback((platform: DesktopPlatformKey) => {
+    setDropdownPosition(null);
     setOpenDropdown(prev => prev === platform ? null : platform);
   }, []);
 
-  const currentVersion = getCurrentVersion();
-  const hasChannels = versionData?.channels.stable.latest || versionData?.channels.beta.latest;
-  const isBeta = currentChannel === 'beta';
+  const currentVersion = resolveDesktopHeroCurrentVersion(versionData);
   const macDownloadNotice = locale === 'en'
     ? `For macOS users: ${MAC_DOWNLOAD_DISABLED_NOTICE_EN}`
     : `Mac 用户：${MAC_DOWNLOAD_DISABLED_NOTICE}`;
@@ -318,7 +425,13 @@ export default function DesktopHero(props: DesktopHeroProps) {
     t('desktopHero.download.ariaLabel').replace('{platform}', platformLabel);
   const getSelectOtherVersionsLabel = (platformLabel: string) =>
     t('desktopHero.selectOtherVersions').replace('{platform}', platformLabel);
-  const versionInfoLabel = t('desktopHero.versionInfo').replace('{version}', currentVersion?.version ?? '');
+  const primarySourceOrder: PrimaryDownloadSourceKey[] = ['github', 'accelerated'];
+  const tablePlatformLabel = locale === 'en' ? 'Platform' : '平台';
+  const tableGithubLabel = 'GitHub';
+  const tableChinaLabel = locale === 'en' ? 'China' : '中国大陆';
+  const tableMoreLabel = locale === 'en' ? 'More Downloads' : '更多下载';
+  const moreDownloadsButtonLabel = locale === 'en' ? 'More Downloads' : '更多下载';
+  const dropdownPackageLabel = locale === 'en' ? 'Package' : '安装包';
 
   useEffect(() => {
     if (!fallbackState?.shouldAutoRedirect || typeof window === 'undefined') {
@@ -402,119 +515,266 @@ export default function DesktopHero(props: DesktopHeroProps) {
             {/* 统一下载按钮组 */}
             <div className={styles.downloadSection}>
               {visiblePlatformData.length > 0 && (
-                <div
-                  className={styles.buttonGroup}
-                  style={{ gridTemplateColumns: `repeat(${buttonGroupColumns}, minmax(0, 1fr))` }}
-                >
-                  {visiblePlatformData.map((platform) => {
-                    const isPrimary = userOS !== 'unknown' && platform.platform === userOS;
-                    const isOpen = openDropdown === platform.platform;
-                    const defaultOption = platform.options[0];
-                    const primaryTarget = resolveDesktopHeroPrimaryTarget(
-                      defaultOption ?? null,
-                      downloadSourceProbeStates,
-                    );
-
-                    return (
-                      <div
-                        key={platform.platform}
-                        className={`${styles.platformButton} ${isPrimary ? styles.platformButtonPrimary : styles.platformButtonSecondary}`}
-                        aria-expanded={isOpen}
-                      >
-                        <div className={styles.splitButtonContainer}>
-                          {/* 主下载按钮 - 左侧 */}
-                          <a
-                            href={primaryTarget.href}
-                            className={styles.btnDownloadMain}
-                            download
-                            onClick={() => {
-                              if (defaultOption) {
-                                trackEvent(getDesktopDownloadEventName(defaultOption.assetType), {
-                                  source: `desktop-hero-${platform.platform}-primary-${primaryTarget.action?.kind ?? 'official'}`,
-                                });
+                <div className={styles.buttonGroup}>
+                  <div className={styles.platformTableScroll}>
+                    <table className={styles.platformTable} data-platform-table="desktop-downloads">
+                      <thead>
+                        <tr>
+                          <th scope="col">{tablePlatformLabel}</th>
+                          <th scope="col">{tableGithubLabel}</th>
+                          <th scope="col">{tableChinaLabel}</th>
+                          <th scope="col">{tableMoreLabel}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {visiblePlatformData.map((platform) => {
+                          const isPrimary = userOS !== 'unknown' && platform.platform === userOS;
+                          const isOpen = openDropdown === platform.platform;
+                          const defaultOption = platform.options[0];
+                          const defaultActionPair = resolveDesktopHeroPrimaryActions(defaultOption ?? null);
+                          const githubAction = defaultActionPair.github
+                            ? {
+                                source: 'github' as const,
+                                action: defaultActionPair.github,
+                                label: getPrimaryDownloadSourceLabel('github', locale),
+                                ariaLabel: `${getDownloadAriaLabel(platform.platformLabel)} (${getPrimaryDownloadSourceLabel('github', locale)})`,
                               }
-                              setOpenDropdown(null);
-                            }}
-                            aria-label={`${getDownloadAriaLabel(platform.platformLabel)}${primaryTarget.action ? ` (${getDownloadActionLabel(primaryTarget.action.kind, locale)})` : ''}`}
-                          >
-                            <span className={styles.platformButtonLabel}>
-                              {isPrimary && <span className={styles.recommendedBadge}>{t('desktopHero.download.recommended')}</span>}
-                              <span className={styles.platformName}>{platform.platformLabel}</span>
-                            </span>
-                          </a>
+                            : null;
+                          const acceleratedAction = defaultActionPair.accelerated
+                            ? {
+                                source: 'accelerated' as const,
+                                action: defaultActionPair.accelerated,
+                                label: getPrimaryDownloadSourceLabel('accelerated', locale),
+                                ariaLabel: `${getDownloadAriaLabel(platform.platformLabel)} (${getPrimaryDownloadSourceLabel('accelerated', locale)})`,
+                              }
+                            : null;
+                          const PlatformIcon = platformIcons[platform.platform];
 
-                          {/* 下拉切换按钮 - 右侧 */}
-                          <button
-                            type="button"
-                            className={styles.btnDropdownToggle}
-                            onClick={() => toggleDropdown(platform.platform)}
-                            aria-expanded={isOpen}
-                            aria-haspopup="menu"
-                            aria-label={getSelectOtherVersionsLabel(platform.platformLabel)}
-                          >
-                            <ChevronDownIcon />
-                          </button>
+                          return (
+                            <tr
+                              key={platform.platform}
+                              className={`${styles.platformButton} ${isPrimary ? styles.platformButtonPrimary : styles.platformButtonSecondary}`}
+                              aria-expanded={isOpen}
+                            >
+                              <td className={styles.platformIdentityCell}>
+                                <span className={styles.platformButtonLabel}>
+                                  <span className={styles.platformIconWrap}>
+                                    <PlatformIcon />
+                                  </span>
+                                  <span className={styles.platformName}>{platform.platformLabel}</span>
+                                  {isPrimary && <span className={styles.recommendedBadge}>{t('desktopHero.download.recommended')}</span>}
+                                </span>
+                              </td>
+                              <td className={styles.platformSourceCell}>
+                                {githubAction ? (
+                                  <a
+                                    href={githubAction.action.url}
+                                    className={`${styles.sourceActionButton} ${styles.sourceActionButtonStandalone} ${styles[`sourceActionButton--${githubAction.source}`]}`}
+                                    download
+                                    aria-label={githubAction.ariaLabel}
+                                    onClick={() => {
+                                      if (defaultOption) {
+                                        trackEvent(getDesktopDownloadEventName(defaultOption.assetType), {
+                                          source: `desktop-hero-${platform.platform}-primary-${githubAction.action.kind}`,
+                                        });
+                                      }
+                                    }}
+                                  >
+                                    <svg className={styles.downloadIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path
+                                        d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                      />
+                                    </svg>
+                                    <span>{githubAction.label}</span>
+                                  </a>
+                                ) : (
+                                  <button
+                                    type="button"
+                                    className={`${styles.sourceActionButton} ${styles.sourceActionButtonStandalone} ${styles.sourceActionButtonDisabled} ${styles.sourceActionButtonGithubDisabled}`}
+                                    disabled
+                                    aria-label="GitHub"
+                                  >
+                                    <span>GitHub</span>
+                                  </button>
+                                )}
+                              </td>
+                              <td className={styles.platformSourceCell}>
+                                {acceleratedAction ? (
+                                  <a
+                                    href={acceleratedAction.action.url}
+                                    className={`${styles.sourceActionButton} ${styles.sourceActionButtonStandalone} ${styles[`sourceActionButton--${acceleratedAction.source}`]}`}
+                                    download
+                                    aria-label={acceleratedAction.ariaLabel}
+                                    onClick={() => {
+                                      if (defaultOption) {
+                                        trackEvent(getDesktopDownloadEventName(defaultOption.assetType), {
+                                          source: `desktop-hero-${platform.platform}-primary-${acceleratedAction.action.kind}`,
+                                        });
+                                      }
+                                    }}
+                                  >
+                                    <svg className={styles.downloadIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path
+                                        d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                      />
+                                    </svg>
+                                    <span>{acceleratedAction.label}</span>
+                                  </a>
+                                ) : (
+                                  <button
+                                    type="button"
+                                    className={`${styles.sourceActionButton} ${styles.sourceActionButtonStandalone} ${styles.sourceActionButtonDisabled}`}
+                                    disabled
+                                    aria-label={tableChinaLabel}
+                                  >
+                                    <span>{tableChinaLabel}</span>
+                                  </button>
+                                )}
+                              </td>
+                              <td className={styles.platformActionsCell}>
+                              <button
+                                type="button"
+                                className={`${styles.btnDropdownToggle} ${styles.btnDropdownToggleStandalone}`}
+                                ref={(node) => {
+                                  dropdownTriggerRefs.current[platform.platform] = node;
+                                }}
+                                onClick={() => toggleDropdown(platform.platform)}
+                                aria-expanded={isOpen}
+                                aria-haspopup="menu"
+                                aria-label={getSelectOtherVersionsLabel(platform.platformLabel)}
+                                data-segment-role="toggle"
+                                >
+                                  <span>{moreDownloadsButtonLabel}</span>
+                                </button>
 
-                          {/* 下拉菜单 */}
-                          {isOpen && (
-                            <div className={styles.dropdownMenu}>
-                              <div
-                                className={`${styles.dropdownGroupLabel} ${styles[`platform--${platform.platform}`]}`}
-                              >
-                                <span className={styles.platformLabel}>{platform.platformLabel}</span>
-                              </div>
-                              <div className={styles.dropdownList}>
-                                {platform.options.map((option, idx) => {
-                                  const resolvedAction = resolvePrimaryDownloadAction(
-                                    { sourceActions: option.sourceActions },
-                                    downloadSourceProbeStates,
-                                  );
+                              {isOpen && (
+                                typeof document !== 'undefined' && dropdownPosition
+                                  ? createPortal(
+                                      <div
+                                        ref={dropdownMenuRef}
+                                        className={`${styles.dropdownMenu} ${styles.dropdownMenuOpen}`}
+                                        style={{
+                                          top: `${dropdownPosition.top}px`,
+                                          left: `${dropdownPosition.left}px`,
+                                          width: `${dropdownPosition.width}px`,
+                                          maxHeight: `${dropdownPosition.maxHeight}px`,
+                                        }}
+                                      >
+                                        <div
+                                          className={`${styles.dropdownGroupLabel} ${styles[`platform--${platform.platform}`]}`}
+                                        >
+                                          <span className={styles.platformLabel}>{platform.platformLabel}</span>
+                                        </div>
+                                        <div className={styles.dropdownList}>
+                                          <div className={`${styles.dropdownTableRow} ${styles.dropdownTableHeader}`} aria-hidden="true">
+                                            <span className={`${styles.dropdownTableCell} ${styles.dropdownLabelCell}`}>{dropdownPackageLabel}</span>
+                                            <span className={styles.dropdownTableCell}>{tableGithubLabel}</span>
+                                            <span className={styles.dropdownTableCell}>{tableChinaLabel}</span>
+                                            <span className={`${styles.dropdownTableCell} ${styles.dropdownMoreCell}`}>{tableMoreLabel}</span>
+                                          </div>
+                                          {platform.options.map((option, idx) => {
+                                            const actionPair = resolveDesktopHeroPrimaryActions(option);
+                                            const githubOptionAction = actionPair.github;
+                                            const acceleratedOptionAction = actionPair.accelerated;
 
-                                  return (
-                                    <div
-                                      key={`${platform.platform}-${option.url}-${idx}`}
-                                      className={styles.dropdownItem}
-                                    >
-                                      <div className={styles.dropdownItemLabelRow}>
-                                        <span className={styles.dropdownItemLabel}>{getAssetTypeLabel(option.assetType)}</span>
-                                        <DownloadIcon />
-                                      </div>
-                                      <div className={styles.dropdownSourceActions}>
-                                        {option.sourceActions.map((action) => {
-                                          const isSmartDefault = resolvedAction?.kind === action.kind;
-                                          return (
-                                            <a
-                                              key={`${option.url}-${action.kind}`}
-                                              href={action.url}
-                                              className={`${styles.dropdownSourceAction} ${isSmartDefault ? styles.dropdownSourceActionDefault : ''}`}
-                                              download
-                                              onClick={() => {
-                                                trackEvent(getDesktopDownloadEventName(option.assetType), {
-                                                  source: `desktop-hero-${platform.platform}-source-${action.kind}`,
-                                                });
-                                                setOpenDropdown(null);
-                                              }}
-                                            >
-                                              <span>{getDownloadActionLabel(action.kind, locale)}</span>
-                                              {isSmartDefault && (
-                                                <span className={styles.dropdownSourceActionBadge}>
-                                                  {locale === 'en' ? 'Default' : '默认'}
-                                                </span>
-                                              )}
-                                            </a>
-                                          );
-                                        })}
-                                      </div>
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
+                                            return (
+                                              <div
+                                                key={`${platform.platform}-${option.url}-${idx}`}
+                                                className={`${styles.dropdownItem} ${styles.dropdownTableRow}`}
+                                              >
+                                                <div className={`${styles.dropdownTableCell} ${styles.dropdownLabelCell}`}>
+                                                  <span className={styles.dropdownItemLabel}>{getAssetTypeLabel(option.assetType)}</span>
+                                                </div>
+                                                <div className={styles.dropdownTableCell}>
+                                                  {githubOptionAction ? (
+                                                    <a
+                                                      href={githubOptionAction.url}
+                                                      className={`${styles.dropdownSourceAction} ${styles[`dropdownSourceAction--github`]}`}
+                                                      download
+                                                      onClick={() => {
+                                                        trackEvent(getDesktopDownloadEventName(option.assetType), {
+                                                          source: `desktop-hero-${platform.platform}-source-${githubOptionAction.kind}`,
+                                                        });
+                                                        setOpenDropdown(null);
+                                                      }}
+                                                    >
+                                                      <span>{getPrimaryDownloadSourceLabel('github', locale)}</span>
+                                                    </a>
+                                                  ) : (
+                                                    <span className={`${styles.dropdownSourceAction} ${styles.dropdownSourceActionDisabled}`}>
+                                                      {locale === 'en' ? 'Unavailable' : '暂无'}
+                                                    </span>
+                                                  )}
+                                                </div>
+                                                <div className={styles.dropdownTableCell}>
+                                                  {acceleratedOptionAction ? (
+                                                    <a
+                                                      href={acceleratedOptionAction.url}
+                                                      className={`${styles.dropdownSourceAction} ${styles[`dropdownSourceAction--accelerated`]}`}
+                                                      download
+                                                      onClick={() => {
+                                                        trackEvent(getDesktopDownloadEventName(option.assetType), {
+                                                          source: `desktop-hero-${platform.platform}-source-${acceleratedOptionAction.kind}`,
+                                                        });
+                                                        setOpenDropdown(null);
+                                                      }}
+                                                    >
+                                                      <span>{getPrimaryDownloadSourceLabel('accelerated', locale)}</span>
+                                                    </a>
+                                                  ) : (
+                                                    <span className={`${styles.dropdownSourceAction} ${styles.dropdownSourceActionDisabled}`}>
+                                                      {locale === 'en' ? 'Unavailable' : '暂无'}
+                                                    </span>
+                                                  )}
+                                                </div>
+                                                <div className={`${styles.dropdownTableCell} ${styles.dropdownMoreCell}`}>
+                                                  <div className={styles.dropdownSourceActions}>
+                                                    {actionPair.secondary.length > 0 ? actionPair.secondary.map((action) => (
+                                                      <a
+                                                        key={`${option.url}-${action.kind}`}
+                                                        href={action.url}
+                                                        className={`${styles.dropdownSourceAction} ${styles.dropdownSourceActionSecondary}`}
+                                                        download
+                                                        onClick={() => {
+                                                          trackEvent(getDesktopDownloadEventName(option.assetType), {
+                                                            source: `desktop-hero-${platform.platform}-source-${action.kind}`,
+                                                          });
+                                                          setOpenDropdown(null);
+                                                        }}
+                                                      >
+                                                        <span>{getDownloadActionLabel(action.kind, locale)}</span>
+                                                      </a>
+                                                    )) : (
+                                                      <span className={`${styles.dropdownSourceAction} ${styles.dropdownSourceActionDisabled}`}>
+                                                        {locale === 'en' ? 'No extra source' : '无额外来源'}
+                                                      </span>
+                                                    )}
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            );
+                                          })}
+                                        </div>
+                                      </div>,
+                                      document.body,
+                                    )
+                                  : null
+                              )}
+                            </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               )}
               {showMacDownloadNotice && (
@@ -523,49 +783,6 @@ export default function DesktopHero(props: DesktopHeroProps) {
                 </p>
               )}
             </div>
-
-            {/* 版本信息 */}
-            <p className="version-info">
-              {versionInfoLabel}
-              {currentChannel === 'beta' && ` ${t('desktopHero.testVersion')}`}
-            </p>
-
-            {/* 渠道选择器 */}
-            {hasChannels && (
-              <>
-                <div className="channel-selector">
-                  <button
-                    className={`channel-tab ${currentChannel === 'stable' ? 'channel-tab--active' : ''}`}
-                    onClick={() => setCurrentChannel('stable')}
-                    aria-selected={currentChannel === 'stable'}
-                  >
-                    <span className="channel-icon">🟢</span>
-                    <span className="channel-label">{t('desktopHero.channels.stable')}</span>
-                  </button>
-                  <button
-                    className={`channel-tab ${currentChannel === 'beta' ? 'channel-tab--active' : ''}`}
-                    onClick={() => setCurrentChannel('beta')}
-                    aria-selected={currentChannel === 'beta'}
-                  >
-                    <span className="channel-icon">🧪</span>
-                    <span className="channel-label">{t('desktopHero.channels.beta')}</span>
-                  </button>
-                </div>
-
-                {/* Beta 警告 */}
-                {isBeta && (
-                  <div className="beta-warning">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="warning-icon">
-                      <path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77-1.333.192 3.1.732 3z" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <div className="warning-content">
-                      <strong>{t('desktopHero.betaWarning.title')}</strong>
-                      <p>{t('desktopHero.betaWarning.description')}</p>
-                    </div>
-                  </div>
-                )}
-              </>
-            )}
           </>
         )}
       <div className="hero-features">

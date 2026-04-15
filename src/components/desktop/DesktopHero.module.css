@@ -41,12 +41,35 @@
    ========================================================================== */
 
 .buttonGroup {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
+  overflow: visible;
+}
+
+.platformTableScroll {
+  overflow: visible;
+}
+
+.platformTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.875rem;
+  table-layout: fixed;
+}
+
+.platformTable thead th {
+  padding: 0 1rem 0.25rem;
+  text-align: left;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--platform-table-header, rgba(255, 255, 255, 0.72));
+}
+
+.platformTable thead th:nth-child(n + 2) {
+  text-align: center;
 }
 
 /* ==========================================================================
@@ -55,112 +78,293 @@
 
 .platformButton {
   position: relative;
-  display: flex;
-  flex-direction: column;
+}
+
+.platformButton[aria-expanded="true"] {
+  z-index: 8;
+}
+
+.platformButton td {
+  padding: 0.875rem 0.75rem;
+  vertical-align: middle;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  min-width: 0;
+}
+
+.platformButton td:first-child {
+  border-left: 1px solid transparent;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.platformButton td:last-child {
+  border-right: 1px solid transparent;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 .splitButtonContainer {
   position: relative;
   display: flex;
-  align-items: stretch;
-  min-height: 56px;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 100%;
+  padding: 1rem;
+  border-radius: 1rem;
 }
 
-/* 主下载按钮 - 左侧 */
-.btnDownloadMain {
+.platformButtonPrimary td {
+  position: relative;
+  overflow: hidden;
+  background-image:
+    linear-gradient(135deg, rgba(0, 128, 255, 0.3) 0%, rgba(0, 204, 204, 0.24) 48%, rgba(34, 197, 94, 0.28) 100%),
+    radial-gradient(circle at top left, var(--recommended-row-highlight, rgba(255, 255, 255, 0.24)) 0%, transparent 58%),
+    linear-gradient(120deg, transparent 10%, var(--recommended-row-sheen, rgba(255, 255, 255, 0.28)) 48%, transparent 74%);
+  background-size: 100% 100%, 180% 180%, 240% 100%;
+  background-position: 0 0, 0 0, 140% 0;
+  border-color: rgba(120, 214, 255, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 0 0 1px var(--recommended-row-outline, rgba(255, 255, 255, 0.16)),
+    0 12px 34px var(--recommended-row-shadow, rgba(0, 128, 255, 0.18));
+  animation: recommended-row-sheen 4.8s ease-in-out infinite, recommended-row-breathe 2.6s ease-in-out infinite;
+}
+
+.platformButtonPrimary td::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 18%, transparent 38%, var(--recommended-row-overlay, rgba(255, 255, 255, 0.22)) 50%, transparent 64%, transparent 82%);
+  transform: translateX(145%);
+  opacity: 0.9;
+  pointer-events: none;
+  animation: recommended-row-overlay 5.2s ease-in-out infinite;
+}
+
+.platformButtonPrimary td:nth-child(2)::after {
+  animation-delay: 0.08s;
+}
+
+.platformButtonPrimary td:nth-child(3)::after {
+  animation-delay: 0.16s;
+}
+
+.platformButtonPrimary td:nth-child(4)::after {
+  animation-delay: 0.24s;
+}
+
+.platformButtonSecondary td {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.platformCardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.platformButtonLabel {
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
-  padding: 0 1.25rem;
-  flex: 1;
-  text-decoration: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  border: none;
-  text-align: center;
+  position: relative;
+  z-index: 1;
+  color: var(--platform-identity-text, #ffffff);
 }
 
-/* 主要按钮的主下载按钮 */
-.platformButtonPrimary .btnDownloadMain {
+.platformIconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.125rem;
+  height: 2.125rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.platformButtonPrimary .platformIconWrap {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 8px 18px var(--recommended-icon-glow, rgba(0, 128, 255, 0.18));
+  animation: recommended-icon-bob 2.8s ease-in-out infinite;
+}
+
+.platformIconWrap svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.platformVersion {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.platformIdentityCell {
+  width: 24%;
+}
+
+.platformActionsCell {
+  position: relative;
+  width: 28%;
+  min-width: 0;
+  overflow: visible;
+  z-index: 9;
+}
+
+.platformButtonPrimary .platformActionsCell,
+.platformButtonSecondary .platformActionsCell {
+  overflow: visible;
+}
+
+.platformSourceCell {
+  width: 24%;
+  min-width: 0;
+}
+
+.primarySourceActions {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 0;
+  min-width: 0;
+}
+
+.actionBar {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  min-width: 0;
+  border-radius: 0.95rem;
+  overflow: hidden;
+}
+
+.sourceActionButton {
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid transparent;
+  border-right: 0;
+  border-radius: 0;
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.1;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.sourceActionButtonStandalone {
+  width: 100%;
+  max-width: 100%;
+  border-right: 1px solid transparent;
+  border-radius: 0.8rem;
+}
+
+.primarySourceActions .sourceActionButton:first-child {
+  border-top-left-radius: 0.95rem;
+  border-bottom-left-radius: 0.95rem;
+}
+
+.sourceActionButton:hover {
+  transform: translateY(-1px);
+}
+
+.sourceActionButton--accelerated {
   background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
   background-size: 200% 200%;
   color: #ffffff;
-  border-radius: 0.75rem 0 0 0.75rem;
-  box-shadow: 0 4px 16px rgba(0, 128, 255, 0.2),
-              0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 20px rgba(0, 128, 255, 0.18);
   animation: gradient-shift 8s ease-in-out infinite;
 }
 
-.platformButtonPrimary .btnDownloadMain:hover {
-  background-position: 100% 50%;
-  box-shadow: 0 8px 24px rgba(0, 128, 255, 0.3),
-              0 0 0 1px rgba(255, 255, 255, 0.2) inset,
-              0 0 32px rgba(0, 204, 204, 0.2);
-}
-
-/* 次要按钮的主下载按钮 */
-.platformButtonSecondary .btnDownloadMain {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.sourceActionButton--github {
+  background: rgba(15, 23, 42, 0.92);
   color: #ffffff;
-  border-radius: 0.75rem 0 0 0.75rem;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1),
-              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.14);
 }
 
-.platformButtonSecondary .btnDownloadMain:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(0, 128, 255, 0.4);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15),
-              0 0 0 1px rgba(0, 128, 255, 0.1) inset;
+.sourceActionButtonDisabled {
+  background: rgba(148, 163, 184, 0.18);
+  color: rgba(255, 255, 255, 0.78);
+  border-color: rgba(148, 163, 184, 0.26);
+  box-shadow: none;
+  cursor: not-allowed;
 }
 
-/* 下拉切换按钮 - 右侧 */
+.sourceActionButtonGithubDisabled {
+  background: rgba(15, 23, 42, 0.4);
+}
+
 .btnDropdownToggle {
-  display: flex;
+  display: inline-flex;
+  box-sizing: border-box;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  min-width: 48px;
+  gap: 0.375rem;
+  flex: 0 0 auto;
+  width: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  max-width: 100%;
+  border-radius: 0 0.8rem 0.8rem 0;
   border: none;
   border-left: 1px solid rgba(255, 255, 255, 0.25);
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  color: #ffffff;
-}
-
-/* 主要按钮的下拉切换按钮 */
-.platformButtonPrimary .btnDropdownToggle {
   background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
   background-size: 200% 200%;
-  border-radius: 0 0.75rem 0.75rem 0;
-  box-shadow: 0 4px 16px rgba(0, 128, 255, 0.2),
-              0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   animation: gradient-shift 8s ease-in-out infinite;
 }
 
-.platformButtonPrimary .btnDropdownToggle:hover {
+.btnDropdownToggle:hover {
   background-position: 100% 50%;
+  transform: translateY(-1px);
 }
 
-/* 次要按钮的下拉切换按钮 */
-.platformButtonSecondary .btnDropdownToggle {
-  background: rgba(255, 255, 255, 0.08);
-  border-left-color: rgba(255, 255, 255, 0.15);
-  border-radius: 0 0.75rem 0.75rem 0;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1),
-              0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+.btnDropdownToggleStandalone {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  justify-content: center;
+  padding: 0.55rem 0.75rem;
+  border-left: none;
+  border-radius: 0.8rem;
+  white-space: normal;
+  line-height: 1.2;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
-.platformButtonSecondary .btnDropdownToggle:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-left-color: rgba(0, 128, 255, 0.4);
+.actionBar .sourceActionButton:hover,
+.actionBar .btnDropdownToggle:hover {
+  transform: none;
 }
 
 /* 下拉箭头动画 */
@@ -172,33 +376,45 @@
   transform: rotate(180deg);
 }
 
-/* 平台按钮标签 */
-.platformButtonLabel {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  position: relative;
-  z-index: 1;
+.downloadIcon {
+  width: 0.95rem;
+  height: 0.95rem;
+  flex-shrink: 0;
 }
 
 .platformName {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.2;
+  color: var(--platform-identity-text, inherit);
+}
+
+.platformButtonPrimary .platformName {
+  text-shadow: 0 0 18px var(--recommended-label-glow, rgba(0, 128, 255, 0.18));
 }
 
 /* 推荐徽章 - 优化视觉层次 */
 .recommendedBadge {
-  padding: 0.25rem 0.625rem;
+  position: relative;
+  overflow: hidden;
+  padding: 0.1875rem 0.5rem;
   background: linear-gradient(135deg, #22C55E, #16A34A);
   color: #ffffff;
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: 700;
   border-radius: 1rem;
   box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4);
-  position: relative;
   z-index: 1;
   animation: badge-pulse 2s ease-in-out infinite;
+}
+
+.recommendedBadge::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 18%, transparent 38%, var(--recommended-badge-sheen, rgba(255, 255, 255, 0.7)) 50%, transparent 64%, transparent 82%);
+  transform: translateX(-150%);
+  animation: recommended-badge-shimmer 3s ease-in-out infinite;
 }
 
 @keyframes badge-pulse {
@@ -207,6 +423,79 @@
   }
   50% {
     transform: scale(1.05);
+  }
+}
+
+@keyframes recommended-row-sheen {
+  0%, 100% {
+    background-position: 0 0, 0 0, 140% 0;
+  }
+  50% {
+    background-position: 0 0, 4% 0, -34% 0;
+  }
+}
+
+@keyframes recommended-row-breathe {
+  0%, 100% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      inset 0 0 0 1px var(--recommended-row-outline, rgba(255, 255, 255, 0.16)),
+      0 12px 34px var(--recommended-row-shadow, rgba(0, 128, 255, 0.18));
+  }
+  50% {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.24),
+      inset 0 0 0 1px var(--recommended-row-outline-strong, rgba(255, 255, 255, 0.24)),
+      0 18px 42px var(--recommended-row-shadow-strong, rgba(34, 197, 94, 0.22));
+  }
+}
+
+@keyframes recommended-row-overlay {
+  0% {
+    transform: translateX(145%);
+    opacity: 0;
+  }
+  16% {
+    opacity: 0;
+  }
+  34% {
+    opacity: 0.9;
+  }
+  58% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(-145%);
+    opacity: 0;
+  }
+}
+
+@keyframes recommended-icon-bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes recommended-badge-shimmer {
+  0% {
+    transform: translateX(-150%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  38% {
+    opacity: 1;
+  }
+  62% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(150%);
+    opacity: 0;
   }
 }
 
@@ -227,10 +516,10 @@
    ========================================================================== */
 
 .dropdownMenu {
-  position: absolute;
-  top: calc(100% + 0.5rem);
+  position: fixed;
+  top: 0;
   left: 0;
-  right: 0;
+  right: auto;
   --hero-dropdown-surface: #ffffff;
   --hero-dropdown-border: rgba(59, 130, 246, 0.22);
   --hero-dropdown-shadow: none;
@@ -254,6 +543,7 @@
   --hero-dropdown-badge-surface: rgba(255, 255, 255, 0.82);
   z-index: 100;
   min-width: 260px;
+  max-width: calc(100vw - 32px);
   background: var(--hero-dropdown-surface);
   border: 1px solid var(--hero-dropdown-border);
   border-radius: 1rem;
@@ -265,14 +555,16 @@
   transform: translateY(-8px);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               visibility 0s linear 0.25s;
+  pointer-events: none;
 }
 
-.platformButton[aria-expanded="true"] .dropdownMenu {
+.dropdownMenuOpen {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1),
               visibility 0s linear 0s;
+  pointer-events: auto;
 }
 
 /* 平台分组标签 - 优化视觉层次 */
@@ -327,29 +619,32 @@
 .dropdownList {
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
+  gap: 0;
+  border: 1px solid var(--hero-dropdown-card-border);
+  border-radius: 0.95rem;
+  overflow: hidden;
+  background: var(--hero-dropdown-card-surface);
 }
 
 /* 下拉菜单项 - 与按钮渐变风格一致 */
 .dropdownItem {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(92px, 1.05fr) minmax(88px, 0.95fr) minmax(88px, 0.95fr) minmax(112px, 1.05fr);
   align-items: stretch;
-  justify-content: flex-start;
-  gap: 0.75rem;
-  padding: 0.95rem 1rem;
-  min-height: 44px;
+  gap: 0;
+  padding: 0;
+  min-height: 0;
   background: var(--hero-dropdown-card-surface);
-  border: 1px solid var(--hero-dropdown-card-border);
-  border-radius: 0.9rem;
+  border: none;
+  border-top: 1px solid var(--hero-dropdown-card-border);
+  border-radius: 0;
   color: var(--hero-dropdown-text);
   text-decoration: none;
   font-size: 1rem;
   font-weight: 600;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
   position: relative;
-  box-shadow: var(--hero-dropdown-card-shadow);
+  box-shadow: none;
 }
 
 .dropdownItem::before {
@@ -358,9 +653,7 @@
 
 .dropdownItem:hover {
   background: var(--hero-dropdown-card-hover-surface);
-  border-color: var(--hero-dropdown-card-hover-border);
   color: var(--hero-dropdown-text);
-  box-shadow: var(--hero-dropdown-card-hover-shadow);
 }
 
 .dropdownItem:focus-visible {
@@ -370,54 +663,86 @@
 }
 
 .dropdownItemLabel {
-  flex: 1;
   text-align: left;
   position: relative;
   z-index: 1;
 }
 
-.dropdownItemLabelRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  position: relative;
-  z-index: 1;
+.dropdownTableRow {
+  display: grid;
+  grid-template-columns: minmax(92px, 1.05fr) minmax(88px, 0.95fr) minmax(88px, 0.95fr) minmax(112px, 1.05fr);
+  align-items: stretch;
 }
 
-.dropdownItemLabelRow svg {
+.dropdownTableHeader {
+  background: var(--hero-dropdown-header-surface);
+  color: var(--hero-dropdown-header-text);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dropdownTableCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 0.75rem 0.7rem;
   position: relative;
   z-index: 1;
-  flex-shrink: 0;
-  color: currentColor;
-  width: 1.25rem;
-  height: 1.25rem;
+  border-right: 1px solid var(--hero-dropdown-card-border);
+}
+
+.dropdownTableHeader .dropdownTableCell {
+  padding-top: 0.72rem;
+  padding-bottom: 0.72rem;
+}
+
+.dropdownTableCell:last-child {
+  border-right: none;
+}
+
+.dropdownLabelCell {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.dropdownMoreCell {
+  justify-content: flex-start;
 }
 
 .dropdownSourceActions {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
-  gap: 0.625rem;
-  position: relative;
-  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.dropdownTableCell > .dropdownSourceAction {
+  width: 100%;
 }
 
 .dropdownSourceAction {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 0.5rem;
-  min-height: 38px;
-  padding: 0.55rem 0.75rem;
-  border-radius: 0.8rem;
+  min-height: 36px;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.72rem;
   border: 1px solid var(--hero-dropdown-chip-border);
   background: var(--hero-dropdown-chip-surface);
   color: var(--hero-dropdown-chip-text);
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 600;
   box-shadow: none;
   transition: all 0.2s ease;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
 }
 
 .dropdownSourceAction:hover {
@@ -426,21 +751,27 @@
   color: var(--hero-dropdown-text);
 }
 
-.dropdownSourceActionDefault {
-  background: var(--hero-dropdown-chip-default-surface);
-  border-color: var(--hero-dropdown-chip-default-border);
-  color: var(--hero-dropdown-chip-default-text);
+.dropdownSourceActionDisabled {
+  background: transparent;
+  border-style: dashed;
+  color: var(--hero-dropdown-chip-text);
+  opacity: 0.68;
+  cursor: default;
 }
 
-.dropdownSourceActionBadge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.125rem 0.375rem;
-  border-radius: 999px;
-  background: var(--hero-dropdown-badge-surface);
-  color: currentColor;
-  font-size: 0.8125rem;
-  font-weight: 700;
+.dropdownSourceAction--accelerated {
+  background: rgba(14, 165, 233, 0.12);
+  border-color: rgba(14, 165, 233, 0.28);
+}
+
+.dropdownSourceAction--github {
+  background: rgba(15, 23, 42, 0.06);
+  border-color: rgba(100, 116, 139, 0.26);
+}
+
+.dropdownSourceActionSecondary {
+  background: transparent;
+  border-style: dashed;
 }
 
 /* 历史版本按钮 - 优化视觉层次 */
@@ -860,6 +1191,48 @@
   color: #00CCCC;
 }
 
+[data-theme='dark'] .platformTable thead th {
+  color: rgba(226, 232, 240, 0.76);
+}
+
+[data-theme='dark'] {
+  --recommended-row-sheen: rgba(103, 232, 249, 0.18);
+  --recommended-row-highlight: rgba(103, 232, 249, 0.18);
+  --recommended-row-overlay: rgba(125, 211, 252, 0.26);
+  --recommended-row-outline: rgba(103, 232, 249, 0.18);
+  --recommended-row-outline-strong: rgba(103, 232, 249, 0.28);
+  --recommended-row-shadow: rgba(8, 145, 178, 0.24);
+  --recommended-row-shadow-strong: rgba(16, 185, 129, 0.22);
+  --recommended-icon-glow: rgba(34, 211, 238, 0.26);
+  --recommended-label-glow: rgba(103, 232, 249, 0.3);
+  --recommended-badge-sheen: rgba(224, 242, 254, 0.56);
+}
+
+[data-theme='dark'] .platformButtonLabel,
+[data-theme='dark'] .platformName,
+[data-theme='dark'] .platformIdentityCell {
+  --platform-identity-text: #e2e8f0;
+}
+
+[data-theme='dark'] .platformButtonPrimary td {
+  background-image:
+    linear-gradient(135deg, rgba(14, 116, 144, 0.36) 0%, rgba(8, 145, 178, 0.3) 48%, rgba(6, 95, 70, 0.3) 100%),
+    radial-gradient(circle at top left, var(--recommended-row-highlight) 0%, transparent 58%),
+    linear-gradient(120deg, transparent 10%, var(--recommended-row-sheen) 48%, transparent 74%);
+  border-color: rgba(103, 232, 249, 0.32);
+}
+
+[data-theme='dark'] .platformButtonSecondary td {
+  background: rgba(15, 23, 42, 0.88);
+  border-color: rgba(71, 85, 105, 0.5);
+}
+
+[data-theme='dark'] .sourceActionButtonDisabled {
+  background: rgba(30, 41, 59, 0.9);
+  color: rgba(148, 163, 184, 0.9);
+  border-color: rgba(71, 85, 105, 0.6);
+}
+
 /* 平台色栏 - 暗色主题（更柔和的渐变） */
 [data-theme='dark'] .platform--windows::before {
   background: #3b82f6;
@@ -951,6 +1324,19 @@
   box-shadow: 0 2px 8px rgba(255, 214, 0, 0.5);
 }
 
+[data-theme='lunar-new-year'] {
+  --recommended-row-sheen: rgba(255, 244, 214, 0.22);
+  --recommended-row-highlight: rgba(255, 239, 179, 0.22);
+  --recommended-row-overlay: rgba(255, 248, 220, 0.28);
+  --recommended-row-outline: rgba(255, 214, 102, 0.24);
+  --recommended-row-outline-strong: rgba(255, 239, 179, 0.34);
+  --recommended-row-shadow: rgba(255, 145, 0, 0.28);
+  --recommended-row-shadow-strong: rgba(255, 214, 0, 0.24);
+  --recommended-icon-glow: rgba(255, 214, 0, 0.24);
+  --recommended-label-glow: rgba(255, 236, 179, 0.26);
+  --recommended-badge-sheen: rgba(255, 248, 220, 0.68);
+}
+
 /* 下拉菜单 - 新年主题 - 优化背景和可读性 */
 [data-theme='lunar-new-year'] .dropdownMenu {
   --hero-dropdown-surface: #2d1f1f;
@@ -1005,6 +1391,42 @@
   color: #FF9100;
 }
 
+[data-theme='lunar-new-year'] .platformTable thead th {
+  color: rgba(255, 234, 167, 0.92);
+}
+
+[data-theme='lunar-new-year'] .platformButtonLabel,
+[data-theme='lunar-new-year'] .platformName,
+[data-theme='lunar-new-year'] .platformIdentityCell {
+  --platform-identity-text: #fff7d6;
+}
+
+[data-theme='lunar-new-year'] .platformButtonPrimary td {
+  background-image:
+    linear-gradient(135deg, rgba(180, 20, 48, 0.96) 0%, rgba(220, 38, 38, 0.9) 40%, rgba(245, 158, 11, 0.88) 100%),
+    radial-gradient(circle at top left, var(--recommended-row-highlight) 0%, transparent 58%),
+    linear-gradient(120deg, transparent 10%, var(--recommended-row-sheen) 48%, transparent 74%);
+  border-color: rgba(255, 214, 102, 0.5);
+}
+
+[data-theme='lunar-new-year'] .platformButtonSecondary td {
+  background: rgba(127, 29, 29, 0.72);
+  border-color: rgba(251, 191, 36, 0.28);
+}
+
+[data-theme='lunar-new-year'] .sourceActionButton--accelerated,
+[data-theme='lunar-new-year'] .btnDropdownToggle {
+  background: linear-gradient(135deg, #FF1744 0%, #FF9100 50%, #FFD600 100%);
+  background-size: 200% 200%;
+  color: #fff8e1;
+}
+
+[data-theme='lunar-new-year'] .sourceActionButtonDisabled {
+  background: rgba(127, 29, 29, 0.82);
+  color: rgba(255, 236, 179, 0.82);
+  border-color: rgba(251, 191, 36, 0.24);
+}
+
 /* 平台色栏 - 新年主题（金色系） */
 [data-theme='lunar-new-year'] .platform--windows::before {
   background: #ffd54f;
@@ -1025,8 +1447,11 @@
 @media (prefers-reduced-motion: reduce) {
   .downloadSection,
   .platformButton,
-  .btnDownloadMain,
+  .sourceActionButton,
   .btnDropdownToggle,
+  .platformButtonPrimary td,
+  .platformButtonPrimary td::after,
+  .platformButtonPrimary .platformIconWrap,
   .dropdownMenu,
   .dropdownItem,
   .dropdownHistoryBtn,
@@ -1035,12 +1460,13 @@
   .submitButton,
   .input,
   .loadingSpinner,
-  .recommendedBadge {
+  .recommendedBadge,
+  .recommendedBadge::after {
     animation: none !important;
     transition: none !important;
   }
 
-  .btnDownloadMain:hover,
+  .sourceActionButton:hover,
   .btnDropdownToggle:hover,
   .dropdownItem:hover,
   .submitButton:hover {
@@ -1056,7 +1482,7 @@
    焦点样式 - 键盘导航 - 增强可访问性
    ========================================================================== */
 
-.btnDownloadMain:focus-visible,
+.sourceActionButton:focus-visible,
 .btnDropdownToggle:focus-visible,
 .dropdownItem:focus-visible,
 .dropdownHistoryBtn:focus-visible,
@@ -1066,7 +1492,7 @@
   outline: none;
 }
 
-.btnDownloadMain:focus-visible,
+.sourceActionButton:focus-visible,
 .btnDropdownToggle:focus-visible {
   box-shadow: 0 0 0 3px var(--color-primary, #0080FF),
               0 0 0 6px rgba(0, 128, 255, 0.2);
@@ -1095,27 +1521,11 @@
   }
 
   .buttonGroup {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
     max-width: 100%;
   }
 
-  .splitButtonContainer {
-    min-height: 52px;
-  }
-
-  .btnDownloadMain {
-    padding: 0 1rem;
-    font-size: 1rem;
-  }
-
-  .btnDropdownToggle {
-    width: 44px;
-    min-width: 44px;
-  }
-
   .platformName {
-    font-size: 1rem;
+    font-size: 0.9375rem;
   }
 
   .dropdownMenu {
@@ -1143,29 +1553,14 @@
 
 /* 移动布局 (≤480px) - 优化触摸目标 */
 @media (max-width: 480px) {
-  .buttonGroup {
-    grid-template-columns: 1fr;
-    gap: 0.875rem;
-  }
-
-  .splitButtonContainer {
-    min-height: 48px;
-  }
-
-  .btnDownloadMain {
-    padding: 0 1rem;
-    font-size: 0.9375rem;
-    border-radius: 0.75rem 0 0 0.75rem;
-  }
-
-  .btnDropdownToggle {
-    width: 44px;
-    min-width: 44px;
-    border-radius: 0 0.75rem 0.75rem 0;
+  .platformTable thead th,
+  .platformButton td {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
 
   .platformName {
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
   }
 
   .recommendedBadge {
@@ -1175,12 +1570,7 @@
 
   /* 在移动端，下拉菜单完全展开并优化定位 */
   .dropdownMenu {
-    position: relative;
-    top: 0.5rem;
-    left: auto;
-    right: auto;
-    width: 100%;
-    min-width: unset;
+    max-width: calc(100vw - 24px);
   }
 
   .dropdownItem,
@@ -1200,6 +1590,14 @@
 /* 亮色模式下的次要按钮主下载按钮 - 仅在无 data-theme 或 data-theme="light" 时生效 */
 html:not([data-theme]),
 html[data-theme='light'] {
+  --platform-card-primary-bg: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(6, 182, 212, 0.1) 48%, rgba(34, 197, 94, 0.12) 100%);
+  --platform-card-primary-border: rgba(59, 130, 246, 0.22);
+  --platform-card-secondary-bg: rgba(255, 255, 255, 0.92);
+  --platform-card-secondary-border: rgba(15, 23, 42, 0.08);
+  --platform-card-text: #0f172a;
+  --platform-identity-text: #0f172a;
+  --platform-table-header: rgba(15, 23, 42, 0.58);
+  --platform-card-subtle: rgba(15, 23, 42, 0.65);
   --btn-secondary-bg: rgba(15, 23, 42, 0.08);
   --btn-secondary-border: rgba(0, 0, 0, 0.15);
   --btn-secondary-color: #0F172A;
@@ -1210,33 +1608,73 @@ html[data-theme='light'] {
   --btn-dropdown-border: rgba(0, 0, 0, 0.12);
   --btn-dropdown-hover-bg: rgba(0, 128, 255, 0.08);
   --btn-dropdown-hover-border: rgba(0, 128, 255, 0.3);
+  --recommended-row-sheen: rgba(255, 255, 255, 0.34);
+  --recommended-row-highlight: rgba(255, 255, 255, 0.3);
+  --recommended-row-overlay: rgba(255, 255, 255, 0.36);
+  --recommended-row-outline: rgba(255, 255, 255, 0.22);
+  --recommended-row-outline-strong: rgba(255, 255, 255, 0.32);
+  --recommended-row-shadow: rgba(14, 165, 233, 0.14);
+  --recommended-row-shadow-strong: rgba(34, 197, 94, 0.18);
+  --recommended-icon-glow: rgba(14, 165, 233, 0.18);
+  --recommended-label-glow: rgba(14, 165, 233, 0.2);
+  --recommended-badge-sheen: rgba(255, 255, 255, 0.8);
 }
 
-html:not([data-theme]) .platformButtonSecondary .btnDownloadMain,
-html[data-theme='light'] .platformButtonSecondary .btnDownloadMain {
-  background: var(--btn-secondary-bg);
-  border: 1px solid var(--btn-secondary-border);
-  color: var(--btn-secondary-color);
+html:not([data-theme]) .platformButtonPrimary td,
+html[data-theme='light'] .platformButtonPrimary td {
+  background-image:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.18) 0%, rgba(6, 182, 212, 0.16) 48%, rgba(34, 197, 94, 0.18) 100%),
+    radial-gradient(circle at top left, var(--recommended-row-highlight) 0%, transparent 58%),
+    linear-gradient(120deg, transparent 10%, var(--recommended-row-sheen) 48%, transparent 74%);
+  border-color: var(--platform-card-primary-border);
+  color: var(--platform-card-text);
 }
 
-html:not([data-theme]) .platformButtonSecondary .btnDownloadMain:hover,
-html[data-theme='light'] .platformButtonSecondary .btnDownloadMain:hover {
-  background: var(--btn-secondary-hover-bg);
-  border-color: var(--btn-secondary-hover-border);
-  color: var(--btn-secondary-hover-color);
+html:not([data-theme]) .platformButtonSecondary td,
+html[data-theme='light'] .platformButtonSecondary td {
+  background: var(--platform-card-secondary-bg);
+  border-color: var(--platform-card-secondary-border);
+  color: var(--platform-card-text);
 }
 
-/* 亮色模式下的次要下拉切换按钮 */
+html:not([data-theme]) .platformVersion,
+html[data-theme='light'] .platformVersion,
+html:not([data-theme]) .platformButtonLabel,
+html[data-theme='light'] .platformButtonLabel,
+html:not([data-theme]) .platformName,
+html[data-theme='light'] .platformName {
+  color: var(--platform-identity-text);
+}
+
 html:not([data-theme]) .platformButtonSecondary .btnDropdownToggle,
 html[data-theme='light'] .platformButtonSecondary .btnDropdownToggle {
   background: var(--btn-dropdown-bg);
-  border-left-color: var(--btn-dropdown-border);
+  border-color: var(--btn-dropdown-border);
   color: var(--btn-secondary-color);
 }
 
 html:not([data-theme]) .platformButtonSecondary .btnDropdownToggle:hover,
 html[data-theme='light'] .platformButtonSecondary .btnDropdownToggle:hover {
   background: var(--btn-dropdown-hover-bg);
-  border-left-color: var(--btn-dropdown-hover-border);
+  border-color: var(--btn-dropdown-hover-border);
   color: var(--btn-secondary-hover-color);
+}
+
+html:not([data-theme]) .sourceActionButton--accelerated,
+html[data-theme='light'] .sourceActionButton--accelerated {
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.12);
+}
+
+html:not([data-theme]) .sourceActionButton--github,
+html[data-theme='light'] .sourceActionButton--github {
+  background: rgba(15, 23, 42, 0.06);
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #0f172a;
+}
+
+html:not([data-theme]) .sourceActionButtonDisabled,
+html[data-theme='light'] .sourceActionButtonDisabled {
+  background: rgba(148, 163, 184, 0.18);
+  border-color: rgba(148, 163, 184, 0.26);
+  color: rgba(15, 23, 42, 0.52);
 }
