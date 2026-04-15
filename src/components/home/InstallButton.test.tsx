@@ -152,6 +152,23 @@ describe('InstallButton markup', () => {
     expect(markup).not.toContain('Open version history');
   });
 
+  it('renders compact installs as one segmented action group', () => {
+    const markup = renderToStaticMarkup(
+      <InstallButton
+        locale="en"
+        variant="compact"
+        version={multiSourceVersion}
+        platforms={groupAssetsByPlatform(multiSourceVersion.assets)}
+      />,
+    );
+
+    expect(markup).toContain('data-action-group="segmented"');
+    expect(markup).toContain('data-segment-role="primary-actions"');
+    expect(markup).toContain('data-segment-role="toggle"');
+    expect(markup).toContain('>GitHub<');
+    expect(markup).toContain('>China<');
+  });
+
   it('projects multi-source actions without duplicating the asset row contract', () => {
     const platformData = convertPlatformGroups(groupAssetsByPlatform(multiSourceVersion.assets));
     const windowsOption = platformData[0]?.options[0];

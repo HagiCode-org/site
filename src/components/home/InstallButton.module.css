@@ -23,9 +23,18 @@
 .splitButtonContainer {
   display: flex;
   align-items: stretch;
+  flex-wrap: nowrap;
+  min-width: 0;
   position: relative;
   /* 为下拉菜单创建定位上下文 */
   z-index: 1;
+}
+
+.splitButtonContainerSegmented {
+  gap: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.16);
 }
 
 /* 完整模式 - Hero 区域使用 */
@@ -41,6 +50,95 @@
 /* ==========================================================================
    主下载按钮
    ========================================================================== */
+
+.primarySourceActions {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.primarySourceActionsGrouped {
+  gap: 0;
+}
+
+.sourceActionButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 1 1 0;
+  min-height: 56px;
+  padding: 0 1.25rem;
+  min-width: 0;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.installButtonWrapper--compact .sourceActionButton {
+  min-height: 40px;
+  padding: 0 0.75rem;
+  font-size: 0.9375rem;
+  border-radius: var(--radius-md);
+}
+
+.splitButtonContainerSegmented .btnDownloadMain,
+.splitButtonContainerSegmented .primarySourceActionsGrouped .sourceActionButton,
+.splitButtonContainerSegmented .btnDropdownToggle {
+  box-shadow: none;
+}
+
+.splitButtonContainerSegmented .primarySourceActionsGrouped .sourceActionButton {
+  border-radius: 0;
+  border-right: 0;
+}
+
+.splitButtonContainerSegmented .primarySourceActionsGrouped .sourceActionButton:first-child {
+  border-top-left-radius: var(--radius-md);
+  border-bottom-left-radius: var(--radius-md);
+}
+
+.splitButtonContainerSegmented .btnDownloadMain {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.sourceActionButton:hover {
+  transform: translateY(-1px);
+}
+
+.sourceActionButton--github {
+  background: rgba(15, 23, 42, 0.92);
+  color: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.14);
+}
+
+.sourceActionButton--github:hover {
+  background: rgba(15, 23, 42, 1);
+  border-color: rgba(148, 163, 184, 0.5);
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.22);
+}
+
+.sourceActionButton--accelerated {
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  background-size: 200% 200%;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 20px rgba(0, 128, 255, 0.18);
+  animation: install-button-gradient-wave 3s ease-in-out infinite;
+}
+
+.sourceActionButton--accelerated:hover {
+  background-position: 100% 50%;
+  box-shadow: 0 12px 24px rgba(0, 128, 255, 0.28);
+}
 
 .btnDownloadMain {
   display: flex;
@@ -145,6 +243,18 @@
   width: 36px;
   min-width: 36px;
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.splitButtonContainerSegmented .btnDropdownToggle {
+  align-self: stretch;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.splitButtonContainerSegmented .sourceActionButton:hover,
+.splitButtonContainerSegmented .btnDownloadMain:hover,
+.splitButtonContainerSegmented .btnDropdownToggle:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 .btnDropdownToggle:hover {
@@ -547,10 +657,13 @@
    新年主题
    ========================================================================== */
 
-[data-theme='lunar-new-year'] .btnDownloadMain {
+[data-theme='lunar-new-year'] .btnDownloadMain,
+[data-theme='lunar-new-year'] .sourceActionButton--accelerated {
   /* 新年主题 - 高饱和度红金渐变填充 */
   background: linear-gradient(135deg, #FF1744 0%, #FF9100 50%, #FFD600 100%);
   background-size: 200% 200%;
+  border-color: rgba(255, 214, 102, 0.32);
+  box-shadow: 0 8px 20px rgba(255, 145, 0, 0.24);
   animation: install-button-gradient-wave-lunar 3s ease-in-out infinite;
 }
 
@@ -558,12 +671,16 @@
   background: linear-gradient(135deg, #FF1744 0%, #FF9100 50%, #FFD600 100%);
   background-size: 200% 200%;
   border-left-color: rgba(255, 193, 7, 0.3);
+  box-shadow: 0 8px 20px rgba(255, 145, 0, 0.24);
   animation: install-button-gradient-wave-lunar 3s ease-in-out infinite;
 }
 
 [data-theme='lunar-new-year'] .btnDownloadMain:hover,
+[data-theme='lunar-new-year'] .sourceActionButton--accelerated:hover,
 [data-theme='lunar-new-year'] .btnDropdownToggle:hover {
   background: linear-gradient(135deg, #FF2754 0%, #FFA110 50%, #FFE610 100%);
+  border-color: rgba(255, 226, 153, 0.42);
+  box-shadow: 0 12px 24px rgba(255, 145, 0, 0.32);
 }
 
 /* 新年主题的波动渐变动画 */
@@ -648,6 +765,12 @@
     font-size: 1rem;
   }
 
+  .installButtonWrapper--full .sourceActionButton {
+    min-height: 48px;
+    padding: 0 0.75rem;
+    font-size: 0.875rem;
+  }
+
   .installButtonWrapper--full .btnDropdownToggle {
     width: 40px;
     min-width: 40px;
@@ -670,6 +793,7 @@
 @media (prefers-reduced-motion: reduce) {
   .btnDownloadMain,
   .btnDropdownToggle,
+  .sourceActionButton,
   .dropdownItem,
   .dropdownMenu {
     animation: none !important;

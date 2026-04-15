@@ -25,13 +25,16 @@ import {
   collectDownloadSourceProbeTargets,
   getCachedDownloadSourceProbeStates,
   getDownloadActionLabel,
+  getPrimaryDownloadSourceLabel,
   getArchitectureLabel,
   getAssetTypeLabel,
   getFileExtension,
   groupAssetsByPlatform,
   PLATFORM_ICONS,
   resolvePrimaryDownloadAction,
+  resolvePrimaryDownloadActionPair,
 } from '@/lib/shared/desktop-utils';
+import type { PrimaryDownloadActionPair, PrimaryDownloadSourceKey } from '@/lib/shared/desktop-utils';
 import { getLinkWithLocale } from '@/lib/shared/links';
 import type {
   DesktopVersionData,
@@ -442,6 +445,8 @@ export default function InstallButton({
     runtimeSnapshot.status,
   ]);
 
+  const primarySourceOrder: PrimaryDownloadSourceKey[] = ['github', 'accelerated'];
+
   const primaryTarget = useMemo(() => {
     const userOS = detectOS();
     if (!FEATURE_MAC_DOWNLOAD_ENABLED && userOS === 'macos') {
@@ -449,22 +454,41 @@ export default function InstallButton({
         href: desktopPageUrl,
         option: null,
         action: null,
+        actionPair: null,
       };
     }
 
-    return resolveInstallButtonPrimaryTarget(
+    const resolved = resolveInstallButtonPrimaryTarget(
       platformData,
       downloadSourceProbeStates,
       userOS,
       desktopPageUrl,
     );
+    const actionPair = resolved.option
+      ? resolvePrimaryDownloadActionPair({ sourceActions: resolved.option.sourceActions })
+      : null;
+
+    return { ...resolved, actionPair };
   }, [desktopPageUrl, downloadSourceProbeStates, platformData]);
+
+  const primaryActions = useMemo(() => {
+    if (!primaryTarget.actionPair) {
+      return [];
+    }
+    return primarySourceOrder
+      .map((source) => ({
+        source,
+        action: primaryTarget.actionPair![source],
+        label: getPrimaryDownloadSourceLabel(source, locale),
+      }))
+      .filter((entry) => Boolean(entry.action));
+  }, [primaryTarget.actionPair, primarySourceOrder, locale]);
 
   const primaryHref =
     menuState.mode === 'fatal'
       ? historyFallbackTarget
       : menuState.hasDownloads
-        ? primaryTarget.href
+        ? primaryActions[0]?.action?.url ?? primaryTarget.href
         : desktopPageUrl;
   const primaryText =
     menuState.mode === 'fatal'
@@ -473,7 +497,7 @@ export default function InstallButton({
         ? loadingPrimaryLabel
         : installButtonLabel;
   const primaryAriaLabel = menuState.hasDownloads
-    ? `${installDesktopAriaLabel}${primaryTarget.action ? ` (${getDownloadActionLabel(primaryTarget.action.kind, locale)})` : ''}`
+    ? `${installDesktopAriaLabel}${primaryActions[0] ? ` (${primaryActions[0].label})` : ''}`
     : menuState.mode === 'loading'
       ? loadingLatestLabel
       : desktopFallbackCta;
@@ -795,25 +819,64 @@ export default function InstallButton({
       className={`${styles.installButtonWrapper} ${styles[`installButtonWrapper--${variant}`]} ${className}`}
       ref={buttonRef}
     >
-      <div className={styles.splitButtonContainer}>
-        <a
-          href={primaryHref}
-          className={styles.btnDownloadMain}
-          aria-busy={menuState.mode === 'loading'}
-          aria-label={primaryAriaLabel}
-          onClick={handlePrimaryInstallClick}
-        >
-          <svg className={styles.downloadIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <span className={styles.btnText}>{primaryText}</span>
-        </a>
+      <div
+        className={`${styles.splitButtonContainer} ${variant === 'compact' ? styles.splitButtonContainerSegmented : ''}`}
+        data-action-group={variant === 'compact' ? 'segmented' : 'default'}
+      >
+        {primaryActions.length > 0 ? (
+          <div
+            className={`${styles.primarySourceActions} ${variant === 'compact' ? styles.primarySourceActionsGrouped : ''}`}
+            data-segment-role="primary-actions"
+          >
+            {primaryActions.map(({ source, action, label }) => (
+              <a
+                key={source}
+                href={action?.url ?? '#'}
+                className={`${styles.sourceActionButton} ${styles[`sourceActionButton--${source}`]}`}
+                aria-busy={menuState.mode === 'loading'}
+                aria-label={`${installDesktopAriaLabel} (${label})`}
+                download
+                onClick={() => {
+                  if (primaryTarget.option && action) {
+                    trackEvent(getDesktopDownloadEventName(primaryTarget.option.assetType), {
+                      source: `install-button-${variant}-primary-${action.kind}`,
+                    });
+                  }
+                }}
+              >
+                <svg className={styles.downloadIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <span className={styles.btnText}>{label}</span>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <a
+            href={primaryHref}
+            className={styles.btnDownloadMain}
+            aria-busy={menuState.mode === 'loading'}
+            aria-label={primaryAriaLabel}
+            onClick={handlePrimaryInstallClick}
+          >
+            <svg className={styles.downloadIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className={styles.btnText}>{primaryText}</span>
+          </a>
+        )}
 
         {showDropdown && (
           <button
@@ -825,6 +888,7 @@ export default function InstallButton({
             aria-busy={menuState.mode === 'loading'}
             aria-label={selectOtherVersionsLabel}
             data-runtime-state={menuState.mode}
+            data-segment-role="toggle"
             onClick={handleToggleDropdown}
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
