@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import type { DesktopVersionData } from '@/lib/shared/version-manager';
 import {
   DesktopHeroActionBar,
+  DesktopHeroSteamRow,
   convertVersionToPlatformDownloads,
   resolveDesktopHeroCurrentVersion,
   resolveDesktopHeroFallbackState,
@@ -201,6 +202,34 @@ describe('DesktopHero fallback contract', () => {
     expect(markup).toContain('data-segment-role="primary-actions"');
     expect(markup).toContain('data-segment-role="toggle"');
     expect(markup).toContain('More versions');
+  });
+
+  it('renders the Steam row ahead of the download table with the canonical store target', () => {
+    const markup = renderToStaticMarkup(
+      React.createElement(
+        React.Fragment,
+        null,
+        React.createElement(DesktopHeroSteamRow, {
+          locale: 'en',
+          href: 'https://store.steampowered.com/app/4625540/Hagicode/',
+        }),
+        React.createElement(
+          'table',
+          { 'data-platform-table': 'desktop-downloads' },
+          React.createElement('tbody', null, React.createElement('tr', null, React.createElement('td', null, 'Windows'))),
+        ),
+      ),
+    );
+
+    expect(markup).toContain('data-steam-row="desktop-downloads"');
+    expect(markup).toContain('site-desktop-hero');
+    expect(markup).toContain('https://store.steampowered.com/app/4625540/Hagicode/');
+    expect(markup).toContain('target="_blank"');
+    expect(markup).toContain('<a');
+    expect(markup).toContain('Click to open on Steam');
+    expect(markup.indexOf('data-steam-row="desktop-downloads"')).toBeLessThan(
+      markup.indexOf('data-platform-table="desktop-downloads"'),
+    );
   });
 
   it('keeps the desktop downloads renderable inside a table layout', () => {

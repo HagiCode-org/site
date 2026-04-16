@@ -169,6 +169,26 @@ describe('InstallButton markup', () => {
     expect(markup).toContain('>China<');
   });
 
+  it('adds a direct Steam shortcut to the compact install cluster without removing existing actions', () => {
+    const markup = renderToStaticMarkup(
+      <InstallButton
+        locale="en"
+        variant="compact"
+        version={multiSourceVersion}
+        platforms={groupAssetsByPlatform(multiSourceVersion.assets)}
+      />,
+    );
+
+    expect(markup).toContain('data-steam-entry="site-header-install"');
+    expect(markup).toContain('https://store.steampowered.com/app/4625540/Hagicode/');
+    expect(markup).toContain('target="_blank"');
+    expect(markup).toContain('rel="noopener noreferrer"');
+    expect(markup).toContain('>Steam<');
+    expect(markup).toContain('data-steam-icon="true"');
+    expect(markup).toContain('>GitHub<');
+    expect(markup).toContain('>China<');
+  });
+
   it('projects multi-source actions without duplicating the asset row contract', () => {
     const platformData = convertPlatformGroups(groupAssetsByPlatform(multiSourceVersion.assets));
     const windowsOption = platformData[0]?.options[0];

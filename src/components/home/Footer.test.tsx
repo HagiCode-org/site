@@ -42,4 +42,13 @@ describe('Footer related sites', () => {
     expect(snapshotEntry?.url).toBe('https://trait.hagicode.com/');
     expect(markup).toContain('https://trait.hagicode.com/');
   });
+
+  it('renders the Steam support link with the canonical external URL and safe attributes', () => {
+    const markup = renderToStaticMarkup(<Footer locale="en" />);
+
+    expect(markup).toContain('>Steam<');
+    expect(markup).toContain('href="https://store.steampowered.com/app/4625540/Hagicode/"');
+    expect(markup).toContain('target="_blank"');
+    expect(markup).toContain('rel="noopener noreferrer"');
+  });
 });

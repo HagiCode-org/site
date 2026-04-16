@@ -27,6 +27,7 @@ import { MAC_DOWNLOAD_DISABLED_NOTICE, MAC_DOWNLOAD_DISABLED_NOTICE_EN } from '@
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import { getLinkWithLocale } from '@/lib/shared/links';
+import { getBundledSteamStoreLink, loadSteamStoreLink } from '@/lib/shared/steam-store-link';
 import type {
   AssetType,
   DesktopVersion,
@@ -69,6 +70,42 @@ export interface DesktopHeroVisiblePrimaryAction {
   action: DownloadAction;
   label: string;
   ariaLabel: string;
+}
+
+interface DesktopHeroSteamRowProps {
+  locale: 'zh-CN' | 'en';
+  href: string;
+}
+
+export function DesktopHeroSteamRow({ locale, href }: DesktopHeroSteamRowProps) {
+  const description =
+    locale === 'en'
+      ? 'The Steam edition supports Steam features including Cloud Saves and the Workshop. Click to open on Steam.'
+      : 'Steam 版本支持云存档、创意工坊等 Steam 特性。';
+  const ariaLabel =
+    locale === 'en' ? 'Open Hagicode on Steam' : '打开 Hagicode Steam 商店页';
+
+  const localizedDescription =
+    locale === 'en'
+      ? description
+      : 'Steam 版本支持云存档、创意工坊等 Steam 特性，点击前往 Steam 查看。';
+
+  return (
+    <a
+      href={href}
+      className={styles.steamRow}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={ariaLabel}
+      data-steam-row="desktop-downloads"
+      data-steam-entry="site-desktop-hero"
+    >
+      <div className={styles.steamRowCopy}>
+        <span className={styles.steamRowEyebrow}>Steam</span>
+        <p className={styles.steamRowDescription}>{localizedDescription}</p>
+      </div>
+    </a>
+  );
 }
 
 // SVG 图标组件
@@ -265,6 +302,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
   const userOS = useMemo(() => detectOS(), []);
   const [openDropdown, setOpenDropdown] = useState<DesktopPlatformKey | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState<DesktopDropdownPosition | null>(null);
+  const [steamStoreLink, setSteamStoreLink] = useState(() => getBundledSteamStoreLink());
   const dropdownMenuRef = useRef<HTMLDivElement | null>(null);
   const dropdownTriggerRefs = useRef<Partial<Record<DesktopPlatformKey, HTMLButtonElement | null>>>({});
 
@@ -380,6 +418,20 @@ export default function DesktopHero(props: DesktopHeroProps) {
       return () => document.removeEventListener('keydown', handleEscape);
     }
   }, [openDropdown]);
+
+  useEffect(() => {
+    let mounted = true;
+
+    void loadSteamStoreLink().then((nextLink) => {
+      if (mounted) {
+        setSteamStoreLink(nextLink);
+      }
+    });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     return loadVersionData();
@@ -514,6 +566,9 @@ export default function DesktopHero(props: DesktopHeroProps) {
           <>
             {/* 统一下载按钮组 */}
             <div className={styles.downloadSection}>
+              {steamStoreLink.href && (
+                <DesktopHeroSteamRow locale={locale} href={steamStoreLink.href} />
+              )}
               {visiblePlatformData.length > 0 && (
                 <div className={styles.buttonGroup}>
                   <div className={styles.platformTableScroll}>

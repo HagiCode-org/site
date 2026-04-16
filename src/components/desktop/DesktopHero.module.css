@@ -36,6 +36,96 @@
   text-align: center;
 }
 
+.steamRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.1rem 1.2rem;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(102, 192, 244, 0.28);
+  background:
+    radial-gradient(circle at top left, rgba(102, 192, 244, 0.2), transparent 48%),
+    linear-gradient(135deg, rgba(23, 26, 33, 0.96) 0%, rgba(27, 40, 56, 0.96) 58%, rgba(42, 71, 94, 0.96) 100%);
+  box-shadow: 0 16px 34px rgba(12, 18, 28, 0.28);
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  animation: steam-row-breathe 3.4s ease-in-out infinite;
+}
+
+.steamRow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 18%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 62%,
+    transparent 84%
+  );
+  transform: translateX(-140%);
+  animation: steam-row-sheen 4.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.steamRowCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+  max-width: 44rem;
+  text-align: center;
+}
+
+.steamRowEyebrow {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(102, 192, 244, 0.92);
+}
+
+.steamRowDescription {
+  margin: 0;
+  color: rgba(248, 251, 255, 0.82);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.steamRow:hover,
+.steamRow:focus-visible {
+  transform: translateY(-2px) scale(1.01);
+  border-color: rgba(102, 192, 244, 0.56);
+  box-shadow: 0 18px 32px rgba(12, 18, 28, 0.32);
+}
+
+@keyframes steam-row-breathe {
+  0%,
+  100% {
+    box-shadow: 0 16px 34px rgba(12, 18, 28, 0.28);
+  }
+  50% {
+    box-shadow: 0 20px 40px rgba(12, 18, 28, 0.34);
+  }
+}
+
+@keyframes steam-row-sheen {
+  0%,
+  100% {
+    transform: translateX(-140%);
+  }
+  45%,
+  55% {
+    transform: translateX(140%);
+  }
+}
+
 /* ==========================================================================
    按钮组布局
    ========================================================================== */
@@ -1448,6 +1538,7 @@
   .downloadSection,
   .platformButton,
   .sourceActionButton,
+  .steamRow,
   .btnDropdownToggle,
   .platformButtonPrimary td,
   .platformButtonPrimary td::after,
@@ -1467,6 +1558,7 @@
   }
 
   .sourceActionButton:hover,
+  .steamRow:hover,
   .btnDropdownToggle:hover,
   .dropdownItem:hover,
   .submitButton:hover {
@@ -1520,6 +1612,11 @@
     margin: 2rem 0;
   }
 
+  .steamRow {
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
   .buttonGroup {
     max-width: 100%;
   }
@@ -1553,6 +1650,15 @@
 
 /* 移动布局 (≤480px) - 优化触摸目标 */
 @media (max-width: 480px) {
+  .steamRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .steamButton {
+    width: 100%;
+  }
+
   .platformTable thead th,
   .platformButton td {
     padding-left: 0.75rem;

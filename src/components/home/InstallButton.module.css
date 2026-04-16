@@ -91,6 +91,7 @@
 
 .splitButtonContainerSegmented .btnDownloadMain,
 .splitButtonContainerSegmented .primarySourceActionsGrouped .sourceActionButton,
+.splitButtonContainerSegmented .steamShortcut,
 .splitButtonContainerSegmented .btnDropdownToggle {
   box-shadow: none;
 }
@@ -138,6 +139,56 @@
 .sourceActionButton--accelerated:hover {
   background-position: 100% 50%;
   box-shadow: 0 12px 24px rgba(0, 128, 255, 0.28);
+}
+
+.steamShortcut {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 56px;
+  padding: 0 1rem;
+  border: 1px solid rgba(102, 192, 244, 0.35);
+  color: #f8fbff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background:
+    radial-gradient(circle at top left, rgba(102, 192, 244, 0.34), transparent 54%),
+    linear-gradient(135deg, #171a21 0%, #1b2838 58%, #2a475e 100%);
+  box-shadow: 0 8px 20px rgba(23, 26, 33, 0.22);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-position 0.2s ease;
+}
+
+.installButtonWrapper--compact .steamShortcut {
+  min-height: 40px;
+  padding: 0 0.9rem;
+  font-size: 0.9375rem;
+}
+
+.steamShortcut:hover {
+  transform: translateY(-1px);
+  border-color: rgba(102, 192, 244, 0.52);
+  box-shadow: 0 12px 24px rgba(23, 26, 33, 0.28);
+}
+
+.splitButtonContainerSegmented .steamShortcut {
+  border-radius: 0;
+  border-right: 0;
+}
+
+.steamShortcutWithDropdown {
+  border-radius: 0;
+}
+
+.steamShortcutLast {
+  border-top-right-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
 }
 
 .btnDownloadMain {
@@ -771,6 +822,12 @@
     font-size: 0.875rem;
   }
 
+  .installButtonWrapper--full .steamShortcut {
+    min-height: 48px;
+    padding: 0 0.9rem;
+    font-size: 0.9375rem;
+  }
+
   .installButtonWrapper--full .btnDropdownToggle {
     width: 40px;
     min-width: 40px;
@@ -794,6 +851,7 @@
   .btnDownloadMain,
   .btnDropdownToggle,
   .sourceActionButton,
+  .steamShortcut,
   .dropdownItem,
   .dropdownMenu {
     animation: none !important;

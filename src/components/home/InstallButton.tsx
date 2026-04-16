@@ -36,6 +36,7 @@ import {
 } from '@/lib/shared/desktop-utils';
 import type { PrimaryDownloadActionPair, PrimaryDownloadSourceKey } from '@/lib/shared/desktop-utils';
 import { getLinkWithLocale } from '@/lib/shared/links';
+import { getBundledSteamStoreLink, loadSteamStoreLink } from '@/lib/shared/steam-store-link';
 import type {
   DesktopVersionData,
   DesktopVersionState,
@@ -80,6 +81,41 @@ export interface InstallButtonRuntimeSnapshot {
 export interface InstallButtonMenuState {
   mode: 'loading' | 'ready' | 'fatal';
   hasDownloads: boolean;
+}
+
+function SteamIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      data-steam-icon="true"
+    >
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.75" />
+      <circle cx="16.8" cy="7.8" r="2.15" stroke="currentColor" strokeWidth="1.75" />
+      <circle cx="9.1" cy="15.1" r="1.45" fill="currentColor" />
+      <path
+        d="M10.2 14.2L14.7 10.3"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+      <path
+        d="M15.6 9.2a1.75 1.75 0 1 0 2.4-2.4"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+      <path
+        d="M7.5 14.6l2.8 1.5"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
 }
 
 interface InstallButtonProps {
@@ -298,6 +334,7 @@ export default function InstallButton({
   const [fetchedData, setFetchedData] = useState<DesktopVersionData | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState<DropdownPosition | null>(null);
   const [downloadSourceProbeStates, setDownloadSourceProbeStates] = useState<DownloadSourceProbeStateMap>({});
+  const [steamStoreLink, setSteamStoreLink] = useState(() => getBundledSteamStoreLink());
   const buttonRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLUListElement>(null);
 
@@ -324,6 +361,24 @@ export default function InstallButton({
   const unavailableMenuLabel = locale === 'en' ? 'Version data is temporarily unavailable' : '版本数据暂时不可用';
   const desktopFallbackMenuLabel = locale === 'en' ? 'Open version history' : '打开版本历史页';
   const loadingPrimaryLabel = locale === 'en' ? 'Loading...' : '获取中...';
+  const steamShortcutLabel = 'Steam';
+  const steamShortcutAriaLabel =
+    locale === 'en' ? 'Open Hagicode on Steam' : '打开 Hagicode Steam 商店页';
+  const showSteamShortcut = variant === 'compact' && steamStoreLink.href.length > 0;
+
+  useEffect(() => {
+    let mounted = true;
+
+    void loadSteamStoreLink().then((nextLink) => {
+      if (mounted) {
+        setSteamStoreLink(nextLink);
+      }
+    });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (!needsRuntimeFetch) {
@@ -875,6 +930,20 @@ export default function InstallButton({
               />
             </svg>
             <span className={styles.btnText}>{primaryText}</span>
+          </a>
+        )}
+
+        {showSteamShortcut && (
+          <a
+            href={steamStoreLink.href}
+            className={`${styles.steamShortcut} ${showDropdown ? styles.steamShortcutWithDropdown : styles.steamShortcutLast}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={steamShortcutAriaLabel}
+            data-steam-entry="site-header-install"
+          >
+            <SteamIcon className={styles.downloadIcon} />
+            <span className={styles.btnText}>{steamShortcutLabel}</span>
           </a>
         )}
 

@@ -86,6 +86,7 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
   const discordLink = getLinkWithLocale('discord', locale);
   const rssLink = getLinkWithLocale('rss', locale);
   const productOverviewLink = getLinkWithLocale('productOverview', locale);
+  const steamLink = 'https://store.steampowered.com/app/4625540/Hagicode/';
 
   const currentYear = new Date().getFullYear();
 
@@ -132,6 +133,12 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
         external: true,
         ariaLabel: t('footer.costCalculator'),
       },
+      {
+        label: t('footer.steam'),
+        href: steamLink,
+        external: true,
+        ariaLabel: t('footer.steam'),
+      },
     ];
 
     const relatedSiteLinks: FooterLink[] = resolveSiteFooterCatalogLinks({
@@ -150,40 +157,40 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
         links: relatedSiteLinks,
       },
       quickLinks: {
-      title: t('footer.quickLinks'),
-      links: [
-        {
-          label: t('footer.downloadClient'),
-          href: desktopLink,
-          external: false,
-          ariaLabel: t('footer.downloadClient'),
-        },
-        {
-          label: t('footer.productDocs'),
-          href: productOverviewLink,
-          external: false,
-          ariaLabel: t('footer.productDocs'),
-        },
-        {
-          label: t('footer.blogPosts'),
-          href: getLinkWithLocale('blog', locale),
-          external: false,
-          ariaLabel: t('footer.blogPosts'),
-        },
-        {
-          label: t('footer.rssSubscribe'),
-          href: rssLink,
-          external: false,
-          ariaLabel: t('footer.rssSubscribe'),
-        },
-      ],
-    },
-    community: {
-      title: t('footer.community'),
-      links: communityLinks,
-    },
-  };
-  }, [t, desktopLink, githubLink, discordLink, productOverviewLink, rssLink, qqGroupLink, costCalculatorLink, locale]);
+        title: t('footer.quickLinks'),
+        links: [
+          {
+            label: t('footer.downloadClient'),
+            href: desktopLink,
+            external: false,
+            ariaLabel: t('footer.downloadClient'),
+          },
+          {
+            label: t('footer.productDocs'),
+            href: productOverviewLink,
+            external: false,
+            ariaLabel: t('footer.productDocs'),
+          },
+          {
+            label: t('footer.blogPosts'),
+            href: getLinkWithLocale('blog', locale),
+            external: false,
+            ariaLabel: t('footer.blogPosts'),
+          },
+          {
+            label: t('footer.rssSubscribe'),
+            href: rssLink,
+            external: false,
+            ariaLabel: t('footer.rssSubscribe'),
+          },
+        ],
+      },
+      community: {
+        title: t('footer.community'),
+        links: communityLinks,
+      },
+    };
+  }, [t, desktopLink, githubLink, discordLink, productOverviewLink, rssLink, qqGroupLink, costCalculatorLink, locale, steamLink]);
 
   return (
     <footer className={`${styles.footer} ${className}`}>
