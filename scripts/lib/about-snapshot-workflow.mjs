@@ -8,6 +8,7 @@ export const ABOUT_SNAPSHOT_OUTPUT_PATH = 'src/data/about.snapshot.json';
 export const ABOUT_SNAPSHOT_REGION_PRIORITIES = ['china-first', 'international-first'];
 export const REQUIRED_ABOUT_ENTRY_IDS = [
   'youtube',
+  'steam',
   'bilibili',
   'xiaohongshu',
   'douyin-account',

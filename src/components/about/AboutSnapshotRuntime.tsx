@@ -5,6 +5,7 @@ import {
   hasAboutPageModelMaterialChange,
   type AboutPageEntry,
   type AboutPageModel,
+  type AboutPageSectionId,
 } from '@/lib/about-page-model';
 import {
   fetchCanonicalAboutSnapshot,
@@ -17,7 +18,7 @@ interface AboutSnapshotRuntimeProps {
 }
 
 type AboutRefreshState = 'static' | 'refreshing' | 'synced' | 'noop' | 'fallback';
-type PlatformIconTone = 'youtube' | 'hot' | 'sky' | 'ink' | 'jade' | 'gold';
+type PlatformIconTone = 'steam' | 'youtube' | 'hot' | 'sky' | 'ink' | 'jade' | 'gold';
 type PlatformIconShape =
   | {
       readonly type: 'path';
@@ -67,6 +68,12 @@ const entryAccents = [
   'var(--about-accent-3)',
   'var(--about-accent-4)',
 ];
+
+const sectionOrder = new Map<AboutPageSectionId, number>([
+  ['store', 0],
+  ['community', 1],
+  ['content', 2],
+]);
 
 const refreshCopy = {
   en: {
@@ -119,6 +126,44 @@ const platformIcons: Record<string, PlatformIconDefinition> = {
         d: 'm9.75 15.02 6.24-3.02-6.24-3.02v6.04Z',
         className: 'entry-platform-icon-play',
         fill: '#ff3b30',
+      },
+    ],
+  },
+  steam: {
+    tone: 'steam',
+    viewBox: '0 0 24 24',
+    label: 'Steam',
+    shapes: [
+      {
+        type: 'circle',
+        cx: 16.9,
+        cy: 7.4,
+        r: 2.3,
+        stroke: 'white',
+        strokeWidth: 1.6,
+      },
+      {
+        type: 'circle',
+        cx: 8.4,
+        cy: 15.7,
+        r: 3.6,
+        stroke: 'white',
+        strokeWidth: 1.6,
+      },
+      {
+        type: 'circle',
+        cx: 8.4,
+        cy: 15.7,
+        r: 1.2,
+        fill: 'white',
+      },
+      {
+        type: 'path',
+        d: 'M10.9 13.8 15 9.8',
+        stroke: 'white',
+        strokeWidth: 1.8,
+        strokeLinecap: 'round',
+        strokeLinejoin: 'round',
       },
     ],
   },
@@ -311,6 +356,13 @@ function getEntryStyle(entry: AboutPageEntry, index: number): CSSProperties {
     };
   }
 
+  if (entry.presentation?.theme === 'steam') {
+    return {
+      ['--entry-accent' as string]: 'var(--about-accent-steam)',
+      ['--entry-accent-soft' as string]: 'var(--about-accent-steam-soft)',
+    };
+  }
+
   const accent = entryAccents[(getStringSeed(entry.id) + index) % entryAccents.length];
 
   return {
@@ -326,11 +378,19 @@ function getEntryClass(entry: AboutPageEntry) {
     classes.push('entry-item-youtube');
   }
 
+  if (entry.presentation?.theme === 'steam') {
+    classes.push('entry-item-steam');
+  }
+
   if (entry.kind === 'combo' || entry.kind === 'media') {
     classes.push('entry-item-with-preview');
   }
 
   return classes.join(' ');
+}
+
+function getSectionClassName(sectionId: AboutPageSectionId) {
+  return `section-block section-block-${sectionId}`;
 }
 
 function getPlatformIcon(entry: AboutPageEntry): PlatformIconDefinition | null {
@@ -481,6 +541,9 @@ export function AboutSnapshotRuntimeView({
 }) {
   const copy = refreshCopy[model.locale];
   const formattedUpdatedAt = formatSnapshotUpdatedAt(model.snapshot.updatedAt);
+  const orderedSections = [...model.sections].sort(
+    (left, right) => (sectionOrder.get(left.id) ?? Number.MAX_SAFE_INTEGER) - (sectionOrder.get(right.id) ?? Number.MAX_SAFE_INTEGER),
+  );
 
   return (
     <main className="about-page" data-about-refresh-state={refreshState}>
@@ -501,8 +564,13 @@ export function AboutSnapshotRuntimeView({
 
       <section className="about-sections">
         <div className="about-shell section-stack">
-          {model.sections.map((section) => (
-            <section className="section-block" id={`about-${section.id}`} key={section.id}>
+          {orderedSections.map((section) => (
+            <section
+              className={getSectionClassName(section.id)}
+              data-about-section={section.id}
+              id={`about-${section.id}`}
+              key={section.id}
+            >
               <header className="section-header">
                 <h2>{section.title}</h2>
               </header>

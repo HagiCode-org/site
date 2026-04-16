@@ -6,6 +6,16 @@ import { buildAboutPageModel } from '@/lib/about-page-model';
 import { normalizeAboutSnapshotData } from '@/lib/about-snapshot-source';
 import { AboutSnapshotRuntimeView } from './AboutSnapshotRuntime';
 
+function getSectionMarkup(markup: string, sectionId: 'store' | 'community' | 'content') {
+  const match = markup.match(
+    new RegExp(
+      `<section class="section-block section-block-${sectionId}"[^>]*id="about-${sectionId}"[^>]*>[\\s\\S]*?<\\/section>`,
+    ),
+  );
+
+  return match?.[0] ?? '';
+}
+
 const fetchedSnapshotFixture = normalizeAboutSnapshotData({
   version: '1.0.0',
   updatedAt: '2026-04-04T00:00:00.000Z',
@@ -16,6 +26,13 @@ const fetchedSnapshotFixture = normalizeAboutSnapshotData({
       label: 'YouTube',
       regionPriority: 'international-first',
       url: 'https://www.youtube.com/@hagicode',
+    },
+    {
+      id: 'steam',
+      type: 'link',
+      label: 'Steam',
+      regionPriority: 'international-first',
+      url: 'https://store.steampowered.com/app/4625540/Hagicode/',
     },
     {
       id: 'bilibili',
@@ -91,28 +108,50 @@ const fetchedSnapshotFixture = normalizeAboutSnapshotData({
 });
 
 describe('AboutSnapshotRuntimeView', () => {
-  it('renders English snapshot metadata in the static-first shell', () => {
+  it('renders the English store section before community and content without duplicating Steam', () => {
     const markup = renderToStaticMarkup(
       <AboutSnapshotRuntimeView model={buildAboutPageModel('en')} refreshState="static" />,
     );
+    const storeSection = getSectionMarkup(markup, 'store');
+    const contentSection = getSectionMarkup(markup, 'content');
 
     expect(markup).toContain('Bundled snapshot ready');
     expect(markup).toContain('Version');
     expect(markup).toContain('Updated');
+    expect(markup.indexOf('id="about-store"')).toBeLessThan(markup.indexOf('id="about-community"'));
+    expect(markup.indexOf('id="about-community"')).toBeLessThan(markup.indexOf('id="about-content"'));
+    expect(storeSection).toContain('Stores');
+    expect(storeSection).toContain('Steam');
+    expect(storeSection).toContain('Official store');
+    expect(storeSection).toContain('https://store.steampowered.com/app/4625540/Hagicode/');
+    expect(storeSection).toContain('target="_blank"');
+    expect(storeSection).toContain('rel="noopener noreferrer"');
     expect(markup).toContain('Grow through exchange');
+    expect(contentSection).toContain('Follow where the team publishes');
+    expect(contentSection).not.toContain('Steam');
   });
 
-  it('renders refreshed Chinese media cards with the latest resolved image URLs', () => {
+  it('renders the Chinese store section with localized copy and the same Steam destination', () => {
     const refreshedModel = buildAboutPageModel('zh-CN', fetchedSnapshotFixture);
     const markup = renderToStaticMarkup(
       <AboutSnapshotRuntimeView model={refreshedModel} refreshState="synced" />,
     );
+    const storeSection = getSectionMarkup(markup, 'store');
+    const contentSection = getSectionMarkup(markup, 'content');
 
     expect(markup).toContain('已同步最新 Index 数据');
     expect(markup).toContain('2026-04-04T00:00:00Z');
     expect(markup).toContain('https://index.hagicode.com/_astro/douyin.latest.png');
     expect(markup).toContain('https://index.hagicode.com/_astro/wechat.latest.jpg');
     expect(markup).toContain('抖音');
+    expect(markup.indexOf('id="about-store"')).toBeLessThan(markup.indexOf('id="about-community"'));
+    expect(storeSection).toContain('商店');
+    expect(storeSection).toContain('Steam');
+    expect(storeSection).toContain('官方商店');
+    expect(storeSection).toContain('https://store.steampowered.com/app/4625540/Hagicode/');
+    expect(storeSection).toContain('target="_blank"');
+    expect(storeSection).toContain('rel="noopener noreferrer"');
     expect(markup).toContain('关注团队持续发布的内容');
+    expect(contentSection).not.toContain('Steam');
   });
 });

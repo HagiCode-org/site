@@ -22,6 +22,13 @@ const fixture = {
       url: 'https://www.youtube.com/@hagicode',
     },
     {
+      id: 'steam',
+      type: 'link',
+      label: 'Steam',
+      regionPriority: 'international-first',
+      url: 'https://store.steampowered.com/app/4625540/Hagicode/',
+    },
+    {
       id: 'bilibili',
       type: 'link',
       label: 'Bilibili',
@@ -125,9 +132,10 @@ describe('about snapshot workflow', () => {
         accept: 'application/json',
       },
     });
-    expect(result.payload.entries).toHaveLength(9);
+    expect(result.payload.entries).toHaveLength(10);
     expect(written.updatedAt).toBe('2026-04-01T00:00:00.000Z');
-    expect(written.entries[4].imageUrl).toBe('/_astro/douyin.hash.png');
+    expect(written.entries[1].url).toBe('https://store.steampowered.com/app/4625540/Hagicode/');
+    expect(written.entries[5].imageUrl).toBe('/_astro/douyin.hash.png');
     expect(written.entries[0].regionPriority).toBe('international-first');
   });
 

@@ -6,6 +6,7 @@ export const ABOUT_SNAPSHOT_VERSION = '1.0.0';
 export const ABOUT_SNAPSHOT_REGION_PRIORITIES = ['china-first', 'international-first'] as const;
 export const REQUIRED_ABOUT_ENTRY_IDS = [
   'youtube',
+  'steam',
   'bilibili',
   'xiaohongshu',
   'douyin-account',

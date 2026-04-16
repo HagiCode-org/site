@@ -22,6 +22,13 @@ const fixture = {
       url: 'https://www.youtube.com/@hagicode',
     },
     {
+      id: 'steam',
+      type: 'link',
+      label: 'Steam',
+      regionPriority: 'international-first',
+      url: 'https://store.steampowered.com/app/4625540/Hagicode/',
+    },
+    {
       id: 'bilibili',
       type: 'link',
       label: 'Bilibili',
@@ -96,8 +103,14 @@ describe('about snapshot source', () => {
   it('normalizes bundled media entries into absolute asset URLs', () => {
     const data = normalizeAboutSnapshotData(structuredClone(fixture));
     const mediaEntry = data.entries.find((entry) => entry.id === 'douyin-qr');
+    const steamEntry = data.entries.find((entry) => entry.id === 'steam');
 
     expect(mediaEntry?.type).toBe('qr');
+    expect(steamEntry).toMatchObject({
+      type: 'link',
+      url: 'https://store.steampowered.com/app/4625540/Hagicode/',
+      regionPriority: 'international-first',
+    });
     expect(
       mediaEntry && 'resolvedImageUrl' in mediaEntry
         ? mediaEntry.resolvedImageUrl
@@ -137,6 +150,7 @@ describe('about snapshot source', () => {
     expect(grouped.contacts.length).toBeGreaterThan(0);
     expect(grouped.media.length).toBe(3);
     expect(grouped.links.some((entry) => entry.id === 'youtube')).toBe(true);
+    expect(grouped.links.some((entry) => entry.id === 'steam')).toBe(true);
     expect(grouped.media[0]?.resolvedImageUrl.startsWith(`${ABOUT_SNAPSHOT_ORIGIN}/_astro/`)).toBe(true);
   });
 

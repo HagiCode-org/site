@@ -16,8 +16,8 @@ import {
 } from '@/lib/about-page-media-catalog';
 
 export interface AboutPageEntryPresentation {
-  readonly theme: 'default' | 'youtube';
-  readonly icon?: 'youtube';
+  readonly theme: 'default' | 'steam' | 'youtube';
+  readonly icon?: 'steam' | 'youtube';
   readonly badgeLabel?: string;
 }
 
@@ -77,8 +77,10 @@ export interface AboutPageComboCard {
 
 export type AboutPageEntry = AboutPageLinkCard | AboutPageContactCard | AboutPageMediaCard | AboutPageComboCard;
 
+export type AboutPageSectionId = 'store' | 'community' | 'content';
+
 export interface AboutPageSection {
-  readonly id: 'community' | 'content';
+  readonly id: AboutPageSectionId;
   readonly title: string;
   readonly entries: readonly AboutPageEntry[];
 }
@@ -103,6 +105,7 @@ export interface AboutPageModel {
   readonly sections: readonly AboutPageSection[];
 }
 
+const STORE_ENTRY_IDS = new Set(['steam']);
 const COMMUNITY_ENTRY_IDS = new Set(['qq-group', 'feishu-group', 'discord']);
 
 const ENTRY_ORDER = [
@@ -110,6 +113,7 @@ const ENTRY_ORDER = [
   'qq-group',
   'discord',
   'youtube',
+  'steam',
   'bilibili',
   'xiaohongshu',
   'douyin-account',
@@ -136,9 +140,12 @@ const localeCopy = {
   en: {
     seoTitle: 'About the HagiCode Team',
     seoDescription:
-      'Meet the HagiCode team and browse official group channels, content platforms, and scannable cards from the latest bundled about snapshot.',
+      'Meet the HagiCode team and browse official stores, group channels, content platforms, and scannable cards from the latest bundled about snapshot.',
     title: 'Grow through exchange',
     sections: {
+      store: {
+        title: 'Stores',
+      },
       community: {
         title: 'Grow through exchange',
       },
@@ -155,14 +162,18 @@ const localeCopy = {
     contactFallbackDetail: 'Use this handle in the app',
     comboLabel: 'Channel + QR',
     platformBadges: {
+      steam: 'Official store',
       youtube: 'Official channel',
     },
   },
   'zh-CN': {
     seoTitle: '关于 HagiCode 团队',
-    seoDescription: '查看 HagiCode 团队的官方群组、内容平台与可扫码卡片，快速找到我们在不同平台上的官方入口。',
+    seoDescription: '查看 HagiCode 团队的官方商店、官方群组、内容平台与可扫码卡片，快速找到我们在不同平台上的官方入口。',
     title: '增进交流，共同成长',
     sections: {
+      store: {
+        title: '商店',
+      },
       community: {
         title: '增进交流，共同成长',
       },
@@ -179,6 +190,7 @@ const localeCopy = {
     contactFallbackDetail: '在应用内搜索该账号',
     comboLabel: '账号 + 二维码',
     platformBadges: {
+      steam: '官方商店',
       youtube: '官方频道',
     },
   },
@@ -200,15 +212,23 @@ function getEntryPresentation(
   locale: SiteLocale,
   entry: Pick<AboutSnapshotEntry, 'id'>,
 ): AboutPageEntryPresentation | undefined {
-  if (entry.id !== 'youtube') {
-    return undefined;
+  if (entry.id === 'youtube') {
+    return {
+      theme: 'youtube',
+      icon: 'youtube',
+      badgeLabel: localeCopy[locale].platformBadges.youtube,
+    };
   }
 
-  return {
-    theme: 'youtube',
-    icon: 'youtube',
-    badgeLabel: localeCopy[locale].platformBadges.youtube,
-  };
+  if (entry.id === 'steam') {
+    return {
+      theme: 'steam',
+      icon: 'steam',
+      badgeLabel: localeCopy[locale].platformBadges.steam,
+    };
+  }
+
+  return undefined;
 }
 
 function isMediaEntry(entry: AboutSnapshotEntry | undefined): entry is AboutSnapshotMediaEntry {
@@ -332,8 +352,21 @@ function isCommunityEntry(entry: AboutSnapshotEntry): boolean {
   return COMMUNITY_ENTRY_IDS.has(entry.id);
 }
 
+function isStoreEntry(entry: AboutSnapshotEntry): boolean {
+  return STORE_ENTRY_IDS.has(entry.id);
+}
+
+function buildStoreEntries(locale: SiteLocale, entries: readonly AboutSnapshotEntry[]): AboutPageEntry[] {
+  return sortEntries(locale, entries.filter((entry) => isStoreEntry(entry))).map((entry) =>
+    buildAboutPageEntry(locale, entry),
+  );
+}
+
 function buildContentEntries(locale: SiteLocale, entries: readonly AboutSnapshotEntry[]): AboutPageEntry[] {
-  const contentEntries = sortEntries(locale, entries.filter((entry) => !isCommunityEntry(entry)));
+  const contentEntries = sortEntries(
+    locale,
+    entries.filter((entry) => !isCommunityEntry(entry) && !isStoreEntry(entry)),
+  );
   const douyinAccount = contentEntries.find((entry) => entry.id === 'douyin-account');
   const douyinQr = contentEntries.find((entry) => entry.id === 'douyin-qr');
   const canBuildDouyinCombo = locale === 'zh-CN' && douyinAccount?.type === 'contact' && isMediaEntry(douyinQr);
@@ -361,8 +394,31 @@ export function buildAboutPageModel(
 ): AboutPageModel {
   const copy = localeCopy[locale];
   const alternateLocale: SiteLocale = locale === 'zh-CN' ? 'en' : 'zh-CN';
+  const storeEntries = buildStoreEntries(locale, snapshot.entries);
   const communityEntries = sortEntries(locale, snapshot.entries.filter((entry) => isCommunityEntry(entry)));
   const contentEntries = buildContentEntries(locale, snapshot.entries);
+  const sections: AboutPageSection[] = [];
+
+  if (storeEntries.length > 0) {
+    sections.push({
+      id: 'store',
+      title: copy.sections.store.title,
+      entries: storeEntries,
+    });
+  }
+
+  sections.push(
+    {
+      id: 'community',
+      title: copy.sections.community.title,
+      entries: communityEntries.map((entry) => buildAboutPageEntry(locale, entry)),
+    },
+    {
+      id: 'content',
+      title: copy.sections.content.title,
+      entries: contentEntries,
+    },
+  );
 
   return {
     locale,
@@ -381,18 +437,7 @@ export function buildAboutPageModel(
     header: {
       title: copy.title,
     },
-    sections: [
-      {
-        id: 'community',
-        title: copy.sections.community.title,
-        entries: communityEntries.map((entry) => buildAboutPageEntry(locale, entry)),
-      },
-      {
-        id: 'content',
-        title: copy.sections.content.title,
-        entries: contentEntries,
-      },
-    ],
+    sections,
   };
 }
 
@@ -463,6 +508,10 @@ function getAboutPageEntrySignature(entry: AboutPageEntry): string {
   }
 }
 
+function getAboutPageSectionSignature(section: AboutPageSection): string {
+  return JSON.stringify([section.id, section.title, section.entries.length]);
+}
+
 export function hasAboutPageModelMaterialChange(
   current: AboutPageModel,
   candidate: AboutPageModel,
@@ -497,11 +546,7 @@ export function hasAboutPageModelMaterialChange(
       return true;
     }
 
-    if (
-      currentSection.id !== candidateSection.id ||
-      currentSection.title !== candidateSection.title ||
-      currentSection.entries.length !== candidateSection.entries.length
-    ) {
+    if (getAboutPageSectionSignature(currentSection) !== getAboutPageSectionSignature(candidateSection)) {
       return true;
     }
 

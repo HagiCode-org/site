@@ -42,6 +42,10 @@ const entryCopyOverrides = {
       detail: 'Official video channel',
       linkText: 'Open channel',
     },
+    steam: {
+      detail: 'Official store page',
+      linkText: 'Open store',
+    },
     devto: {
       detail: 'Engineering blog',
       linkText: 'Read posts',
@@ -68,6 +72,10 @@ const entryCopyOverrides = {
       detail: '扫码加入 HagiCode 飞书群',
       linkText: '打开群邀请',
       alt: 'HagiCode 飞书群二维码',
+    },
+    steam: {
+      detail: '官方商店页',
+      linkText: '打开商店页',
     },
     bilibili: {
       detail: '官方视频频道',

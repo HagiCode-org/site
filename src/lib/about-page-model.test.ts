@@ -5,26 +5,45 @@ import { normalizeAboutSnapshotData } from './about-snapshot-source';
 describe('about page model', () => {
   it('builds the English about route with international entries first while keeping all entries visible', () => {
     const model = buildAboutPageModel('en');
-    const youtubeEntry = model.sections[1]?.entries.find((entry) => entry.id === 'youtube');
-    const discordEntry = model.sections[0]?.entries.find((entry) => entry.id === 'discord');
+    const storeEntries = model.sections[0]?.entries.map((entry) => entry.id);
+    const communityEntries = model.sections[1]?.entries.map((entry) => entry.id);
+    const contentEntries = model.sections[2]?.entries.map((entry) => entry.id);
+    const youtubeEntry = model.sections[2]?.entries.find((entry) => entry.id === 'youtube');
+    const steamEntry = model.sections[0]?.entries.find((entry) => entry.id === 'steam');
+    const discordEntry = model.sections[1]?.entries.find((entry) => entry.id === 'discord');
 
     expect(model.routePath).toBe('/about/');
     expect(model.alternatePath).toBe('/zh-CN/about/');
     expect(model.seo.canonicalUrl).toBe('https://hagicode.com/about/');
     expect(model.header.title).toBe('Grow through exchange');
-    expect(model.sections.map((section) => section.id)).toEqual(['community', 'content']);
-    expect(model.sections[0]?.title).toBe('Grow through exchange');
-    expect(model.sections[0]?.entries.map((entry) => entry.id)).toEqual(['discord', 'feishu-group', 'qq-group']);
-    expect(model.sections[1]?.entries.map((entry) => entry.id).slice(0, 5)).toEqual([
+    expect(model.sections.map((section) => section.id)).toEqual(['store', 'community', 'content']);
+    expect(model.sections[0]?.title).toBe('Stores');
+    expect(model.sections[1]?.title).toBe('Grow through exchange');
+    expect(storeEntries).toEqual(['steam']);
+    expect(communityEntries).toEqual(['discord', 'feishu-group', 'qq-group']);
+    expect(contentEntries?.slice(0, 5)).toEqual([
       'youtube',
       'devto',
       'x',
       'linkedin',
       'facebook',
     ]);
-    expect(model.sections[1]?.entries.map((entry) => entry.id)).toContain('bilibili');
-    expect(model.sections[1]?.entries.map((entry) => entry.id)).toContain('douyin-account');
-    expect(model.sections[1]?.entries.map((entry) => entry.id)).toContain('douyin-qr');
+    expect(contentEntries).toContain('bilibili');
+    expect(contentEntries).not.toContain('steam');
+    expect(contentEntries).toContain('douyin-account');
+    expect(contentEntries).toContain('douyin-qr');
+    expect(steamEntry).toMatchObject({
+      kind: 'link',
+      label: 'Steam',
+      detail: 'Official store page',
+      linkText: 'Open store',
+      href: 'https://store.steampowered.com/app/4625540/Hagicode/',
+      presentation: {
+        theme: 'steam',
+        icon: 'steam',
+        badgeLabel: 'Official store',
+      },
+    });
     expect(discordEntry).toMatchObject({
       kind: 'link',
       detail: 'Official community server',
@@ -42,27 +61,31 @@ describe('about page model', () => {
         badgeLabel: 'Official channel',
       },
     });
-    expect(model.sections[1]?.entries.find((entry) => entry.id === 'douyin')).toBeUndefined();
+    expect(contentEntries).not.toContain('douyin');
     expect(
-      model.sections[1]?.entries.findIndex((entry) => entry.id === 'facebook'),
+      contentEntries?.findIndex((entry) => entry === 'facebook'),
     ).toBeLessThan(
-      model.sections[1]?.entries.findIndex((entry) => entry.id === 'bilibili') ?? Number.MAX_SAFE_INTEGER,
+      contentEntries?.findIndex((entry) => entry === 'bilibili') ?? Number.MAX_SAFE_INTEGER,
     );
   });
 
   it('builds the localized Chinese about route with china-first entries first and the Douyin combo card', () => {
     const model = buildAboutPageModel('zh-CN');
-    const contentIds = model.sections[1]?.entries.map((entry) => entry.id);
-    const douyinEntry = model.sections[1]?.entries.find((entry) => entry.id === 'douyin');
-    const wechatEntry = model.sections[1]?.entries.find((entry) => entry.id === 'wechat-account');
+    const storeIds = model.sections[0]?.entries.map((entry) => entry.id);
+    const contentIds = model.sections[2]?.entries.map((entry) => entry.id);
+    const douyinEntry = model.sections[2]?.entries.find((entry) => entry.id === 'douyin');
+    const wechatEntry = model.sections[2]?.entries.find((entry) => entry.id === 'wechat-account');
 
     expect(model.routePath).toBe('/zh-CN/about/');
     expect(model.alternatePath).toBe('/about/');
     expect(model.seo.canonicalUrl).toBe('https://hagicode.com/zh-CN/about/');
     expect(model.header.title).toBe('增进交流，共同成长');
-    expect(model.sections[0]?.title).toBe('增进交流，共同成长');
-    expect(model.sections[1]?.title).toBe('关注团队持续发布的内容');
-    expect(model.sections[0]?.entries.map((entry) => entry.id)).toEqual(['feishu-group', 'qq-group', 'discord']);
+    expect(model.sections.map((section) => section.id)).toEqual(['store', 'community', 'content']);
+    expect(model.sections[0]?.title).toBe('商店');
+    expect(model.sections[1]?.title).toBe('增进交流，共同成长');
+    expect(model.sections[2]?.title).toBe('关注团队持续发布的内容');
+    expect(storeIds).toEqual(['steam']);
+    expect(model.sections[1]?.entries.map((entry) => entry.id)).toEqual(['feishu-group', 'qq-group', 'discord']);
     expect(contentIds).toEqual([
       'bilibili',
       'xiaohongshu',
@@ -100,6 +123,16 @@ describe('about page model', () => {
     expect(contentIds).not.toContain('douyin-account');
     expect(contentIds).not.toContain('douyin-qr');
     expect(contentIds).toContain('youtube');
+    expect(model.sections[0]?.entries.find((entry) => entry.id === 'steam')).toMatchObject({
+      detail: '官方商店页',
+      linkText: '打开商店页',
+      href: 'https://store.steampowered.com/app/4625540/Hagicode/',
+      presentation: {
+        theme: 'steam',
+        icon: 'steam',
+        badgeLabel: '官方商店',
+      },
+    });
     expect(
       contentIds?.indexOf('facebook') ?? Number.MAX_SAFE_INTEGER,
     ).toBeGreaterThan(contentIds?.indexOf('xiaoheihe') ?? Number.MIN_SAFE_INTEGER);
@@ -116,6 +149,13 @@ describe('about page model', () => {
           label: 'YouTube',
           regionPriority: 'international-first',
           url: 'https://www.youtube.com/@hagicode',
+        },
+        {
+          id: 'steam',
+          type: 'link',
+          label: 'Steam',
+          regionPriority: 'international-first',
+          url: 'https://store.steampowered.com/app/4625540/Hagicode/',
         },
         {
           id: 'bilibili',
@@ -194,7 +234,13 @@ describe('about page model', () => {
       version: '1.0.0',
       updatedAt: '2026-04-05T00:00:00.000Z',
     });
-    expect(runtimeModel.sections[1]?.entries.find((entry) => entry.id === 'douyin-qr')).toMatchObject({
+    expect(runtimeModel.sections[0]?.entries.find((entry) => entry.id === 'steam')).toMatchObject({
+      href: 'https://store.steampowered.com/app/4625540/Hagicode/',
+      presentation: {
+        theme: 'steam',
+      },
+    });
+    expect(runtimeModel.sections[2]?.entries.find((entry) => entry.id === 'douyin-qr')).toMatchObject({
       kind: 'media',
       imageUrl: 'https://index.hagicode.com/_astro/douyin.runtime.png',
     });
@@ -212,6 +258,13 @@ describe('about page model', () => {
           label: 'YouTube',
           regionPriority: 'international-first',
           url: 'https://www.youtube.com/@hagicode',
+        },
+        {
+          id: 'steam',
+          type: 'link',
+          label: 'Steam',
+          regionPriority: 'international-first',
+          url: 'https://store.steampowered.com/app/4625540/Hagicode/',
         },
         {
           id: 'bilibili',
@@ -287,8 +340,8 @@ describe('about page model', () => {
     });
 
     const runtimeModel = buildAboutPageModel('zh-CN', fetchedSnapshot);
-    const contentIds = runtimeModel.sections[1]?.entries.map((entry) => entry.id);
-    const douyinEntry = runtimeModel.sections[1]?.entries.find((entry) => entry.id === 'douyin');
+    const contentIds = runtimeModel.sections[2]?.entries.map((entry) => entry.id);
+    const douyinEntry = runtimeModel.sections[2]?.entries.find((entry) => entry.id === 'douyin');
 
     expect(contentIds).toContain('douyin');
     expect(contentIds).not.toContain('douyin-account');
@@ -298,6 +351,7 @@ describe('about page model', () => {
       imageUrl: 'https://index.hagicode.com/_astro/douyin.runtime-next.png',
       href: 'https://www.douyin.com/user/demo',
     });
+    expect(runtimeModel.sections[0]?.entries.map((entry) => entry.id)).toEqual(['steam']);
     expect(runtimeModel.snapshot.updatedAt).toBe('2026-04-06T00:00:00.000Z');
     expect(hasAboutPageModelMaterialChange(baselineModel, runtimeModel)).toBe(true);
   });
