@@ -4,6 +4,7 @@ export const WEBSITE_TRACKING_EVENTS = {
   downloadDesktop: 'download_desktop',
   openDesktopPage: 'open_desktop_page',
   openContainerPage: 'open_container_page',
+  openSteamStore: 'open_steam_store',
   downloadDesktopWindows: 'download_desktop_windows',
   downloadDesktopMacOS: 'download_desktop_macos',
   downloadDesktopLinux: 'download_desktop_linux',
@@ -39,6 +40,12 @@ export const WEBSITE_TRACKING_EVENT_CATALOG: readonly WebsiteTrackingEventDefini
     description: 'Navigation from marketing homepage into the Container product page',
     locations: ['Homepage install options container card', 'Install button container fallback'],
     meaning: 'User wants to learn more about the Container offering',
+  },
+  {
+    name: WEBSITE_TRACKING_EVENTS.openSteamStore,
+    description: 'Open the Hagicode Steam store page from a marketing CTA',
+    locations: ['Homepage hero Steam button'],
+    meaning: 'User wants to view the Steam edition of Hagicode',
   },
   {
     name: WEBSITE_TRACKING_EVENTS.downloadDesktopWindows,
