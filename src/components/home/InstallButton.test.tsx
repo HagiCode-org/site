@@ -189,6 +189,20 @@ describe('InstallButton markup', () => {
     expect(markup).toContain('>China<');
   });
 
+  it('uses the shortened Chinese mainland label in the compact install cluster', () => {
+    const markup = renderToStaticMarkup(
+      <InstallButton
+        locale="zh-CN"
+        variant="compact"
+        version={multiSourceVersion}
+        platforms={groupAssetsByPlatform(multiSourceVersion.assets)}
+      />,
+    );
+
+    expect(markup).toContain('>中国大陆<');
+    expect(markup).not.toContain('中国大陆加速');
+  });
+
   it('projects multi-source actions without duplicating the asset row contract', () => {
     const platformData = convertPlatformGroups(groupAssetsByPlatform(multiSourceVersion.assets));
     const windowsOption = platformData[0]?.options[0];
