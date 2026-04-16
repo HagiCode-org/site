@@ -9,7 +9,10 @@ import { useMemo, useState, useEffect } from 'react';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import styles from './HeroSection.module.css';
+import { WEBSITE_TRACKING_EVENTS } from '@/lib/analytics/events';
+import { trackEvent } from '@/lib/analytics/tracker';
 import { getLinkWithLocale } from '@/lib/shared/links';
+import { getBundledSteamStoreLink, loadSteamStoreLink } from '@/lib/shared/steam-store-link';
 import HeroWorkflowBoard from './HeroWorkflowBoard';
 
 // 定义主题类型
@@ -74,6 +77,41 @@ function ChipIcon({ className = '' }: IconProps) {
   );
 }
 
+function SteamIcon({ className = '' }: IconProps) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      data-steam-icon="true"
+    >
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.75" />
+      <circle cx="16.8" cy="7.8" r="2.15" stroke="currentColor" strokeWidth="1.75" />
+      <circle cx="9.1" cy="15.1" r="1.45" fill="currentColor" />
+      <path
+        d="M10.2 14.2L14.7 10.3"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+      <path
+        d="M15.6 9.2a1.75 1.75 0 1 0 2.4-2.4"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+      <path
+        d="M7.5 14.6l2.8 1.5"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export default function HeroSection({
   desktopVersion = null,
   desktopPlatforms = [],
@@ -87,11 +125,14 @@ export default function HeroSection({
   const { t } = useTranslation(locale);
 
   const [theme, setTheme] = useState<Theme>(undefined);
+  const [steamStoreLink, setSteamStoreLink] = useState(() => getBundledSteamStoreLink());
 
   // 根据当前 base path 动态生成链接
   const desktopUrl = useMemo(() => getLinkWithLocale('desktop', locale), [locale]);
   const containerUrl = useMemo(() => getLinkWithLocale('container', locale), [locale]);
   const docsUrl = useMemo(() => getLinkWithLocale('productOverview', locale), [locale]);
+  const steamLabel = 'Steam';
+  const steamAriaLabel = locale === 'en' ? 'Open Hagicode on Steam' : '打开 Hagicode Steam 商店页';
 
   // 检测主题变化
   useEffect(() => {
@@ -109,6 +150,20 @@ export default function HeroSection({
     });
 
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let mounted = true;
+
+    void loadSteamStoreLink().then((nextLink) => {
+      if (mounted) {
+        setSteamStoreLink(nextLink);
+      }
+    });
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   // 新年主题图标渲染
@@ -244,6 +299,25 @@ export default function HeroSection({
             </svg>
             <span>{t('hero.buttons.containerApp')}</span>
           </a>
+
+          {steamStoreLink.href && (
+            <a
+              href={steamStoreLink.href}
+              className={`${styles.buttonSecondary} ${styles.buttonSteam}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={steamAriaLabel}
+              data-steam-entry="site-home-hero"
+              onClick={() =>
+                trackEvent(WEBSITE_TRACKING_EVENTS.openSteamStore, {
+                  source: 'hero-section-steam',
+                })
+              }
+            >
+              <SteamIcon className={styles.steamIcon} />
+              <span>{steamLabel}</span>
+            </a>
+          )}
 
           {/* 了解更多按钮 */}
           <a

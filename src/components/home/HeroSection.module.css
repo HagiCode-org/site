@@ -392,6 +392,28 @@
   box-shadow: var(--shadow-glow);
 }
 
+.buttonSteam {
+  color: #e6f4ff;
+  border-color: rgba(102, 192, 244, 0.36);
+  background:
+    radial-gradient(circle at top left, rgba(102, 192, 244, 0.18), transparent 46%),
+    linear-gradient(135deg, rgba(23, 26, 33, 0.92) 0%, rgba(27, 40, 56, 0.92) 56%, rgba(42, 71, 94, 0.92) 100%);
+  box-shadow:
+    0 12px 26px rgba(8, 12, 18, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.buttonSteam:hover {
+  color: #f4fbff;
+  border-color: rgba(102, 192, 244, 0.58);
+  background:
+    radial-gradient(circle at top left, rgba(102, 192, 244, 0.24), transparent 44%),
+    linear-gradient(135deg, rgba(24, 29, 37, 0.96) 0%, rgba(30, 46, 64, 0.96) 56%, rgba(50, 82, 110, 0.96) 100%);
+  box-shadow:
+    0 16px 30px rgba(8, 12, 18, 0.24),
+    0 0 24px rgba(102, 192, 244, 0.18);
+}
+
 [data-theme='dark'] .buttonSecondary {
   background: rgba(20, 25, 50, 0.7);
   border-color: rgba(255, 255, 255, 0.15);
@@ -403,6 +425,30 @@
   border-color: var(--color-secondary);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5),
               0 0 12px rgba(0, 255, 255, 0.2);
+}
+
+[data-theme='dark'] .buttonSteam {
+  color: #e8f6ff;
+  border-color: rgba(102, 192, 244, 0.34);
+  background:
+    radial-gradient(circle at top left, rgba(102, 192, 244, 0.2), transparent 48%),
+    linear-gradient(135deg, rgba(18, 22, 30, 0.96) 0%, rgba(23, 35, 49, 0.96) 56%, rgba(34, 57, 76, 0.96) 100%);
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.38),
+    0 0 18px rgba(102, 192, 244, 0.1);
+}
+
+[data-theme='dark'] .buttonSteam:hover {
+  border-color: rgba(102, 192, 244, 0.58);
+  box-shadow:
+    0 18px 34px rgba(0, 0, 0, 0.46),
+    0 0 22px rgba(102, 192, 244, 0.16);
+}
+
+.steamIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
 }
 
 /* 小按钮 */
