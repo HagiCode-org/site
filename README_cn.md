@@ -119,6 +119,21 @@ npm run preview
 本地开发服务器默认运行在 `http://localhost:31264`。
 如果你需要面向贡献者的更多说明，请先阅读 [`AGENTS.md`](./AGENTS.md) 和 [`CLAUDE.md`](./CLAUDE.md)。
 
+## ImgBin 图片工作流
+
+官网图片生成脚本现在会在启动 ImgBin 之前读取 `repos/site/.env` 和 `repos/site/.env.local`。
+仓库默认使用下面这组图片分析配置：
+
+- `IMGBIN_ANALYSIS_PROVIDER=codex`
+- `IMGBIN_CODEX_MODEL=lemon/gpt-5.4`
+- `IMGBIN_CODEX_BASE_URL=http://localhost:36129/v1`
+
+如果你需要本地覆盖，先把 [`./.env.example`](./.env.example) 复制成 `.env`，然后执行：
+
+```bash
+npm run generate:image -- --prompt "A hand-drawn product illustration"
+```
+
 ## 构建与部署说明
 
 当前这个仓库只负责官网静态站点及相关内容的构建。

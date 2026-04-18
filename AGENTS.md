@@ -154,6 +154,9 @@ LI_51LA_DEBUG=false
 IMGBIN_WORKDIR=../imgbin
 IMGBIN_EXECUTABLE=../imgbin/dist/cli.js
 IMGBIN_LIBRARY_ROOT=.imgbin-library
+IMGBIN_ANALYSIS_PROVIDER=codex
+IMGBIN_CODEX_MODEL=lemon/gpt-5.4
+IMGBIN_CODEX_BASE_URL=http://localhost:36129/v1
 
 # CI 环境（启用链接验证）
 CI=true
@@ -332,12 +335,13 @@ npm run build
 ## Scripts
 
 ### generate-image.mjs
-通过 ImgBin 生成站点图片，并保持默认手绘风格与 Claude metadata 流程
+通过 ImgBin 生成站点图片，并保持默认手绘风格与 Codex metadata 流程
 - 单张生成: `npm run generate:image`
 - 批量生成: `npm run generate:product-images`
 - 强制重新生成: `npm run regenerate:product-images`
 - 默认通过 `../imgbin/dist/cli.js` 调用 ImgBin，可通过 `IMGBIN_EXECUTABLE` / `IMGBIN_WORKDIR` 覆盖
-- GPT Image 1.5 仅负责出图，metadata 仍依赖 Claude 分析步骤
+- 脚本会先读取 `repos/site/.env` 与 `repos/site/.env.local`
+- GPT Image 1.5 仅负责出图，metadata 默认走 Codex + OmniRoute（`http://localhost:36129/v1`）
 
 ## Activity Metrics Ownership
 

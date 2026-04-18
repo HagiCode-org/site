@@ -119,6 +119,21 @@ npm run preview
 The dev server runs on `http://localhost:31264` by default.
 For contributor-focused details, start with [`AGENTS.md`](./AGENTS.md) and [`CLAUDE.md`](./CLAUDE.md).
 
+## ImgBin image workflow
+
+The site image generation wrapper now loads `repos/site/.env` and `repos/site/.env.local` before it spawns ImgBin.
+The repository default for image analysis is:
+
+- `IMGBIN_ANALYSIS_PROVIDER=codex`
+- `IMGBIN_CODEX_MODEL=lemon/gpt-5.4`
+- `IMGBIN_CODEX_BASE_URL=http://localhost:36129/v1`
+
+Copy [`./.env.example`](./.env.example) to `.env` when you need local overrides, then run:
+
+```bash
+npm run generate:image -- --prompt "A hand-drawn product illustration"
+```
+
 ## Build and deployment notes
 
 This repository now focuses on building the static site and related content.
