@@ -30,8 +30,10 @@
   --about-accent-steam-soft: color-mix(in srgb, #1b2838 70%, #66c0f4 30%);
   --about-accent-youtube: #ff3b30;
   --about-accent-youtube-soft: color-mix(in srgb, #ff3b30 76%, #ff8a7a 24%);
+  --about-top-clearance: clamp(7.5rem, 10vw, 9rem);
   position: relative;
   overflow: hidden;
+  padding-top: var(--about-top-clearance);
   background:
     radial-gradient(circle at top left, color-mix(in srgb, var(--color-primary) 16%, transparent), transparent 30%),
     radial-gradient(circle at top right, color-mix(in srgb, var(--color-secondary) 14%, transparent), transparent 24%),
@@ -109,49 +111,8 @@
   margin: 0 auto;
 }
 
-.about-status-panel {
-  padding: 6.75rem 0 0;
-}
-
-.about-status-shell {
-  display: grid;
-  gap: 0.45rem;
-  padding: 1rem 1.25rem 0;
-}
-
-.about-status-eyebrow {
-  margin: 0;
-  color: var(--color-text-secondary);
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.about-status-grid {
-  display: grid;
-  gap: 0.35rem;
-}
-
-.about-status-value {
-  margin: 0;
-  color: var(--color-text);
-  font-family: var(--font-heading);
-  font-size: clamp(1rem, 1.4vw, 1.15rem);
-  line-height: 1.3;
-}
-
-.about-status-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 1.25rem;
-  margin: 0;
-  color: var(--color-text-secondary);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
 .about-sections {
-  padding: 1.1rem 0 5rem;
+  padding: 0 0 5rem;
 }
 
 .section-stack {
@@ -169,10 +130,6 @@
   overflow: visible;
 }
 
-.section-block-store {
-  padding-top: 0.2rem;
-}
-
 .section-header {
   padding: 1.2rem 1.25rem 0.9rem;
   border-bottom: 1px solid color-mix(in srgb, var(--page-border) 100%, transparent);
@@ -180,7 +137,8 @@
 }
 
 .section-block-store .section-header {
-  padding-bottom: 1rem;
+  padding-top: 1.2rem;
+  padding-bottom: 0.9rem;
 }
 
 .section-header h2 {
@@ -206,7 +164,7 @@
 .section-block-store .entry-list {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
   gap: 1rem;
-  padding-top: 0.8rem;
+  padding-top: 0.9rem;
 }
 
 .entry-item {
@@ -496,17 +454,12 @@ a.entry-item-steam:hover {
 }
 
 @media (max-width: 720px) {
+  .about-page {
+    --about-top-clearance: 7rem;
+  }
+
   .about-shell {
     width: min(100% - 1rem, 100%);
-  }
-
-  .about-status-panel {
-    padding-top: 6rem;
-  }
-
-  .about-status-shell {
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
 
   .about-sections {

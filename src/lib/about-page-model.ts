@@ -144,7 +144,7 @@ const localeCopy = {
     title: 'Grow through exchange',
     sections: {
       store: {
-        title: 'Stores',
+        title: 'Store',
       },
       community: {
         title: 'Grow through exchange',
@@ -154,6 +154,7 @@ const localeCopy = {
       },
     },
     kindLabels: {
+      store: 'Store',
       link: 'Channel',
       contact: 'Handle',
       qr: 'QR Card',
@@ -182,6 +183,7 @@ const localeCopy = {
       },
     },
     kindLabels: {
+      store: '商店',
       link: '平台',
       contact: '账号',
       qr: '二维码卡片',
@@ -237,11 +239,12 @@ function isMediaEntry(entry: AboutSnapshotEntry | undefined): entry is AboutSnap
 
 function buildLinkCard(locale: SiteLocale, entry: AboutSnapshotLinkEntry): AboutPageLinkCard {
   const copy = localeCopy[locale];
+  const kindLabel = entry.id === 'steam' ? copy.kindLabels.store : copy.kindLabels.link;
 
   return {
     id: entry.id,
     kind: 'link',
-    kindLabel: copy.kindLabels.link,
+    kindLabel,
     label: getLocalizedAboutEntryLabel(locale, entry),
     detail: getLocalizedAboutEntryDetail(locale, entry, getHostnameLabel(entry.url)),
     href: entry.url,

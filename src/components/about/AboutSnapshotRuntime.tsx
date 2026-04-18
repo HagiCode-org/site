@@ -75,33 +75,6 @@ const sectionOrder = new Map<AboutPageSectionId, number>([
   ['content', 2],
 ]);
 
-const refreshCopy = {
-  en: {
-    eyebrow: 'About snapshot',
-    versionLabel: 'Version',
-    updatedAtLabel: 'Updated',
-    states: {
-      static: 'Bundled snapshot ready',
-      refreshing: 'Refreshing latest index data…',
-      synced: 'Latest index data synced',
-      noop: 'Bundled snapshot already current',
-      fallback: 'Refresh failed, keeping the bundled snapshot',
-    },
-  },
-  'zh-CN': {
-    eyebrow: 'About 快照',
-    versionLabel: '版本',
-    updatedAtLabel: '更新时间',
-    states: {
-      static: '已加载构建期快照',
-      refreshing: '正在刷新最新 Index 数据…',
-      synced: '已同步最新 Index 数据',
-      noop: '当前快照已经是最新可见内容',
-      fallback: '刷新失败，继续显示构建期快照',
-    },
-  },
-} as const;
-
 const platformIconAliases: Record<string, string> = {
   'douyin-account': 'douyin',
   'douyin-qr': 'douyin',
@@ -402,16 +375,6 @@ function isAbortError(error: unknown): boolean {
   return error instanceof Error && error.name === 'AbortError';
 }
 
-function formatSnapshotUpdatedAt(updatedAt: string): string {
-  const date = new Date(updatedAt);
-
-  if (Number.isNaN(date.getTime())) {
-    return updatedAt;
-  }
-
-  return date.toISOString().replace('.000Z', 'Z');
-}
-
 function renderPlatformShape(shape: PlatformIconShape, index: number) {
   if (shape.type === 'path') {
     return (
@@ -539,29 +502,12 @@ export function AboutSnapshotRuntimeView({
   model: AboutPageModel;
   refreshState: AboutRefreshState;
 }) {
-  const copy = refreshCopy[model.locale];
-  const formattedUpdatedAt = formatSnapshotUpdatedAt(model.snapshot.updatedAt);
   const orderedSections = [...model.sections].sort(
     (left, right) => (sectionOrder.get(left.id) ?? Number.MAX_SAFE_INTEGER) - (sectionOrder.get(right.id) ?? Number.MAX_SAFE_INTEGER),
   );
 
   return (
     <main className="about-page" data-about-refresh-state={refreshState}>
-      <section className="about-status-panel" aria-live="polite">
-        <div className="about-shell about-status-shell">
-          <p className="about-status-eyebrow">{copy.eyebrow}</p>
-          <div className="about-status-grid">
-            <p className="about-status-value">{copy.states[refreshState]}</p>
-            <p className="about-status-meta">
-              <span>
-                {copy.updatedAtLabel}: <time dateTime={model.snapshot.updatedAt}>{formattedUpdatedAt}</time>
-              </span>
-              <span>{copy.versionLabel}: {model.snapshot.version}</span>
-            </p>
-          </div>
-        </div>
-      </section>
-
       <section className="about-sections">
         <div className="about-shell section-stack">
           {orderedSections.map((section) => (

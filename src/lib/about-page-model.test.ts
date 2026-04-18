@@ -17,7 +17,7 @@ describe('about page model', () => {
     expect(model.seo.canonicalUrl).toBe('https://hagicode.com/about/');
     expect(model.header.title).toBe('Grow through exchange');
     expect(model.sections.map((section) => section.id)).toEqual(['store', 'community', 'content']);
-    expect(model.sections[0]?.title).toBe('Stores');
+    expect(model.sections[0]?.title).toBe('Store');
     expect(model.sections[1]?.title).toBe('Grow through exchange');
     expect(storeEntries).toEqual(['steam']);
     expect(communityEntries).toEqual(['discord', 'feishu-group', 'qq-group']);
@@ -34,6 +34,7 @@ describe('about page model', () => {
     expect(contentEntries).toContain('douyin-qr');
     expect(steamEntry).toMatchObject({
       kind: 'link',
+      kindLabel: 'Store',
       label: 'Steam',
       detail: 'Official store page',
       linkText: 'Open store',
@@ -124,6 +125,7 @@ describe('about page model', () => {
     expect(contentIds).not.toContain('douyin-qr');
     expect(contentIds).toContain('youtube');
     expect(model.sections[0]?.entries.find((entry) => entry.id === 'steam')).toMatchObject({
+      kindLabel: '商店',
       detail: '官方商店页',
       linkText: '打开商店页',
       href: 'https://store.steampowered.com/app/4625540/Hagicode/',
@@ -235,6 +237,7 @@ describe('about page model', () => {
       updatedAt: '2026-04-05T00:00:00.000Z',
     });
     expect(runtimeModel.sections[0]?.entries.find((entry) => entry.id === 'steam')).toMatchObject({
+      kindLabel: 'Store',
       href: 'https://store.steampowered.com/app/4625540/Hagicode/',
       presentation: {
         theme: 'steam',
@@ -352,6 +355,9 @@ describe('about page model', () => {
       href: 'https://www.douyin.com/user/demo',
     });
     expect(runtimeModel.sections[0]?.entries.map((entry) => entry.id)).toEqual(['steam']);
+    expect(runtimeModel.sections[0]?.entries.find((entry) => entry.id === 'steam')).toMatchObject({
+      kindLabel: '商店',
+    });
     expect(runtimeModel.snapshot.updatedAt).toBe('2026-04-06T00:00:00.000Z');
     expect(hasAboutPageModelMaterialChange(baselineModel, runtimeModel)).toBe(true);
   });

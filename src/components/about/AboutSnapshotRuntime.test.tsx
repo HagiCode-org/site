@@ -115,13 +115,15 @@ describe('AboutSnapshotRuntimeView', () => {
     const storeSection = getSectionMarkup(markup, 'store');
     const contentSection = getSectionMarkup(markup, 'content');
 
-    expect(markup).toContain('Bundled snapshot ready');
-    expect(markup).toContain('Version');
-    expect(markup).toContain('Updated');
+    expect(markup).not.toContain('About snapshot');
+    expect(markup).not.toContain('Bundled snapshot ready');
+    expect(markup).not.toContain('Version');
+    expect(markup).not.toContain('Updated');
     expect(markup.indexOf('id="about-store"')).toBeLessThan(markup.indexOf('id="about-community"'));
     expect(markup.indexOf('id="about-community"')).toBeLessThan(markup.indexOf('id="about-content"'));
-    expect(storeSection).toContain('Stores');
+    expect(storeSection).toContain('<h2>Store</h2>');
     expect(storeSection).toContain('Steam');
+    expect(storeSection).toContain('>Store<');
     expect(storeSection).toContain('Official store');
     expect(storeSection).toContain('https://store.steampowered.com/app/4625540/Hagicode/');
     expect(storeSection).toContain('target="_blank"');
@@ -139,14 +141,18 @@ describe('AboutSnapshotRuntimeView', () => {
     const storeSection = getSectionMarkup(markup, 'store');
     const contentSection = getSectionMarkup(markup, 'content');
 
-    expect(markup).toContain('已同步最新 Index 数据');
-    expect(markup).toContain('2026-04-04T00:00:00Z');
+    expect(markup).not.toContain('About 快照');
+    expect(markup).not.toContain('已同步最新 Index 数据');
+    expect(markup).not.toContain('更新时间');
+    expect(markup).not.toContain('版本: 1.0.0');
+    expect(markup).not.toContain('2026-04-04T00:00:00Z');
     expect(markup).toContain('https://index.hagicode.com/_astro/douyin.latest.png');
     expect(markup).toContain('https://index.hagicode.com/_astro/wechat.latest.jpg');
     expect(markup).toContain('抖音');
     expect(markup.indexOf('id="about-store"')).toBeLessThan(markup.indexOf('id="about-community"'));
-    expect(storeSection).toContain('商店');
+    expect(storeSection).toContain('<h2>商店</h2>');
     expect(storeSection).toContain('Steam');
+    expect(storeSection).toContain('>商店<');
     expect(storeSection).toContain('官方商店');
     expect(storeSection).toContain('https://store.steampowered.com/app/4625540/Hagicode/');
     expect(storeSection).toContain('target="_blank"');
