@@ -7,13 +7,14 @@ import {
   getSiteRoot,
   loadBasePromptConfig,
   loadBatchConfig,
+  loadSiteRuntimeEnv,
   parseCliArgs,
   resolveImgBinRuntime,
   resolveSinglePromptInput
 } from './lib/imgbin-workflow.mjs';
 
 function printHelp() {
-  console.log(`generate-image.mjs - ImgBin-backed site image generation\n\nUSAGE:\n  node scripts/generate-image.mjs --prompt "A doodle" [options]\n  node scripts/generate-image.mjs --prompt-file scripts/prompts/product-images/example/prompt.json --output public/img/example.png\n  node scripts/generate-image.mjs --batch-config scripts/product-images-batch.json [--force]\n\nOPTIONS:\n  --prompt <text>           Raw prompt input for a single image\n  --prompt-file <path>      Site-managed prompt.json file\n  --load-prompt <path>      Existing prompt.json to reuse as-is\n  --save-prompt <path>      Persist the generated prompt.json before running ImgBin\n  --output <path>           Final exported image path for single-image mode\n  --batch-config <path>     Batch config with jobs[] entries\n  --size <value>            Generation size override (default: 1024x1024)\n  --quality <value>         Generation quality override (default: high)\n  --format <value>          Generation format override (default: png)\n  --context <key>           Context key from scripts/image-base-prompt.json\n  --custom-prompt <text>    Additional prompt fragment appended before the user prompt\n  --use-base-prompt         Force-enable the hand-drawn base prompt\n  --no-base-prompt          Disable the hand-drawn base prompt for this run\n  --slug <slug>             Forward slug to ImgBin\n  --title <title>           Forward title to ImgBin\n  --tag <tag>               Forward one or more tags to ImgBin\n  --analysis-prompt <path>  Claude metadata prompt override\n  --no-annotate             Skip Claude metadata analysis\n  --thumbnail               Ask ImgBin to create a thumbnail\n  --force                   Overwrite exported files when they already exist\n  --dry-run                 Forward dry-run to ImgBin\n  --verbose                 Print extra execution details\n  -h, --help                Show this help text\n\nIMG BIN CONTRACT:\n  The site wrapper validates only ImgBin-facing configuration. By default it uses\n  ../imgbin/dist/cli.js and ../imgbin as the working directory. Override with:\n    IMGBIN_EXECUTABLE\n    IMGBIN_WORKDIR\n    IMGBIN_LIBRARY_ROOT\n\nNOTES:\n  - GPT Image 1.5 is responsible for image generation only.\n  - Metadata generation still depends on Claude via ImgBin's annotate step.\n  - The default style remains the existing hand-drawn base prompt set.\n`);
+  console.log(`generate-image.mjs - ImgBin-backed site image generation\n\nUSAGE:\n  node scripts/generate-image.mjs --prompt "A doodle" [options]\n  node scripts/generate-image.mjs --prompt-file scripts/prompts/product-images/example/prompt.json --output public/img/example.png\n  node scripts/generate-image.mjs --batch-config scripts/product-images-batch.json [--force]\n\nOPTIONS:\n  --prompt <text>           Raw prompt input for a single image\n  --prompt-file <path>      Site-managed prompt.json file\n  --load-prompt <path>      Existing prompt.json to reuse as-is\n  --save-prompt <path>      Persist the generated prompt.json before running ImgBin\n  --output <path>           Final exported image path for single-image mode\n  --batch-config <path>     Batch config with jobs[] entries\n  --size <value>            Generation size override (default: 1024x1024)\n  --quality <value>         Generation quality override (default: high)\n  --format <value>          Generation format override (default: png)\n  --context <key>           Context key from scripts/image-base-prompt.json\n  --custom-prompt <text>    Additional prompt fragment appended before the user prompt\n  --use-base-prompt         Force-enable the hand-drawn base prompt\n  --no-base-prompt          Disable the hand-drawn base prompt for this run\n  --slug <slug>             Forward slug to ImgBin\n  --title <title>           Forward title to ImgBin\n  --tag <tag>               Forward one or more tags to ImgBin\n  --analysis-prompt <path>  Codex metadata prompt override\n  --no-annotate             Skip Codex metadata analysis\n  --thumbnail               Ask ImgBin to create a thumbnail\n  --force                   Overwrite exported files when they already exist\n  --dry-run                 Forward dry-run to ImgBin\n  --verbose                 Print extra execution details\n  -h, --help                Show this help text\n\nIMG BIN CONTRACT:\n  The site wrapper validates only ImgBin-facing configuration. By default it uses\n  ../imgbin/dist/cli.js and ../imgbin as the working directory. It also loads\n  repos/site/.env and repos/site/.env.local before spawning ImgBin. Override with:\n    IMGBIN_EXECUTABLE\n    IMGBIN_WORKDIR\n    IMGBIN_LIBRARY_ROOT\n    IMGBIN_ANALYSIS_PROVIDER\n    IMGBIN_CODEX_MODEL\n    IMGBIN_CODEX_BASE_URL\n\nNOTES:\n  - GPT Image 1.5 is responsible for image generation only.\n  - Metadata generation defaults to Codex via OmniRoute at http://localhost:36129/v1.\n  - The default style remains the existing hand-drawn base prompt set.\n`);
 }
 
 function logSection(title) {
@@ -25,7 +26,8 @@ function relativeToSite(candidate) {
 }
 
 async function runSingle(options) {
-  const runtime = await resolveImgBinRuntime();
+  const runtimeEnv = await loadSiteRuntimeEnv();
+  const runtime = await resolveImgBinRuntime(runtimeEnv);
   const basePromptConfig = await loadBasePromptConfig();
   const promptInput = await resolveSinglePromptInput(options, basePromptConfig);
 
@@ -70,7 +72,8 @@ async function runSingle(options) {
 }
 
 async function runBatch(options) {
-  const runtime = await resolveImgBinRuntime();
+  const runtimeEnv = await loadSiteRuntimeEnv();
+  const runtime = await resolveImgBinRuntime(runtimeEnv);
   const batchConfig = await loadBatchConfig(options.batchConfig);
   batchConfig.jobs = batchConfig.jobs.map((job) => ({
     ...job,

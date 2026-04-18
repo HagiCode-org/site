@@ -10,6 +10,7 @@ import {
   getSiteRoot,
   loadBasePromptConfig,
   loadBatchConfig,
+  loadSiteRuntimeEnv,
   parseImgBinExecution,
   resolveImgBinRuntime
 } from '../lib/imgbin-workflow.mjs';
@@ -114,15 +115,15 @@ describe('site ImgBin workflow helpers', () => {
         'Generated asset with warnings at /tmp/library/hero-card',
         '- SUCCEEDED normalize: Loaded docs prompt file /tmp/prompt.json',
         '- SUCCEEDED generate: Generated image asset at /tmp/library/hero-card',
-        '- FAILED recognition: Metadata analysis failed (Claude timed out)'
+        '- FAILED recognition: Metadata analysis failed (Codex timed out)'
       ].join('\n'),
-      stderr: 'Claude timed out'
+      stderr: 'Codex timed out'
     });
 
     expect(parsed.assetDir).toBe('/tmp/library/hero-card');
     expect(parsed.generationSucceeded).toBe(true);
     expect(parsed.metadataSucceeded).toBe(false);
-    expect(parsed.metadataError).toBe('Claude timed out');
+    expect(parsed.metadataError).toBe('Codex timed out');
   });
 
   it('exports a generated asset into the repository target path', async () => {
@@ -195,9 +196,9 @@ describe('site ImgBin workflow helpers', () => {
             stdout: [
               `Generated asset with warnings at ${secondAsset}`,
               `- SUCCEEDED generate: Generated image asset at ${secondAsset}`,
-              '- FAILED recognition: Metadata analysis failed (Claude unavailable)'
+              '- FAILED recognition: Metadata analysis failed (Codex unavailable)'
             ].join('\n'),
-            stderr: 'Claude unavailable'
+            stderr: 'Codex unavailable'
           };
         }
       }
@@ -207,7 +208,39 @@ describe('site ImgBin workflow helpers', () => {
     expect(await fs.readFile(path.join(exportsRoot, 'first-card.png'), 'utf8')).toBe('png-bits');
     expect(await fs.readFile(path.join(exportsRoot, 'second-card.png'), 'utf8')).toBe('png-bits');
     expect(results[0].summaryLines).toContain(`export: ${path.join(exportsRoot, 'first-card.png')}`);
-    expect(results[1].summaryLines).toContain('metadata analysis (Claude): failed (Claude unavailable)');
+    expect(results[1].summaryLines).toContain('metadata analysis (Codex): failed (Codex unavailable)');
+  });
+
+  it('loads site runtime env from .env files and applies the OmniRoute Codex defaults', async () => {
+    const tempDir = await createTempDir('site-imgbin-env-');
+    await fs.writeFile(
+      path.join(tempDir, '.env'),
+      'IMGBIN_CODEX_MODEL=from-dot-env\nIMGBIN_ANALYSIS_PROVIDER=http\n',
+      'utf8'
+    );
+    await fs.writeFile(
+      path.join(tempDir, '.env.local'),
+      'IMGBIN_CODEX_MODEL=from-dot-env-local\n',
+      'utf8'
+    );
+
+    const env = await loadSiteRuntimeEnv(
+      {
+        IMGBIN_CODEX_BASE_URL: 'http://shell.example/v1'
+      },
+      {
+        siteRoot: tempDir
+      }
+    );
+
+    expect(env.IMGBIN_ANALYSIS_PROVIDER).toBe('http');
+    expect(env.IMGBIN_CODEX_MODEL).toBe('from-dot-env-local');
+    expect(env.IMGBIN_CODEX_BASE_URL).toBe('http://shell.example/v1');
+
+    const defaultsOnly = await loadSiteRuntimeEnv({}, { siteRoot: await createTempDir('site-imgbin-env-defaults-') });
+    expect(defaultsOnly.IMGBIN_ANALYSIS_PROVIDER).toBe('codex');
+    expect(defaultsOnly.IMGBIN_CODEX_MODEL).toBe('lemon/gpt-5.4');
+    expect(defaultsOnly.IMGBIN_CODEX_BASE_URL).toBe('http://localhost:36129/v1');
   });
 
   it('loads the redesigned product image batch config and resolves prompt paths', async () => {

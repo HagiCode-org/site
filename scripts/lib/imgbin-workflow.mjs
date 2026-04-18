@@ -3,6 +3,7 @@ import { promises as fs } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parse as parseDotEnv } from 'dotenv';
 
 const moduleDir = path.dirname(fileURLToPath(import.meta.url));
 const siteRoot = path.resolve(moduleDir, '../..');
@@ -10,6 +11,9 @@ const defaultWorkdir = path.resolve(siteRoot, '../imgbin');
 const defaultExecutable = path.join(defaultWorkdir, 'dist/cli.js');
 const defaultLibraryRoot = path.join(siteRoot, '.imgbin-library');
 const defaultBasePromptPath = path.join(siteRoot, 'scripts', 'image-base-prompt.json');
+const defaultAnalysisProvider = 'codex';
+const defaultCodexModel = 'lemon/gpt-5.4';
+const defaultCodexBaseUrl = 'http://localhost:36129/v1';
 const cliStepPattern = /^-\s+([A-Z]+)\s+(\w+):\s+(.*?)(?:\s+\((.*)\))?$/;
 const assetDirPattern = /Generated asset(?: with warnings)? at (.+)$/;
 
@@ -92,6 +96,38 @@ export async function ensureDir(dirPath) {
   await fs.mkdir(dirPath, { recursive: true });
 }
 
+async function loadDotEnvFile(filePath) {
+  try {
+    const raw = await fs.readFile(filePath, 'utf8');
+    return parseDotEnv(raw);
+  } catch (error) {
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'ENOENT') {
+      return {};
+    }
+    throw error;
+  }
+}
+
+export async function loadSiteRuntimeEnv(baseEnv = process.env, options = {}) {
+  const resolvedSiteRoot = path.resolve(options.siteRoot ?? siteRoot);
+  const defaults = {
+    IMGBIN_ANALYSIS_PROVIDER: defaultAnalysisProvider,
+    IMGBIN_CODEX_MODEL: defaultCodexModel,
+    IMGBIN_CODEX_BASE_URL: defaultCodexBaseUrl
+  };
+  const dotEnvPath = path.join(resolvedSiteRoot, '.env');
+  const dotEnvLocalPath = path.join(resolvedSiteRoot, '.env.local');
+  const dotEnvValues = await loadDotEnvFile(dotEnvPath);
+  const dotEnvLocalValues = await loadDotEnvFile(dotEnvLocalPath);
+
+  return {
+    ...defaults,
+    ...dotEnvValues,
+    ...dotEnvLocalValues,
+    ...baseEnv
+  };
+}
+
 export async function loadBasePromptConfig(basePromptPath = defaultBasePromptPath) {
   const raw = await loadJson(basePromptPath);
   return {
@@ -136,7 +172,8 @@ export async function resolveImgBinRuntime(env = process.env) {
       executable: process.execPath,
       argsPrefix: [...extraArgs, executableInput],
       libraryRoot,
-      executableLabel: executableInput
+      executableLabel: executableInput,
+      env
     };
   }
 
@@ -145,7 +182,8 @@ export async function resolveImgBinRuntime(env = process.env) {
     executable: executableInput,
     argsPrefix: extraArgs,
     libraryRoot,
-    executableLabel: executableInput
+    executableLabel: executableInput,
+    env
   };
 }
 
@@ -604,9 +642,9 @@ export function summarizeExecution(parsed, exportResult) {
   }
 
   if (parsed.metadataSucceeded === true) {
-    lines.push('metadata analysis (Claude): succeeded');
+    lines.push('metadata analysis (Codex): succeeded');
   } else if (parsed.metadataSucceeded === false) {
-    lines.push(`metadata analysis (Claude): failed${parsed.metadataError ? ` (${parsed.metadataError})` : ''}`);
+    lines.push(`metadata analysis (Codex): failed${parsed.metadataError ? ` (${parsed.metadataError})` : ''}`);
   }
 
   if (exportResult) {
@@ -636,7 +674,7 @@ export async function executeGenerateJob(job, runtime, hooks = {}) {
     executable: runtime.executable,
     args,
     cwd: runtime.workdir,
-    env: process.env,
+    env: runtime.env ?? process.env,
     onStdout: hooks.onStdout,
     onStderr: hooks.onStderr
   });
