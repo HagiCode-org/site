@@ -302,8 +302,7 @@
   }
 
   .cardAction {
-    width: 100%;
-    justify-content: center;
+    align-self: flex-start;
   }
 }
 

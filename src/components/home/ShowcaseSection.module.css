@@ -1,16 +1,10 @@
-/**
- * ShowcaseSection 样式 - 产品截图展示
- * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
- * 使用 CSS 变量支持亮色/暗色主题
- */
-
 .showcaseSection {
   padding: 5rem 0;
   background: var(--color-background);
   position: relative;
+  overflow-x: hidden;
 }
 
-/* 科技感网格背景 */
 .showcaseSection::before {
   content: '';
   position: absolute;
@@ -34,7 +28,7 @@
 
 .sectionHeader {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   position: relative;
   z-index: 1;
 }
@@ -52,133 +46,420 @@
 }
 
 .sectionDescription {
-  font-size: 1.1rem;
+  max-width: 48rem;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.7;
   color: var(--color-text-secondary);
 }
 
-/* 截图网格布局 - 桌面端 3 列 */
-.screenshotsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+.showcaseLayout {
   position: relative;
   z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(18rem, 0.95fr);
+  gap: 1.5rem;
+  align-items: start;
 }
 
-/* 截图卡片 - 玻璃态效果 */
-.screenshotCard {
+.featuredPanel,
+.thumbnailButton {
   background: var(--color-surface-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  transition: all var(--duration-normal) var(--ease-out);
-  margin: 0;
+  box-shadow: var(--shadow-lg);
 }
 
-[data-theme='dark'] .screenshotCard {
-  background: rgba(20, 25, 50, 0.6);
+[data-theme='dark'] .featuredPanel,
+[data-theme='dark'] .thumbnailButton {
+  background: rgba(20, 25, 50, 0.62);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* 悬停效果 - 缩放 + 阴影 + 边框高亮 */
-.screenshotCard:hover {
-  transform: translateY(-8px);
-  border-color: var(--color-primary);
-  box-shadow: var(--shadow-lg), 0 0 30px rgba(0, 128, 255, 0.15);
+.featuredPanel {
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  min-width: 0;
 }
 
-[data-theme='dark'] .screenshotCard:hover {
-  border-color: var(--color-secondary);
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.6),
-    0 0 25px rgba(0, 255, 255, 0.12);
+.featuredMedia {
+  background:
+    radial-gradient(circle at top left, rgba(37, 194, 160, 0.22), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
 }
 
-/* 图片样式 - 保持比例,适配容器 */
-.screenshotImage {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+.featuredPreviewButton {
+  position: relative;
   display: block;
-  background: var(--color-surface-placeholder);
-  opacity: 0;
-  animation: fadeIn 0.5s ease-out forwards;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: zoom-in;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+.featuredPreviewButton:focus-visible {
+  outline: 2px solid rgba(37, 194, 160, 0.9);
+  outline-offset: -2px;
 }
 
-/* 图片加载失败占位符 */
-.screenshotPlaceholder {
-  aspect-ratio: 16 / 9;
+.featuredImage,
+.thumbnailImage {
+  display: block;
+  width: 100%;
+  object-fit: cover;
   background: var(--color-surface-placeholder);
-  display: flex;
+}
+
+.featuredImage {
+  aspect-ratio: 16 / 10;
+}
+
+.featuredPreviewHint {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text-secondary);
-  font-size: 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(8, 12, 24, 0.72);
+  padding: 0.45rem 0.8rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #f8fafc;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  pointer-events: none;
 }
 
-/* 截图标题 */
-.screenshotTitle {
-  font-size: 1.25rem;
+.featuredContent {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.5rem;
+}
+
+.featuredCopy {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.featuredEyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  font-size: 0.82rem;
   font-weight: 700;
-  margin: 1rem 1rem 0.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.featuredCounter {
+  color: var(--color-primary);
+}
+
+.featuredTitle {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+  line-height: 1.2;
   color: var(--color-text);
   font-family: var(--font-display);
 }
 
-/* 截图描述 */
-.screenshotDescription {
-  font-size: 0.95rem;
+.featuredDescription {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
   color: var(--color-text-secondary);
-  line-height: 1.5;
-  padding: 0 1rem 1rem;
 }
 
-/* 响应式设计 */
-/* 平板 (768-995px): 2 列 */
-@media (max-width: 995px) {
-  .screenshotsGrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+.featuredControls {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.navButton {
+  appearance: none;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-text);
+  padding: 0.75rem 1.15rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    transform var(--duration-normal) var(--ease-out),
+    background-color var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.navButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(37, 194, 160, 0.6);
+  background: rgba(37, 194, 160, 0.14);
+  box-shadow: 0 12px 24px rgba(6, 182, 212, 0.12);
+}
+
+.navButton:focus-visible,
+.thumbnailButton:focus-visible {
+  outline: 2px solid rgba(37, 194, 160, 0.9);
+  outline-offset: 3px;
+}
+
+.navButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.thumbnailRail {
+  display: grid;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.thumbnailButton {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  padding: 0.9rem;
+  display: grid;
+  grid-template-columns: auto 5.5rem minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: center;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-out),
+    background-color var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.thumbnailButton:hover {
+  transform: translateY(-2px);
+  border-color: rgba(37, 194, 160, 0.42);
+  box-shadow: 0 16px 26px rgba(6, 182, 212, 0.1);
+}
+
+.thumbnailButtonActive {
+  border-color: rgba(37, 194, 160, 0.72);
+  background:
+    linear-gradient(135deg, rgba(37, 194, 160, 0.16), rgba(6, 182, 212, 0.08)),
+    var(--color-surface-glass);
+  box-shadow:
+    0 18px 38px rgba(6, 182, 212, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.thumbnailOrder {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.thumbnailPreview {
+  display: block;
+  overflow: hidden;
+  border-radius: calc(var(--radius-lg) - 2px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--color-surface-placeholder);
+}
+
+.thumbnailImage {
+  aspect-ratio: 16 / 10;
+}
+
+.thumbnailText {
+  min-width: 0;
+  display: grid;
+  gap: 0.32rem;
+}
+
+.thumbnailTitle {
+  display: block;
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.thumbnailDescription {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.screenshotPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--color-surface-placeholder);
+  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(2, 6, 23, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.lightboxInner {
+  width: min(100%, 92rem);
+  max-height: 100%;
+  overflow: auto;
+}
+
+.lightboxClose {
+  margin-left: auto;
+  margin-bottom: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.72);
+  padding: 0.7rem 1rem;
+  font: inherit;
+  font-weight: 700;
+  color: #f8fafc;
+  cursor: pointer;
+}
+
+.lightboxClose:focus-visible {
+  outline: 2px solid rgba(37, 194, 160, 0.9);
+  outline-offset: 3px;
+}
+
+.lightboxFigure {
+  margin: 0;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(8, 12, 24, 0.9);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.45);
+}
+
+.lightboxImage {
+  display: block;
+  width: 100%;
+  max-height: min(78vh, 78rem);
+  object-fit: contain;
+  background: rgba(2, 6, 23, 0.95);
+}
+
+.lightboxCaption {
+  display: grid;
+  gap: 0.7rem;
+  padding: 1.2rem 1.35rem 1.35rem;
+}
+
+.lightboxTitle {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  color: #f8fafc;
+  font-family: var(--font-display);
+}
+
+.lightboxDescription {
+  margin: 0;
+  line-height: 1.7;
+  color: rgba(226, 232, 240, 0.82);
+}
+
+@media (max-width: 1080px) {
+  .showcaseLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .featuredContent {
+    padding: 1.35rem;
   }
 }
 
-/* 移动端 (<768px): 1 列 */
 @media (max-width: 767px) {
   .showcaseSection {
-    padding: 3rem 0;
+    padding: 3.5rem 0;
   }
 
-  .screenshotsGrid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .sectionHeader {
+    margin-bottom: 2rem;
   }
 
-  .screenshotTitle {
-    font-size: 1.1rem;
+  .featuredEyebrow {
+    flex-wrap: wrap;
   }
 
-  .screenshotDescription {
-    font-size: 0.9rem;
+  .thumbnailRail {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(15rem, 82%);
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    scroll-snap-type: x proximity;
+  }
+
+  .thumbnailButton {
+    grid-template-columns: auto 4.75rem minmax(0, 1fr);
+    align-items: start;
+    scroll-snap-align: start;
+  }
+
+  .lightbox {
+    padding: 1rem;
+  }
+
+  .lightboxImage {
+    max-height: 68vh;
+  }
+
+  .featuredPreviewHint {
+    right: 0.75rem;
+    bottom: 0.75rem;
   }
 }
 
-/* 减少运动敏感度 */
-@media (prefers-reduced-motion: reduce) {
-  .screenshotCard {
-    transition: none;
+@media (max-width: 520px) {
+  .featuredControls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .screenshotImage {
-    animation: none;
-    opacity: 1;
+  .navButton {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navButton,
+  .thumbnailButton {
+    transition: none;
   }
 }
