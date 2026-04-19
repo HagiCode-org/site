@@ -12,6 +12,7 @@ import VideoShowcase from '@/components/home/VideoShowcase';
 import type { VideoShowcaseItem } from '@/components/home/VideoShowcase';
 import PricingComparisonSection from '@/components/home/PricingComparisonSection';
 import LiveBroadcastSection from '@/components/home/LiveBroadcastSection';
+import EcosystemSitesSection from '@/components/home/EcosystemSitesSection.astro';
 import Footer from '@/components/home/Footer';
 import LunarNewYearDecorations from '@/components/home/LunarNewYearDecorations';
 import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
@@ -176,6 +177,9 @@ const homepageVideos: VideoShowcaseItem[] = [
 
       <!-- Pricing Comparison Section -->
       <PricingComparisonSection locale="zh-CN" client:load />
+
+      <!-- Ecosystem Sites Section -->
+      <EcosystemSitesSection locale="zh-CN" />
     </main>
 
     <!-- Footer -->

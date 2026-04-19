@@ -1,0 +1,299 @@
+---
+interface EcosystemSiteCard {
+  eyebrow: string;
+  title: string;
+  description: string;
+  href: string;
+}
+
+interface Props {
+  locale?: 'zh-CN' | 'en';
+}
+
+const { locale = 'en' } = Astro.props as Props;
+
+const copy = locale === 'zh-CN'
+  ? {
+      eyebrow: 'HAGICODE ECOSYSTEM',
+      title: '从主站继续深入到各个子站',
+      description:
+        '这些站点分别承载文档、部署、创作与数据镜像职责。把它们直接放进首页正文，可以让搜索引擎和用户都更清楚 HagiCode 生态的结构，而不是只在页脚里看到一次。',
+    }
+  : {
+      eyebrow: 'HAGICODE ECOSYSTEM',
+      title: 'Continue into the rest of the HagiCode network',
+      description:
+        'These destinations cover docs, deployment, creative tools, and public data surfaces. Rendering them inside the homepage body gives crawlers and visitors a clearer picture of how the HagiCode ecosystem is organized.',
+    };
+
+const sites: EcosystemSiteCard[] = locale === 'zh-CN'
+  ? [
+      {
+        eyebrow: 'Docs',
+        title: 'HagiCode Docs',
+        description: '产品文档、安装指南、博客与法律页面。',
+        href: 'https://docs.hagicode.com/',
+      },
+      {
+        eyebrow: 'Builder',
+        title: 'Docker Compose Builder',
+        description: '用可视化配置生成 Hagicode 的 Docker Compose 部署文件。',
+        href: 'https://builder.hagicode.com/',
+      },
+      {
+        eyebrow: 'Cost',
+        title: 'AI Replacement Calculator',
+        description: '从薪资、效率和 Token 成本角度估算 Agent 时代的人效压力。',
+        href: 'https://cost.hagicode.com/',
+      },
+      {
+        eyebrow: 'Soul',
+        title: 'Soul Builder',
+        description: '整理 Agent 的人格骨架、语气与表达规则。',
+        href: 'https://soul.hagicode.com/',
+      },
+      {
+        eyebrow: 'Trait',
+        title: 'Trait Builder',
+        description: '浏览、筛选和分享可复用的 Agent 特质目录。',
+        href: 'https://trait.hagicode.com/',
+      },
+      {
+        eyebrow: 'newbe',
+        title: 'newbe',
+        description: '作者博客与长期技术写作站点。',
+        href: 'https://newbe.hagicode.com/',
+      },
+      {
+        eyebrow: 'Index',
+        title: 'Index Data Mirror',
+        description: '公开索引、历史页与对外稳定数据入口。',
+        href: 'https://index.hagicode.com/data/',
+      },
+    ]
+  : [
+      {
+        eyebrow: 'Docs',
+        title: 'HagiCode Docs',
+        description: 'Product docs, installation guides, blog content, and legal pages.',
+        href: 'https://docs.hagicode.com/',
+      },
+      {
+        eyebrow: 'Builder',
+        title: 'Docker Compose Builder',
+        description: 'Generate Docker Compose deployment files for HagiCode with a guided UI.',
+        href: 'https://builder.hagicode.com/',
+      },
+      {
+        eyebrow: 'Cost',
+        title: 'AI Replacement Calculator',
+        description: 'Estimate Agent-era productivity pressure from salary, efficiency, and token spend.',
+        href: 'https://cost.hagicode.com/',
+      },
+      {
+        eyebrow: 'Soul',
+        title: 'Soul Builder',
+        description: 'Shape reusable agent personality frames, tone, and expression rules.',
+        href: 'https://soul.hagicode.com/',
+      },
+      {
+        eyebrow: 'Trait',
+        title: 'Trait Builder',
+        description: 'Browse, filter, and share reusable agent trait catalogs.',
+        href: 'https://trait.hagicode.com/',
+      },
+      {
+        eyebrow: 'newbe',
+        title: 'newbe',
+        description: 'The author blog for long-form technical writing and related projects.',
+        href: 'https://newbe.hagicode.com/',
+      },
+      {
+        eyebrow: 'Index',
+        title: 'Index Data Mirror',
+        description: 'Public indices, history pages, and stable machine-readable release surfaces.',
+        href: 'https://index.hagicode.com/data/',
+      },
+    ];
+---
+
+<section class="ecosystem-sites" aria-labelledby="ecosystem-sites-title">
+  <div class="ecosystem-sites__inner">
+    <div class="ecosystem-sites__heading">
+      <p class="ecosystem-sites__eyebrow">{copy.eyebrow}</p>
+      <h2 id="ecosystem-sites-title">{copy.title}</h2>
+      <p class="ecosystem-sites__description">{copy.description}</p>
+    </div>
+
+    <div class="ecosystem-sites__grid">
+      {sites.map((site) => (
+        <a class="ecosystem-sites__card" href={site.href}>
+          <span class="ecosystem-sites__card-eyebrow">{site.eyebrow}</span>
+          <strong class="ecosystem-sites__card-title">{site.title}</strong>
+          <span class="ecosystem-sites__card-description">{site.description}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .ecosystem-sites {
+    padding: 2rem 1.5rem 0;
+  }
+
+  .ecosystem-sites__inner {
+    width: min(1200px, 100%);
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at top left, rgba(34, 197, 94, 0.18), transparent 32%),
+      radial-gradient(circle at bottom right, rgba(6, 182, 212, 0.16), transparent 30%),
+      rgba(10, 10, 10, 0.78);
+    backdrop-filter: blur(22px);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  }
+
+  .ecosystem-sites__heading {
+    max-width: 52rem;
+  }
+
+  .ecosystem-sites__eyebrow {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: #7dd3fc;
+  }
+
+  .ecosystem-sites__heading h2 {
+    margin: 0.85rem 0 0;
+    font-size: clamp(2rem, 3.3vw, 3rem);
+    line-height: 1.02;
+    color: #f8fafc;
+  }
+
+  .ecosystem-sites__description {
+    margin: 1rem 0 0;
+    max-width: 48rem;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(226, 232, 240, 0.82);
+  }
+
+  .ecosystem-sites__grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .ecosystem-sites__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    min-height: 100%;
+    padding: 1.15rem 1.1rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 22px;
+    background: rgba(15, 23, 42, 0.42);
+    text-decoration: none;
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      background-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .ecosystem-sites__card:hover,
+  .ecosystem-sites__card:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(45, 212, 191, 0.46);
+    background: rgba(15, 23, 42, 0.62);
+    box-shadow: 0 14px 36px rgba(8, 47, 73, 0.24);
+    outline: none;
+  }
+
+  .ecosystem-sites__card-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #5eead4;
+  }
+
+  .ecosystem-sites__card-title {
+    font-size: 1.04rem;
+    line-height: 1.35;
+    color: #f8fafc;
+  }
+
+  .ecosystem-sites__card-description {
+    font-size: 0.94rem;
+    line-height: 1.7;
+    color: rgba(226, 232, 240, 0.78);
+  }
+
+  :global([data-theme='light']) .ecosystem-sites__inner {
+    border-color: rgba(15, 23, 42, 0.1);
+    background:
+      radial-gradient(circle at top left, rgba(34, 197, 94, 0.12), transparent 34%),
+      radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.1), transparent 30%),
+      rgba(255, 255, 255, 0.9);
+    box-shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+  }
+
+  :global([data-theme='light']) .ecosystem-sites__eyebrow {
+    color: #0369a1;
+  }
+
+  :global([data-theme='light']) .ecosystem-sites__heading h2 {
+    color: #0f172a;
+  }
+
+  :global([data-theme='light']) .ecosystem-sites__description {
+    color: rgba(30, 41, 59, 0.8);
+  }
+
+  :global([data-theme='light']) .ecosystem-sites__card {
+    border-color: rgba(15, 23, 42, 0.08);
+    background: rgba(255, 255, 255, 0.86);
+  }
+
+  :global([data-theme='light']) .ecosystem-sites__card:hover,
+  :global([data-theme='light']) .ecosystem-sites__card:focus-visible {
+    border-color: rgba(14, 165, 233, 0.28);
+    background: #ffffff;
+    box-shadow: 0 14px 36px rgba(14, 165, 233, 0.12);
+  }
+
+  :global([data-theme='light']) .ecosystem-sites__card-eyebrow {
+    color: #0f766e;
+  }
+
+  :global([data-theme='light']) .ecosystem-sites__card-title {
+    color: #0f172a;
+  }
+
+  :global([data-theme='light']) .ecosystem-sites__card-description {
+    color: rgba(30, 41, 59, 0.76);
+  }
+
+  @media (max-width: 720px) {
+    .ecosystem-sites {
+      padding-inline: 1rem;
+    }
+
+    .ecosystem-sites__inner {
+      padding: 1.4rem;
+      border-radius: 24px;
+    }
+
+    .ecosystem-sites__description {
+      font-size: 0.96rem;
+      line-height: 1.65;
+    }
+  }
+</style>
