@@ -4,7 +4,7 @@
 
 <p>HagiCode 通过 OpenSpec 工作流、多 Agent 并行执行和 Hero Dungeon 战报，把想法更快变成可交付成果，让 AI 编码过程始终清晰、有序，也更有乐趣。</p>
 
-<img src="./public/img/home/亮色主题主界面.png" alt="Hagicode 亮色主题主界面" width="880" />
+<img src="./public/img/home/showcase-proposal-workflow.png" alt="HagiCode 提案执行总览" width="880" />
 
 <br />
 

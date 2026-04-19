@@ -4,7 +4,7 @@
 
 <p>HagiCode turns ideas into shipped work with OpenSpec workflows, multi-agent parallel execution, and Hero Dungeon battle reports that keep AI coding visible, structured, and enjoyable.</p>
 
-<img src="./public/img/home/亮色主题主界面.png" alt="Hagicode Light Theme Main Interface" width="880" />
+<img src="./public/img/home/showcase-proposal-workflow.png" alt="HagiCode proposal execution overview" width="880" />
 
 <br />
 
