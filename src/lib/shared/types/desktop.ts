@@ -94,9 +94,18 @@ export interface DesktopVersion {
  */
 export interface ChannelInfo {
   /** 该渠道最新版本号 */
-  latest: string;
+  latest: string | null;
   /** 该渠道包含的版本号列表 */
   versions: string[];
+}
+
+export interface DesktopChannels {
+  /** 稳定版渠道 */
+  stable: ChannelInfo;
+  /** 测试版渠道 */
+  beta?: ChannelInfo;
+  /** 兼容未来新增的其他渠道，例如 dev */
+  [channel: string]: ChannelInfo | undefined;
 }
 
 /**
@@ -108,12 +117,7 @@ export interface DesktopIndexResponse {
   /** 版本列表（完整历史） */
   versions: DesktopVersion[];
   /** 渠道信息（可选，向后兼容） */
-  channels?: {
-    /** 稳定版渠道 */
-    stable: ChannelInfo;
-    /** 测试版渠道 */
-    beta: ChannelInfo;
-  };
+  channels?: DesktopChannels;
 }
 
 /**
