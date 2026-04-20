@@ -97,6 +97,10 @@ npm run preview
 默认开发服务器地址是 `http://localhost:31264`。
 贡献者说明优先查看 [`AGENTS.md`](./AGENTS.md) 和 [`CLAUDE.md`](./CLAUDE.md)。
 
+### Desktop Index 回退说明
+
+桌面历史索引 `https://index.hagicode.com/desktop/history/` 在这里仅作为被引用依赖。站点会把它当作桌面引导的运行时回退目标，但这个仓库本身并不直接发布或维护这个索引。
+
 ## 许可协议
 
 本仓库遵循 [LICENSE](./LICENSE)。

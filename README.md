@@ -97,6 +97,10 @@ npm run preview
 The default dev server runs at `http://localhost:31264`.
 For contributor guidance, start with [`AGENTS.md`](./AGENTS.md) and [`CLAUDE.md`](./CLAUDE.md).
 
+### Desktop Index Fallback
+
+The desktop history index at `https://index.hagicode.com/desktop/history/` is a referenced dependency only. The site links to it as a runtime fallback target for desktop guidance, but this repository does not publish or manage that index directly.
+
 ## License
 
 This repository is released under [LICENSE](./LICENSE).
