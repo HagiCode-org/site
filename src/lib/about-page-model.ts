@@ -113,6 +113,7 @@ const ENTRY_ORDER = [
   'qq-group',
   'discord',
   'youtube',
+  'product-hunt',
   'steam',
   'bilibili',
   'xiaohongshu',

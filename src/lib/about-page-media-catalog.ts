@@ -42,6 +42,10 @@ const entryCopyOverrides = {
       detail: 'Official video channel',
       linkText: 'Open channel',
     },
+    'product-hunt': {
+      detail: 'Product Hunt launch page',
+      linkText: 'Open listing',
+    },
     steam: {
       detail: 'Official store page',
       linkText: 'Open store',
@@ -80,6 +84,10 @@ const entryCopyOverrides = {
     bilibili: {
       detail: '官方视频频道',
       linkText: '打开频道',
+    },
+    'product-hunt': {
+      detail: 'Product Hunt 产品页',
+      linkText: '打开产品页',
     },
     xiaohongshu: {
       detail: '官方小红书账号',

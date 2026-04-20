@@ -9,6 +9,7 @@ describe('about page model', () => {
     const communityEntries = model.sections[1]?.entries.map((entry) => entry.id);
     const contentEntries = model.sections[2]?.entries.map((entry) => entry.id);
     const youtubeEntry = model.sections[2]?.entries.find((entry) => entry.id === 'youtube');
+    const productHuntEntry = model.sections[2]?.entries.find((entry) => entry.id === 'product-hunt');
     const steamEntry = model.sections[0]?.entries.find((entry) => entry.id === 'steam');
     const discordEntry = model.sections[1]?.entries.find((entry) => entry.id === 'discord');
 
@@ -23,12 +24,13 @@ describe('about page model', () => {
     expect(communityEntries).toEqual(['discord', 'feishu-group', 'qq-group']);
     expect(contentEntries?.slice(0, 5)).toEqual([
       'youtube',
+      'product-hunt',
       'devto',
       'x',
       'linkedin',
-      'facebook',
     ]);
     expect(contentEntries).toContain('bilibili');
+    expect(contentEntries).toContain('product-hunt');
     expect(contentEntries).not.toContain('steam');
     expect(contentEntries).toContain('douyin-account');
     expect(contentEntries).toContain('douyin-qr');
@@ -61,6 +63,13 @@ describe('about page model', () => {
         icon: 'youtube',
         badgeLabel: 'Official channel',
       },
+    });
+    expect(productHuntEntry).toMatchObject({
+      kind: 'link',
+      label: 'Product Hunt',
+      detail: 'Product Hunt launch page',
+      linkText: 'Open listing',
+      href: 'https://www.producthunt.com/products/hagicode',
     });
     expect(contentEntries).not.toContain('douyin');
     expect(
@@ -102,6 +111,7 @@ describe('about page model', () => {
       'segmentfault',
       'xiaoheihe',
       'youtube',
+      'product-hunt',
       'devto',
       'x',
       'linkedin',
@@ -124,6 +134,7 @@ describe('about page model', () => {
     expect(contentIds).not.toContain('douyin-account');
     expect(contentIds).not.toContain('douyin-qr');
     expect(contentIds).toContain('youtube');
+    expect(contentIds).toContain('product-hunt');
     expect(model.sections[0]?.entries.find((entry) => entry.id === 'steam')).toMatchObject({
       kindLabel: '商店',
       detail: '官方商店页',
