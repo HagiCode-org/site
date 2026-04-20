@@ -1,10 +1,11 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const ABOUT_SNAPSHOT_URL = 'https://index.hagicode.com/about.json';
 export const ABOUT_SNAPSHOT_VERSION = '1.0.0';
 export const ABOUT_SNAPSHOT_OUTPUT_PATH = 'src/data/about.snapshot.json';
+export const ABOUT_SNAPSHOT_LOCAL_INPUT_PATH = '../index/dist/about.json';
 export const ABOUT_SNAPSHOT_REGION_PRIORITIES = ['china-first', 'international-first'];
 export const REQUIRED_ABOUT_ENTRY_IDS = [
   'youtube',
@@ -132,6 +133,10 @@ export function resolveAboutSnapshotOutputPath(relativePath = ABOUT_SNAPSHOT_OUT
   return path.join(getSiteRoot(), relativePath);
 }
 
+export function resolveLocalAboutSnapshotInputPath(relativePath = ABOUT_SNAPSHOT_LOCAL_INPUT_PATH) {
+  return path.resolve(getSiteRoot(), relativePath);
+}
+
 export function normalizeAboutSnapshotPayload(payload) {
   assert(isRecord(payload), 'Invalid about snapshot payload: root must be an object');
   assert(Array.isArray(payload.entries), 'Invalid about snapshot payload: entries must be an array');
@@ -176,6 +181,43 @@ export async function fetchAboutSnapshot(fetchImpl = globalThis.fetch) {
   return normalizeAboutSnapshotPayload(await response.json());
 }
 
+async function canReadFile(filePath) {
+  try {
+    await access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export async function readLocalAboutSnapshot(inputPath = resolveLocalAboutSnapshotInputPath()) {
+  const raw = await readFile(inputPath, 'utf8');
+  return normalizeAboutSnapshotPayload(JSON.parse(raw));
+}
+
+export async function loadPreferredAboutSnapshot({
+  fetchImpl = globalThis.fetch,
+  localInputPath = resolveLocalAboutSnapshotInputPath(),
+} = {}) {
+  if (localInputPath && (await canReadFile(localInputPath))) {
+    return {
+      payload: await readLocalAboutSnapshot(localInputPath),
+      source: {
+        kind: 'file',
+        value: localInputPath,
+      },
+    };
+  }
+
+  return {
+    payload: await fetchAboutSnapshot(fetchImpl),
+    source: {
+      kind: 'url',
+      value: ABOUT_SNAPSHOT_URL,
+    },
+  };
+}
+
 export async function writeAboutSnapshotFile(payload, { outputPath = resolveAboutSnapshotOutputPath() } = {}) {
   const normalizedPayload = normalizeAboutSnapshotPayload(payload);
   await mkdir(path.dirname(outputPath), { recursive: true });
@@ -190,7 +232,16 @@ export async function writeAboutSnapshotFile(payload, { outputPath = resolveAbou
 export async function updateAboutSnapshot({
   fetchImpl = globalThis.fetch,
   outputPath = resolveAboutSnapshotOutputPath(),
+  localInputPath = resolveLocalAboutSnapshotInputPath(),
 } = {}) {
-  const payload = await fetchAboutSnapshot(fetchImpl);
-  return writeAboutSnapshotFile(payload, { outputPath });
+  const { payload, source } = await loadPreferredAboutSnapshot({
+    fetchImpl,
+    localInputPath,
+  });
+  const result = await writeAboutSnapshotFile(payload, { outputPath });
+
+  return {
+    ...result,
+    source,
+  };
 }

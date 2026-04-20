@@ -7,8 +7,12 @@ import {
 async function main() {
   const outputPath = resolveAboutSnapshotOutputPath();
   const result = await updateAboutSnapshot({ outputPath });
+  const sourceDescription =
+    result.source.kind === 'file'
+      ? result.source.value
+      : ABOUT_SNAPSHOT_URL;
 
-  console.log(`About snapshot updated from ${ABOUT_SNAPSHOT_URL}`);
+  console.log(`About snapshot updated from ${sourceDescription}`);
   console.log(`Output: ${result.outputPath}`);
   console.log(`Version: ${result.payload.version}`);
   console.log(`Updated at: ${result.payload.updatedAt}`);

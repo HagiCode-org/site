@@ -4,6 +4,7 @@ import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
   ABOUT_SNAPSHOT_URL,
+  loadPreferredAboutSnapshot,
   normalizeAboutSnapshotPayload,
   updateAboutSnapshot,
 } from '../lib/about-snapshot-workflow.mjs';
@@ -12,7 +13,7 @@ const tempDirs = [];
 
 const fixture = {
   version: '1.0.0',
-  updatedAt: '2026-04-01T00:00:00.000Z',
+  updatedAt: '2026-04-20T00:00:00.000Z',
   entries: [
     {
       id: 'youtube',
@@ -20,6 +21,13 @@ const fixture = {
       label: 'YouTube',
       regionPriority: 'international-first',
       url: 'https://www.youtube.com/@hagicode',
+    },
+    {
+      id: 'product-hunt',
+      type: 'link',
+      label: 'Product Hunt',
+      regionPriority: 'international-first',
+      url: 'https://www.producthunt.com/products/hagicode',
     },
     {
       id: 'steam',
@@ -124,7 +132,11 @@ describe('about snapshot workflow', () => {
     const outputPath = path.join(outputDir, 'about.snapshot.json');
     const fetchMock = vi.fn().mockResolvedValue(createJsonResponse(structuredClone(fixture)));
 
-    const result = await updateAboutSnapshot({ fetchImpl: fetchMock, outputPath });
+    const result = await updateAboutSnapshot({
+      fetchImpl: fetchMock,
+      outputPath,
+      localInputPath: path.join(outputDir, 'missing-about.json'),
+    });
     const written = JSON.parse(await fs.readFile(outputPath, 'utf8'));
 
     expect(fetchMock).toHaveBeenCalledWith(ABOUT_SNAPSHOT_URL, {
@@ -132,11 +144,49 @@ describe('about snapshot workflow', () => {
         accept: 'application/json',
       },
     });
-    expect(result.payload.entries).toHaveLength(10);
-    expect(written.updatedAt).toBe('2026-04-01T00:00:00.000Z');
-    expect(written.entries[1].url).toBe('https://store.steampowered.com/app/4625540/Hagicode/');
-    expect(written.entries[5].imageUrl).toBe('/_astro/douyin.hash.png');
+    expect(result.source).toEqual({
+      kind: 'url',
+      value: ABOUT_SNAPSHOT_URL,
+    });
+    expect(result.payload.entries).toHaveLength(11);
+    expect(written.updatedAt).toBe('2026-04-20T00:00:00.000Z');
+    expect(written.entries.find((entry) => entry.id === 'steam')?.url).toBe(
+      'https://store.steampowered.com/app/4625540/Hagicode/',
+    );
+    expect(written.entries.find((entry) => entry.id === 'douyin-qr')?.imageUrl).toBe('/_astro/douyin.hash.png');
     expect(written.entries[0].regionPriority).toBe('international-first');
+  });
+
+  it('prefers the local repos/index about payload when it is available', async () => {
+    const outputDir = await createTempDir('site-about-snapshot-local-');
+    const outputPath = path.join(outputDir, 'about.snapshot.json');
+    const localInputPath = path.join(outputDir, 'about.json');
+    const fetchMock = vi.fn();
+
+    await fs.writeFile(localInputPath, `${JSON.stringify(structuredClone(fixture), null, 2)}\n`, 'utf8');
+
+    const selected = await loadPreferredAboutSnapshot({
+      fetchImpl: fetchMock,
+      localInputPath,
+    });
+    const result = await updateAboutSnapshot({
+      fetchImpl: fetchMock,
+      outputPath,
+      localInputPath,
+    });
+
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(selected.source).toEqual({
+      kind: 'file',
+      value: localInputPath,
+    });
+    expect(result.source).toEqual({
+      kind: 'file',
+      value: localInputPath,
+    });
+    expect(result.payload.entries.find((entry) => entry.id === 'product-hunt')?.url).toBe(
+      'https://www.producthunt.com/products/hagicode',
+    );
   });
 
   it('rejects invalid payloads before writing a new snapshot file', async () => {
@@ -149,9 +199,13 @@ describe('about snapshot workflow', () => {
       }),
     );
 
-    await expect(updateAboutSnapshot({ fetchImpl: fetchMock, outputPath })).rejects.toThrow(
-      'missing required entries youtube',
-    );
+    await expect(
+      updateAboutSnapshot({
+        fetchImpl: fetchMock,
+        outputPath,
+        localInputPath: path.join(outputDir, 'missing-about.json'),
+      }),
+    ).rejects.toThrow('missing required entries youtube');
     await expect(fs.readFile(outputPath, 'utf8')).rejects.toThrow();
   });
 
@@ -159,7 +213,7 @@ describe('about snapshot workflow', () => {
     const normalized = normalizeAboutSnapshotPayload(structuredClone(fixture));
 
     expect(normalized.entries[0].id).toBe('youtube');
-    expect(normalized.entries[4].width).toBe(1061);
+    expect(normalized.entries.find((entry) => entry.id === 'douyin-qr')?.width).toBe(1061);
 
     expect(() =>
       normalizeAboutSnapshotPayload({
