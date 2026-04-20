@@ -14,6 +14,8 @@
 ·
 <a href="https://hagicode.com/container/">Container</a>
 ·
+<a href="https://store.steampowered.com/app/4625540/Hagicode/">Steam</a>
+·
 <a href="https://docs.hagicode.com/blog/">Blog</a>
 
 </div>
@@ -21,6 +23,12 @@
 [简体中文](./README_cn.md)
 
 ---
+
+| Steam Edition |
+| --- |
+| **Play HagiCode on Steam** |
+| Cloud Saves, Workshop support, Steam distribution, and a direct install path for the desktop edition. |
+| [![Open on Steam](https://img.shields.io/badge/Open%20on-Steam-1b2838?logo=steam&logoColor=white)](https://store.steampowered.com/app/4625540/Hagicode/) |
 
 ## What HagiCode Is
 
@@ -72,6 +80,7 @@ HagiCode treats achievements, daily reports, efficiency multipliers, token throu
 - [Product Overview](https://docs.hagicode.com/product-overview/) for the canonical public introduction
 - [Desktop](https://hagicode.com/desktop/) for local-first installation and service management
 - [Container](https://hagicode.com/container/) for the self-hosted deployment path
+- [Steam](https://store.steampowered.com/app/4625540/Hagicode/) for the Steam edition with platform-native distribution
 - [Blog](https://docs.hagicode.com/blog/) for product updates and long-form posts
 
 ## Develop This Repository
