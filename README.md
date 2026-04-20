@@ -1,20 +1,20 @@
 <div align="center">
 
-<h1>Smart · Efficient · Interesting AI Coding Assistant</h1>
+# HagiCode
 
-<p>HagiCode turns ideas into shipped work with OpenSpec workflows, multi-agent parallel execution, and Hero Dungeon battle reports that keep AI coding visible, structured, and enjoyable.</p>
+<p><strong>HagiCode is a product that combines an AI coding tool, a gamified feedback system, and a full development workspace into one platform.</strong></p>
 
-<img src="./public/img/home/showcase-proposal-workflow.png" alt="HagiCode proposal execution overview" width="880" />
+<p>Use it to understand repositories, write proposals, break down tasks, modify code, organize commits, manage multiple repositories, and build a reusable knowledge base without leaving the same workspace.</p>
 
-<br />
-
-<a href="https://hagicode.com/">🌐 Visit Website</a>
+<a href="https://hagicode.com/">Website</a>
 ·
-<a href="https://hagicode.com/desktop/">🖥️ Desktop</a>
+<a href="https://docs.hagicode.com/product-overview/">Product Overview</a>
 ·
-<a href="https://hagicode.com/container/">🐳 Container</a>
+<a href="https://hagicode.com/desktop/">Desktop</a>
 ·
-<a href="https://docs.hagicode.com/product-overview/">📚 Product Overview</a>
+<a href="https://hagicode.com/container/">Container</a>
+·
+<a href="https://docs.hagicode.com/blog/">Blog</a>
 
 </div>
 
@@ -22,92 +22,61 @@
 
 ---
 
-## What HagiCode is built for
+## What HagiCode Is
 
-HagiCode is an AI coding product for teams and individual developers who want more than a single chat box.
-It combines proposal-driven workflows, parallel agent execution, and memorable product feedback so complex work stays understandable from idea to archive.
+HagiCode was not built to be another code chat box. It brings AI into the full software development process: understanding repositories, planning changes, implementing code, organizing commits, tracking knowledge, and keeping work reviewable from idea to archive.
 
-- **Smart** - OpenSpec gives each change a clear path through idea, proposal, review, implementation, testing, and archive.
-- **Efficient** - Claude Code, Codex, and other CLI agents can run across multiple agents and instances in parallel, so fixes, reviews, and delivery keep moving together.
-- **Interesting** - Hero Dungeon rosters, battle reports, and visual workspaces turn long-running AI collaboration into something easier to follow and more rewarding to use.
+![HagiCode workspace overview showing sessions, commit notes, and top-level actions in one integrated workspace.](./public/img/readme-sync/workspace-overview.png)
 
-## Visual Tour
+## Core Capabilities
 
-The gallery below uses product-owned assets stored in `repos/site`, so the README can show the current product directly on GitHub.
-Instead of relying on a single hero image, it walks through the real proposal flow, fast execution mode, skill safety surfaces, Hero identity, and desktop controls.
+### 1. Proposal-driven AI coding with OpenSpec
 
-<p>
-  <img src="./public/img/readme/proposal-nine-stage-overview.png" alt="Nine-stage HagiCode proposal timeline showing optimization, drafting, review, execution, and archive states." width="100%" />
-  <br />
-  <strong>Proposal stages at a glance</strong><br />
-  <sub><strong>UI screenshot.</strong> Follow one proposal from optimization through archive in a single nine-stage timeline.</sub>
+For non-trivial work, HagiCode starts with a proposal instead of jumping straight into file edits. OpenSpec turns requests into scope, tasks, impact analysis, validation steps, and an execution trail that stays easy to review.
+
+![HagiCode proposal session view showing workflow steps, execution results, and historical context.](./public/img/readme-sync/open-spec-proposal-workflow.png)
+
+### 2. Mainstream Agent CLIs with OmniRoute
+
+HagiCode supports Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents, and Codebuddy. OmniRoute keeps the CLI choice separate from the model and subscription layer, so teams can route models and endpoints without hard-binding everything to one default stack.
+
+![OmniRoute settings page showing routing configuration, endpoint controls, and runtime status.](./public/img/readme-sync/omniroute-routing.png)
+
+### 3. A full development workspace, not just a chat pane
+
+The workspace ties together the capabilities that usually end up scattered across separate tools:
+
+- `MonoSpecs` for multi-repository inventory, scope, and coordination
+- `Skills` for installable workflow extensions and trust-aware tooling
+- `Vault` for reusable knowledge capture across projects
+- `AI Compose Commit` and `code-server` integration for finishing the job inside the same flow
+
+<p align="center">
+  <img src="./public/img/readme-sync/monospecs-multi-repo.png" alt="MonoSpecs multi-repository status overview showing change status across multiple repositories." width="49%" />
+  <img src="./public/img/readme-sync/skills-gallery.png" alt="HagiCode Skills Gallery showing searchable installable skills and source filters." width="49%" />
 </p>
 
-<p>
-  <img src="./public/img/readme/review-inline-comments.png" alt="HagiCode review view showing an inline file comment editor with optimization and issue tags." width="100%" />
-  <br />
-  <strong>Inline review and annotations</strong><br />
-  <sub><strong>UI screenshot.</strong> Add focused inline comments before sending precise feedback back to AI.</sub>
+<p align="center">
+  <img src="./public/img/readme-sync/vault-workspace.png" alt="Vault workspace showing reusable knowledge sources and workspace actions." width="100%" />
 </p>
 
-<p>
-  <img src="./public/img/readme/execution-code-changes.png" alt="Git diff view in HagiCode after proposal execution, showing applied documentation changes." width="100%" />
-  <br />
-  <strong>Execution result with code diff</strong><br />
-  <sub><strong>UI screenshot.</strong> Inspect the applied diff immediately after execution finishes.</sub>
-</p>
+### 4. Gamified feedback that stays operationally useful
 
-<p>
-  <img src="./public/img/readme/normal-session-result.png" alt="HagiCode normal chat session showing a completed project analysis result card." width="100%" />
-  <br />
-  <strong>Normal session execution result</strong><br />
-  <sub><strong>UI screenshot.</strong> Use a quick session when a task does not need the full proposal flow.</sub>
-</p>
+HagiCode treats achievements, daily reports, efficiency multipliers, token throughput, and themed interface feedback as part of the product, not cosmetic leftovers. The result is a workspace that keeps long-running AI work visible instead of flattening everything into one scrolling transcript.
 
-<p>
-  <img src="./public/img/readme/skill-management.png" alt="Skill details panel showing trust status, install metadata, and the managed command that HagiCode will run." width="100%" />
-  <br />
-  <strong>Skill trust and managed command</strong><br />
-  <sub><strong>UI screenshot.</strong> Confirm the install source, trust status, and exact managed command for every skill.</sub>
-</p>
+![Achievement hall showing daily progress, milestone metrics, and long-term feedback surfaces.](./public/img/readme-sync/gamified-feedback.png)
 
-<p>
-  <img src="./public/img/readme/hero-highlights.webp" alt="Stylized rune mage cat hero illustration representing HagiCode's Hero Dungeon theme." width="100%" />
-  <br />
-  <strong>Hero highlight and product personality</strong><br />
-  <sub><strong>Product visual.</strong> Hero Dungeon themes and battle reports give long-running AI sessions a recognizable identity.</sub>
-</p>
+## Official Entry Points
 
-<p>
-  <img src="./public/img/readme/desktop-start-service.png" alt="HagiCode Desktop dashboard with the start service control and service status card." width="100%" />
-  <br />
-  <strong>Desktop start service control</strong><br />
-  <sub><strong>UI screenshot.</strong> Start or monitor the local HagiCode service from the desktop dashboard.</sub>
-</p>
-
-<p>
-  <img src="./public/img/readme/desktop-version-management.png" alt="HagiCode Desktop version management view showing installed packages, dependencies, and available releases." width="100%" />
-  <br />
-  <strong>Desktop version management</strong><br />
-  <sub><strong>UI screenshot.</strong> Switch packages, dependencies, and release tracks from the desktop version center.</sub>
-</p>
-
-## Why teams use it
-
-- **Proposal-driven by default** - Scope, tasks, and archive history stay connected, so AI work remains reviewable.
-- **Designed for parallel throughput** - Real-time token tracking, multi-agent workspaces, and execution views are built for multiple streams at once.
-- **Easy to remember and revisit** - Hero Dungeon and Hero Battle reports add narrative, momentum, and clearer status feedback.
-
-## Getting Started
-
-Start with the official entry points:
-
-- [hagicode.com](https://hagicode.com/) for the full homepage experience
-- [Desktop](https://hagicode.com/desktop/) to install the local app
+- [Website](https://hagicode.com/) for the full product homepage
+- [Product Overview](https://docs.hagicode.com/product-overview/) for the canonical public introduction
+- [Desktop](https://hagicode.com/desktop/) for local-first installation and service management
 - [Container](https://hagicode.com/container/) for the self-hosted deployment path
-- [Product Overview](https://docs.hagicode.com/product-overview/) for the documentation entry
+- [Blog](https://docs.hagicode.com/blog/) for product updates and long-form posts
 
-Run the site locally from `repos/site`:
+## Develop This Repository
+
+This repository contains the public HagiCode website. From `repos/site`, run:
 
 ```bash
 npm install
@@ -116,78 +85,9 @@ npm run build
 npm run preview
 ```
 
-The dev server runs on `http://localhost:31264` by default.
-For contributor-focused details, start with [`AGENTS.md`](./AGENTS.md) and [`CLAUDE.md`](./CLAUDE.md).
-
-## ImgBin image workflow
-
-The site image generation wrapper now loads `repos/site/.env` and `repos/site/.env.local` before it spawns ImgBin.
-The repository default for image analysis is:
-
-- `IMGBIN_ANALYSIS_PROVIDER=codex`
-- `IMGBIN_CODEX_MODEL=lemon/gpt-5.4`
-- `IMGBIN_CODEX_BASE_URL=http://localhost:36129/v1`
-
-Copy [`./.env.example`](./.env.example) to `.env` when you need local overrides, then run:
-
-```bash
-npm run generate:image -- --prompt "A hand-drawn product illustration"
-```
-
-## Build and deployment notes
-
-This repository now focuses on building the static site and related content.
-Deployment now follows the active hosting pipeline rather than a legacy repo-local static-site flow.
-
-- Build output is generated into `dist/` with `npm run build`.
-- Homepage activity metrics are consumed at runtime from `https://index.hagicode.com/activity-metrics.json`.
-- Desktop package fallback data lives on the index site at `https://index.hagicode.com/desktop/history/` and `https://index.hagicode.com/desktop/index.json`.
-- If runtime data looks wrong or stale, inspect the index repository and its deployment chain before adding local copies here.
-
-## Homepage activity metrics
-
-The homepage activity metrics module is a runtime consumer of the canonical JSON hosted by the index site:
-
-- Source: `https://index.hagicode.com/activity-metrics.json`
-- Single source of truth: `repos/index` generates and publishes the only metrics asset that `repos/site` is allowed to consume
-- Ownership: the data is produced and published from `repos/index`, not from `repos/site`
-- Failure mode: if the remote asset is unavailable, the homepage keeps the existing empty-state fallback instead of breaking the page
-- Maintenance boundary: if the metrics look wrong or stale, investigate the index repository and index deployment first instead of re-adding a local refresh script or JSON copy here
-
-## Desktop version fallback
-
-- The homepage install entry and the standalone Desktop page both consume runtime package data instead of maintaining a site-local release list
-- When package loading reaches terminal failure, the canonical fallback target is `https://index.hagicode.com/desktop/history/`
-- `repos/index` remains a referenced dependency only; treat `https://index.hagicode.com/desktop/history/` and `https://index.hagicode.com/desktop/index.json` as the stable fallback surface
-- Do not add a second in-site Desktop history page here; if the fallback flow looks wrong, inspect the runtime fetch chain and the index deployment first
-
-## Star History
-
-Track how the `HagiCode-org/site` repository has grown over time:
-
-<p align="center">
-  <a href="https://star-history.com/#HagiCode-org/site&Date">
-    <picture>
-      <source
-        media="(prefers-color-scheme: dark)"
-        srcset="https://api.star-history.com/svg?repos=HagiCode-org/site&type=Date&theme=dark"
-      />
-      <source
-        media="(prefers-color-scheme: light)"
-        srcset="https://api.star-history.com/svg?repos=HagiCode-org/site&type=Date"
-      />
-      <img
-        alt="Star History Chart for HagiCode-org/site"
-        src="https://api.star-history.com/svg?repos=HagiCode-org/site&type=Date"
-      />
-    </picture>
-  </a>
-</p>
+The default dev server runs at `http://localhost:31264`.
+For contributor guidance, start with [`AGENTS.md`](./AGENTS.md) and [`CLAUDE.md`](./CLAUDE.md).
 
 ## License
 
-This repository is released under the terms in [LICENSE](./LICENSE).
-
----
-
-Ready to explore the full product story? Visit [hagicode.com](https://hagicode.com/) and choose the experience that fits your workflow.
+This repository is released under [LICENSE](./LICENSE).
