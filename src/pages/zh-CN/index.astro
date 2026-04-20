@@ -11,6 +11,7 @@ import ShowcaseSection from '@/components/home/ShowcaseSection';
 import VideoShowcase from '@/components/home/VideoShowcase';
 import type { VideoShowcaseItem } from '@/components/home/VideoShowcase';
 import PricingComparisonSection from '@/components/home/PricingComparisonSection';
+import ProductHuntBadgeSection from '@/components/home/ProductHuntBadgeSection';
 import LiveBroadcastSection from '@/components/home/LiveBroadcastSection';
 import Footer from '@/components/home/Footer';
 import LunarNewYearDecorations from '@/components/home/LunarNewYearDecorations';
@@ -176,6 +177,9 @@ const homepageVideos: VideoShowcaseItem[] = [
 
       <!-- Pricing Comparison Section -->
       <PricingComparisonSection locale="zh-CN" client:load />
+
+      <!-- Product Hunt trust surface -->
+      <ProductHuntBadgeSection locale="zh-CN" />
 
     </main>
 
