@@ -49,6 +49,8 @@ type PricingContent = {
   plusTitle: string;
   plusDescription: string;
   featureHeader: string;
+  includedLabel: string;
+  notIncludedLabel: string;
   desktopEdition: EditionColumn;
   containerEdition: EditionColumn;
   steamEdition: EditionColumn;
@@ -105,6 +107,8 @@ function getPricingContent(locale: Locale): PricingContent {
       plusTitle: 'Hagicode Plus note',
       plusDescription: 'Hagicode Plus means the main Steam edition plus a Turbo Engine DLC subscription.',
       featureHeader: 'Feature',
+      includedLabel: 'Included',
+      notIncludedLabel: 'Not included',
       desktopEdition: {
         title: 'Desktop',
         action: { label: 'Desktop', href: desktopHref },
@@ -141,6 +145,8 @@ function getPricingContent(locale: Locale): PricingContent {
         { feature: 'Git management', desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
         { feature: 'Maximum concurrent proposals', desktop: { type: 'text', value: '3' }, container: { type: 'text', value: '3' }, steam: { type: 'text', value: '3' }, turbo: { type: 'text', value: '32' } },
         { feature: 'Copy switching support', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
+        { feature: 'Turbo Engine avatar packs', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
+        { feature: 'Custom avatar uploads', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
         { feature: 'Custom logo', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
         { feature: 'Custom title', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
         { feature: 'Steam cloud achievements', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'check' }, turbo: { type: 'check' }, steamExclusive: true },
@@ -166,9 +172,11 @@ function getPricingContent(locale: Locale): PricingContent {
           category: 'Performance DLC',
           title: 'Hagicode: Turbo Engine DLC',
           price: 'View on Steam',
-          description: 'You can buy this DLC on its own to expand the original proposal concurrency cap, unlock copy switching, and customize the top-left logo and title. We will usually highlight a bundled purchase option called Hagicode Plus so the overall purchase price stays lower. Please check our store page for the latest changes.',
+          description: 'You can buy this DLC on its own to expand the original proposal concurrency cap, unlock copy switching, add five avatar packs with 10 standalone avatars each, enable custom avatar uploads, and customize the top-left logo and title. We will usually highlight a bundled purchase option called Hagicode Plus so the overall purchase price stays lower. Please check our store page for the latest changes.',
           bullets: [
             'Supports custom top-left logos and titles',
+            'Includes five avatar packs with 10 selectable avatars in each pack',
+            'Supports custom avatar uploads',
             'Unlocks copy and wording switching support',
             'Expands the maximum concurrent proposal limit to 32',
           ],
@@ -199,6 +207,8 @@ function getPricingContent(locale: Locale): PricingContent {
     plusTitle: 'Hagicode Plus 说明',
     plusDescription: '所谓的 Hagicode Plus，实际上就是 Steam 主体版本，再加上订阅 Turbo Engine 这个 DLC。',
     featureHeader: '特性',
+    includedLabel: '已包含',
+    notIncludedLabel: '未包含',
     desktopEdition: {
       title: 'Desktop',
       action: { label: 'Desktop', href: desktopHref },
@@ -235,6 +245,8 @@ function getPricingContent(locale: Locale): PricingContent {
       { feature: 'Git 管理', desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
       { feature: '最大提案并行数', desktop: { type: 'text', value: '3' }, container: { type: 'text', value: '3' }, steam: { type: 'text', value: '3' }, turbo: { type: 'text', value: '32' } },
       { feature: '文案切换支持', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
+      { feature: 'Turbo Engine 头像包', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
+      { feature: '自定义头像上传', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
       { feature: '自定义 Logo', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
       { feature: '自定义 Title', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
       { feature: 'Steam 云成就', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'check' }, turbo: { type: 'check' }, steamExclusive: true },
@@ -260,9 +272,11 @@ function getPricingContent(locale: Locale): PricingContent {
         category: '性能 DLC',
         title: 'Hagicode: Turbo Engine DLC',
         price: '点击查看',
-        description: '用户可以单独购买这个 DLC 来扩展原来的并发数，同时支持文案切换以及左上角 Logo 和 Title 自定义。通常情况下，我们会重点突出一个名为 Hagicode Plus 的一并购买套餐，使总体购买价格更低，请注意查看我们的商店页面变化。',
+        description: '用户可以单独购买这个 DLC 来扩展原来的并发数，同时支持文案切换，附带 5 套每套 10 个的独立头像，并支持上传自定义头像以及左上角 Logo 和 Title 自定义。通常情况下，我们会重点突出一个名为 Hagicode Plus 的一并购买套餐，使总体购买价格更低，请注意查看我们的商店页面变化。',
         bullets: [
           '支持左上角 Logo 和 Title 自定义',
+          '包含 5 套头像资源，每套提供 10 个可选头像',
+          '支持上传自定义头像',
           '解锁文案切换支持',
           '最大提案并行数扩展到 32',
         ],
@@ -285,10 +299,10 @@ function getPricingContent(locale: Locale): PricingContent {
   };
 }
 
-function renderCell(cell: FeatureCell) {
+function renderCell(cell: FeatureCell, labels: { included: string; notIncluded: string }) {
   if (cell.type === 'check') {
     return (
-      <span className={`${styles.cellBadge} ${styles.cellCheck}`} aria-label="included">
+      <span className={`${styles.cellBadge} ${styles.cellCheck}`} aria-label={labels.included}>
         <CheckIcon />
       </span>
     );
@@ -296,7 +310,7 @@ function renderCell(cell: FeatureCell) {
 
   if (cell.type === 'cross') {
     return (
-      <span className={`${styles.cellBadge} ${styles.cellCross}`} aria-label="not included">
+      <span className={`${styles.cellBadge} ${styles.cellCross}`} aria-label={labels.notIncluded}>
         <CrossIcon />
       </span>
     );
@@ -335,6 +349,10 @@ function renderEditionHeader(column: EditionColumn, className?: string) {
 
 export default function PricingComparisonSection({ locale = 'zh-CN' }: { locale?: Locale }) {
   const content = getPricingContent(locale);
+  const cellLabels = {
+    included: content.includedLabel,
+    notIncluded: content.notIncludedLabel,
+  };
 
   return (
     <section className={styles.section} aria-labelledby="pricing-comparison-title">
@@ -385,10 +403,10 @@ export default function PricingComparisonSection({ locale = 'zh-CN' }: { locale?
                 {content.rows.map((row) => (
                   <tr key={row.feature} className={row.steamExclusive ? styles.steamExclusiveRow : undefined}>
                     <th scope="row" className={styles.rowHeading}>{row.feature}</th>
-                    <td className={styles.turboColumnCell}>{renderCell(row.turbo)}</td>
-                    <td className={styles.steamColumnCell}>{renderCell(row.steam)}</td>
-                    <td className={styles.desktopColumnCell}>{renderCell(row.desktop)}</td>
-                    <td className={styles.containerColumnCell}>{renderCell(row.container)}</td>
+                    <td className={styles.turboColumnCell} data-column={content.turboEdition.title}>{renderCell(row.turbo, cellLabels)}</td>
+                    <td className={styles.steamColumnCell} data-column={content.steamEdition.title}>{renderCell(row.steam, cellLabels)}</td>
+                    <td className={styles.desktopColumnCell} data-column={content.desktopEdition.title}>{renderCell(row.desktop, cellLabels)}</td>
+                    <td className={styles.containerColumnCell} data-column={content.containerEdition.title}>{renderCell(row.container, cellLabels)}</td>
                   </tr>
                 ))}
               </tbody>
