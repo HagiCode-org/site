@@ -2125,16 +2125,60 @@
 }
 
 @media (max-width: 767px) {
+  .featuresShowcase {
+    padding: 3.25rem 0;
+  }
+
+  .showcaseHeader {
+    margin-bottom: 2.25rem;
+  }
+
+  .showcaseSubtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
   .zonesContainer {
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .featureZone {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1rem;
+    border-radius: 1.35rem;
+  }
+
+  .hudCorner,
+  .techDecoration,
+  .dataFlow {
+    display: none;
+  }
+
+  .featureContent {
+    gap: 1.4rem;
+  }
+
+  .featureText {
+    gap: 1rem;
   }
 
   .featureTitle {
-    font-size: 2rem;
+    font-size: clamp(1.7rem, 8vw, 2rem);
+    line-height: 1.1;
+  }
+
+  .featureSubtitle {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .featureDesc {
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .workflowGrid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 
   .gameFeatures {
@@ -2153,11 +2197,12 @@
   }
 
   .achievementGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 
   .quotaComparison {
     flex-direction: column;
+    gap: 0.85rem;
   }
 
   .quotaArrow {
@@ -2170,6 +2215,22 @@
 
   .showcaseHeader {
     margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .featureZone {
+    padding: 1.35rem 0.95rem;
+  }
+
+  .showcaseTitle {
+    font-size: clamp(1.85rem, 9vw, 2.3rem);
+  }
+
+  .workflowNode,
+  .achievementCard,
+  .reportCard {
+    padding: 0.9rem;
   }
 }
 

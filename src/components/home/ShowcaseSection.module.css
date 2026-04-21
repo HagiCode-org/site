@@ -407,11 +407,33 @@
 
 @media (max-width: 767px) {
   .showcaseSection {
-    padding: 3.5rem 0;
+    padding: 3.25rem 0;
   }
 
   .sectionHeader {
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .showcaseLayout {
+    gap: 1rem;
+  }
+
+  .featuredPanel {
+    border-radius: 1.2rem;
+  }
+
+  .featuredContent {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .featuredTitle {
+    font-size: 1.3rem;
+  }
+
+  .featuredDescription {
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 
   .featuredEyebrow {
@@ -420,16 +442,33 @@
 
   .thumbnailRail {
     grid-auto-flow: column;
-    grid-auto-columns: minmax(15rem, 82%);
+    grid-auto-columns: minmax(13.5rem, 84%);
+    width: 100%;
     overflow-x: auto;
-    padding-bottom: 0.25rem;
+    overscroll-behavior-x: contain;
+    padding: 0 0 0.35rem;
+    scrollbar-width: thin;
     scroll-snap-type: x proximity;
   }
 
   .thumbnailButton {
-    grid-template-columns: auto 4.75rem minmax(0, 1fr);
+    min-height: 7rem;
+    grid-template-columns: auto 4.4rem minmax(0, 1fr);
     align-items: start;
+    padding: 0.8rem;
     scroll-snap-align: start;
+  }
+
+  .thumbnailTitle {
+    font-size: 0.92rem;
+  }
+
+  .thumbnailDescription {
+    font-size: 0.8rem;
+  }
+
+  .navButton {
+    min-height: 2.9rem;
   }
 
   .lightbox {
@@ -453,7 +492,18 @@
   }
 
   .navButton {
+    min-width: 0;
     justify-content: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .featuredControls {
+    grid-template-columns: 1fr;
+  }
+
+  .thumbnailRail {
+    grid-auto-columns: minmax(13rem, 88%);
   }
 }
 

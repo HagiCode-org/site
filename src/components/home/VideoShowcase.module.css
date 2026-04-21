@@ -250,7 +250,7 @@
 
 @media (max-width: 767px) {
   .videoShowcase {
-    padding: 3rem 0;
+    padding: 2.75rem 0;
   }
 
   .container {
@@ -258,7 +258,7 @@
   }
 
   .header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.75rem;
   }
 
   .eyebrow {
@@ -267,7 +267,7 @@
   }
 
   .description {
-    font-size: 0.9375rem;
+    font-size: 0.95rem;
     padding: 0;
   }
 
@@ -277,8 +277,9 @@
   }
 
   .videoCard {
-    padding: 0.9rem;
-    border-radius: 22px;
+    gap: 1rem;
+    padding: 0.85rem;
+    border-radius: 20px;
   }
 
   .featuredCard,
@@ -294,15 +295,33 @@
 
   .cardTitle,
   .supportingCard .cardTitle {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
 
   .cardDescription {
-    font-size: 0.9375rem;
+    font-size: 0.92rem;
+    line-height: 1.65;
   }
 
   .cardAction {
-    align-self: flex-start;
+    align-self: stretch;
+    width: 100%;
+    min-height: 3rem;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .container {
+    padding: 0 0.95rem;
+  }
+
+  .cardLabel {
+    font-size: 0.72rem;
+  }
+
+  .cardAction {
+    padding-inline: 0.9rem;
   }
 }
 
