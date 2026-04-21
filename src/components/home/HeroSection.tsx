@@ -133,6 +133,7 @@ export default function HeroSection({
   const docsUrl = useMemo(() => getLinkWithLocale('productOverview', locale), [locale]);
   const steamLabel = 'Steam';
   const steamAriaLabel = locale === 'en' ? 'Open Hagicode on Steam' : '打开 Hagicode Steam 商店页';
+  const ctaGroupLabel = locale === 'en' ? 'Primary homepage actions' : '首页主要操作';
 
   // 检测主题变化
   useEffect(() => {
@@ -271,7 +272,7 @@ export default function HeroSection({
         </motion.h1>
 
         {/* CTA 按钮组 */}
-        <motion.div className={styles.heroButtons}>
+        <motion.div className={styles.heroButtons} role="group" aria-label={ctaGroupLabel}>
           {/* 桌面应用安装按钮 - 主按钮 */}
           <a
             href={desktopUrl}

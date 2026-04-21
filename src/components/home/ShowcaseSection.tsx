@@ -35,6 +35,7 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: 'zh-C
   const { t } = useTranslation(locale);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
+  const featuredPanelId = `homepage-showcase-featured-${locale}`;
 
   // Docs screenshot sources:
   // classic-proposal-view, kanban-view, token-metrics, vault-view, achivement-view
@@ -125,7 +126,7 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: 'zh-C
         </div>
 
         <div className={styles.showcaseLayout}>
-          <article className={styles.featuredPanel}>
+          <article className={styles.featuredPanel} id={featuredPanelId}>
             <div className={styles.featuredMedia}>
               <button
                 type="button"
@@ -167,6 +168,7 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: 'zh-C
                   onClick={goToPrevious}
                   disabled={previousDisabled}
                   aria-label={t('showcase.controls.previous')}
+                  aria-controls={featuredPanelId}
                 >
                   {t('showcase.controls.previous')}
                 </button>
@@ -176,6 +178,7 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: 'zh-C
                   onClick={goToNext}
                   disabled={nextDisabled}
                   aria-label={t('showcase.controls.next')}
+                  aria-controls={featuredPanelId}
                 >
                   {t('showcase.controls.next')}
                 </button>
@@ -194,7 +197,9 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: 'zh-C
                   className={`${styles.thumbnailButton} ${isActive ? styles.thumbnailButtonActive : ''}`}
                   onClick={() => setActiveIndex(index)}
                   aria-pressed={isActive}
+                  aria-current={isActive ? 'true' : undefined}
                   aria-label={`${t('showcase.controls.selectPrefix')}${screenshot.title}`}
+                  aria-controls={featuredPanelId}
                 >
                   <span className={styles.thumbnailOrder}>{formatOrder(index)}</span>
 

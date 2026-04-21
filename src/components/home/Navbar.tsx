@@ -225,6 +225,7 @@ export default function Navbar({
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? (locale === 'zh-CN' ? '关闭菜单' : 'Close menu') : (locale === 'zh-CN' ? '打开菜单' : 'Open menu')}
             aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-site-nav"
           >
             <span className={styles.hamburger}>
               <span className={`${styles.hamburgerLine} ${styles.line1}`} />
@@ -238,9 +239,14 @@ export default function Navbar({
       {/* Mobile Menu */}
       <div
         className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.open : ""}`}
+        aria-hidden={!isMobileMenuOpen}
       >
-        <div className={styles.mobileMenuBg} />
-        <nav className={styles.mobileNav}>
+        <div className={styles.mobileMenuBg} onClick={() => setIsMobileMenuOpen(false)} aria-hidden="true" />
+        <nav
+          className={styles.mobileNav}
+          id="mobile-site-nav"
+          aria-label={locale === 'zh-CN' ? '移动端站点导航' : 'Mobile site navigation'}
+        >
           {/* CTA 按钮 - 移动端菜单顶部 */}
           <InstallButton
             variant="compact"
