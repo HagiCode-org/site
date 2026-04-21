@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-04-20T00:00:00.000Z",
+  "updatedAt": "2026-04-16T00:00:00.000Z",
   "entries": [
     {
       "id": "youtube",
@@ -8,13 +8,6 @@
       "label": "YouTube",
       "regionPriority": "international-first",
       "url": "https://www.youtube.com/@hagicode"
-    },
-    {
-      "id": "product-hunt",
-      "type": "link",
-      "label": "Product Hunt",
-      "regionPriority": "international-first",
-      "url": "https://www.producthunt.com/products/hagicode"
     },
     {
       "id": "steam",
@@ -114,7 +107,7 @@
       "label": "抖音二维码",
       "regionPriority": "china-first",
       "description": "扫码查看 Hagicode 抖音账号。",
-      "imageUrl": "/_astro/douyin.Bz-aFxQW.png",
+      "imageUrl": "/_astro/douyin.BFYNRf8b.png",
       "width": 1061,
       "height": 1059,
       "alt": "HagiCode 抖音二维码"
@@ -134,7 +127,7 @@
       "label": "飞书群",
       "regionPriority": "china-first",
       "description": "newbe36524 邀请你加入飞书群。",
-      "imageUrl": "/_astro/feishu.L0Y_T1U2.png",
+      "imageUrl": "/_astro/feishu.BRtGBazg.png",
       "width": 778,
       "height": 724,
       "alt": "HagiCode 飞书群二维码",
@@ -181,7 +174,7 @@
       "label": "微信公众号",
       "regionPriority": "china-first",
       "description": "扫描二维码即可在微信中查看 NEWBE 账号。",
-      "imageUrl": "/_astro/wechat-account.C8BO4ktE.jpg",
+      "imageUrl": "/_astro/wechat-account.CycfDBWa.jpg",
       "width": 430,
       "height": 430,
       "alt": "HagiCode 微信公众号二维码"
