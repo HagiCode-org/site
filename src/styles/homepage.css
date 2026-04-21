@@ -233,3 +233,81 @@ main.homepage section div.container,
   background: rgba(255, 193, 7, 0.4);
   color: #FFECB3;
 }
+
+/* ==========================================================================
+   Homepage Mobile Layout Contract
+   ========================================================================== */
+
+body.homepage {
+  overflow-x: clip;
+}
+
+main.homepage {
+  --homepage-content-max-width: 1200px;
+  --homepage-inline-padding: 1.5rem;
+  --homepage-mobile-inline-padding: 1rem;
+  --homepage-mobile-section-spacing: 3.5rem;
+  overflow-x: clip;
+}
+
+.homepage img,
+.homepage video,
+.homepage iframe {
+  max-width: 100%;
+}
+
+.homepage :where(h1, h2, h3) {
+  text-wrap: balance;
+}
+
+.homepage :where(p, li, a, button, span) {
+  text-wrap: pretty;
+}
+
+@media (max-width: 768px) {
+  body.homepage,
+  html {
+    overflow-x: hidden;
+  }
+
+  main.homepage {
+    --homepage-inline-padding: var(--homepage-mobile-inline-padding);
+  }
+
+  .homepage > section {
+    scroll-margin-top: 5.5rem;
+  }
+
+  .homepage > section > *,
+  main.homepage section > .container,
+  main.homepage section div.container,
+  .homepage section > .container,
+  .homepage section div.container {
+    padding-left: var(--homepage-inline-padding) !important;
+    padding-right: var(--homepage-inline-padding) !important;
+  }
+
+  .homepage > section + section {
+    margin-top: 0;
+  }
+
+  .homepage > section :where(.sectionHeader, .header, .showcaseHeader, .boardHeader) {
+    margin-bottom: 1.75rem !important;
+  }
+
+  .homepage > section :where(.sectionDescription, .description, .showcaseSubtitle) {
+    max-width: 34rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  main.homepage {
+    --homepage-mobile-section-spacing: 3.1rem;
+  }
+
+  .homepage > section {
+    scroll-margin-top: 5rem;
+  }
+}
