@@ -9,7 +9,10 @@ import ActivityMetricsSection from '@/components/home/ActivityMetricsSection';
 import FeaturesShowcase from '@/components/home/FeaturesShowcase';
 import ShowcaseSection from '@/components/home/ShowcaseSection';
 import VideoShowcase from '@/components/home/VideoShowcase';
-import type { VideoShowcaseItem } from '@/components/home/VideoShowcase';
+import type {
+  FeaturedVideosByProvider,
+  VideoShowcaseItem,
+} from '@/components/home/VideoShowcase';
 import PricingComparisonSection from '@/components/home/PricingComparisonSection';
 import ProductHuntBadgeSection from '@/components/home/ProductHuntBadgeSection';
 import LiveBroadcastSection from '@/components/home/LiveBroadcastSection';
@@ -39,26 +42,44 @@ const canonicalUrl = getAbsoluteSiteUrl('/', 'zh-CN', siteBase);
 const englishUrl = getAbsoluteSiteUrl('/', 'en', siteBase);
 const liveBroadcastData = FEATURE_LIVE_BROADCAST_ENABLED ? getBundledLiveBroadcastData() : null;
 
-// 首页视频在这里按精选数组维护，第一条保持原有总览视频，后两条补充演示。
-const homepageVideos: VideoShowcaseItem[] = [
-  {
-    bvid: 'BV1pirZBuEzq',
-    title: '每天哈基半小时,AI多任务编程实战',
-    description: '用一条总览视频快速了解 Hagicode 的核心工作流、常见操作路径和多任务编程体验。',
-    url: 'https://www.bilibili.com/video/BV1pirZBuEzq/',
+const featuredHomepageVideos: FeaturedVideosByProvider = {
+  youtube: {
+    provider: 'youtube',
+    embedId: 'AQ8oSTW6wNQ',
+    title: 'Hagicode 英文完整介绍（YouTube）',
+    description:
+      '当浏览器偏好英文时，首页会优先显示这条 YouTube 主介绍视频，先讲清 Hagicode 的整体工作流、产品定位和多 Agent 协作体验。',
+    watchUrl: 'https://www.youtube.com/watch?v=AQ8oSTW6wNQ',
+    ctaLabel: '打开 YouTube',
   },
+  bilibili: {
+    provider: 'bilibili',
+    embedId: 'BV1z4oWB3EpY',
+    title: 'Hagicode 中文完整介绍（Bilibili）',
+    description:
+      '中文浏览器默认会看到这条 Bilibili 主介绍视频，用最直接的中文讲清 Hagicode 的核心路线、能力边界和真实使用方式。',
+    watchUrl: 'https://www.bilibili.com/video/BV1z4oWB3EpY/',
+    ctaLabel: '打开 Bilibili',
+  },
+};
+
+const supportingHomepageVideos: VideoShowcaseItem[] = [
   {
-    bvid: 'BV1KxwMzxEVK',
+    provider: 'bilibili',
+    embedId: 'BV1KxwMzxEVK',
     title: 'AI 居然 写代码时 玩游戏',
-    description: '展示 AI 在真实写代码过程中出现的有趣互动，让首页第一眼就更有记忆点。',
-    url: 'https://www.bilibili.com/video/BV1KxwMzxEVK/',
+    description: '作为补充演示，这条视频更偏趣味互动，帮助你快速感受 Hagicode 在真实编码过程里的节奏和氛围。',
+    watchUrl: 'https://www.bilibili.com/video/BV1KxwMzxEVK/',
+    ctaLabel: '打开 Bilibili',
   },
   {
-    bvid: 'BV1yqPmzTEqP',
     title: 'GPT Codex in Hagicode 实测',
-    description: '聚焦 GPT Codex 在 Hagicode 中的实际表现，帮助你判断模型接入后的真实效果。',
-    url: 'https://www.bilibili.com/video/BV1yqPmzTEqP/',
-  }
+    provider: 'bilibili',
+    embedId: 'BV1yqPmzTEqP',
+    description: '聚焦 GPT Codex 在 Hagicode 中的实际表现，帮助你在主介绍之外继续判断模型接入后的真实效果。',
+    watchUrl: 'https://www.bilibili.com/video/BV1yqPmzTEqP/',
+    ctaLabel: '打开 Bilibili',
+  },
 ];
 
 ---
@@ -165,13 +186,14 @@ const homepageVideos: VideoShowcaseItem[] = [
 
       <!-- Video Showcase -->
       <VideoShowcase
+        locale={currentLocale}
         eyebrow="真实视频演示"
         title="视频实测：看看 Hagicode 真正怎么工作"
-        description="先看原有基础视频，再补充趣味互动与 Codex 实测，三条精选视频一起帮你快速理解产品能力。"
-        ctaLabel="打开 Bilibili"
+        description="先看按浏览器语言匹配的主介绍视频，再补充两条专题演示；就算嵌入播放器加载慢或被拦截，标题、摘要和平台按钮也会把信息说清楚。"
         featuredLabel="主推荐视频"
         supportingLabel="补充演示"
-        videos={homepageVideos}
+        featuredVideos={featuredHomepageVideos}
+        supportingVideos={supportingHomepageVideos}
         client:load
       />
 

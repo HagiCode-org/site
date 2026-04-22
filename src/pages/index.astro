@@ -9,7 +9,10 @@ import ActivityMetricsSection from '@/components/home/ActivityMetricsSection';
 import FeaturesShowcase from '@/components/home/FeaturesShowcase';
 import ShowcaseSection from '@/components/home/ShowcaseSection';
 import VideoShowcase from '@/components/home/VideoShowcase';
-import type { VideoShowcaseItem } from '@/components/home/VideoShowcase';
+import type {
+  FeaturedVideosByProvider,
+  VideoShowcaseItem,
+} from '@/components/home/VideoShowcase';
 import PricingComparisonSection from '@/components/home/PricingComparisonSection';
 import ProductHuntBadgeSection from '@/components/home/ProductHuntBadgeSection';
 import LiveBroadcastSection from '@/components/home/LiveBroadcastSection';
@@ -39,27 +42,46 @@ const canonicalUrl = getAbsoluteSiteUrl('/', 'en', siteBase);
 const chineseUrl = getAbsoluteSiteUrl('/', 'zh-CN', siteBase);
 const liveBroadcastData = FEATURE_LIVE_BROADCAST_ENABLED ? getBundledLiveBroadcastData() : null;
 
-// Homepage videos are curated here as a three-item array so marketing can
-// keep the featured walkthrough and the two supporting demos in sync.
-const homepageVideos: VideoShowcaseItem[] = [
-  {
-    bvid: 'BV1pirZBuEzq',
-    title: 'Daily Hagi Half-Hour: AI Multi-Task Programming Practice',
-    description: 'A guided overview of Hagicode\'s everyday workflow, agent orchestration, and the core experience new visitors should understand first.',
-    url: 'https://www.bilibili.com/video/BV1pirZBuEzq/',
+const featuredHomepageVideos: FeaturedVideosByProvider = {
+  youtube: {
+    provider: 'youtube',
+    embedId: 'AQ8oSTW6wNQ',
+    title: 'Hagicode Product Overview on YouTube',
+    description:
+      "The main English-language introduction to Hagicode's workflow, multi-agent execution style, and why the product feels broader than a generic AI coding chat box.",
+    watchUrl: 'https://www.youtube.com/watch?v=AQ8oSTW6wNQ',
+    ctaLabel: 'Open on YouTube',
   },
+  bilibili: {
+    provider: 'bilibili',
+    embedId: 'BV1z4oWB3EpY',
+    title: 'Hagicode Product Overview on Bilibili',
+    description:
+      'A Bilibili-hosted version of the core product introduction for visitors whose browsers signal a Chinese-language preference or who prefer the domestic playback path.',
+    watchUrl: 'https://www.bilibili.com/video/BV1z4oWB3EpY/',
+    ctaLabel: 'Open on Bilibili',
+  },
+};
+
+const supportingHomepageVideos: VideoShowcaseItem[] = [
   {
-    bvid: 'BV1KxwMzxEVK',
+    provider: 'bilibili',
+    embedId: 'BV1KxwMzxEVK',
+    ctaLabel: 'Open on Bilibili',
+    watchUrl: 'https://www.bilibili.com/video/BV1KxwMzxEVK/',
     title: 'AI Playing Games While Coding',
-    description: 'A playful clip that shows how the assistant can stay lively and surprising during real coding sessions instead of feeling like a dry code generator.',
-    url: 'https://www.bilibili.com/video/BV1KxwMzxEVK/',
+    description:
+      'A playful supporting clip that shows the assistant staying lively and surprising during real coding sessions instead of feeling like a dry code generator.',
   },
   {
-    bvid: 'BV1yqPmzTEqP',
+    provider: 'bilibili',
+    embedId: 'BV1yqPmzTEqP',
+    ctaLabel: 'Open on Bilibili',
+    watchUrl: 'https://www.bilibili.com/video/BV1yqPmzTEqP/',
     title: 'GPT Codex in Hagicode: Live Trial',
-    description: 'A focused validation run of GPT Codex inside Hagicode so prospective users can judge how the model performs in the actual product.',
-    url: 'https://www.bilibili.com/video/BV1yqPmzTEqP/',
-  }
+    description:
+      "A focused validation run that lets prospective users judge how GPT Codex behaves inside the actual product after they've seen the main localized introduction.",
+  },
 ];
 
 ---
@@ -166,13 +188,14 @@ const homepageVideos: VideoShowcaseItem[] = [
 
       <!-- Video Showcase -->
       <VideoShowcase
+        locale={currentLocale}
         eyebrow="Real Product Walkthroughs"
         title="See Hagicode in real coding sessions"
-        description="Start with the core daily workflow, then jump into a playful AI side quest and a GPT Codex validation run inside Hagicode."
-        ctaLabel="Open on Bilibili"
+        description="Start with the primary walkthrough selected for your browser language, then compare two supporting demos that keep the product story understandable even if the embedded player is slow or blocked."
         featuredLabel="Featured walkthrough"
         supportingLabel="Focused demo"
-        videos={homepageVideos}
+        featuredVideos={featuredHomepageVideos}
+        supportingVideos={supportingHomepageVideos}
         client:load
       />
 
