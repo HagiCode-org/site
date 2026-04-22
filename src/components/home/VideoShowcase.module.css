@@ -160,6 +160,13 @@
   padding: 0.35rem;
 }
 
+.cardMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+}
+
 .cardLabel {
   display: inline-flex;
   align-items: center;
@@ -177,6 +184,21 @@
 
 [data-theme='dark'] .cardLabel {
   background: color-mix(in srgb, var(--color-secondary) 18%, transparent);
+}
+
+.platformLabel {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.35rem 0.68rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
+  background: color-mix(in srgb, var(--color-surface-glass) 88%, transparent);
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
 .cardTitle {
@@ -204,6 +226,7 @@
   gap: 0.55rem;
   width: fit-content;
   max-width: 100%;
+  box-sizing: border-box;
   min-height: 2.75rem;
   padding: 0.8rem 1.05rem;
   border-radius: 999px;
@@ -304,10 +327,11 @@
   }
 
   .cardAction {
-    align-self: stretch;
-    width: 100%;
+    align-self: center;
+    width: min(100%, 18rem);
     min-height: 3rem;
     justify-content: center;
+    margin-inline: auto;
   }
 }
 
@@ -317,6 +341,10 @@
   }
 
   .cardLabel {
+    font-size: 0.72rem;
+  }
+
+  .platformLabel {
     font-size: 0.72rem;
   }
 
