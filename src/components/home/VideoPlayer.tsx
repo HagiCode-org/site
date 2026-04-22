@@ -3,23 +3,29 @@
  * 视频播放器容器组件
  */
 import styles from './VideoPlayer.module.css';
+import {
+  getVideoEmbedUrl,
+  getVideoProviderLabel,
+  type VideoShowcaseItem,
+} from './video-showcase-model';
 
 interface VideoPlayerProps {
-  bvid: string;
-  title: string;
+  video: Pick<VideoShowcaseItem, 'provider' | 'embedId' | 'title'>;
 }
 
-export default function VideoPlayer({ bvid, title }: VideoPlayerProps) {
+export default function VideoPlayer({ video }: VideoPlayerProps) {
+  const providerLabel = getVideoProviderLabel(video.provider);
+
   return (
     <div className={styles['video-player-container']}>
       <div className={styles['video-player']}>
         <div className={styles['video-iframe-wrapper']}>
           <iframe
-            src={`https://player.bilibili.com/player.html?bvid=${bvid}&page=1&high_quality=1&danmaku=0&autoplay=0`}
-            title={`Bilibili player: ${title}`}
+            src={getVideoEmbedUrl(video)}
+            title={`${providerLabel} player: ${video.title}`}
             loading="lazy"
             allowFullScreen={true}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             sandbox="allow-forms allow-scripts allow-same-origin allow-presentation"
           />
         </div>
