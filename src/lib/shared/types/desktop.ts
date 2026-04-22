@@ -35,8 +35,6 @@ export enum AssetType {
   MacOSIntel = "macos-intel", // macOS Intel/通用
   LinuxAppImage = "linux-appimage", // Linux AppImage x64 (推荐)
   LinuxArm64AppImage = "linux-arm64-appimage", // Linux AppImage ARM64
-  LinuxDeb = "linux-deb", // Linux Debian 包 x64
-  LinuxArm64Deb = "linux-arm64-deb", // Linux Debian 包 ARM64
   LinuxTarball = "linux-tarball", // Linux 压缩包 x64
   LinuxArm64Tarball = "linux-arm64-tarball", // Linux 压缩包 ARM64
   Source = "source", // 源代码

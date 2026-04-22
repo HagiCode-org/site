@@ -16,6 +16,7 @@ import type {
   DesktopVersion,
   DownloadAction,
   DownloadSourceProbeStateMap,
+  PlatformDownload,
   PlatformGroup,
 } from '@/lib/shared/desktop';
 import type { DesktopVersionSource } from '@/lib/shared/desktop-utils';
@@ -189,6 +190,24 @@ export function convertPlatformGroups(platforms: PlatformGroup[]): PlatformDownl
   }));
 }
 
+function isUnsupportedPublicDownload(
+  download: Pick<PlatformDownload, 'assetType' | 'filename'>,
+): boolean {
+  const assetType = String(download.assetType);
+  return assetType === 'linux-deb'
+    || assetType === 'linux-arm64-deb'
+    || download.filename.toLowerCase().endsWith('.deb');
+}
+
+export function filterSupportedPlatformGroups(platforms: PlatformGroup[]): PlatformGroup[] {
+  return platforms
+    .map((platform) => ({
+      ...platform,
+      downloads: platform.downloads.filter((download) => !isUnsupportedPublicDownload(download)),
+    }))
+    .filter((platform) => platform.downloads.length > 0);
+}
+
 export function resolveInstallButtonPrimaryTarget(
   platformData: PlatformDownloads[],
   probeStates: DownloadSourceProbeStateMap,
@@ -226,10 +245,12 @@ export function createInstallButtonPropSnapshot({
   platforms: PlatformGroup[];
   versionError: string | null;
 }): InstallButtonRuntimeSnapshot {
+  const supportedPlatforms = filterSupportedPlatformGroups(platforms);
+
   if (versionError) {
     return {
       version: version ?? null,
-      platforms: platforms.length > 0 ? platforms : version ? groupAssetsByPlatform(version.assets) : [],
+      platforms: supportedPlatforms.length > 0 ? supportedPlatforms : version ? groupAssetsByPlatform(version.assets) : [],
       error: versionError,
       status: 'fatal',
       source: null,
@@ -241,7 +262,7 @@ export function createInstallButtonPropSnapshot({
   if (version || platforms.length > 0) {
     return {
       version: version ?? null,
-      platforms: platforms.length > 0 ? platforms : version ? groupAssetsByPlatform(version.assets) : [],
+      platforms: supportedPlatforms.length > 0 ? supportedPlatforms : version ? groupAssetsByPlatform(version.assets) : [],
       error: null,
       status: 'ready',
       source: null,
@@ -275,7 +296,7 @@ export function resolveInstallButtonRuntimeSnapshot(
 
   return {
     version,
-    platforms,
+    platforms: filterSupportedPlatformGroups(platforms),
     error: data.error,
     status: data.status,
     source: data.source,

@@ -102,8 +102,6 @@ export function getDesktopDownloadEventName(assetType?: AssetType): WebsiteTrack
       return WEBSITE_TRACKING_EVENTS.downloadDesktopMacOS;
     case AssetType.LinuxAppImage:
     case AssetType.LinuxArm64AppImage:
-    case AssetType.LinuxDeb:
-    case AssetType.LinuxArm64Deb:
     case AssetType.LinuxTarball:
     case AssetType.LinuxArm64Tarball:
       return WEBSITE_TRACKING_EVENTS.downloadDesktopLinux;

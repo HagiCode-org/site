@@ -729,12 +729,6 @@ export function inferAssetType(filename: string): AssetType {
   if (name.endsWith('.appimage')) {
     return AssetType.LinuxAppImage;
   }
-  if (name.includes('arm64') && name.includes('.deb')) {
-    return AssetType.LinuxArm64Deb;
-  }
-  if (name.includes('_amd64.deb')) {
-    return AssetType.LinuxDeb;
-  }
   if (name.includes('arm64') && name.includes('.tar.gz')) {
     return AssetType.LinuxArm64Tarball;
   }
@@ -754,7 +748,6 @@ export function inferArchitecture(assetType: AssetType): CpuArchitecture {
   switch (assetType) {
     case AssetType.MacOSApple:
     case AssetType.LinuxArm64AppImage:
-    case AssetType.LinuxArm64Deb:
     case AssetType.LinuxArm64Tarball:
       return CpuArchitecture.ARM64;
     case AssetType.WindowsSetup:
@@ -762,7 +755,6 @@ export function inferArchitecture(assetType: AssetType): CpuArchitecture {
     case AssetType.WindowsStore:
     case AssetType.MacOSIntel:
     case AssetType.LinuxAppImage:
-    case AssetType.LinuxDeb:
     case AssetType.LinuxTarball:
       return CpuArchitecture.X64;
     default:
@@ -798,8 +790,6 @@ export function getArchitectureLabel(assetType: AssetType): string {
     [AssetType.WindowsStore]: '',
     [AssetType.LinuxAppImage]: 'x64',
     [AssetType.LinuxArm64AppImage]: 'ARM64',
-    [AssetType.LinuxDeb]: 'x64',
-    [AssetType.LinuxArm64Deb]: 'ARM64',
     [AssetType.LinuxTarball]: 'x64',
     [AssetType.LinuxArm64Tarball]: 'ARM64',
     [AssetType.Source]: '',
@@ -822,8 +812,6 @@ export function getFileExtension(assetType: AssetType): string {
     [AssetType.MacOSIntel]: '.dmg',
     [AssetType.LinuxAppImage]: '.AppImage',
     [AssetType.LinuxArm64AppImage]: '.AppImage',
-    [AssetType.LinuxDeb]: '.deb',
-    [AssetType.LinuxArm64Deb]: '.deb',
     [AssetType.LinuxTarball]: '.tar.gz',
     [AssetType.LinuxArm64Tarball]: '.tar.gz',
     [AssetType.Source]: '.zip',
@@ -846,8 +834,6 @@ export function getAssetTypeLabel(assetType: AssetType): string {
     [AssetType.MacOSIntel]: 'Intel 版',
     [AssetType.LinuxAppImage]: 'AppImage (x64)',
     [AssetType.LinuxArm64AppImage]: 'AppImage (ARM64)',
-    [AssetType.LinuxDeb]: 'Debian 包 (x64)',
-    [AssetType.LinuxArm64Deb]: 'Debian 包 (ARM64)',
     [AssetType.LinuxTarball]: '压缩包 (x64)',
     [AssetType.LinuxArm64Tarball]: '压缩包 (ARM64)',
     [AssetType.Source]: '源代码',
@@ -1064,8 +1050,6 @@ export function groupAssetsByPlatform(
         break;
       case AssetType.LinuxAppImage:
       case AssetType.LinuxArm64AppImage:
-      case AssetType.LinuxDeb:
-      case AssetType.LinuxArm64Deb:
       case AssetType.LinuxTarball:
       case AssetType.LinuxArm64Tarball:
         platform = 'linux';

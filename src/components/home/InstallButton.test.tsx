@@ -2,6 +2,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 
+import { AssetType, CpuArchitecture } from '../../lib/shared/desktop';
 import type { DesktopVersionData } from '../../lib/shared/version-manager';
 import {
   collectDownloadSourceProbeTargets,
@@ -103,7 +104,7 @@ describe('InstallButton runtime state helpers', () => {
 
     const snapshot = resolveInstallButtonRuntimeSnapshot(data, 'stable');
 
-    expect(snapshot.platforms).toBe(platformGroups);
+    expect(snapshot.platforms).toStrictEqual(platformGroups);
     expect(snapshot.fallbackTarget).toBeNull();
     expect(getInstallButtonMenuState(snapshot, snapshot.platforms.length)).toEqual({
       mode: 'ready',
@@ -125,6 +126,41 @@ describe('InstallButton runtime state helpers', () => {
       mode: 'fatal',
       hasDownloads: false,
     });
+  });
+
+  it('drops unsupported deb downloads from precomputed platform groups', () => {
+    const snapshot = createInstallButtonPropSnapshot({
+      version: null,
+      versionError: null,
+      platforms: [
+        {
+          platform: 'linux',
+          architectures: [CpuArchitecture.X64],
+          downloads: [
+            {
+              url: 'https://desktop.dl.hagicode.com/v1.2.5/Hagicode.Desktop-1.2.5.AppImage',
+              size: '120 MB',
+              filename: 'Hagicode.Desktop-1.2.5.AppImage',
+              assetType: AssetType.LinuxAppImage,
+              architecture: CpuArchitecture.X64,
+              sourceActions: [],
+            },
+            {
+              url: 'https://desktop.dl.hagicode.com/v1.2.5/hagicode-desktop_1.2.5_amd64.deb',
+              size: '118 MB',
+              filename: 'hagicode-desktop_1.2.5_amd64.deb',
+              assetType: 'linux-deb' as AssetType,
+              architecture: CpuArchitecture.X64,
+              sourceActions: [],
+            },
+          ],
+        },
+      ],
+    });
+
+    expect(snapshot.platforms[0]?.downloads.map((download) => download.filename)).toEqual([
+      'Hagicode.Desktop-1.2.5.AppImage',
+    ]);
   });
 });
 
