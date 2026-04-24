@@ -5,6 +5,15 @@ import { getBundledSteamStoreLink } from '@/lib/shared/steam-store-link';
 
 type Locale = 'zh-CN' | 'en';
 
+export const TURBO_ENGINE_STEAM_STORE_URL = 'https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/';
+export const HAGICODE_PLUS_BUNDLE_STEAM_URL = 'https://store.steampowered.com/bundle/73989/Hagicode_Plus/';
+
+export function getHagicodePlusDocsIntroductionUrl(locale: Locale): string {
+  return locale === 'en'
+    ? 'https://docs.hagicode.com/en/bundles/hagicode-plus/'
+    : 'https://docs.hagicode.com/bundles/hagicode-plus/';
+}
+
 type ActionLink = {
   label: string;
   href: string;
@@ -93,8 +102,11 @@ function CrossIcon() {
   );
 }
 
-function getPricingContent(locale: Locale): PricingContent {
+export function getPricingContent(locale: Locale): PricingContent {
   const steamHref = getBundledSteamStoreLink().href;
+  const turboEngineSteamHref = TURBO_ENGINE_STEAM_STORE_URL;
+  const hagicodePlusBundleHref = HAGICODE_PLUS_BUNDLE_STEAM_URL;
+  const hagicodePlusDocsHref = getHagicodePlusDocsIntroductionUrl(locale);
   const desktopHref = getLinkWithLocale('desktop', locale);
   const containerHref = getLinkWithLocale('container', locale);
 
@@ -105,7 +117,7 @@ function getPricingContent(locale: Locale): PricingContent {
       limitDescription:
         'Free and Steam both include a 3-proposal cap. Proposals in generating, executing, and archiving all count toward the same limit. Turbo Engine DLC expands that limit to 32.',
       plusTitle: 'Hagicode Plus note',
-      plusDescription: 'Hagicode Plus means the main Steam edition plus a Turbo Engine DLC subscription.',
+      plusDescription: 'Hagicode Plus is the official Steam bundle that combines the main Steam edition with Turbo Engine DLC.',
       featureHeader: 'Feature',
       includedLabel: 'Included',
       notIncludedLabel: 'Not included',
@@ -123,7 +135,7 @@ function getPricingContent(locale: Locale): PricingContent {
       },
       turboEdition: {
         title: 'Hagicode Plus',
-        action: { label: 'Hagicode Plus', href: steamHref, external: true },
+        action: { label: 'Hagicode Plus', href: hagicodePlusDocsHref },
       },
       rows: [
         {
@@ -131,7 +143,7 @@ function getPricingContent(locale: Locale): PricingContent {
           desktop: { type: 'text', value: 'Free' },
           container: { type: 'text', value: 'Free' },
           steam: { type: 'text', value: 'View on Steam', href: steamHref, external: true },
-          turbo: { type: 'text', value: 'View on Steam', href: steamHref, external: true },
+          turbo: { type: 'text', value: 'View on Steam', href: hagicodePlusBundleHref, external: true },
         },
         { feature: 'All free features included', desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
         { feature: 'Vault', desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
@@ -155,7 +167,7 @@ function getPricingContent(locale: Locale): PricingContent {
         { feature: 'Steam Workshop support', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'check' }, turbo: { type: 'check' }, steamExclusive: true },
         { feature: 'Cloud save support', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'check' }, turbo: { type: 'check' }, steamExclusive: true },
       ],
-      dlcLabel: 'DLC',
+      dlcLabel: 'DLC & Bundles',
       dlcTitle: 'Optional packs',
       dlcItems: [
         {
@@ -172,7 +184,7 @@ function getPricingContent(locale: Locale): PricingContent {
         {
           category: 'Performance DLC',
           title: 'Hagicode: Turbo Engine DLC',
-          price: 'View on Steam',
+          price: 'Steam',
           description: 'You can buy this DLC on its own to expand the original proposal concurrency cap, unlock copy switching, add five avatar packs with 10 standalone avatars each, enable custom avatar uploads, customize the top-left logo and title, and align AI-generated commit trailers with your own Co-Authored-By naming rules. We will usually highlight a bundled purchase option called Hagicode Plus so the overall purchase price stays lower. Please check our store page for the latest changes.',
           bullets: [
             'Supports custom top-left logos and titles',
@@ -182,12 +194,24 @@ function getPricingContent(locale: Locale): PricingContent {
             'Unlocks copy and wording switching support',
             'Expands the maximum concurrent proposal limit to 32',
           ],
-          action: { label: 'Open Steam', href: steamHref, external: true },
+          action: { label: 'Open Steam', href: turboEngineSteamHref, external: true },
+        },
+        {
+          category: 'Bundle',
+          title: 'Hagicode Plus',
+          price: 'Steam',
+          description: 'The official Steam bundle that combines the Hagicode base edition with Turbo Engine DLC in one purchase path.',
+          bullets: [
+            'Bundles the main Steam edition and Turbo Engine DLC together',
+            'Keeps the higher 32-proposal concurrency upgrade attached to the bundle path',
+            'Works as the clearest purchase entry when you want the full Steam setup at once',
+          ],
+          action: { label: 'Open Steam', href: hagicodePlusBundleHref, external: true },
         },
         {
           category: 'Supporter DLC',
           title: 'Hagicode - Sponsor Pack',
-          price: 'View on Steam',
+          price: 'Steam',
           description: 'If you think Hagicode is genuinely excellent and want to provide direct financial support, buying Sponsor Pack gives the project more fuel and helps us keep it running for the long term.',
           bullets: [
             'One exclusive dark theme',
@@ -207,7 +231,7 @@ function getPricingContent(locale: Locale): PricingContent {
     limitDescription:
       '免费版和 Steam 版默认都包含 3 个提案并行上限。正在生成、正在执行、正在归档三个状态会合并计数。Turbo Engine DLC 可将上限扩展到 32。',
     plusTitle: 'Hagicode Plus 说明',
-    plusDescription: '所谓的 Hagicode Plus，实际上就是 Steam 主体版本，再加上订阅 Turbo Engine 这个 DLC。',
+    plusDescription: 'Hagicode Plus 是 Steam 上的官方组合包，直接把 Steam 主体版本和 Turbo Engine DLC 一起打包。',
     featureHeader: '特性',
     includedLabel: '已包含',
     notIncludedLabel: '未包含',
@@ -225,7 +249,7 @@ function getPricingContent(locale: Locale): PricingContent {
     },
     turboEdition: {
       title: 'Hagicode Plus',
-      action: { label: 'Hagicode Plus', href: steamHref, external: true },
+      action: { label: 'Hagicode Plus', href: hagicodePlusDocsHref },
     },
     rows: [
       {
@@ -233,7 +257,7 @@ function getPricingContent(locale: Locale): PricingContent {
         desktop: { type: 'text', value: '免费' },
         container: { type: 'text', value: '免费' },
         steam: { type: 'text', value: '点击查看', href: steamHref, external: true },
-        turbo: { type: 'text', value: '点击查看', href: steamHref, external: true },
+        turbo: { type: 'text', value: '点击查看', href: hagicodePlusBundleHref, external: true },
       },
       { feature: '全部免费特性', desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
       { feature: 'Vault', desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
@@ -257,7 +281,7 @@ function getPricingContent(locale: Locale): PricingContent {
       { feature: '创意工坊支持', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'check' }, turbo: { type: 'check' }, steamExclusive: true },
       { feature: '云存档支持', desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'check' }, turbo: { type: 'check' }, steamExclusive: true },
     ],
-    dlcLabel: 'DLC',
+    dlcLabel: 'DLC 与组合包',
     dlcTitle: '扩展包列表',
     dlcItems: [
       {
@@ -284,7 +308,19 @@ function getPricingContent(locale: Locale): PricingContent {
           '解锁文案切换支持',
           '最大提案并行数扩展到 32',
         ],
-        action: { label: '打开 Steam', href: steamHref, external: true },
+        action: { label: '打开 Steam', href: turboEngineSteamHref, external: true },
+      },
+      {
+        category: '组合包',
+        title: 'Hagicode Plus',
+        price: '点击查看',
+        description: 'Steam 官方组合包，一次打包 Steam 主体版本和 Turbo Engine DLC，适合想直接进入完整 Steam 工作流的用户。',
+        bullets: [
+          '把 Steam 主体版本和 Turbo Engine DLC 一起打包',
+          '保留 32 个提案并行上限这条升级路径',
+          '适合希望一次买齐 Steam 完整能力的购买入口',
+        ],
+        action: { label: '打开 Steam', href: hagicodePlusBundleHref, external: true },
       },
       {
         category: '赞助者 DLC',
