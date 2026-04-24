@@ -20,6 +20,7 @@ describe('ProductHuntBadgeSection', () => {
 
     expect(markup).toContain('Trusted by early adopters');
     expect(markup).toContain('See Hagicode on Product Hunt');
+    expect(markup).not.toContain('third-party trust signal');
     expect(markup).toContain(`href="${encodeAttribute(PRODUCT_HUNT_BADGE_LINK)}"`);
     expect(markup).toContain('target="_blank"');
     expect(markup).toContain('rel="noopener noreferrer"');
@@ -37,6 +38,7 @@ describe('ProductHuntBadgeSection', () => {
 
     expect(markup).toContain('来自早期用户的信号');
     expect(markup).toContain('在 Product Hunt 上查看 Hagicode');
+    expect(markup).not.toContain('这里展示的是 Hagicode 的官方 Product Hunt 徽章');
     expect(markup).toContain('查看 Product Hunt 产品页');
     expect(markup).toContain('aria-label="打开 Hagicode 的 Product Hunt 页面"');
     expect(markup).toContain('data-product-hunt-entry="homepage-badge"');

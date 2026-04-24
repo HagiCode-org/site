@@ -1,6 +1,6 @@
 .section {
   position: relative;
-  padding: 0 0 4.75rem;
+  padding: 0 0 4rem;
   overflow: hidden;
 }
 
@@ -16,13 +16,13 @@
 
 .card {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(18rem, 22rem);
-  gap: 1.5rem;
+  display: flex;
+  gap: 1.25rem;
   align-items: center;
-  padding: 1.5rem;
+  justify-content: space-between;
+  padding: 1rem 1rem 1rem 1.25rem;
   border: 1px solid rgba(37, 194, 160, 0.2);
-  border-radius: 1.5rem;
+  border-radius: 1.35rem;
   background: rgba(255, 255, 255, 0.72);
   box-shadow:
     0 18px 44px rgba(15, 23, 42, 0.08),
@@ -62,12 +62,13 @@
 .copyColumn {
   position: relative;
   z-index: 1;
+  flex: 1 1 18rem;
   min-width: 0;
 }
 
 .eyebrow {
-  margin: 0 0 0.65rem;
-  font-size: 0.86rem;
+  margin: 0 0 0.45rem;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -75,31 +76,24 @@
 }
 
 .title {
-  margin: 0 0 0.7rem;
-  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
-  line-height: 1.12;
-  color: var(--color-text);
-}
-
-.description {
   margin: 0;
-  max-width: 40rem;
-  color: var(--color-text-secondary);
-  line-height: 1.7;
+  font-size: clamp(1.18rem, 2vw, 1.55rem);
+  line-height: 1.2;
+  color: var(--color-text);
 }
 
 .badgeLink {
   position: relative;
   z-index: 1;
   display: inline-flex;
-  flex-direction: column;
+  flex: 0 1 31rem;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 0.85rem;
-  width: 100%;
+  justify-content: flex-end;
+  gap: 1rem;
   max-width: 100%;
   min-width: 0;
-  padding: 1rem;
+  padding: 0.75rem 0.85rem;
   border: 1px solid rgba(27, 127, 204, 0.2);
   border-radius: 1.15rem;
   background: rgba(27, 127, 204, 0.06);
@@ -166,14 +160,15 @@
 
 .badgeMeta {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
-  gap: 0.45rem 0.7rem;
-  width: 100%;
+  gap: 0.12rem;
+  flex: 0 0 auto;
   color: var(--color-text);
   font-size: 0.92rem;
-  text-align: center;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .badgeCta {
@@ -186,13 +181,24 @@
 
 @media (max-width: 880px) {
   .card {
-    grid-template-columns: 1fr;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .copyColumn {
+    flex-basis: auto;
+  }
+
+  .badgeLink {
+    justify-content: center;
+    flex-basis: auto;
+    width: 100%;
   }
 }
 
 @media (max-width: 640px) {
   .section {
-    padding-bottom: 3.5rem;
+    padding-bottom: 3rem;
   }
 
   .card {
@@ -202,10 +208,13 @@
   }
 
   .badgeLink {
+    flex-direction: column;
     padding: 0.95rem 0.85rem;
   }
 
   .badgeMeta {
+    align-items: center;
     font-size: 0.88rem;
+    text-align: center;
   }
 }

@@ -28,7 +28,6 @@ export default function ProductHuntBadgeSection({ locale }: ProductHuntBadgeSect
             <h2 id={`product-hunt-title-${locale}`} className={styles.title}>
               {t('productHuntBadge.title')}
             </h2>
-            <p className={styles.description}>{t('productHuntBadge.description')}</p>
           </div>
 
           <a
