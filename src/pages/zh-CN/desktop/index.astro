@@ -112,10 +112,13 @@ const englishUrl = getAbsoluteSiteUrl('/desktop/', 'en', siteBase);
           <h1>{heroTitle}</h1>
           <p class="hero-tagline">{heroTagline}</p>
           <DesktopHero locale="zh-CN" client:load />
-          <p class="hero-runtime-note">
-            若此页加载安装包失败，将自动跳转到 canonical 的 Index Desktop 版本历史页：
-            <a href="https://index.hagicode.com/desktop/history/">https://index.hagicode.com/desktop/history/</a>
-          </p>
+          <aside class="hero-runtime-note" aria-label="安装包加载失败回退说明">
+            <span class="hero-runtime-note__label">回退说明</span>
+            <span class="hero-runtime-note__copy">
+              若此页加载安装包失败，将自动跳转到 canonical 的 Index Desktop 版本历史页：
+              <a href="https://index.hagicode.com/desktop/history/">https://index.hagicode.com/desktop/history/</a>
+            </span>
+          </aside>
         </div>
       </section>
 

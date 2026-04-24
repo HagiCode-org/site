@@ -107,10 +107,13 @@ const chineseUrl = getAbsoluteSiteUrl('/desktop/', 'zh-CN', siteBase);
           <h1>{heroTitle}</h1>
           <p class="hero-tagline">{heroTagline}</p>
           <DesktopHero client:load locale="en" />
-          <p class="hero-runtime-note">
-            If package loading fails here, this page redirects to the canonical Index Desktop version history:
-            <a href="https://index.hagicode.com/desktop/history/"> https://index.hagicode.com/desktop/history/</a>
-          </p>
+          <aside class="hero-runtime-note" aria-label="Package loading fallback notice">
+            <span class="hero-runtime-note__label">Fallback</span>
+            <span class="hero-runtime-note__copy">
+              If package loading fails here, this page redirects to the canonical Index Desktop version history:
+              <a href="https://index.hagicode.com/desktop/history/">https://index.hagicode.com/desktop/history/</a>
+            </span>
+          </aside>
         </div>
       </section>
 
