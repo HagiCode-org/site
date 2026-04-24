@@ -15,6 +15,8 @@ import type {
 } from '@/components/home/VideoShowcase';
 import PricingComparisonSection from '@/components/home/PricingComparisonSection';
 import ProductHuntBadgeSection from '@/components/home/ProductHuntBadgeSection';
+import { PromoteCard } from '@/components/promote/PromoteCard';
+import promoteCardStyles from '@/components/promote/PromoteCard.module.css';
 import LiveBroadcastSection from '@/components/home/LiveBroadcastSection';
 import Footer from '@/components/home/Footer';
 import LunarNewYearDecorations from '@/components/home/LunarNewYearDecorations';
@@ -204,6 +206,8 @@ const supportingHomepageVideos: VideoShowcaseItem[] = [
       <ProductHuntBadgeSection locale="zh-CN" />
 
     </main>
+
+    <PromoteCard locale="zh-CN" className={promoteCardStyles.promoteCard} client:load />
 
     <!-- Footer -->
     <Footer locale="zh-CN" client:load />
