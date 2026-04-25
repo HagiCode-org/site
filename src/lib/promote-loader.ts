@@ -17,6 +17,7 @@ type PromoteContent = {
   id: string;
   title: Record<string, string>;
   description: Record<string, string>;
+  cta?: Record<string, string>;
   link: string;
   targetPlatform?: string;
 };
@@ -25,6 +26,7 @@ export type ActivePromotion = {
   id: string;
   title: string;
   description: string;
+  ctaLabel: string;
   link: string;
   platform: string | null;
 };
@@ -53,13 +55,24 @@ function mapLocale(locale: string | null | undefined): PromoteLocale {
   return locale?.toLowerCase().startsWith('en') ? 'en' : 'zh';
 }
 
+function getLocalizedKeys(locale: PromoteLocale): string[] {
+  return locale === 'en' ? ['en', 'zh', 'zh-CN'] : ['zh', 'zh-CN', 'en'];
+}
+
 function pickLocalized(value: Record<string, string>, locale: PromoteLocale): string | null {
-  const keys = locale === 'en' ? ['en', 'zh', 'zh-CN'] : ['zh', 'zh-CN', 'en'];
-  for (const key of keys) {
+  for (const key of getLocalizedKeys(locale)) {
     const candidate = value[key];
     if (isNonEmptyString(candidate)) return candidate.trim();
   }
   return Object.values(value).find(isNonEmptyString)?.trim() ?? null;
+}
+
+function resolveCtaLabel(value: Record<string, string> | undefined, locale: PromoteLocale): string {
+  if (value) {
+    const localized = pickLocalized(value, locale);
+    if (localized) return localized;
+  }
+  return locale === 'zh' ? '立即前往' : 'GO';
 }
 
 function parseOptionalTimestamp(value: unknown): string | undefined {
@@ -116,8 +129,18 @@ function parseContent(payload: unknown): PromoteContent[] {
     if (!isRecord(entry) || !isNonEmptyString(entry.id) || !isRecord(entry.title) || !isRecord(entry.description) || !isNonEmptyString(entry.link)) return [];
     const title = Object.fromEntries(Object.entries(entry.title).filter(([, value]) => isNonEmptyString(value))) as Record<string, string>;
     const description = Object.fromEntries(Object.entries(entry.description).filter(([, value]) => isNonEmptyString(value))) as Record<string, string>;
+    const cta = isRecord(entry.cta)
+      ? Object.fromEntries(Object.entries(entry.cta).filter(([, value]) => isNonEmptyString(value))) as Record<string, string>
+      : undefined;
     if (Object.keys(title).length === 0 || Object.keys(description).length === 0) return [];
-    return [{ id: entry.id, title, description, link: entry.link, targetPlatform: isNonEmptyString(entry.targetPlatform) ? entry.targetPlatform : undefined }];
+    return [{
+      id: entry.id,
+      title,
+      description,
+      cta: cta && Object.keys(cta).length > 0 ? cta : undefined,
+      link: entry.link,
+      targetPlatform: isNonEmptyString(entry.targetPlatform) ? entry.targetPlatform : undefined,
+    }];
   });
 }
 
@@ -152,7 +175,14 @@ export function selectActivePromotions(flags: PromoteFlag[], contents: PromoteCo
     const title = pickLocalized(content.title, promoteLocale);
     const description = pickLocalized(content.description, promoteLocale);
     if (!title || !description) return [];
-    return [{ id: content.id, title, description, link: content.link, platform: content.targetPlatform?.trim() || null }];
+    return [{
+      id: content.id,
+      title,
+      description,
+      ctaLabel: resolveCtaLabel(content.cta, promoteLocale),
+      link: content.link,
+      platform: content.targetPlatform?.trim() || null,
+    }];
   });
 }
 

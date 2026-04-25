@@ -21,6 +21,7 @@ function createCatalogFetch(payload: {
     description: { en: `Description ${promotion.id as string}`, zh: `描述 ${promotion.id as string}` },
     link: `https://example.invalid/${promotion.id as string}`,
     targetPlatform: 'steam',
+    cta: { en: `Open ${promotion.id as string}`, zh: `打开 ${promotion.id as string}` },
   }));
 
   return vi.fn(async (input: RequestInfo | URL) => {
@@ -52,8 +53,8 @@ describe('promote-loader', () => {
         { id: 'active-two', on: true },
       ],
       contents: [
-        { id: 'inactive', title: { en: 'Hidden', zh: '隐藏' }, description: { en: 'Hidden', zh: '隐藏' }, link: 'https://example.invalid/hidden', targetPlatform: 'steam' },
-        { id: 'active-one', title: { en: 'Wishlist Now', zh: '立即添加到愿望单' }, description: { en: 'English copy', zh: '中文文案' }, link: 'https://example.invalid/one', targetPlatform: 'steam' },
+        { id: 'inactive', title: { en: 'Hidden', zh: '隐藏' }, description: { en: 'Hidden', zh: '隐藏' }, link: 'https://example.invalid/hidden', targetPlatform: 'steam', cta: { en: 'View on Steam', zh: '前往 Steam' } },
+        { id: 'active-one', title: { en: 'Wishlist Now', zh: '立即添加到愿望单' }, description: { en: 'English copy', zh: '中文文案' }, cta: { en: 'Wishlist on Steam', zh: '加入愿望单' }, link: 'https://example.invalid/one', targetPlatform: 'steam' },
         { id: 'active-two', title: { en: 'Second', zh: '第二条' }, description: { en: 'Second copy', zh: '第二条文案' }, link: 'https://example.invalid/two' },
       ],
     });
@@ -72,6 +73,7 @@ describe('promote-loader', () => {
       title: '立即添加到愿望单',
       description: '中文文案',
       platform: 'steam',
+      ctaLabel: '加入愿望单',
     });
   });
 
@@ -172,6 +174,29 @@ describe('promote-loader', () => {
     });
 
     expect(promotions.map((promotion) => promotion.id)).toEqual(['valid']);
+  });
+
+  it('resolves CTA labels from locale data with deterministic fallbacks', async () => {
+    const fetchImpl = createCatalogFetch({
+      promotes: [
+        { id: 'localized', on: true },
+        { id: 'missing-locale', on: true },
+        { id: 'malformed-cta', on: true },
+        { id: 'legacy', on: true },
+      ],
+      contents: [
+        { id: 'localized', title: { en: 'Localized' }, description: { en: 'English copy' }, cta: { en: 'View Offer', zh: '查看优惠' }, link: 'https://example.invalid/localized' },
+        { id: 'missing-locale', title: { en: 'Missing locale' }, description: { en: 'Fallback copy' }, cta: { zh: '中文按钮' }, link: 'https://example.invalid/missing-locale' },
+        { id: 'malformed-cta', title: { en: 'Malformed' }, description: { en: 'Malformed copy' }, cta: { en: '   ', zh: '' }, link: 'https://example.invalid/malformed-cta' },
+        { id: 'legacy', title: { en: 'Legacy' }, description: { en: 'Legacy copy' }, link: 'https://example.invalid/legacy' },
+      ],
+    });
+
+    const englishPromotions = await loadActivePromotions({ locale: 'en-US', fetchImpl: fetchImpl as typeof fetch });
+    const chinesePromotions = await loadActivePromotions({ locale: 'zh-CN', fetchImpl: fetchImpl as typeof fetch });
+
+    expect(englishPromotions.map((promotion) => promotion.ctaLabel)).toEqual(['View Offer', '中文按钮', 'GO', 'GO']);
+    expect(chinesePromotions.map((promotion) => promotion.ctaLabel)).toEqual(['查看优惠', '中文按钮', '立即前往', '立即前往']);
   });
 
   it('falls back to stable promote endpoints when catalog discovery fails', async () => {

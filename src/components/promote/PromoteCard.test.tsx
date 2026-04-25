@@ -10,6 +10,7 @@ const activePromotion = {
   description: '中文文案',
   link: 'https://example.invalid/one',
   platform: 'steam',
+  ctaLabel: '加入愿望单',
 };
 
 describe('PromoteCard', () => {
@@ -25,7 +26,7 @@ describe('PromoteCard', () => {
     expect(markup).toContain('promote-card__close');
     expect(markup).toContain('promote-card__surface');
     expect(markup).toContain('aria-label="关闭推广信息"');
-    expect(markup).toContain('aria-label="打开推广链接: 立即添加到愿望单"');
+    expect(markup).toContain('aria-label="加入愿望单: 立即添加到愿望单"');
   });
 
   it('renders nothing when no active promotion exists', () => {
