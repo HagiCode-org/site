@@ -13,7 +13,7 @@ const activePromotion = {
 };
 
 describe('PromoteCard', () => {
-  it('renders the first active promotion with an accessible external CTA', () => {
+  it('renders the full-width bottom shell with dismiss and CTA controls', () => {
     const markup = renderToStaticMarkup(
       <PromoteCard locale="zh-CN" className="test-promote" initialPromotion={activePromotion} />,
     );
@@ -21,9 +21,10 @@ describe('PromoteCard', () => {
     expect(markup).toContain('data-promote-card="true"');
     expect(markup).toContain('立即添加到愿望单');
     expect(markup).toContain('中文文案');
-    expect(markup).toContain('href="https://example.invalid/one"');
-    expect(markup).toContain('target="_blank"');
-    expect(markup).toContain('rel="noopener noreferrer"');
+    expect(markup).toContain('promote-card__inner');
+    expect(markup).toContain('promote-card__close');
+    expect(markup).toContain('promote-card__surface');
+    expect(markup).toContain('aria-label="关闭推广信息"');
     expect(markup).toContain('aria-label="打开推广链接: 立即添加到愿望单"');
   });
 

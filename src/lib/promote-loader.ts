@@ -7,7 +7,12 @@ type FetchLike = typeof fetch;
 type PromoteLocale = 'zh' | 'en';
 type JsonRecord = Record<string, unknown>;
 
-type PromoteFlag = { id: string; on: boolean };
+type PromoteFlag = {
+  id: string;
+  on: boolean;
+  startTime?: string;
+  endTime?: string;
+};
 type PromoteContent = {
   id: string;
   title: Record<string, string>;
@@ -57,11 +62,51 @@ function pickLocalized(value: Record<string, string>, locale: PromoteLocale): st
   return Object.values(value).find(isNonEmptyString)?.trim() ?? null;
 }
 
+function parseOptionalTimestamp(value: unknown): string | undefined {
+  return isNonEmptyString(value) ? value.trim() : undefined;
+}
+
+function parseTimestamp(value: string | undefined): number | null {
+  if (!value) return null;
+  const timestamp = Date.parse(value);
+  return Number.isFinite(timestamp) ? timestamp : Number.NaN;
+}
+
+function isPromoteFlagActive(flag: PromoteFlag, now = Date.now()): boolean {
+  if (!flag.on) return false;
+
+  const startTime = parseTimestamp(flag.startTime);
+  const endTime = parseTimestamp(flag.endTime);
+
+  if (Number.isNaN(startTime) || Number.isNaN(endTime)) {
+    return false;
+  }
+
+  if (startTime !== null && endTime !== null && startTime >= endTime) {
+    return false;
+  }
+
+  if (startTime !== null && now < startTime) {
+    return false;
+  }
+
+  if (endTime !== null && now >= endTime) {
+    return false;
+  }
+
+  return true;
+}
+
 function parseFlags(payload: unknown): PromoteFlag[] {
   if (!isRecord(payload) || !Array.isArray(payload.promotes)) return [];
   return payload.promotes.flatMap((entry) => {
     if (!isRecord(entry) || !isNonEmptyString(entry.id) || typeof entry.on !== 'boolean') return [];
-    return [{ id: entry.id, on: entry.on }];
+    return [{
+      id: entry.id,
+      on: entry.on,
+      startTime: parseOptionalTimestamp(entry.startTime),
+      endTime: parseOptionalTimestamp(entry.endTime),
+    }];
   });
 }
 
@@ -96,12 +141,12 @@ export async function resolvePromoteUrls(fetchImpl: FetchLike = fetch): Promise<
   return { flagsUrl: FALLBACK_FLAGS_URL, contentUrl: FALLBACK_CONTENT_URL, source: 'fallback' };
 }
 
-export function selectActivePromotions(flags: PromoteFlag[], contents: PromoteContent[], locale: string | null | undefined): ActivePromotion[] {
+export function selectActivePromotions(flags: PromoteFlag[], contents: PromoteContent[], locale: string | null | undefined, now = Date.now()): ActivePromotion[] {
   const promoteLocale = mapLocale(locale);
   const contentById = new Map(contents.map((entry) => [entry.id, entry]));
 
   return flags.flatMap((flag) => {
-    if (!flag.on) return [];
+    if (!isPromoteFlagActive(flag, now)) return [];
     const content = contentById.get(flag.id);
     if (!content) return [];
     const title = pickLocalized(content.title, promoteLocale);
@@ -111,17 +156,17 @@ export function selectActivePromotions(flags: PromoteFlag[], contents: PromoteCo
   });
 }
 
-export async function loadActivePromotions(options: { locale?: string | null; fetchImpl?: FetchLike } = {}): Promise<ActivePromotion[]> {
-  const { locale, fetchImpl = fetch } = options;
+export async function loadActivePromotions(options: { locale?: string | null; fetchImpl?: FetchLike; now?: number } = {}): Promise<ActivePromotion[]> {
+  const { locale, fetchImpl = fetch, now = Date.now() } = options;
   try {
     const urls = await resolvePromoteUrls(fetchImpl);
     const [flagsPayload, contentPayload] = await Promise.all([readJson(fetchImpl, urls.flagsUrl), readJson(fetchImpl, urls.contentUrl)]);
-    return selectActivePromotions(parseFlags(flagsPayload), parseContent(contentPayload), locale);
+    return selectActivePromotions(parseFlags(flagsPayload), parseContent(contentPayload), locale, now);
   } catch {
     return [];
   }
 }
 
-export async function loadFirstActivePromotion(options: { locale?: string | null; fetchImpl?: FetchLike } = {}): Promise<ActivePromotion | null> {
+export async function loadFirstActivePromotion(options: { locale?: string | null; fetchImpl?: FetchLike; now?: number } = {}): Promise<ActivePromotion | null> {
   return (await loadActivePromotions(options))[0] ?? null;
 }

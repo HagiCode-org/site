@@ -1,19 +1,61 @@
 .promoteCard {
   position: fixed;
-  right: max(1rem, env(safe-area-inset-right));
+  inset-inline: 0;
   bottom: max(1rem, env(safe-area-inset-bottom));
   z-index: 70;
-  display: grid;
-  width: min(720px, calc(100vw - 2rem));
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 1.25rem;
+  pointer-events: none;
+}
+
+.promoteCard :global(.promote-card__inner) {
+  position: relative;
+  pointer-events: auto;
+  width: min(72rem, calc(100vw - 1rem));
+  margin-inline: auto;
+  overflow: hidden;
   border: 1px solid rgba(37, 194, 160, 0.28);
   border-radius: 28px;
   background: linear-gradient(135deg, rgba(37, 194, 160, 0.16), rgba(6, 182, 212, 0.08)), rgba(10, 10, 10, 0.72);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
-  padding: 1.25rem;
   backdrop-filter: blur(18px);
+}
+
+.promoteCard :global(.promote-card__surface) {
+  appearance: none;
+  display: grid;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.25rem;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  padding: 1.25rem 4rem 1.25rem 1.25rem;
+  text-align: left;
+}
+
+.promoteCard :global(.promote-card__surface:focus-visible),
+.promoteCard :global(.promote-card__close:focus-visible) {
+  outline: 3px solid rgba(125, 255, 224, 0.9);
+  outline-offset: 4px;
+}
+
+.promoteCard :global(.promote-card__close) {
+  position: absolute;
+  inset-block-start: 0.85rem;
+  inset-inline-end: 0.85rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 1px solid rgba(125, 255, 224, 0.28);
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.36);
+  color: #ffffff;
+  cursor: pointer;
 }
 
 .promoteCard :global(.promote-card__badge) {
@@ -27,38 +69,63 @@
   text-transform: uppercase;
 }
 
+.promoteCard :global(.promote-card__body) {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: auto minmax(13rem, 0.75fr) minmax(18rem, 1.15fr);
+  align-items: center;
+  gap: 1rem;
+}
+
 .promoteCard :global(.promote-card__title) {
   color: var(--text-primary, #ffffff);
-  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.34;
   margin: 0;
 }
 
 .promoteCard :global(.promote-card__description) {
   color: var(--text-secondary, rgba(255, 255, 255, 0.76));
-  line-height: 1.6;
-  margin: 0.25rem 0 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.34;
+  margin: 0;
 }
 
 .promoteCard :global(.promote-card__cta) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.6rem;
+  min-width: 7.5rem;
   border-radius: 999px;
   background: linear-gradient(135deg, #25c2a0, #06b6d4);
   color: #04110f;
+  font-size: 0.875rem;
   font-weight: 800;
-  padding: 0.75rem 1rem;
-  text-decoration: none;
+  padding: 0 1rem;
   white-space: nowrap;
 }
 
-.promoteCard :global(.promote-card__cta:focus-visible) {
-  outline: 3px solid rgba(125, 255, 224, 0.9);
-  outline-offset: 4px;
+.promoteCard :global(.promote-card__surface:hover .promote-card__cta),
+.promoteCard :global(.promote-card__surface:focus-visible .promote-card__cta) {
+  transform: translateX(2px);
 }
 
 @media (max-width: 720px) {
-  .promoteCard {
-    right: 0.75rem;
-    bottom: 0.75rem;
-    width: calc(100vw - 1.5rem);
+  .promoteCard :global(.promote-card__inner) {
+    width: calc(100vw - 0.75rem);
+    border-radius: 1rem;
+  }
+
+  .promoteCard :global(.promote-card__surface) {
+    grid-template-columns: 1fr;
+    padding: 1rem 3.45rem 0.85rem 0.85rem;
+  }
+
+  .promoteCard :global(.promote-card__body) {
     grid-template-columns: 1fr;
   }
 

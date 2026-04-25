@@ -11,6 +11,7 @@ type PromoteCardProps = {
 };
 
 const DEFAULT_FOOTER_SELECTOR = 'footer, [data-footer-root], .footer';
+const DISMISSED_PROMOTIONS_STORAGE_KEY = 'hagicode:promote-card:dismissed-signature';
 
 function ctaLabel(locale: string | undefined) {
   return locale?.toLowerCase().startsWith('zh') ? '打开推广链接' : 'Open promotion';
@@ -19,6 +20,28 @@ function ctaLabel(locale: string | undefined) {
 function platformLabel(platform: string | null, locale: string | undefined) {
   if (platform) return platform;
   return locale?.toLowerCase().startsWith('zh') ? '推荐' : 'Promoted';
+}
+
+function closeLabel(locale: string | undefined) {
+  return locale?.toLowerCase().startsWith('zh') ? '关闭推广信息' : 'Dismiss promotion';
+}
+
+function readDismissedSignature(): string | null {
+  if (typeof window === 'undefined') return null;
+  try {
+    return window.localStorage.getItem(DISMISSED_PROMOTIONS_STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function writeDismissedSignature(signature: string): void {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.setItem(DISMISSED_PROMOTIONS_STORAGE_KEY, signature);
+  } catch {
+    // Ignore unavailable storage; closing still works for this render.
+  }
 }
 
 export function PromoteCard({
@@ -30,6 +53,7 @@ export function PromoteCard({
 }: PromoteCardProps) {
   const [promotion, setPromotion] = useState<ActivePromotion | null>(initialPromotion);
   const [footerVisible, setFooterVisible] = useState(false);
+  const [dismissedSignature, setDismissedSignature] = useState<string | null>(() => readDismissedSignature());
 
   useEffect(() => {
     if (initialPromotion) return;
@@ -60,18 +84,36 @@ export function PromoteCard({
     return () => observer.disconnect();
   }, [footerSelector]);
 
-  if (!promotion || footerVisible) return null;
+  const promotionSignature = promotion?.id ?? null;
+  const dismissed = Boolean(promotionSignature && dismissedSignature === promotionSignature);
+
+  if (!promotion || footerVisible || dismissed) return null;
+
+  const openPromotion = () => {
+    window.open(promotion.link, '_blank', 'noopener,noreferrer');
+  };
+
+  const dismissPromotion = () => {
+    if (!promotionSignature) return;
+    writeDismissedSignature(promotionSignature);
+    setDismissedSignature(promotionSignature);
+  };
 
   return (
     <section className={className} data-promote-card aria-label={locale.toLowerCase().startsWith('zh') ? '推广信息' : 'Promotion'}>
-      <div className="promote-card__badge">{platformLabel(promotion.platform, locale)}</div>
-      <div className="promote-card__body">
-        <h2 className="promote-card__title">{promotion.title}</h2>
-        <p className="promote-card__description">{promotion.description}</p>
+      <div className="promote-card__inner">
+        <button type="button" className="promote-card__close" onClick={dismissPromotion} aria-label={closeLabel(locale)}>
+          <span aria-hidden="true">×</span>
+        </button>
+        <button type="button" className="promote-card__surface" onClick={openPromotion} aria-label={`${ctaLabel(locale)}: ${promotion.title}`}>
+          <span className="promote-card__body">
+            <span className="promote-card__badge">{platformLabel(promotion.platform, locale)}</span>
+            <span className="promote-card__title">{promotion.title}</span>
+            <span className="promote-card__description">{promotion.description}</span>
+          </span>
+          <span className="promote-card__cta" aria-hidden="true">{ctaLabel(locale)}</span>
+        </button>
       </div>
-      <a className="promote-card__cta" href={promotion.link} target="_blank" rel="noopener noreferrer" aria-label={`${ctaLabel(locale)}: ${promotion.title}`}>
-        {ctaLabel(locale)}
-      </a>
     </section>
   );
 }
