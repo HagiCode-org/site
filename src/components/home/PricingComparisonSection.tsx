@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import styles from './PricingComparisonSection.module.css';
 import { getLinkWithLocale } from '@/lib/shared/links';
 import { getBundledSteamStoreLink } from '@/lib/shared/steam-store-link';
+import { getSteamProductImageRecord } from '@/data/steamImageDescriptors';
 
 type Locale = 'zh-CN' | 'en';
 
@@ -42,6 +43,7 @@ type FeatureRow = {
 };
 
 type DlcItem = {
+  productKey?: string;
   category: string;
   title: string;
   price: string;
@@ -50,6 +52,45 @@ type DlcItem = {
   action: ActionLink;
   featured?: 'sponsor';
 };
+
+function getSteamVariantLabel(variant: string): string {
+  return variant.replace(/[-_]+/g, ' ');
+}
+
+function renderSteamImagePreview(item: DlcItem, fallbackStoreUrl: string) {
+  if (!item.productKey) {
+    return null;
+  }
+
+  const record = getSteamProductImageRecord(item.productKey);
+  const preview = record?.images[0];
+  const displayName = record?.displayName ?? item.title;
+  const storeUrl = record?.storeUrl ?? fallbackStoreUrl;
+
+  return (
+    <div className={styles.steamPreview} aria-label={`${displayName} Steam preview`}>
+      {preview ? (
+        <img
+          src={preview.src}
+          alt={preview.alt || `${displayName} ${getSteamVariantLabel(preview.variant)} image`}
+          width={preview.width}
+          height={preview.height}
+          className={styles.steamPreviewImage}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <div className={styles.steamPreviewFallback}>
+          <span className={styles.steamPreviewBadge}>Steam</span>
+          <strong>{displayName}</strong>
+          <small>{record?.type === 'bundle' ? 'Bundle visuals pending' : 'Product visuals pending'}</small>
+        </div>
+      )}
+      <span className={styles.steamPreviewLinkHint}>Open Steam</span>
+      <span className={styles.steamPreviewUrl}>{storeUrl}</span>
+    </div>
+  );
+}
 
 type PricingContent = {
   title: string;
@@ -183,6 +224,7 @@ export function getPricingContent(locale: Locale): PricingContent {
         },
         {
           category: 'Performance DLC',
+          productKey: 'turbo-engine',
           title: 'Hagicode: Turbo Engine DLC',
           price: 'Steam',
           description: 'You can buy this DLC on its own to expand the original proposal concurrency cap, unlock copy switching, add five avatar packs with 10 standalone avatars each, enable custom avatar uploads, customize the top-left logo and title, and align AI-generated commit trailers with your own Co-Authored-By naming rules. We will usually highlight a bundled purchase option called Hagicode Plus so the overall purchase price stays lower. Please check our store page for the latest changes.',
@@ -198,6 +240,7 @@ export function getPricingContent(locale: Locale): PricingContent {
         },
         {
           category: 'Bundle',
+          productKey: 'hagicode-plus',
           title: 'Hagicode Plus',
           price: 'Steam',
           description: 'The official Steam bundle that combines the Hagicode base edition with Turbo Engine DLC in one purchase path.',
@@ -297,6 +340,7 @@ export function getPricingContent(locale: Locale): PricingContent {
       },
       {
         category: '性能 DLC',
+        productKey: 'turbo-engine',
         title: 'Hagicode: Turbo Engine DLC',
         price: '点击查看',
         description: '用户可以单独购买这个 DLC 来扩展原来的并发数，同时支持文案切换，附带 5 套每套 10 个的独立头像，并支持上传自定义头像以及左上角 Logo 和 Title 自定义，同时让 AI 提交里的 Co-Authored-By 署名更容易对齐团队自己的命名和邮箱规范。通常情况下，我们会重点突出一个名为 Hagicode Plus 的一并购买套餐，使总体购买价格更低，请注意查看我们的商店页面变化。',
@@ -312,6 +356,7 @@ export function getPricingContent(locale: Locale): PricingContent {
       },
       {
         category: '组合包',
+        productKey: 'hagicode-plus',
         title: 'Hagicode Plus',
         price: '点击查看',
         description: 'Steam 官方组合包，一次打包 Steam 主体版本和 Turbo Engine DLC，适合想直接进入完整 Steam 工作流的用户。',
@@ -492,6 +537,7 @@ export default function PricingComparisonSection({ locale = 'zh-CN' }: { locale?
                 rel={item.action.external ? 'noopener noreferrer' : undefined}
               >
                 <div className={styles.dlcTop}>
+                  {renderSteamImagePreview(item, item.action.href)}
                   <div className={styles.dlcMain}>
                     <span className={styles.dlcCategory}>{item.category}</span>
                     <h4 className={styles.dlcTitle}>{item.title}</h4>

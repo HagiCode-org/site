@@ -669,6 +669,83 @@
   gap: 1.2rem;
 }
 
+.steamPreview {
+  position: relative;
+  flex: 0 0 min(18rem, 32vw);
+  aspect-ratio: 16 / 9;
+  min-height: 0;
+  max-height: 10.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(27, 127, 204, 0.2);
+  border-radius: 1.05rem;
+  background:
+    radial-gradient(circle at 22% 18%, rgba(86, 194, 255, 0.24), transparent 34%),
+    linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(12, 74, 110, 0.8));
+  color: #e0f2fe;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.steamPreviewImage {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.steamPreviewFallback {
+  display: flex;
+  position: absolute;
+  inset: 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 1rem;
+}
+
+.steamPreviewFallback strong {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.steamPreviewFallback small {
+  color: rgba(224, 242, 254, 0.75);
+  line-height: 1.45;
+}
+
+.steamPreviewBadge,
+.steamPreviewLinkHint {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid rgba(125, 211, 252, 0.32);
+  background: rgba(125, 211, 252, 0.12);
+  padding: 0.22rem 0.55rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.steamPreviewLinkHint {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.steamPreviewUrl {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
 .dlcMain {
   min-width: 0;
 }
@@ -968,6 +1045,11 @@
 
   .dlcTop {
     flex-direction: column;
+  }
+
+  .steamPreview {
+    flex-basis: auto;
+    width: 100%;
   }
 
   .dlcAside {
