@@ -17,13 +17,10 @@ import PricingComparisonSection from '@/components/home/PricingComparisonSection
 import ProductHuntBadgeSection from '@/components/home/ProductHuntBadgeSection';
 import { PromoteCard } from '@/components/promote/PromoteCard';
 import promoteCardStyles from '@/components/promote/PromoteCard.module.css';
-import LiveBroadcastSection from '@/components/home/LiveBroadcastSection';
 import Footer from '@/components/home/Footer';
 import LunarNewYearDecorations from '@/components/home/LunarNewYearDecorations';
 import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
-import { FEATURE_LIVE_BROADCAST_ENABLED } from '@/config/features';
-import { getBundledLiveBroadcastData } from '@/lib/live-broadcast-source';
 // 导入首页样式
 import '@/styles/homepage.css';
 
@@ -42,7 +39,6 @@ const siteBase = import.meta.env.VITE_SITE_BASE || '';
 // 直接构造完整的 URL 字符串，避免 new URL 的路径解析问题
 const canonicalUrl = getAbsoluteSiteUrl('/', 'zh-CN', siteBase);
 const englishUrl = getAbsoluteSiteUrl('/', 'en', siteBase);
-const liveBroadcastData = FEATURE_LIVE_BROADCAST_ENABLED ? getBundledLiveBroadcastData() : null;
 
 const featuredHomepageVideos: FeaturedVideosByProvider = {
   youtube: {
@@ -165,15 +161,6 @@ const supportingHomepageVideos: VideoShowcaseItem[] = [
     <main class="homepage" id="homepage-content" data-homepage-locale={currentLocale}>
       <!-- Hero Section - 首屏必需 -->
       <HeroSection locale="zh-CN" client:load />
-
-      {FEATURE_LIVE_BROADCAST_ENABLED && (
-        <LiveBroadcastSection
-          locale="zh-CN"
-          enabled={FEATURE_LIVE_BROADCAST_ENABLED}
-          initialData={liveBroadcastData}
-          client:load
-        />
-      )}
 
       <!-- Activity Metrics Section -->
       <ActivityMetricsSection locale="zh-CN" client:load />
