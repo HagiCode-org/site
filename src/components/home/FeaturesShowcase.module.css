@@ -1038,6 +1038,13 @@
   gap: 0.55rem;
 }
 
+.supportedProvidersNote {
+  margin: 0.8rem 0 0;
+  color: var(--color-text-secondary);
+  font-size: 0.79rem;
+  line-height: 1.55;
+}
+
 .supportedProviderPill {
   display: inline-flex;
   align-items: center;

@@ -415,6 +415,9 @@ function SmartFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
 function ConvenientFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
   const { t } = useTranslation(locale);
   const [animateBars, setAnimateBars] = useState(true);
+  const supportedProvidersNote = locale === 'zh-CN'
+    ? 'OpenCode 现在可以把共享的 OmniRoute 目录投影到 Hero 的模型默认项里，同时继续允许分支级自定义原始模型标识。'
+    : 'OpenCode can load the shared OmniRoute catalog into hero model defaults while keeping custom raw model identifiers editable for branch-specific workflows.';
 
   useEffect(() => {
     setAnimateBars(true);
@@ -550,6 +553,9 @@ function ConvenientFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
                 </span>
               ))}
             </div>
+            <p className={styles.supportedProvidersNote}>
+              {supportedProvidersNote}
+            </p>
           </div>
 
           <div className={styles.agentMatrix}>
