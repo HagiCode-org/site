@@ -20,6 +20,15 @@ type PromoteContent = {
   cta?: Record<string, string>;
   link: string;
   targetPlatform?: string;
+  image?: PromotionImage;
+};
+
+export type PromotionImage = {
+  src: string;
+  alt: string;
+  variant?: string;
+  width?: number;
+  height?: number;
 };
 
 export type ActivePromotion = {
@@ -29,6 +38,7 @@ export type ActivePromotion = {
   ctaLabel: string;
   link: string;
   platform: string | null;
+  image: PromotionImage | null;
 };
 
 function isRecord(value: unknown): value is JsonRecord {
@@ -73,6 +83,78 @@ function resolveCtaLabel(value: Record<string, string> | undefined, locale: Prom
     if (localized) return localized;
   }
   return locale === 'zh' ? '立即前往' : 'GO';
+}
+
+function parseDimension(value: unknown): number | undefined {
+  if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0) return undefined;
+  return Math.round(value);
+}
+
+function normalizeIndexAssetUrl(src: string): string {
+  return src.startsWith('/') ? new URL(src, INDEX_ORIGIN).toString() : src;
+}
+
+function parseImageDescriptor(value: unknown): Omit<PromotionImage, 'alt'> | null {
+  if (isNonEmptyString(value)) {
+    return { src: normalizeIndexAssetUrl(value.trim()) };
+  }
+
+  if (!isRecord(value)) {
+    return null;
+  }
+
+  const src = isNonEmptyString(value.src)
+    ? value.src.trim()
+    : isNonEmptyString(value.url)
+      ? value.url.trim()
+      : isNonEmptyString(value.imageUrl)
+        ? value.imageUrl.trim()
+        : null;
+
+  if (!src) {
+    return null;
+  }
+
+  return {
+    src: normalizeIndexAssetUrl(src),
+    variant: isNonEmptyString(value.variant) ? value.variant.trim() : undefined,
+    width: parseDimension(value.width),
+    height: parseDimension(value.height),
+  };
+}
+
+function parsePromotionImage(record: JsonRecord): PromotionImage | undefined {
+  const imageCandidate = parseImageDescriptor(record.image)
+    ?? parseImageDescriptor(record.imageUrl)
+    ?? parseImageDescriptor(record.imageURL);
+
+  if (!imageCandidate) {
+    return undefined;
+  }
+
+  const imageRecord = isRecord(record.image) ? record.image : {};
+  const alt = isNonEmptyString(imageRecord.alt)
+    ? imageRecord.alt.trim()
+    : isNonEmptyString(record.imageAlt)
+      ? record.imageAlt.trim()
+      : '';
+
+  return {
+    ...imageCandidate,
+    alt,
+  };
+}
+
+function resolveImage(image: PromotionImage | undefined, title: string): PromotionImage | null {
+  if (!image?.src) {
+    return null;
+  }
+
+  return {
+    ...image,
+    src: normalizeIndexAssetUrl(image.src),
+    alt: isNonEmptyString(image.alt) ? image.alt.trim() : title,
+  };
 }
 
 function parseOptionalTimestamp(value: unknown): string | undefined {
@@ -140,6 +222,7 @@ function parseContent(payload: unknown): PromoteContent[] {
       cta: cta && Object.keys(cta).length > 0 ? cta : undefined,
       link: entry.link,
       targetPlatform: isNonEmptyString(entry.targetPlatform) ? entry.targetPlatform : undefined,
+      image: parsePromotionImage(entry),
     }];
   });
 }
@@ -175,6 +258,7 @@ export function selectActivePromotions(flags: PromoteFlag[], contents: PromoteCo
     const title = pickLocalized(content.title, promoteLocale);
     const description = pickLocalized(content.description, promoteLocale);
     if (!title || !description) return [];
+    const image = resolveImage(content.image, title);
     return [{
       id: content.id,
       title,
@@ -182,6 +266,7 @@ export function selectActivePromotions(flags: PromoteFlag[], contents: PromoteCo
       ctaLabel: resolveCtaLabel(content.cta, promoteLocale),
       link: content.link,
       platform: content.targetPlatform?.trim() || null,
+      image,
     }];
   });
 }

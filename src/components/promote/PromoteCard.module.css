@@ -35,6 +35,10 @@
   text-align: left;
 }
 
+.promoteCard :global(.promote-card__surface[data-has-image='true']) {
+  grid-template-columns: minmax(0, 1fr) clamp(8.5rem, 16vw, 11rem) auto;
+}
+
 .promoteCard :global(.promote-card__surface:focus-visible),
 .promoteCard :global(.promote-card__close:focus-visible) {
   outline: 3px solid rgba(125, 255, 224, 0.9);
@@ -94,6 +98,25 @@
   margin: 0;
 }
 
+.promoteCard :global(.promote-card__media) {
+  align-self: stretch;
+  width: clamp(8.5rem, 16vw, 11rem);
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(125, 255, 224, 0.22);
+  border-radius: 1rem;
+  background: rgba(10, 10, 10, 0.28);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.promoteCard :global(.promote-card__image) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 5.5rem;
+  object-fit: cover;
+}
+
 .promoteCard :global(.promote-card__cta) {
   display: inline-flex;
   align-items: center;
@@ -127,6 +150,10 @@
 
   .promoteCard :global(.promote-card__body) {
     grid-template-columns: 1fr;
+  }
+
+  .promoteCard :global(.promote-card__media) {
+    width: min(100%, 15rem);
   }
 
   .promoteCard :global(.promote-card__cta) {

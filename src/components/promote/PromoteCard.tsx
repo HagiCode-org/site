@@ -101,12 +101,31 @@ export function PromoteCard({
         <button type="button" className="promote-card__close" onClick={dismissPromotion} aria-label={closeLabel(locale)}>
           <span aria-hidden="true">×</span>
         </button>
-        <button type="button" className="promote-card__surface" onClick={openPromotion} aria-label={`${promotion.ctaLabel}: ${promotion.title}`}>
+        <button
+          type="button"
+          className="promote-card__surface"
+          data-has-image={promotion.image ? 'true' : 'false'}
+          onClick={openPromotion}
+          aria-label={`${promotion.ctaLabel}: ${promotion.title}`}
+        >
           <span className="promote-card__body">
             <span className="promote-card__badge">{platformLabel(promotion.platform, locale)}</span>
             <span className="promote-card__title">{promotion.title}</span>
             <span className="promote-card__description">{promotion.description}</span>
           </span>
+          {promotion.image?.src ? (
+            <span className="promote-card__media">
+              <img
+                className="promote-card__image"
+                src={promotion.image.src}
+                alt={promotion.image.alt || promotion.title}
+                loading="eager"
+                decoding="async"
+                width={promotion.image.width}
+                height={promotion.image.height}
+              />
+            </span>
+          ) : null}
           <span className="promote-card__cta" aria-hidden="true">{promotion.ctaLabel}</span>
         </button>
       </div>

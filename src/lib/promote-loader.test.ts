@@ -213,6 +213,39 @@ describe('promote-loader', () => {
     expect(first).toMatchObject({ id: 'fallback', title: 'Fallback', description: 'Fallback copy' });
   });
 
+  it('keeps remote promotion image metadata so the card can render it', async () => {
+    const promotions = await loadActivePromotions({
+      locale: 'en',
+      fetchImpl: createCatalogFetch({
+        promotes: [{ id: 'main-game', on: true }],
+        contents: [
+          {
+            id: 'main-game',
+            title: { en: 'Wishlist Now', zh: '立即添加到愿望单' },
+            description: { en: 'Coming soon', zh: '即将上线' },
+            cta: { en: 'Wishlist on Steam', zh: '加入愿望单' },
+            link: 'https://example.invalid/main-game',
+            targetPlatform: 'steam',
+            image: {
+              src: '/images/promotions/main-game.webp',
+              width: 640,
+              height: 360,
+            },
+          },
+        ],
+      }) as typeof fetch,
+    });
+
+    expect(promotions[0]).toEqual(expect.objectContaining({
+      image: {
+        src: 'https://index.hagicode.com/images/promotions/main-game.webp',
+        alt: 'Wishlist Now',
+        width: 640,
+        height: 360,
+      },
+    }));
+  });
+
   it('returns an empty result when no valid active promotion exists', async () => {
     const fetchImpl = createCatalogFetch({
       promotes: [{ id: 'missing-content', on: true }],
