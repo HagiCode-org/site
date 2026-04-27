@@ -1,8 +1,9 @@
+import { startTransition, useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from './PricingComparisonSection.module.css';
 import { getLinkWithLocale } from '@/lib/shared/links';
 import { getBundledSteamStoreLink } from '@/lib/shared/steam-store-link';
-import { getSteamProductImageRecord } from '@/data/steamImageDescriptors';
+import { getSteamProductImageRecord, type SteamProductImageRecord } from '@/data/steamImageDescriptors';
 
 type Locale = 'zh-CN' | 'en';
 
@@ -53,16 +54,18 @@ type DlcItem = {
   featured?: 'sponsor';
 };
 
+type SteamPreviewRecordMap = Record<string, SteamProductImageRecord | null | undefined>;
+
 function getSteamVariantLabel(variant: string): string {
   return variant.replace(/[-_]+/g, ' ');
 }
 
-function renderSteamImagePreview(item: DlcItem, fallbackStoreUrl: string) {
+function renderSteamImagePreview(item: DlcItem, fallbackStoreUrl: string, records: SteamPreviewRecordMap) {
   if (!item.productKey) {
     return null;
   }
 
-  const record = getSteamProductImageRecord(item.productKey);
+  const record = records[item.productKey] ?? null;
   const preview = record?.images[0];
   const displayName = record?.displayName ?? item.title;
   const storeUrl = record?.storeUrl ?? fallbackStoreUrl;
@@ -83,7 +86,7 @@ function renderSteamImagePreview(item: DlcItem, fallbackStoreUrl: string) {
         <div className={styles.steamPreviewFallback}>
           <span className={styles.steamPreviewBadge}>Steam</span>
           <strong>{displayName}</strong>
-          <small>{record?.type === 'bundle' ? 'Bundle visuals pending' : 'Product visuals pending'}</small>
+          <small>{record?.type === 'bundle' || item.productKey === 'hagicode-plus' ? 'Bundle visuals pending' : 'Product visuals pending'}</small>
         </div>
       )}
       <span className={styles.steamPreviewLinkHint}>Open Steam</span>
@@ -433,11 +436,48 @@ function renderEditionHeader(column: EditionColumn, className?: string) {
 }
 
 export default function PricingComparisonSection({ locale = 'zh-CN' }: { locale?: Locale }) {
-  const content = getPricingContent(locale);
+  const content = useMemo(() => getPricingContent(locale), [locale]);
+  const steamPreviewProductKeys = useMemo(
+    () => Array.from(new Set(content.dlcItems.flatMap((item) => item.productKey ? [item.productKey] : []))),
+    [content.dlcItems],
+  );
+  const [steamPreviewRecords, setSteamPreviewRecords] = useState<SteamPreviewRecordMap>({});
   const cellLabels = {
     included: content.includedLabel,
     notIncluded: content.notIncludedLabel,
   };
+
+  useEffect(() => {
+    if (!steamPreviewProductKeys.length) {
+      return;
+    }
+
+    let cancelled = false;
+
+    Promise.all(steamPreviewProductKeys.map(async (productKey) => [productKey, await getSteamProductImageRecord(productKey)] as const))
+      .then((entries) => {
+        if (cancelled) {
+          return;
+        }
+
+        startTransition(() => {
+          setSteamPreviewRecords(Object.fromEntries(entries));
+        });
+      })
+      .catch(() => {
+        if (cancelled) {
+          return;
+        }
+
+        startTransition(() => {
+          setSteamPreviewRecords(Object.fromEntries(steamPreviewProductKeys.map((productKey) => [productKey, null])));
+        });
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [steamPreviewProductKeys]);
 
   return (
     <section className={styles.section} aria-labelledby="pricing-comparison-title">
@@ -537,7 +577,7 @@ export default function PricingComparisonSection({ locale = 'zh-CN' }: { locale?
                 rel={item.action.external ? 'noopener noreferrer' : undefined}
               >
                 <div className={styles.dlcTop}>
-                  {renderSteamImagePreview(item, item.action.href)}
+                  {renderSteamImagePreview(item, item.action.href, steamPreviewRecords)}
                   <div className={styles.dlcMain}>
                     <span className={styles.dlcCategory}>{item.category}</span>
                     <h4 className={styles.dlcTitle}>{item.title}</h4>
