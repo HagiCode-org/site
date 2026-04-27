@@ -14,6 +14,8 @@ import { trackEvent } from '@/lib/analytics/tracker';
 import { getLinkWithLocale } from '@/lib/shared/links';
 import { getBundledSteamStoreLink, loadSteamStoreLink } from '@/lib/shared/steam-store-link';
 import HeroWorkflowBoard from './HeroWorkflowBoard';
+import ProductOverviewVideoSection from './ProductOverviewVideoSection';
+import type { FeaturedVideosByProvider } from './video-showcase-model';
 
 // 定义主题类型
 type Theme = 'light' | 'dark' | 'lunar-new-year' | undefined;
@@ -32,6 +34,13 @@ interface HeroSectionProps {
   [key: string]: any;
   /** Current locale from Astro context */
   locale?: 'zh-CN' | 'en';
+  /** Optional main product video rendered directly below the Hagicode title */
+  productOverviewVideo?: {
+    copy: {
+      title: string;
+    };
+    featuredVideos: FeaturedVideosByProvider;
+  };
 }
 
 // Icon props type
@@ -117,7 +126,8 @@ export default function HeroSection({
   desktopPlatforms = [],
   desktopVersionError = null,
   desktopChannels,
-  locale: propLocale
+  locale: propLocale,
+  productOverviewVideo,
 }: HeroSectionProps) {
   const { locale: detectedLocale } = useLocale();
   // Use prop locale if provided, otherwise use detected locale
@@ -270,6 +280,15 @@ export default function HeroSection({
           <span className={styles.titlePrefix}>Hagi</span>
           <span className={styles.titleGradient}>code</span>
         </motion.h1>
+
+        {productOverviewVideo && (
+          <ProductOverviewVideoSection
+            locale={locale}
+            copy={productOverviewVideo.copy}
+            featuredVideos={productOverviewVideo.featuredVideos}
+            placement="hero"
+          />
+        )}
 
         {/* CTA 按钮组 */}
         <motion.div className={styles.heroButtons} role="group" aria-label={ctaGroupLabel}>
