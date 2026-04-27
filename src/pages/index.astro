@@ -82,6 +82,10 @@ const supportingHomepageVideos: VideoShowcaseItem[] = [
   },
 ];
 
+const productOverviewVideoCopy = {
+  title: 'Understand Hagicode before the feature tour',
+};
+
 ---
 
 <!doctype html>
@@ -162,7 +166,14 @@ const supportingHomepageVideos: VideoShowcaseItem[] = [
 
     <main class="homepage" id="homepage-content" data-homepage-locale={currentLocale}>
       <!-- Hero Section - 首屏必需 -->
-      <HeroSection locale="en" client:load />
+      <HeroSection
+        locale="en"
+        productOverviewVideo={{
+          copy: productOverviewVideoCopy,
+          featuredVideos: featuredHomepageVideos,
+        }}
+        client:load
+      />
 
       <!-- Activity Metrics Section -->
       <ActivityMetricsSection locale="en" client:load />
@@ -177,13 +188,10 @@ const supportingHomepageVideos: VideoShowcaseItem[] = [
 
       <!-- Video Showcase -->
       <VideoShowcase
-        locale={currentLocale}
-        eyebrow="Real Product Walkthroughs"
-        title="See Hagicode in real coding sessions"
-        description="Start with the primary walkthrough selected for your browser language, then compare two supporting demos that keep the product story understandable even if the embedded player is slow or blocked."
-        featuredLabel="Featured walkthrough"
+        eyebrow="Supporting Product Demos"
+        title="Keep exploring Hagicode in real coding sessions"
+        description="After the main overview, these focused demos show how Hagicode behaves in playful and model-specific scenarios without repeating the primary product introduction."
         supportingLabel="Focused demo"
-        featuredVideos={featuredHomepageVideos}
         supportingVideos={supportingHomepageVideos}
         client:load
       />

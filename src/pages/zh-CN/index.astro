@@ -44,18 +44,16 @@ const featuredHomepageVideos: FeaturedVideosByProvider = {
   youtube: {
     provider: 'youtube',
     embedId: 'AQ8oSTW6wNQ',
-    title: 'Hagicode 英文完整介绍（YouTube）',
-    description:
-      '当浏览器偏好英文时，首页会优先显示这条 YouTube 主介绍视频，先讲清 Hagicode 的整体工作流、产品定位和多 Agent 协作体验。',
+    title: 'Hagicode YouTube',
+    description: 'YouTube video.',
     watchUrl: 'https://www.youtube.com/watch?v=AQ8oSTW6wNQ',
     ctaLabel: '打开 YouTube',
   },
   bilibili: {
     provider: 'bilibili',
     embedId: 'BV1z4oWB3EpY',
-    title: 'Hagicode 中文完整介绍（Bilibili）',
-    description:
-      '中文浏览器默认会看到这条 Bilibili 主介绍视频，用最直接的中文讲清 Hagicode 的核心路线、能力边界和真实使用方式。',
+    title: 'Hagicode Bilibili',
+    description: 'Bilibili video.',
     watchUrl: 'https://www.bilibili.com/video/BV1z4oWB3EpY/',
     ctaLabel: '打开 Bilibili',
   },
@@ -79,6 +77,10 @@ const supportingHomepageVideos: VideoShowcaseItem[] = [
     ctaLabel: '打开 Bilibili',
   },
 ];
+
+const productOverviewVideoCopy = {
+  title: 'Hagicode video',
+};
 
 ---
 
@@ -160,7 +162,14 @@ const supportingHomepageVideos: VideoShowcaseItem[] = [
 
     <main class="homepage" id="homepage-content" data-homepage-locale={currentLocale}>
       <!-- Hero Section - 首屏必需 -->
-      <HeroSection locale="zh-CN" client:load />
+      <HeroSection
+        locale="zh-CN"
+        productOverviewVideo={{
+          copy: productOverviewVideoCopy,
+          featuredVideos: featuredHomepageVideos,
+        }}
+        client:load
+      />
 
       <!-- Activity Metrics Section -->
       <ActivityMetricsSection locale="zh-CN" client:load />
@@ -175,13 +184,9 @@ const supportingHomepageVideos: VideoShowcaseItem[] = [
 
       <!-- Video Showcase -->
       <VideoShowcase
-        locale={currentLocale}
-        eyebrow="真实视频演示"
-        title="视频实测：看看 Hagicode 真正怎么工作"
-        description="先看按浏览器语言匹配的主介绍视频，再补充两条专题演示；就算嵌入播放器加载慢或被拦截，标题、摘要和平台按钮也会把信息说清楚。"
-        featuredLabel="主推荐视频"
+        eyebrow="补充视频演示"
+        title="继续看看 Hagicode 的真实使用片段"
         supportingLabel="补充演示"
-        featuredVideos={featuredHomepageVideos}
         supportingVideos={supportingHomepageVideos}
         client:load
       />
