@@ -1,0 +1,228 @@
+/**
+ * ProductOverviewVideoSection 样式
+ * 首页主产品介绍视频独立区块,复用站点 HUD/Glass 视觉语言。
+ */
+
+.productOverviewVideo {
+  position: relative;
+  width: 100%;
+  padding: 5rem 0;
+  overflow-x: clip;
+  background:
+    radial-gradient(circle at 14% 18%, color-mix(in srgb, var(--color-primary) 16%, transparent), transparent 32%),
+    radial-gradient(circle at 88% 72%, color-mix(in srgb, var(--color-secondary) 14%, transparent), transparent 34%),
+    var(--color-background);
+}
+
+.productOverviewVideo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--color-border-light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border-light) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.18;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, transparent, black 16%, black 84%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 16%, black 84%, transparent);
+}
+
+.heroPlacement {
+  padding: clamp(1.25rem, 3vw, 2rem) 0;
+  background: transparent;
+}
+
+.heroPlacement::before {
+  content: none;
+}
+
+[data-theme='dark'] .productOverviewVideo::before {
+  opacity: 0.1;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-items: stretch;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.heroPlacement .container {
+  max-width: min(100%, 980px);
+  padding: 0;
+}
+
+.videoShell,
+.contentPanel {
+  min-width: 0;
+  border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--color-surface-glass) 92%, white 8%), color-mix(in srgb, var(--color-surface) 90%, transparent 10%));
+  box-shadow:
+    0 28px 78px rgba(15, 23, 42, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+[data-theme='dark'] .videoShell,
+[data-theme='dark'] .contentPanel {
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--color-surface-glass) 92%, #020617 8%), color-mix(in srgb, var(--color-surface) 96%, #020617 4%));
+  box-shadow:
+    0 30px 86px rgba(2, 6, 23, 0.54),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.videoShell {
+  overflow: hidden;
+  padding: 0.85rem;
+  border-radius: 30px;
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.heroPlacement .videoShell {
+  border-radius: 24px;
+}
+
+.videoShell:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--color-primary) 46%, transparent);
+  box-shadow:
+    0 34px 88px rgba(15, 23, 42, 0.18),
+    0 0 0 1px color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+[data-theme='dark'] .videoShell:hover {
+  border-color: color-mix(in srgb, var(--color-secondary) 44%, transparent);
+  box-shadow:
+    0 34px 92px rgba(2, 6, 23, 0.62),
+    0 0 40px rgba(34, 211, 238, 0.12);
+}
+
+.videoShell iframe {
+  max-width: 100%;
+}
+
+.contentPanel {
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 860px);
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  text-align: center;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.watchAction {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  gap: 0.55rem;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 2.85rem;
+  padding: 0.82rem 1.1rem;
+  border-radius: 999px;
+  background: var(--gradient-primary);
+  box-shadow: 0 18px 40px rgba(14, 165, 233, 0.18);
+  color: #ffffff;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    opacity 200ms ease;
+}
+
+.watchAction:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 44px rgba(14, 165, 233, 0.24);
+}
+
+.watchAction:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-primary) 42%, transparent);
+  outline-offset: 3px;
+}
+
+.watchAction svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 1023px) {
+  .productOverviewVideo {
+    padding: 3.75rem 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .productOverviewVideo {
+    padding: 2.75rem 0;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .videoShell {
+    padding: 0.65rem;
+    border-radius: 22px;
+  }
+
+  .contentPanel {
+    width: 100%;
+  }
+
+  .watchAction {
+    width: min(100%, 18rem);
+    min-height: 3rem;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 430px) {
+  .container {
+    padding: 0 0.95rem;
+  }
+
+  .watchAction {
+    padding-inline: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .videoShell,
+  .watchAction {
+    transition: none;
+  }
+}
