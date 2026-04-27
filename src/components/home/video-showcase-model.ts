@@ -20,17 +20,6 @@ export function getHomepageFallbackProvider(locale: HomepageVideoLocale): VideoP
   return locale.toLowerCase().startsWith('zh') ? 'bilibili' : 'youtube';
 }
 
-export function resolveHomepageVideoProvider(
-  browserLanguage: string | null | undefined,
-  fallbackProvider: VideoProvider,
-): VideoProvider {
-  if (typeof browserLanguage !== 'string' || browserLanguage.trim() === '') {
-    return fallbackProvider;
-  }
-
-  return browserLanguage.toLowerCase().startsWith('zh') ? 'bilibili' : 'youtube';
-}
-
 export function getVideoProviderLabel(provider: VideoProvider): string {
   return provider === 'youtube' ? 'YouTube' : 'Bilibili';
 }

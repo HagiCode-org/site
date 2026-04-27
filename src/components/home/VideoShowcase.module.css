@@ -137,12 +137,6 @@
     0 0 36px rgba(34, 211, 238, 0.12);
 }
 
-.featuredCard {
-  grid-column: 1 / -1;
-  grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.95fr);
-  gap: 1.5rem;
-}
-
 .supportingCard {
   grid-template-columns: minmax(0, 1fr);
 }
@@ -262,10 +256,6 @@
     padding: 3.5rem 0;
   }
 
-  .featuredCard {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .description {
     font-size: 1rem;
   }
@@ -305,7 +295,6 @@
     border-radius: 20px;
   }
 
-  .featuredCard,
   .supportingCard {
     grid-column: auto;
     grid-template-columns: minmax(0, 1fr);
