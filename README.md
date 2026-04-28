@@ -24,11 +24,13 @@
 
 ---
 
-| Steam Edition |
-| --- |
-| **Play HagiCode on Steam** |
-| Cloud Saves, Workshop support, Steam distribution, and a direct install path for the desktop edition. |
-| [![Open on Steam](https://img.shields.io/badge/Open%20on-Steam-1b2838?logo=steam&logoColor=white)](https://store.steampowered.com/app/4625540/Hagicode/) |
+## Steam Showcase
+
+| Preview | Product | What it is | Start here |
+| --- | --- | --- | --- |
+| <img src="./public/img/readme-sync/steam/hagicode-wide-capsule.png" alt="HagiCode wide Steam capsule" width="280" /> | **HagiCode** | Base application on Steam with Cloud Saves, Workshop support, and the clearest public install path for the desktop edition. | [Open on Steam](https://store.steampowered.com/app/4625540/Hagicode/) |
+| <img src="./public/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus wide Steam bundle capsule" width="280" /> | **Hagicode Plus** | Bundle guide for the fuller setup. Includes HagiCode and Turbo Engine DLC in one bundle path. | [Read Bundle Guide](https://docs.hagicode.com/en/bundles/hagicode-plus/) · [View Bundle on Steam](https://store.steampowered.com/bundle/73989/Hagicode_Plus/) |
+| <img src="./public/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC wide Steam capsule" width="280" /> | **Turbo Engine DLC** | DLC for HagiCode that unlocks up to 32 concurrent online sessions and more customization options. | [View DLC](https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/) |
 
 ## What HagiCode Is
 

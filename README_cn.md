@@ -24,11 +24,15 @@
 
 ---
 
-| Steam 版本 |
-| --- |
-| **在 Steam 上获取 HagiCode** |
-| 提供云存档、创意工坊、Steam 分发能力，以及更直接的桌面版安装入口。 |
-| [![Open on Steam](https://img.shields.io/badge/Open%20on-Steam-1b2838?logo=steam&logoColor=white)](https://store.steampowered.com/app/4625540/Hagicode/) |
+## Steam 产品一览
+
+先看清 HagiCode 在 Steam 上的本体、套装和 DLC，再决定从哪条入口开始。
+
+| 预览 | 产品 | 定位 | 入口 |
+| --- | --- | --- | --- |
+| <img src="./public/img/readme-sync/steam/hagicode-wide-capsule.png" alt="HagiCode Steam 宽幅宣传图" width="280" /> | **HagiCode** | Steam 本体应用，提供云存档、创意工坊支持，以及更直接的桌面版公开安装入口。 | [在 Steam 上打开](https://store.steampowered.com/app/4625540/Hagicode/) |
+| <img src="./public/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus Steam 套装宽幅宣传图" width="280" /> | **Hagicode Plus** | 适合直接进入完整工作流的套装说明入口，包含 HagiCode 本体和 Turbo Engine DLC。 | [阅读套装说明](https://docs.hagicode.com/bundles/hagicode-plus/) · [在 Steam 上查看套装](https://store.steampowered.com/bundle/73989/Hagicode_Plus/) |
+| <img src="./public/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC Steam 宽幅宣传图" width="280" /> | **Turbo Engine DLC** | HagiCode 的 DLC，可解锁最高 32 个并发在线会话和更多自定义选项。 | [查看 DLC](https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/) |
 
 ## HagiCode 是什么
 
