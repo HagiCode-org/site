@@ -1,0 +1,24 @@
+page:
+  seoTitle: Sobre a equipe HagiCode
+  seoDescription: Conheça a equipe HagiCode e veja lojas oficiais, canais da comunidade, plataformas de conteúdo e cartões escaneáveis do snapshot mais recente de about.
+  title: Crescer por meio da troca
+  sections:
+    store: Loja
+    community: Crescer por meio da troca
+    content: Acompanhe onde a equipe publica conteúdo
+  kindLabels:
+    store: Loja
+    link: Canal
+    contact: Conta
+    qr: Cartão QR
+    image: Cartão de imagem
+  contactFallbackDetail: Use esta conta no aplicativo
+  comboLabel: Canal + QR
+  platformBadges:
+    steam: Loja oficial
+    youtube: Canal oficial
+  genericLinkText:
+    link: Abrir página
+    contact: Abrir perfil
+    qr: Abrir cartão QR
+    image: Abrir imagem

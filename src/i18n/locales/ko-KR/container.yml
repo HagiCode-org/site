@@ -1,0 +1,125 @@
+container:
+  title: Hagicode Container - 컨테이너 배포
+  description: Docker Compose Builder를 통해 Hagicode를 배포하세요. 설정은 간단하고 바로 사용할 수 있습니다. 여러 이미지 소스와 자동 업데이트를 지원합니다.
+  hero:
+    badge: 컨테이너
+    title: Hagicode Container
+    tagline: Docker Compose Builder로 빠르게 배포하고, 간단한 설정으로 바로 사용할 수 있습니다
+    value1: 시각적 설정, 코딩 불필요
+    value2: 환경 격리, 데이터 보안
+    value3: 원클릭 배포, 빠른 시작
+    ctaButton: Docker Compose Builder로 배포하기
+    features:
+      isolation: 환경 격리
+      oneClick: 원클릭 배포
+      fastStart: 빠른 시작
+  features:
+    title: 왜 컨테이너 배포를 선택해야 하나요?
+    isolation:
+      title: 환경 격리
+      description: 컨테이너화된 배포로 의존성 충돌을 피하고 시스템 환경에 영향을 주지 않아 환경을 깔끔하게 유지할 수 있습니다
+    simple:
+      title: 간단한 설정
+      description: Docker Compose Builder의 시각적 설정을 사용하므로 복잡한 스크립트를 직접 작성할 필요가 없습니다
+    crossPlatform:
+      title: 크로스플랫폼 지원
+      description: x86_64 아키텍처를 지원해 다양한 서버와 클라우드 플랫폼에 적합합니다
+    persistent:
+      title: 데이터 영속성
+      description: Volume 마운트를 지원해 데이터를 안전하게 보관하며 컨테이너를 재시작해도 손실되지 않습니다
+    autoUpdate:
+      title: 자동 업데이트
+      description: watchtower를 통한 자동 업데이트를 지원해 최신 버전을 쉽게 유지할 수 있습니다
+    productionReady:
+      title: 프로덕션 준비 완료
+      description: 프로덕션 환경을 기준으로 설계되어 고가용성과 수평 확장에 대응합니다
+  builder:
+    title: Docker Compose Builder
+    subtitle: 가장 간단하고 권장되는 컨테이너 배포 방식
+    visual:
+      title: 시각적 설정
+      description: 친숙한 Web 인터페이스에서 모든 파라미터를 설정할 수 있어 YAML 파일을 수동으로 편집할 필요가 없습니다
+    generate:
+      title: 원클릭 구성 생성
+      description: 모범 사례가 포함된 완전한 docker-compose.yml 파일을 자동으로 생성합니다
+    deploy:
+      title: 빠른 배포
+      description: 구성 파일을 한 번에 내려받아 서비스를 시작하고 몇 분 안에 배포를 완료할 수 있습니다
+    secure:
+      title: 안전하고 신뢰 가능
+      description: 보안 모범 사례가 내장되어 데이터 볼륨과 재시작 정책을 자동으로 구성합니다
+    ctaButton: Docker Compose Builder로 이동
+  mirrors:
+    title: 이미지 소스 선택
+    description: 네트워크 환경과 지역에 따라 가장 적합한 이미지 소스를 선택하세요
+    dockerHub: Docker Hub
+    dockerHubDesc: 세계 최대 규모의 컨테이너 이미지 레지스트리로 국제 네트워크 사용자에게 적합합니다
+    dockerHubCmd: newbe36524/hagicode:0
+    azure: Azure ACR
+    azureDesc: Microsoft Azure의 이미지 서비스로 중국 지역에서 더 빠르게 접근할 수 있습니다
+    azureCmd: hagicode.azurecr.io/hagicode:0
+    aliyun: Aliyun ACR
+    aliyunDesc: 중국 본토 사용자를 위한 Aliyun의 가속 이미지 서비스입니다
+    aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
+  faq:
+    title: 자주 묻는 질문
+    q1:
+      question: Container 버전과 Desktop 버전의 차이는 무엇인가요?
+      intro: 두 버전 모두 장점이 있으며 사용 시나리오에 맞게 선택할 수 있습니다.
+      desktopTitle: Desktop 버전
+      desktop1: 내 컴퓨터에서 로컬로 실행되어 더 가볍습니다
+      desktop2: 서버 설정이 필요 없고 바로 사용할 수 있습니다
+      desktop3: 개인 개발자와 가벼운 사용 시나리오에 적합합니다
+      desktop4: 모든 데이터가 완전히 로컬에 저장됩니다
+      containerTitle: Container 버전
+      container1: 서버에 배포할 수 있으며 원격 접속을 지원합니다
+      container2: 환경이 격리되어 시스템 환경에 영향을 주지 않습니다
+      container3: 팀 협업과 프로덕션 환경에 더 적합합니다
+      container4: 자동화 배포와 수평 확장을 지원합니다
+    q2:
+      question: Docker Compose Builder란 무엇인가요?
+      intro: Docker Compose Builder는 다음을 도와주는 시각적 구성 도구입니다.
+      point1: Web 인터페이스에서 모든 컨테이너 파라미터를 설정
+      point2: docker-compose.yml 파일 자동 생성
+      point3: 모범 사례와 보안 설정 내장
+      point4: 원클릭 다운로드와 서비스 시작
+      note: 복잡한 YAML을 직접 작성할 필요가 없습니다. Docker 초보자도 쉽게 배포할 수 있습니다.
+    q3:
+      question: 컨테이너 버전은 어떤 시스템 아키텍처를 지원하나요?
+      answer: Hagicode 컨테이너 이미지는 현재 <strong>x86_64 (amd64)</strong> 아키텍처를 지원하며 대부분의 서버와 PC에서 사용할 수 있습니다.
+      note: 이미지를 가져올 때 Docker가 시스템에 맞는 아키텍처를 자동으로 선택합니다.
+    q4:
+      question: 컨테이너는 어떻게 업데이트하나요?
+      intro: Docker Compose로 배포한 경우 업데이트는 매우 간단합니다.
+      code: |-
+        docker-compose pull
+        docker-compose up -d
+      watchtower: 또는 Watchtower를 사용해 자동 업데이트할 수 있습니다.
+    q5:
+      question: 데이터 영속성은 어떻게 설정하나요?
+      intro: Docker Compose Builder가 데이터 볼륨을 자동으로 설정합니다. 기본적으로 데이터는 Docker Volume에 저장되며 다음을 보장합니다.
+      point1: 컨테이너를 삭제해도 데이터가 사라지지 않습니다
+      point2: 컨테이너 업그레이드 중에도 데이터가 유지됩니다
+      point3: 백업과 복구가 쉽습니다
+    q6:
+      question: 컨테이너 시작에 실패하면 어떻게 하나요?
+      intro: 컨테이너 시작 실패를 점검하는 단계입니다.
+      step1:
+        title: '컨테이너 상태 확인:'
+        code: docker-compose ps
+      step2:
+        title: '컨테이너 로그 확인:'
+        code: docker-compose logs hagicode
+      step3:
+        title: '포트 사용 여부 확인:'
+        desc: 서비스 포트가 3000이라면 다음 명령으로 확인하세요.
+        code: netstat -tlnp | grep 3000
+        solution: 포트가 이미 사용 중이라면 다음을 시도하세요.
+        solution1: 해당 포트를 점유한 프로세스를 종료
+        solution2: 또는 Docker Compose Builder에서 다른 포트를 설정
+      help: 문제가 계속되면 자세한 문서를 확인하거나 기술 지원에 문의하세요.
+  cta:
+    title: Docker Compose Builder 시작하기
+    subtitle: 가장 간단하고 권장되는 컨테이너 배포 방식
+    button: 배포 가이드로 이동
+    github: GitHub 저장소

@@ -1,0 +1,339 @@
+hero:
+  tagline: Aumente a eficiência de desenvolvimento com ferramentas de código impulsionadas por IA
+  description: O HagiCode ajuda desenvolvedores a focarem no código, não em trabalho repetitivo
+  ctaButton: Começar
+  taglines:
+    smart: Inteligente · Eficiente · Divertido
+    aiDriven: Orquestrado por IA · Multi-Agent em paralelo
+    openspec: OpenSpec · Revolução do fluxo de trabalho
+    multiThread: Multi-Agent · Multi-instância
+  lunarTaglines:
+    happyNewYear: Feliz ano novo · Ano do cavalo
+    aiPowered: IA como força motriz · Código rumo ao sucesso
+    smartCoding: Smart coding · Boas festas
+    openspecLuck: OpenSpec · Prosperidade e sucesso
+    efficiency: Eficiência em dobro · Boa fortuna
+  problem: As ferramentas tradicionais de coding com IA têm
+  painPoint: pontos fracos
+  painPoints: ": contexto limitado, sessões bagunçadas e pouca colaboração."
+  solution: O HagiCode redefine a experiência de coding com IA com
+  features:
+    - workflow OpenSpec
+    - execução multi-agent e multi-instância
+    - gamificação Hero Dungeon
+  redefine: .
+  valueCards:
+    smart:
+      title: Inteligente
+      description: O OpenSpec leva ideias para a execução mais rápido.
+    efficient:
+      title: Eficiente
+      description: A execução multi-agent transforma espera em vazão real.
+    interesting:
+      title: Divertido
+      description: O Hero Dungeon faz colaboração e prática parecerem uma aventura.
+  buttons:
+    desktopApp: Instalar app Desktop
+    containerApp: Instalar app Container
+    learnMore: Saiba mais
+  techStack:
+    poweredBy: Impulsionado por
+  qqGroup:
+    title: Entrar no grupo de suporte técnico
+    description: Grupo QQ de suporte técnico do Hagicode
+    joinButton: Entrar agora
+  secondaryLine: O Hagicode oferece suporte aos Agent principais, dobra a eficiência de gestão paralela e reduz alucinações com OpenSpec.
+features:
+  showcase:
+    title: Três recursos centrais
+    subtitle: Redefina sua experiência de coding com IA
+  smart:
+    badge: INTELIGENTE
+    title: Inteligente
+    subtitle: Workflow OpenSpec para elevar a eficiência do coding com IA
+    efficiency: Ganho de eficiência
+    traditional: Tradicional
+    hagicode: Hagicode
+    description: Um workflow completo de propostas em 9 estágios, da ideia ao arquivo, com assistência de IA do começo ao fim. Sua eficiência de coding pode aumentar em 3x.
+    workflow:
+      idea:
+        label: Ideia
+        desc: Comece pela ideia
+      proposal:
+        label: Proposta
+        desc: A IA gera a proposta
+      review:
+        label: Revisão
+        desc: Revisão automática
+      tasks:
+        label: Tarefas
+        desc: Quebra de tarefas
+      code:
+        label: Código
+        desc: Coding inteligente
+      test:
+        label: Teste
+        desc: Testes automáticos
+      refactor:
+        label: Refactor
+        desc: Refactor de código
+      docs:
+        label: Docs
+        desc: Geração de documentação
+      archive:
+        label: Arquivo
+        desc: Arquivo de conhecimento
+    paused: Em pausa - clique no nó para alternar
+  convenient:
+    badge: EFICIENTE
+    title: Eficiente
+    subtitle: Execução multi-agent e multi-instância que mantém sua cota em movimento
+    traditional: Fluxo tradicional de Agent único / instância única
+    multiThread: Matriz paralela multi-agent
+    boost: Ganho de vazão
+    boostValue: 10x+ em paralelo
+    description: Agent CLI atualmente suportados, como Claude Code, Codex, GitHub Copilot, OpenCode e Hermes, podem trabalhar em várias instâncias ao mesmo tempo, então propostas, correções e reviews avançam em paralelo em vez de esperar em uma fila serial.
+    agentMatrix:
+      title: Matriz de execução paralela
+      badge: Vários agentes / várias instâncias
+      status: Vários agentes estão conduzindo várias instâncias agora mesmo
+      agents:
+        claude:
+          name: Claude Code
+          role: Proposta / revisão
+          instances:
+            - Rascunhar a spec
+            - Conferir o design
+            - Revisar o arquivo
+        codex:
+          name: Codex
+          role: Implementação / correções
+          instances:
+            - Construir recurso A
+            - Construir recurso B
+            - Corrigir regressão
+        router:
+          name: Qwen · GLM
+          role: Análise / suporte
+          instances:
+            - Rastrear problema
+            - Refinar copy
+            - Registrar insights
+      supportedNames:
+        title: 11 Agent CLI atualmente suportados
+        names:
+          - Claude Code
+          - Codex
+          - GitHub Copilot
+          - OpenCode
+          - Hermes
+          - QoderCLI
+          - Kiro
+          - Kimi
+          - Gemini
+          - DeepAgents
+          - Codebuddy
+    supportedProvidersNote: O OpenCode pode carregar o catálogo compartilhado do OmniRoute nos padrões do modelo hero e, ao mesmo tempo, manter editáveis os identificadores brutos de modelo para workflows específicos por branch.
+  interesting:
+    badge: DIVERTIDO
+    title: Divertido
+    subtitle: Hero Dungeon torna a colaboração e a prática no campus mais vivas
+    features:
+      dungeons:
+        label: Hero Dungeons
+        desc: Transforma geração, execução e bancadas de prompt em percursos de dungeon
+      captains:
+        label: Escalação de capitães
+        desc: Atribua o capitão hero certo a cada dungeon
+      battle:
+        label: Relatórios de batalha
+        desc: Revise XP, níveis e resultados de execução após cada push
+    description: A diversão não depende mais só de badges de conquista. Hero Dungeon, escalações de capitães, visuais de prompt e relatórios de batalha transformam a prática diária de coding com IA em uma aventura coordenada para laboratórios e equipes estudantis.
+    dungeonCards:
+      proposal:
+        title: Dungeon de proposta
+        desc: OpenSpec generate / apply / archive
+        status: Capitão pronto
+      autotask:
+        title: Dungeon AutoTask
+        desc: Correções paralelas e automação em lote
+        status: 2 instâncias ativas
+      prompt:
+        title: Dungeon de prompt
+        desc: Prévia de prompt e bancada de estilo
+        status: Sincronia visual pronta
+    roster:
+      title: Escalação atual de capitães
+      heroes:
+        strategist:
+          name: Spec Strategist
+          role: Capitão de proposta
+        runner:
+          name: Patch Runner
+          role: Capitão de execução
+        artist:
+          name: Prompt Artist
+          role: Suporte visual
+    battleReport:
+      title: Relatório de dungeon de hoje
+      badge: Hero Battle
+      metrics:
+        dungeons:
+          value: '4'
+          label: Dungeons avançadas
+        level:
+          value: Lv.27
+          label: Nível do capitão
+        xp:
+          value: 12.8M
+          label: XP de hoje
+      note: Quando várias dungeons avançam em paralelo, este relatório reúne experiência, níveis e resultados de execução em uma única leitura.
+    gallery:
+      dungeons:
+        title: Carrossel de mapas de dungeon
+        subtitle: 10 visuais aleatórios da coleção atual de mapas de dungeon e prompts do frontend.
+      heroes:
+        title: Carrossel da galeria de heróis
+        subtitle: 10 visuais aleatórios da coleção atual de heróis do frontend.
+productOverviewVideo:
+  title: Entenda o Hagicode antes do tour de recursos
+videoShowcase:
+  eyebrow: Demos complementares do produto
+  title: Continue explorando o Hagicode em sessões reais de código
+  description: Após a visão geral principal, estas demos focadas mostram como o Hagicode se comporta em cenários mais lúdicos e específicos por modelo, sem repetir a introdução principal do produto.
+  supportingLabel: Demo focada
+homepageVideos:
+  overview:
+    youtube:
+      title: Visão geral do produto Hagicode no YouTube
+      description: A principal introdução em inglês ao fluxo de trabalho do Hagicode, ao seu estilo de execução multiagente e ao motivo de o produto ir além de um chat genérico de programação com IA.
+      ctaLabel: Abrir no YouTube
+    bilibili:
+      title: Visão geral do produto Hagicode no Bilibili
+      description: Uma versão hospedada no Bilibili da introdução principal do produto, voltada a visitantes cujo navegador sinaliza preferência por chinês ou que preferem a rota doméstica de reprodução.
+      ctaLabel: Abrir no Bilibili
+  supporting:
+    first:
+      title: IA jogando enquanto programa
+      description: Este clipe complementar mais leve mostra que o assistente continua vivo e surpreendente em sessões reais de código, em vez de parecer apenas um gerador de código seco.
+      ctaLabel: Abrir no Bilibili
+    second:
+      title: 'GPT Codex no Hagicode: teste ao vivo'
+      description: Depois da apresentação principal localizada, esta validação mais focada ajuda possíveis usuários a avaliar como o GPT Codex se comporta dentro do produto real.
+      ctaLabel: Abrir no Bilibili
+  hero:
+    steamAriaLabel: Abrir Hagicode no Steam
+    ctaGroupLabel: Ações principais da página inicial
+pricing:
+  docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
+  title: Edições e preços
+  limitTitle: Regra de concorrência de propostas
+  limitDescription: As edições Free e Steam incluem um limite de 3 propostas simultâneas. Propostas em geração, execução e arquivamento contam para o mesmo limite. O DLC Turbo Engine expande esse limite para 32.
+  plusTitle: Observação sobre Hagicode Plus
+  plusDescription: Hagicode Plus é o bundle oficial da Steam que combina a edição principal da Steam com o DLC Turbo Engine.
+  featureHeader: Recurso
+  includedLabel: Incluído
+  notIncludedLabel: Não incluído
+  editions:
+    desktop:
+      title: Desktop
+    container:
+      title: Container
+  rows:
+    pricing: Preço
+    allFreeFeaturesIncluded: Todos os recursos gratuitos incluídos
+    vault: Cofre
+    skills: Habilidades
+    proposalWorkflow: Fluxo de propostas
+    localAchievements: Conquistas locais
+    allAgentCliIntegrations: Todas as integrações de Agent CLI
+    speechRecognition: Reconhecimento de voz
+    omniRouteIntegration: Integração com OmniRoute
+    githubIntegration: Integração com GitHub
+    gitManagement: Gerenciamento de Git
+    maximumConcurrentProposals: Máximo de propostas simultâneas
+    copySwitchingSupport: Troca de textos
+    turboEngineAvatarPacks: Pacotes de avatar Turbo Engine
+    customAvatarUploads: Upload de avatares personalizados
+    customLogo: Logo personalizado
+    customTitle: Título personalizado
+    customCoAuthoredByInfo: Informações Co-Authored-By personalizadas
+    steamCloudAchievements: Conquistas na nuvem da Steam
+    freeDlcSupport: Suporte a DLC gratuito
+    steamWorkshopSupport: Suporte ao Steam Workshop
+    cloudSaveSupport: Suporte a salvamento na nuvem
+  values:
+    free: Gratuito
+    viewOnSteam: Ver na Steam
+  dlc:
+    label: DLCs e bundles
+    title: Pacotes opcionais
+    actions:
+      openSteam: Abrir Steam
+    preview:
+      bundlePending: Imagens do bundle pendentes
+      productPending: Imagens do produto pendentes
+    items:
+      allBeauties:
+        category: DLC gratuito
+        title: Hagicode - All Beauties Pack
+        price: Gratuito
+        description: Um pacote cosmético extra para usuários da Steam.
+        bullets:
+          - Adiciona 1.000 avatares em estilo anime girl
+          - Abre espaço para mais conteúdos com tema beauty em futuras atualizações
+      turboEngine:
+        category: DLC de desempenho
+        title: 'Hagicode: Turbo Engine DLC'
+        price: Steam
+        description: Você pode comprar este DLC separadamente para expandir o limite original de propostas simultâneas, desbloquear troca de textos, adicionar cinco pacotes de avatares com 10 avatares independentes cada, habilitar uploads de avatares personalizados, personalizar o Logo e o título no canto superior esquerdo e alinhar trailers de commits gerados por AI às suas próprias regras Co-Authored-By. Normalmente destacaremos a opção de compra em bundle chamada Hagicode Plus para manter o preço total mais baixo. Consulte a página da loja para ver as mudanças mais recentes.
+        bullets:
+          - Suporta Logos e títulos personalizados no canto superior esquerdo
+          - Inclui cinco pacotes de avatares com 10 avatares selecionáveis em cada pacote
+          - Suporta uploads de avatares personalizados
+          - Permite que equipes personalizem a assinatura AI Co-Authored-By para fluxos de commit
+          - Desbloqueia suporte para troca de texto e redação
+          - Expande o limite máximo de propostas simultâneas para 32
+      hagicodePlus:
+        category: Pacote
+        title: Hagicode Plus
+        price: Steam
+        description: O bundle oficial da Steam que combina a edição base do Hagicode com o DLC Turbo Engine em um único caminho de compra.
+        bullets:
+          - Agrupa a edição principal da Steam e o DLC Turbo Engine
+          - Mantém o upgrade de 32 propostas simultâneas vinculado ao caminho do bundle
+          - Funciona como a entrada de compra mais clara para obter toda a configuração Steam de uma vez
+      sponsor:
+        category: DLC de apoiador
+        title: Hagicode - Sponsor Pack
+        price: Steam
+        description: Se você acha que o Hagicode é realmente excelente e quer dar apoio financeiro direto, comprar o Sponsor Pack dá mais fôlego ao projeto e nos ajuda a mantê-lo por mais tempo.
+        bullets:
+          - Um tema escuro exclusivo
+          - Um tema claro exclusivo
+          - Uma conquista exclusiva da Steam
+workflowBoard:
+  titleLines:
+    - Agents principais suportados
+    - Eficiência 10x na gestão paralela
+    - OpenSpec reduz alucinações
+  taskLabel: Tarefa
+  headerSummary: Tarefa / Agent
+  steps:
+    - Idear
+    - Propor
+    - Executar
+    - Arquivar
+  activeStates:
+    - Ideando
+    - Propondo
+    - Executando
+    - Arquivando
+  completedState: Concluído
+  metrics:
+    completed: Tarefas concluídas
+    efficiency: Eficiência em tempo real
+    serialTime: Tempo serial equivalente
+    elapsedTime: Tempo decorrido
+    formula: Eficiência = trabalho serial equivalente / tempo natural decorrido
+    serialHint: em relação a um único executor serial

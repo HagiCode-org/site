@@ -1,0 +1,123 @@
+desktop:
+  title: Hagicode Desktop - 下载
+  description: 下载 Hagicode Desktop，本地化的 AI 代码助手。支持 Windows、macOS 和 Linux，保护隐私，快速响应。
+  features:
+    title: 核心功能
+    local:
+      title: 本地运行
+      description: 所有数据本地处理，无需上传到云端，确保代码隐私安全
+    privacy:
+      title: 隐私保护
+      description: 代码完全不上传，支持离线使用，保护你的知识产权
+    fast:
+      title: 快速响应
+      description: 毫秒级响应时间，无需等待网络请求，提升开发效率
+    crossPlatform:
+      title: 跨平台支持
+      description: 支持 Windows、macOS 和 Linux，满足不同开发环境需求
+    autoUpdate:
+      title: 自动更新
+      description: 自动检查更新，一键升级到最新版本，获取最新功能
+    multiLanguage:
+      title: 多语言支持
+      description: 内置中英文界面，支持国际化开发团队协作
+  systemRequirements:
+    title: 系统要求
+    windows: Windows
+    macos: macOS
+    linux: Linux
+    os: 操作系统
+    processor: 处理器
+    memory: 内存
+    diskSpace: 磁盘空间
+    network: 网络
+    windowsOs: Windows 10/11 (64-bit)
+    macosOs: macOS 12+ (Monterey 或更高版本)
+    linuxOs: Ubuntu 20.04+ / Debian 11+ / 其他主流发行版
+    windowsProcessor: Intel Core i3 或同等性能处理器
+    macosProcessor: Apple Silicon (M1/M2/M3) 或 Intel Core i3+
+    linuxProcessor: Intel Core i3 或同等性能处理器
+    memoryRec: 4GB RAM (推荐 8GB)
+    disk: 2GB 可用空间
+    networkDesc: 初始下载需要网络连接（后续可离线使用）
+  download:
+    title: 安装包下载
+    windowsDesc: 提供适用于 Windows 10/11 的稳定安装包，包含标准安装版和便携版。
+    macosDesc: 提供面向 Apple Silicon 和 Intel Mac 的原生构建版本。
+    linuxDesc: 提供适用于主流 x64 和 ARM64 Linux 发行版的 AppImage 与压缩包。
+    note: 如果此处无法加载安装包列表，请使用页面上方的版本历史链接访问官方索引页。
+    features:
+      signed: 已签名安装包
+      autoUpdate: 自动检测更新
+      multiLanguage: 多语言界面
+  installation:
+    title: 快速安装
+    step1:
+      number: '1'
+      title: 下载安装包
+      description: 根据你的操作系统选择对应的安装包
+    step2:
+      number: '2'
+      title: 运行安装程序
+      description: 双击下载的安装包，按照提示完成安装
+    step3:
+      number: '3'
+      title: 启动应用
+      description: 首次启动时会引导你完成初始配置
+    step4:
+      number: '4'
+      title: 开始使用
+      description: 配置完成后即可开始使用 Hagicode Desktop
+  faq:
+    title: 常见问题
+    q1:
+      question: Desktop 版本和 Server 版本有什么区别？
+      intro: Hagicode 提供两种部署方式：Desktop 版本和 Server 版本。两种版本各有优势，但都采用用户自主管理服务器和数据的方式，因此都具备更好的数据保护特性。
+      desktopTitle: Desktop 版本
+      desktop1: 在本地电脑上运行，更加轻便
+      desktop2: 无需配置服务器，开箱即用
+      desktop3: 适合个人开发者和轻量使用场景
+      desktop4: 所有数据完全本地化
+      serverTitle: Server 版本
+      server1: 可部署在远程服务器上
+      server2: 支持多用户远程访问
+      server3: 更适合团队协作和广泛扩展
+      server4: 为未来的企业级功能和多设备同步做准备
+      conclusion: 无论选择哪种版本，你都完全掌控自己的服务器和数据，享受更好的隐私保护和数据安全。
+    q2:
+      question: 安装后还需要做什么？
+      intro: Hagicode Desktop 本质上是一个启动器，安装完成后首次启动时，它会引导你完成以下步骤：
+      step1: <strong>下载 Hagicode Core：</strong> Desktop 会自动检测并提示下载 Hagicode 核心组件
+      step2: <strong>安装核心组件：</strong> 按照界面提示完成核心组件的安装
+      step3: <strong>配置默认 Agent CLI：</strong> 选择当前支持的 Agent CLI，并完成对应的登录、授权或本地安装。
+      note: 整个过程在 Desktop 界面中都有清晰的提示指引。首次启动请保持网络连接以完成核心组件下载；部分 Agent CLI 还需要手动安装或认证，但这不影响它们属于当前支持范围。
+      done: 完成这些步骤后，你就可以正常使用 Hagicode Desktop 的所有功能了。
+    q3:
+      question: 如何检查更新？
+      answer: Desktop 会自动检查更新。当有新版本可用时，会在界面右上角显示提示。你也可以在"设置"中手动检查更新。
+    q4:
+      question: 支持哪些 AI Agent CLI？
+      intro: Hagicode Desktop 当前活跃支持以下 Agent CLI：
+      active: <strong>当前活跃支持：</strong>Claude Code、Codex、GitHub Copilot、OpenCode、Hermes、QoderCLI、Kiro、Kimi、Gemini、DeepAgents、Codebuddy
+      manual: <strong>手动安装或认证：</strong>Hermes、Gemini、DeepAgents 需要先完成本地安装或认证；其余 CLI 提供一键安装入口或引导安装流程。
+      legacy: <strong>历史兼容：</strong>IFlowCli 仅保留给旧数据兼容，不属于当前活跃支持范围。
+      closing: 是否支持，与是否提供一键安装，是两件事。某个 CLI 需要手动安装，并不表示它尚未支持。
+    q5:
+      question: 是否支持离线使用？
+      intro: 是的！Hagicode Desktop 支持完全离线使用：
+      point1: 首次安装和配置需要网络连接（下载核心组件和 AI 模型）
+      point2: 配置完成后可断网使用所有功能
+      point3: 你的代码和数据永远不会上传到云端
+      point4: 所有 AI 处理都在本地完成
+    q6:
+      question: macOS 提示 Hagicode.app 已损坏或无法打开，应该怎么办？
+      intro: 如果 Hagicode Desktop 安装在默认路径 /Applications/Hagicode.app，而 macOS Gatekeeper 阻止首次启动，请使用下面的命令移除应用的隔离属性。
+      cause: 这是因为 macOS 会为从互联网下载的应用添加 com.apple.quarantine 属性。这属于 macOS 的安全隔离机制，不代表 Hagicode 安装器本身出现故障。
+      command: sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app
+      note: 请在终端中以管理员权限运行该命令，然后重新启动 Hagicode Desktop。
+    q7:
+      question: 遇到问题如何获取帮助？
+      intro: 如果你在使用 Hagicode Desktop 时遇到问题，可以通过以下方式获取帮助：
+      point1: <strong>技术支持群：</strong>加入 QQ 群 610394020
+      point2: <strong>在线文档：</strong>查看完整的使用文档和教程
+      point3: <strong>GitHub Issues：</strong>在项目仓库提交问题报告

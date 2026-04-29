@@ -1,0 +1,24 @@
+page:
+  seoTitle: 關於 HagiCode 團隊
+  seoDescription: 認識 HagiCode 團隊，並瀏覽官方商店、社群管道、內容平台，以及來自最新 about 快照的可掃碼卡片。
+  title: 增進交流，共同成長
+  sections:
+    store: 商店
+    community: 增進交流，共同成長
+    content: 關注團隊持續發佈的內容
+  kindLabels:
+    store: 商店
+    link: 頻道
+    contact: 帳號
+    qr: QR 卡片
+    image: 圖片卡片
+  contactFallbackDetail: 在應用程式內使用此帳號
+  comboLabel: 頻道 + QR
+  platformBadges:
+    steam: 官方商店
+    youtube: 官方頻道
+  genericLinkText:
+    link: 開啟頁面
+    contact: 開啟個人主頁
+    qr: 開啟 QR 卡片
+    image: 開啟圖片

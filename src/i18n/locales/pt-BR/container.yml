@@ -1,0 +1,125 @@
+container:
+  title: Hagicode Container - Implantação em contêiner
+  description: Implante o Hagicode com Docker Compose Builder. Configuração simples, pronto para uso. Compatível com múltiplas fontes de imagem e atualizações automáticas.
+  hero:
+    badge: Contêiner
+    title: Hagicode Container
+    tagline: Implante rapidamente com o Docker Compose Builder, com configuração simples e pronto para uso
+    value1: Configuração visual, sem programar
+    value2: Isolamento de ambiente, segurança de dados
+    value3: Implantação com um clique, início rápido
+    ctaButton: Implantar com Docker Compose Builder
+    features:
+      isolation: Isolamento de ambiente
+      oneClick: Implantação com um clique
+      fastStart: Início rápido
+  features:
+    title: Por que escolher implantação em contêiner?
+    isolation:
+      title: Isolamento de ambiente
+      description: A implantação em contêiner evita conflitos de dependências, não afeta o ambiente do sistema e mantém a máquina limpa
+    simple:
+      title: Configuração simples
+      description: Use a configuração visual do Docker Compose Builder sem precisar escrever scripts complexos
+    crossPlatform:
+      title: Suporte multiplataforma
+      description: Compatível com arquitetura x86_64, adequada para diversos servidores e plataformas de nuvem
+    persistent:
+      title: Persistência de dados
+      description: Suporta montagem de volumes para manter os dados seguros e confiáveis, sem perdas ao reiniciar o contêiner
+    autoUpdate:
+      title: Atualizações automáticas
+      description: Suporta atualizações automáticas com watchtower para manter tudo em dia com facilidade
+    productionReady:
+      title: Pronto para produção
+      description: Projetado para ambientes de produção, com suporte a alta disponibilidade e escalabilidade horizontal
+  builder:
+    title: Docker Compose Builder
+    subtitle: O método de implantação em contêiner mais simples e recomendado
+    visual:
+      title: Configuração visual
+      description: Configure todos os parâmetros por meio de uma interface Web amigável, sem editar arquivos YAML manualmente
+    generate:
+      title: Geração de configuração com um clique
+      description: Gera automaticamente arquivos docker-compose.yml completos com configurações de boas práticas
+    deploy:
+      title: Implantação rápida
+      description: Baixe os arquivos de configuração com um clique e inicie os serviços em poucos minutos
+    secure:
+      title: Seguro e confiável
+      description: Inclui boas práticas de segurança e configura automaticamente volumes de dados e políticas de reinício
+    ctaButton: Ir para o Docker Compose Builder
+  mirrors:
+    title: Seleção da origem da imagem
+    description: Escolha a origem de imagem mais adequada ao seu ambiente de rede e à sua localização
+    dockerHub: Docker Hub
+    dockerHubDesc: O maior registro de imagens de contêiner do mundo, adequado para usuários com redes internacionais
+    dockerHubCmd: newbe36524/hagicode:0
+    azure: Azure ACR
+    azureDesc: Serviço de imagens da Microsoft Azure, com acesso mais rápido a partir da China
+    azureCmd: hagicode.azurecr.io/hagicode:0
+    aliyun: Aliyun ACR
+    aliyunDesc: Serviço acelerado de imagens da Aliyun para a China continental, recomendado para usuários do território continental chinês
+    aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
+  faq:
+    title: Perguntas frequentes
+    q1:
+      question: Qual é a diferença entre as versões Container e Desktop?
+      intro: 'As duas versões têm suas vantagens. Você pode escolher conforme o seu cenário de uso:'
+      desktopTitle: Versão Desktop
+      desktop1: Roda localmente no seu computador e é mais leve
+      desktop2: Não exige configuração de servidor, pronta para uso
+      desktop3: Adequada para desenvolvedores individuais e cenários de uso leves
+      desktop4: Todos os dados permanecem totalmente locais
+      containerTitle: Versão Container
+      container1: Pode ser implantada em servidores e suporta acesso remoto
+      container2: Isola o ambiente sem afetar o sistema anfitrião
+      container3: Mais adequada para colaboração em equipe e ambientes de produção
+      container4: Compatível com implantação automatizada e escalabilidade horizontal
+    q2:
+      question: O que é o Docker Compose Builder?
+      intro: 'O Docker Compose Builder é nossa ferramenta de configuração visual e ajuda você a:'
+      point1: Configurar todos os parâmetros dos contêineres por meio de uma interface Web
+      point2: Gerar automaticamente arquivos docker-compose.yml
+      point3: Aproveitar boas práticas e configurações de segurança integradas
+      point4: Baixar e iniciar serviços com um clique
+      note: Você não precisa mais escrever manualmente configurações YAML complexas. Até quem está começando com Docker consegue implantar com facilidade.
+    q3:
+      question: Quais arquiteturas de sistema a versão em contêiner suporta?
+      answer: As imagens de contêiner do Hagicode suportam atualmente a arquitetura <strong>x86_64 (amd64)</strong>, adequada para a maioria dos servidores e PCs.
+      note: O Docker escolhe automaticamente a arquitetura apropriada para o seu sistema ao baixar as imagens.
+    q4:
+      question: Como atualizo o contêiner?
+      intro: 'Se você usa implantação com Docker Compose, atualizar é muito simples:'
+      code: |-
+        docker-compose pull
+        docker-compose up -d
+      watchtower: Você também pode usar o Watchtower para atualizações automáticas.
+    q5:
+      question: Como configuro a persistência de dados?
+      intro: 'O Docker Compose Builder configura automaticamente os volumes de dados. Por padrão, seus dados são armazenados em Docker Volumes, o que garante:'
+      point1: Que os dados não sejam perdidos ao remover contêineres
+      point2: Que os dados sejam preservados durante atualizações de contêineres
+      point3: Facilidade para backup e recuperação
+    q6:
+      question: O que fazer se o contêiner não iniciar?
+      intro: 'Etapas para diagnosticar falhas na inicialização do contêiner:'
+      step1:
+        title: 'Verificar o status do contêiner:'
+        code: docker-compose ps
+      step2:
+        title: 'Verificar os logs do contêiner:'
+        code: docker-compose logs hagicode
+      step3:
+        title: 'Verificar o uso da porta:'
+        desc: 'Se o seu serviço usa a porta 3000, verifique com este comando:'
+        code: netstat -tlnp | grep 3000
+        solution: 'Se a porta estiver ocupada, você pode:'
+        solution1: Encerrar o processo que está usando a porta
+        solution2: Ou configurar outra porta no Docker Compose Builder
+      help: Se o problema continuar, consulte a documentação detalhada ou entre em contato com o suporte técnico.
+  cta:
+    title: Começar com o Docker Compose Builder
+    subtitle: O método de implantação em contêiner mais simples e recomendado
+    button: Ir para o guia de implantação
+    github: Repositório no GitHub

@@ -1,0 +1,24 @@
+page:
+  seoTitle: HagiCode チームについて
+  seoDescription: HagiCode チームを紹介し、公式ストア、コミュニティ、配信プラットフォーム、最新 about スナップショット由来のカードを閲覧できます。
+  title: 交流の中で成長する
+  sections:
+    store: ストア
+    community: 交流の中で成長する
+    content: チームの発信先をフォロー
+  kindLabels:
+    store: ストア
+    link: チャンネル
+    contact: アカウント
+    qr: QR カード
+    image: 画像カード
+  contactFallbackDetail: アプリ内でこの連絡先を利用してください
+  comboLabel: チャンネル + QR
+  platformBadges:
+    steam: 公式ストア
+    youtube: 公式チャンネル
+  genericLinkText:
+    link: ページを開く
+    contact: プロフィールを開く
+    qr: QR カードを開く
+    image: 画像を開く

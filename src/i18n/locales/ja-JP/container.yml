@@ -1,0 +1,125 @@
+container:
+  title: Hagicode Container - コンテナ導入
+  description: Docker Compose Builder を使って Hagicode を導入。設定はシンプルで、すぐに使い始められます。複数イメージソースと自動更新に対応しています。
+  hero:
+    badge: Container
+    title: Hagicode Container
+    tagline: Docker Compose Builder で素早く導入。設定は簡単で、すぐに使い始められます
+    value1: ビジュアル設定でコード不要
+    value2: 環境分離でデータも安全
+    value3: ワンクリック導入で高速起動
+    ctaButton: Docker Compose Builder で導入
+    features:
+      isolation: 環境分離
+      oneClick: ワンクリック導入
+      fastStart: 高速起動
+  features:
+    title: なぜコンテナ導入なのか？
+    isolation:
+      title: 環境分離
+      description: コンテナ化により依存関係の競合を避け、システム環境へ影響を与えず、クリーンな状態を保てます
+    simple:
+      title: シンプルな設定
+      description: Docker Compose Builder のビジュアル設定で、複雑なスクリプトを書く必要がありません
+    crossPlatform:
+      title: クロスプラットフォーム対応
+      description: x86_64 アーキテクチャに対応し、各種サーバーやクラウド環境で利用できます
+    persistent:
+      title: データ永続化
+      description: Volume マウントに対応し、コンテナ再起動時もデータを安全に保持できます
+    autoUpdate:
+      title: 自動更新
+      description: watchtower による自動更新に対応し、最新版を容易に取得できます
+    productionReady:
+      title: 本番運用対応
+      description: 本番環境を前提に設計されており、高可用性や水平スケールにも対応します
+  builder:
+    title: Docker Compose Builder
+    subtitle: 最も簡単でおすすめのコンテナ導入方法
+    visual:
+      title: ビジュアル設定
+      description: 使いやすい Web UI から全パラメータを設定でき、YAML を手で編集する必要はありません
+    generate:
+      title: ワンクリックで構成生成
+      description: ベストプラクティスを含む完全な docker-compose.yml を自動生成します
+    deploy:
+      title: 高速デプロイ
+      description: 設定ファイルをワンクリックで取得し、サービスを起動。数分で導入を完了できます
+    secure:
+      title: 安全で信頼できる
+      description: セキュリティのベストプラクティスを内蔵し、データボリュームや再起動ポリシーを自動設定します
+    ctaButton: Docker Compose Builder へ移動
+  mirrors:
+    title: イメージソースの選択
+    description: ネットワーク環境や地域に応じて最適なイメージソースを選択できます
+    dockerHub: Docker Hub
+    dockerHubDesc: 世界最大級のコンテナイメージレジストリ。国際回線環境向け
+    dockerHubCmd: newbe36524/hagicode:0
+    azure: Azure ACR
+    azureDesc: Microsoft Azure のイメージサービス。中国からのアクセスが比較的高速
+    azureCmd: hagicode.azurecr.io/hagicode:0
+    aliyun: Aliyun ACR
+    aliyunDesc: Aliyun の中国本土向け高速イメージ配信。中国本土ユーザー向け
+    aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
+  faq:
+    title: よくある質問
+    q1:
+      question: Container 版と Desktop 版の違いは？
+      intro: 'どちらにも利点があります。利用シナリオに応じて選択してください。'
+      desktopTitle: Desktop 版
+      desktop1: PC 上でローカル実行でき、より軽量
+      desktop2: サーバー設定不要で、すぐに使える
+      desktop3: 個人開発や軽量用途に向いている
+      desktop4: データを完全にローカル保持できる
+      containerTitle: Container 版
+      container1: サーバーへデプロイでき、リモートアクセスにも対応
+      container2: 環境分離によりシステム環境へ影響しない
+      container3: チーム協業や本番利用により向いている
+      container4: 自動デプロイや水平スケールに対応
+    q2:
+      question: Docker Compose Builder とは？
+      intro: 'Docker Compose Builder は、次のことを支援するビジュアル設定ツールです。'
+      point1: Web UI からコンテナ設定を行う
+      point2: docker-compose.yml を自動生成する
+      point3: ベストプラクティスとセキュリティ設定を内蔵する
+      point4: ワンクリックで構成取得と起動を行う
+      note: 複雑な YAML を手書きする必要はありません。Docker 初心者でも導入しやすい設計です。
+    q3:
+      question: コンテナ版はどのアーキテクチャに対応していますか？
+      answer: Hagicode のコンテナイメージは現在、<strong>x86_64 (amd64)</strong> に対応しており、多くのサーバーや PC で利用できます。
+      note: Docker はイメージ取得時に適切なアーキテクチャを自動選択します。
+    q4:
+      question: コンテナはどう更新しますか？
+      intro: 'Docker Compose で導入している場合、更新は簡単です。'
+      code: |-
+        docker-compose pull
+        docker-compose up -d
+      watchtower: Watchtower を使って自動更新することもできます。
+    q5:
+      question: データ永続化はどう設定しますか？
+      intro: 'Docker Compose Builder は自動でデータボリュームを設定します。既定では Docker Volumes に保存され、次を保証します。'
+      point1: コンテナ削除時もデータが失われない
+      point2: コンテナ更新時にもデータを保持できる
+      point3: バックアップと復旧が容易
+    q6:
+      question: コンテナ起動に失敗したらどうすればよいですか？
+      intro: 'コンテナ起動失敗時の確認手順です。'
+      step1:
+        title: 'コンテナ状態を確認:'
+        code: docker-compose ps
+      step2:
+        title: 'コンテナログを確認:'
+        code: docker-compose logs hagicode
+      step3:
+        title: 'ポート使用状況を確認:'
+        desc: 'サービスのポートが 3000 の場合は、次のコマンドで確認します。'
+        code: netstat -tlnp | grep 3000
+        solution: 'ポートが使われている場合は、次を行ってください。'
+        solution1: ポートを占有しているプロセスを停止する
+        solution2: または Docker Compose Builder 側で別のポートを設定する
+      help: 問題が続く場合は、詳細ドキュメントを確認するか技術サポートへ連絡してください。
+  cta:
+    title: Docker Compose Builder を使い始める
+    subtitle: 最も簡単でおすすめのコンテナ導入方法
+    button: 導入ガイドへ
+    github: GitHub リポジトリ

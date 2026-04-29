@@ -1,0 +1,224 @@
+navbar:
+  home: ホーム
+  docs: ドキュメント
+  blog: ブログ
+  about: 概要
+  desktop: デスクトップアプリ
+  container: コンテナ版
+  support: サポート
+  mobileOpenMenu: メニューを開く
+  mobileCloseMenu: メニューを閉じる
+  mobileNav: モバイルサイトナビゲーション
+themeToggle:
+  theme: テーマ
+  darkMode: ダークモードに切り替え
+  lightMode: ライトモードに切り替え
+  lunarNewYearMode: 旧正月テーマに切り替え
+languageSwitcher:
+  label: 言語
+  switchToChinese: 切换到中文
+  switchToEnglish: 英語に切り替え
+videoPlayer:
+  play: 再生
+  pause: 一時停止
+  fullscreen: 全画面
+footer:
+  copyright: © {year} Hagicode. 無断転載を禁じます。
+  product: 製品
+  quickLinks: クイックリンク
+  community: コミュニティ
+  productInfo: Hagicode の紹介
+  downloadClient: クライアントをダウンロード
+  productDocs: 製品ドキュメント
+  blogPosts: ブログ記事
+  rssSubscribe: RSS を購読
+  github: GitHub
+  issueFeedback: Issue フィードバック
+  contactEmail: 連絡用メール
+  qqGroup: QQ グループ 610394020
+  icpLabel: ICP 登録情報を見る
+  gonganLabel: 公安登録情報を見る
+  visitPage: '{title} ページを開く'
+  discord: Discord コミュニティ
+  costCalculator: AI 代替コスト診断
+  steam: Steam
+  relatedSitesTitle: 関連サイト
+socialProof:
+  highlights:
+    multiAgent: マルチエージェント並列
+    multiAgentDesc: Claude Code、Codex などが複数インスタンスを同時に駆動
+    privacy: プライバシー優先
+    privacyDesc: ローカル配置でコードをアップロードしない
+    openspec: OpenSpec オーケストレーション
+    openspecDesc: 提案・実行・アーカイブの標準化された流れ
+    heroDungeons: Hero Dungeon ワークフロー
+    heroDungeonsDesc: ダンジョン、隊長、戦闘レポートで流れを閉じる
+  badges:
+    claude: Claude AI
+    claudeDesc: 提供元
+    opensource: オープンソース
+    opensourceDesc: GitHub
+    ssl: SSL セキュア
+    sslDesc: 安全な暗号化
+installCTA:
+  button: HagiCode をインストール
+activityMetrics:
+  title: 利用者が増えています
+  description: コミュニティは成長し続けています。すべての貢献者に感謝します
+  dockerHub: Docker Hub
+  pullCount: Pull 数
+  activeUsers: アクティブユーザー
+  activeSessions: アクティブセッション
+  recentDays: 直近 3 日
+  emptyState:
+    title: データは準備中です
+    description: 利用データが利用可能になり次第、ここに表示されます。コミュニティの成長をお待ちください。
+  imageError: 画像の読み込みに失敗しました
+  starHistory:
+    title: GitHub Star 履歴
+    value: ライブ
+    description: コミュニティの勢いをリアルタイムで表示
+    alt: HagiCode サイトリポジトリの Star 履歴チャート
+    cta: グラフ全体を見る
+showcase:
+  title: 最新の製品ビュー
+  description: 提案実行、セッションボード、トークン分析、ワークスペース管理、実績進捗まで、ホームページでは docs サイトで管理される最新の厳選スクリーンショットを表示します。
+  controls:
+    previous: 前へ
+    next: 次へ
+    current: 注目ビュー
+    railLabel: 製品スクリーンショットナビゲーション
+    selectPrefix: '切り替え先: '
+    activeState: 表示中
+    previewState: プレビュー
+    imageUnavailable: 画像を表示できません
+    openFullscreen: '全画面で開く: '
+    openFullscreenHint: クリックして拡大
+    closeFullscreen: 全画面を閉じる
+  screenshots:
+    proposalWorkflow:
+      title: 提案実行の概要
+      description: ワークフローステージ、実行結果、セッション文脈を 1 画面にまとめ、次へ進む前に変更の状態を正確に把握できます。
+      alt: ワークフローステージ、実行結果、セッションサイドバーを示す HagiCode の提案実行スクリーンショット
+    sessionBoard:
+      title: セッションボードとダンジョン計画
+      description: 保留中・進行中・アーカイブ済みのセッションをファンタジー風タスクパネル横に並べて、並列作業をひと目で把握できます。
+      alt: ファンタジー風タスクパネル横に保留中・進行中・アーカイブ済み列を表示する HagiCode セッションボードのスクリーンショット
+    tokenAnalytics:
+      title: リアルタイムトークン分析
+      description: スループット、最近の API アクティビティ、総使用量を 1 つの指標画面で確認し、並列実行中のコストとペースを制御できます。
+      alt: スループット、最近の API アクティビティ、総使用量を表示する HagiCode トークン分析のスクリーンショット
+    workspaceManagement:
+      title: ワークスペースと Vault 管理
+      description: 共有環境と迅速な保守を前提に、ユーザー Vault、システム Vault、code-server 入口を 1 つの画面で管理できます。
+      alt: ユーザー Vault、システム Vault、code-server 操作を表示する HagiCode ワークスペース管理のスクリーンショット
+    achievementProgress:
+      title: 実績と成長の進捗
+      description: 日次進捗、全体成長、ライフサイクル指標を 1 つのダッシュボードに集約し、長期導入の成果を具体的に確認できます。
+      alt: 日次進捗、全体成長、ライフサイクル指標を表示する HagiCode 実績ダッシュボードのスクリーンショット
+installOptions:
+  sectionTitle: インストール方法を選択
+  sectionDescription: 利用シナリオに応じて最適な方法を選んでください
+  desktop:
+    title: デスクトップアプリ
+    description: PC 上でローカル実行。軽量で手軽、すぐに使い始められます
+    features:
+      - ローカル実行でデータプライバシーを確保
+      - Windows、macOS、Linux に対応
+      - サーバー設定不要
+      - 自動更新で常に最新版
+      - 個人開発者に最適
+    ctaText: デスクトップアプリをダウンロード
+  container:
+    title: コンテナ版
+    description: サーバーへデプロイ可能。リモートアクセス対応でチーム利用に向いています
+    features:
+      - x86_64 アーキテクチャ対応
+      - 環境分離でシステムへ影響しない
+      - Docker Compose Builder 対応
+      - 永続化で安全かつ信頼性の高い運用
+      - 本番環境にも適しています
+    ctaText: コンテナ導入ガイド
+  badge: おすすめ
+desktopHero:
+  loading: バージョン情報を読み込み中...
+  error:
+    title: バージョン情報を読み込めません
+    gotoDownload: ダウンロードページへ移動
+    redirectingToHistory: このページではデスクトップ版パッケージを読み込めないため、Index のバージョン履歴ページへ移動しています。
+  badge: デスクトップ
+  title: Hagicode Desktop
+  tagline: ローカル実行型 AI コードアシスタント。プライバシーを守り、効率を高めます
+  valuePoints:
+    local: 100% ローカル実行、コードはアップロードされません
+    fast: ミリ秒単位の応答で待ち時間を削減
+    oneClick: ワンクリックでインストールしてすぐ使える
+  download:
+    ariaLabel: '{platform} 版をダウンロード'
+    recommended: 推奨
+    unknown: 不明なエラー
+    openVersionHistory: バージョン履歴を開く
+    openContainerPage: Container ページを開く
+    macNotice: 現時点では macOS ユーザーには Container 版を推奨しています。
+  selectOtherVersions: '{platform} の他のバージョンを選択'
+  versionInfo: '現在のバージョン: {version}'
+  testVersion: ' (ベータ)'
+  channels:
+    stable: 安定版
+    beta: ベータ版
+  betaWarning:
+    title: ベータ版の注意
+    description: これはベータ版であり、不安定な場合があります。テスト目的でのみ利用し、本番では安定版を使用してください。
+  features:
+    privacy: 🔒 プライバシー保護
+    fast: ⚡ 高速応答
+    crossPlatform: 💻 クロスプラットフォーム対応
+  steam:
+    description: Steam 版ではクラウドセーブや Workshop などの Steam 機能を利用できます。クリックして Steam で確認してください。
+    ariaLabel: Steam で Hagicode を開く
+  downloadActions:
+    torrent: Torrent
+  assetTypes:
+    windowsSetup: インストーラー
+    windowsPortable: ポータブル版
+    windowsStore: Microsoft Store
+    macosApple: Apple Silicon
+    macosIntel: Intel
+    linuxAppImage: AppImage (x64)
+    linuxArm64AppImage: AppImage (ARM64)
+    linuxTarball: 圧縮パッケージ (x64)
+    linuxArm64Tarball: 圧縮パッケージ (ARM64)
+    source: ソースコード
+    other: その他
+productHuntBadge:
+  eyebrow: 早期導入ユーザーからの支持
+  title: Product Hunt で Hagicode を見る
+  linkLabel: Product Hunt で Hagicode を開く
+  cta: Product Hunt の掲載ページを見る
+promote:
+  badgeFallback: Pick Up
+  closeLabel: プロモーションを閉じる
+  ariaLabel: プロモーション
+pageMeta:
+  home:
+    title: Hagicode - スマート・効率的・楽しい AI コーディングアシスタント
+    description: AI でコーディングを再定義。OpenSpec ワークフロー、マルチエージェント並列実行、Hero Dungeon のゲーム化で開発をより速く、より楽しくします。
+  desktop:
+    title: Hagicode Desktop - ダウンロード
+    description: ローカル実行型 AI コーディングアシスタント Hagicode Desktop をダウンロード。Windows、macOS、Linux に対応し、プライバシー保護と高速応答を提供します。
+    runtimeFallbackLabel: フォールバック
+    runtimeFallbackCopy: 'このページでパッケージの読み込みに失敗した場合は、公式の Index Desktop バージョン履歴ページへ移動します：'
+  container:
+    title: Hagicode Container - Docker デプロイ
+    description: Docker Compose Builder を使って Hagicode をデプロイ。設定はシンプルで、すぐに使い始められます。複数のイメージソースと自動更新に対応しています。
+    faqHelp: 問題が解決しない場合は、<a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">詳細ドキュメント</a>を確認するか、技術サポートへお問い合わせください。
+commonActions:
+  retry: 再試行
+  unavailable: 利用不可
+  noExtraSource: 追加ソースなし
+  moreDownloads: さらにダウンロード
+  moreVersions: さらにバージョンを見る
+  package: パッケージ
+  platform: プラットフォーム
+  china: 中国
+  default: デフォルト

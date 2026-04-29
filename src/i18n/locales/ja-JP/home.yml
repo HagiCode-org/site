@@ -1,0 +1,339 @@
+hero:
+  tagline: AI が支えるコーディングツールで開発効率を高める
+  description: HagiCode は繰り返し作業ではなく、本当に重要なコードに集中できるようにします
+  ctaButton: 使い始める
+  taglines:
+    smart: スマート・効率的・楽しい
+    aiDriven: AI オーケストレーション・マルチエージェント並列
+    openspec: OpenSpec・ワークフロー革命
+    multiThread: マルチエージェント・マルチインスタンス
+  lunarTaglines:
+    happyNewYear: 明けましておめでとう・午年
+    aiPowered: AI で前進・成功するコード
+    smartCoding: スマートコーディング・幸運を
+    openspecLuck: OpenSpec・繁栄と成功
+    efficiency: 効率倍増・福を呼ぶ
+  problem: 従来の AI コーディングツールには
+  painPoint: 課題
+  painPoints: ': コンテキスト不足、セッションの混乱、協業の弱さ。'
+  solution: Hagicode は次の仕組みで AI コーディング体験を再定義します
+  features:
+    - OpenSpec ワークフロー
+    - マルチエージェント・マルチインスタンス実行
+    - Hero Dungeon のゲーム化
+  redefine: ''
+  valueCards:
+    smart:
+      title: スマート
+      description: OpenSpec がアイデアをより早く実行へつなげます。
+    efficient:
+      title: 効率的
+      description: マルチエージェント実行で待ち時間を処理量へ変えます。
+    interesting:
+      title: 楽しい
+      description: Hero Dungeon がチーム作業と練習を冒険のようにします。
+  buttons:
+    desktopApp: デスクトップアプリをインストール
+    containerApp: コンテナ版を導入
+    learnMore: 詳しく見る
+  techStack:
+    poweredBy: 提供元
+  qqGroup:
+    title: 技術サポートグループに参加
+    description: Hagicode 技術サポート QQ グループ
+    joinButton: 今すぐ参加
+  secondaryLine: Hagicode は主要な Agent をサポートし、並列管理効率を高め、OpenSpec で幻覚を減らします。
+features:
+  showcase:
+    title: 3 つのコア機能
+    subtitle: AI コーディング体験を再定義
+  smart:
+    badge: スマート
+    title: スマート
+    subtitle: OpenSpec ワークフローで AI コーディング効率を向上
+    efficiency: 効率向上
+    traditional: 従来型
+    hagicode: Hagicode
+    description: アイデアからアーカイブまでの 9 段階提案ワークフローを AI が伴走します。コーディング効率を 3 倍に高めます。
+    workflow:
+      idea:
+        label: アイデア
+        desc: 発想から開始
+      proposal:
+        label: 提案
+        desc: AI が提案を生成
+      review:
+        label: レビュー
+        desc: 自動レビュー
+      tasks:
+        label: タスク
+        desc: タスク分解
+      code:
+        label: コード
+        desc: スマート実装
+      test:
+        label: テスト
+        desc: 自動テスト
+      refactor:
+        label: リファクタ
+        desc: コード整理
+      docs:
+        label: ドキュメント
+        desc: ドキュメント生成
+      archive:
+        label: アーカイブ
+        desc: 知識を保存
+    paused: 一時停止中 - ノードをクリックして切り替え
+  convenient:
+    badge: 効率的
+    title: 効率的
+    subtitle: クォータを止めないマルチエージェント・マルチインスタンス実行
+    traditional: 従来の単一エージェント / 単一インスタンス
+    multiThread: マルチエージェント並列マトリクス
+    boost: スループット向上
+    boostValue: 10 倍以上の並列
+    description: Claude Code、Codex、GitHub Copilot、OpenCode、Hermes などの対応 Agent CLI は複数インスタンスで同時に動作できるため、提案、修正、レビューが直列待ちではなく並列で進みます。
+    agentMatrix:
+      title: 並列実行マトリクス
+      badge: 複数エージェント / 複数インスタンス
+      status: 複数のエージェントが複数インスタンスを同時に駆動中
+      agents:
+        claude:
+          name: Claude Code（クロード・コード）
+          role: 提案 / レビュー
+          instances:
+            - 仕様草案を作成
+            - 設計を確認
+            - アーカイブレビュー
+        codex:
+          name: Codex（コーデックス）
+          role: 実装 / 修正
+          instances:
+            - 機能 A を実装
+            - 機能 B を実装
+            - リグレッション修正
+        router:
+          name: Qwen・GLM
+          role: 分析 / サポート
+          instances:
+            - 問題を追跡
+            - 文言を整える
+            - 知見を記録
+      supportedNames:
+        title: 現在対応している 11 個の Agent CLI
+        names:
+          - Claude Code（クロード・コード）
+          - Codex（コーデックス）
+          - GitHub Copilot（ギットハブ・コパイロット）
+          - OpenCode（オープンコード）
+          - Hermes（ヘルメス）
+          - QoderCLI（コーダー CLI）
+          - Kiro（キロ）
+          - Kimi（キミ）
+          - Gemini（ジェミニ）
+          - DeepAgents（ディープエージェンツ）
+          - Codebuddy（コードバディ）
+    supportedProvidersNote: OpenCode は共有 OmniRoute カタログを Hero モデル既定値として読み込みつつ、ブランチ固有ワークフロー向けに生のモデル識別子を編集可能なまま維持できます。
+  interesting:
+    badge: 楽しい
+    title: 楽しい
+    subtitle: Hero Dungeon が学内協業と実践をもっと生き生きさせる
+    features:
+      dungeons:
+        label: ヒーローダンジョン
+        desc: 生成、実行、プロンプト作業台をダンジョン攻略の流れに変える
+      captains:
+        label: 隊長編成
+        desc: 各ダンジョンに最適なヒーロー隊長を割り当てる
+      battle:
+        label: 戦闘レポート
+        desc: 実行後に XP、レベル、結果を確認
+    description: 楽しさは実績バッジだけでは生まれません。Hero Dungeon、隊長編成、プロンプト演出、戦闘レポートが、日々の AI コーディングを学内ラボや学生チーム向けの協調的な冒険に変えます。
+    dungeonCards:
+      proposal:
+        title: 提案ダンジョン
+        desc: OpenSpec の generate / apply / archive
+        status: 隊長準備完了
+      autotask:
+        title: 自動タスクダンジョン
+        desc: 並列修正とバッチ自動化
+        status: 2 インスタンス稼働中
+      prompt:
+        title: プロンプトダンジョン
+        desc: プロンプト確認とスタイル作業台
+        status: ビジュアル同期準備完了
+    roster:
+      title: 現在の隊長編成
+      heroes:
+        strategist:
+          name: スペック・ストラテジスト
+          role: 提案隊長
+        runner:
+          name: パッチ・ランナー
+          role: 実行隊長
+        artist:
+          name: プロンプト・アーティスト
+          role: ビジュアル支援
+    battleReport:
+      title: 今日のダンジョンレポート
+      badge: ヒーローバトル
+      metrics:
+        dungeons:
+          value: '4'
+          label: 進行したダンジョン
+        level:
+          value: Lv.27
+          label: 隊長レベル
+        xp:
+          value: 12.8M
+          label: 本日の XP
+      note: 複数ダンジョンが並列で進むとき、このレポートが経験値、レベル、実行結果を 1 つにまとめます。
+    gallery:
+      dungeons:
+        title: ダンジョンマップカルーセル
+        subtitle: 現在のフロントエンド用ダンジョン / プロンプトマップ集からランダムに 10 枚表示します。
+      heroes:
+        title: ヒーローギャラリーカルーセル
+        subtitle: 現在のフロントエンド用ヒーローコレクションからランダムに 10 枚表示します。
+productOverviewVideo:
+  title: 機能紹介の前に Hagicode の全体像を把握しましょう
+videoShowcase:
+  eyebrow: 補足プロダクトデモ
+  title: 実際のコーディングセッションで Hagicode をさらに見る
+  description: メイン紹介のあとに、遊び心のあるケースやモデル別シナリオでの挙動を確認できる補足デモです。
+  supportingLabel: 補足デモ
+homepageVideos:
+  overview:
+    youtube:
+      title: YouTube で見る Hagicode 製品紹介
+      description: Hagicode のワークフロー、マルチエージェント実行、一般的な AI コーディングチャットを超える体験を紹介するメイン動画です。
+      ctaLabel: YouTube で開く
+    bilibili:
+      title: Bilibili で見る Hagicode 製品紹介
+      description: 中国語圏ブラウザ環境や国内向け再生経路を好むユーザー向けの Bilibili 版コア紹介動画です。
+      ctaLabel: Bilibili で開く
+  supporting:
+    first:
+      title: AI がゲームをしながらコードを書く？
+      description: 単なる無機質なコード生成ではなく、実際のセッションでも軽快で驚きのある体験を見せる補助クリップです。
+      ctaLabel: Bilibili で開く
+    second:
+      title: 'Hagicode で GPT Codex を実地検証'
+      description: ローカライズ済みのメイン紹介を見たあとに、GPT Codex が実製品内でどう動くかを判断できる検証デモです。
+      ctaLabel: Bilibili で開く
+  hero:
+    steamAriaLabel: Steam で Hagicode を開く
+    ctaGroupLabel: ホームページの主要アクション
+pricing:
+  docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
+  title: エディションと価格
+  limitTitle: 提案並行数のルール
+  limitDescription: 無料版と Steam 版はいずれも提案の同時実行上限が 3 件です。生成中、実行中、保存中の提案は同じ上限にまとめて計上されます。Turbo Engine DLC ではこの上限を 32 件まで拡張できます。
+  plusTitle: Hagicode Plus について
+  plusDescription: Hagicode Plus は Steam 本体版と Turbo Engine DLC をまとめた公式 Steam バンドルです。
+  featureHeader: 機能
+  includedLabel: 含まれます
+  notIncludedLabel: 含まれません
+  editions:
+    desktop:
+      title: Desktop
+    container:
+      title: Container
+  rows:
+    pricing: 価格
+    allFreeFeaturesIncluded: 無料機能をすべて含む
+    vault: Vault
+    skills: Skills
+    proposalWorkflow: 提案ワークフロー
+    localAchievements: ローカル実績
+    allAgentCliIntegrations: すべての Agent CLI 連携
+    speechRecognition: 音声認識
+    omniRouteIntegration: OmniRoute 連携
+    githubIntegration: GitHub 連携
+    gitManagement: Git 管理
+    maximumConcurrentProposals: 最大同時提案数
+    copySwitchingSupport: 文言切り替えサポート
+    turboEngineAvatarPacks: Turbo Engine アバターパック
+    customAvatarUploads: カスタムアバターアップロード
+    customLogo: カスタム Logo
+    customTitle: カスタムタイトル
+    customCoAuthoredByInfo: カスタム Co-Authored-By 情報
+    steamCloudAchievements: Steam クラウド実績
+    freeDlcSupport: 無料 DLC サポート
+    steamWorkshopSupport: Steam Workshop サポート
+    cloudSaveSupport: クラウドセーブ対応
+  values:
+    free: 無料
+    viewOnSteam: Steam で確認
+  dlc:
+    label: DLC とバンドル
+    title: 追加パック
+    actions:
+      openSteam: Steam で開く
+    preview:
+      bundlePending: バンドル画像は準備中
+      productPending: 製品画像は準備中
+    items:
+      allBeauties:
+        category: 無料 DLC
+        title: Hagicode - All Beauties Pack
+        price: 無料
+        description: Steam ユーザー向けの追加コスメティックパックです。
+        bullets:
+          - アニメ少女風アバターを 1,000 点追加
+          - 今後の美少女テーマコンテンツ拡張にも対応しやすい構成
+      turboEngine:
+        category: パフォーマンス DLC
+        title: 'Hagicode: Turbo Engine DLC'
+        price: Steam
+        description: この DLC を単体購入すると、元の提案同時実行上限を拡張し、文言切り替えを解放し、各 10 個の独立アバターを含む 5 つのアバターパックを追加できます。さらにカスタムアバターのアップロード、左上 Logo とタイトルのカスタマイズ、AI 生成コミットの Co-Authored-By 表記をチームの命名ルールに合わせる機能も利用できます。通常は総額を抑えやすい Hagicode Plus バンドル購入も案内します。最新情報はストアページをご確認ください。
+        bullets:
+          - 左上 Logo とタイトルのカスタマイズに対応
+          - 各パック 10 個の選択可能アバターを含む 5 つのアバターパック
+          - カスタムアバターのアップロードに対応
+          - AI コミットワークフロー向けの Co-Authored-By 署名をチームで調整可能
+          - 文言と表現の切り替えを解放
+          - 最大同時提案数を 32 まで拡張
+      hagicodePlus:
+        category: バンドル
+        title: Hagicode Plus
+        price: Steam
+        description: Hagicode の Steam 本体版と Turbo Engine DLC を 1 つの購入経路にまとめた公式 Steam バンドルです。
+        bullets:
+          - Steam 本体版と Turbo Engine DLC をまとめて提供
+          - 32 件の提案同時実行アップグレードをバンドル経路に付与
+          - Steam 版を一度に揃えたい場合の最も分かりやすい購入入口
+      sponsor:
+        category: サポーター DLC
+        title: Hagicode - Sponsor Pack
+        price: Steam
+        description: Hagicode を本当に優れたプロジェクトだと感じ、直接支援したい場合は、Sponsor Pack の購入が開発継続の力になります。
+        bullets:
+          - 限定ダークテーマ 1 つ
+          - 限定ライトテーマ 1 つ
+          - 限定 Steam 実績 1 つ
+workflowBoard:
+  titleLines:
+    - 主要 Agent に対応
+    - 並列管理効率 10 倍
+    - OpenSpec が幻覚を低減
+  taskLabel: タスク
+  headerSummary: タスク / Agent
+  steps:
+    - 発想
+    - 提案
+    - 実行
+    - 保存
+  activeStates:
+    - 発想中
+    - 提案中
+    - 実行中
+    - 保存中
+  completedState: 完了
+  metrics:
+    completed: 完了タスク
+    efficiency: 実効効率
+    serialTime: 直列換算時間
+    elapsedTime: 経過時間
+    formula: 効率 = 直列換算作業量 / 実経過時間
+    serialHint: 単一の直列作業者との比較

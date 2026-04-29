@@ -1,0 +1,24 @@
+page:
+  seoTitle: À propos de l'équipe HagiCode
+  seoDescription: Découvrez l'équipe HagiCode et parcourez les boutiques officielles, les canaux communautaires, les plateformes de contenu et les cartes scannables issues du dernier instantané about.
+  title: Progresser grâce aux échanges
+  sections:
+    store: Boutique
+    community: Progresser grâce aux échanges
+    content: Suivez les plateformes où l'équipe publie
+  kindLabels:
+    store: Boutique
+    link: Canal
+    contact: Compte
+    qr: Carte QR
+    image: Carte image
+  contactFallbackDetail: Utilisez ce compte dans l'application
+  comboLabel: Canal + QR
+  platformBadges:
+    steam: Boutique officielle
+    youtube: Chaîne officielle
+  genericLinkText:
+    link: Ouvrir la page
+    contact: Ouvrir le profil
+    qr: Ouvrir la carte QR
+    image: Ouvrir l'image

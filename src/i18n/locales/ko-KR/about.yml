@@ -1,0 +1,24 @@
+page:
+  seoTitle: HagiCode 팀 소개
+  seoDescription: HagiCode 팀을 소개하고 공식 스토어, 커뮤니티 채널, 콘텐츠 플랫폼, 최신 about 스냅샷에 포함된 스캔 가능한 카드를 둘러보세요.
+  title: 교류하며 함께 성장하기
+  sections:
+    store: 스토어
+    community: 교류하며 함께 성장하기
+    content: 팀이 콘텐츠를 발행하는 채널 보기
+  kindLabels:
+    store: 스토어
+    link: 채널
+    contact: 계정
+    qr: QR 카드
+    image: 이미지 카드
+  contactFallbackDetail: 앱에서 이 계정을 사용하세요
+  comboLabel: 채널 + QR
+  platformBadges:
+    steam: 공식 스토어
+    youtube: 공식 채널
+  genericLinkText:
+    link: 페이지 열기
+    contact: 프로필 열기
+    qr: QR 카드 열기
+    image: 이미지 열기

@@ -1,0 +1,24 @@
+page:
+  seoTitle: О команде HagiCode
+  seoDescription: Познакомьтесь с командой HagiCode и посмотрите официальные магазины, каналы сообщества, контент-платформы и сканируемые карточки из последнего about-снимка.
+  title: Расти через обмен опытом
+  sections:
+    store: Магазин
+    community: Расти через обмен опытом
+    content: Следите за площадками, где публикуется команда
+  kindLabels:
+    store: Магазин
+    link: Канал
+    contact: Аккаунт
+    qr: QR-карточка
+    image: Карточка с изображением
+  contactFallbackDetail: Используйте этот аккаунт в приложении
+  comboLabel: Канал + QR
+  platformBadges:
+    steam: Официальный магазин
+    youtube: Официальный канал
+  genericLinkText:
+    link: Открыть страницу
+    contact: Открыть профиль
+    qr: Открыть QR-карточку
+    image: Открыть изображение

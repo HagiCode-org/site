@@ -1,0 +1,125 @@
+container:
+  title: Hagicode Container - 容器部署
+  description: 透過 Docker Compose Builder 部署 Hagicode，設定簡單、開箱即用。支援多種映像來源與自動更新。
+  hero:
+    badge: 容器版
+    title: Hagicode Container
+    tagline: 使用 Docker Compose Builder 快速部署，設定簡單、開箱即用
+    value1: 視覺化設定，無需撰寫程式
+    value2: 環境隔離，資料安全
+    value3: 一鍵部署，快速啟動
+    ctaButton: 使用 Docker Compose Builder 部署
+    features:
+      isolation: 環境隔離
+      oneClick: 一鍵部署
+      fastStart: 快速啟動
+  features:
+    title: 為什麼選擇容器部署？
+    isolation:
+      title: 環境隔離
+      description: 透過容器化部署避免依賴衝突，不影響系統環境，讓系統保持整潔
+    simple:
+      title: 設定簡單
+      description: 使用 Docker Compose Builder 視覺化設定，無需撰寫複雜腳本
+    crossPlatform:
+      title: 跨平台支援
+      description: 支援 x86_64 架構，適用於各種伺服器與雲端平台
+    persistent:
+      title: 資料持久化
+      description: 支援 Volume 掛載，資料安全可靠，容器重新啟動也不遺失
+    autoUpdate:
+      title: 自動更新
+      description: 支援透過 watchtower 自動更新，輕鬆取得最新版本
+    productionReady:
+      title: 生產就緒
+      description: 專為生產環境設計，支援高可用與水平擴展
+  builder:
+    title: Docker Compose Builder
+    subtitle: 最簡單、也最推薦的容器部署方式
+    visual:
+      title: 視覺化設定
+      description: 透過友善的 Web 介面設定所有參數，無需手動編輯 YAML 檔案
+    generate:
+      title: 一鍵產生設定
+      description: 自動產生完整的 docker-compose.yml，並內建最佳實踐設定
+    deploy:
+      title: 快速部署
+      description: 一鍵下載設定檔並啟動服務，幾分鐘內即可完成部署
+    secure:
+      title: 安全可靠
+      description: 內建安全最佳實踐，自動設定資料卷與重啟策略
+    ctaButton: 前往 Docker Compose Builder
+  mirrors:
+    title: 映像來源選擇
+    description: 依據你的網路環境與地理位置，選擇最適合的映像來源
+    dockerHub: Docker Hub
+    dockerHubDesc: 全球最大的容器映像倉庫，適合國際網路使用者
+    dockerHubCmd: newbe36524/hagicode:0
+    azure: Azure ACR
+    azureDesc: Microsoft Azure 提供的映像服務，從中國地區存取速度較快
+    azureCmd: hagicode.azurecr.io/hagicode:0
+    aliyun: 阿里雲 ACR
+    aliyunDesc: 阿里雲中國境內映像加速服務，推薦中國大陸使用者使用
+    aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
+  faq:
+    title: 常見問題
+    q1:
+      question: Container 版本和 Desktop 版本有什麼差別？
+      intro: 兩個版本各有優勢，你可以依據使用場景選擇：
+      desktopTitle: Desktop 版本
+      desktop1: 在本機電腦上執行，更加輕量
+      desktop2: 無需設定伺服器，開箱即用
+      desktop3: 適合個人開發者與輕量使用場景
+      desktop4: 所有資料完全本地化
+      containerTitle: Container 版本
+      container1: 可部署到伺服器，支援遠端存取
+      container2: 環境隔離，不影響系統環境
+      container3: 更適合團隊協作與生產環境
+      container4: 支援自動化部署與水平擴展
+    q2:
+      question: 什麼是 Docker Compose Builder？
+      intro: Docker Compose Builder 是我們提供的視覺化設定工具，可幫助你：
+      point1: 透過 Web 介面設定所有容器參數
+      point2: 自動產生 docker-compose.yml 檔案
+      point3: 內建最佳實踐與安全設定
+      point4: 一鍵下載並啟動服務
+      note: 無需手動撰寫複雜的 YAML 設定，即使是 Docker 新手也能輕鬆完成部署。
+    q3:
+      question: 容器版本支援哪些系統架構？
+      answer: 目前 Hagicode 容器映像支援 <strong>x86_64 (amd64)</strong> 架構，適用於大多數伺服器與 PC。
+      note: Docker 在拉取映像時會自動選擇適合你系統的架構。
+    q4:
+      question: 如何更新容器？
+      intro: 使用 Docker Compose 部署時，更新非常簡單：
+      code: |-
+        docker-compose pull
+        docker-compose up -d
+      watchtower: 或者使用 Watchtower 來實現自動更新。
+    q5:
+      question: 如何設定資料持久化？
+      intro: Docker Compose Builder 會自動設定資料卷。預設情況下，你的資料會儲存在 Docker Volume 中，確保：
+      point1: 容器刪除後資料不會遺失
+      point2: 容器升級時資料仍會保留
+      point3: 可輕鬆備份與還原
+    q6:
+      question: 容器啟動失敗怎麼辦？
+      intro: 排查容器啟動失敗的步驟如下：
+      step1:
+        title: 查看容器狀態：
+        code: docker-compose ps
+      step2:
+        title: 查看容器日誌：
+        code: docker-compose logs hagicode
+      step3:
+        title: 檢查連接埠占用：
+        desc: 如果你的服務連接埠是 3000，請使用以下命令檢查：
+        code: netstat -tlnp | grep 3000
+        solution: 如果連接埠已被占用，你可以：
+        solution1: 停止占用該連接埠的程序
+        solution2: 或在 Docker Compose Builder 中改用其他連接埠
+      help: 如果問題仍未解決，請查看詳細文件或聯絡技術支援。
+  cta:
+    title: 開始使用 Docker Compose Builder
+    subtitle: 最簡單、也最推薦的容器部署方式
+    button: 前往部署指南
+    github: GitHub 倉庫

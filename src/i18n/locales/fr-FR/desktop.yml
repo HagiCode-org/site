@@ -1,0 +1,123 @@
+desktop:
+  title: Hagicode Desktop - Téléchargement
+  description: Téléchargez Hagicode Desktop, l'assistant de code IA localisé. Compatible avec Windows, macOS et Linux, avec protection de la confidentialité et réponse rapide.
+  features:
+    title: Fonctionnalités clés
+    local:
+      title: Exécution locale
+      description: Toutes les données sont traitées localement sans envoi vers le cloud, afin de garantir la confidentialité et la sécurité du code
+    privacy:
+      title: Protection de la confidentialité
+      description: Le code n'est jamais envoyé, l'usage hors ligne est pris en charge et votre propriété intellectuelle reste protégée
+    fast:
+      title: Réponse rapide
+      description: Un temps de réponse de l'ordre de la milliseconde, sans attente réseau, pour améliorer l'efficacité de développement
+    crossPlatform:
+      title: Compatibilité multiplateforme
+      description: Compatible avec Windows, macOS et Linux pour répondre à différents environnements de développement
+    autoUpdate:
+      title: Mises à jour automatiques
+      description: Vérifie automatiquement les mises à jour et permet de passer à la dernière version en un clic
+    multiLanguage:
+      title: Prise en charge multilingue
+      description: Interface chinoise et anglaise intégrée, adaptée à la collaboration d'équipes internationales
+  systemRequirements:
+    title: Configuration requise
+    windows: Windows
+    macos: macOS
+    linux: Linux
+    os: Système d'exploitation
+    processor: Processeur
+    memory: Mémoire
+    diskSpace: Espace disque
+    network: Réseau
+    windowsOs: Windows 10/11 (64-bit)
+    macosOs: macOS 12+ (Monterey ou version ultérieure)
+    linuxOs: Ubuntu 20.04+ / Debian 11+ / autres distributions courantes
+    windowsProcessor: Intel Core i3 ou processeur équivalent
+    macosProcessor: Apple Silicon (M1/M2/M3) ou Intel Core i3+
+    linuxProcessor: Intel Core i3 ou processeur équivalent
+    memoryRec: 4GB RAM (8GB recommandés)
+    disk: 2GB d'espace disponible
+    networkDesc: Connexion réseau requise pour le premier téléchargement (utilisable hors ligne ensuite)
+  download:
+    title: Paquets de téléchargement
+    windowsDesc: Installateurs stables pour Windows 10/11, avec versions setup et portable.
+    macosDesc: Builds natifs pour Apple Silicon et pour les Mac Intel.
+    linuxDesc: Paquets AppImage et archives pour les principales distributions Linux x64 et ARM64.
+    note: Si la liste des paquets ne se charge pas ici, utilisez le lien vers l'historique des versions en haut de la page pour ouvrir l'index officiel.
+    features:
+      signed: Paquets signés
+      autoUpdate: Détection automatique des mises à jour
+      multiLanguage: Interface multilingue
+  installation:
+    title: Installation rapide
+    step1:
+      number: '1'
+      title: Télécharger l'installateur
+      description: Sélectionnez l'installateur correspondant à votre système d'exploitation
+    step2:
+      number: '2'
+      title: Lancer l'installateur
+      description: Double-cliquez sur l'installateur téléchargé et suivez les indications pour terminer l'installation
+    step3:
+      number: '3'
+      title: Lancer l'application
+      description: Au premier lancement, l'application vous guide dans la configuration initiale
+    step4:
+      number: '4'
+      title: Commencer à utiliser
+      description: Une fois la configuration terminée, vous pouvez commencer à utiliser Hagicode Desktop
+  faq:
+    title: FAQ
+    q1:
+      question: Quelle est la différence entre les versions Desktop et Server ?
+      intro: 'Hagicode propose deux options de déploiement : la version Desktop et la version Server. Chacune a ses avantages, mais les deux reposent sur un contrôle utilisateur du serveur et des données, offrant une meilleure protection.'
+      desktopTitle: Version Desktop
+      desktop1: Fonctionne localement sur votre ordinateur, avec une empreinte plus légère
+      desktop2: Aucune configuration serveur requise, prêt à l'emploi
+      desktop3: Convient aux développeurs individuels et aux usages légers
+      desktop4: Toutes les données restent entièrement locales
+      serverTitle: Version Server
+      server1: Peut être déployée sur des serveurs distants
+      server2: Prend en charge l'accès distant multi-utilisateur
+      server3: Mieux adaptée à la collaboration d'équipe et à la montée en charge
+      server4: Prépare les futures fonctionnalités entreprise et la synchronisation multi-appareils
+      conclusion: Quelle que soit la version choisie, vous gardez le contrôle total sur votre serveur et vos données, avec davantage de confidentialité et de sécurité.
+    q2:
+      question: Que dois-je faire après l'installation ?
+      intro: 'Hagicode Desktop est essentiellement un lanceur. Lors du premier démarrage après installation, il vous guide à travers les étapes suivantes :'
+      step1: '<strong>Télécharger Hagicode Core :</strong> Desktop détecte automatiquement le besoin et vous propose de télécharger les composants cœur de Hagicode'
+      step2: '<strong>Installer les composants cœur :</strong> Suivez les indications à l''écran pour terminer leur installation'
+      step3: '<strong>Configurer votre Agent CLI par défaut :</strong> Choisissez un Agent CLI actuellement pris en charge et terminez les étapes nécessaires de connexion, d''autorisation ou d''installation locale.'
+      note: L'interface Desktop guide tout le processus. Lors du premier lancement, gardez le réseau disponible pour permettre le téléchargement de Hagicode Core. Certains Agent CLI exigent encore une installation ou une authentification manuelle, mais ils font bien partie de la plage de support actuelle.
+      done: Après ces étapes, vous pouvez utiliser normalement toutes les fonctionnalités de Hagicode Desktop.
+    q3:
+      question: Comment vérifier les mises à jour ?
+      answer: Desktop vérifie automatiquement les mises à jour. Lorsqu'une nouvelle version est disponible, une notification apparaît en haut à droite de l'interface. Vous pouvez aussi lancer une vérification manuelle dans « Paramètres ».
+    q4:
+      question: Quels AI Agent CLI sont pris en charge ?
+      intro: 'Hagicode Desktop prend actuellement en charge les Agent CLI suivants :'
+      active: '<strong>Pris en charge actuellement :</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents et Codebuddy'
+      manual: '<strong>Installation ou authentification manuelle :</strong> Hermes, Gemini et DeepAgents nécessitent d''abord une installation locale ou une authentification. Les autres CLI proposent un point d''entrée en un clic ou un parcours d''installation guidé.'
+      legacy: '<strong>Compatibilité historique uniquement :</strong> IFlowCli est conservé uniquement pour la compatibilité avec les anciennes données et ne fait plus partie du périmètre actif actuel.'
+      closing: Le périmètre de support et le mode d'installation sont deux sujets distincts. Un CLI qui demande une installation manuelle reste tout de même pris en charge aujourd'hui.
+    q5:
+      question: L'usage hors ligne est-il pris en charge ?
+      intro: 'Oui. Hagicode Desktop prend en charge un usage entièrement hors ligne :'
+      point1: Une connexion réseau est nécessaire pour l'installation et la configuration initiales (téléchargement des composants cœur et des modèles IA)
+      point2: Toutes les fonctionnalités peuvent être utilisées hors ligne après la configuration
+      point3: Votre code et vos données ne sont jamais envoyés dans le cloud
+      point4: Tout le traitement IA est effectué localement
+    q6:
+      question: macOS indique que Hagicode.app est endommagée ou ne peut pas être ouverte. Que faire ?
+      intro: Si Hagicode Desktop est installé au chemin par défaut /Applications/Hagicode.app et que macOS Gatekeeper bloque le premier lancement, utilisez la commande suivante pour retirer l'attribut de quarantaine de l'application.
+      cause: Cela se produit parce que macOS ajoute l'attribut com.apple.quarantine aux applications téléchargées depuis Internet. C'est un mécanisme d'isolation de sécurité de macOS, pas un défaut de l'installateur Hagicode.
+      command: sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app
+      note: Exécutez la commande dans le Terminal avec des privilèges administrateur, puis relancez Hagicode Desktop.
+    q7:
+      question: Où obtenir de l'aide en cas de problème ?
+      intro: 'Si vous rencontrez des problèmes avec Hagicode Desktop, vous pouvez obtenir de l''aide via :'
+      point1: '<strong>Groupe de support technique :</strong> Rejoignez le groupe QQ 610394020'
+      point2: '<strong>Documentation en ligne :</strong> Consultez la documentation complète et les tutoriels'
+      point3: '<strong>GitHub Issues :</strong> Envoyez un rapport de problème dans le dépôt du projet'

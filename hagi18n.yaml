@@ -1,0 +1,39 @@
+localesRoot: src/i18n/locales
+repoRoot: .
+baseLocale: en-US
+targetLocales:
+  - zh-CN
+  - zh-Hant
+  - ja-JP
+  - ko-KR
+  - de-DE
+  - fr-FR
+  - es-ES
+  - pt-BR
+  - ru-RU
+doctor:
+  excludedDirectories:
+    - .astro
+    - .git
+    - dist
+    - node_modules
+  textFileExtensions:
+    - .astro
+    - .css
+    - .js
+    - .json
+    - .md
+    - .mjs
+    - .ts
+    - .tsx
+    - .yaml
+    - .yml
+  allowlist:
+    legacy-language-change-call: []
+    legacy-locale-path:
+      - src/pages/en/index.astro
+      - src/pages/en/about/index.astro
+      - src/pages/en/container/index.astro
+      - src/pages/en/desktop/index.astro
+    legacy-ui-language-literal: []
+    legacy-ui-language-union: []

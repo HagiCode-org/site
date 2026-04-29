@@ -1,0 +1,123 @@
+desktop:
+  title: Hagicode Desktop - Baixar
+  description: Baixe o Hagicode Desktop, o assistente de código com IA localizado. Compatível com Windows, macOS e Linux, com proteção de privacidade e resposta rápida.
+  features:
+    title: Recursos principais
+    local:
+      title: Execução local
+      description: Todos os dados são processados localmente, sem envio para a nuvem, garantindo privacidade e segurança para o código
+    privacy:
+      title: Proteção de privacidade
+      description: O código nunca é enviado, o uso offline é suportado e sua propriedade intelectual permanece protegida
+    fast:
+      title: Resposta rápida
+      description: Tempo de resposta em nível de milissegundos, sem espera de rede, para aumentar a eficiência de desenvolvimento
+    crossPlatform:
+      title: Suporte multiplataforma
+      description: Compatível com Windows, macOS e Linux para atender diferentes ambientes de desenvolvimento
+    autoUpdate:
+      title: Atualizações automáticas
+      description: Verifica atualizações automaticamente e permite atualizar para a versão mais recente com um clique
+    multiLanguage:
+      title: Suporte multilíngue
+      description: Interface integrada em chinês e inglês, adequada à colaboração de equipes internacionais
+  systemRequirements:
+    title: Requisitos do sistema
+    windows: Windows
+    macos: macOS
+    linux: Linux
+    os: Sistema operacional
+    processor: Processador
+    memory: Memória
+    diskSpace: Espaço em disco
+    network: Rede
+    windowsOs: Windows 10/11 (64-bit)
+    macosOs: macOS 12+ (Monterey ou superior)
+    linuxOs: Ubuntu 20.04+ / Debian 11+ / outras distribuições principais
+    windowsProcessor: Intel Core i3 ou processador equivalente
+    macosProcessor: Apple Silicon (M1/M2/M3) ou Intel Core i3+
+    linuxProcessor: Intel Core i3 ou processador equivalente
+    memoryRec: 4GB de RAM (8GB recomendados)
+    disk: 2GB de espaço disponível
+    networkDesc: Conexão de rede necessária para o download inicial (depois pode ser usado offline)
+  download:
+    title: Pacotes de download
+    windowsDesc: Instaladores estáveis para Windows 10/11, incluindo versões de instalação e portátil.
+    macosDesc: Builds nativas para Apple Silicon e para Macs Intel.
+    linuxDesc: Pacotes AppImage e compactados para as principais distribuições Linux x64 e ARM64.
+    note: Se a lista de pacotes não carregar aqui, use o link do histórico de versões no topo da página para abrir o índice oficial.
+    features:
+      signed: Pacotes assinados
+      autoUpdate: Detecção automática de atualizações
+      multiLanguage: Interface multilíngue
+  installation:
+    title: Instalação rápida
+    step1:
+      number: '1'
+      title: Baixar o instalador
+      description: Selecione o instalador adequado para o seu sistema operacional
+    step2:
+      number: '2'
+      title: Executar o instalador
+      description: Dê um duplo clique no instalador baixado e siga as instruções para concluir a instalação
+    step3:
+      number: '3'
+      title: Iniciar o app
+      description: No primeiro início, você será guiado pela configuração inicial
+    step4:
+      number: '4'
+      title: Começar a usar
+      description: Depois da configuração, você já pode usar o Hagicode Desktop
+  faq:
+    title: Perguntas frequentes
+    q1:
+      question: Qual é a diferença entre as versões Desktop e Server?
+      intro: 'O Hagicode oferece duas opções de implantação: a versão Desktop e a versão Server. Cada uma tem suas vantagens, mas ambas adotam um modelo em que o usuário controla servidor e dados, oferecendo melhor proteção.'
+      desktopTitle: Versão Desktop
+      desktop1: Roda localmente no seu computador e é mais leve
+      desktop2: Não exige configuração de servidor, pronta para uso
+      desktop3: Adequada para desenvolvedores individuais e cenários de uso leves
+      desktop4: Todos os dados permanecem totalmente locais
+      serverTitle: Versão Server
+      server1: Pode ser implantada em servidores remotos
+      server2: Suporta acesso remoto para múltiplos usuários
+      server3: Mais adequada para colaboração em equipe e escalabilidade
+      server4: Prepara o caminho para recursos corporativos futuros e sincronização entre dispositivos
+      conclusion: Qualquer que seja a versão escolhida, você mantém controle total sobre servidor e dados, com melhor privacidade e segurança.
+    q2:
+      question: O que preciso fazer após a instalação?
+      intro: 'O Hagicode Desktop é essencialmente um lançador. Na primeira inicialização após a instalação, ele guia você pelos seguintes passos:'
+      step1: '<strong>Baixar o Hagicode Core:</strong> o Desktop detecta automaticamente a necessidade e orienta você a baixar os componentes centrais do Hagicode'
+      step2: '<strong>Instalar os componentes centrais:</strong> siga as instruções na tela para concluir a instalação'
+      step3: '<strong>Configurar o Agent CLI padrão:</strong> escolha um Agent CLI atualmente suportado e conclua as etapas necessárias de login, autorização ou instalação local.'
+      note: A interface do Desktop guia todo o fluxo. Mantenha a rede disponível no primeiro início para que o Hagicode Core possa ser baixado; alguns Agent CLI ainda exigem instalação manual ou autenticação, mas continuam dentro do escopo de suporte atual.
+      done: Depois de concluir essas etapas, você poderá usar normalmente todos os recursos do Hagicode Desktop.
+    q3:
+      question: Como verificar atualizações?
+      answer: O Desktop verifica atualizações automaticamente. Quando uma nova versão estiver disponível, um aviso aparecerá no canto superior direito da interface. Você também pode verificar manualmente em "Configurações".
+    q4:
+      question: Quais AI Agent CLI são suportados?
+      intro: 'O Hagicode Desktop oferece suporte ativo atualmente para os seguintes Agent CLI:'
+      active: '<strong>Atualmente suportados:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents e Codebuddy'
+      manual: '<strong>Instalação manual ou autenticação:</strong> Hermes, Gemini e DeepAgents exigem primeiro instalação local ou autenticação; os demais CLI oferecem entrada de instalação com um clique ou fluxos guiados.'
+      legacy: '<strong>Compatibilidade legada apenas:</strong> IFlowCli é mantido apenas para compatibilidade com dados históricos e não faz parte do escopo ativo atual.'
+      closing: Escopo de suporte e modo de configuração são coisas diferentes. Um CLI que exija instalação manual continua sendo suportado hoje.
+    q5:
+      question: Há suporte para uso offline?
+      intro: 'Sim. O Hagicode Desktop oferece suporte completo ao uso offline:'
+      point1: É necessária conexão de rede para a instalação e configuração iniciais (download dos componentes centrais e dos modelos de IA)
+      point2: Depois da configuração, todos os recursos podem ser usados offline
+      point3: Seu código e seus dados nunca são enviados para a nuvem
+      point4: Todo o processamento de IA é feito localmente
+    q6:
+      question: O macOS diz que Hagicode.app está danificado ou não pode ser aberto. O que devo fazer?
+      intro: Se o Hagicode Desktop estiver instalado no caminho padrão /Applications/Hagicode.app e o macOS Gatekeeper bloquear a primeira execução, use o comando abaixo para remover o atributo de quarentena do app.
+      cause: Isso acontece porque o macOS adiciona o atributo com.apple.quarantine aos aplicativos baixados da internet. É um mecanismo de isolamento de segurança do macOS, não uma falha do instalador do Hagicode.
+      command: sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app
+      note: Execute o comando no Terminal com privilégios de administrador e depois reinicie o Hagicode Desktop.
+    q7:
+      question: Como obter ajuda se eu encontrar problemas?
+      intro: 'Se você encontrar problemas ao usar o Hagicode Desktop, pode obter ajuda pelos seguintes canais:'
+      point1: '<strong>Grupo de suporte técnico:</strong> entre no grupo QQ 610394020'
+      point2: '<strong>Documentação online:</strong> consulte a documentação completa e os tutoriais'
+      point3: '<strong>GitHub Issues:</strong> envie relatórios de problemas no repositório do projeto'

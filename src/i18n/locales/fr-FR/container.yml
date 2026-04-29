@@ -1,0 +1,125 @@
+container:
+  title: Hagicode Container - Déploiement en conteneur
+  description: Déployez Hagicode via Docker Compose Builder. Configuration simple, prêt à l'emploi. Compatible avec plusieurs sources d'images et les mises à jour automatiques.
+  hero:
+    badge: Conteneur
+    title: Hagicode Container
+    tagline: Déployez rapidement avec Docker Compose Builder, configuration simple et prêt à l'emploi
+    value1: Configuration visuelle, sans code
+    value2: Isolation de l'environnement, sécurité des données
+    value3: Déploiement en un clic, démarrage rapide
+    ctaButton: Déployer avec Docker Compose Builder
+    features:
+      isolation: Isolation de l'environnement
+      oneClick: Déploiement en un clic
+      fastStart: Démarrage rapide
+  features:
+    title: Pourquoi choisir le déploiement en conteneur ?
+    isolation:
+      title: Isolation de l'environnement
+      description: Le déploiement conteneurisé évite les conflits de dépendances, n'affecte pas l'environnement système et garde la machine propre
+    simple:
+      title: Configuration simple
+      description: Utilisez la configuration visuelle de Docker Compose Builder sans avoir à écrire de scripts complexes
+    crossPlatform:
+      title: Compatibilité multiplateforme
+      description: Compatible avec l'architecture x86_64, adaptée à différents serveurs et plateformes cloud
+    persistent:
+      title: Persistance des données
+      description: Compatible avec les volumes Docker, pour des données sûres et fiables sans perte lors du redémarrage du conteneur
+    autoUpdate:
+      title: Mises à jour automatiques
+      description: Compatible avec les mises à jour automatiques via watchtower pour rester facilement sur la dernière version
+    productionReady:
+      title: Prêt pour la production
+      description: Conçu pour les environnements de production, avec prise en charge de la haute disponibilité et de la montée en charge horizontale
+  builder:
+    title: Docker Compose Builder
+    subtitle: La méthode de déploiement en conteneur la plus simple et la plus recommandée
+    visual:
+      title: Configuration visuelle
+      description: Configurez tous les paramètres via une interface Web conviviale, sans modifier manuellement des fichiers YAML
+    generate:
+      title: Génération de configuration en un clic
+      description: Génère automatiquement des fichiers docker-compose.yml complets avec des paramètres de bonnes pratiques
+    deploy:
+      title: Déploiement rapide
+      description: Téléchargez les fichiers de configuration en un clic et lancez les services en quelques minutes
+    secure:
+      title: Sûr et fiable
+      description: Intègre les bonnes pratiques de sécurité et configure automatiquement les volumes de données ainsi que les politiques de redémarrage
+    ctaButton: Aller à Docker Compose Builder
+  mirrors:
+    title: Choix de la source d'image
+    description: Choisissez la source d'image la plus adaptée à votre environnement réseau et à votre localisation
+    dockerHub: Docker Hub
+    dockerHubDesc: Le plus grand registre d'images de conteneurs au monde, adapté aux utilisateurs sur des réseaux internationaux
+    dockerHubCmd: newbe36524/hagicode:0
+    azure: Azure ACR
+    azureDesc: Service d'images proposé par Microsoft Azure, avec un accès plus rapide depuis la Chine
+    azureCmd: hagicode.azurecr.io/hagicode:0
+    aliyun: Aliyun ACR
+    aliyunDesc: Service d'accélération d'images d'Aliyun en Chine continentale, recommandé pour les utilisateurs du continent chinois
+    aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
+  faq:
+    title: FAQ
+    q1:
+      question: Quelle est la différence entre les versions Container et Desktop ?
+      intro: 'Les deux versions ont leurs avantages. Vous pouvez choisir selon votre scénario d''usage :'
+      desktopTitle: Version Desktop
+      desktop1: Fonctionne localement sur votre ordinateur, avec une empreinte plus légère
+      desktop2: Aucune configuration serveur requise, prêt à l'emploi
+      desktop3: Convient aux développeurs individuels et aux usages légers
+      desktop4: Toutes les données restent entièrement locales
+      containerTitle: Version Container
+      container1: Peut être déployée sur des serveurs, avec prise en charge de l'accès distant
+      container2: Isolation de l'environnement sans impact sur le système hôte
+      container3: Mieux adaptée à la collaboration d'équipe et à la production
+      container4: Compatible avec le déploiement automatisé et la montée en charge horizontale
+    q2:
+      question: Qu'est-ce que Docker Compose Builder ?
+      intro: 'Docker Compose Builder est notre outil de configuration visuelle qui vous aide à :'
+      point1: Configurer tous les paramètres des conteneurs via une interface Web
+      point2: Générer automatiquement des fichiers docker-compose.yml
+      point3: Bénéficier de bonnes pratiques et de réglages de sécurité intégrés
+      point4: Télécharger et lancer les services en un clic
+      note: Plus besoin d'écrire manuellement des configurations YAML complexes. Même les débutants sur Docker peuvent déployer facilement.
+    q3:
+      question: Quelles architectures système la version conteneur prend-elle en charge ?
+      answer: Les images conteneurisées Hagicode prennent actuellement en charge l'architecture <strong>x86_64 (amd64)</strong>, adaptée à la plupart des serveurs et PC.
+      note: Docker choisit automatiquement l'architecture appropriée à votre système lors du téléchargement des images.
+    q4:
+      question: Comment mettre à jour le conteneur ?
+      intro: 'Avec un déploiement Docker Compose, la mise à jour est très simple :'
+      code: |-
+        docker-compose pull
+        docker-compose up -d
+      watchtower: Vous pouvez aussi utiliser Watchtower pour les mises à jour automatiques.
+    q5:
+      question: Comment configurer la persistance des données ?
+      intro: 'Docker Compose Builder configure automatiquement les volumes de données. Par défaut, vos données sont stockées dans des Docker Volumes, ce qui garantit :'
+      point1: L'absence de perte de données lors de la suppression des conteneurs
+      point2: La conservation des données pendant les mises à niveau des conteneurs
+      point3: Des sauvegardes et restaurations faciles
+    q6:
+      question: Que faire si le conteneur ne démarre pas ?
+      intro: 'Étapes de diagnostic en cas d''échec au démarrage du conteneur :'
+      step1:
+        title: 'Vérifier l''état du conteneur :'
+        code: docker-compose ps
+      step2:
+        title: 'Vérifier les journaux du conteneur :'
+        code: docker-compose logs hagicode
+      step3:
+        title: 'Vérifier l''occupation du port :'
+        desc: 'Si votre service utilise le port 3000, vérifiez-le avec cette commande :'
+        code: netstat -tlnp | grep 3000
+        solution: 'Si le port est déjà utilisé, vous pouvez :'
+        solution1: Arrêter le processus qui occupe ce port
+        solution2: Ou configurer un autre port dans Docker Compose Builder
+      help: Si le problème persiste, consultez la documentation détaillée ou contactez le support technique.
+  cta:
+    title: Commencer avec Docker Compose Builder
+    subtitle: La méthode de déploiement en conteneur la plus simple et la plus recommandée
+    button: Aller au guide de déploiement
+    github: Dépôt GitHub

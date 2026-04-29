@@ -1,0 +1,24 @@
+page:
+  seoTitle: 关于 HagiCode 团队
+  seoDescription: 查看 HagiCode 团队的官方商店、官方群组、内容平台与可扫码卡片，快速找到我们在不同平台上的官方入口。
+  title: 增进交流，共同成长
+  sections:
+    store: 商店
+    community: 增进交流，共同成长
+    content: 关注团队持续发布的内容
+  kindLabels:
+    store: 商店
+    link: 平台
+    contact: 账号
+    qr: 二维码卡片
+    image: 图片卡片
+  contactFallbackDetail: 在应用内搜索该账号
+  comboLabel: 账号 + 二维码
+  platformBadges:
+    steam: 官方商店
+    youtube: 官方频道
+  genericLinkText:
+    link: 打开页面
+    contact: 打开主页
+    qr: 打开二维码
+    image: 打开图片

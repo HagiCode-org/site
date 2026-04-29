@@ -1,0 +1,339 @@
+hero:
+  tagline: 用 AI 驱动的编程工具，提升开发效率
+  description: HagiCode 帮助开发者专注于代码，而非重复性工作
+  ctaButton: 立即开始
+  taglines:
+    smart: 智能 · 高效 · 有趣
+    aiDriven: AI 编排 · 多 Agent 并行
+    openspec: OpenSpec · 工作流革新
+    multiThread: 多 Agent · 多实例协作
+  lunarTaglines:
+    happyNewYear: 新春快乐 · 马年大吉
+    aiPowered: AI 赋能 · 码到成功
+    smartCoding: 智能编码 · 万事如意
+    openspecLuck: OpenSpec · 财源滚滚
+    efficiency: 效率倍增 · 恭喜发财
+  problem: 传统 AI 编码工具的
+  painPoint: 痛点
+  painPoints: ：上下文受限、会话混乱、缺乏协作。
+  solution: Hagicode 用
+  features:
+    - OpenSpec 工作流
+    - 多 Agent 多实例并行
+    - Hero Dungeon 游戏化
+  redefine: 重新定义 AI 编码体验。
+  valueCards:
+    smart:
+      title: 智能
+      description: OpenSpec 让想法更快进入执行。
+    efficient:
+      title: 高效
+      description: 多 Agent 并行，把等待变成吞吐。
+    interesting:
+      title: 有趣
+      description: Hero Dungeon 让协作和训练更像冒险。
+  buttons:
+    desktopApp: 立即安装桌面应用
+    containerApp: 立即安装容器应用
+    learnMore: 了解更多
+  techStack:
+    poweredBy: Powered by
+  qqGroup:
+    title: 加入技术支持群组
+    description: Hagicode 技术支持 QQ 群
+    joinButton: 立即加入
+  secondaryLine: Hagicode 主流 Agent 全面支持，并行管理效率翻倍，OpenSpec 减少幻觉。
+features:
+  showcase:
+    title: 三大核心特性
+    subtitle: 重新定义你的 AI 编码体验
+  smart:
+    badge: SMART
+    title: 智能
+    subtitle: OpenSpec 工作流，AI 编码效率提升
+    efficiency: 效率提升
+    traditional: 传统
+    hagicode: Hagicode
+    description: 9 个阶段的完整提案流程，从想法到归档，AI 全流程辅助，让你的编码效率提升 3 倍。
+    workflow:
+      idea:
+        label: Idea
+        desc: 从想法开始
+      proposal:
+        label: Proposal
+        desc: AI 生成提案
+      review:
+        label: Review
+        desc: 自动评审
+      tasks:
+        label: Tasks
+        desc: 任务分解
+      code:
+        label: Code
+        desc: 智能编码
+      test:
+        label: Test
+        desc: 自动测试
+      refactor:
+        label: Refactor
+        desc: 代码重构
+      docs:
+        label: Docs
+        desc: 文档生成
+      archive:
+        label: Archive
+        desc: 知识归档
+    paused: 已暂停 - 点击节点切换
+  convenient:
+    badge: EFFICIENT
+    title: 高效
+    subtitle: 多 Agent 多实例并行，真正把额度跑满
+    traditional: 传统单 Agent / 单实例
+    multiThread: 多 Agent 并行矩阵
+    boost: 吞吐提升
+    boostValue: 并行 10x+
+    description: Claude Code、Codex、GitHub Copilot、OpenCode、Hermes 等当前活跃支持的 Agent CLI 可以同时处理多个实例与任务，让提案、修复、评审并行推进，把额度利用率从串行等待转成持续输出。
+    agentMatrix:
+      title: 并行执行矩阵
+      badge: 多个 Agent / 多个实例
+      status: 多个 Agent 正在同时驱动多个实例
+      agents:
+        claude:
+          name: Claude Code
+          role: 提案 / 评审
+          instances:
+            - Spec 起草
+            - 设计校对
+            - 归档检查
+        codex:
+          name: Codex
+          role: 实现 / 修复
+          instances:
+            - 实现 A
+            - 实现 B
+            - 回归修复
+        router:
+          name: Qwen · GLM
+          role: 分析 / 补充
+          instances:
+            - 问题排查
+            - 文案优化
+            - 知识提炼
+      supportedNames:
+        title: 当前活跃支持的 11 个 Agent CLI
+        names:
+          - Claude Code
+          - Codex
+          - GitHub Copilot
+          - OpenCode
+          - Hermes
+          - QoderCLI
+          - Kiro
+          - Kimi
+          - Gemini
+          - DeepAgents
+          - Codebuddy
+    supportedProvidersNote: OpenCode 现在可以把共享的 OmniRoute 目录投影到 Hero 的模型默认项里，同时继续允许分支级自定义原始模型标识。
+  interesting:
+    badge: INTERESTING
+    title: 有趣
+    subtitle: Hero Dungeon 让高校协作和训练更有趣
+    features:
+      dungeons:
+        label: 英雄副本
+        desc: 把生成、执行和 Prompt 工作台编成副本
+      captains:
+        label: 队长编组
+        desc: 为不同副本指定最合适的 Hero 队长
+      battle:
+        label: 战报反馈
+        desc: 用 XP、等级与执行数据回看推进结果
+    description: 不再靠成就徽章堆趣味，而是把 Hero Dungeon、队长编组、Prompt 视觉和战报反馈融进日常流程，让高校场景里的 AI 编码训练更像一场可推进的冒险。
+    dungeonCards:
+      proposal:
+        title: 提案副本
+        desc: OpenSpec 生成 / 执行 / 归档
+        status: 队长就绪
+      autotask:
+        title: AutoTask 副本
+        desc: 并行修复与批量自动任务
+        status: 2 个实例运行中
+      prompt:
+        title: Prompt 副本
+        desc: Prompt 预览与风格工作台
+        status: 视觉预览已同步
+    roster:
+      title: 当前队长编组
+      heroes:
+        strategist:
+          name: Spec Strategist
+          role: 提案队长
+        runner:
+          name: Patch Runner
+          role: 执行队长
+        artist:
+          name: Prompt Artist
+          role: 视觉支援
+    battleReport:
+      title: 今日副本战报
+      badge: Hero Battle
+      metrics:
+        dungeons:
+          value: '4'
+          label: 副本推进
+        level:
+          value: Lv.27
+          label: 队长等级
+        xp:
+          value: 12.8M
+          label: 今日 XP
+      note: 多个副本并行推进时，战报会把经验、等级与执行结果聚合展示。
+    gallery:
+      dungeons:
+        title: 副本地图轮播
+        subtitle: 从当前前端副本视觉中随机选取 10 张，展示提案、副本与 Prompt 工作台的地图感画面。
+      heroes:
+        title: 英雄图鉴轮播
+        subtitle: 从当前前端英雄图库中随机选取 10 张，展示不同队长与职业风格。
+productOverviewVideo:
+  title: Hagicode video
+videoShowcase:
+  eyebrow: 补充视频演示
+  title: 继续看看 Hagicode 的真实使用片段
+  description: 主介绍之外，这些补充视频能帮助你继续观察 Hagicode 在真实编码中的表现。
+  supportingLabel: 补充演示
+homepageVideos:
+  overview:
+    youtube:
+      title: Hagicode YouTube
+      description: YouTube video.
+      ctaLabel: 打开 YouTube
+    bilibili:
+      title: Hagicode Bilibili
+      description: Bilibili video.
+      ctaLabel: 打开 Bilibili
+  supporting:
+    first:
+      title: AI 居然 写代码时 玩游戏
+      description: 作为补充演示，这条视频更偏趣味互动，帮助你快速感受 Hagicode 在真实编码过程里的节奏和氛围。
+      ctaLabel: 打开 Bilibili
+    second:
+      title: GPT Codex in Hagicode 实测
+      description: 聚焦 GPT Codex 在 Hagicode 中的实际表现，帮助你在主介绍之外继续判断模型接入后的真实效果。
+      ctaLabel: 打开 Bilibili
+  hero:
+    steamAriaLabel: 打开 Hagicode Steam 商店页
+    ctaGroupLabel: 首页主要操作
+pricing:
+  docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
+  title: 版本与定价
+  limitTitle: 提案并行计数规则
+  limitDescription: 免费版和 Steam 版默认都包含 3 个提案并行上限。正在生成、正在执行、正在归档三个状态会合并计数。Turbo Engine DLC 可将上限扩展到 32。
+  plusTitle: Hagicode Plus 说明
+  plusDescription: Hagicode Plus 是 Steam 上的官方组合包，直接把 Steam 主体版本和 Turbo Engine DLC 一起打包。
+  featureHeader: 特性
+  includedLabel: 已包含
+  notIncludedLabel: 未包含
+  editions:
+    desktop:
+      title: Desktop
+    container:
+      title: Container
+  rows:
+    pricing: 定价
+    allFreeFeaturesIncluded: 全部免费特性已包含
+    vault: Vault
+    skills: Skills
+    proposalWorkflow: 提案流程
+    localAchievements: 本地成就
+    allAgentCliIntegrations: 全部 Agent CLI 对接支持
+    speechRecognition: 语音识别支持
+    omniRouteIntegration: OmniRoute 集成
+    githubIntegration: GitHub 集成
+    gitManagement: Git 管理
+    maximumConcurrentProposals: 最大提案并行数
+    copySwitchingSupport: 文案切换支持
+    turboEngineAvatarPacks: Turbo Engine 头像包
+    customAvatarUploads: 自定义头像上传
+    customLogo: 自定义 Logo
+    customTitle: 自定义标题
+    customCoAuthoredByInfo: 自定义 Co-Authored-By 信息
+    steamCloudAchievements: Steam 云成就
+    freeDlcSupport: 免费 DLC 支持
+    steamWorkshopSupport: 创意工坊支持
+    cloudSaveSupport: 云存档支持
+  values:
+    free: 免费
+    viewOnSteam: 点击查看
+  dlc:
+    label: DLC 与组合包
+    title: 扩展包列表
+    actions:
+      openSteam: 打开 Steam
+    preview:
+      bundlePending: 组合包图片待补充
+      productPending: 产品图片待补充
+    items:
+      allBeauties:
+        category: 免费 DLC
+        title: Hagicode - All Beauties Pack
+        price: 免费
+        description: 面向 Steam 用户的额外美少女内容包。
+        bullets:
+          - 包含 1000 个额外的美少女风格头像
+          - 为后续更多美少女主题内容预留扩展空间
+      turboEngine:
+        category: 性能 DLC
+        title: 'Hagicode: Turbo Engine DLC'
+        price: 点击查看
+        description: 用户可以单独购买这个 DLC 来扩展原来的提案并行上限，同时解锁文案切换，附带 5 套每套 10 个的独立头像，支持上传自定义头像以及自定义左上角 Logo 和标题，并让 AI 提交里的 Co-Authored-By 署名更容易对齐团队自己的命名规范。通常情况下，我们会重点突出名为 Hagicode Plus 的组合购买方案，使总体购买价格更低。请以商店页面的最新变化为准。
+        bullets:
+          - 支持左上角 Logo 和标题自定义
+          - 包含 5 套头像资源，每套提供 10 个可选头像
+          - 支持上传自定义头像
+          - 支持为 AI 提交流程自定义 Co-Authored-By 署名
+          - 解锁文案与措辞切换支持
+          - 最大提案并行数扩展到 32
+      hagicodePlus:
+        category: 组合包
+        title: Hagicode Plus
+        price: 点击查看
+        description: Steam 官方组合包，一次打包 Hagicode Steam 主体版本和 Turbo Engine DLC，适合想直接进入完整 Steam 工作流的用户。
+        bullets:
+          - 把 Steam 主体版本和 Turbo Engine DLC 一起打包
+          - 保留 32 个提案并行上限这条升级路径
+          - 适合希望一次买齐 Steam 完整能力的购买入口
+      sponsor:
+        category: 赞助者 DLC
+        title: Hagicode - Sponsor Pack
+        price: 点击查看
+        description: 如果你觉得 Hagicode 确实不错，并希望为项目提供直接的经济支持，购买 Sponsor Pack 可以为项目提供更多动力，帮助我们长期维护和运行。
+        bullets:
+          - 一套专属暗色主题
+          - 一套专属亮色主题
+          - 一个专属 Steam 成就
+workflowBoard:
+  titleLines:
+    - 主流 Agent 全面支持
+    - 并行管理效率10X
+    - OpenSpec 减少幻觉
+  taskLabel: 任务
+  headerSummary: 任务 / Agent
+  steps:
+    - 新建主意
+    - 生成提案
+    - 执行提案
+    - 归档提案
+  activeStates:
+    - 构思中
+    - 提案中
+    - 执行中
+    - 归档中
+  completedState: 已完成
+  metrics:
+    completed: 已完成任务
+    efficiency: 当前效率
+    serialTime: 累计串行工时
+    elapsedTime: 自然流逝时间
+    formula: 运行效率 = 累计串行工时 / 自然流逝时间
+    serialHint: 相当于单串行的持续提速

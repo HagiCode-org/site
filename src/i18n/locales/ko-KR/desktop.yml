@@ -1,0 +1,123 @@
+desktop:
+  title: Hagicode Desktop - 다운로드
+  description: 로컬에서 실행되는 AI 코딩 도우미 Hagicode Desktop을 다운로드하세요. Windows, macOS, Linux를 지원하며 개인정보 보호와 빠른 응답을 제공합니다.
+  features:
+    title: 주요 기능
+    local:
+      title: 로컬 실행
+      description: 모든 데이터가 클라우드 업로드 없이 로컬에서 처리되어 코드 프라이버시와 보안을 지켜줍니다
+    privacy:
+      title: 개인정보 보호
+      description: 코드가 업로드되지 않으며 오프라인 사용도 가능해 지식 재산을 보호합니다
+    fast:
+      title: 빠른 응답
+      description: 밀리초 단위 응답 속도로 네트워크 요청 대기 없이 개발 효율을 높여줍니다
+    crossPlatform:
+      title: 크로스플랫폼 지원
+      description: Windows, macOS, Linux를 지원해 다양한 개발 환경에 대응합니다
+    autoUpdate:
+      title: 자동 업데이트
+      description: 업데이트를 자동으로 확인하고 한 번의 클릭으로 최신 버전으로 업그레이드할 수 있습니다
+    multiLanguage:
+      title: 다국어 지원
+      description: 중국어와 영어 UI를 기본 제공하여 국제 팀 협업을 지원합니다
+  systemRequirements:
+    title: 시스템 요구 사항
+    windows: Windows
+    macos: macOS
+    linux: Linux
+    os: 운영 체제
+    processor: 프로세서
+    memory: 메모리
+    diskSpace: 디스크 공간
+    network: 네트워크
+    windowsOs: Windows 10/11 (64-bit)
+    macosOs: macOS 12+ (Monterey 이상)
+    linuxOs: Ubuntu 20.04+ / Debian 11+ / 기타 주요 배포판
+    windowsProcessor: Intel Core i3 또는 동급 성능의 프로세서
+    macosProcessor: Apple Silicon (M1/M2/M3) 또는 Intel Core i3+
+    linuxProcessor: Intel Core i3 또는 동급 성능의 프로세서
+    memoryRec: 4GB RAM (8GB 권장)
+    disk: 2GB 사용 가능 공간
+    networkDesc: 초기 다운로드 시 네트워크 연결 필요 (이후에는 오프라인 사용 가능)
+  download:
+    title: 다운로드 패키지
+    windowsDesc: Windows 10/11용 안정적인 설치 패키지와 포터블 빌드를 제공합니다.
+    macosDesc: Apple Silicon과 Intel Mac을 위한 네이티브 빌드를 제공합니다.
+    linuxDesc: 주요 x64 및 ARM64 Linux 배포판용 AppImage와 압축 패키지를 제공합니다.
+    note: 여기서 패키지 목록을 불러오지 못하면 페이지 상단의 버전 기록 링크를 사용해 공식 인덱스로 이동하세요.
+    features:
+      signed: 서명된 패키지
+      autoUpdate: 자동 업데이트 감지
+      multiLanguage: 다국어 인터페이스
+  installation:
+    title: 빠른 설치
+    step1:
+      number: '1'
+      title: 설치 프로그램 다운로드
+      description: 운영 체제에 맞는 설치 프로그램을 선택하세요
+    step2:
+      number: '2'
+      title: 설치 프로그램 실행
+      description: 다운로드한 설치 파일을 더블클릭하고 안내에 따라 설치를 완료하세요
+    step3:
+      number: '3'
+      title: 앱 실행
+      description: 처음 실행할 때 초기 설정 과정을 안내합니다
+    step4:
+      number: '4'
+      title: 사용 시작
+      description: 설정이 끝나면 바로 Hagicode Desktop을 사용할 수 있습니다
+  faq:
+    title: 자주 묻는 질문
+    q1:
+      question: Desktop 버전과 Server 버전의 차이는 무엇인가요?
+      intro: Hagicode는 Desktop 버전과 Server 버전 두 가지 배포 방식을 제공합니다. 각 버전마다 장점이 있지만, 둘 다 사용자가 서버와 데이터를 직접 통제하는 방식을 채택해 더 나은 데이터 보호를 제공합니다.
+      desktopTitle: Desktop 버전
+      desktop1: 내 컴퓨터에서 로컬로 실행되어 더 가볍습니다
+      desktop2: 서버 설정이 필요 없고 바로 사용할 수 있습니다
+      desktop3: 개인 개발자와 가벼운 사용 시나리오에 적합합니다
+      desktop4: 모든 데이터가 완전히 로컬에 저장됩니다
+      serverTitle: Server 버전
+      server1: 원격 서버에 배포할 수 있습니다
+      server2: 다중 사용자 원격 접속을 지원합니다
+      server3: 팀 협업과 확장에 더 적합합니다
+      server4: 향후 엔터프라이즈 기능과 다중 기기 동기화를 준비할 수 있습니다
+      conclusion: 어떤 버전을 선택하더라도 서버와 데이터에 대한 통제권은 사용자에게 있으며, 더 나은 개인정보 보호와 데이터 보안을 누릴 수 있습니다.
+    q2:
+      question: 설치 후에 무엇을 해야 하나요?
+      intro: Hagicode Desktop은 본질적으로 런처입니다. 설치 후 처음 실행하면 다음 과정을 안내합니다.
+      step1: <strong>Hagicode Core 다운로드:</strong> Desktop이 Hagicode 핵심 구성 요소 다운로드를 자동으로 감지하고 안내합니다
+      step2: <strong>핵심 구성 요소 설치:</strong> 화면 안내에 따라 핵심 구성 요소 설치를 완료합니다
+      step3: <strong>기본 Agent CLI 설정:</strong> 현재 지원되는 Agent CLI를 선택하고 필요한 로그인, 인증 또는 로컬 설치를 완료합니다.
+      note: 전체 흐름은 Desktop 인터페이스가 안내합니다. 첫 실행 시 Hagicode Core를 다운로드할 수 있도록 네트워크를 유지하세요. 일부 Agent CLI는 수동 설치나 인증이 필요하지만 현재 지원 범위에는 포함됩니다.
+      done: 이 단계를 마치면 Hagicode Desktop의 모든 기능을 정상적으로 사용할 수 있습니다.
+    q3:
+      question: 업데이트는 어떻게 확인하나요?
+      answer: Desktop은 자동으로 업데이트를 확인합니다. 새 버전이 있으면 화면 오른쪽 위에 알림이 표시됩니다. "설정"에서 수동으로 확인할 수도 있습니다.
+    q4:
+      question: 어떤 AI Agent CLI를 지원하나요?
+      intro: Hagicode Desktop은 현재 다음 Agent CLI를 활발하게 지원합니다.
+      active: <strong>현재 지원:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents, Codebuddy
+      manual: <strong>수동 설치 또는 인증 필요:</strong> Hermes, Gemini, DeepAgents는 먼저 로컬 설치나 인증이 필요합니다. 나머지 CLI는 원클릭 설치 진입점 또는 가이드형 설치 흐름을 제공합니다.
+      legacy: <strong>레거시 호환 전용:</strong> IFlowCli는 과거 데이터 호환을 위해서만 유지되며 현재의 주요 지원 범위에는 포함되지 않습니다.
+      closing: 지원 여부와 설치 방식은 별개의 문제입니다. 어떤 CLI가 수동 설치를 요구하더라도 현재 지원 대상이라는 사실은 변하지 않습니다.
+    q5:
+      question: 오프라인 사용을 지원하나요?
+      intro: 예. Hagicode Desktop은 완전한 오프라인 사용을 지원합니다.
+      point1: 최초 설치와 설정 시에는 네트워크 연결이 필요합니다 (핵심 구성 요소와 AI 모델 다운로드)
+      point2: 설정 후에는 모든 기능을 오프라인으로 사용할 수 있습니다
+      point3: 코드와 데이터는 클라우드에 업로드되지 않습니다
+      point4: 모든 AI 처리는 로컬에서 완료됩니다
+    q6:
+      question: macOS에서 Hagicode.app이 손상되었거나 열 수 없다고 나옵니다. 어떻게 해야 하나요?
+      intro: Hagicode Desktop이 기본 경로인 /Applications/Hagicode.app 에 설치되어 있고 macOS Gatekeeper가 첫 실행을 차단한다면, 아래 명령으로 앱의 격리 속성을 제거하세요.
+      cause: 이는 인터넷에서 내려받은 앱에 macOS가 com.apple.quarantine 속성을 추가하기 때문입니다. Hagicode 설치 프로그램 자체의 문제는 아닙니다.
+      command: sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app
+      note: 터미널에서 관리자 권한으로 실행한 뒤 Hagicode Desktop을 다시 실행하세요.
+    q7:
+      question: 문제가 생기면 어디에서 도움을 받을 수 있나요?
+      intro: Hagicode Desktop 사용 중 문제가 발생하면 다음 경로로 도움을 받을 수 있습니다.
+      point1: <strong>기술 지원 그룹:</strong> QQ 그룹 610394020 참여
+      point2: <strong>온라인 문서:</strong> 전체 사용 문서와 튜토리얼 확인
+      point3: <strong>GitHub Issues:</strong> 프로젝트 저장소에 문제 보고 제출
