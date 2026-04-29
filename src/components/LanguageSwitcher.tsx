@@ -1,37 +1,39 @@
-import { useLocale } from '@/lib/useLocale';
 import { useTranslation } from '@/i18n/ui';
+import {
+  resolveSiteLocale,
+  SITE_LOCALES,
+} from '@/i18n/locale-metadata';
+import { useLocale } from '@/lib/useLocale';
 import styles from './LanguageSwitcher.module.css';
 
 interface LanguageSwitcherProps {
-  locale?: 'zh-CN' | 'en';
+  locale?: string;
 }
 
 export function LanguageSwitcher({ locale: propLocale }: LanguageSwitcherProps = {}) {
-  const { locale: detectedLocale, toggleLocale } = useLocale();
+  const { locale: detectedLocale, setLocale } = useLocale();
   const currentLocale = propLocale || detectedLocale;
   const { t } = useTranslation(currentLocale);
-  const switchLabel =
-    currentLocale === 'zh-CN'
-      ? t('languageSwitcher.switchToEnglish')
-      : t('languageSwitcher.switchToChinese');
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      toggleLocale();
-    }
-  };
 
   return (
-    <button
-      onClick={toggleLocale}
-      onKeyDown={handleKeyDown}
-      aria-label={switchLabel}
-      title={switchLabel}
-      className={styles.languageSwitcher}
-      data-current-locale={currentLocale}
-    >
-      <span>{currentLocale === 'zh-CN' ? '中' : 'EN'}</span>
-    </button>
+    <label className={styles.languageSwitcher}>
+      <span className={styles.screenReaderOnly}>{t('languageSwitcher.label')}</span>
+      <select
+        value={currentLocale}
+        aria-label={t('languageSwitcher.label')}
+        title={t('languageSwitcher.label')}
+        className={styles.languageSelect}
+        onChange={(event) => setLocale(resolveSiteLocale(event.target.value))}
+      >
+        {SITE_LOCALES.map((locale) => (
+          <option key={locale.code} value={locale.code}>
+            {locale.nativeName}
+          </option>
+        ))}
+      </select>
+      <span className={styles.languageSelectChevron} aria-hidden="true">
+        ▾
+      </span>
+    </label>
   );
 }

@@ -1,9 +1,10 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import styles from './HeroWorkflowBoard.module.css';
+import { getTranslation } from '@/i18n/ui';
 import { withBasePath } from '@/utils/path';
 
-type Locale = 'zh-CN' | 'en';
+type Locale = string;
 
 type AgentSpec = {
   name: string;
@@ -88,40 +89,40 @@ const HERO_IMAGES = [
   '/img/home/interesting/heroes/tide-09.webp',
 ] as const;
 
-const COPY: Record<Locale, BoardCopy> = {
-  'zh-CN': {
-    titleLines: ['主流 Agent 全面支持', '并行管理效率10X', 'OpenSpec 减少幻觉'],
-    taskLabel: '任务',
-    headerSummary: '任务 / Agent',
-    steps: ['新建主意', '生成提案', '执行提案', '归档提案'],
-    activeStates: ['构思中', '提案中', '执行中', '归档中'],
-    completedState: '已完成',
+export function getHeroWorkflowBoardCopy(locale: Locale): BoardCopy {
+  const { t } = getTranslation(locale);
+
+  return {
+    titleLines: [
+      t('workflowBoard.titleLines.0'),
+      t('workflowBoard.titleLines.1'),
+      t('workflowBoard.titleLines.2'),
+    ],
+    taskLabel: t('workflowBoard.taskLabel'),
+    headerSummary: t('workflowBoard.headerSummary'),
+    steps: [
+      t('workflowBoard.steps.0'),
+      t('workflowBoard.steps.1'),
+      t('workflowBoard.steps.2'),
+      t('workflowBoard.steps.3'),
+    ],
+    activeStates: [
+      t('workflowBoard.activeStates.0'),
+      t('workflowBoard.activeStates.1'),
+      t('workflowBoard.activeStates.2'),
+      t('workflowBoard.activeStates.3'),
+    ],
+    completedState: t('workflowBoard.completedState'),
     metrics: {
-      completed: '已完成任务',
-      efficiency: '当前效率',
-      serialTime: '累计串行工时',
-      elapsedTime: '自然流逝时间',
-      formula: '运行效率 = 累计串行工时 / 自然流逝时间',
-      serialHint: '相当于单串行的持续提速',
+      completed: t('workflowBoard.metrics.completed'),
+      efficiency: t('workflowBoard.metrics.efficiency'),
+      serialTime: t('workflowBoard.metrics.serialTime'),
+      elapsedTime: t('workflowBoard.metrics.elapsedTime'),
+      formula: t('workflowBoard.metrics.formula'),
+      serialHint: t('workflowBoard.metrics.serialHint'),
     },
-  },
-  en: {
-    titleLines: ['Mainstream Agents Supported', '10x Parallel Management Efficiency', 'OpenSpec Reduces Hallucinations'],
-    taskLabel: 'Task',
-    headerSummary: 'Task / Agent',
-    steps: ['Ideate', 'Propose', 'Execute', 'Archive'],
-    activeStates: ['Ideating', 'Proposing', 'Executing', 'Archiving'],
-    completedState: 'Complete',
-    metrics: {
-      completed: 'Completed Tasks',
-      efficiency: 'Live Efficiency',
-      serialTime: 'Equivalent Serial Time',
-      elapsedTime: 'Elapsed Time',
-      formula: 'Efficiency = equivalent serial work / natural elapsed time',
-      serialHint: 'relative to a single serial worker',
-    },
-  },
-};
+  };
+}
 
 function randomBetween(min: number, max: number) {
   return min + Math.random() * (max - min);
@@ -301,7 +302,7 @@ function formatDuration(durationMs: number, locale: Locale) {
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
 
-  if (locale === 'zh-CN') {
+  if (locale.toLowerCase().startsWith('zh')) {
     if (minutes > 0) {
       return `${minutes}分 ${seconds.toString().padStart(2, '0')}秒`;
     }
@@ -317,7 +318,7 @@ function formatDuration(durationMs: number, locale: Locale) {
 }
 
 export default function HeroWorkflowBoard({ locale = 'zh-CN' }: HeroWorkflowBoardProps) {
-  const copy = COPY[locale];
+  const copy = useMemo(() => getHeroWorkflowBoardCopy(locale), [locale]);
   const shouldReduceMotion = Boolean(useReducedMotion());
   const [snapshot, setSnapshot] = useState<SimulationSnapshot>(() => createInitialSnapshot(0));
   const snapshotRef = useRef<SimulationSnapshot>(snapshot);
@@ -349,7 +350,7 @@ export default function HeroWorkflowBoard({ locale = 'zh-CN' }: HeroWorkflowBoar
 
     const equivalentSerialMs = snapshot.accumulatedTaskMs + inFlightWorkMs;
     const efficiency = equivalentSerialMs / elapsedMs;
-    const formatter = new Intl.NumberFormat(locale === 'zh-CN' ? 'zh-CN' : 'en-US');
+    const formatter = new Intl.NumberFormat(locale.toLowerCase().startsWith('zh') ? 'zh-CN' : 'en-US');
 
     return {
       completedTasks: formatter.format(snapshot.completedTasks),

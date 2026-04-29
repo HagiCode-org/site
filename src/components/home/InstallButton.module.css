@@ -10,6 +10,7 @@
 
 .installButtonWrapper {
   display: inline-block;
+  --install-button-width-scale: 1.2;
 }
 
 .installButtonWrapper--full {
@@ -70,8 +71,8 @@
   gap: 0.5rem;
   flex: 1 1 0;
   min-height: 56px;
-  padding: 0 1.25rem;
-  min-width: 0;
+  min-width: calc(8.5rem * var(--install-button-width-scale));
+  padding: 0 calc(1.25rem * var(--install-button-width-scale));
   border: 1px solid transparent;
   border-radius: 0.75rem;
   text-decoration: none;
@@ -84,7 +85,8 @@
 
 .installButtonWrapper--compact .sourceActionButton {
   min-height: 40px;
-  padding: 0 0.75rem;
+  min-width: calc(6.5rem * var(--install-button-width-scale));
+  padding: 0 calc(0.75rem * var(--install-button-width-scale));
   font-size: 0.9375rem;
   border-radius: var(--radius-md);
 }
@@ -147,7 +149,8 @@
   justify-content: center;
   gap: 0.45rem;
   min-height: 56px;
-  padding: 0 1rem;
+  min-width: calc(7rem * var(--install-button-width-scale));
+  padding: 0 calc(1rem * var(--install-button-width-scale));
   border: 1px solid rgba(102, 192, 244, 0.35);
   color: #f8fbff;
   text-decoration: none;
@@ -167,7 +170,8 @@
 
 .installButtonWrapper--compact .steamShortcut {
   min-height: 40px;
-  padding: 0 0.9rem;
+  min-width: calc(6rem * var(--install-button-width-scale));
+  padding: 0 calc(0.9rem * var(--install-button-width-scale));
   font-size: 0.9375rem;
 }
 
@@ -212,15 +216,17 @@
 .installButtonWrapper--full .btnDownloadMain {
   border-radius: 0.75rem 0 0 0.75rem;
   min-height: 56px;
+  min-width: calc(10rem * var(--install-button-width-scale));
   font-size: 1.125rem;
-  padding: 0 1.75rem;
+  padding: 0 calc(1.75rem * var(--install-button-width-scale));
 }
 
 .installButtonWrapper--compact .btnDownloadMain {
   border-radius: var(--radius-md) 0 0 var(--radius-md);
   min-height: 40px;
+  min-width: calc(8rem * var(--install-button-width-scale));
   font-size: 0.9375rem;
-  padding: 0 1rem;
+  padding: 0 calc(1rem * var(--install-button-width-scale));
 }
 
 .btnDownloadMain:hover {
@@ -285,14 +291,14 @@
 }
 
 .installButtonWrapper--full .btnDropdownToggle {
-  width: 48px;
-  min-width: 48px;
+  width: calc(48px * var(--install-button-width-scale));
+  min-width: calc(48px * var(--install-button-width-scale));
   border-radius: 0 0.75rem 0.75rem 0;
 }
 
 .installButtonWrapper--compact .btnDropdownToggle {
-  width: 36px;
-  min-width: 36px;
+  width: calc(36px * var(--install-button-width-scale));
+  min-width: calc(36px * var(--install-button-width-scale));
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
 

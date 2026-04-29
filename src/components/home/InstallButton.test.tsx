@@ -7,6 +7,7 @@ import type { DesktopVersionData } from '../../lib/shared/version-manager';
 import {
   collectDownloadSourceProbeTargets,
   ensureDownloadSourceProbes,
+  getFileExtension,
   groupAssetsByPlatform,
   resetDownloadSourceProbeCache,
 } from '../../lib/shared/desktop-utils';
@@ -165,6 +166,41 @@ describe('InstallButton runtime state helpers', () => {
 });
 
 describe('InstallButton markup', () => {
+  it('keeps macOS zip and dmg extensions distinct in the dropdown metadata', () => {
+    expect(
+      getFileExtension(AssetType.MacOSApple, 'Hagicode.Desktop-1.2.3-arm64-mac.zip'),
+    ).toBe('.zip');
+    expect(
+      getFileExtension(AssetType.MacOSApple, 'Hagicode.Desktop-1.2.3-arm64.dmg'),
+    ).toBe('.dmg');
+    expect(
+      getFileExtension(AssetType.MacOSIntel, 'Hagicode.Desktop-1.2.3-mac.zip'),
+    ).toBe('.zip');
+  });
+
+  it('prioritizes macOS dmg packages ahead of zip packages for the recommended row', () => {
+    const macPlatformGroups = groupAssetsByPlatform([
+      {
+        name: 'Hagicode.Desktop-1.2.3-arm64-mac.zip',
+        path: 'v1.2.3/Hagicode.Desktop-1.2.3-arm64-mac.zip',
+        size: 1048576,
+        lastModified: null,
+      },
+      {
+        name: 'Hagicode.Desktop-1.2.3-arm64.dmg',
+        path: 'v1.2.3/Hagicode.Desktop-1.2.3-arm64.dmg',
+        size: 1048576,
+        lastModified: null,
+      },
+    ]);
+
+    expect(macPlatformGroups[0]?.platform).toBe('macos');
+    expect(macPlatformGroups[0]?.downloads.map((download) => download.filename)).toEqual([
+      'Hagicode.Desktop-1.2.3-arm64.dmg',
+      'Hagicode.Desktop-1.2.3-arm64-mac.zip',
+    ]);
+  });
+
   it('renders a responsive loading trigger while runtime data is pending', () => {
     const markup = renderToStaticMarkup(<InstallButton locale="en" />);
 

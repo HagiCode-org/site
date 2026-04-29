@@ -162,7 +162,7 @@ interface InstallButtonProps {
   /**
    * 页面语言环境
    */
-  locale?: 'zh-CN' | 'en';
+  locale?: string;
 }
 
 interface DropdownPosition {
@@ -360,31 +360,33 @@ export default function InstallButton({
   const menuRef = useRef<HTMLUListElement>(null);
 
   const buttonId = useId();
+  const isChineseLocale = locale.toLowerCase().startsWith('zh');
+  const legacyLocale = isChineseLocale ? 'zh-CN' : 'en';
   const needsRuntimeFetch = !version && platforms.length === 0 && !versionError;
   const desktopPageUrl = useMemo(() => getLinkWithLocale('desktop', locale), [locale]);
   const containerUrl = useMemo(() => getLinkWithLocale('container', locale), [locale]);
-  const macDisabledNotice = locale === 'en' ? MAC_DOWNLOAD_DISABLED_NOTICE_EN : MAC_DOWNLOAD_DISABLED_NOTICE;
-  const containerDeploymentLabel = locale === 'en' ? 'Container Deployment' : '容器部署';
-  const goToContainerLabel = locale === 'en' ? 'Go to Container page' : '前往 Container 页面';
-  const installButtonLabel = locale === 'en' ? 'Install now' : '立即安装';
+  const macDisabledNotice = isChineseLocale ? MAC_DOWNLOAD_DISABLED_NOTICE : MAC_DOWNLOAD_DISABLED_NOTICE_EN;
+  const containerDeploymentLabel = isChineseLocale ? '容器部署' : 'Container Deployment';
+  const goToContainerLabel = isChineseLocale ? '前往 Container 页面' : 'Go to Container page';
+  const installButtonLabel = isChineseLocale ? '立即安装' : 'Install now';
   const installDesktopAriaLabel =
-    locale === 'en' ? 'Install Hagicode Desktop' : '立即安装 Hagicode Desktop';
-  const selectOtherVersionsLabel = locale === 'en' ? 'Choose other versions' : '选择其他版本';
-  const selectDownloadVersionLabel = locale === 'en' ? 'Choose download version' : '选择下载版本';
-  const recommendedLabel = locale === 'en' ? 'Recommended' : '推荐';
-  const loadingLatestLabel = locale === 'en' ? 'Fetching latest version...' : '正在获取最新版本...';
+    isChineseLocale ? '立即安装 Hagicode Desktop' : 'Install Hagicode Desktop';
+  const selectOtherVersionsLabel = isChineseLocale ? '选择其他版本' : 'Choose other versions';
+  const selectDownloadVersionLabel = isChineseLocale ? '选择下载版本' : 'Choose download version';
+  const recommendedLabel = isChineseLocale ? '推荐' : 'Recommended';
+  const loadingLatestLabel = isChineseLocale ? '正在获取最新版本...' : 'Fetching latest version...';
   const errorFallbackLabel =
-    locale === 'en'
-      ? 'Latest version is unavailable. Use the Index version history instead.'
-      : '暂时无法获取最新版本，请改用 Index 版本历史页。';
-  const desktopFallbackCta = locale === 'en' ? 'Open version history' : '打开版本历史页';
-  const pendingMenuLabel = locale === 'en' ? 'Versions are still loading' : '版本数据仍在加载';
-  const unavailableMenuLabel = locale === 'en' ? 'Version data is temporarily unavailable' : '版本数据暂时不可用';
-  const desktopFallbackMenuLabel = locale === 'en' ? 'Open version history' : '打开版本历史页';
-  const loadingPrimaryLabel = locale === 'en' ? 'Loading...' : '获取中...';
+    isChineseLocale
+      ? '暂时无法获取最新版本，请改用 Index 版本历史页。'
+      : 'Latest version is unavailable. Use the Index version history instead.';
+  const desktopFallbackCta = isChineseLocale ? '打开版本历史页' : 'Open version history';
+  const pendingMenuLabel = isChineseLocale ? '版本数据仍在加载' : 'Versions are still loading';
+  const unavailableMenuLabel = isChineseLocale ? '版本数据暂时不可用' : 'Version data is temporarily unavailable';
+  const desktopFallbackMenuLabel = isChineseLocale ? '打开版本历史页' : 'Open version history';
+  const loadingPrimaryLabel = isChineseLocale ? '获取中...' : 'Loading...';
   const steamShortcutLabel = 'Steam';
   const steamShortcutAriaLabel =
-    locale === 'en' ? 'Open Hagicode on Steam' : '打开 Hagicode Steam 商店页';
+    isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam';
   const showSteamShortcut = variant === 'compact' && steamStoreLink.href.length > 0;
 
   useEffect(() => {
@@ -499,15 +501,15 @@ export default function InstallButton({
     }
 
     if (runtimeSnapshot.status === 'local_snapshot') {
-      return locale === 'en'
-        ? 'Primary sources are unavailable. Showing the local snapshot, which may be stale.'
-        : '主版本源暂不可用，当前显示站内快照，信息可能滞后。';
+      return isChineseLocale
+        ? '主版本源暂不可用，当前显示站内快照，信息可能滞后。'
+        : 'Primary sources are unavailable. Showing the local snapshot, which may be stale.';
     }
 
     if (runtimeSnapshot.status === 'degraded') {
-      return locale === 'en'
-        ? 'Primary source is unavailable. Showing the backup index.'
-        : '主版本源暂不可用，当前显示备用索引数据。';
+      return isChineseLocale
+        ? '主版本源暂不可用，当前显示备用索引数据。'
+        : 'Primary source is unavailable. Showing the backup index.';
     }
 
     return null;
@@ -555,7 +557,7 @@ export default function InstallButton({
       .map((source) => ({
         source,
         action: primaryTarget.actionPair![source],
-        label: getPrimaryDownloadSourceLabel(source, locale),
+        label: getPrimaryDownloadSourceLabel(source, legacyLocale),
       }))
       .filter((entry) => Boolean(entry.action));
   }, [primaryTarget.actionPair, primarySourceOrder, locale]);
@@ -765,7 +767,7 @@ export default function InstallButton({
                   </div>
                   {platformGroup.options.map((option, idx) => {
                     const archLabel = getArchitectureLabel(option.assetType);
-                    const fileExt = getFileExtension(option.assetType);
+                    const fileExt = getFileExtension(option.assetType, option.label);
                     const isRecommended = idx === 0;
                     const resolvedAction = resolvePrimaryDownloadAction(
                       { sourceActions: option.sourceActions },
@@ -801,13 +803,13 @@ export default function InstallButton({
                                   className={`${styles.dropdownSourceAction} ${isSmartDefault ? styles.dropdownSourceActionDefault : ''}`}
                                   role="menuitem"
                                   download
-                                  aria-label={`${getAssetTypeLabel(option.assetType)} ${getDownloadActionLabel(action.kind, locale)}`}
+                                  aria-label={`${getAssetTypeLabel(option.assetType)} ${getDownloadActionLabel(action.kind, legacyLocale)}`}
                                   onClick={() => handlePlatformDownloadClick(option.assetType, action.kind)}
                                 >
-                                  <span>{getDownloadActionLabel(action.kind, locale)}</span>
+                                  <span>{getDownloadActionLabel(action.kind, legacyLocale)}</span>
                                   {isSmartDefault && (
                                     <span className={styles.dropdownSourceActionBadge}>
-                                      {locale === 'en' ? 'Default' : '默认'}
+                                      {isChineseLocale ? '默认' : 'Default'}
                                     </span>
                                   )}
                                 </a>
