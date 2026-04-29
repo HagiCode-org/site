@@ -16,15 +16,11 @@ import {
 } from '@/lib/shared/version-manager';
 import {
   detectOS,
-  getAssetTypeLabel,
-  getDownloadActionLabel,
-  getPrimaryDownloadSourceLabel,
   groupAssetsByPlatform,
   resolvePrimaryDownloadActionPair,
 } from '@/lib/shared/desktop-utils';
 import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
-import { MAC_DOWNLOAD_DISABLED_NOTICE, MAC_DOWNLOAD_DISABLED_NOTICE_EN } from '@/constants/downloadMessages';
-import { useTranslation } from '@/i18n/ui';
+import { getTranslation, useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import { getLinkWithLocale } from '@/lib/shared/links';
 import { getBundledSteamStoreLink, loadSteamStoreLink } from '@/lib/shared/steam-store-link';
@@ -40,6 +36,8 @@ import type {
   PrimaryDownloadSourceKey,
 } from '@/lib/shared/desktop-utils';
 import styles from './DesktopHero.module.css';
+
+type TranslateFn = ReturnType<typeof getTranslation>['t'];
 
 // 下载选项接口
 interface DownloadOption {
@@ -73,22 +71,14 @@ export interface DesktopHeroVisiblePrimaryAction {
 }
 
 interface DesktopHeroSteamRowProps {
-  locale: 'zh-CN' | 'en';
+  locale: string;
   href: string;
 }
 
 export function DesktopHeroSteamRow({ locale, href }: DesktopHeroSteamRowProps) {
-  const description =
-    locale === 'en'
-      ? 'The Steam edition supports Steam features including Cloud Saves and the Workshop. Click to open on Steam.'
-      : 'Steam 版本支持云存档、创意工坊等 Steam 特性。';
-  const ariaLabel =
-    locale === 'en' ? 'Open Hagicode on Steam' : '打开 Hagicode Steam 商店页';
-
-  const localizedDescription =
-    locale === 'en'
-      ? description
-      : 'Steam 版本支持云存档、创意工坊等 Steam 特性，点击前往 Steam 查看。';
+  const { t } = getTranslation(locale);
+  const description = t('desktopHero.steam.description');
+  const ariaLabel = t('desktopHero.steam.ariaLabel');
 
   return (
     <a
@@ -102,7 +92,7 @@ export function DesktopHeroSteamRow({ locale, href }: DesktopHeroSteamRowProps) 
     >
       <div className={styles.steamRowCopy}>
         <span className={styles.steamRowEyebrow}>Steam</span>
-        <p className={styles.steamRowDescription}>{localizedDescription}</p>
+        <p className={styles.steamRowDescription}>{description}</p>
       </div>
     </a>
   );
@@ -195,7 +185,7 @@ export function resolveDesktopHeroCurrentVersion(
 
 interface DesktopHeroActionBarProps {
   isOpen: boolean;
-  locale: 'zh-CN' | 'en';
+  locale: string;
   toggleLabel: string;
   visiblePrimaryActions: DesktopHeroVisiblePrimaryAction[];
   onToggle: () => void;
@@ -210,6 +200,8 @@ export function DesktopHeroActionBar({
   onToggle,
   onPrimaryActionClick,
 }: DesktopHeroActionBarProps) {
+  const { t } = getTranslation(locale);
+
   return (
     <div className={styles.actionBar} data-action-bar="platform">
       <div className={styles.primarySourceActions} data-segment-role="primary-actions">
@@ -245,7 +237,7 @@ export function DesktopHeroActionBar({
         aria-label={toggleLabel}
         data-segment-role="toggle"
       >
-        <span>{locale === 'en' ? 'More versions' : '更多版本 / 架构'}</span>
+        <span>{t('commonActions.moreVersions')}</span>
         <ChevronDownIcon />
       </button>
     </div>
@@ -257,7 +249,7 @@ interface DesktopHeroProps {
   desktopPlatforms?: any;
   desktopVersionError?: any;
   desktopChannels?: any;
-  locale?: 'zh-CN' | 'en';
+  locale?: string;
 }
 
 export interface DesktopHeroFallbackState {
@@ -268,11 +260,12 @@ export interface DesktopHeroFallbackState {
 }
 
 export function resolveDesktopHeroFallbackState(
-  locale: 'zh-CN' | 'en',
+  locale: string,
   versionData: DesktopVersionData | null,
   runtimeError: string | null,
   hasCurrentVersion: boolean,
 ): DesktopHeroFallbackState | null {
+  const { t } = getTranslation(locale);
   const fallbackTarget = versionData?.fallbackTarget ?? DESKTOP_HISTORY_FALLBACK_URL;
   const detail = versionData?.failedAttemptSummary ?? runtimeError;
   const isFatal = Boolean(runtimeError) || versionData?.status === 'fatal' || !hasCurrentVersion;
@@ -284,12 +277,65 @@ export function resolveDesktopHeroFallbackState(
   return {
     fallbackTarget,
     shouldAutoRedirect: true,
-    message:
-      locale === 'en'
-        ? 'Unable to load desktop packages here. Redirecting to the Index version history...'
-        : '此页暂无法加载桌面端安装包，正在跳转到 Index 版本历史页。',
+    message: t('desktopHero.error.redirectingToHistory'),
     detail,
   };
+}
+
+function getLocalizedPrimaryDownloadSourceLabel(
+  source: PrimaryDownloadSourceKey,
+  t: TranslateFn,
+): string {
+  if (source === 'accelerated') {
+    return t('commonActions.china');
+  }
+
+  return 'GitHub';
+}
+
+function getLocalizedDownloadActionLabel(
+  kind: DownloadAction['kind'],
+  t: TranslateFn,
+): string {
+  switch (kind) {
+    case 'official':
+    case 'legacy':
+      return t('commonActions.china');
+    case 'github-release':
+      return 'GitHub';
+    case 'torrent':
+      return t('desktopHero.downloadActions.torrent');
+    default:
+      return kind;
+  }
+}
+
+function getLocalizedAssetTypeLabel(assetType: AssetType, t: TranslateFn): string {
+  switch (assetType) {
+    case AssetType.WindowsSetup:
+      return t('desktopHero.assetTypes.windowsSetup');
+    case AssetType.WindowsPortable:
+      return t('desktopHero.assetTypes.windowsPortable');
+    case AssetType.WindowsStore:
+      return t('desktopHero.assetTypes.windowsStore');
+    case AssetType.MacOSApple:
+      return t('desktopHero.assetTypes.macosApple');
+    case AssetType.MacOSIntel:
+      return t('desktopHero.assetTypes.macosIntel');
+    case AssetType.LinuxAppImage:
+      return t('desktopHero.assetTypes.linuxAppImage');
+    case AssetType.LinuxArm64AppImage:
+      return t('desktopHero.assetTypes.linuxArm64AppImage');
+    case AssetType.LinuxTarball:
+      return t('desktopHero.assetTypes.linuxTarball');
+    case AssetType.LinuxArm64Tarball:
+      return t('desktopHero.assetTypes.linuxArm64Tarball');
+    case AssetType.Source:
+      return t('desktopHero.assetTypes.source');
+    case AssetType.Unknown:
+    default:
+      return t('desktopHero.assetTypes.other');
+  }
 }
 
 export default function DesktopHero(props: DesktopHeroProps) {
@@ -464,12 +510,10 @@ export default function DesktopHero(props: DesktopHeroProps) {
   }, []);
 
   const currentVersion = resolveDesktopHeroCurrentVersion(versionData);
-  const macDownloadNotice = locale === 'en'
-    ? `For macOS users: ${MAC_DOWNLOAD_DISABLED_NOTICE_EN}`
-    : `Mac 用户：${MAC_DOWNLOAD_DISABLED_NOTICE}`;
+  const macDownloadNotice = t('desktopHero.download.macNotice');
   const containerPageUrl = useMemo(() => getLinkWithLocale('container', locale), [locale]);
-  const fallbackCtaLabel = locale === 'en' ? 'Open version history' : '打开版本历史页';
-  const fallbackContainerLabel = locale === 'en' ? 'Open Container page' : '前往 Container 页面';
+  const fallbackCtaLabel = t('desktopHero.download.openVersionHistory');
+  const fallbackContainerLabel = t('desktopHero.download.openContainerPage');
   const runtimeError = error || versionData?.error || null;
   const fallbackState = resolveDesktopHeroFallbackState(locale, versionData, runtimeError, Boolean(currentVersion));
   const fallbackError = fallbackState?.message || runtimeError || t('desktopHero.download.unknown');
@@ -477,13 +521,12 @@ export default function DesktopHero(props: DesktopHeroProps) {
     t('desktopHero.download.ariaLabel').replace('{platform}', platformLabel);
   const getSelectOtherVersionsLabel = (platformLabel: string) =>
     t('desktopHero.selectOtherVersions').replace('{platform}', platformLabel);
-  const primarySourceOrder: PrimaryDownloadSourceKey[] = ['github', 'accelerated'];
-  const tablePlatformLabel = locale === 'en' ? 'Platform' : '平台';
+  const tablePlatformLabel = t('commonActions.platform');
   const tableGithubLabel = 'GitHub';
-  const tableChinaLabel = locale === 'en' ? 'China' : '中国大陆';
-  const tableMoreLabel = locale === 'en' ? 'More Downloads' : '更多下载';
-  const moreDownloadsButtonLabel = locale === 'en' ? 'More Downloads' : '更多下载';
-  const dropdownPackageLabel = locale === 'en' ? 'Package' : '安装包';
+  const tableChinaLabel = t('commonActions.china');
+  const tableMoreLabel = t('commonActions.moreDownloads');
+  const moreDownloadsButtonLabel = t('commonActions.moreDownloads');
+  const dropdownPackageLabel = t('commonActions.package');
 
   useEffect(() => {
     if (!fallbackState?.shouldAutoRedirect || typeof window === 'undefined') {
@@ -528,7 +571,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
             {fallbackCtaLabel}
           </a>
           <button type="button" className="btn btn-secondary" onClick={loadVersionData}>
-            {locale === 'en' ? 'Retry' : '重试'}
+            {t('commonActions.retry')}
           </button>
           <a href={containerPageUrl} className="btn btn-secondary">
             {fallbackContainerLabel}
@@ -591,16 +634,16 @@ export default function DesktopHero(props: DesktopHeroProps) {
                             ? {
                                 source: 'github' as const,
                                 action: defaultActionPair.github,
-                                label: getPrimaryDownloadSourceLabel('github', locale),
-                                ariaLabel: `${getDownloadAriaLabel(platform.platformLabel)} (${getPrimaryDownloadSourceLabel('github', locale)})`,
+                                label: getLocalizedPrimaryDownloadSourceLabel('github', t),
+                                ariaLabel: `${getDownloadAriaLabel(platform.platformLabel)} (${getLocalizedPrimaryDownloadSourceLabel('github', t)})`,
                               }
                             : null;
                           const acceleratedAction = defaultActionPair.accelerated
                             ? {
                                 source: 'accelerated' as const,
                                 action: defaultActionPair.accelerated,
-                                label: getPrimaryDownloadSourceLabel('accelerated', locale),
-                                ariaLabel: `${getDownloadAriaLabel(platform.platformLabel)} (${getPrimaryDownloadSourceLabel('accelerated', locale)})`,
+                                label: getLocalizedPrimaryDownloadSourceLabel('accelerated', t),
+                                ariaLabel: `${getDownloadAriaLabel(platform.platformLabel)} (${getLocalizedPrimaryDownloadSourceLabel('accelerated', t)})`,
                               }
                             : null;
                           const PlatformIcon = platformIcons[platform.platform];
@@ -695,17 +738,17 @@ export default function DesktopHero(props: DesktopHeroProps) {
                                 )}
                               </td>
                               <td className={styles.platformActionsCell}>
-                              <button
-                                type="button"
-                                className={`${styles.btnDropdownToggle} ${styles.btnDropdownToggleStandalone}`}
-                                ref={(node) => {
-                                  dropdownTriggerRefs.current[platform.platform] = node;
-                                }}
-                                onClick={() => toggleDropdown(platform.platform)}
-                                aria-expanded={isOpen}
-                                aria-haspopup="menu"
-                                aria-label={getSelectOtherVersionsLabel(platform.platformLabel)}
-                                data-segment-role="toggle"
+                                <button
+                                  type="button"
+                                  className={`${styles.btnDropdownToggle} ${styles.btnDropdownToggleStandalone}`}
+                                  ref={(node) => {
+                                    dropdownTriggerRefs.current[platform.platform] = node;
+                                  }}
+                                  onClick={() => toggleDropdown(platform.platform)}
+                                  aria-expanded={isOpen}
+                                  aria-haspopup="menu"
+                                  aria-label={getSelectOtherVersionsLabel(platform.platformLabel)}
+                                  data-segment-role="toggle"
                                 >
                                   <span>{moreDownloadsButtonLabel}</span>
                                 </button>
@@ -746,7 +789,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
                                                 className={`${styles.dropdownItem} ${styles.dropdownTableRow}`}
                                               >
                                                 <div className={`${styles.dropdownTableCell} ${styles.dropdownLabelCell}`}>
-                                                  <span className={styles.dropdownItemLabel}>{getAssetTypeLabel(option.assetType)}</span>
+                                                  <span className={styles.dropdownItemLabel}>{getLocalizedAssetTypeLabel(option.assetType, t)}</span>
                                                 </div>
                                                 <div className={styles.dropdownTableCell}>
                                                   {githubOptionAction ? (
@@ -761,11 +804,11 @@ export default function DesktopHero(props: DesktopHeroProps) {
                                                         setOpenDropdown(null);
                                                       }}
                                                     >
-                                                      <span>{getPrimaryDownloadSourceLabel('github', locale)}</span>
+                                                      <span>{getLocalizedPrimaryDownloadSourceLabel('github', t)}</span>
                                                     </a>
                                                   ) : (
                                                     <span className={`${styles.dropdownSourceAction} ${styles.dropdownSourceActionDisabled}`}>
-                                                      {locale === 'en' ? 'Unavailable' : '暂无'}
+                                                      {t('commonActions.unavailable')}
                                                     </span>
                                                   )}
                                                 </div>
@@ -782,11 +825,11 @@ export default function DesktopHero(props: DesktopHeroProps) {
                                                         setOpenDropdown(null);
                                                       }}
                                                     >
-                                                      <span>{getPrimaryDownloadSourceLabel('accelerated', locale)}</span>
+                                                      <span>{getLocalizedPrimaryDownloadSourceLabel('accelerated', t)}</span>
                                                     </a>
                                                   ) : (
                                                     <span className={`${styles.dropdownSourceAction} ${styles.dropdownSourceActionDisabled}`}>
-                                                      {locale === 'en' ? 'Unavailable' : '暂无'}
+                                                      {t('commonActions.unavailable')}
                                                     </span>
                                                   )}
                                                 </div>
@@ -805,11 +848,11 @@ export default function DesktopHero(props: DesktopHeroProps) {
                                                           setOpenDropdown(null);
                                                         }}
                                                       >
-                                                        <span>{getDownloadActionLabel(action.kind, locale)}</span>
+                                                        <span>{getLocalizedDownloadActionLabel(action.kind, t)}</span>
                                                       </a>
                                                     )) : (
                                                       <span className={`${styles.dropdownSourceAction} ${styles.dropdownSourceActionDisabled}`}>
-                                                        {locale === 'en' ? 'No extra source' : '无额外来源'}
+                                                        {t('commonActions.noExtraSource')}
                                                       </span>
                                                     )}
                                                   </div>

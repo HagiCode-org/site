@@ -111,6 +111,24 @@
   margin: 0 auto;
 }
 
+.about-hero {
+  padding: 0 0 1.25rem;
+}
+
+.about-hero__content {
+  padding: 0 1.25rem 0.75rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--page-border) 100%, transparent);
+}
+
+.about-hero__content h1 {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: clamp(2.3rem, 5vw, 3.7rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
 .about-sections {
   padding: 0 0 5rem;
 }
@@ -464,6 +482,11 @@ a.entry-item-steam:hover {
 
   .about-sections {
     padding: 1rem 0 4rem;
+  }
+
+  .about-hero__content {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .section-header,

@@ -3,6 +3,7 @@ import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 import Footer from '@/components/home/Footer';
 import Navbar from '@/components/home/Navbar';
+import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
 import type { AboutPageModel } from '@/lib/about-page-model';
 import AboutSnapshotPage from './AboutSnapshotPage.astro';
 import '@/styles/homepage.css';
@@ -14,7 +15,6 @@ interface Props {
 const { model } = Astro.props;
 const siteBase = import.meta.env.VITE_SITE_BASE || '';
 const currentLocale = model.locale;
-const xDefaultUrl = currentLocale === 'en' ? model.seo.canonicalUrl : model.seo.alternateUrl;
 ---
 
 <!doctype html>
@@ -28,9 +28,7 @@ const xDefaultUrl = currentLocale === 'en' ? model.seo.canonicalUrl : model.seo.
     <meta name="description" content={model.seo.description} />
     <meta name="robots" content="index,follow" />
     <link rel="canonical" href={model.seo.canonicalUrl} />
-    <link rel="alternate" hreflang="zh-CN" href={currentLocale === 'zh-CN' ? model.seo.canonicalUrl : model.seo.alternateUrl} />
-    <link rel="alternate" hreflang="en" href={currentLocale === 'en' ? model.seo.canonicalUrl : model.seo.alternateUrl} />
-    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+    <SeoAlternateLinks pathname="/about/" siteBase={siteBase} currentLocale={currentLocale} />
     <meta name="baidu-site-verification" content="codeva-A9s3yT3z5m" />
     <meta name="og:title" content={model.seo.title} />
     <meta name="og:description" content={model.seo.description} />

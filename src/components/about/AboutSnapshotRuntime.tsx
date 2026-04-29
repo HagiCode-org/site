@@ -508,6 +508,13 @@ export function AboutSnapshotRuntimeView({
 
   return (
     <main className="about-page" data-about-refresh-state={refreshState}>
+      <section className="about-hero">
+        <div className="about-shell">
+          <div className="about-hero__content">
+            <h1>{model.header.title}</h1>
+          </div>
+        </div>
+      </section>
       <section className="about-sections">
         <div className="about-shell section-stack">
           {orderedSections.map((section) => (
