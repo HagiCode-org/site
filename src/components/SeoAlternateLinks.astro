@@ -1,0 +1,24 @@
+---
+import {
+  DEFAULT_LOCALE,
+  SUPPORTED_SITE_LOCALES,
+  type SiteLocale,
+} from '@/i18n/locale-metadata';
+import { getAbsoluteSiteUrl } from '@/lib/locale-routing';
+
+interface Props {
+  pathname: string;
+  siteBase?: string;
+  currentLocale: SiteLocale;
+}
+
+const { pathname, siteBase = '', currentLocale } = Astro.props;
+const defaultUrl = getAbsoluteSiteUrl(pathname, DEFAULT_LOCALE, siteBase);
+---
+
+{SUPPORTED_SITE_LOCALES.map((locale) => (
+  <link rel="alternate" hreflang={locale} href={getAbsoluteSiteUrl(pathname, locale, siteBase)} />
+))}
+<link rel="alternate" hreflang="en" href={defaultUrl} />
+<link rel="alternate" hreflang="x-default" href={defaultUrl} />
+<meta name="og:locale" content={currentLocale} />
