@@ -1,3 +1,5 @@
+import { DEFAULT_LOCALE, resolveSiteLocale } from '@/i18n/locale-metadata';
+import { requireLocaleResourceString } from '@/i18n/resource-lookup';
 import { getAbsoluteSiteUrl, type SiteLocale } from '@/lib/locale-routing';
 import {
   getBundledAboutSnapshot,
@@ -137,70 +139,80 @@ const ENTRY_ORDER = [
 
 const ENTRY_PRIORITY = new Map(ENTRY_ORDER.map((id, index) => [id, index]));
 
-const localeCopy = {
-  en: {
-    seoTitle: 'About the HagiCode Team',
-    seoDescription:
-      'Meet the HagiCode team and browse official stores, group channels, content platforms, and scannable cards from the latest bundled about snapshot.',
-    title: 'Grow through exchange',
+type AboutCopyLocale = 'en-US' | 'zh-CN';
+
+function resolveAboutCopyLocale(locale: SiteLocale): AboutCopyLocale {
+  return locale.toLowerCase().startsWith('zh') ? 'zh-CN' : 'en-US';
+}
+
+interface AboutLocaleCopy {
+  readonly seoTitle: string;
+  readonly seoDescription: string;
+  readonly title: string;
+  readonly sections: {
+    readonly store: {
+      readonly title: string;
+    };
+    readonly community: {
+      readonly title: string;
+    };
+    readonly content: {
+      readonly title: string;
+    };
+  };
+  readonly kindLabels: {
+    readonly store: string;
+    readonly link: string;
+    readonly contact: string;
+    readonly qr: string;
+    readonly image: string;
+  };
+  readonly contactFallbackDetail: string;
+  readonly comboLabel: string;
+  readonly platformBadges: {
+    readonly steam: string;
+    readonly youtube: string;
+  };
+}
+
+function getAboutLocaleCopy(locale: SiteLocale): AboutLocaleCopy {
+  return {
+    seoTitle: requireLocaleResourceString(locale, 'about', 'page.seoTitle'),
+    seoDescription: requireLocaleResourceString(locale, 'about', 'page.seoDescription'),
+    title: requireLocaleResourceString(locale, 'about', 'page.title'),
     sections: {
       store: {
-        title: 'Store',
+        title: requireLocaleResourceString(locale, 'about', 'page.sections.store'),
       },
       community: {
-        title: 'Grow through exchange',
+        title: requireLocaleResourceString(locale, 'about', 'page.sections.community'),
       },
       content: {
-        title: 'Follow where the team publishes',
+        title: requireLocaleResourceString(locale, 'about', 'page.sections.content'),
       },
     },
     kindLabels: {
-      store: 'Store',
-      link: 'Channel',
-      contact: 'Handle',
-      qr: 'QR Card',
-      image: 'Image Card',
+      store: requireLocaleResourceString(locale, 'about', 'page.kindLabels.store'),
+      link: requireLocaleResourceString(locale, 'about', 'page.kindLabels.link'),
+      contact: requireLocaleResourceString(locale, 'about', 'page.kindLabels.contact'),
+      qr: requireLocaleResourceString(locale, 'about', 'page.kindLabels.qr'),
+      image: requireLocaleResourceString(locale, 'about', 'page.kindLabels.image'),
     },
-    contactFallbackDetail: 'Use this handle in the app',
-    comboLabel: 'Channel + QR',
+    contactFallbackDetail: requireLocaleResourceString(
+      locale,
+      'about',
+      'page.contactFallbackDetail',
+    ),
+    comboLabel: requireLocaleResourceString(locale, 'about', 'page.comboLabel'),
     platformBadges: {
-      steam: 'Official store',
-      youtube: 'Official channel',
+      steam: requireLocaleResourceString(locale, 'about', 'page.platformBadges.steam'),
+      youtube: requireLocaleResourceString(locale, 'about', 'page.platformBadges.youtube'),
     },
-  },
-  'zh-CN': {
-    seoTitle: '关于 HagiCode 团队',
-    seoDescription: '查看 HagiCode 团队的官方商店、官方群组、内容平台与可扫码卡片，快速找到我们在不同平台上的官方入口。',
-    title: '增进交流，共同成长',
-    sections: {
-      store: {
-        title: '商店',
-      },
-      community: {
-        title: '增进交流，共同成长',
-      },
-      content: {
-        title: '关注团队持续发布的内容',
-      },
-    },
-    kindLabels: {
-      store: '商店',
-      link: '平台',
-      contact: '账号',
-      qr: '二维码卡片',
-      image: '图片卡片',
-    },
-    contactFallbackDetail: '在应用内搜索该账号',
-    comboLabel: '账号 + 二维码',
-    platformBadges: {
-      steam: '官方商店',
-      youtube: '官方频道',
-    },
-  },
-} as const;
+  };
+}
 
 function getRoutePath(locale: SiteLocale): string {
-  return locale === 'zh-CN' ? '/zh-CN/about/' : '/about/';
+  return locale === DEFAULT_LOCALE ? '/about/' : `/${locale}/about/`;
 }
 
 function getHostnameLabel(url: string): string {
@@ -219,7 +231,7 @@ function getEntryPresentation(
     return {
       theme: 'youtube',
       icon: 'youtube',
-      badgeLabel: localeCopy[locale].platformBadges.youtube,
+      badgeLabel: getAboutLocaleCopy(locale).platformBadges.youtube,
     };
   }
 
@@ -227,7 +239,7 @@ function getEntryPresentation(
     return {
       theme: 'steam',
       icon: 'steam',
-      badgeLabel: localeCopy[locale].platformBadges.steam,
+      badgeLabel: getAboutLocaleCopy(locale).platformBadges.steam,
     };
   }
 
@@ -239,7 +251,7 @@ function isMediaEntry(entry: AboutSnapshotEntry | undefined): entry is AboutSnap
 }
 
 function buildLinkCard(locale: SiteLocale, entry: AboutSnapshotLinkEntry): AboutPageLinkCard {
-  const copy = localeCopy[locale];
+  const copy = getAboutLocaleCopy(locale);
   const kindLabel = entry.id === 'steam' ? copy.kindLabels.store : copy.kindLabels.link;
 
   return {
@@ -255,7 +267,7 @@ function buildLinkCard(locale: SiteLocale, entry: AboutSnapshotLinkEntry): About
 }
 
 function buildContactCard(locale: SiteLocale, entry: AboutSnapshotContactEntry): AboutPageContactCard {
-  const copy = localeCopy[locale];
+  const copy = getAboutLocaleCopy(locale);
 
   return {
     id: entry.id,
@@ -275,7 +287,7 @@ function buildContactCard(locale: SiteLocale, entry: AboutSnapshotContactEntry):
 }
 
 function buildMediaCard(locale: SiteLocale, entry: AboutSnapshotMediaEntry): AboutPageMediaCard {
-  const copy = localeCopy[locale];
+  const copy = getAboutLocaleCopy(locale);
   const kindLabel = entry.type === 'qr' ? copy.kindLabels.qr : copy.kindLabels.image;
 
   return {
@@ -299,7 +311,7 @@ function buildDouyinComboCard(
   accountEntry: AboutSnapshotContactEntry,
   qrEntry: AboutSnapshotMediaEntry,
 ): AboutPageComboCard {
-  const copy = localeCopy[locale];
+  const copy = getAboutLocaleCopy(locale);
 
   return {
     id: 'douyin',
@@ -373,7 +385,7 @@ function buildContentEntries(locale: SiteLocale, entries: readonly AboutSnapshot
   );
   const douyinAccount = contentEntries.find((entry) => entry.id === 'douyin-account');
   const douyinQr = contentEntries.find((entry) => entry.id === 'douyin-qr');
-  const canBuildDouyinCombo = locale === 'zh-CN' && douyinAccount?.type === 'contact' && isMediaEntry(douyinQr);
+  const canBuildDouyinCombo = resolveAboutCopyLocale(locale) === 'zh-CN' && douyinAccount?.type === 'contact' && isMediaEntry(douyinQr);
 
   return contentEntries.flatMap((entry) => {
     if (canBuildDouyinCombo && entry.id === 'douyin-account') {
@@ -384,7 +396,7 @@ function buildContentEntries(locale: SiteLocale, entries: readonly AboutSnapshot
       return [];
     }
 
-    if (locale === 'zh-CN' && entry.id === 'douyin-account') {
+    if (resolveAboutCopyLocale(locale) === 'zh-CN' && entry.id === 'douyin-account') {
       return [buildAboutPageEntry(locale, entry)];
     }
 
@@ -393,11 +405,12 @@ function buildContentEntries(locale: SiteLocale, entries: readonly AboutSnapshot
 }
 
 export function buildAboutPageModel(
-  locale: SiteLocale,
+  localeInput: string,
   snapshot: AboutSnapshotData = getBundledAboutSnapshot(),
 ): AboutPageModel {
-  const copy = localeCopy[locale];
-  const alternateLocale: SiteLocale = locale === 'zh-CN' ? 'en' : 'zh-CN';
+  const locale = resolveSiteLocale(localeInput);
+  const copy = getAboutLocaleCopy(locale);
+  const alternateLocale: SiteLocale = locale === DEFAULT_LOCALE ? 'zh-CN' : DEFAULT_LOCALE;
   const storeEntries = buildStoreEntries(locale, snapshot.entries);
   const communityEntries = sortEntries(locale, snapshot.entries.filter((entry) => isCommunityEntry(entry)));
   const contentEntries = buildContentEntries(locale, snapshot.entries);

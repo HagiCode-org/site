@@ -1,3 +1,4 @@
+import { requireLocaleResourceString } from '@/i18n/resource-lookup';
 import type { SiteLocale } from '@/lib/locale-routing';
 import type {
   AboutSnapshotEntry,
@@ -12,28 +13,29 @@ interface AboutEntryCopyOverride {
   readonly alt?: string;
 }
 
-const localeRegionPriority: Record<SiteLocale, AboutSnapshotRegionPriority> = {
-  en: 'international-first',
-  'zh-CN': 'china-first',
-};
+type AboutCopyLocale = 'en-US' | 'zh-CN';
 
-const genericLinkText = {
-  en: {
-    link: 'Open page',
-    contact: 'Open profile',
-    qr: 'Open QR card',
-    image: 'Open image',
-  },
-  'zh-CN': {
-    link: '打开页面',
-    contact: '打开主页',
-    qr: '打开二维码',
-    image: '打开图片',
-  },
-} as const;
+function resolveAboutCopyLocale(locale: SiteLocale): AboutCopyLocale {
+  return locale.toLowerCase().startsWith('zh') ? 'zh-CN' : 'en-US';
+}
+
+const localeRegionPriority: Record<SiteLocale, AboutSnapshotRegionPriority> = Object.fromEntries(
+  [
+    'zh-CN',
+    'zh-Hant',
+    'en-US',
+    'ja-JP',
+    'ko-KR',
+    'de-DE',
+    'fr-FR',
+    'es-ES',
+    'pt-BR',
+    'ru-RU',
+  ].map((locale) => [locale, locale.toLowerCase().startsWith('zh') ? 'china-first' : 'international-first']),
+) as Record<SiteLocale, AboutSnapshotRegionPriority>;
 
 const entryCopyOverrides = {
-  en: {
+  'en-US': {
     discord: {
       detail: 'Official community server',
       linkText: 'Open invite',
@@ -144,10 +146,10 @@ const entryCopyOverrides = {
       linkText: '打开主页',
     },
   },
-} as const satisfies Record<SiteLocale, Partial<Record<string, AboutEntryCopyOverride>>>;
+} as const satisfies Record<AboutCopyLocale, Partial<Record<string, AboutEntryCopyOverride>>>;
 
 function getEntryCopyOverride(locale: SiteLocale, entryId: string): AboutEntryCopyOverride | undefined {
-  const localeOverrides = entryCopyOverrides[locale] as Partial<Record<string, AboutEntryCopyOverride>>;
+  const localeOverrides = entryCopyOverrides[resolveAboutCopyLocale(locale)] as Partial<Record<string, AboutEntryCopyOverride>>;
   return localeOverrides[entryId];
 }
 
@@ -171,7 +173,8 @@ export function getLocalizedAboutEntryLinkText(
   locale: SiteLocale,
   entry: Pick<AboutSnapshotEntry, 'id' | 'type'>,
 ): string {
-  return getEntryCopyOverride(locale, entry.id)?.linkText ?? genericLinkText[locale][entry.type];
+  return getEntryCopyOverride(locale, entry.id)?.linkText
+    ?? requireLocaleResourceString(locale, 'about', `page.genericLinkText.${entry.type}`);
 }
 
 export function getLocalizedAboutEntryAlt(

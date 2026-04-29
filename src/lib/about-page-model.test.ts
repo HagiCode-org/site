@@ -1,8 +1,22 @@
 import { describe, expect, it } from 'vitest';
+import { SUPPORTED_SITE_LOCALES } from '@/i18n/locale-metadata';
 import { buildAboutPageModel, hasAboutPageModelMaterialChange } from './about-page-model';
 import { normalizeAboutSnapshotData } from './about-snapshot-source';
 
 describe('about page model', () => {
+  it('resolves about page copy for every supported locale', () => {
+    for (const locale of SUPPORTED_SITE_LOCALES) {
+      const model = buildAboutPageModel(locale);
+
+      expect(model.seo.title).toBeTruthy();
+      expect(model.seo.description).toBeTruthy();
+      expect(model.header.title).toBeTruthy();
+      expect(model.sections[0]?.title).toBeTruthy();
+      expect(model.sections[1]?.title).toBeTruthy();
+      expect(model.sections[2]?.title).toBeTruthy();
+    }
+  });
+
   it('builds the English about route with international entries first while keeping all entries visible', () => {
     const model = buildAboutPageModel('en');
     const storeEntries = model.sections[0]?.entries.map((entry) => entry.id);

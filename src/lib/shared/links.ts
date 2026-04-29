@@ -4,6 +4,7 @@ import {
   resolveLocaleFromPathname,
   type SiteLocale,
 } from '@/lib/locale-routing';
+import { resolveSiteLocale } from '@/i18n/locale-metadata';
 
 /**
  * Common link registry for the marketing site.
@@ -22,7 +23,7 @@ export function getDocsBasePath(): string {
 
 export function getCorrectBasePath(locale: string): string {
   const siteBase = import.meta.env.VITE_SITE_BASE || '';
-  const normalizedLocale = locale === 'zh-CN' ? 'zh-CN' : 'en';
+  const normalizedLocale = resolveSiteLocale(locale);
   return getLocalizedPathWithBase('/', normalizedLocale, siteBase);
 }
 
@@ -135,7 +136,7 @@ export function getDockerComposeGuideUrl(locale: string = DEFAULT_LOCALE): strin
 export type PublicLinkKey = keyof typeof SITE_LINKS;
 
 function normalizeLocale(locale?: string): SiteLocale {
-  return locale === 'zh-CN' ? 'zh-CN' : 'en';
+  return resolveSiteLocale(locale);
 }
 
 export function getLinkWithLocale(key: PublicLinkKey, locale?: string): string {
@@ -160,18 +161,8 @@ export function getLinkWithLocale(key: PublicLinkKey, locale?: string): string {
 
 export function getCurrentLocale(): SiteLocale {
   if (typeof window !== 'undefined') {
-    const pathLocale = resolveLocaleFromPathname(window.location.pathname);
-    if (pathLocale) {
-      return pathLocale;
-    }
-
-    try {
-      const stored = localStorage.getItem('lang');
-      if (stored === 'en' || stored === 'zh-CN') {
-        return stored;
-      }
-    } catch {
-      // Ignore storage access failures and fall back to the default locale.
+    if (window.location?.pathname) {
+      return resolveLocaleFromPathname(window.location.pathname);
     }
   }
 

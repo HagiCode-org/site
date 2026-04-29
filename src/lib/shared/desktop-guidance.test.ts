@@ -22,8 +22,8 @@ describe('desktop fallback guidance', () => {
 
   it('keeps both desktop page shells aligned with the same fallback target', async () => {
     const [desktopPage, desktopPageCn] = await Promise.all([
-      readFile(path.join(siteRoot, 'src/pages/desktop/index.astro'), 'utf8'),
-      readFile(path.join(siteRoot, 'src/pages/zh-CN/desktop/index.astro'), 'utf8'),
+      readFile(path.join(siteRoot, 'src/page-templates/DesktopPage.astro'), 'utf8'),
+      readFile(path.join(siteRoot, 'src/page-templates/DesktopPage.astro'), 'utf8'),
     ]);
 
     expect(desktopPage).toContain(fallbackUrl);

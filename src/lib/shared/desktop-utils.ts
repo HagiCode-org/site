@@ -175,7 +175,7 @@ function createDownloadAction(
 
 export function getDownloadActionLabel(
   kind: DownloadSourceKind,
-  locale: 'zh-CN' | 'en' = 'zh-CN',
+  locale = 'zh-CN',
 ): string {
   const zhLabels: Record<DownloadSourceKind, string> = {
     official: '中国大陆',
@@ -190,18 +190,19 @@ export function getDownloadActionLabel(
     torrent: 'Torrent',
   };
 
-  return (locale === 'en' ? enLabels : zhLabels)[kind];
+  return (!locale.toLowerCase().startsWith('zh') ? enLabels : zhLabels)[kind];
 }
 
 export function getPrimaryDownloadSourceLabel(
   source: PrimaryDownloadSourceKey,
-  locale: 'zh-CN' | 'en' = 'zh-CN',
+  locale = 'zh-CN',
 ): string {
+  const isEnglishLocale = !locale.toLowerCase().startsWith('zh');
   if (source === 'accelerated') {
-    return locale === 'en' ? 'China' : '中国大陆';
+    return isEnglishLocale ? 'China' : '中国大陆';
   }
 
-  return locale === 'en' ? 'GitHub' : 'GitHub';
+  return isEnglishLocale ? 'GitHub' : 'GitHub';
 }
 
 export function normalizeDownloadActions(asset: DesktopAsset): DownloadAction[] {
@@ -801,9 +802,28 @@ export function getArchitectureLabel(assetType: AssetType): string {
 /**
  * 获取资源类型的文件扩展名
  * @param assetType - 资源类型枚举值
+ * @param filename - 可选文件名；提供时优先按真实文件扩展名判断
  * @returns 文件扩展名（包含点号，如 .exe、.dmg）
  */
-export function getFileExtension(assetType: AssetType): string {
+export function getFileExtension(assetType: AssetType, filename?: string): string {
+  if (filename) {
+    const normalizedName = filename.toLowerCase();
+    const filenameExtensions: Array<[suffix: string, display: string]> = [
+      ['.tar.gz', '.tar.gz'],
+      ['.appimage', '.AppImage'],
+      ['.dmg', '.dmg'],
+      ['.zip', '.zip'],
+      ['.appx', '.appx'],
+      ['.exe', '.exe'],
+      ['.deb', '.deb'],
+    ];
+
+    const matchedExtension = filenameExtensions.find(([suffix]) => normalizedName.endsWith(suffix));
+    if (matchedExtension) {
+      return matchedExtension[1];
+    }
+  }
+
   const extensions: Record<AssetType, string> = {
     [AssetType.WindowsSetup]: '.exe',
     [AssetType.WindowsPortable]: '.exe',
@@ -818,6 +838,19 @@ export function getFileExtension(assetType: AssetType): string {
     [AssetType.Unknown]: '',
   };
   return extensions[assetType] || '';
+}
+
+function getMacDownloadFormatPriority(download: Pick<PlatformDownload, 'assetType' | 'filename'>): number {
+  const extension = getFileExtension(download.assetType, download.filename).toLowerCase();
+
+  if (extension === '.dmg') {
+    return 0;
+  }
+  if (extension === '.zip') {
+    return 1;
+  }
+
+  return 2;
 }
 
 /**
@@ -1101,6 +1134,14 @@ export function groupAssetsByPlatform(
 
       if (aRecommended && !bRecommended) return -1;
       if (!aRecommended && bRecommended) return 1;
+
+      if (platform === 'macos') {
+        const macFormatPriority = getMacDownloadFormatPriority(a) - getMacDownloadFormatPriority(b);
+        if (macFormatPriority !== 0) {
+          return macFormatPriority;
+        }
+      }
+
       return 0;
     });
 
