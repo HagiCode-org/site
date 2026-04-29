@@ -1,0 +1,14 @@
+---
+import ContainerPage from '@/page-templates/ContainerPage.astro';
+import { getNonDefaultSiteLocales } from '@/i18n/locale-metadata';
+
+export function getStaticPaths() {
+  return getNonDefaultSiteLocales()
+    .filter((locale) => locale !== 'zh-CN')
+    .map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: string };
+---
+
+<ContainerPage locale={locale} />

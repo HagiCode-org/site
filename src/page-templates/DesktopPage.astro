@@ -1,0 +1,144 @@
+---
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
+import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
+import '@/styles/homepage.css';
+import '@/styles/desktop.css';
+import Navbar from '@/components/home/Navbar';
+import Footer from '@/components/home/Footer';
+import DesktopHero from '@/components/desktop/DesktopHero';
+import FeatureIcon from '@/components/desktop/FeatureIcon.astro';
+import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
+import { getTranslation } from '@/i18n/ui';
+import type { SiteLocale } from '@/i18n/locale-metadata';
+import { getAbsoluteSiteUrl } from '@/lib/locale-routing';
+import { getDesktopPageCopy } from '@/lib/site-page-copy';
+
+interface Props {
+  locale: SiteLocale;
+}
+
+const { locale } = Astro.props;
+const pageCopy = getDesktopPageCopy(locale);
+const { t } = getTranslation(locale);
+const heroBadge = t('desktopHero.badge');
+const heroTitle = t('desktopHero.title');
+const heroTagline = t('desktopHero.tagline');
+const siteBase = import.meta.env.VITE_SITE_BASE || '';
+const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
+---
+
+<!doctype html>
+<html lang={locale} data-site-base={siteBase}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageCopy.title}</title>
+    <meta name="description" content={pageCopy.description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <SeoAlternateLinks pathname="/desktop/" siteBase={siteBase} currentLocale={locale} />
+    <meta name="baidu-site-verification" content="codeva-A9s3yT3z5m" />
+    <meta name="og:title" content={pageCopy.title} />
+    <meta name="og:description" content={pageCopy.description} />
+    <meta name="og:type" content="website" />
+    <GoogleAnalytics />
+    <script is:inline>
+      (function() {
+        function isLunarNewYearPeriod() {
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = now.getMonth() + 1;
+          const day = now.getDate();
+          if (year === 2025) {
+            if (month === 1 && day >= 29) return true;
+            if (month === 2 && day <= 12) return true;
+          }
+          if (year === 2026) {
+            if (month === 2 && day >= 17) return true;
+            if (month === 3 && day <= 3) return true;
+          }
+          return false;
+        }
+
+        const stored = localStorage.getItem('starlight-theme');
+        const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const theme = stored || (isLunarNewYearPeriod() ? 'lunar-new-year' : system);
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body class="homepage">
+    <Navbar client:load locale={locale} />
+
+    <main class="homepage">
+      <section class="hero">
+        <div class="tech-grid-bg" />
+        <div class="bgGlow" />
+        <div class="hero-content">
+          <div class="hero-badge">{heroBadge}</div>
+          <h1>{heroTitle}</h1>
+          <p class="hero-tagline">{heroTagline}</p>
+          <DesktopHero client:load locale={locale} />
+          <aside class="hero-runtime-note" aria-label={pageCopy.runtimeNoteAriaLabel}>
+            <span class="hero-runtime-note__label">{pageCopy.runtimeNoteLabel}</span>
+            <span class="hero-runtime-note__copy">
+              {pageCopy.runtimeNoteCopy}
+              <a href="https://index.hagicode.com/desktop/history/">https://index.hagicode.com/desktop/history/</a>
+            </span>
+          </aside>
+        </div>
+      </section>
+
+      <section class="features">
+        <h2>{t('desktop.features.title')}</h2>
+        <div class="features-grid">
+          <div class="feature-card"><div class="feature-icon-wrapper"><FeatureIcon name="rocket" size={48} /></div><h3>{t('desktop.features.local.title')}</h3><p>{t('desktop.features.local.description')}</p></div>
+          <div class="feature-card"><div class="feature-icon-wrapper"><FeatureIcon name="lock" size={48} /></div><h3>{t('desktop.features.privacy.title')}</h3><p>{t('desktop.features.privacy.description')}</p></div>
+          <div class="feature-card"><div class="feature-icon-wrapper"><FeatureIcon name="bolt" size={48} /></div><h3>{t('desktop.features.fast.title')}</h3><p>{t('desktop.features.fast.description')}</p></div>
+          <div class="feature-card"><div class="feature-icon-wrapper"><FeatureIcon name="computer" size={48} /></div><h3>{t('desktop.features.crossPlatform.title')}</h3><p>{t('desktop.features.crossPlatform.description')}</p></div>
+          <div class="feature-card"><div class="feature-icon-wrapper"><FeatureIcon name="arrow-path" size={48} /></div><h3>{t('desktop.features.autoUpdate.title')}</h3><p>{t('desktop.features.autoUpdate.description')}</p></div>
+          <div class="feature-card"><div class="feature-icon-wrapper"><FeatureIcon name="globe" size={48} /></div><h3>{t('desktop.features.multiLanguage.title')}</h3><p>{t('desktop.features.multiLanguage.description')}</p></div>
+        </div>
+      </section>
+
+      <section class="system-requirements">
+        <h2>{t('desktop.systemRequirements.title')}</h2>
+        <Tabs>
+          <TabItem label={t('desktop.systemRequirements.windows')}>
+            <div class="requirements-content">
+              <p><strong>{t('desktop.systemRequirements.os')}:</strong> {t('desktop.systemRequirements.windowsOs')}</p>
+              <p><strong>{t('desktop.systemRequirements.processor')}:</strong> {t('desktop.systemRequirements.windowsProcessor')}</p>
+              <p><strong>{t('desktop.systemRequirements.memory')}:</strong> {t('desktop.systemRequirements.memoryRec')}</p>
+              <p><strong>{t('desktop.systemRequirements.diskSpace')}:</strong> {t('desktop.systemRequirements.disk')}</p>
+              <p><strong>{t('desktop.systemRequirements.network')}:</strong> {t('desktop.systemRequirements.networkDesc')}</p>
+            </div>
+          </TabItem>
+          <TabItem label={t('desktop.systemRequirements.macos')}>
+            <div class="requirements-content">
+              <p><strong>{t('desktop.systemRequirements.os')}:</strong> {t('desktop.systemRequirements.macosOs')}</p>
+              <p><strong>{t('desktop.systemRequirements.processor')}:</strong> {t('desktop.systemRequirements.macosProcessor')}</p>
+              <p><strong>{t('desktop.systemRequirements.memory')}:</strong> {t('desktop.systemRequirements.memoryRec')}</p>
+              <p><strong>{t('desktop.systemRequirements.diskSpace')}:</strong> {t('desktop.systemRequirements.disk')}</p>
+              <p><strong>{t('desktop.systemRequirements.network')}:</strong> {t('desktop.systemRequirements.networkDesc')}</p>
+            </div>
+          </TabItem>
+          <TabItem label={t('desktop.systemRequirements.linux')}>
+            <div class="requirements-content">
+              <p><strong>{t('desktop.systemRequirements.os')}:</strong> {t('desktop.systemRequirements.linuxOs')}</p>
+              <p><strong>{t('desktop.systemRequirements.processor')}:</strong> {t('desktop.systemRequirements.linuxProcessor')}</p>
+              <p><strong>{t('desktop.systemRequirements.memory')}:</strong> {t('desktop.systemRequirements.memoryRec')}</p>
+              <p><strong>{t('desktop.systemRequirements.diskSpace')}:</strong> {t('desktop.systemRequirements.disk')}</p>
+              <p><strong>{t('desktop.systemRequirements.network')}:</strong> {t('desktop.systemRequirements.networkDesc')}</p>
+            </div>
+          </TabItem>
+        </Tabs>
+      </section>
+
+    </main>
+
+    <Footer locale={locale} client:load />
+    <AnalyticsScripts />
+  </body>
+</html>

@@ -1,0 +1,110 @@
+---
+import Navbar from '@/components/home/Navbar';
+import HeroSection from '@/components/home/HeroSection';
+import ActivityMetricsSection from '@/components/home/ActivityMetricsSection';
+import FeaturesShowcase from '@/components/home/FeaturesShowcase';
+import ShowcaseSection from '@/components/home/ShowcaseSection';
+import VideoShowcase from '@/components/home/VideoShowcase';
+import PricingComparisonSection from '@/components/home/PricingComparisonSection';
+import ProductHuntBadgeSection from '@/components/home/ProductHuntBadgeSection';
+import { PromoteCard } from '@/components/promote/PromoteCard';
+import promoteCardStyles from '@/components/promote/PromoteCard.module.css';
+import Footer from '@/components/home/Footer';
+import LunarNewYearDecorations from '@/components/home/LunarNewYearDecorations';
+import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
+import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
+import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
+import '@/styles/homepage.css';
+
+import type { SiteLocale } from '@/i18n/locale-metadata';
+import { getAbsoluteSiteUrl } from '@/lib/locale-routing';
+import { getHomePageCopy } from '@/lib/site-page-copy';
+
+interface Props {
+  locale: SiteLocale;
+}
+
+const { locale } = Astro.props;
+const siteBase = import.meta.env.VITE_SITE_BASE || '';
+const pageCopy = getHomePageCopy(locale);
+const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
+---
+
+<!doctype html>
+<html lang={locale} data-site-base={siteBase}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageCopy.title}</title>
+    <meta name="description" content={pageCopy.description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <SeoAlternateLinks pathname="/" siteBase={siteBase} currentLocale={locale} />
+    <meta name="baidu-site-verification" content="codeva-A9s3yT3z5m" />
+    <meta name="og:title" content={pageCopy.title} />
+    <meta name="og:description" content={pageCopy.description} />
+    <meta name="og:type" content="website" />
+    <GoogleAnalytics />
+    <script is:inline>
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+      (function() {
+        function isLunarNewYearPeriod() {
+          const now = new Date();
+          const year = now.getFullYear();
+          const month = now.getMonth() + 1;
+          const day = now.getDate();
+          if (year === 2025) {
+            if (month === 1 && day >= 29) return true;
+            if (month === 2 && day <= 12) return true;
+          }
+          if (year === 2026) {
+            if (month === 2 && day >= 17) return true;
+            if (month === 3 && day <= 3) return true;
+          }
+          return false;
+        }
+
+        const stored = localStorage.getItem('starlight-theme');
+        const system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const theme = stored || (isLunarNewYearPeriod() ? 'lunar-new-year' : system);
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+  </head>
+  <body class="homepage">
+    <LunarNewYearDecorations client:load />
+    <Navbar client:load locale={locale} />
+
+    <main class="homepage" id="homepage-content" data-homepage-locale={locale}>
+      <HeroSection
+        locale={locale}
+        productOverviewVideo={{
+          copy: pageCopy.productOverviewVideoCopy,
+          featuredVideos: pageCopy.featuredHomepageVideos,
+        }}
+        client:load
+      />
+      <ActivityMetricsSection locale={locale} client:load />
+      <FeaturesShowcase locale={locale} client:load />
+      <ShowcaseSection locale={locale} client:load />
+      <VideoShowcase
+        eyebrow={pageCopy.supportingSection.eyebrow}
+        title={pageCopy.supportingSection.title}
+        description={pageCopy.supportingSection.description}
+        supportingLabel={pageCopy.supportingSection.supportingLabel}
+        supportingVideos={pageCopy.supportingHomepageVideos}
+        client:load
+      />
+      <PricingComparisonSection locale={locale} client:load />
+      <ProductHuntBadgeSection locale={locale} />
+    </main>
+
+    <PromoteCard locale={locale} className={promoteCardStyles.promoteCard} client:load />
+    <Footer locale={locale} client:load />
+    <AnalyticsScripts />
+  </body>
+</html>

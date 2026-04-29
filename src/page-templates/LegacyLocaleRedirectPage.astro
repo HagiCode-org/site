@@ -1,0 +1,27 @@
+---
+interface Props {
+  target: string;
+}
+
+const { target } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={`Legacy English path redirecting to ${target}`} />
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href={target} />
+    <script is:inline define:vars={{ target }}>
+      window.location.replace(target);
+    </script>
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <main>
+      <h1>Redirecting</h1>
+      <p><a href={target}>Continue</a></p>
+    </main>
+  </body>
+</html>

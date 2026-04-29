@@ -1,0 +1,14 @@
+---
+import AboutSnapshotDocument from '@/components/about/AboutSnapshotDocument.astro';
+import type { SiteLocale } from '@/i18n/locale-metadata';
+import { buildAboutPageModel } from '@/lib/about-page-model';
+
+interface Props {
+  locale: SiteLocale;
+}
+
+const { locale } = Astro.props;
+const aboutModel = buildAboutPageModel(locale);
+---
+
+<AboutSnapshotDocument model={aboutModel} />
