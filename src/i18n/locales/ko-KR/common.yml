@@ -81,41 +81,41 @@ activityMetrics:
     alt: Star history chart for the HagiCode site repository
     cta: View full chart
 showcase:
-  title: Latest Product Views
-  description: From proposal execution and session boards to token analytics, workspace management, and achievement progress, the homepage now uses the latest curated screenshots maintained with the docs site.
+  title: 최신 제품 화면
+  description: 제안 실행과 세션 보드부터 토큰 분석, 워크스페이스 관리, 성과 진행 현황까지, 이제 홈페이지에서 docs 사이트와 함께 관리되는 최신 선별 스크린샷을 바로 보여줍니다.
   controls:
-    previous: Previous
-    next: Next
-    current: Featured view
-    railLabel: Product screenshot navigation
-    selectPrefix: 'Switch to: '
-    activeState: Showing now
-    previewState: Preview
-    imageUnavailable: Image unavailable
-    openFullscreen: 'Open fullscreen: '
-    openFullscreenHint: Click to enlarge
-    closeFullscreen: Close fullscreen
+    previous: 이전
+    next: 다음
+    current: 대표 화면
+    railLabel: 제품 스크린샷 탐색
+    selectPrefix: '전환: '
+    activeState: 현재 표시 중
+    previewState: 미리보기
+    imageUnavailable: 이미지를 표시할 수 없습니다
+    openFullscreen: '전체 화면으로 열기: '
+    openFullscreenHint: 클릭하여 확대
+    closeFullscreen: 전체 화면 닫기
   screenshots:
     proposalWorkflow:
-      title: Proposal execution overview
-      description: Keep the workflow stage, execution result, and session context in one screen so teams can see exactly where a change stands before moving on.
-      alt: HagiCode proposal execution screenshot showing workflow stages, execution result, and session sidebar
+      title: 제안 실행 개요
+      description: 워크플로 단계, 실행 결과, 세션 맥락을 한 화면에 유지해 다음 단계로 넘어가기 전에 변경 사항이 어디까지 진행됐는지 팀이 정확히 확인할 수 있습니다.
+      alt: 워크플로 단계, 실행 결과, 세션 사이드바를 보여주는 HagiCode 제안 실행 스크린샷
     sessionBoard:
-      title: Session board and dungeon planning
-      description: Pending, in-progress, and archived sessions stay visible beside a fantasy task panel so parallel agent work is easy to scan at a glance.
-      alt: HagiCode session board screenshot showing pending, in-progress, and archived columns beside a fantasy task panel
+      title: 세션 보드와 던전 계획
+      description: 대기 중, 진행 중, 보관된 세션이 판타지 작업 패널 옆에 함께 표시되어 병렬 에이전트 작업 상태를 한눈에 파악할 수 있습니다.
+      alt: 대기 중, 진행 중, 보관된 열과 판타지 작업 패널을 보여주는 HagiCode 세션 보드 스크린샷
     tokenAnalytics:
-      title: Real-time token analytics
-      description: Watch throughput, recent API activity, and total usage in one metrics surface so cost and pacing stay controllable during parallel execution.
-      alt: HagiCode token analytics screenshot showing throughput, recent API activity, and total usage
+      title: 실시간 토큰 분석
+      description: 처리량, 최근 API 활동, 총 사용량을 하나의 지표 화면에서 확인해 병렬 실행 중에도 비용과 속도를 통제할 수 있습니다.
+      alt: 처리량, 최근 API 활동, 총 사용량을 보여주는 HagiCode 토큰 분석 스크린샷
     workspaceManagement:
-      title: Workspace and vault management
-      description: Manage user vaults, system vaults, and code-server entry points from one control surface built for shared environments and fast maintenance.
-      alt: HagiCode workspace management screenshot showing user vaults, system vaults, and code-server actions
+      title: 워크스페이스 및 Vault 관리
+      description: 공유 환경과 빠른 유지보수를 위해 사용자 Vault, 시스템 Vault, code-server 진입점을 하나의 제어 화면에서 관리할 수 있습니다.
+      alt: 사용자 Vault, 시스템 Vault, code-server 작업을 보여주는 HagiCode 워크스페이스 관리 스크린샷
     achievementProgress:
-      title: Achievement and growth progress
-      description: Daily progress, global growth, and lifecycle metrics roll into one dashboard so long-running adoption feels measurable instead of abstract.
-      alt: HagiCode achievement dashboard screenshot showing daily progress, global growth, and lifecycle metrics
+      title: 성과와 성장 진행 현황
+      description: 일일 진행 상황, 전체 성장, 라이프사이클 지표를 하나의 대시보드에 모아 장기 도입 효과를 추상적이지 않게 확인할 수 있습니다.
+      alt: 일일 진행 상황, 전체 성장, 라이프사이클 지표를 보여주는 HagiCode 성과 대시보드 스크린샷
 installOptions:
   sectionTitle: Choose Your Installation Method
   sectionDescription: Choose the most suitable installation method based on your usage scenario

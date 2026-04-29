@@ -81,41 +81,41 @@ activityMetrics:
     alt: Star history chart for the HagiCode site repository
     cta: View full chart
 showcase:
-  title: Latest Product Views
-  description: From proposal execution and session boards to token analytics, workspace management, and achievement progress, the homepage now uses the latest curated screenshots maintained with the docs site.
+  title: 最新產品介面
+  description: 從提案執行、工作階段看板、Token 分析到工作區與成就進度，首頁現在直接展示與 docs 網站同步維護的最新精選產品截圖。
   controls:
-    previous: Previous
-    next: Next
-    current: Featured view
-    railLabel: Product screenshot navigation
-    selectPrefix: 'Switch to: '
-    activeState: Showing now
-    previewState: Preview
-    imageUnavailable: Image unavailable
-    openFullscreen: 'Open fullscreen: '
-    openFullscreenHint: Click to enlarge
-    closeFullscreen: Close fullscreen
+    previous: 上一張
+    next: 下一張
+    current: 目前主圖
+    railLabel: 產品截圖導覽
+    selectPrefix: 切換到：
+    activeState: 目前顯示
+    previewState: 點擊預覽
+    imageUnavailable: 圖片暫時無法顯示
+    openFullscreen: 全螢幕檢視：
+    openFullscreenHint: 點擊查看大圖
+    closeFullscreen: 關閉全螢幕
   screenshots:
     proposalWorkflow:
-      title: Proposal execution overview
-      description: Keep the workflow stage, execution result, and session context in one screen so teams can see exactly where a change stands before moving on.
-      alt: HagiCode proposal execution screenshot showing workflow stages, execution result, and session sidebar
+      title: 提案執行總覽
+      description: 把 OpenSpec 提案從工作流程階段、執行結果到工作階段側欄放在同一個畫面中，方便快速理解目前變更已推進到哪一步。
+      alt: HagiCode 提案執行完成畫面截圖，展示工作流程階段、執行結果與工作階段側欄
     sessionBoard:
-      title: Session board and dungeon planning
-      description: Pending, in-progress, and archived sessions stay visible beside a fantasy task panel so parallel agent work is easy to scan at a glance.
-      alt: HagiCode session board screenshot showing pending, in-progress, and archived columns beside a fantasy task panel
+      title: 工作階段看板與副本編排
+      description: 待處理、進行中與已封存的工作階段並排呈現，搭配右側副本任務卡，讓多 Agent 推進狀態一眼可見。
+      alt: HagiCode 工作階段看板畫面截圖，展示待處理、進行中、已封存欄位與副本任務卡
     tokenAnalytics:
-      title: Real-time token analytics
-      description: Watch throughput, recent API activity, and total usage in one metrics surface so cost and pacing stay controllable during parallel execution.
-      alt: HagiCode token analytics screenshot showing throughput, recent API activity, and total usage
+      title: 即時 Token 分析
+      description: 在同一塊面板中追蹤吞吐速率、呼叫歷史與累計用量，方便在平行執行時掌握成本與節奏。
+      alt: HagiCode Token 分析面板截圖，展示吞吐速率、呼叫歷史與累計用量
     workspaceManagement:
-      title: Workspace and vault management
-      description: Manage user vaults, system vaults, and code-server entry points from one control surface built for shared environments and fast maintenance.
-      alt: HagiCode workspace management screenshot showing user vaults, system vaults, and code-server actions
+      title: 工作區與 Vault 管理
+      description: 集中管理使用者 Vault、系統 Vault 與 code-server 入口，讓多人環境下的工作區維護更清楚。
+      alt: HagiCode Vault 工作區管理畫面截圖，展示使用者 Vault、系統 Vault 與 code-server 操作
     achievementProgress:
-      title: Achievement and growth progress
-      description: Daily progress, global growth, and lifecycle metrics roll into one dashboard so long-running adoption feels measurable instead of abstract.
-      alt: HagiCode achievement dashboard screenshot showing daily progress, global growth, and lifecycle metrics
+      title: 成就與成長進度
+      description: 把每日與全域成長、生命週期指標和線上趨勢整合到同一個儀表板中，讓長期使用回饋更具持續性。
+      alt: HagiCode 成就進度儀表板截圖，展示每日與全域成長指標和趨勢
 installOptions:
   sectionTitle: Choose Your Installation Method
   sectionDescription: Choose the most suitable installation method based on your usage scenario

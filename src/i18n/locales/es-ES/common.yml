@@ -81,41 +81,41 @@ activityMetrics:
     alt: Star history chart for the HagiCode site repository
     cta: View full chart
 showcase:
-  title: Latest Product Views
-  description: From proposal execution and session boards to token analytics, workspace management, and achievement progress, the homepage now uses the latest curated screenshots maintained with the docs site.
+  title: Vistas recientes del producto
+  description: Desde la ejecucion de propuestas y los tableros de sesiones hasta el analisis de tokens, la gestion del espacio de trabajo y el progreso de logros, la pagina principal ahora usa las capturas mas recientes seleccionadas y mantenidas junto con el sitio de docs.
   controls:
-    previous: Previous
-    next: Next
-    current: Featured view
-    railLabel: Product screenshot navigation
-    selectPrefix: 'Switch to: '
-    activeState: Showing now
-    previewState: Preview
-    imageUnavailable: Image unavailable
-    openFullscreen: 'Open fullscreen: '
-    openFullscreenHint: Click to enlarge
-    closeFullscreen: Close fullscreen
+    previous: Anterior
+    next: Siguiente
+    current: Vista destacada
+    railLabel: Navegacion de capturas del producto
+    selectPrefix: 'Cambiar a: '
+    activeState: Mostrando ahora
+    previewState: Vista previa
+    imageUnavailable: Imagen no disponible
+    openFullscreen: 'Abrir en pantalla completa: '
+    openFullscreenHint: Haz clic para ampliar
+    closeFullscreen: Cerrar pantalla completa
   screenshots:
     proposalWorkflow:
-      title: Proposal execution overview
-      description: Keep the workflow stage, execution result, and session context in one screen so teams can see exactly where a change stands before moving on.
-      alt: HagiCode proposal execution screenshot showing workflow stages, execution result, and session sidebar
+      title: Resumen de ejecucion de propuestas
+      description: Mantiene la etapa del flujo, el resultado de la ejecucion y el contexto de la sesion en una sola pantalla para que el equipo vea exactamente en que punto esta un cambio antes de avanzar.
+      alt: Captura de HagiCode de ejecucion de propuestas que muestra etapas del flujo, resultado de la ejecucion y barra lateral de la sesion
     sessionBoard:
-      title: Session board and dungeon planning
-      description: Pending, in-progress, and archived sessions stay visible beside a fantasy task panel so parallel agent work is easy to scan at a glance.
-      alt: HagiCode session board screenshot showing pending, in-progress, and archived columns beside a fantasy task panel
+      title: Tablero de sesiones y planificacion de dungeon
+      description: Las sesiones pendientes, en curso y archivadas permanecen visibles junto a un panel de tareas de fantasia para que el trabajo paralelo de agentes se pueda revisar de un vistazo.
+      alt: Captura del tablero de sesiones de HagiCode que muestra columnas de pendientes, en curso y archivadas junto a un panel de tareas de fantasia
     tokenAnalytics:
-      title: Real-time token analytics
-      description: Watch throughput, recent API activity, and total usage in one metrics surface so cost and pacing stay controllable during parallel execution.
-      alt: HagiCode token analytics screenshot showing throughput, recent API activity, and total usage
+      title: Analisis de tokens en tiempo real
+      description: Supervisa el rendimiento, la actividad reciente de la API y el uso total en una sola superficie de metricas para mantener bajo control el coste y el ritmo durante la ejecucion paralela.
+      alt: Captura del analisis de tokens de HagiCode que muestra rendimiento, actividad reciente de la API y uso total
     workspaceManagement:
-      title: Workspace and vault management
-      description: Manage user vaults, system vaults, and code-server entry points from one control surface built for shared environments and fast maintenance.
-      alt: HagiCode workspace management screenshot showing user vaults, system vaults, and code-server actions
+      title: Gestion del espacio de trabajo y de vaults
+      description: Gestiona los vaults de usuario, los vaults del sistema y los accesos a code-server desde una unica consola pensada para entornos compartidos y mantenimiento rapido.
+      alt: Captura de gestion del espacio de trabajo de HagiCode que muestra vaults de usuario, vaults del sistema y acciones de code-server
     achievementProgress:
-      title: Achievement and growth progress
-      description: Daily progress, global growth, and lifecycle metrics roll into one dashboard so long-running adoption feels measurable instead of abstract.
-      alt: HagiCode achievement dashboard screenshot showing daily progress, global growth, and lifecycle metrics
+      title: Progreso de logros y crecimiento
+      description: El progreso diario, el crecimiento global y las metricas del ciclo de vida se reunen en un solo panel para que la adopcion a largo plazo resulte medible y no abstracta.
+      alt: Captura del panel de logros de HagiCode que muestra progreso diario, crecimiento global y metricas del ciclo de vida
 installOptions:
   sectionTitle: Choose Your Installation Method
   sectionDescription: Choose the most suitable installation method based on your usage scenario
