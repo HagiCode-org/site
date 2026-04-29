@@ -1,9 +1,5 @@
 ---
-import LegacyLocaleRedirect from '@/components/LegacyLocaleRedirect.astro';
+import LegacyLocaleRedirectPage from '@/page-templates/LegacyLocaleRedirectPage.astro';
 ---
 
-<LegacyLocaleRedirect
-  targetPath="/container/"
-  destinationName="Hagicode Container"
-  movedCopy="The old English container alias now points to the current Docker deployment page for Hagicode Container."
-/>
+<LegacyLocaleRedirectPage target="/container/" />

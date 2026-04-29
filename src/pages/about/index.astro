@@ -1,8 +1,5 @@
 ---
-import AboutSnapshotDocument from '@/components/about/AboutSnapshotDocument.astro';
-import { buildAboutPageModel } from '@/lib/about-page-model';
-
-const aboutModel = buildAboutPageModel('en');
+import AboutPage from '@/page-templates/AboutPage.astro';
 ---
 
-<AboutSnapshotDocument model={aboutModel} />
+<AboutPage locale="en-US" />
