@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import styles from './CopilotCliSection.module.css';
 
-type Locale = 'zh-CN' | 'en';
+type Locale = string;
 
 interface CopilotCliSectionProps {
   locale?: Locale;
@@ -75,7 +75,7 @@ const COPY: Record<Locale, CopySet> = {
 
 export default function CopilotCliSection({ locale = 'zh-CN' }: CopilotCliSectionProps) {
   const copy = COPY[locale];
-  const docsPrefix = locale === 'en' ? '/en' : '';
+  const docsPrefix = locale.toLowerCase().startsWith('zh') ? '' : '/en';
   const docsHost = 'https://docs.hagicode.com';
   const gettingStartedUrl = `${docsHost}${docsPrefix}/related-software-installation/copilot-cli/getting-started`;
   const commandRefUrl = `${docsHost}${docsPrefix}/related-software-installation/copilot-cli/command-reference`;

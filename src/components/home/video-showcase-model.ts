@@ -14,7 +14,7 @@ export interface FeaturedVideosByProvider {
   youtube: VideoShowcaseItem;
 }
 
-export type HomepageVideoLocale = 'en' | 'zh-CN';
+export type HomepageVideoLocale = string;
 
 export function getHomepageFallbackProvider(locale: HomepageVideoLocale): VideoProvider {
   return locale.toLowerCase().startsWith('zh') ? 'bilibili' : 'youtube';

@@ -242,7 +242,7 @@ function SupportedCliIcon({ providerKey }: CliIconProps) {
  * 智能特性区域 - OpenSpec 工作流
  * 优化: 添加暂停交互、增强视觉反馈、数据流动画
  */
-function SmartFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
+function SmartFeature({ locale }: { locale: string }) {
   const { t } = useTranslation(locale);
   const [activeStage, setActiveStage] = useState(0);
   const [efficiencyAnimating, setEfficiencyAnimating] = useState(true);
@@ -412,10 +412,10 @@ function SmartFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
  * 高效特性区域 - 多 Agent / 多实例并行
  * 优化: 让并行能力从抽象效率数字变成可读的 Agent x Instance 视图
  */
-function ConvenientFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
+function ConvenientFeature({ locale }: { locale: string }) {
   const { t } = useTranslation(locale);
   const [animateBars, setAnimateBars] = useState(true);
-  const supportedProvidersNote = locale === 'zh-CN'
+  const supportedProvidersNote = locale.toLowerCase().startsWith('zh')
     ? 'OpenCode 现在可以把共享的 OmniRoute 目录投影到 Hero 的模型默认项里，同时继续允许分支级自定义原始模型标识。'
     : 'OpenCode can load the shared OmniRoute catalog into hero model defaults while keeping custom raw model identifiers editable for branch-specific workflows.';
 
@@ -610,7 +610,7 @@ function ConvenientFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
 /**
  * 有趣特性区域 - Hero Dungeon 游戏化工作流
  */
-function InterestingFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
+function InterestingFeature({ locale }: { locale: string }) {
   const { t } = useTranslation(locale);
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -845,7 +845,7 @@ function InterestingFeature({ locale }: { locale: 'zh-CN' | 'en' }) {
  * 主组件: 三大特性展示
  * 优化: 添加头部进入动画、增强视觉层次
  */
-export default function FeaturesShowcase({ locale: propLocale }: { locale?: 'zh-CN' | 'en' }) {
+export default function FeaturesShowcase({ locale: propLocale }: { locale?: string }) {
   const { locale: detectedLocale } = useLocale();
   const locale = propLocale || detectedLocale;
   const { t } = useTranslation(locale);

@@ -20,7 +20,7 @@ interface FooterProps {
    * 额外的 CSS 类名
    */
   className?: string;
-  locale?: 'zh-CN' | 'en';
+  locale?: string;
 }
 
 /**
@@ -74,7 +74,7 @@ function HagicodeLogo({ className = '' }: { className?: string }) {
  * 三栏高栏布局：产品信息、快速链接、社区与支持
  * 使用共享链接库管理站点间链接
  */
-export default function Footer({ className = '', locale: propLocale }: FooterProps & { locale?: 'zh-CN' | 'en' }) {
+export default function Footer({ className = '', locale: propLocale }: FooterProps) {
   const { locale: detectedLocale } = useLocale();
   const locale = propLocale || detectedLocale;
   const { t } = useTranslation(locale);
@@ -153,7 +153,7 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
 
     return {
       relatedSites: {
-        title: locale === 'en' ? 'Related Sites' : '生态站点',
+        title: t('footer.relatedSitesTitle'),
         links: relatedSiteLinks,
       },
       quickLinks: {

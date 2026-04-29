@@ -3,6 +3,7 @@
  * 暗色/亮色主题切换按钮
  */
 import { useState, useEffect } from 'react';
+import { type SiteLocale } from '@/i18n/locale-metadata';
 import { useLocale } from '@/lib/useLocale';
 import { useTranslation } from '@/i18n/ui';
 import { Sun, Moon } from 'lucide-react';
@@ -10,7 +11,7 @@ import styles from './ThemeToggle.module.css';
 
 interface ThemeToggleProps {
   className?: string;
-  locale?: 'zh-CN' | 'en';
+  locale?: string;
 }
 
 type Theme = 'light' | 'dark' | 'lunar-new-year' | undefined;
@@ -94,17 +95,17 @@ export default function ThemeToggle({ className = '', locale: propLocale }: Them
       onClick={toggleTheme}
       aria-label={
         theme === 'dark'
-          ? t('themeToggle.lightMode')
-          : theme === 'lunar-new-year'
-            ? (locale === 'zh-CN' ? '切换到农历新年主题' : 'Switch to Lunar New Year theme')
-            : t('themeToggle.darkMode')
+            ? t('themeToggle.lightMode')
+            : theme === 'lunar-new-year'
+              ? t('themeToggle.lunarNewYearMode')
+              : t('themeToggle.darkMode')
       }
       title={
         theme === 'dark'
-          ? t('themeToggle.lightMode')
-          : theme === 'lunar-new-year'
-            ? (locale === 'zh-CN' ? '切换到农历新年主题' : 'Switch to Lunar New Year theme')
-            : t('themeToggle.darkMode')
+            ? t('themeToggle.lightMode')
+            : theme === 'lunar-new-year'
+              ? t('themeToggle.lunarNewYearMode')
+              : t('themeToggle.darkMode')
       }
     >
       {theme === 'light' ? (

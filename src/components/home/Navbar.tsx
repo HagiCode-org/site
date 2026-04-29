@@ -14,7 +14,7 @@ import { getLinkWithLocale } from '@/lib/shared/links';
 
 interface NavbarProps {
   className?: string;
-  locale?: 'zh-CN' | 'en';
+  locale?: string;
 }
 
 type NavLinkTone = 'default' | 'support' | 'github';
@@ -57,17 +57,6 @@ const NavIcon = ({ name }: { name: string }): ReactElement | null => {
         />
       </svg>
     ),
-    "desktop": (
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
     "comment": (
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -77,11 +66,6 @@ const NavIcon = ({ name }: { name: string }): ReactElement | null => {
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-      </svg>
-    ),
-    "seti:docker": (
-      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186h-2.12a.186.186 0 00-.185.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z"/>
       </svg>
     ),
     "github": (
@@ -111,20 +95,6 @@ export default function Navbar({
       href: getLinkWithLocale('docs', locale),
       external: false,
       icon: 'open-book',
-      tone: 'default' as NavLinkTone,
-    },
-    {
-      label: t('navbar.desktop'),
-      href: getLinkWithLocale('desktop', locale),
-      external: false,
-      icon: 'desktop',
-      tone: 'default' as NavLinkTone,
-    },
-    {
-      label: t('navbar.container'),
-      href: getLinkWithLocale('container', locale),
-      external: false,
-      icon: 'seti:docker',
       tone: 'default' as NavLinkTone,
     },
     {
@@ -223,7 +193,7 @@ export default function Navbar({
           <button
             className={styles.mobileMenuBtn}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? (locale === 'zh-CN' ? '关闭菜单' : 'Close menu') : (locale === 'zh-CN' ? '打开菜单' : 'Open menu')}
+            aria-label={isMobileMenuOpen ? t('navbar.mobileCloseMenu') : t('navbar.mobileOpenMenu')}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-site-nav"
           >
@@ -245,7 +215,7 @@ export default function Navbar({
         <nav
           className={styles.mobileNav}
           id="mobile-site-nav"
-          aria-label={locale === 'zh-CN' ? '移动端站点导航' : 'Mobile site navigation'}
+          aria-label={t('navbar.mobileNav')}
         >
           {/* CTA 按钮 - 移动端菜单顶部 */}
           <InstallButton

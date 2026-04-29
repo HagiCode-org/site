@@ -1,6 +1,4 @@
 import { getTranslation } from '@/i18n/ui';
-import type { SiteLocale } from '@/lib/locale-routing';
-
 import styles from './ProductHuntBadgeSection.module.css';
 
 export const PRODUCT_HUNT_BADGE_WIDTH = 250;
@@ -13,7 +11,7 @@ export const PRODUCT_HUNT_BADGE_IMAGE_URL =
 export const PRODUCT_HUNT_BADGE_ALT = 'Hagicode featured on Product Hunt';
 
 interface ProductHuntBadgeSectionProps {
-  locale: SiteLocale;
+  locale: string;
 }
 
 export default function ProductHuntBadgeSection({ locale }: ProductHuntBadgeSectionProps) {

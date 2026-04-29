@@ -17,12 +17,12 @@ function readVideoShowcaseUsage(source: string) {
 
 describe('localized homepage video section order', () => {
   it('places the English product overview video inside Hero before later homepage sections', () => {
-    const source = readHomepage('src/pages/index.astro');
+    const source = readHomepage('src/page-templates/HomePage.astro');
 
     const heroUsage = source.slice(source.indexOf('<HeroSection'), source.indexOf('/>', source.indexOf('<HeroSection')));
 
     expect(heroUsage).toContain('productOverviewVideo');
-    expect(heroUsage).toContain('featuredVideos: featuredHomepageVideos');
+    expect(heroUsage).toContain('featuredVideos: pageCopy.featuredHomepageVideos');
     expect(source).not.toContain('<ProductOverviewVideoSection');
     expect(source.indexOf('<HeroSection')).toBeLessThan(source.indexOf('<ActivityMetricsSection'));
     expect(source.indexOf('<ActivityMetricsSection')).toBeLessThan(source.indexOf('<FeaturesShowcase'));
@@ -31,12 +31,12 @@ describe('localized homepage video section order', () => {
   });
 
   it('places the Chinese product overview video inside Hero before later homepage sections', () => {
-    const source = readHomepage('src/pages/zh-CN/index.astro');
+    const source = readHomepage('src/page-templates/HomePage.astro');
 
     const heroUsage = source.slice(source.indexOf('<HeroSection'), source.indexOf('/>', source.indexOf('<HeroSection')));
 
     expect(heroUsage).toContain('productOverviewVideo');
-    expect(heroUsage).toContain('featuredVideos: featuredHomepageVideos');
+    expect(heroUsage).toContain('featuredVideos: pageCopy.featuredHomepageVideos');
     expect(source).not.toContain('<ProductOverviewVideoSection');
     expect(source.indexOf('<HeroSection')).toBeLessThan(source.indexOf('<ActivityMetricsSection'));
     expect(source.indexOf('<ActivityMetricsSection')).toBeLessThan(source.indexOf('<FeaturesShowcase'));

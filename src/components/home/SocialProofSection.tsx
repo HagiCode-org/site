@@ -29,7 +29,7 @@ const itemVariants = {
   },
 };
 
-export default function SocialProofSection({ locale: propLocale }: { locale?: 'zh-CN' | 'en' }) {
+export default function SocialProofSection({ locale: propLocale }: { locale?: string }) {
   const { locale: detectedLocale } = useLocale();
   const locale = propLocale || detectedLocale;
   const { t } = useTranslation(locale);

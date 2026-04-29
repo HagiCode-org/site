@@ -29,7 +29,7 @@ function formatOrder(index: number) {
   return String(index + 1).padStart(2, '0');
 }
 
-export default function ShowcaseSection({ locale: propLocale }: { locale?: 'zh-CN' | 'en' }) {
+export default function ShowcaseSection({ locale: propLocale }: { locale?: string }) {
   const { locale: detectedLocale } = useLocale();
   const locale = propLocale || detectedLocale;
   const { t } = useTranslation(locale);

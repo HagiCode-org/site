@@ -33,7 +33,7 @@ interface HeroSectionProps {
   /** @deprecated 不再使用 InstallButton，保留这些 props 仅用于向后兼容 */
   [key: string]: any;
   /** Current locale from Astro context */
-  locale?: 'zh-CN' | 'en';
+  locale?: string;
   /** Optional main product video rendered directly below the Hagicode title */
   productOverviewVideo?: {
     copy: {
@@ -141,9 +141,10 @@ export default function HeroSection({
   const desktopUrl = useMemo(() => getLinkWithLocale('desktop', locale), [locale]);
   const containerUrl = useMemo(() => getLinkWithLocale('container', locale), [locale]);
   const docsUrl = useMemo(() => getLinkWithLocale('productOverview', locale), [locale]);
+  const isChineseLocale = locale.toLowerCase().startsWith('zh');
   const steamLabel = 'Steam';
-  const steamAriaLabel = locale === 'en' ? 'Open Hagicode on Steam' : '打开 Hagicode Steam 商店页';
-  const ctaGroupLabel = locale === 'en' ? 'Primary homepage actions' : '首页主要操作';
+  const steamAriaLabel = isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam';
+  const ctaGroupLabel = isChineseLocale ? '首页主要操作' : 'Primary homepage actions';
 
   // 检测主题变化
   useEffect(() => {
