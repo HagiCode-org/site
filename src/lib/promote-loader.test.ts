@@ -199,6 +199,41 @@ describe('promote-loader', () => {
     expect(chinesePromotions.map((promotion) => promotion.ctaLabel)).toEqual(['查看优惠', '中文按钮', '立即前往', '立即前往']);
   });
 
+  it('uses Desktop-aligned locale fallbacks beyond the original English and Chinese pair', async () => {
+    const fetchImpl = createCatalogFetch({
+      promotes: [
+        { id: 'german-localized', on: true },
+        { id: 'german-fallback', on: true },
+      ],
+      contents: [
+        {
+          id: 'german-localized',
+          title: { 'de-DE': 'Nur heute', en: 'Only today' },
+          description: { 'de-DE': 'Deutscher Text', en: 'English copy' },
+          cta: { 'de-DE': 'Angebot ansehen', en: 'View offer' },
+          link: 'https://example.invalid/german-localized',
+        },
+        {
+          id: 'german-fallback',
+          title: { en: 'Fallback title' },
+          description: { en: 'Fallback description' },
+          link: 'https://example.invalid/german-fallback',
+        },
+      ],
+    });
+
+    const promotions = await loadActivePromotions({
+      locale: 'de-DE',
+      fetchImpl: fetchImpl as typeof fetch,
+    });
+
+    expect(promotions.map((promotion) => promotion.ctaLabel)).toEqual(['Angebot ansehen', 'Ansehen']);
+    expect(promotions[0]).toMatchObject({
+      title: 'Nur heute',
+      description: 'Deutscher Text',
+    });
+  });
+
   it('falls back to stable promote endpoints when catalog discovery fails', async () => {
     const fetchImpl = vi.fn(async (input: RequestInfo | URL) => {
       const url = input.toString();

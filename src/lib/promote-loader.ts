@@ -4,8 +4,18 @@ const FALLBACK_FLAGS_URL = `${INDEX_ORIGIN}/promote.json`;
 const FALLBACK_CONTENT_URL = `${INDEX_ORIGIN}/promote_content.json`;
 
 type FetchLike = typeof fetch;
-type PromoteLocale = 'zh' | 'en';
 type JsonRecord = Record<string, unknown>;
+type PromoteLocaleCode =
+  | 'zh-CN'
+  | 'zh-Hant'
+  | 'en-US'
+  | 'ja-JP'
+  | 'ko-KR'
+  | 'de-DE'
+  | 'fr-FR'
+  | 'es-ES'
+  | 'pt-BR'
+  | 'ru-RU';
 
 type PromoteFlag = {
   id: string;
@@ -41,12 +51,64 @@ export type ActivePromotion = {
   image: PromotionImage | null;
 };
 
+const DEFAULT_PROMOTE_LOCALE: PromoteLocaleCode = 'zh-CN';
+const UNSUPPORTED_PROMOTE_LOCALE_FALLBACK: PromoteLocaleCode = 'en-US';
+const SUPPORTED_PROMOTE_LOCALE_CODES = [
+  'zh-CN',
+  'zh-Hant',
+  'en-US',
+  'ja-JP',
+  'ko-KR',
+  'de-DE',
+  'fr-FR',
+  'es-ES',
+  'pt-BR',
+  'ru-RU',
+] as const satisfies readonly PromoteLocaleCode[];
+const PROMOTE_LOCALE_FALLBACKS: Record<PromoteLocaleCode, readonly PromoteLocaleCode[]> = {
+  'zh-CN': ['en-US'],
+  'zh-Hant': ['zh-CN', 'en-US'],
+  'en-US': ['en-US'],
+  'ja-JP': ['en-US'],
+  'ko-KR': ['en-US'],
+  'de-DE': ['en-US'],
+  'fr-FR': ['en-US'],
+  'es-ES': ['en-US'],
+  'pt-BR': ['en-US'],
+  'ru-RU': ['en-US'],
+};
+const DEFAULT_PROMOTE_CTA_LABELS: Record<PromoteLocaleCode, string> = {
+  'zh-CN': '立即前往',
+  'zh-Hant': '立即前往',
+  'en-US': 'GO',
+  'ja-JP': '今すぐ見る',
+  'ko-KR': '바로 보기',
+  'de-DE': 'Ansehen',
+  'fr-FR': 'Voir',
+  'es-ES': 'Ver ahora',
+  'pt-BR': 'Ver agora',
+  'ru-RU': 'Открыть',
+};
+
 function isRecord(value: unknown): value is JsonRecord {
   return typeof value === 'object' && value !== null;
 }
 
 function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0;
+}
+
+function canonicalizeLocale(locale: string): string {
+  const candidate = locale.trim().replace(/_/g, '-');
+  if (!candidate) {
+    return '';
+  }
+
+  try {
+    return Intl.getCanonicalLocales(candidate)[0] ?? candidate;
+  } catch {
+    return candidate;
+  }
 }
 
 async function readJson(fetchImpl: FetchLike, url: string): Promise<unknown> {
@@ -61,15 +123,76 @@ async function readJson(fetchImpl: FetchLike, url: string): Promise<unknown> {
   return response.json();
 }
 
-function mapLocale(locale: string | null | undefined): PromoteLocale {
-  return locale?.toLowerCase().startsWith('en') ? 'en' : 'zh';
+function normalizePromoteLocale(locale: string | null | undefined): PromoteLocaleCode | null {
+  if (!locale) {
+    return null;
+  }
+
+  const canonical = canonicalizeLocale(locale);
+  const normalized = canonical.toLowerCase();
+  if (!normalized) {
+    return null;
+  }
+
+  if (normalized === 'zh-hant' || normalized.includes('-hant') || ['zh-tw', 'zh-hk', 'zh-mo'].includes(normalized)) {
+    return 'zh-Hant';
+  }
+
+  if (normalized === 'zh' || normalized.includes('-hans') || ['zh-cn', 'zh-sg'].includes(normalized)) {
+    return 'zh-CN';
+  }
+
+  for (const supportedCode of SUPPORTED_PROMOTE_LOCALE_CODES) {
+    if (supportedCode.toLowerCase() === normalized) {
+      return supportedCode;
+    }
+  }
+
+  const [languagePart] = normalized.split('-');
+  switch (languagePart) {
+    case 'en':
+      return 'en-US';
+    case 'ja':
+      return 'ja-JP';
+    case 'ko':
+      return 'ko-KR';
+    case 'de':
+      return 'de-DE';
+    case 'fr':
+      return 'fr-FR';
+    case 'es':
+      return 'es-ES';
+    case 'pt':
+      return 'pt-BR';
+    case 'ru':
+      return 'ru-RU';
+    default:
+      return null;
+  }
 }
 
-function getLocalizedKeys(locale: PromoteLocale): string[] {
-  return locale === 'en' ? ['en', 'zh', 'zh-CN'] : ['zh', 'zh-CN', 'en'];
+function resolvePromoteLocale(locale: string | null | undefined): PromoteLocaleCode {
+  if (locale === undefined || locale === null || locale.trim().length === 0) {
+    return DEFAULT_PROMOTE_LOCALE;
+  }
+
+  return normalizePromoteLocale(locale) ?? UNSUPPORTED_PROMOTE_LOCALE_FALLBACK;
 }
 
-function pickLocalized(value: Record<string, string>, locale: PromoteLocale): string | null {
+function getLocalizedKeys(locale: string | null | undefined): string[] {
+  const resolvedLocale = resolvePromoteLocale(locale);
+  const fallbackCodes = PROMOTE_LOCALE_FALLBACKS[resolvedLocale];
+  const keys = [
+    resolvedLocale,
+    resolvedLocale.split('-')[0] ?? resolvedLocale,
+    ...fallbackCodes,
+    ...fallbackCodes.map((code) => code.split('-')[0] ?? code),
+  ];
+
+  return [...new Set(keys)];
+}
+
+function pickLocalized(value: Record<string, string>, locale: string | null | undefined): string | null {
   for (const key of getLocalizedKeys(locale)) {
     const candidate = value[key];
     if (isNonEmptyString(candidate)) return candidate.trim();
@@ -77,12 +200,12 @@ function pickLocalized(value: Record<string, string>, locale: PromoteLocale): st
   return Object.values(value).find(isNonEmptyString)?.trim() ?? null;
 }
 
-function resolveCtaLabel(value: Record<string, string> | undefined, locale: PromoteLocale): string {
+function resolveCtaLabel(value: Record<string, string> | undefined, locale: string | null | undefined): string {
   if (value) {
     const localized = pickLocalized(value, locale);
     if (localized) return localized;
   }
-  return locale === 'zh' ? '立即前往' : 'GO';
+  return DEFAULT_PROMOTE_CTA_LABELS[resolvePromoteLocale(locale)];
 }
 
 function parseDimension(value: unknown): number | undefined {
@@ -248,22 +371,21 @@ export async function resolvePromoteUrls(fetchImpl: FetchLike = fetch): Promise<
 }
 
 export function selectActivePromotions(flags: PromoteFlag[], contents: PromoteContent[], locale: string | null | undefined, now = Date.now()): ActivePromotion[] {
-  const promoteLocale = mapLocale(locale);
   const contentById = new Map(contents.map((entry) => [entry.id, entry]));
 
   return flags.flatMap((flag) => {
     if (!isPromoteFlagActive(flag, now)) return [];
     const content = contentById.get(flag.id);
     if (!content) return [];
-    const title = pickLocalized(content.title, promoteLocale);
-    const description = pickLocalized(content.description, promoteLocale);
+    const title = pickLocalized(content.title, locale);
+    const description = pickLocalized(content.description, locale);
     if (!title || !description) return [];
     const image = resolveImage(content.image, title);
     return [{
       id: content.id,
       title,
       description,
-      ctaLabel: resolveCtaLabel(content.cta, promoteLocale),
+      ctaLabel: resolveCtaLabel(content.cta, locale),
       link: content.link,
       platform: content.targetPlatform?.trim() || null,
       image,
