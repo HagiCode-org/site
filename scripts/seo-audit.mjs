@@ -3,89 +3,104 @@ import path from 'node:path';
 
 const distDir = path.resolve(process.cwd(), 'dist');
 const siteOrigin = 'https://hagicode.com';
+const defaultLocale = 'en-US';
+const supportedLocales = [
+  'zh-CN',
+  'zh-Hant',
+  'en-US',
+  'ja-JP',
+  'ko-KR',
+  'de-DE',
+  'fr-FR',
+  'es-ES',
+  'pt-BR',
+  'ru-RU',
+];
+
+const managedLocalizedRoutes = [
+  '/',
+  '/desktop/',
+  '/container/',
+  '/about/',
+];
+
+const legacyEnglishRoutes = [
+  '/',
+  '/desktop/',
+  '/container/',
+  '/about/',
+];
+
+function normalizeRoutePath(routePath) {
+  if (routePath === '/') {
+    return routePath;
+  }
+
+  return routePath.endsWith('/') ? routePath : `${routePath}/`;
+}
+
+function getLocalizedPath(routePath, locale) {
+  const normalizedRoute = normalizeRoutePath(routePath);
+
+  if (locale === defaultLocale) {
+    return normalizedRoute;
+  }
+
+  if (normalizedRoute === '/') {
+    return `/${locale}/`;
+  }
+
+  return `/${locale}${normalizedRoute}`;
+}
+
+function getLocalizedFile(routePath, locale) {
+  const localizedPath = getLocalizedPath(routePath, locale);
+
+  if (localizedPath === '/') {
+    return 'index.html';
+  }
+
+  return `${localizedPath.replace(/^\/+/, '')}index.html`;
+}
+
+function getLegacyEnglishRoute(routePath) {
+  return routePath === '/' ? '/en/' : `/en${routePath}`;
+}
+
+function getLegacyEnglishFile(routePath) {
+  return routePath === '/'
+    ? 'en/index.html'
+    : `en/${routePath.replace(/^\/+/, '')}index.html`;
+}
+
+function buildHreflangPaths(routePath) {
+  const hreflangPaths = Object.fromEntries(
+    supportedLocales.map((locale) => [locale, getLocalizedPath(routePath, locale)]),
+  );
+  const defaultPath = getLocalizedPath(routePath, defaultLocale);
+
+  hreflangPaths.en = defaultPath;
+  hreflangPaths['x-default'] = defaultPath;
+
+  return hreflangPaths;
+}
 
 const managedPages = [
-  {
-    route: '/',
-    file: 'index.html',
-    canonicalPath: '/',
-    hreflangPaths: {
-      en: '/',
-      'zh-CN': '/zh-CN/',
-      'x-default': '/',
-    },
-  },
-  {
-    route: '/desktop/',
-    file: 'desktop/index.html',
-    canonicalPath: '/desktop/',
-    hreflangPaths: {
-      en: '/desktop/',
-      'zh-CN': '/zh-CN/desktop/',
-      'x-default': '/desktop/',
-    },
-  },
-  {
-    route: '/container/',
-    file: 'container/index.html',
-    canonicalPath: '/container/',
-    hreflangPaths: {
-      en: '/container/',
-      'zh-CN': '/zh-CN/container/',
-      'x-default': '/container/',
-    },
-  },
-  {
-    route: '/zh-CN/',
-    file: 'zh-CN/index.html',
-    canonicalPath: '/zh-CN/',
-    hreflangPaths: {
-      en: '/',
-      'zh-CN': '/zh-CN/',
-      'x-default': '/',
-    },
-  },
-  {
-    route: '/zh-CN/desktop/',
-    file: 'zh-CN/desktop/index.html',
-    canonicalPath: '/zh-CN/desktop/',
-    hreflangPaths: {
-      en: '/desktop/',
-      'zh-CN': '/zh-CN/desktop/',
-      'x-default': '/desktop/',
-    },
-  },
-  {
-    route: '/zh-CN/container/',
-    file: 'zh-CN/container/index.html',
-    canonicalPath: '/zh-CN/container/',
-    hreflangPaths: {
-      en: '/container/',
-      'zh-CN': '/zh-CN/container/',
-      'x-default': '/container/',
-    },
-  },
-  {
-    route: '/en/',
-    file: 'en/index.html',
-    canonicalPath: '/',
-    redirectTarget: '/',
+  ...managedLocalizedRoutes.flatMap((routePath) =>
+    supportedLocales.map((locale) => ({
+      route: getLocalizedPath(routePath, locale),
+      file: getLocalizedFile(routePath, locale),
+      canonicalPath: getLocalizedPath(routePath, locale),
+      hreflangPaths: buildHreflangPaths(routePath),
+    })),
+  ),
+  ...legacyEnglishRoutes.map((routePath) => ({
+    route: getLegacyEnglishRoute(routePath),
+    file: getLegacyEnglishFile(routePath),
+    canonicalPath: getLocalizedPath(routePath, defaultLocale),
+    redirectTarget: getLocalizedPath(routePath, defaultLocale),
     requiresRobotsNoindex: true,
-  },
-  {
-    route: '/en/desktop/',
-    file: 'en/desktop/index.html',
-    canonicalPath: '/desktop/',
-    redirectTarget: '/desktop/',
-    requiresRobotsNoindex: true,
-  },
-  {
-    route: '/en/container/',
-    file: 'en/container/index.html',
-    canonicalPath: '/container/',
-    redirectTarget: '/container/',
-    requiresRobotsNoindex: true,
-  },
+  })),
 ];
 
 function parseAttributes(tagSource) {
@@ -168,7 +183,9 @@ async function auditPage(page) {
   if (!canonicalHref) {
     failures.push('missing canonical link');
   } else if (getPathname(canonicalHref) !== page.canonicalPath) {
-    failures.push(`canonical points to ${getPathname(canonicalHref) || canonicalHref}, expected ${page.canonicalPath}`);
+    failures.push(
+      `canonical points to ${getPathname(canonicalHref) || canonicalHref}, expected ${page.canonicalPath}`,
+    );
   }
 
   if (page.requiresRobotsNoindex) {
@@ -177,7 +194,10 @@ async function auditPage(page) {
       failures.push(`robots meta must be \`noindex,follow\`, found ${robots || 'missing'}`);
     }
 
-    const anchorTarget = new RegExp(`<a\\b[^>]*href=["'][^"']*${page.redirectTarget.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']`, 'i');
+    const anchorTarget = new RegExp(
+      `<a\\b[^>]*href=["'][^"']*${page.redirectTarget.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}["']`,
+      'i',
+    );
     if (!anchorTarget.test(html)) {
       failures.push(`missing fallback link to ${page.redirectTarget}`);
     }
