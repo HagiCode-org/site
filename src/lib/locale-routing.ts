@@ -1,11 +1,21 @@
-export const DEFAULT_LOCALE = 'en';
-export const CHINESE_LOCALE = 'zh-CN';
+import {
+  DEFAULT_LOCALE,
+  LEGACY_ENGLISH_LOCALE,
+  SITE_ORIGIN,
+  SUPPORTED_SITE_LOCALES,
+  isDefaultSiteLocale,
+  normalizeSiteLocale,
+  type SiteLocale,
+} from '@/i18n/locale-metadata';
+
+export {
+  DEFAULT_LOCALE,
+  SITE_ORIGIN,
+  SUPPORTED_SITE_LOCALES,
+  type SiteLocale,
+};
+
 export const LEGACY_ENGLISH_PREFIX = '/en';
-export const SITE_ORIGIN = 'https://hagicode.com';
-
-export const SUPPORTED_LOCALES = [DEFAULT_LOCALE, CHINESE_LOCALE] as const;
-
-export type SiteLocale = (typeof SUPPORTED_LOCALES)[number];
 
 function normalizeSlashes(value: string): string {
   return value.replace(/\/{2,}/g, '/');
@@ -31,22 +41,34 @@ export function ensureTrailingSlash(pathname: string): string {
   return pathname.endsWith('/') ? pathname : `${pathname}/`;
 }
 
-export function resolveLocaleFromPathname(pathname: string): SiteLocale {
+function getLeadingSegment(pathname: string): string | null {
   const normalized = normalizePathname(pathname);
-
-  if (normalized === CHINESE_LOCALE_PATH || normalized.startsWith(`${CHINESE_LOCALE_PATH}/`)) {
-    return CHINESE_LOCALE;
+  if (normalized === '/') {
+    return null;
   }
 
-  return DEFAULT_LOCALE;
+  const [, leadingSegment] = normalized.split('/');
+  return leadingSegment || null;
 }
 
-export const CHINESE_LOCALE_PATH = `/${CHINESE_LOCALE}`;
+export function resolveLocaleFromPathname(pathname: string): SiteLocale {
+  const leadingSegment = getLeadingSegment(pathname);
+  const resolvedLocale = normalizeSiteLocale(leadingSegment);
+  return resolvedLocale ?? DEFAULT_LOCALE;
+}
+
+export function isLegacyEnglishPath(pathname: string): boolean {
+  return getLeadingSegment(pathname) === LEGACY_ENGLISH_LOCALE;
+}
 
 export function stripLocalePrefix(pathname: string): string {
   const normalized = normalizePathname(pathname);
-  const withoutPrefix = normalized.replace(/^\/(?:en|zh-CN)(?=\/|$)/, '');
+  const leadingSegment = getLeadingSegment(normalized);
+  if (!leadingSegment || !normalizeSiteLocale(leadingSegment)) {
+    return normalized;
+  }
 
+  const withoutPrefix = normalized.replace(/^\/[^/]+(?=\/|$)/, '');
   if (!withoutPrefix) {
     return '/';
   }
@@ -54,18 +76,20 @@ export function stripLocalePrefix(pathname: string): string {
   return withoutPrefix.startsWith('/') ? withoutPrefix : `/${withoutPrefix}`;
 }
 
+export function getLocalePathPrefix(locale: SiteLocale): string {
+  return isDefaultSiteLocale(locale) ? '' : `/${locale}`;
+}
+
 export function getLocalizedPath(pathname: string, locale: SiteLocale): string {
   const routePath = stripLocalePrefix(pathname);
+  const normalizedRoutePath = routePath === '/' ? '' : routePath;
+  const localePrefix = getLocalePathPrefix(locale);
 
-  if (locale === CHINESE_LOCALE) {
-    if (routePath === '/') {
-      return `${CHINESE_LOCALE_PATH}/`;
-    }
-
-    return ensureTrailingSlash(`${CHINESE_LOCALE_PATH}${routePath}`);
+  if (!localePrefix) {
+    return ensureTrailingSlash(routePath);
   }
 
-  return ensureTrailingSlash(routePath);
+  return ensureTrailingSlash(`${localePrefix}${normalizedRoutePath}`);
 }
 
 function normalizeSearch(search = ''): string {
@@ -130,4 +154,31 @@ export function getAbsoluteSiteUrl(
   siteBase = '',
 ): string {
   return `${SITE_ORIGIN}${getLocalizedPathWithBase(pathname, locale, siteBase)}`;
+}
+
+export function getAlternateLocalePaths(pathname: string): Record<SiteLocale, string> {
+  return Object.fromEntries(
+    SUPPORTED_SITE_LOCALES.map((locale) => [locale, getLocalizedPath(pathname, locale)]),
+  ) as Record<SiteLocale, string>;
+}
+
+export function getAlternateLocaleUrls(
+  pathname: string,
+  siteBase = '',
+): Record<SiteLocale, string> {
+  return Object.fromEntries(
+    SUPPORTED_SITE_LOCALES.map((locale) => [
+      locale,
+      getAbsoluteSiteUrl(pathname, locale, siteBase),
+    ]),
+  ) as Record<SiteLocale, string>;
+}
+
+export function buildLegacyEnglishPath(pathname: string): string {
+  const routePath = stripLocalePrefix(pathname);
+  if (routePath === '/') {
+    return '/en/';
+  }
+
+  return ensureTrailingSlash(`/en${routePath}`);
 }

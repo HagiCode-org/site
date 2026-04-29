@@ -1,10 +1,16 @@
 import { useEffect, useState } from 'react';
+
 import {
   DEFAULT_LOCALE,
+  resolveSiteLocale,
+  type SiteLocale,
+} from '@/i18n/locale-metadata';
+import {
   getLocaleSwitchPath,
   resolveLocaleFromPathname,
-  type SiteLocale,
 } from './locale-routing';
+
+const LOCALE_STORAGE_KEY = 'hagicode:site-locale';
 
 function getClientLocale(): SiteLocale {
   if (typeof window === 'undefined') {
@@ -12,6 +18,20 @@ function getClientLocale(): SiteLocale {
   }
 
   return resolveLocaleFromPathname(window.location.pathname);
+}
+
+function readStoredLocale(): SiteLocale | null {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  try {
+    const storedLocale = localStorage.getItem(LOCALE_STORAGE_KEY) ?? localStorage.getItem('lang');
+    return storedLocale ? resolveSiteLocale(storedLocale, DEFAULT_LOCALE) : null;
+  } catch (error) {
+    console.warn('Unable to read stored site locale.', error);
+    return null;
+  }
 }
 
 export function useLocale() {
@@ -29,6 +49,11 @@ export function useLocale() {
       );
     };
 
+    const storedLocale = readStoredLocale();
+    if (storedLocale) {
+      setLocaleState(storedLocale);
+    }
+
     syncLocale();
     window.addEventListener('popstate', syncLocale);
     window.addEventListener('hashchange', syncLocale);
@@ -40,15 +65,21 @@ export function useLocale() {
   }, []);
 
   const setLocale = (newLocale: SiteLocale) => {
-    setLocaleState(newLocale);
+    const resolvedLocale = resolveSiteLocale(newLocale, DEFAULT_LOCALE);
+    setLocaleState(resolvedLocale);
 
     if (typeof window === 'undefined') {
       return;
     }
 
-    localStorage.setItem('lang', newLocale);
+    try {
+      localStorage.setItem(LOCALE_STORAGE_KEY, resolvedLocale);
+      localStorage.removeItem('lang');
+    } catch (error) {
+      console.warn('Unable to persist site locale.', error);
+    }
 
-    const nextUrl = getLocaleSwitchPath(newLocale, {
+    const nextUrl = getLocaleSwitchPath(resolvedLocale, {
       pathname: window.location.pathname,
       search: window.location.search,
       hash: window.location.hash,
@@ -59,9 +90,5 @@ export function useLocale() {
     }
   };
 
-  const toggleLocale = () => {
-    setLocale(locale === 'zh-CN' ? 'en' : 'zh-CN');
-  };
-
-  return { locale, setLocale, toggleLocale };
+  return { locale, setLocale };
 }
