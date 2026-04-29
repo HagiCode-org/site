@@ -4,6 +4,20 @@ import partytown from '@astrojs/partytown';
 import robotsTxt from 'astro-robots-txt';
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
+const SUPPORTED_SITE_LOCALES = [
+    'zh-CN',
+    'zh-Hant',
+    'en-US',
+    'ja-JP',
+    'ko-KR',
+    'de-DE',
+    'fr-FR',
+    'es-ES',
+    'pt-BR',
+    'ru-RU',
+];
+
+const DEFAULT_LOCALE = 'en-US';
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,8 +27,8 @@ export default defineConfig({
     base: '/',
     // 国际化配置
     i18n: {
-        defaultLocale: 'en',
-        locales: ['en', 'zh-CN'],
+        defaultLocale: DEFAULT_LOCALE,
+        locales: [...SUPPORTED_SITE_LOCALES],
         routing: {
             prefixDefaultLocale: false,
         },
@@ -68,7 +82,9 @@ export default defineConfig({
         robotsTxt({
             sitemap: 'https://hagicode.com/sitemap-index.xml',
         }),
-        sitemap(),
+        sitemap({
+            filter: (page) => !page.includes('/en/'),
+        }),
         partytown(),
         react(),
         mdx(),

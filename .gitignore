@@ -45,3 +45,4 @@ Thumbs.db
 .astro/
 tsconfig.tsbuildinfo
 .imgbin-library/
+src/i18n/generated-locales/
