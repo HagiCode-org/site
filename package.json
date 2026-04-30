@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "npm run prepare:i18n && astro dev --host 0.0.0.0 --port ${PORT_WEBSITE:-31264}",
     "start": "npm run prepare:i18n && astro dev --host 0.0.0.0",
-    "build": "npm run prepare:i18n && npm run sync:footer-sites && npm run sync:about-snapshot && astro build && npm run seo:audit",
+    "build": "export NODE_ENV=\"${NODE_ENV:-production}\"; npm run prepare:i18n && npm run sync:footer-sites && npm run sync:about-snapshot && astro build && npm run seo:audit",
     "preview": "astro preview --port ${PORT_WEBSITE:-31264}",
     "astro": "astro",
     "i18n:audit": "hagi18n audit --config hagi18n.yaml",
