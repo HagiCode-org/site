@@ -48,9 +48,6 @@ export default defineConfig({
             },
         },
         define: {
-            'import.meta.env.PROD': JSON.stringify(
-                process.env.NODE_ENV === 'production'
-            ),
             'import.meta.env.VITE_CLARITY_PROJECT_ID': JSON.stringify(
                 process.env.VITE_CLARITY_PROJECT_ID || ''
             ),
@@ -65,10 +62,12 @@ export default defineConfig({
             //     process.env.BAIDU_ANALYTICS_DEBUG || ''
             // ),
             'import.meta.env.VITE_51LA_ID': JSON.stringify(
-                process.env.LI_51LA_ID || 'L6b88a5yK4h2Xnci'
+                process.env.LI_51LA_ID ||
+                process.env.VITE_51LA_ID ||
+                'L6b88a5yK4h2Xnci'
             ),
             'import.meta.env.VITE_51LA_DEBUG': JSON.stringify(
-                process.env.LI_51LA_DEBUG || ''
+                process.env.LI_51LA_DEBUG || process.env.VITE_51LA_DEBUG || ''
             ),
         },
         build: {

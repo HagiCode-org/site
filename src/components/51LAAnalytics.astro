@@ -9,15 +9,16 @@
 // 对于构建时静态生成，process.env 在构建时可用
 // 默认使用硬编码的 ID，环境变量可覆盖
 const default51LAId = 'L6b88a5yK4h2Xnci';
-const laId = import.meta.env.VITE_51LA_ID || default51LAId;
+const laId = process.env.LI_51LA_ID || import.meta.env.VITE_51LA_ID || default51LAId;
 const isProduction = import.meta.env.PROD;
+const isDebugEnabled = process.env.LI_51LA_DEBUG || import.meta.env.VITE_51LA_DEBUG;
 
 // 在构建时检查是否应该加载 51LA Analytics
 // 仅在生产环境加载（使用默认 ID 或环境变量提供的 ID）
 const shouldLoad51LA = isProduction;
 
 // 可选的构建时调试日志
-if (import.meta.env.VITE_51LA_DEBUG) {
+if (isDebugEnabled) {
   console.log('[51LA Analytics] Build-time state:', {
     isProduction,
     laId: laId ? '***' + laId.slice(-4) : 'not set',
