@@ -101,6 +101,16 @@ npm run preview
 默认开发服务器地址是 `http://localhost:31264`。
 贡献者说明优先查看 [`AGENTS.md`](./AGENTS.md) 和 [`CLAUDE.md`](./CLAUDE.md)。
 
+## 生产部署
+
+- 权威工作流：`.github/workflows/site-deploy-gh-pages.yml`
+- 生产 source of truth：`gh-pages` 分支，只允许 GitHub Actions 发布
+- 发布 payload 契约：分支根目录保留 `esa.jsonc`，可发布静态产物统一放在 `dist/`
+- 所需 GitHub 权限：deploy job 需要 `contents: write`，build job 保持只读
+- 所需托管设置：让生产托管读取 `gh-pages/esa.jsonc`，并把 `gh-pages/dist/` 作为静态资源目录
+- 首次部署检查：确认工作流实际发布了 `esa.jsonc` 和 `dist/`，确认托管目标仍指向 `gh-pages`，再验证 `https://hagicode.com` 可正常访问
+- 回滚方式：回退 source 提交，或从旧提交重新触发部署，让 CI 重新发布上一份快照
+
 ### Desktop Index 回退说明
 
 桌面历史索引 `https://index.hagicode.com/desktop/history/` 在这里仅作为被引用依赖。站点会把它当作桌面引导的运行时回退目标，但这个仓库本身并不直接发布或维护这个索引。

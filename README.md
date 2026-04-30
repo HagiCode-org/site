@@ -99,6 +99,16 @@ npm run preview
 The default dev server runs at `http://localhost:31264`.
 For contributor guidance, start with [`AGENTS.md`](./AGENTS.md) and [`CLAUDE.md`](./CLAUDE.md).
 
+## Production Deployment
+
+- Authoritative workflow: `.github/workflows/site-deploy-gh-pages.yml`
+- Production source of truth: the `gh-pages` branch, published only by GitHub Actions
+- Published payload contract: branch root `esa.jsonc` plus `dist/` containing the validated Astro snapshot
+- Required GitHub permissions: the deploy job needs `contents: write`; the build job stays read-only
+- Required hosting setting: configure the production host to read `gh-pages/esa.jsonc` and serve `gh-pages/dist/`
+- First deploy checks: confirm the workflow publishes `esa.jsonc` and `dist/`, verify the hosting target still points at `gh-pages`, and load `https://hagicode.com`
+- Rollback path: revert the source change or rerun deployment from an older commit so CI republishes the previous snapshot
+
 ### Desktop Index Fallback
 
 The desktop history index at `https://index.hagicode.com/desktop/history/` is a referenced dependency only. The site links to it as a runtime fallback target for desktop guidance, but this repository does not publish or manage that index directly.
