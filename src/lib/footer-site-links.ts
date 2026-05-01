@@ -53,7 +53,7 @@ function resolveLocalizedField(field: LocalizedFooterField, locale: SiteLocale):
 
   const resolutionChain = [locale, ...getSiteLocaleFallbackChain(locale), DEFAULT_LOCALE];
   for (const candidate of resolutionChain) {
-    const value = field[candidate];
+    const value = field[candidate as SiteLocale];
     if (typeof value === 'string' && value.trim().length > 0) {
       return value;
     }
