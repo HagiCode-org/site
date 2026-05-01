@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const FOOTER_SITES_SNAPSHOT_URL = 'https://index.hagicode.com/sites.json';
+const FOOTER_SITE_LOCALES = ["zh-CN","zh-Hant","en-US","ja-JP","ko-KR","de-DE","fr-FR","es-ES","pt-BR","ru-RU"];
 
 function assert(condition, message) {
   if (!condition) {
@@ -17,6 +18,22 @@ function isRecord(value) {
 function assertNonEmptyString(value, fieldName) {
   assert(typeof value === 'string' && value.trim().length > 0, `Invalid footer sites snapshot payload: ${fieldName} must be a non-empty string`);
   return value.trim();
+}
+
+function normalizeLocalizedField(value, fieldName) {
+  if (typeof value === 'string') {
+    const normalized = assertNonEmptyString(value, fieldName);
+    return Object.fromEntries(FOOTER_SITE_LOCALES.map((locale) => [locale, normalized]));
+  }
+
+  assert(isRecord(value), `Invalid footer sites snapshot payload: ${fieldName} must be a localized object`);
+
+  return Object.fromEntries(
+    FOOTER_SITE_LOCALES.map((locale) => [
+      locale,
+      assertNonEmptyString(value[locale], `${fieldName}.${locale}`),
+    ]),
+  );
 }
 
 function normalizeHttpsUrl(value, fieldName) {
@@ -49,8 +66,8 @@ function normalizeFooterSitesSnapshotPayload(payload) {
     assert(isRecord(group), `Invalid footer sites snapshot payload: groups[${index}] must be an object`);
     return {
       id: assertNonEmptyString(group.id, `groups[${index}].id`),
-      label: assertNonEmptyString(group.label, `groups[${index}].label`),
-      description: assertNonEmptyString(group.description, `groups[${index}].description`),
+      label: normalizeLocalizedField(group.label, `groups[${index}].label`),
+      description: normalizeLocalizedField(group.description, `groups[${index}].description`),
     };
   });
 
@@ -73,12 +90,12 @@ function normalizeFooterSitesSnapshotPayload(payload) {
 
     return {
       id,
-      title: assertNonEmptyString(entry.title, `entries[${index}].title`),
-      label: assertNonEmptyString(entry.label, `entries[${index}].label`),
-      description: assertNonEmptyString(entry.description, `entries[${index}].description`),
+      title: normalizeLocalizedField(entry.title, `entries[${index}].title`),
+      label: normalizeLocalizedField(entry.label, `entries[${index}].label`),
+      description: normalizeLocalizedField(entry.description, `entries[${index}].description`),
       groupId,
       url: normalizeHttpsUrl(entry.url, `entries[${index}].url`),
-      actionLabel: assertNonEmptyString(entry.actionLabel, `entries[${index}].actionLabel`),
+      actionLabel: normalizeLocalizedField(entry.actionLabel, `entries[${index}].actionLabel`),
     };
   });
 
@@ -115,11 +132,12 @@ async function updateFooterSitesSnapshot({
 
   const payload = normalizeFooterSitesSnapshotPayload(await response.json());
   await mkdir(path.dirname(outputPath), { recursive: true });
-  await writeFile(outputPath, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
+  await writeFile(outputPath, `${JSON.stringify(payload, null, 2)}
+`, 'utf8');
 }
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const outputPath = path.join(repoRoot, 'src', 'data', 'footer-sites.snapshot.json');
+const outputPath = path.join(repoRoot, "src", "data", "footer-sites.snapshot.json");
 
 await updateFooterSitesSnapshot({ outputPath });
 console.log(`Footer sites snapshot updated at ${path.relative(repoRoot, outputPath)}`);

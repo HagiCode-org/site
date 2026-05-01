@@ -142,6 +142,7 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
     ];
 
     const relatedSiteLinks: FooterLink[] = resolveSiteFooterCatalogLinks({
+      locale,
       localLinks: communityLinks.map((link) => ({ href: link.href })),
     }).map((link) => ({
       label: link.title,

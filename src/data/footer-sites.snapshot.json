@@ -1,113 +1,619 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-04-07T00:00:00.000Z",
+  "generatedAt": "2026-05-01T00:00:00.000Z",
   "groups": [
     {
       "id": "core-sites",
-      "label": "核心站点",
-      "description": "项目官网、正式文档与长期内容站点，适合作为进入 HagiCode 生态的主路径。"
+      "label": {
+        "zh-CN": "核心站点",
+        "zh-Hant": "核心站點",
+        "en-US": "Core Sites",
+        "ja-JP": "コアサイト",
+        "ko-KR": "핵심 사이트",
+        "de-DE": "Kernseiten",
+        "fr-FR": "Sites principaux",
+        "es-ES": "Sitios principales",
+        "pt-BR": "Sites principais",
+        "ru-RU": "Основные сайты"
+      },
+      "description": {
+        "zh-CN": "项目官网、正式文档与长期内容站点，适合作为进入 HagiCode 生态的主路径。",
+        "zh-Hant": "專案官網、正式文件與長期內容站點，適合作為進入 HagiCode 生態的主路徑。",
+        "en-US": "Primary HagiCode destinations for the product site, official docs, and long-lived content.",
+        "ja-JP": "製品サイト、公式ドキュメント、長期運用コンテンツをまとめた HagiCode の主要導線です。",
+        "ko-KR": "제품 사이트, 공식 문서, 장기 운영 콘텐츠로 이어지는 HagiCode의 핵심 진입선입니다.",
+        "de-DE": "Zentrale HagiCode-Einstiege für Produktseite, offizielle Dokumentation und langfristige Inhalte.",
+        "fr-FR": "Points d'entrée principaux de HagiCode vers le site produit, la documentation officielle et les contenus durables.",
+        "es-ES": "Destinos principales de HagiCode para el sitio del producto, la documentación oficial y el contenido permanente.",
+        "pt-BR": "Destinos principais da HagiCode para o site do produto, a documentação oficial e o conteúdo permanente.",
+        "ru-RU": "Основные точки входа в экосистему HagiCode: сайт продукта, официальная документация и долгоживущий контент."
+      }
     },
     {
       "id": "data-and-tools",
-      "label": "数据与工具",
-      "description": "保留公开数据镜像、部署工具、状态页与辅助实验站点，便于核对服务与入口。"
+      "label": {
+        "zh-CN": "数据与工具",
+        "zh-Hant": "資料與工具",
+        "en-US": "Data and Tools",
+        "ja-JP": "データとツール",
+        "ko-KR": "데이터 및 도구",
+        "de-DE": "Daten und Werkzeuge",
+        "fr-FR": "Données et outils",
+        "es-ES": "Datos y herramientas",
+        "pt-BR": "Dados e ferramentas",
+        "ru-RU": "Данные и инструменты"
+      },
+      "description": {
+        "zh-CN": "保留公开数据镜像、部署工具、状态页与辅助实验站点，便于核对服务与入口。",
+        "zh-Hant": "保留公開資料鏡像、部署工具、狀態頁與輔助實驗站點，方便核對服務與入口。",
+        "en-US": "Public data mirrors, deployment tools, status surfaces, and supporting experimental utilities.",
+        "ja-JP": "公開データミラー、デプロイ支援ツール、ステータス面、補助的な実験ユーティリティをまとめています。",
+        "ko-KR": "공개 데이터 미러, 배포 도구, 상태 페이지, 보조 실험 유틸리티를 모아 둔 영역입니다.",
+        "de-DE": "Öffentliche Daten-Spiegel, Deployment-Werkzeuge, Statusseiten und unterstützende Experimentflächen.",
+        "fr-FR": "Miroirs de données publics, outils de déploiement, pages d'état et utilitaires expérimentaux associés.",
+        "es-ES": "Espejos de datos públicos, herramientas de despliegue, páginas de estado y utilidades experimentales de apoyo.",
+        "pt-BR": "Espelhos públicos de dados, ferramentas de implantação, páginas de status e utilitários experimentais de apoio.",
+        "ru-RU": "Публичные зеркала данных, инструменты развёртывания, страницы статуса и вспомогательные экспериментальные сервисы."
+      }
     },
     {
       "id": "creator-studios",
-      "label": "创作实验",
-      "description": "围绕人格与特质构建的独立体验站点。"
+      "label": {
+        "zh-CN": "创作实验",
+        "zh-Hant": "創作實驗",
+        "en-US": "Creator Studios",
+        "ja-JP": "クリエイタースタジオ",
+        "ko-KR": "크리에이터 스튜디오",
+        "de-DE": "Creator-Studios",
+        "fr-FR": "Studios créatifs",
+        "es-ES": "Estudios creativos",
+        "pt-BR": "Estúdios criativos",
+        "ru-RU": "Творческие студии"
+      },
+      "description": {
+        "zh-CN": "围绕人格与特质构建的独立体验站点。",
+        "zh-Hant": "圍繞人格與特質建構的獨立體驗站點。",
+        "en-US": "Standalone experiences focused on soul, traits, and agent-building experiments.",
+        "ja-JP": "人格や特性を軸にした、独立した体験型の実験サイト群です。",
+        "ko-KR": "영혼, 특성, 에이전트 구성 실험을 중심으로 한 독립 체험 사이트입니다.",
+        "de-DE": "Eigenständige Erlebnisflächen rund um Soul-, Trait- und Agent-Building-Experimente.",
+        "fr-FR": "Expériences autonomes centrées sur l'âme, les traits et les expérimentations de création d'agents.",
+        "es-ES": "Experiencias independientes centradas en alma, rasgos y experimentos de creación de agentes.",
+        "pt-BR": "Experiências independentes focadas em alma, traços e experimentos de construção de agentes.",
+        "ru-RU": "Отдельные экспериментальные площадки, посвящённые душе, чертам и сборке агентов."
+      }
     }
   ],
   "entries": [
     {
       "id": "hagicode-main",
-      "title": "HagiCode 主站",
-      "label": "官网",
-      "description": "产品入口",
+      "title": {
+        "zh-CN": "HagiCode 主站",
+        "zh-Hant": "HagiCode 主站",
+        "en-US": "HagiCode Main Site",
+        "ja-JP": "HagiCode 公式サイト",
+        "ko-KR": "HagiCode 메인 사이트",
+        "de-DE": "HagiCode Hauptseite",
+        "fr-FR": "Site principal HagiCode",
+        "es-ES": "Sitio principal de HagiCode",
+        "pt-BR": "Site principal da HagiCode",
+        "ru-RU": "Главный сайт HagiCode"
+      },
+      "label": {
+        "zh-CN": "官网",
+        "zh-Hant": "官網",
+        "en-US": "Main",
+        "ja-JP": "公式",
+        "ko-KR": "공식",
+        "de-DE": "Hauptseite",
+        "fr-FR": "Site",
+        "es-ES": "Principal",
+        "pt-BR": "Principal",
+        "ru-RU": "Главная"
+      },
+      "description": {
+        "zh-CN": "产品入口",
+        "zh-Hant": "產品入口",
+        "en-US": "Primary product entry.",
+        "ja-JP": "製品全体の入口です。",
+        "ko-KR": "제품으로 들어가는 기본 진입점입니다.",
+        "de-DE": "Zentraler Einstieg zum Produkt.",
+        "fr-FR": "Point d'entrée principal du produit.",
+        "es-ES": "Entrada principal al producto.",
+        "pt-BR": "Entrada principal do produto.",
+        "ru-RU": "Основной вход в продукт."
+      },
       "groupId": "core-sites",
       "url": "https://hagicode.com/",
-      "actionLabel": "进入主站"
+      "actionLabel": {
+        "zh-CN": "进入主站",
+        "zh-Hant": "進入主站",
+        "en-US": "Open main site",
+        "ja-JP": "公式サイトを開く",
+        "ko-KR": "메인 사이트 열기",
+        "de-DE": "Hauptseite öffnen",
+        "fr-FR": "Ouvrir le site",
+        "es-ES": "Abrir sitio principal",
+        "pt-BR": "Abrir site principal",
+        "ru-RU": "Открыть главный сайт"
+      }
     },
     {
       "id": "hagicode-docs",
-      "title": "HagiCode Docs",
-      "label": "文档",
-      "description": "使用指南",
+      "title": {
+        "zh-CN": "HagiCode Docs",
+        "zh-Hant": "HagiCode Docs",
+        "en-US": "HagiCode Docs",
+        "ja-JP": "HagiCode Docs",
+        "ko-KR": "HagiCode Docs",
+        "de-DE": "HagiCode Docs",
+        "fr-FR": "HagiCode Docs",
+        "es-ES": "HagiCode Docs",
+        "pt-BR": "HagiCode Docs",
+        "ru-RU": "HagiCode Docs"
+      },
+      "label": {
+        "zh-CN": "文档",
+        "zh-Hant": "文件",
+        "en-US": "Docs",
+        "ja-JP": "ドキュメント",
+        "ko-KR": "문서",
+        "de-DE": "Docs",
+        "fr-FR": "Docs",
+        "es-ES": "Docs",
+        "pt-BR": "Docs",
+        "ru-RU": "Документация"
+      },
+      "description": {
+        "zh-CN": "使用指南",
+        "zh-Hant": "使用指南",
+        "en-US": "Official guides and references.",
+        "ja-JP": "公式ガイドとリファレンスです。",
+        "ko-KR": "공식 가이드와 레퍼런스입니다.",
+        "de-DE": "Offizielle Anleitungen und Referenzen.",
+        "fr-FR": "Guides et références officiels.",
+        "es-ES": "Guías y referencias oficiales.",
+        "pt-BR": "Guias e referências oficiais.",
+        "ru-RU": "Официальные руководства и справочные материалы."
+      },
       "groupId": "core-sites",
       "url": "https://docs.hagicode.com/",
-      "actionLabel": "查看文档"
+      "actionLabel": {
+        "zh-CN": "查看文档",
+        "zh-Hant": "查看文件",
+        "en-US": "Open docs",
+        "ja-JP": "ドキュメントを見る",
+        "ko-KR": "문서 열기",
+        "de-DE": "Dokumentation öffnen",
+        "fr-FR": "Ouvrir la documentation",
+        "es-ES": "Abrir documentación",
+        "pt-BR": "Abrir documentação",
+        "ru-RU": "Открыть документацию"
+      }
     },
     {
       "id": "newbe-blog",
-      "title": "newbe",
-      "label": "newbe",
-      "description": "作者博客",
+      "title": {
+        "zh-CN": "newbe",
+        "zh-Hant": "newbe",
+        "en-US": "newbe",
+        "ja-JP": "newbe",
+        "ko-KR": "newbe",
+        "de-DE": "newbe",
+        "fr-FR": "newbe",
+        "es-ES": "newbe",
+        "pt-BR": "newbe",
+        "ru-RU": "newbe"
+      },
+      "label": {
+        "zh-CN": "newbe",
+        "zh-Hant": "newbe",
+        "en-US": "newbe",
+        "ja-JP": "newbe",
+        "ko-KR": "newbe",
+        "de-DE": "newbe",
+        "fr-FR": "newbe",
+        "es-ES": "newbe",
+        "pt-BR": "newbe",
+        "ru-RU": "newbe"
+      },
+      "description": {
+        "zh-CN": "作者博客",
+        "zh-Hant": "作者部落格",
+        "en-US": "Author blog.",
+        "ja-JP": "作者ブログです。",
+        "ko-KR": "작성자 블로그입니다.",
+        "de-DE": "Blog des Autors.",
+        "fr-FR": "Blog de l'auteur.",
+        "es-ES": "Blog del autor.",
+        "pt-BR": "Blog do autor.",
+        "ru-RU": "Блог автора."
+      },
       "groupId": "core-sites",
       "url": "https://newbe.hagicode.com/",
-      "actionLabel": "打开 newbe"
+      "actionLabel": {
+        "zh-CN": "打开 newbe",
+        "zh-Hant": "開啟 newbe",
+        "en-US": "Open newbe",
+        "ja-JP": "newbe を開く",
+        "ko-KR": "newbe 열기",
+        "de-DE": "newbe öffnen",
+        "fr-FR": "Ouvrir newbe",
+        "es-ES": "Abrir newbe",
+        "pt-BR": "Abrir newbe",
+        "ru-RU": "Открыть newbe"
+      }
     },
     {
       "id": "index-data",
-      "title": "Index Data Mirror",
-      "label": "数据镜像",
-      "description": "公开数据",
+      "title": {
+        "zh-CN": "Index Data Mirror",
+        "zh-Hant": "Index Data Mirror",
+        "en-US": "Index Data Mirror",
+        "ja-JP": "Index Data Mirror",
+        "ko-KR": "Index Data Mirror",
+        "de-DE": "Index Data Mirror",
+        "fr-FR": "Index Data Mirror",
+        "es-ES": "Index Data Mirror",
+        "pt-BR": "Index Data Mirror",
+        "ru-RU": "Index Data Mirror"
+      },
+      "label": {
+        "zh-CN": "数据镜像",
+        "zh-Hant": "資料鏡像",
+        "en-US": "Data",
+        "ja-JP": "データ",
+        "ko-KR": "데이터",
+        "de-DE": "Daten",
+        "fr-FR": "Données",
+        "es-ES": "Datos",
+        "pt-BR": "Dados",
+        "ru-RU": "Данные"
+      },
+      "description": {
+        "zh-CN": "公开数据",
+        "zh-Hant": "公開資料",
+        "en-US": "Public data mirror.",
+        "ja-JP": "公開データミラーです。",
+        "ko-KR": "공개 데이터 미러입니다.",
+        "de-DE": "Öffentlicher Daten-Spiegel.",
+        "fr-FR": "Miroir de données public.",
+        "es-ES": "Espejo de datos público.",
+        "pt-BR": "Espelho público de dados.",
+        "ru-RU": "Публичное зеркало данных."
+      },
       "groupId": "data-and-tools",
       "url": "https://index.hagicode.com/data/",
-      "actionLabel": "打开数据页"
+      "actionLabel": {
+        "zh-CN": "打开数据页",
+        "zh-Hant": "開啟資料頁",
+        "en-US": "Open data page",
+        "ja-JP": "データページを開く",
+        "ko-KR": "데이터 페이지 열기",
+        "de-DE": "Datenseite öffnen",
+        "fr-FR": "Ouvrir la page de données",
+        "es-ES": "Abrir página de datos",
+        "pt-BR": "Abrir página de dados",
+        "ru-RU": "Открыть страницу данных"
+      }
     },
     {
       "id": "compose-builder",
-      "title": "Docker Compose Builder",
-      "label": "Builder",
-      "description": "Docker 部署 Hagicode",
+      "title": {
+        "zh-CN": "Docker Compose Builder",
+        "zh-Hant": "Docker Compose Builder",
+        "en-US": "Docker Compose Builder",
+        "ja-JP": "Docker Compose Builder",
+        "ko-KR": "Docker Compose Builder",
+        "de-DE": "Docker Compose Builder",
+        "fr-FR": "Docker Compose Builder",
+        "es-ES": "Docker Compose Builder",
+        "pt-BR": "Docker Compose Builder",
+        "ru-RU": "Docker Compose Builder"
+      },
+      "label": {
+        "zh-CN": "Builder",
+        "zh-Hant": "Builder",
+        "en-US": "Builder",
+        "ja-JP": "Builder",
+        "ko-KR": "Builder",
+        "de-DE": "Builder",
+        "fr-FR": "Builder",
+        "es-ES": "Builder",
+        "pt-BR": "Builder",
+        "ru-RU": "Builder"
+      },
+      "description": {
+        "zh-CN": "Docker 部署 Hagicode",
+        "zh-Hant": "使用 Docker 部署 Hagicode",
+        "en-US": "Deploy HagiCode with Docker.",
+        "ja-JP": "Docker で HagiCode をデプロイします。",
+        "ko-KR": "Docker로 HagiCode를 배포합니다.",
+        "de-DE": "HagiCode mit Docker bereitstellen.",
+        "fr-FR": "Déployer HagiCode avec Docker.",
+        "es-ES": "Despliega HagiCode con Docker.",
+        "pt-BR": "Implante a HagiCode com Docker.",
+        "ru-RU": "Развёртывание HagiCode через Docker."
+      },
       "groupId": "data-and-tools",
       "url": "https://builder.hagicode.com/",
-      "actionLabel": "打开 Builder"
+      "actionLabel": {
+        "zh-CN": "打开 Builder",
+        "zh-Hant": "開啟 Builder",
+        "en-US": "Open Builder",
+        "ja-JP": "Builder を開く",
+        "ko-KR": "Builder 열기",
+        "de-DE": "Builder öffnen",
+        "fr-FR": "Ouvrir Builder",
+        "es-ES": "Abrir Builder",
+        "pt-BR": "Abrir Builder",
+        "ru-RU": "Открыть Builder"
+      }
     },
     {
       "id": "cost-calculator",
-      "title": "AI Replacement Calculator",
-      "label": "Cost",
-      "description": "我要被AI淘汰了？！",
+      "title": {
+        "zh-CN": "AI Replacement Calculator",
+        "zh-Hant": "AI Replacement Calculator",
+        "en-US": "AI Replacement Calculator",
+        "ja-JP": "AI Replacement Calculator",
+        "ko-KR": "AI Replacement Calculator",
+        "de-DE": "AI Replacement Calculator",
+        "fr-FR": "AI Replacement Calculator",
+        "es-ES": "AI Replacement Calculator",
+        "pt-BR": "AI Replacement Calculator",
+        "ru-RU": "AI Replacement Calculator"
+      },
+      "label": {
+        "zh-CN": "Cost",
+        "zh-Hant": "Cost",
+        "en-US": "Cost",
+        "ja-JP": "Cost",
+        "ko-KR": "Cost",
+        "de-DE": "Cost",
+        "fr-FR": "Cost",
+        "es-ES": "Cost",
+        "pt-BR": "Cost",
+        "ru-RU": "Cost"
+      },
+      "description": {
+        "zh-CN": "我要被AI淘汰了？！",
+        "zh-Hant": "我要被 AI 淘汰了？！",
+        "en-US": "What if AI replaces me?!",
+        "ja-JP": "AI に置き換えられるかも?!",
+        "ko-KR": "AI가 나를 대체하면 어떡하지?!",
+        "de-DE": "Werde ich von KI ersetzt?!",
+        "fr-FR": "Et si l'IA me remplaçait ?!",
+        "es-ES": "¿Y si la IA me reemplaza?!",
+        "pt-BR": "E se a IA me substituir?!",
+        "ru-RU": "А вдруг ИИ меня заменит?!"
+      },
       "groupId": "data-and-tools",
       "url": "https://cost.hagicode.com/",
-      "actionLabel": "打开 Cost"
+      "actionLabel": {
+        "zh-CN": "打开 Cost",
+        "zh-Hant": "開啟 Cost",
+        "en-US": "Open Cost",
+        "ja-JP": "Cost を開く",
+        "ko-KR": "Cost 열기",
+        "de-DE": "Cost öffnen",
+        "fr-FR": "Ouvrir Cost",
+        "es-ES": "Abrir Cost",
+        "pt-BR": "Abrir Cost",
+        "ru-RU": "Открыть Cost"
+      }
     },
     {
       "id": "status-page",
-      "title": "HagiCode Status",
-      "label": "Status",
-      "description": "服务状态",
+      "title": {
+        "zh-CN": "HagiCode Status",
+        "zh-Hant": "HagiCode Status",
+        "en-US": "HagiCode Status",
+        "ja-JP": "HagiCode Status",
+        "ko-KR": "HagiCode Status",
+        "de-DE": "HagiCode Status",
+        "fr-FR": "HagiCode Status",
+        "es-ES": "HagiCode Status",
+        "pt-BR": "HagiCode Status",
+        "ru-RU": "HagiCode Status"
+      },
+      "label": {
+        "zh-CN": "Status",
+        "zh-Hant": "Status",
+        "en-US": "Status",
+        "ja-JP": "Status",
+        "ko-KR": "Status",
+        "de-DE": "Status",
+        "fr-FR": "Status",
+        "es-ES": "Status",
+        "pt-BR": "Status",
+        "ru-RU": "Status"
+      },
+      "description": {
+        "zh-CN": "服务状态",
+        "zh-Hant": "服務狀態",
+        "en-US": "Service status.",
+        "ja-JP": "サービス状態の確認ページです。",
+        "ko-KR": "서비스 상태를 확인하는 페이지입니다.",
+        "de-DE": "Dienststatus.",
+        "fr-FR": "État des services.",
+        "es-ES": "Estado del servicio.",
+        "pt-BR": "Status do serviço.",
+        "ru-RU": "Статус сервисов."
+      },
       "groupId": "data-and-tools",
       "url": "https://status.hagicode.com/",
-      "actionLabel": "查看状态"
+      "actionLabel": {
+        "zh-CN": "查看状态",
+        "zh-Hant": "查看狀態",
+        "en-US": "View status",
+        "ja-JP": "ステータスを見る",
+        "ko-KR": "상태 보기",
+        "de-DE": "Status anzeigen",
+        "fr-FR": "Voir l'état",
+        "es-ES": "Ver estado",
+        "pt-BR": "Ver status",
+        "ru-RU": "Посмотреть статус"
+      }
     },
     {
       "id": "awesome-design-gallery",
-      "title": "Awesome Design MD",
-      "label": "Design",
-      "description": "超酷的AI Web 设计",
+      "title": {
+        "zh-CN": "Awesome Design MD",
+        "zh-Hant": "Awesome Design MD",
+        "en-US": "Awesome Design MD",
+        "ja-JP": "Awesome Design MD",
+        "ko-KR": "Awesome Design MD",
+        "de-DE": "Awesome Design MD",
+        "fr-FR": "Awesome Design MD",
+        "es-ES": "Awesome Design MD",
+        "pt-BR": "Awesome Design MD",
+        "ru-RU": "Awesome Design MD"
+      },
+      "label": {
+        "zh-CN": "Design",
+        "zh-Hant": "Design",
+        "en-US": "Design",
+        "ja-JP": "Design",
+        "ko-KR": "Design",
+        "de-DE": "Design",
+        "fr-FR": "Design",
+        "es-ES": "Design",
+        "pt-BR": "Design",
+        "ru-RU": "Design"
+      },
+      "description": {
+        "zh-CN": "超酷的AI Web 设计",
+        "zh-Hant": "超酷的 AI Web 設計",
+        "en-US": "A gallery of standout AI web design work.",
+        "ja-JP": "印象的な AI Web デザインを集めたギャラリーです。",
+        "ko-KR": "인상적인 AI 웹 디자인을 모아 둔 갤러리입니다.",
+        "de-DE": "Galerie mit markanten AI-Webdesigns.",
+        "fr-FR": "Galerie de designs web IA remarquables.",
+        "es-ES": "Galería de diseños web de IA destacados.",
+        "pt-BR": "Galeria com designs web de IA de destaque.",
+        "ru-RU": "Галерея выразительных AI web-дизайнов."
+      },
       "groupId": "data-and-tools",
       "url": "https://design.hagicode.com/",
-      "actionLabel": "打开 Design"
+      "actionLabel": {
+        "zh-CN": "打开 Design",
+        "zh-Hant": "開啟 Design",
+        "en-US": "Open Design",
+        "ja-JP": "Design を開く",
+        "ko-KR": "Design 열기",
+        "de-DE": "Design öffnen",
+        "fr-FR": "Ouvrir Design",
+        "es-ES": "Abrir Design",
+        "pt-BR": "Abrir Design",
+        "ru-RU": "Открыть Design"
+      }
     },
     {
       "id": "soul-builder",
-      "title": "Soul Builder",
-      "label": "Soul",
-      "description": "Agent之魂",
+      "title": {
+        "zh-CN": "Soul Builder",
+        "zh-Hant": "Soul Builder",
+        "en-US": "Soul Builder",
+        "ja-JP": "Soul Builder",
+        "ko-KR": "Soul Builder",
+        "de-DE": "Soul Builder",
+        "fr-FR": "Soul Builder",
+        "es-ES": "Soul Builder",
+        "pt-BR": "Soul Builder",
+        "ru-RU": "Soul Builder"
+      },
+      "label": {
+        "zh-CN": "Soul",
+        "zh-Hant": "Soul",
+        "en-US": "Soul",
+        "ja-JP": "Soul",
+        "ko-KR": "Soul",
+        "de-DE": "Soul",
+        "fr-FR": "Soul",
+        "es-ES": "Soul",
+        "pt-BR": "Soul",
+        "ru-RU": "Soul"
+      },
+      "description": {
+        "zh-CN": "Agent之魂",
+        "zh-Hant": "Agent 之魂",
+        "en-US": "Define the soul of an agent.",
+        "ja-JP": "Agent の魂を形にする体験です。",
+        "ko-KR": "에이전트의 영혼을 설계하는 경험입니다.",
+        "de-DE": "Forme die Seele eines Agenten.",
+        "fr-FR": "Façonnez l'âme d'un agent.",
+        "es-ES": "Define el alma de un agente.",
+        "pt-BR": "Defina a alma de um agente.",
+        "ru-RU": "Определите душу агента."
+      },
       "groupId": "creator-studios",
       "url": "https://soul.hagicode.com/",
-      "actionLabel": "打开 Soul"
+      "actionLabel": {
+        "zh-CN": "打开 Soul",
+        "zh-Hant": "開啟 Soul",
+        "en-US": "Open Soul",
+        "ja-JP": "Soul を開く",
+        "ko-KR": "Soul 열기",
+        "de-DE": "Soul öffnen",
+        "fr-FR": "Ouvrir Soul",
+        "es-ES": "Abrir Soul",
+        "pt-BR": "Abrir Soul",
+        "ru-RU": "Открыть Soul"
+      }
     },
     {
       "id": "trait-builder",
-      "title": "Trait Builder",
-      "label": "Trait",
-      "description": "Agent之能",
+      "title": {
+        "zh-CN": "Trait Builder",
+        "zh-Hant": "Trait Builder",
+        "en-US": "Trait Builder",
+        "ja-JP": "Trait Builder",
+        "ko-KR": "Trait Builder",
+        "de-DE": "Trait Builder",
+        "fr-FR": "Trait Builder",
+        "es-ES": "Trait Builder",
+        "pt-BR": "Trait Builder",
+        "ru-RU": "Trait Builder"
+      },
+      "label": {
+        "zh-CN": "Trait",
+        "zh-Hant": "Trait",
+        "en-US": "Trait",
+        "ja-JP": "Trait",
+        "ko-KR": "Trait",
+        "de-DE": "Trait",
+        "fr-FR": "Trait",
+        "es-ES": "Trait",
+        "pt-BR": "Trait",
+        "ru-RU": "Trait"
+      },
+      "description": {
+        "zh-CN": "Agent之能",
+        "zh-Hant": "Agent 之能",
+        "en-US": "Shape what an agent can do.",
+        "ja-JP": "Agent の能力を組み立てる体験です。",
+        "ko-KR": "에이전트의 능력을 설계하는 경험입니다.",
+        "de-DE": "Definiere, was ein Agent kann.",
+        "fr-FR": "Définissez ce qu'un agent peut faire.",
+        "es-ES": "Define lo que un agente puede hacer.",
+        "pt-BR": "Defina o que um agente pode fazer.",
+        "ru-RU": "Соберите способности агента."
+      },
       "groupId": "creator-studios",
       "url": "https://trait.hagicode.com/",
-      "actionLabel": "打开 Trait"
+      "actionLabel": {
+        "zh-CN": "打开 Trait",
+        "zh-Hant": "開啟 Trait",
+        "en-US": "Open Trait",
+        "ja-JP": "Trait を開く",
+        "ko-KR": "Trait 열기",
+        "de-DE": "Trait öffnen",
+        "fr-FR": "Ouvrir Trait",
+        "es-ES": "Abrir Trait",
+        "pt-BR": "Abrir Trait",
+        "ru-RU": "Открыть Trait"
+      }
     }
   ]
 }

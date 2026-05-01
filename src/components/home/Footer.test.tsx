@@ -14,7 +14,7 @@ describe('Footer related sites', () => {
 
     expect(markup).toContain('Related Sites');
     expect(markup).toContain('HagiCode Docs');
-    expect(markup).toContain('使用指南');
+    expect(markup).toContain('Official guides and references.');
     expect(markup).toContain('/desktop/');
     expect(markup).toContain('Product Docs');
   });

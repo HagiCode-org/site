@@ -1,4 +1,10 @@
 import footerSitesSnapshot from '@/data/footer-sites.snapshot.json';
+import {
+  DEFAULT_LOCALE,
+  getSiteLocaleFallbackChain,
+  resolveSiteLocale,
+  type SiteLocale,
+} from '@/i18n/locale-metadata';
 
 export interface FooterCatalogLink {
   siteId: string;
@@ -6,6 +12,15 @@ export interface FooterCatalogLink {
   description: string;
   href: string;
 }
+
+type LocalizedFooterField = string | Readonly<Record<SiteLocale, string>>;
+
+type FooterSnapshotEntry = {
+  id: string;
+  title: LocalizedFooterField;
+  description: LocalizedFooterField;
+  url: string;
+};
 
 const DEFAULT_RELATED_SITE_ORDER = [
   'hagicode-main',
@@ -26,19 +41,46 @@ function normalizeUrl(url: string) {
   const normalized = new URL(url);
   normalized.hash = '';
   normalized.search = '';
-  const pathname = normalized.pathname.replace(/\/+$/, '');
+  const pathname = normalized.pathname.replace(/\/+$/u, '');
   normalized.pathname = pathname || '/';
   return normalized.toString();
 }
 
+function resolveLocalizedField(field: LocalizedFooterField, locale: SiteLocale): string {
+  if (typeof field === 'string') {
+    return field;
+  }
+
+  const resolutionChain = [locale, ...getSiteLocaleFallbackChain(locale), DEFAULT_LOCALE];
+  for (const candidate of resolutionChain) {
+    const value = field[candidate];
+    if (typeof value === 'string' && value.trim().length > 0) {
+      return value;
+    }
+  }
+
+  for (const value of Object.values(field)) {
+    if (typeof value === 'string' && value.trim().length > 0) {
+      return value;
+    }
+  }
+
+  return '';
+}
+
 export function resolveSiteFooterCatalogLinks({
+  locale,
   localLinks = [],
 }: {
+  locale?: string;
   localLinks?: ReadonlyArray<{ href: string; siteId?: string }>;
 }): FooterCatalogLink[] {
+  const resolvedLocale = resolveSiteLocale(locale, DEFAULT_LOCALE);
   const localIds = new Set(localLinks.flatMap((link) => (link.siteId ? [link.siteId] : [])));
   const localUrls = new Set(localLinks.map((link) => normalizeUrl(link.href)));
-  const snapshotById = new Map(footerSitesSnapshot.entries.map((entry) => [entry.id, entry]));
+  const snapshotById = new Map<string, FooterSnapshotEntry>(
+    footerSitesSnapshot.entries.map((entry) => [entry.id, entry as FooterSnapshotEntry]),
+  );
 
   return DEFAULT_RELATED_SITE_ORDER.flatMap((siteId) => {
     const entry = snapshotById.get(siteId);
@@ -53,8 +95,8 @@ export function resolveSiteFooterCatalogLinks({
     return [
       {
         siteId: entry.id,
-        title: entry.title,
-        description: entry.description,
+        title: resolveLocalizedField(entry.title, resolvedLocale),
+        description: resolveLocalizedField(entry.description, resolvedLocale),
         href: entry.url,
       },
     ];
