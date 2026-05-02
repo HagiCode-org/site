@@ -34,6 +34,71 @@ export interface LinkConfig {
   relative?: boolean;
 }
 
+type DocsRouteLocale = 'root' | 'en' | 'zh-Hant' | 'ja-JP' | 'ko-KR' | 'de-DE' | 'fr-FR' | 'es-ES' | 'pt-BR' | 'ru-RU';
+
+const DOCS_ROUTE_LOCALE_BY_SITE_LOCALE: Record<SiteLocale, DocsRouteLocale> = {
+  'zh-CN': 'root',
+  'zh-Hant': 'zh-Hant',
+  'en-US': 'en',
+  'ja-JP': 'ja-JP',
+  'ko-KR': 'ko-KR',
+  'de-DE': 'de-DE',
+  'fr-FR': 'fr-FR',
+  'es-ES': 'es-ES',
+  'pt-BR': 'pt-BR',
+  'ru-RU': 'ru-RU',
+};
+
+function normalizeAbsolutePath(pathname: string): string {
+  const normalized = pathname.startsWith('/') ? pathname : `/${pathname}`;
+  const withoutTrailingSlash = normalized.replace(/\/+$/u, '');
+  return withoutTrailingSlash || '/';
+}
+
+function ensureTrailingSlash(pathname: string): string {
+  if (pathname === '/') {
+    return pathname;
+  }
+
+  return pathname.endsWith('/') ? pathname : `${pathname}/`;
+}
+
+function stripDocsLocalePrefix(pathname: string): string {
+  const normalized = normalizeAbsolutePath(pathname);
+  const matchedLocale = normalized.match(/^\/(en|zh-Hant|ja-JP|ko-KR|de-DE|fr-FR|es-ES|pt-BR|ru-RU)(?=\/|$)/u)?.[1];
+
+  if (!matchedLocale) {
+    return ensureTrailingSlash(normalized);
+  }
+
+  const stripped = normalized.replace(/^\/[^/]+(?=\/|$)/u, '');
+  return ensureTrailingSlash(stripped || '/');
+}
+
+function getDocsRouteLocale(locale?: string): DocsRouteLocale {
+  return DOCS_ROUTE_LOCALE_BY_SITE_LOCALE[normalizeLocale(locale)];
+}
+
+function getLocalizedDocsPath(pathname: string, locale?: string): string {
+  const routeLocale = getDocsRouteLocale(locale);
+  const normalizedPath = stripDocsLocalePrefix(pathname);
+
+  if (routeLocale === 'root') {
+    return normalizedPath;
+  }
+
+  if (normalizedPath === '/') {
+    return `/${routeLocale}/`;
+  }
+
+  return `/${routeLocale}${normalizedPath}`;
+}
+
+function rebuildAbsoluteUrl(url: URL, pathname: string): string {
+  url.pathname = pathname;
+  return url.toString();
+}
+
 export const SITE_LINKS = {
   docs: {
     dev: 'https://docs.hagicode.com/',
@@ -128,15 +193,25 @@ export function getAliyunPromoUrl(): string {
 }
 
 export function getDockerComposeGuideUrl(locale: string = DEFAULT_LOCALE): string {
-  const url = new URL(GLM_PROMO_LINKS.dockerComposeGuide.url);
-  url.searchParams.set('lang', locale);
-  return url.toString();
+  return getDocsAbsoluteUrl('/installation/docker-compose/', locale);
 }
 
 export type PublicLinkKey = keyof typeof SITE_LINKS;
 
 function normalizeLocale(locale?: string): SiteLocale {
   return resolveSiteLocale(locale);
+}
+
+export function getDocsAbsoluteUrl(pathname: string, locale?: string): string {
+  const docsUrl = new URL('https://docs.hagicode.com');
+  return rebuildAbsoluteUrl(docsUrl, getLocalizedDocsPath(pathname, locale));
+}
+
+function getDocsRssUrl(locale?: string): string {
+  const currentLocale = normalizeLocale(locale);
+  return currentLocale.startsWith('zh')
+    ? 'https://docs.hagicode.com/blog/rss.zh-CN.xml'
+    : 'https://docs.hagicode.com/blog/rss.en.xml';
 }
 
 export function getLinkWithLocale(key: PublicLinkKey, locale?: string): string {
@@ -151,7 +226,18 @@ export function getLinkWithLocale(key: PublicLinkKey, locale?: string): string {
 
   if (url.startsWith('http://') || url.startsWith('https://')) {
     const urlObject = new URL(url);
-    urlObject.searchParams.set('lang', currentLocale);
+    if (urlObject.hostname === 'docs.hagicode.com') {
+      if (key === 'rss') {
+        return getDocsRssUrl(currentLocale);
+      }
+
+      return rebuildAbsoluteUrl(urlObject, getLocalizedDocsPath(urlObject.pathname, currentLocale));
+    }
+
+    if (urlObject.hostname === 'hagicode.com') {
+      return rebuildAbsoluteUrl(urlObject, getLocalizedPathWithBase(urlObject.pathname, currentLocale, ''));
+    }
+
     return urlObject.toString();
   }
 

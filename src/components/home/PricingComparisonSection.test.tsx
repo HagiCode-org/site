@@ -27,4 +27,13 @@ describe('PricingComparisonSection', () => {
       expect(content.dlcItems.at(-1)?.action.href).toBe(DEFAULT_STEAM_STORE_URL);
     });
   }
+
+  it('maps additional locales to the matching localized docs route', () => {
+    expect(getHagicodePlusDocsIntroductionUrl('ja-JP')).toBe(
+      'https://docs.hagicode.com/ja-JP/bundles/hagicode-plus/',
+    );
+    expect(getHagicodePlusDocsIntroductionUrl('zh-Hant')).toBe(
+      'https://docs.hagicode.com/zh-Hant/bundles/hagicode-plus/',
+    );
+  });
 });

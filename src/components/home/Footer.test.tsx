@@ -15,8 +15,10 @@ describe('Footer related sites', () => {
     expect(markup).toContain('Related Sites');
     expect(markup).toContain('HagiCode Docs');
     expect(markup).toContain('Official guides and references.');
+    expect(markup).toContain('https://docs.hagicode.com/en/');
     expect(markup).toContain('/desktop/');
     expect(markup).toContain('Product Docs');
+    expect(markup).toContain('https://docs.hagicode.com/en/product-overview/');
   });
 
   it('renders the Chinese related-sites section with localized quick links intact', () => {
@@ -25,14 +27,16 @@ describe('Footer related sites', () => {
     expect(markup).toContain('生态站点');
     expect(markup).toContain('Docker Compose Builder');
     expect(markup).toContain('Docker 部署 Hagicode');
+    expect(markup).toContain('https://docs.hagicode.com/');
     expect(markup).toContain('/zh-CN/desktop/');
     expect(markup).toContain('产品文档');
+    expect(markup).toContain('https://docs.hagicode.com/product-overview/');
   });
 
   it('renders snapshot-backed related sites while excluding the current site and duplicate cost link', () => {
     const markup = renderToStaticMarkup(<Footer locale="en" />);
 
-    expect(markup).toContain('https://docs.hagicode.com/');
+    expect(markup).toContain('https://docs.hagicode.com/en/');
     expect(markup).toContain('https://builder.hagicode.com/');
     expect(markup).toContain('https://design.hagicode.com/');
     expect(markup).not.toContain('https://hagicode.com/');

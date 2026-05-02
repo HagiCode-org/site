@@ -5,6 +5,7 @@ import {
   resolveSiteLocale,
   type SiteLocale,
 } from '@/i18n/locale-metadata';
+import { getLinkWithLocale } from '@/lib/shared/links';
 
 export interface FooterCatalogLink {
   siteId: string;
@@ -97,7 +98,7 @@ export function resolveSiteFooterCatalogLinks({
         siteId: entry.id,
         title: resolveLocalizedField(entry.title, resolvedLocale),
         description: resolveLocalizedField(entry.description, resolvedLocale),
-        href: entry.url,
+        href: entry.id === 'hagicode-docs' ? getLinkWithLocale('docs', resolvedLocale) : entry.url,
       },
     ];
   });

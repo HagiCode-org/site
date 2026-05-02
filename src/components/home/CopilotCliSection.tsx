@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import styles from './CopilotCliSection.module.css';
+import { getDocsAbsoluteUrl } from '@/lib/shared/links';
 
 type Locale = string;
 
@@ -75,11 +76,9 @@ const COPY: Record<Locale, CopySet> = {
 
 export default function CopilotCliSection({ locale = 'zh-CN' }: CopilotCliSectionProps) {
   const copy = COPY[locale];
-  const docsPrefix = locale.toLowerCase().startsWith('zh') ? '' : '/en';
-  const docsHost = 'https://docs.hagicode.com';
-  const gettingStartedUrl = `${docsHost}${docsPrefix}/related-software-installation/copilot-cli/getting-started`;
-  const commandRefUrl = `${docsHost}${docsPrefix}/related-software-installation/copilot-cli/command-reference`;
-  const guideUrl = `${docsHost}${docsPrefix}/guides/copilot-cli-repository-integration`;
+  const gettingStartedUrl = getDocsAbsoluteUrl('/related-software-installation/copilot-cli/getting-started/', locale);
+  const commandRefUrl = getDocsAbsoluteUrl('/related-software-installation/copilot-cli/command-reference/', locale);
+  const guideUrl = getDocsAbsoluteUrl('/guides/copilot-cli-repository-integration/', locale);
 
   return (
     <section className={styles.section} id="copilot-cli">

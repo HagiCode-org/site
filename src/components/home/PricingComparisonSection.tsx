@@ -2,7 +2,7 @@ import { startTransition, useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from './PricingComparisonSection.module.css';
 import { getTranslation } from '@/i18n/ui';
-import { getLinkWithLocale } from '@/lib/shared/links';
+import { getDocsAbsoluteUrl, getLinkWithLocale } from '@/lib/shared/links';
 import { getBundledSteamStoreLink } from '@/lib/shared/steam-store-link';
 import { getSteamProductImageRecord, type SteamProductImageRecord } from '@/data/steamImageDescriptors';
 
@@ -12,9 +12,7 @@ export const TURBO_ENGINE_STEAM_STORE_URL = 'https://store.steampowered.com/app/
 export const HAGICODE_PLUS_BUNDLE_STEAM_URL = 'https://store.steampowered.com/bundle/73989/Hagicode_Plus/';
 
 export function getHagicodePlusDocsIntroductionUrl(locale: Locale): string {
-  return !locale.toLowerCase().startsWith('zh')
-    ? 'https://docs.hagicode.com/en/bundles/hagicode-plus/'
-    : 'https://docs.hagicode.com/bundles/hagicode-plus/';
+  return getDocsAbsoluteUrl('/bundles/hagicode-plus/', locale);
 }
 
 type ActionLink = {
