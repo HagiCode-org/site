@@ -24,8 +24,7 @@ describe('localized homepage video section order', () => {
     expect(heroUsage).toContain('productOverviewVideo');
     expect(heroUsage).toContain('featuredVideos: pageCopy.featuredHomepageVideos');
     expect(source).not.toContain('<ProductOverviewVideoSection');
-    expect(source.indexOf('<HeroSection')).toBeLessThan(source.indexOf('<ActivityMetricsSection'));
-    expect(source.indexOf('<ActivityMetricsSection')).toBeLessThan(source.indexOf('<FeaturesShowcase'));
+    expect(source.indexOf('<HeroSection')).toBeLessThan(source.indexOf('<FeaturesShowcase'));
     expect(source.indexOf('<ShowcaseSection')).toBeLessThan(source.indexOf('<VideoShowcase'));
     expect(readVideoShowcaseUsage(source)).not.toContain('featuredVideos={featuredHomepageVideos}');
   });
@@ -38,8 +37,7 @@ describe('localized homepage video section order', () => {
     expect(heroUsage).toContain('productOverviewVideo');
     expect(heroUsage).toContain('featuredVideos: pageCopy.featuredHomepageVideos');
     expect(source).not.toContain('<ProductOverviewVideoSection');
-    expect(source.indexOf('<HeroSection')).toBeLessThan(source.indexOf('<ActivityMetricsSection'));
-    expect(source.indexOf('<ActivityMetricsSection')).toBeLessThan(source.indexOf('<FeaturesShowcase'));
+    expect(source.indexOf('<HeroSection')).toBeLessThan(source.indexOf('<FeaturesShowcase'));
     expect(source.indexOf('<ShowcaseSection')).toBeLessThan(source.indexOf('<VideoShowcase'));
     expect(readVideoShowcaseUsage(source)).not.toContain('featuredVideos={featuredHomepageVideos}');
   });

@@ -1,7 +1,6 @@
 ---
 import Navbar from '@/components/home/Navbar';
 import HeroSection from '@/components/home/HeroSection';
-import ActivityMetricsSection from '@/components/home/ActivityMetricsSection';
 import FeaturesShowcase from '@/components/home/FeaturesShowcase';
 import ShowcaseSection from '@/components/home/ShowcaseSection';
 import VideoShowcase from '@/components/home/VideoShowcase';
@@ -88,7 +87,6 @@ const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
         }}
         client:load
       />
-      <ActivityMetricsSection locale={locale} client:load />
       <FeaturesShowcase locale={locale} client:load />
       <ShowcaseSection locale={locale} client:load />
       <VideoShowcase
