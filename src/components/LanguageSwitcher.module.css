@@ -12,6 +12,8 @@
   cursor: pointer;
   transition: all var(--duration-normal) var(--ease-out);
   color: var(--color-text);
+  --language-select-menu-background: var(--color-surface);
+  --language-select-menu-text: var(--color-text);
 }
 
 .languageSwitcher:hover {
@@ -38,10 +40,17 @@
   letter-spacing: 0.02em;
   appearance: none;
   cursor: pointer;
+  color-scheme: light;
 }
 
 .languageSelect:focus {
   outline: none;
+}
+
+.languageSelect option,
+.languageSelect optgroup {
+  background-color: var(--language-select-menu-background);
+  color: var(--language-select-menu-text);
 }
 
 .languageSelectChevron {
@@ -67,6 +76,8 @@
   background: rgba(15, 23, 42, 0.8);
   border-color: rgba(0, 255, 255, 0.15);
   color: var(--color-secondary);
+  --language-select-menu-background: #0A0F1E;
+  --language-select-menu-text: #F8FAFC;
 }
 
 [data-theme='dark'] .languageSwitcher:hover {
@@ -75,13 +86,24 @@
   box-shadow: var(--shadow-glow-cyan);
 }
 
+[data-theme='dark'] .languageSelect {
+  color-scheme: dark;
+}
+
 [data-theme='lunar-new-year'] .languageSwitcher {
   background: rgba(45, 10, 10, 0.85);
   border-color: rgba(255, 160, 0, 0.4);
+  color: var(--color-text);
+  --language-select-menu-background: #521818;
+  --language-select-menu-text: #FFF9C4;
 }
 
 [data-theme='lunar-new-year'] .languageSwitcher:hover {
   background: rgba(61, 14, 14, 0.9);
+}
+
+[data-theme='lunar-new-year'] .languageSelect {
+  color-scheme: dark;
 }
 
 @media (max-width: 768px) {
