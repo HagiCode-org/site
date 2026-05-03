@@ -27,9 +27,9 @@ describe('about page model', () => {
     const steamEntry = model.sections[0]?.entries.find((entry) => entry.id === 'steam');
     const discordEntry = model.sections[1]?.entries.find((entry) => entry.id === 'discord');
 
-    expect(model.routePath).toBe('/about/');
+    expect(model.routePath).toBe('/en-US/about/');
     expect(model.alternatePath).toBe('/zh-CN/about/');
-    expect(model.seo.canonicalUrl).toBe('https://hagicode.com/about/');
+    expect(model.seo.canonicalUrl).toBe('https://hagicode.com/en-US/about/');
     expect(model.header.title).toBe('Grow through exchange');
     expect(model.sections.map((section) => section.id)).toEqual(['store', 'community', 'content']);
     expect(model.sections[0]?.title).toBe('Store');
@@ -101,7 +101,7 @@ describe('about page model', () => {
     const wechatEntry = model.sections[2]?.entries.find((entry) => entry.id === 'wechat-account');
 
     expect(model.routePath).toBe('/zh-CN/about/');
-    expect(model.alternatePath).toBe('/about/');
+    expect(model.alternatePath).toBe('/en-US/about/');
     expect(model.seo.canonicalUrl).toBe('https://hagicode.com/zh-CN/about/');
     expect(model.header.title).toBe('增进交流，共同成长');
     expect(model.sections.map((section) => section.id)).toEqual(['store', 'community', 'content']);

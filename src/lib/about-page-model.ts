@@ -212,7 +212,7 @@ function getAboutLocaleCopy(locale: SiteLocale): AboutLocaleCopy {
 }
 
 function getRoutePath(locale: SiteLocale): string {
-  return locale === DEFAULT_LOCALE ? '/about/' : `/${locale}/about/`;
+  return locale === DEFAULT_LOCALE ? '/en-US/about/' : `/${locale}/about/`;
 }
 
 function getHostnameLabel(url: string): string {

@@ -3,7 +3,6 @@ import {
   LEGACY_ENGLISH_LOCALE,
   SITE_ORIGIN,
   SUPPORTED_SITE_LOCALES,
-  isDefaultSiteLocale,
   normalizeSiteLocale,
   type SiteLocale,
 } from '@/i18n/locale-metadata';
@@ -77,7 +76,7 @@ export function stripLocalePrefix(pathname: string): string {
 }
 
 export function getLocalePathPrefix(locale: SiteLocale): string {
-  return isDefaultSiteLocale(locale) ? '' : `/${locale}`;
+  return `/${locale}`;
 }
 
 export function getLocalizedPath(pathname: string, locale: SiteLocale): string {

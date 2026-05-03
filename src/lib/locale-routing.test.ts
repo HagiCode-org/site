@@ -33,12 +33,14 @@ describe('locale routing', () => {
   });
 
   it('builds localized counterparts for matching pages', () => {
+    expect(getLocalizedPath('/', 'en-US')).toBe('/en-US/');
     expect(getLocalizedPath('/', 'zh-CN')).toBe('/zh-CN/');
     expect(getLocalizedPath('/desktop/', 'zh-CN')).toBe('/zh-CN/desktop/');
     expect(getLocalizedPath('/container/', 'zh-CN')).toBe('/zh-CN/container/');
-    expect(getLocalizedPath('/zh-CN/', 'en-US')).toBe('/');
-    expect(getLocalizedPath('/zh-CN/desktop/', 'en-US')).toBe('/desktop/');
-    expect(getLocalizedPath('/zh-CN/container/', 'en-US')).toBe('/container/');
+    expect(getLocalizedPath('/zh-CN/', 'en-US')).toBe('/en-US/');
+    expect(getLocalizedPath('/zh-CN/desktop/', 'en-US')).toBe('/en-US/desktop/');
+    expect(getLocalizedPath('/zh-CN/container/', 'en-US')).toBe('/en-US/container/');
+    expect(getLocalizedPath('/en/desktop/', 'en-US')).toBe('/en-US/desktop/');
     expect(getLocalizedPath('/desktop/', 'ja-JP')).toBe('/ja-JP/desktop/');
   });
 
@@ -57,21 +59,21 @@ describe('locale routing', () => {
         search: '?tab=faq',
         hash: '#pricing',
       }),
-    ).toBe('/container/?tab=faq#pricing');
+    ).toBe('/en-US/container/?tab=faq#pricing');
   });
 
   it('builds canonical URLs with the canonical default root and localized alternates', () => {
-    expect(getAbsoluteSiteUrl('/', 'en-US')).toBe('https://hagicode.com/');
+    expect(getAbsoluteSiteUrl('/', 'en-US')).toBe('https://hagicode.com/en-US/');
     expect(getAbsoluteSiteUrl('/', 'zh-CN')).toBe('https://hagicode.com/zh-CN/');
-    expect(getAbsoluteSiteUrl('/desktop/', 'en-US')).toBe('https://hagicode.com/desktop/');
+    expect(getAbsoluteSiteUrl('/desktop/', 'en-US')).toBe('https://hagicode.com/en-US/desktop/');
     expect(getAbsoluteSiteUrl('/desktop/', 'zh-CN')).toBe('https://hagicode.com/zh-CN/desktop/');
-    expect(getAbsoluteSiteUrl('/container/', 'en-US')).toBe('https://hagicode.com/container/');
+    expect(getAbsoluteSiteUrl('/container/', 'en-US')).toBe('https://hagicode.com/en-US/container/');
     expect(getAbsoluteSiteUrl('/container/', 'zh-CN')).toBe('https://hagicode.com/zh-CN/container/');
   });
 
   it('builds alternate paths for every supported locale', () => {
     const alternates = getAlternateLocalePaths('/desktop/');
-    expect(alternates['en-US']).toBe('/desktop/');
+    expect(alternates['en-US']).toBe('/en-US/desktop/');
     expect(alternates['zh-CN']).toBe('/zh-CN/desktop/');
     expect(alternates['zh-Hant']).toBe('/zh-Hant/desktop/');
     expect(alternates['ru-RU']).toBe('/ru-RU/desktop/');

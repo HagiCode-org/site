@@ -12,7 +12,7 @@ interface LanguageSwitcherProps {
 
 export function LanguageSwitcher({ locale: propLocale }: LanguageSwitcherProps = {}) {
   const { locale: detectedLocale, setLocale } = useLocale();
-  const currentLocale = propLocale || detectedLocale;
+  const currentLocale = resolveSiteLocale(propLocale ?? detectedLocale);
   const { t } = useTranslation(currentLocale);
 
   return (

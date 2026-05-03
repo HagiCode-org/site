@@ -34,12 +34,12 @@ export interface LinkConfig {
   relative?: boolean;
 }
 
-type DocsRouteLocale = 'root' | 'en' | 'zh-Hant' | 'ja-JP' | 'ko-KR' | 'de-DE' | 'fr-FR' | 'es-ES' | 'pt-BR' | 'ru-RU';
+type DocsRouteLocale = 'root' | 'en-US' | 'zh-Hant' | 'ja-JP' | 'ko-KR' | 'de-DE' | 'fr-FR' | 'es-ES' | 'pt-BR' | 'ru-RU';
 
 const DOCS_ROUTE_LOCALE_BY_SITE_LOCALE: Record<SiteLocale, DocsRouteLocale> = {
   'zh-CN': 'root',
   'zh-Hant': 'zh-Hant',
-  'en-US': 'en',
+  'en-US': 'en-US',
   'ja-JP': 'ja-JP',
   'ko-KR': 'ko-KR',
   'de-DE': 'de-DE',
@@ -65,7 +65,9 @@ function ensureTrailingSlash(pathname: string): string {
 
 function stripDocsLocalePrefix(pathname: string): string {
   const normalized = normalizeAbsolutePath(pathname);
-  const matchedLocale = normalized.match(/^\/(en|zh-Hant|ja-JP|ko-KR|de-DE|fr-FR|es-ES|pt-BR|ru-RU)(?=\/|$)/u)?.[1];
+  const matchedLocale = normalized.match(
+    /^\/(en-US|en|zh-Hant|ja-JP|ko-KR|de-DE|fr-FR|es-ES|pt-BR|ru-RU)(?=\/|$)/u,
+  )?.[1];
 
   if (!matchedLocale) {
     return ensureTrailingSlash(normalized);
@@ -211,7 +213,7 @@ function getDocsRssUrl(locale?: string): string {
   const currentLocale = normalizeLocale(locale);
   return currentLocale.startsWith('zh')
     ? 'https://docs.hagicode.com/blog/rss.zh-CN.xml'
-    : 'https://docs.hagicode.com/blog/rss.en.xml';
+    : 'https://docs.hagicode.com/blog/rss.en-US.xml';
 }
 
 export function getLinkWithLocale(key: PublicLinkKey, locale?: string): string {
