@@ -1,6 +1,6 @@
 # README Sync Asset Map
 
-This directory stores the screenshots copied from `repos/docs` and the Steam artwork copied from `repos/index` for `repos/site/README.md` and `repos/site/README_cn.md`.
+This directory stores the screenshots copied from `repos/docs` and the Steam artwork copied from `repos/index` for the multilingual repository README set in `repos/site/README*.md`.
 
 ## workspace-overview.png
 - Theme: Core product definition and integrated workspace

@@ -1,0 +1,118 @@
+<div align="center">
+
+# HagiCode
+
+<p><strong>HagiCode es un producto que reúne una herramienta de programación con IA, un sistema de retroalimentación gamificado y un espacio de trabajo de desarrollo completo en una sola plataforma.</strong></p>
+
+<p>Úsalo para entender repositorios, redactar propuestas, descomponer tareas, modificar código, organizar commits, gestionar varios repositorios y construir una base de conocimiento reutilizable sin salir del mismo espacio de trabajo.</p>
+
+<a href="https://hagicode.com/">Website</a>
+·
+<a href="https://docs.hagicode.com/product-overview/">Product Overview</a>
+·
+<a href="https://hagicode.com/desktop/">Desktop</a>
+·
+<a href="https://hagicode.com/container/">Container</a>
+·
+<a href="https://store.steampowered.com/app/4625540/Hagicode/">Steam</a>
+·
+<a href="https://docs.hagicode.com/blog/">Blog</a>
+
+</div>
+
+[English](./README.md) · [简体中文](./README_cn.md) · [繁體中文](./README_zh-Hant.md) · [日本語](./README_ja-JP.md) · [한국어](./README_ko-KR.md) · [Deutsch](./README_de-DE.md) · [Français](./README_fr-FR.md) · [Español](./README_es-ES.md) · [Português (Brasil)](./README_pt-BR.md) · [Русский](./README_ru-RU.md)
+
+---
+
+## Catálogo de Steam
+
+| Vista previa | Producto | Qué es | Empieza aquí |
+| --- | --- | --- | --- |
+| <img src="./public/img/readme-sync/steam/hagicode-wide-capsule.png" alt="Cápsula panorámica de Steam de HagiCode" width="280" /> | **HagiCode** | Aplicación base en Steam con Cloud Saves, compatibilidad con Workshop y la ruta pública más clara para instalar la edición de escritorio. | [Abrir en Steam](https://store.steampowered.com/app/4625540/Hagicode/) |
+| <img src="./public/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Cápsula panorámica del paquete Hagicode Plus en Steam" width="280" /> | **Hagicode Plus** | Guía del bundle para una configuración más completa. Incluye HagiCode y el DLC Turbo Engine en un solo recorrido. | [Leer la guía del bundle](https://docs.hagicode.com/en/bundles/hagicode-plus/) · [Ver el bundle en Steam](https://store.steampowered.com/bundle/73989/Hagicode_Plus/) |
+| <img src="./public/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Cápsula panorámica del DLC Turbo Engine en Steam" width="280" /> | **Turbo Engine DLC** | DLC para HagiCode que desbloquea hasta 32 sesiones en línea simultáneas y más opciones de personalización. | [Ver el DLC](https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/) |
+
+## Qué es HagiCode
+
+HagiCode no se creó para ser otra caja de chat para código. Lleva la IA a todo el proceso de desarrollo de software: entender repositorios, planificar cambios, implementar código, organizar commits, conservar conocimiento y mantener revisable todo el flujo desde la idea hasta el archivo.
+
+![Resumen del espacio de trabajo de HagiCode con sesiones, notas de commit y acciones principales en una vista integrada.](./public/img/readme-sync/workspace-overview.png)
+
+## Capacidades principales
+
+### 1. Programación con IA guiada por propuestas con OpenSpec
+
+Para el trabajo no trivial, HagiCode empieza con una propuesta en lugar de saltar directamente a editar archivos. OpenSpec convierte las solicitudes en alcance, tareas, análisis de impacto, pasos de validación y una traza de ejecución que sigue siendo fácil de revisar.
+
+![Vista de sesión de propuesta de HagiCode con pasos del flujo, resultados de ejecución y contexto histórico.](./public/img/readme-sync/open-spec-proposal-workflow.png)
+
+### 2. CLI de agentes populares con OmniRoute
+
+HagiCode es compatible con Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents y Codebuddy. OmniRoute separa la elección del CLI de la capa de modelos y suscripciones, para que los equipos puedan enrutar modelos y endpoints sin atarlo todo a una única pila predeterminada.
+
+![Página de configuración de OmniRoute con enrutamiento, controles de endpoint y estado de ejecución.](./public/img/readme-sync/omniroute-routing.png)
+
+### 3. Un espacio de desarrollo completo, no solo un panel de chat
+
+El espacio de trabajo reúne capacidades que normalmente terminan dispersas entre varias herramientas:
+
+- `MonoSpecs` para inventario, alcance y coordinación entre múltiples repositorios
+- `Skills` para extensiones instalables de flujo de trabajo y herramientas conscientes de la confianza
+- `Vault` para capturar conocimiento reutilizable entre proyectos
+- `AI Compose Commit` y la integración con `code-server` para terminar el trabajo dentro del mismo flujo
+
+<p align="center">
+  <img src="./public/img/readme-sync/monospecs-multi-repo.png" alt="Vista general de MonoSpecs mostrando el estado de cambios en varios repositorios." width="49%" />
+  <img src="./public/img/readme-sync/skills-gallery.png" alt="HagiCode Skills Gallery con habilidades instalables buscables y filtros por fuente." width="49%" />
+</p>
+
+<p align="center">
+  <img src="./public/img/readme-sync/vault-workspace.png" alt="Espacio Vault con fuentes de conocimiento reutilizables y acciones del espacio de trabajo." width="100%" />
+</p>
+
+### 4. Retroalimentación gamificada que sigue siendo útil operativamente
+
+HagiCode trata los logros, los informes diarios, los multiplicadores de eficiencia, el rendimiento de tokens y la retroalimentación visual temática como parte del producto, no como adornos. El resultado es un espacio de trabajo que mantiene visible el trabajo prolongado con IA en lugar de aplanarlo todo en un único chat interminable.
+
+![Sala de logros con progreso diario, métricas de hitos y superficies de retroalimentación a largo plazo.](./public/img/readme-sync/gamified-feedback.png)
+
+## Puntos de entrada oficiales
+
+- [Website](https://hagicode.com/) para ver la página principal completa del producto
+- [Product Overview](https://docs.hagicode.com/product-overview/) para ver la introducción pública oficial del producto
+- [Desktop](https://hagicode.com/desktop/) para la instalación local y la gestión de servicios
+- [Container](https://hagicode.com/container/) para la ruta de despliegue autoalojado
+- [Steam](https://store.steampowered.com/app/4625540/Hagicode/) para la edición de Steam con distribución nativa de plataforma
+- [Blog](https://docs.hagicode.com/blog/) para actualizaciones del producto y artículos extensos
+
+## Desarrollar este repositorio
+
+Este repositorio contiene el sitio público de HagiCode. Desde `repos/site`, ejecuta:
+
+```bash
+npm install
+npm run dev
+npm run build
+npm run preview
+```
+
+El servidor de desarrollo predeterminado se ejecuta en `http://localhost:31264`.
+Para la guía de contribución, empieza por [`AGENTS.md`](./AGENTS.md) y [`CLAUDE.md`](./CLAUDE.md).
+
+## Despliegue en producción
+
+- Flujo de trabajo autoritativo: `.github/workflows/site-deploy-gh-pages.yml`
+- Fuente de verdad en producción: la rama `gh-pages`, publicada solo por GitHub Actions
+- Contrato del payload publicado: `esa.jsonc` en la raíz de la rama y la instantánea estática validada de Astro dentro de `dist/`
+- Permisos de GitHub necesarios: el job de despliegue necesita `contents: write`; el job de build se mantiene en solo lectura
+- Configuración de hosting necesaria: el host de producción debe leer `gh-pages/esa.jsonc` y servir `gh-pages/dist/` como directorio estático
+- Comprobaciones del primer despliegue: confirma que el flujo publica `esa.jsonc` y `dist/`, verifica que el destino de hosting siga apuntando a `gh-pages` y luego carga `https://hagicode.com`
+- Ruta de rollback: revierte el cambio fuente o vuelve a ejecutar el despliegue desde un commit anterior para que la CI vuelva a publicar la instantánea previa
+
+### Fallback del Desktop Index
+
+El índice histórico de escritorio en `https://index.hagicode.com/desktop/history/` es aquí solo una dependencia referenciada. El sitio enlaza a él como destino de fallback en tiempo de ejecución para la guía de escritorio, pero este repositorio no publica ni mantiene directamente ese índice.
+
+## Licencia
+
+Este repositorio se publica bajo [LICENSE](./LICENSE).

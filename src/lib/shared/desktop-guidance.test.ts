@@ -6,18 +6,43 @@ import { describe, expect, it } from 'vitest';
 
 const siteRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const fallbackUrl = 'https://index.hagicode.com/desktop/history/';
+const readmeFiles = [
+  'README.md',
+  'README_cn.md',
+  'README_zh-Hant.md',
+  'README_ja-JP.md',
+  'README_ko-KR.md',
+  'README_de-DE.md',
+  'README_fr-FR.md',
+  'README_es-ES.md',
+  'README_pt-BR.md',
+  'README_ru-RU.md',
+];
 
 describe('desktop fallback guidance', () => {
-  it('documents the canonical Index history fallback in repository guidance', async () => {
-    const [readme, readmeCn] = await Promise.all([
-      readFile(path.join(siteRoot, 'README.md'), 'utf8'),
-      readFile(path.join(siteRoot, 'README_cn.md'), 'utf8'),
-    ]);
+  it('documents the canonical Index history fallback in every localized repository README', async () => {
+    const readmes = await Promise.all(
+      readmeFiles.map((fileName) => readFile(path.join(siteRoot, fileName), 'utf8'))
+    );
 
-    expect(readme).toContain(fallbackUrl);
-    expect(readme).toMatch(/referenced dependency only/i);
-    expect(readmeCn).toContain(fallbackUrl);
-    expect(readmeCn).toContain('仅作为被引用依赖');
+    for (const readme of readmes) {
+      expect(readme).toContain(fallbackUrl);
+    }
+  });
+
+  it('keeps every localized repository README wired to the same language navigation set', async () => {
+    const readmes = await Promise.all(
+      readmeFiles.map(async (fileName) => ({
+        fileName,
+        content: await readFile(path.join(siteRoot, fileName), 'utf8'),
+      }))
+    );
+
+    for (const { content } of readmes) {
+      for (const navTarget of readmeFiles) {
+        expect(content).toContain(`./${navTarget}`);
+      }
+    }
   });
 
   it('keeps both desktop page shells aligned with the same fallback target', async () => {

@@ -1,6 +1,6 @@
 # README Visual Asset Map
 
-This file records the README visual tour asset mapping for `repos/site/README.md` and `repos/site/README_cn.md`.
+This file records the README visual tour asset mapping for the multilingual repository README set in `repos/site/README*.md`.
 All target filenames use stable ASCII names under `repos/site/public/img/readme/`.
 The current selection includes 7 UI screenshots and 1 product visual.
 

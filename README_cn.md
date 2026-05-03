@@ -20,23 +20,21 @@
 
 </div>
 
-[English](./README.md)
+[English](./README.md) · [简体中文](./README_cn.md) · [繁體中文](./README_zh-Hant.md) · [日本語](./README_ja-JP.md) · [한국어](./README_ko-KR.md) · [Deutsch](./README_de-DE.md) · [Français](./README_fr-FR.md) · [Español](./README_es-ES.md) · [Português (Brasil)](./README_pt-BR.md) · [Русский](./README_ru-RU.md)
 
 ---
 
 ## Steam 产品一览
 
-先看清 HagiCode 在 Steam 上的本体、套装和 DLC，再决定从哪条入口开始。
-
 | 预览 | 产品 | 定位 | 入口 |
 | --- | --- | --- | --- |
-| <img src="./public/img/readme-sync/steam/hagicode-wide-capsule.png" alt="HagiCode Steam 宽幅宣传图" width="280" /> | **HagiCode** | Steam 本体应用，提供云存档、创意工坊支持，以及更直接的桌面版公开安装入口。 | [在 Steam 上打开](https://store.steampowered.com/app/4625540/Hagicode/) |
-| <img src="./public/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus Steam 套装宽幅宣传图" width="280" /> | **Hagicode Plus** | 适合直接进入完整工作流的套装说明入口，包含 HagiCode 本体和 Turbo Engine DLC。 | [阅读套装说明](https://docs.hagicode.com/bundles/hagicode-plus/) · [在 Steam 上查看套装](https://store.steampowered.com/bundle/73989/Hagicode_Plus/) |
+| <img src="./public/img/readme-sync/steam/hagicode-wide-capsule.png" alt="HagiCode Steam 宽幅宣传图" width="280" /> | **HagiCode** | Steam 上的基础应用，提供云存档、创意工坊支持，以及最清晰的桌面版公开安装路径。 | [在 Steam 上打开](https://store.steampowered.com/app/4625540/Hagicode/) |
+| <img src="./public/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus Steam 套装宽幅宣传图" width="280" /> | **Hagicode Plus** | 面向完整配置的套装说明入口，包含 HagiCode 本体和 Turbo Engine DLC。 | [阅读套装指南](https://docs.hagicode.com/en/bundles/hagicode-plus/) · [在 Steam 上查看套装](https://store.steampowered.com/bundle/73989/Hagicode_Plus/) |
 | <img src="./public/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC Steam 宽幅宣传图" width="280" /> | **Turbo Engine DLC** | HagiCode 的 DLC，可解锁最高 32 个并发在线会话和更多自定义选项。 | [查看 DLC](https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/) |
 
 ## HagiCode 是什么
 
-HagiCode 不是另一个只会聊天的代码框。它把 AI 拉进完整的软件开发过程，让理解仓库、规划改动、实现代码、整理提交、沉淀知识，以及从想法到归档的可审阅流程都落在同一个工作台里。
+HagiCode 不是另一个代码聊天框。它把 AI 带进完整的软件开发流程：理解仓库、规划变更、实现代码、整理提交、追踪知识，并让从想法到归档的全过程都保持可审阅。
 
 ![HagiCode 工作台总览，展示会话、提交说明和顶部操作入口。](./public/img/readme-sync/workspace-overview.png)
 
@@ -44,24 +42,24 @@ HagiCode 不是另一个只会聊天的代码框。它把 AI 拉进完整的软�
 
 ### 1. 用 OpenSpec 驱动提案式 AI 编码
 
-面对稍微复杂一点的需求，HagiCode 会先写提案，而不是直接改文件。OpenSpec 会把请求整理成范围、任务、影响分析、验证方式和可追踪的执行轨迹，让后续实现更稳定，也更容易审阅。
+对于非简单工作，HagiCode 会先从提案开始，而不是立刻修改文件。OpenSpec 会把请求整理为范围、任务、影响分析、验证步骤，以及一条始终易于审阅的执行轨迹。
 
 ![HagiCode 提案会话详情视图，展示工作流步骤、执行结果与历史上下文。](./public/img/readme-sync/open-spec-proposal-workflow.png)
 
 ### 2. 主流 Agent CLI 与 OmniRoute 组合使用
 
-HagiCode 当前支持 Codex、Claude Code、GitHub Copilot、OpenCode、Hermes、QoderCLI、Kiro、Kimi、Gemini、DeepAgents 和 Codebuddy。OmniRoute 把 CLI 体验与模型、订阅和端点路由分开管理，让团队不必把所有选择硬绑定到单一默认栈上。
+HagiCode 支持 Codex、Claude Code、GitHub Copilot、OpenCode、Hermes、QoderCLI、Kiro、Kimi、Gemini、DeepAgents 和 Codebuddy。OmniRoute 把 CLI 选择与模型和订阅层分开，让团队可以路由模型和端点，而不用把一切硬绑定到单一默认栈。
 
 ![OmniRoute 设置页，展示路由配置、端点控制和运行状态。](./public/img/readme-sync/omniroute-routing.png)
 
 ### 3. 它是完整开发工作台，不只是聊天窗口
 
-这个工作台把本来容易散在不同工具里的能力收进同一条流程：
+这个工作台把原本容易散落在不同工具里的能力整合进同一条流程：
 
-- `MonoSpecs` 负责多仓库清单、范围和协同
-- `Skills` 负责可安装的工作流扩展与授信管理
-- `Vault` 负责跨项目复用的知识沉淀
-- `AI Compose Commit` 与 `code-server` 集成负责把最后一段工作也留在同一工作流里完成
+- `MonoSpecs` 用于多仓库清单、范围和协同
+- `Skills` 用于可安装的工作流扩展与信任感知工具
+- `Vault` 用于跨项目复用的知识沉淀
+- `AI Compose Commit` 与 `code-server` 集成用于把收尾工作也留在同一流程中完成
 
 <p align="center">
   <img src="./public/img/readme-sync/monospecs-multi-repo.png" alt="MonoSpecs 多仓库状态总览，展示多个仓库的变更状态。" width="49%" />
@@ -74,22 +72,22 @@ HagiCode 当前支持 Codex、Claude Code、GitHub Copilot、OpenCode、Hermes�
 
 ### 4. 游戏化反馈不是装饰，而是可用反馈系统
 
-HagiCode 把成就、日报、效率倍率、Token 吞吐和主题化界面反馈当成正式产品能力，而不是附属装饰。这样长流程 AI 协作就不会被压扁成一条无限滚动的聊天记录。
+HagiCode 把成就、日报、效率倍率、Token 吞吐量和主题化界面反馈视为产品的一部分，而不是装饰性残留。结果是，一个能让长时运行的 AI 工作保持可见的工作台，而不是把一切压扁成一条无限滚动的聊天记录。
 
 ![成就大厅，展示每日进度、阶段指标和长期反馈入口。](./public/img/readme-sync/gamified-feedback.png)
 
 ## 官方入口
 
 - [Website](https://hagicode.com/) 查看完整产品官网
-- [Product Overview](https://docs.hagicode.com/product-overview/) 查看 canonical 产品介绍
+- [Product Overview](https://docs.hagicode.com/product-overview/) 查看官方公开产品介绍
 - [Desktop](https://hagicode.com/desktop/) 进入本地优先的安装与服务管理入口
 - [Container](https://hagicode.com/container/) 查看自托管部署路径
-- [Steam](https://store.steampowered.com/app/4625540/Hagicode/) 进入 Steam 版本与平台原生分发入口
+- [Steam](https://store.steampowered.com/app/4625540/Hagicode/) 进入带有平台原生分发能力的 Steam 版本
 - [Blog](https://docs.hagicode.com/blog/) 查看产品更新与长文内容
 
 ## 开发这个仓库
 
-这个仓库承载 HagiCode 的公开官网内容。在 `repos/site` 下运行：
+这个仓库承载 HagiCode 的公开官网。在 `repos/site` 下运行：
 
 ```bash
 npm install
@@ -98,18 +96,18 @@ npm run build
 npm run preview
 ```
 
-默认开发服务器地址是 `http://localhost:31264`。
-贡献者说明优先查看 [`AGENTS.md`](./AGENTS.md) 和 [`CLAUDE.md`](./CLAUDE.md)。
+默认开发服务器运行在 `http://localhost:31264`。
+贡献者说明请先查看 [`AGENTS.md`](./AGENTS.md) 和 [`CLAUDE.md`](./CLAUDE.md)。
 
 ## 生产部署
 
 - 权威工作流：`.github/workflows/site-deploy-gh-pages.yml`
-- 生产 source of truth：`gh-pages` 分支，只允许 GitHub Actions 发布
-- 发布 payload 契约：分支根目录保留 `esa.jsonc`，可发布静态产物统一放在 `dist/`
-- 所需 GitHub 权限：deploy job 需要 `contents: write`，build job 保持只读
+- 生产环境的事实来源：`gh-pages` 分支，并且只允许 GitHub Actions 发布
+- 发布产物契约：分支根目录保留 `esa.jsonc`，已验证的 Astro 静态快照放在 `dist/`
+- 所需 GitHub 权限：deploy job 需要 `contents: write`；build job 保持只读
 - 所需托管设置：让生产托管读取 `gh-pages/esa.jsonc`，并把 `gh-pages/dist/` 作为静态资源目录
-- 首次部署检查：确认工作流实际发布了 `esa.jsonc` 和 `dist/`，确认托管目标仍指向 `gh-pages`，再验证 `https://hagicode.com` 可正常访问
-- 回滚方式：回退 source 提交，或从旧提交重新触发部署，让 CI 重新发布上一份快照
+- 首次部署检查：确认工作流实际发布了 `esa.jsonc` 和 `dist/`，确认托管目标仍指向 `gh-pages`，再访问 `https://hagicode.com`
+- 回滚路径：回退源提交，或从旧提交重新触发部署，让 CI 重新发布上一份快照
 
 ### Desktop Index 回退说明
 
