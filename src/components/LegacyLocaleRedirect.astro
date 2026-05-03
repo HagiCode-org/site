@@ -10,13 +10,13 @@ interface Props {
 const { targetPath, destinationName, movedCopy } = Astro.props;
 const siteBase = import.meta.env.VITE_SITE_BASE || '';
 const redirectPath = joinWithSiteBase(siteBase, targetPath);
-const canonicalUrl = getAbsoluteSiteUrl(targetPath, 'en', siteBase);
+const canonicalUrl = getAbsoluteSiteUrl(targetPath, 'en-US', siteBase);
 const title = `${destinationName} has moved`;
 const description = `This legacy English URL now points to ${destinationName} at ${redirectPath}. ${movedCopy}`;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
