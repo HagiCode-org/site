@@ -43,7 +43,7 @@ function getLocalizedPath(routePath, locale) {
   const normalizedRoute = normalizeRoutePath(routePath);
 
   if (locale === defaultLocale) {
-    return normalizedRoute;
+    return normalizedRoute === '/' ? '/en-US/' : `/en-US${normalizedRoute}`;
   }
 
   if (normalizedRoute === '/') {
@@ -85,6 +85,14 @@ function buildHreflangPaths(routePath) {
   return hreflangPaths;
 }
 
+const rootRedirectRoutes = managedLocalizedRoutes.map((routePath) => ({
+  route: routePath,
+  file: routePath === '/' ? 'index.html' : `${routePath.replace(/^\/+/, '')}index.html`,
+  canonicalPath: getLocalizedPath(routePath, defaultLocale),
+  redirectTarget: getLocalizedPath(routePath, defaultLocale),
+  requiresRobotsNoindex: true,
+}));
+
 const managedPages = [
   ...managedLocalizedRoutes.flatMap((routePath) =>
     supportedLocales.map((locale) => ({
@@ -94,6 +102,7 @@ const managedPages = [
       hreflangPaths: buildHreflangPaths(routePath),
     })),
   ),
+  ...rootRedirectRoutes,
   ...legacyEnglishRoutes.map((routePath) => ({
     route: getLegacyEnglishRoute(routePath),
     file: getLegacyEnglishFile(routePath),

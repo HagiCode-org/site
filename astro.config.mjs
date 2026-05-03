@@ -82,7 +82,10 @@ export default defineConfig({
             sitemap: 'https://hagicode.com/sitemap-index.xml',
         }),
         sitemap({
-            filter: (page) => !page.includes('/en/'),
+            filter: (page) => {
+                const pathname = new URL(page).pathname;
+                return !['/', '/about/', '/desktop/', '/container/'].includes(pathname) && !pathname.startsWith('/en/');
+            },
         }),
         partytown(),
         react(),
