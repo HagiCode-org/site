@@ -22,6 +22,10 @@ function closeLabel(locale: string | undefined) {
   return locale?.toLowerCase().startsWith('zh') ? '关闭推广信息' : 'Dismiss promotion';
 }
 
+function closeText(locale: string | undefined) {
+  return locale?.toLowerCase().startsWith('zh') ? '关闭' : 'Close';
+}
+
 function readDismissedSignature(): string | null {
   if (typeof window === 'undefined') return null;
   try {
@@ -96,10 +100,16 @@ export function PromoteCard({
   };
 
   return (
-    <section className={className} data-promote-card aria-label={locale.toLowerCase().startsWith('zh') ? '推广信息' : 'Promotion'}>
-      <div className="promote-card__inner">
+    <section
+      className={className}
+      data-promote-card
+      data-promote-card-layout="compact"
+      aria-label={locale.toLowerCase().startsWith('zh') ? '推广信息' : 'Promotion'}
+    >
+      <div className="promote-card__inner" data-promote-card-shell="compact">
         <button type="button" className="promote-card__close" onClick={dismissPromotion} aria-label={closeLabel(locale)}>
-          <span aria-hidden="true">×</span>
+          <span className="promote-card__close-icon" aria-hidden="true">×</span>
+          <span className="promote-card__close-label">{closeText(locale)}</span>
         </button>
         <button
           type="button"
