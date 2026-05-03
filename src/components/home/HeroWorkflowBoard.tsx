@@ -89,6 +89,28 @@ const HERO_IMAGES = [
   '/img/home/interesting/heroes/tide-09.webp',
 ] as const;
 
+function mixSeed(seed: number) {
+  let value = seed >>> 0;
+  value = Math.imul(value ^ (value >>> 16), 0x21f0aaad);
+  value = Math.imul(value ^ (value >>> 15), 0x735a2d97);
+  return (value ^ (value >>> 15)) >>> 0;
+}
+
+function combineSeed(...parts: number[]) {
+  let hash = 0x811c9dc5;
+
+  for (const part of parts) {
+    hash ^= part >>> 0;
+    hash = Math.imul(hash, 0x01000193);
+  }
+
+  return mixSeed(hash);
+}
+
+function seededUnit(seed: number) {
+  return mixSeed(seed) / 0xffffffff;
+}
+
 export function getHeroWorkflowBoardCopy(locale: Locale): BoardCopy {
   const { t } = getTranslation(locale);
 
@@ -124,22 +146,26 @@ export function getHeroWorkflowBoardCopy(locale: Locale): BoardCopy {
   };
 }
 
-function randomBetween(min: number, max: number) {
-  return min + Math.random() * (max - min);
+function randomBetween(min: number, max: number, seed: number) {
+  return min + seededUnit(seed) * (max - min);
 }
 
-function pickAgent(previousName?: string) {
+function pickAgent(seed: number, previousName?: string) {
   const candidates = AGENTS.filter((agent) => agent.name !== previousName);
   const pool = candidates.length > 0 ? candidates : AGENTS;
-  const index = Math.floor(Math.random() * pool.length);
+  const index = Math.min(pool.length - 1, Math.floor(seededUnit(seed) * pool.length));
   return pool[index] ?? AGENTS[0];
 }
 
-function pickHeroVariant(previousVariant?: number) {
+function pickHeroVariant(seed: number, previousVariant?: number) {
   const variants = Array.from({ length: HERO_IMAGES.length }, (_, index) => index);
   const pool = variants.filter((variant) => variant !== previousVariant);
   const candidates = pool.length > 0 ? pool : variants;
-  return candidates[Math.floor(Math.random() * candidates.length)] ?? 0;
+  const index = Math.min(
+    candidates.length - 1,
+    Math.floor(seededUnit(seed) * candidates.length),
+  );
+  return candidates[index] ?? 0;
 }
 
 function createLaneCycle(
@@ -147,15 +173,19 @@ function createLaneCycle(
   startedAt: number,
   taskId: number,
   previousAgentName?: string,
+  previousHeroVariant?: number,
   phase: LanePhase = 'running',
   phaseStartedAt = startedAt,
 ): LaneCycle {
-  const agent = pickAgent(previousAgentName);
-  const pace = randomBetween(0.72, 1.34);
+  const laneSeed = combineSeed(laneId + 1, taskId + 1, Math.round(startedAt), Math.round(phaseStartedAt));
+  const agent = pickAgent(combineSeed(laneSeed, 1), previousAgentName);
+  const pace = randomBetween(0.72, 1.34, combineSeed(laneSeed, 2));
   const laneBias = 0.92 + laneId * 0.035;
 
   const stageDurations = BASE_STAGE_DURATIONS.map((duration, index) => {
-    const stageBias = index === 2 ? randomBetween(1.02, 1.18) : randomBetween(0.84, 1.12);
+    const stageBias = index === 2
+      ? randomBetween(1.02, 1.18, combineSeed(laneSeed, 10 + index))
+      : randomBetween(0.84, 1.12, combineSeed(laneSeed, 10 + index));
     return Math.max(640, Math.round(duration * pace * laneBias * stageBias));
   });
 
@@ -166,7 +196,7 @@ function createLaneCycle(
     laneId,
     taskId,
     agent,
-    heroVariant: pickHeroVariant(),
+    heroVariant: pickHeroVariant(combineSeed(laneSeed, 3), previousHeroVariant),
     startedAt,
     phaseStartedAt,
     stageDurations,
@@ -218,13 +248,11 @@ function advanceSimulation(snapshot: SimulationSnapshot, now: number): Simulatio
           enteringAt + CARD_ENTER_MS,
           currentLane.taskId + LANE_COUNT,
           currentLane.agent.name,
+          currentLane.heroVariant,
           'entering',
           enteringAt,
         );
-        currentLane = {
-          ...nextLane,
-          heroVariant: pickHeroVariant(currentLane.heroVariant),
-        };
+        currentLane = nextLane;
         continue;
       }
 

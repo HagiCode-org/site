@@ -18,4 +18,11 @@ describe('HeroWorkflowBoard localization', () => {
     expect(html).toContain('Mainstream-Agenten unterstützt');
     expect(html).not.toContain('Mainstream Agents Supported');
   });
+
+  it('renders deterministic SSR markup for the initial board snapshot', () => {
+    const firstHtml = renderToStaticMarkup(<HeroWorkflowBoard locale="en-US" />);
+    const secondHtml = renderToStaticMarkup(<HeroWorkflowBoard locale="en-US" />);
+
+    expect(firstHtml).toBe(secondHtml);
+  });
 });
