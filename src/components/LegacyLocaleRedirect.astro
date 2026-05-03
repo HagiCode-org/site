@@ -12,7 +12,7 @@ const siteBase = import.meta.env.VITE_SITE_BASE || '';
 const redirectPath = joinWithSiteBase(siteBase, targetPath);
 const canonicalUrl = getAbsoluteSiteUrl(targetPath, 'en-US', siteBase);
 const title = `${destinationName} has moved`;
-const description = `This legacy English URL now points to ${destinationName} at ${redirectPath}. ${movedCopy}`;
+const description = `This page now points to ${destinationName} at ${redirectPath}. ${movedCopy}`;
 ---
 
 <!doctype html>
@@ -31,7 +31,7 @@ const description = `This legacy English URL now points to ${destinationName} at
   </head>
   <body class="redirect-page">
     <main class="redirect-card">
-      <p class="redirect-eyebrow">Legacy English alias</p>
+      <p class="redirect-eyebrow">Updated route</p>
       <h1>This page has moved</h1>
       <p class="redirect-copy">{movedCopy}</p>
       <p class="redirect-copy">
