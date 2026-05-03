@@ -84,6 +84,22 @@ export interface InstallButtonMenuState {
   hasDownloads: boolean;
 }
 
+const EMPTY_PLATFORM_GROUPS: PlatformGroup[] = [];
+
+function areDownloadSourceProbeStatesEqual(
+  left: DownloadSourceProbeStateMap,
+  right: DownloadSourceProbeStateMap,
+): boolean {
+  const leftKeys = Object.keys(left) as Array<keyof DownloadSourceProbeStateMap>;
+  const rightKeys = Object.keys(right) as Array<keyof DownloadSourceProbeStateMap>;
+
+  if (leftKeys.length !== rightKeys.length) {
+    return false;
+  }
+
+  return leftKeys.every((key) => left[key] === right[key]);
+}
+
 function SteamIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -343,7 +359,7 @@ function createFatalRuntimeData(message: string): DesktopVersionData {
 
 export default function InstallButton({
   version = null,
-  platforms = [],
+  platforms = EMPTY_PLATFORM_GROUPS,
   versionError = null,
   variant = 'full',
   showDropdown = true,
@@ -469,7 +485,9 @@ export default function InstallButton({
   useEffect(() => {
     const probeTargets = collectDownloadSourceProbeTargets(runtimeSnapshot.platforms);
     const cachedStates = getCachedDownloadSourceProbeStates(probeTargets);
-    setDownloadSourceProbeStates(cachedStates);
+    setDownloadSourceProbeStates((current) =>
+      areDownloadSourceProbeStatesEqual(current, cachedStates) ? current : cachedStates,
+    );
 
     const hasPendingProbe = Object.values(cachedStates).some(
       (state) => state === 'unknown' || state === 'probing',
@@ -482,7 +500,9 @@ export default function InstallButton({
     let mounted = true;
     void ensureDownloadSourceProbes(probeTargets).then((states) => {
       if (mounted) {
-        setDownloadSourceProbeStates(states);
+        setDownloadSourceProbeStates((current) =>
+          areDownloadSourceProbeStatesEqual(current, states) ? current : states,
+        );
       }
     });
 
