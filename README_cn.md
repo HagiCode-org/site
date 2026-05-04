@@ -104,9 +104,13 @@ npm run preview
 - 权威工作流：`.github/workflows/site-deploy-gh-pages.yml`
 - 生产环境的事实来源：`gh-pages` 分支，并且只允许 GitHub Actions 发布
 - 发布产物契约：分支根目录保留 `esa.jsonc`，已验证的 Astro 静态快照放在 `dist/`
+- `gh-pages` 后续 R2 路径：`deploy` job 成功后，`upload-r2` 会下载同一份已验证的 `site-gh-pages-payload` artifact，只把 `.deploy/gh-pages/dist/` 下的内容同步到 R2 bucket 根或可选前缀根，不会额外再创建一层 `dist/`
+- 手动触发路径：`workflow_dispatch` 默认使用 `latest-gh-pages`，维护者可以直接基于最新 `gh-pages` 分支快照重发内容而不重新构建；只有需要从当前代码重新构建并发布时，才选择 `current-ref-build`
+- 必需的 R2 secrets：`R2_ENDPOINT`、`R2_BUCKET`、`R2_ACCESS_KEY_ID`、`R2_SECRET_ACCESS_KEY`；`R2_PREFIX` 为可选项，解析目标根目录前会先去掉首尾 `/`
+- 故障排查：如果 `gh-pages` 已成功但 R2 上传失败，workflow 会在 `upload-r2` 中失败；请查看 GitHub step summary，确认解析后的 bucket、前缀根目录，以及失败发生在上传前校验阶段还是同步阶段
 - 所需 GitHub 权限：deploy job 需要 `contents: write`；build job 保持只读
 - 所需托管设置：让生产托管读取 `gh-pages/esa.jsonc`，并把 `gh-pages/dist/` 作为静态资源目录
-- 首次部署检查：确认工作流实际发布了 `esa.jsonc` 和 `dist/`，确认托管目标仍指向 `gh-pages`，再访问 `https://hagicode.com`
+- 首次部署检查：确认工作流实际发布了 `esa.jsonc` 和 `dist/`，确认托管目标仍指向 `gh-pages`，确认 summary 中的 R2 bucket 或前缀根目录符合预期，再访问 `https://hagicode.com`
 - 回滚路径：回退源提交，或从旧提交重新触发部署，让 CI 重新发布上一份快照
 
 ### Desktop Index 回退说明

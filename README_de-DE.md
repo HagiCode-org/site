@@ -104,9 +104,13 @@ Für Hinweise zur Mitarbeit starte mit [`AGENTS.md`](./AGENTS.md) und [`CLAUDE.m
 - Maßgeblicher Workflow: `.github/workflows/site-deploy-gh-pages.yml`
 - Quelle der Wahrheit für Produktion: der Branch `gh-pages`, veröffentlicht ausschließlich durch GitHub Actions
 - Vertrag für das veröffentlichte Payload: Im Branch-Root liegt `esa.jsonc`, und der validierte Astro-Snapshot befindet sich in `dist/`
+- R2-Pfad nach `gh-pages`: Sobald der `deploy`-Job erfolgreich ist, lädt `upload-r2` dasselbe validierte Artifact `site-gh-pages-payload` herunter und synchronisiert nur den Inhalt von `.deploy/gh-pages/dist/` in das R2-Bucket-Root oder ein optionales Prefix-Root, ohne ein zusätzliches `dist/`-Segment anzulegen
+- Manueller Ausführungspfad: `workflow_dispatch` verwendet standardmäßig `latest-gh-pages`, sodass Maintainer direkt aus dem neuesten `gh-pages`-Snapshot erneut veröffentlichen können, ohne neu zu bauen; nur wenn absichtlich vom aktuellen Ref neu gebaut und veröffentlicht werden soll, wählt man `current-ref-build`
+- Erforderliche R2-Secrets: `R2_ENDPOINT`, `R2_BUCKET`, `R2_ACCESS_KEY_ID` und `R2_SECRET_ACCESS_KEY`; `R2_PREFIX` ist optional und entfernt führende sowie abschließende `/`, bevor das Ziel-Root aufgelöst wird
+- Fehlerdiagnose: Wenn `gh-pages` erfolgreich ist, aber der R2-Upload fehlschlägt, scheitert der Workflow im Job `upload-r2`; prüfe die GitHub-Step-Summary für Bucket, Prefix-Root und ob der Fehler vor dem Transfer oder während der Synchronisierung passiert ist
 - Erforderliche GitHub-Berechtigungen: Der Deploy-Job braucht `contents: write`; der Build-Job bleibt schreibgeschützt
 - Erforderliche Hosting-Einstellung: Der Produktionshost muss `gh-pages/esa.jsonc` lesen und `gh-pages/dist/` als statisches Verzeichnis ausliefern
-- Prüfung beim ersten Deploy: Bestätige, dass der Workflow `esa.jsonc` und `dist/` veröffentlicht, dass das Hosting-Ziel weiterhin auf `gh-pages` zeigt, und lade dann `https://hagicode.com`
+- Prüfung beim ersten Deploy: Bestätige, dass der Workflow `esa.jsonc` und `dist/` veröffentlicht, dass das Hosting-Ziel weiterhin auf `gh-pages` zeigt, dass die Summary das erwartete R2-Bucket oder Prefix-Root meldet, und lade dann `https://hagicode.com`
 - Rollback-Pfad: Quelländerung zurücksetzen oder Deployment von einem älteren Commit erneut ausführen, damit CI den vorherigen Snapshot erneut veröffentlicht
 
 ### Desktop-Index-Fallback

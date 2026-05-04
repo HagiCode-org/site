@@ -104,9 +104,13 @@ Para la guía de contribución, empieza por [`AGENTS.md`](./AGENTS.md) y [`CLAUD
 - Flujo de trabajo autoritativo: `.github/workflows/site-deploy-gh-pages.yml`
 - Fuente de verdad en producción: la rama `gh-pages`, publicada solo por GitHub Actions
 - Contrato del payload publicado: `esa.jsonc` en la raíz de la rama y la instantánea estática validada de Astro dentro de `dist/`
+- Ruta R2 posterior a `gh-pages`: después de que el job `deploy` termine correctamente, `upload-r2` descarga el mismo artifact validado `site-gh-pages-payload` y sincroniza solo el contenido de `.deploy/gh-pages/dist/` hacia la raíz del bucket R2 o una raíz de prefijo opcional, sin agregar otro segmento `dist/`
+- Ruta manual: `workflow_dispatch` usa `latest-gh-pages` por defecto, así que los mantenedores pueden republicar directamente desde la instantánea más reciente de la rama `gh-pages` sin reconstruir; elige `current-ref-build` solo cuando haga falta reconstruir manualmente y volver a publicar desde la ref actual
+- Secrets R2 requeridos: `R2_ENDPOINT`, `R2_BUCKET`, `R2_ACCESS_KEY_ID` y `R2_SECRET_ACCESS_KEY`; `R2_PREFIX` es opcional y elimina los `/` iniciales y finales antes de resolver la raíz de destino
+- Diagnóstico de fallos: si `gh-pages` tiene éxito pero la subida a R2 falla, el workflow falla en `upload-r2`; revisa el step summary de GitHub para ver el bucket resuelto, la raíz de prefijo y si el fallo ocurrió antes de transferir o durante la sincronización
 - Permisos de GitHub necesarios: el job de despliegue necesita `contents: write`; el job de build se mantiene en solo lectura
 - Configuración de hosting necesaria: el host de producción debe leer `gh-pages/esa.jsonc` y servir `gh-pages/dist/` como directorio estático
-- Comprobaciones del primer despliegue: confirma que el flujo publica `esa.jsonc` y `dist/`, verifica que el destino de hosting siga apuntando a `gh-pages` y luego carga `https://hagicode.com`
+- Comprobaciones del primer despliegue: confirma que el flujo publica `esa.jsonc` y `dist/`, verifica que el destino de hosting siga apuntando a `gh-pages`, confirma que el summary muestra el bucket R2 o la raíz de prefijo esperada y luego carga `https://hagicode.com`
 - Ruta de rollback: revierte el cambio fuente o vuelve a ejecutar el despliegue desde un commit anterior para que la CI vuelva a publicar la instantánea previa
 
 ### Fallback del Desktop Index

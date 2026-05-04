@@ -104,9 +104,13 @@ npm run preview
 - 権威あるワークフロー: `.github/workflows/site-deploy-gh-pages.yml`
 - 本番環境のソースオブトゥルース: `gh-pages` ブランチ。公開は GitHub Actions のみが行います
 - 公開ペイロード契約: ブランチ直下に `esa.jsonc` を置き、検証済みの Astro スナップショットを `dist/` に配置します
+- `gh-pages` 後の R2 経路: `deploy` job が成功すると、`upload-r2` は同じ検証済み `site-gh-pages-payload` artifact をダウンロードし、`.deploy/gh-pages/dist/` の中身だけを R2 の bucket ルートまたは任意の prefix ルートへ同期します。追加の `dist/` セグメントは作成しません
+- 手動実行の経路: `workflow_dispatch` は既定で `latest-gh-pages` を使うため、メンテナーは最新の `gh-pages` ブランチスナップショットから再ビルドなしで再公開できます。現在の ref から手動で再ビルドして公開したい場合だけ `current-ref-build` を選んでください
+- 必須の R2 secrets: `R2_ENDPOINT`、`R2_BUCKET`、`R2_ACCESS_KEY_ID`、`R2_SECRET_ACCESS_KEY`。`R2_PREFIX` は任意で、ターゲットルートを解決する前に先頭と末尾の `/` を取り除きます
+- 障害切り分け: `gh-pages` が成功しても R2 アップロードが失敗した場合、workflow は `upload-r2` で失敗します。GitHub の step summary を確認し、解決された bucket、prefix ルート、失敗が転送前の検証か同期中かを確認してください
 - 必要な GitHub 権限: deploy job には `contents: write` が必要で、build job は読み取り専用のままにします
 - 必要なホスティング設定: 本番ホストが `gh-pages/esa.jsonc` を読み、`gh-pages/dist/` を静的配信ディレクトリとして使うようにします
-- 初回デプロイ時の確認: ワークフローが `esa.jsonc` と `dist/` を公開したことを確認し、ホスティング先が引き続き `gh-pages` を見ていることを確かめたうえで `https://hagicode.com` を開きます
+- 初回デプロイ時の確認: ワークフローが `esa.jsonc` と `dist/` を公開したことを確認し、ホスティング先が引き続き `gh-pages` を見ていることを確かめ、summary に期待どおりの R2 bucket または prefix ルートが表示されることを確認したうえで `https://hagicode.com` を開きます
 - ロールバック方法: ソース変更を戻すか、古いコミットから再デプロイして、CI に前のスナップショットを再公開させます
 
 ### Desktop Index フォールバック

@@ -104,9 +104,13 @@ npm run preview
 - 권위 있는 워크플로: `.github/workflows/site-deploy-gh-pages.yml`
 - 프로덕션의 단일 기준 원본: `gh-pages` 브랜치이며, 배포는 GitHub Actions만 수행합니다
 - 배포 페이로드 계약: 브랜치 루트에 `esa.jsonc` 를 두고, 검증된 Astro 정적 스냅샷은 `dist/` 에 둡니다
+- `gh-pages` 이후 R2 경로: `deploy` job 이 성공하면 `upload-r2` 가 같은 검증된 `site-gh-pages-payload` artifact 를 내려받아 `.deploy/gh-pages/dist/` 내용만 R2 bucket 루트 또는 선택적 prefix 루트로 동기화하며, 추가 `dist/` 경로는 만들지 않습니다
+- 수동 실행 경로: `workflow_dispatch` 는 기본적으로 `latest-gh-pages` 를 사용하므로, 유지보수자는 최신 `gh-pages` 브랜치 스냅샷을 기준으로 다시 빌드하지 않고 재배포할 수 있습니다. 현재 ref 에서 수동 재빌드 후 배포가 필요할 때만 `current-ref-build` 를 선택하세요
+- 필수 R2 secrets: `R2_ENDPOINT`, `R2_BUCKET`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`; `R2_PREFIX` 는 선택 사항이며 대상 루트를 계산하기 전에 앞뒤 `/` 를 제거합니다
+- 장애 진단: `gh-pages` 는 성공했지만 R2 업로드가 실패하면 workflow 는 `upload-r2` 에서 실패합니다. GitHub step summary 에서 해석된 bucket, prefix 루트, 실패가 전송 전 검증 단계인지 동기화 단계인지 확인하세요
 - 필요한 GitHub 권한: deploy job 은 `contents: write` 가 필요하고, build job 은 읽기 전용으로 유지됩니다
 - 필요한 호스팅 설정: 프로덕션 호스트가 `gh-pages/esa.jsonc` 를 읽고 `gh-pages/dist/` 를 정적 자산 디렉터리로 제공하도록 설정합니다
-- 첫 배포 점검: 워크플로가 `esa.jsonc` 와 `dist/` 를 실제로 게시했는지 확인하고, 호스팅 대상이 여전히 `gh-pages` 를 가리키는지 확인한 뒤 `https://hagicode.com` 을 엽니다
+- 첫 배포 점검: 워크플로가 `esa.jsonc` 와 `dist/` 를 실제로 게시했는지 확인하고, 호스팅 대상이 여전히 `gh-pages` 를 가리키는지 확인하고, summary 에 예상한 R2 bucket 또는 prefix 루트가 표시되는지 확인한 뒤 `https://hagicode.com` 을 엽니다
 - 롤백 경로: 소스 변경을 되돌리거나 이전 커밋에서 배포를 다시 실행해, CI가 이전 스냅샷을 다시 게시하게 합니다
 
 ### Desktop Index 폴백
