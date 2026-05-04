@@ -105,9 +105,9 @@ npm run preview
 - 生产环境的事实来源：`gh-pages` 分支，并且只允许 GitHub Actions 发布
 - 发布产物契约：分支根目录保留 `esa.jsonc`、`wrangler.jsonc`，已验证的 Astro 静态快照放在 `dist/`
 - 手动触发路径：`workflow_dispatch` 会基于所选 ref 重新构建，并把校验后的 payload 重新发布到 `gh-pages`
-- Cloudflare 直接发布现在在这个 workflow 之外处理；请把 `gh-pages/wrangler.jsonc` 视为直接发布操作使用的受版本控制契约
+- Cloudflare 直接发布现在在这个 workflow 之外处理；请把 `gh-pages/wrangler.jsonc` 视为直接发布操作使用的、受版本控制的 Wrangler 契约
 - 所需 GitHub 权限：deploy job 需要 `contents: write`；build job 保持只读
-- 所需托管设置：让生产托管读取 `gh-pages/esa.jsonc`，把 `gh-pages/wrangler.jsonc` 作为 Cloudflare Pages 的事实来源，并把 `gh-pages/dist/` 作为静态资源目录
+- 所需托管设置：让生产托管读取 `gh-pages/esa.jsonc`，把 `gh-pages/wrangler.jsonc` 作为直接发布使用的 Wrangler 事实来源，并把 `gh-pages/dist/` 作为静态资源目录
 - 首次部署检查：确认工作流实际发布了 `esa.jsonc`、`wrangler.jsonc` 和 `dist/`，确认托管目标仍指向 `gh-pages`，再访问 `https://hagicode.com`
 - 回滚路径：回退源提交，或从旧提交重新触发部署，让 CI 重新发布上一份快照
 

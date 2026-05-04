@@ -105,9 +105,9 @@ For contributor guidance, start with [`AGENTS.md`](./AGENTS.md) and [`CLAUDE.md`
 - Production source of truth: the `gh-pages` branch, published only by GitHub Actions
 - Published payload contract: branch root `esa.jsonc`, `wrangler.jsonc`, and `dist/` containing the validated Astro snapshot
 - Manual dispatch path: `workflow_dispatch` rebuilds from the selected ref and republishes the validated payload to `gh-pages`
-- Direct Cloudflare publication is now handled outside this workflow; keep `gh-pages/wrangler.jsonc` as the checked-in deployment contract for direct publish operations
+- Direct Cloudflare publication is now handled outside this workflow; keep `gh-pages/wrangler.jsonc` as the checked-in Wrangler contract for direct publish operations
 - Required GitHub permissions: the deploy job needs `contents: write`; the build job stays read-only
-- Required hosting setting: configure the production host to read `gh-pages/esa.jsonc`, treat `gh-pages/wrangler.jsonc` as the Cloudflare Pages source of truth, and serve `gh-pages/dist/`
+- Required hosting setting: configure the production host to read `gh-pages/esa.jsonc`, treat `gh-pages/wrangler.jsonc` as the Wrangler source of truth for direct publication, and serve `gh-pages/dist/`
 - First deploy checks: confirm the workflow publishes `esa.jsonc`, `wrangler.jsonc`, and `dist/`, verify the hosting target still points at `gh-pages`, and load `https://hagicode.com`
 - Rollback path: revert the source change or rerun deployment from an older commit so CI republishes the previous snapshot
 
