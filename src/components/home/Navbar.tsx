@@ -7,6 +7,7 @@ import { useState, useEffect, useMemo, type ReactElement } from "react";
 import ThemeToggle from "./ThemeToggle";
 import InstallButton from "./InstallButton";
 import { LanguageSwitcher } from "../LanguageSwitcher";
+import { resolveSiteLocale } from "@/i18n/locale-metadata";
 import { useLocale } from "@/lib/useLocale";
 import { useTranslation } from "@/i18n/ui";
 import styles from "./Navbar.module.css";
@@ -85,7 +86,7 @@ export default function Navbar({
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { locale: detectedLocale } = useLocale();
-  const locale = propLocale || detectedLocale;
+  const locale = useMemo(() => resolveSiteLocale(propLocale ?? detectedLocale), [detectedLocale, propLocale]);
   const { t } = useTranslation(locale);
 
   // 构建导航链接 - 根据语言动态生成

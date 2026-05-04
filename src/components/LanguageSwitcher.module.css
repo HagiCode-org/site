@@ -2,117 +2,282 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  height: 40px;
-  padding: 0 1.9rem 0 0.75rem;
+}
+
+.languageTrigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 40px;
+  padding: 0 1rem;
   background: var(--color-surface-glass);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--color-border);
   border-radius: 999px;
   cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-out);
+  transition:
+    background var(--duration-normal) var(--ease-out),
+    border-color var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
   color: var(--color-text);
-  --language-select-menu-background: var(--color-surface);
-  --language-select-menu-text: var(--color-text);
+  font: inherit;
 }
 
-.languageSwitcher:hover {
+.languageTrigger:hover {
   background: var(--color-surface-hover);
   border-color: var(--color-primary);
   box-shadow: var(--shadow-glow);
 }
 
-.languageSwitcher:focus-within {
+.languageTrigger:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
-.languageSelect {
-  width: auto;
-  height: 100%;
-  padding: 0;
+.triggerLabel {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.languageTriggerChevron {
+  font-size: 0.75rem;
+  transition: transform var(--duration-fast, 0.15s) ease;
+}
+
+.languageSwitcher[data-open='true'] .languageTriggerChevron {
+  transform: rotate(180deg);
+}
+
+.languageBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
   border: 0;
+  background: rgba(2, 8, 23, 0.48);
+  padding: 0;
+  cursor: default;
+}
+
+.languageDialog {
+  position: fixed;
+  top: 10vh;
+  right: 10vw;
+  bottom: 10vh;
+  left: 10vw;
+  z-index: 1101;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 1.5rem;
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.22);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.languageDialogHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.languageDialogTitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.languageDialogCurrent {
+  margin: 0.35rem 0 0;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.languageDialogClose {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
   background: transparent;
   color: inherit;
   font: inherit;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  appearance: none;
+  font-size: 1.125rem;
   cursor: pointer;
-  color-scheme: light;
+  transition:
+    background var(--duration-fast, 0.15s) ease,
+    border-color var(--duration-fast, 0.15s) ease;
 }
 
-.languageSelect:focus {
-  outline: none;
+.languageDialogClose:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-primary);
 }
 
-.languageSelect option,
-.languageSelect optgroup {
-  background-color: var(--language-select-menu-background);
-  color: var(--language-select-menu-text);
+.languageDialogClose:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
-.languageSelectChevron {
-  position: absolute;
-  right: 0.85rem;
-  pointer-events: none;
-  font-size: 0.8rem;
+.languageGridScroller {
+  min-height: 0;
+  overflow: auto;
+  border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--color-surface-hover) 55%, transparent);
+  padding: 1rem;
 }
 
-.screenReaderOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+.languageGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.85rem;
 }
 
-[data-theme='dark'] .languageSwitcher {
+.languageOptionButton {
+  min-height: 5.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  padding: 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  color: var(--color-text);
+  cursor: pointer;
+  text-align: center;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition:
+    background var(--duration-fast, 0.15s) ease,
+    border-color var(--duration-fast, 0.15s) ease,
+    transform var(--duration-fast, 0.15s) ease;
+}
+
+.languageOptionButton:hover {
+  background: color-mix(in srgb, var(--color-surface-hover) 88%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary) 34%, transparent);
+  transform: translateY(-1px);
+}
+
+.languageOptionButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+  border-radius: 0.35rem;
+}
+
+.languageOptionSelected {
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+}
+
+.languageOptionLabel {
+  display: block;
+}
+
+.languageOptionSelectedBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.45rem;
+  padding: 0 0.55rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-primary) 16%, transparent);
+  color: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+[data-theme='dark'] .languageTrigger {
   background: rgba(15, 23, 42, 0.8);
   border-color: rgba(0, 255, 255, 0.15);
   color: var(--color-secondary);
-  --language-select-menu-background: #0A0F1E;
-  --language-select-menu-text: #F8FAFC;
 }
 
-[data-theme='dark'] .languageSwitcher:hover {
+[data-theme='dark'] .languageTrigger:hover {
   background: rgba(21, 30, 50, 0.9);
   border-color: var(--color-secondary);
   box-shadow: var(--shadow-glow-cyan);
 }
 
-[data-theme='dark'] .languageSelect {
-  color-scheme: dark;
+[data-theme='dark'] .languageDialog {
+  background: rgba(3, 7, 18, 0.94);
+  border-color: rgba(0, 255, 255, 0.18);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
 }
 
-[data-theme='lunar-new-year'] .languageSwitcher {
+[data-theme='dark'] .languageGridScroller {
+  border-color: rgba(0, 255, 255, 0.12);
+}
+
+[data-theme='dark'] .languageDialogClose:hover {
+  border-color: rgba(0, 255, 255, 0.32);
+}
+
+[data-theme='dark'] .languageOptionButton {
+  background: rgba(5, 12, 26, 0.9);
+  border-color: rgba(0, 255, 255, 0.12);
+}
+
+[data-theme='dark'] .languageOptionButton:hover {
+  border-color: rgba(0, 255, 255, 0.3);
+}
+
+[data-theme='dark'] .languageOptionSelected {
+  background: rgba(0, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .languageOptionSelectedBadge {
+  background: rgba(0, 255, 255, 0.14);
+  color: var(--color-secondary);
+}
+
+[data-theme='lunar-new-year'] .languageTrigger {
   background: rgba(45, 10, 10, 0.85);
   border-color: rgba(255, 160, 0, 0.4);
-  color: var(--color-text);
-  --language-select-menu-background: #521818;
-  --language-select-menu-text: #FFF9C4;
 }
 
-[data-theme='lunar-new-year'] .languageSwitcher:hover {
-  background: rgba(61, 14, 14, 0.9);
+[data-theme='lunar-new-year'] .languageDialog {
+  background: rgba(45, 10, 10, 0.94);
+  border-color: rgba(255, 160, 0, 0.28);
 }
 
-[data-theme='lunar-new-year'] .languageSelect {
-  color-scheme: dark;
+[data-theme='lunar-new-year'] .languageOptionSelectedBadge {
+  color: #ffd166;
 }
 
 @media (max-width: 768px) {
-  .languageSwitcher {
-    height: 36px;
-    padding-right: 1.75rem;
+  .languageTrigger {
+    min-height: 36px;
+    padding: 0 0.85rem;
   }
 
-  .languageSelect {
-    font-size: 0.75rem;
+  .languageDialog {
+    top: 6vh;
+    right: 4vw;
+    bottom: 6vh;
+    left: 4vw;
+  }
+
+  .languageDialogHeader {
+    align-items: center;
+  }
+
+  .languageGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
