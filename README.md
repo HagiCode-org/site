@@ -103,14 +103,12 @@ For contributor guidance, start with [`AGENTS.md`](./AGENTS.md) and [`CLAUDE.md`
 
 - Authoritative workflow: `.github/workflows/site-deploy-gh-pages.yml`
 - Production source of truth: the `gh-pages` branch, published only by GitHub Actions
-- Published payload contract: branch root `esa.jsonc` plus `dist/` containing the validated Astro snapshot
-- Post-`gh-pages` R2 path: after the `deploy` job succeeds, `upload-r2` downloads the same validated `site-gh-pages-payload` artifact and syncs only `.deploy/gh-pages/dist/` contents to the R2 bucket root or optional prefix root, without adding another `dist/` path segment
-- Manual dispatch path: `workflow_dispatch` defaults to `latest-gh-pages`, so maintainers can republish from the latest `gh-pages` branch snapshot without rebuilding; choose `current-ref-build` only when a manual rebuild and republish from the current ref is required
-- Required R2 secrets: `R2_ENDPOINT`, `R2_BUCKET`, `R2_ACCESS_KEY_ID`, and `R2_SECRET_ACCESS_KEY`; optional `R2_PREFIX` trims leading and trailing `/` before resolving the target root
-- Failure triage: if `gh-pages` succeeds but the R2 upload fails, the workflow fails in `upload-r2`; check the GitHub step summary for the resolved bucket, prefix root, and whether the failure happened before transfer or during sync
+- Published payload contract: branch root `esa.jsonc`, `wrangler.jsonc`, and `dist/` containing the validated Astro snapshot
+- Manual dispatch path: `workflow_dispatch` rebuilds from the selected ref and republishes the validated payload to `gh-pages`
+- Direct Cloudflare publication is now handled outside this workflow; keep `gh-pages/wrangler.jsonc` as the checked-in deployment contract for direct publish operations
 - Required GitHub permissions: the deploy job needs `contents: write`; the build job stays read-only
-- Required hosting setting: configure the production host to read `gh-pages/esa.jsonc` and serve `gh-pages/dist/`
-- First deploy checks: confirm the workflow publishes `esa.jsonc` and `dist/`, verify the hosting target still points at `gh-pages`, confirm the summary reports the expected R2 bucket or prefix root, and load `https://hagicode.com`
+- Required hosting setting: configure the production host to read `gh-pages/esa.jsonc`, treat `gh-pages/wrangler.jsonc` as the Cloudflare Pages source of truth, and serve `gh-pages/dist/`
+- First deploy checks: confirm the workflow publishes `esa.jsonc`, `wrangler.jsonc`, and `dist/`, verify the hosting target still points at `gh-pages`, and load `https://hagicode.com`
 - Rollback path: revert the source change or rerun deployment from an older commit so CI republishes the previous snapshot
 
 ### Desktop Index Fallback
