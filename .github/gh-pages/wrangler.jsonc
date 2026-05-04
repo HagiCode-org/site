@@ -1,13 +1,8 @@
 {
-  "name": "hagicode-site",
+  "name": "site",
   "compatibility_date": "2026-05-04",
-  // Cloudflare Pages should treat the validated gh-pages dist/ snapshot as the web root.
-  "pages_build_output_dir": "./dist",
-  // Bindings stay in source control alongside the published payload contract.
-  // Set bucket_name from the Cloudflare project when wiring the production bucket.
-  "r2_buckets": [
-    {
-      "binding": "site"
-    }
-  ]
+  // Direct wrangler deploy should publish the validated gh-pages dist/ snapshot as static web assets.
+  "assets": {
+    "directory": "./dist"
+  }
 }
