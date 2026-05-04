@@ -43,6 +43,7 @@
   justify-content: center;
   gap: 1rem;
   width: 100%;
+  box-sizing: border-box;
   padding: 1.1rem 1.2rem;
   border-radius: 1.1rem;
   border: 1px solid rgba(102, 192, 244, 0.28);

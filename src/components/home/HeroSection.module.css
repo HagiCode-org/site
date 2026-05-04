@@ -285,6 +285,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
+  box-sizing: border-box;
+  min-width: 0;
   padding: 1rem 2rem;
   font-size: 1.0625rem;
   font-weight: 600;
@@ -372,6 +374,8 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
+  box-sizing: border-box;
+  min-width: 0;
   padding: 1rem 2rem;
   font-size: 1.0625rem;
   font-weight: 600;
