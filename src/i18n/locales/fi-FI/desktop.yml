@@ -1,123 +1,123 @@
 desktop:
-  title: Hagicode Desktop - Download
-  description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
+  title: Hagicode Desktop - Lataa
+  description: Lataa Hagicode Desktop, lokalisoitu tekoälykoodiavustaja. Tukee Windows-, macOS- ja Linux-käyttöjärjestelmiä. Yksityisyydensuoja, nopea vaste.
   features:
-    title: Key Features
+    title: Keskeiset ominaisuudet
     local:
-      title: Local Execution
-      description: All data is processed locally without uploading to the cloud, ensuring code privacy and security
+      title: Paikallinen suoritus
+      description: Kaikki tiedot käsitellään paikallisesti ilman pilveen lataamista, varmistaen koodin yksityisyyden ja turvallisuuden
     privacy:
-      title: Privacy Protection
-      description: Code is never uploaded, supports offline usage, protecting your intellectual property
+      title: Yksityisyydensuoja
+      description: Koodia ei koskaan ladata, tukee offline-käyttöä, suojaa immateriaalioikeuksiasi
     fast:
-      title: Fast Response
-      description: Millisecond-level response time, no network requests needed, boosting development efficiency
+      title: Nopea vaste
+      description: Millisekuntivasteaika, ei verkkopyyntöjä tarvita, tehostaa kehitystyötä
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports Windows, macOS, and Linux to meet different development environment needs
+      title: Monialustatuki
+      description: Tukee Windows-, macOS- ja Linux-käyttöjärjestelmiä erilaisiin kehitysympäristötarpeisiin
     autoUpdate:
-      title: Auto Updates
-      description: Automatically checks for updates and upgrades to the latest version with one click
+      title: Automaattiset päivitykset
+      description: Tarkistaa automaattisesti päivitykset ja päivittää uusimpaan versioon yhdellä klikkauksella
     multiLanguage:
-      title: Multi-Language Support
-      description: Built-in Chinese and English interface, supporting international team collaboration
+      title: Monikielituki
+      description: Sisäänrakennettu kiinalainen ja englanninkielinen käyttöliittymä, tukee kansainvälisen tiimin yhteistyötä
   systemRequirements:
-    title: System Requirements
+    title: Järjestelmävaatimukset
     windows: Windows
     macos: macOS
     linux: Linux
-    os: Operating System
-    processor: Processor
-    memory: Memory
-    diskSpace: Disk Space
-    network: Network
-    windowsOs: Windows 10/11 (64-bit)
-    macosOs: macOS 12+ (Monterey or higher)
-    linuxOs: Ubuntu 20.04+ / Debian 11+ / Other mainstream distributions
-    windowsProcessor: Intel Core i3 or equivalent processor
-    macosProcessor: Apple Silicon (M1/M2/M3) or Intel Core i3+
-    linuxProcessor: Intel Core i3 or equivalent processor
-    memoryRec: 4GB RAM (8GB recommended)
-    disk: 2GB available space
-    networkDesc: Network connection required for initial download (can be used offline afterwards)
+    os: Käyttöjärjestelmä
+    processor: Suoritin
+    memory: Muisti
+    diskSpace: Levytila
+    network: Verkko
+    windowsOs: Windows 10/11 (64-bittinen)
+    macosOs: macOS 12+ (Monterey tai uudempi)
+    linuxOs: Ubuntu 20.04+ / Debian 11+ / Muut valtavirran jakelut
+    windowsProcessor: Intel Core i3 tai vastaava suoritin
+    macosProcessor: Apple Silicon (M1/M2/M3) tai Intel Core i3+
+    linuxProcessor: Intel Core i3 tai vastaava suoritin
+    memoryRec: 4 Gt RAM (8 Gt suositeltu)
+    disk: 2 Gt vapaata tilaa
+    networkDesc: Verkkoyhteys tarvitaan alkulataukseen (voidaan käyttää offline-tilassa tämän jälkeen)
   download:
-    title: Download Packages
-    windowsDesc: Stable installers for Windows 10/11, including setup and portable builds.
-    macosDesc: Native builds for Apple Silicon and Intel Macs.
-    linuxDesc: AppImage and tarball packages for mainstream x64 and ARM64 Linux distributions.
-    note: If the package list here fails to load, use the version history link in the hero area to access the canonical index.
+    title: Latauspaketit
+    windowsDesc: Vakaat asennusohjelmat Windows 10/11 -käyttöjärjestelmille, mukaan lukien asennus- ja kannettavat versiot.
+    macosDesc: Natiivit versiot Apple Silicon- ja Intel-Maceille.
+    linuxDesc: AppImage- ja tarball-paketit valtavirran x64- ja ARM64-Linux-jakeluille.
+    note: Jos pakettiluettelo ei lataudu täällä, käytä hero-alueen versiohistorialinkkiä päästäksesi kanoniseen indeksiin.
     features:
-      signed: Signed packages
-      autoUpdate: Automatic update detection
-      multiLanguage: Multi-language interface
+      signed: Allekirjoitetut paketit
+      autoUpdate: Automaattinen päivitysten tunnistus
+      multiLanguage: Monikielinen käyttöliittymä
   installation:
-    title: Quick Installation
+    title: Pikaisennus
     step1:
       number: '1'
-      title: Download Installer
-      description: Select the appropriate installer for your operating system
+      title: Lataa asennusohjelma
+      description: Valitse käyttöjärjestelmällesi sopiva asennusohjelma
     step2:
       number: '2'
-      title: Run Installer
-      description: Double-click the downloaded installer and follow the prompts to complete installation
+      title: Suorita asennusohjelma
+      description: Kaksoisklikkaa ladattua asennusohjelmaa ja seuraa ohjeita asennuksen viimeistelemiseksi
     step3:
       number: '3'
-      title: Launch App
-      description: On first launch, it will guide you through initial configuration
+      title: Käynnistä sovellus
+      description: Ensimmäisen käynnistyksen yhteydessä sovellus opastaa alkumäärityksessä
     step4:
       number: '4'
-      title: Start Using
-      description: After configuration, you can start using Hagicode Desktop
+      title: Aloita käyttö
+      description: Määrityksen jälkeen voit aloittaa Hagicode Desktopin käytön
   faq:
-    title: FAQ
+    title: UKK
     q1:
-      question: What's the difference between Desktop and Server versions?
-      intro: 'Hagicode offers two deployment options: Desktop version and Server version. Each has its advantages, but both adopt a user-controlled server and data approach, providing better data protection.'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      serverTitle: Server Version
-      server1: Can be deployed on remote servers
-      server2: Supports multi-user remote access
-      server3: Better suited for team collaboration and scaling
-      server4: Prepares for future enterprise features and multi-device sync
-      conclusion: Whichever version you choose, you have complete control over your server and data, enjoying better privacy protection and data security.
+      question: Mikä ero on Desktop- ja Server-versioiden välillä?
+      intro: 'Hagicode tarjoaa kaksi käyttöönottovaihtoehtoa: Desktop-version ja Server-version. Molemmissa on omat etunsa, mutta molemmat ottavat käyttöön käyttäjän hallitseman palvelimen ja tietolähestymistavan, tarjoten paremman tietosuojan.'
+      desktopTitle: Desktop-versio
+      desktop1: Suoritetaan paikallisesti tietokoneellasi, kevyempi
+      desktop2: Ei palvelinmäärityksiä tarvita, käyttövalmis suoraan
+      desktop3: Sopii yksittäisille kehittäjille ja kevyteen käyttöön
+      desktop4: Kaikki tiedot täysin paikallisia
+      serverTitle: Server-versio
+      server1: Voidaan ottaa käyttöön etäpalvelimilla
+      server2: Tukee monen käyttäjän etäyhteyksiä
+      server3: Sopii paremmin tiimityöhön ja skaalaukseen
+      server4: Valmistaa tulevaisuuden yritysominaisuuksia ja monilaitteiden synkronointia varten
+      conclusion: Kumman version tahansa valitset, sinulla on täysi hallinta palvelimeesi ja tietoihisi, nauttien paremmasta yksityisyydensuojasta ja tietoturvasta.
     q2:
-      question: What do I need to do after installation?
-      intro: 'Hagicode Desktop is essentially a launcher. On first launch after installation, it will guide you through these steps:'
-      step1: <strong>Download Hagicode Core:</strong> Desktop will automatically detect and prompt you to download Hagicode core components
-      step2: <strong>Install Core Components:</strong> Follow the on-screen prompts to complete core component installation
-      step3: <strong>Configure your default Agent CLI:</strong> Choose a currently supported Agent CLI and finish the required sign-in, authorization, or local installation steps.
-      note: The Desktop interface guides the whole flow. Keep the network available on first launch so Hagicode Core can download; some Agent CLIs still require manual installation or authentication, but they are still part of the current support range.
-      done: After completing these steps, you can use all Hagicode Desktop features normally.
+      question: Mitä minun täytyy tehdä asennuksen jälkeen?
+      intro: 'Hagicode Desktop on pohjimmiltaan käynnistin. Asennuksen jälkeisellä ensimmäisellä käynnistyksellä se opastaa näissä vaiheissa:'
+      step1: '<strong>Lataa Hagicode Core:</strong> Desktop tunnistaa automaattisesti ja kehottaa sinua lataamaan Hagicoden ydinmoduulit'
+      step2: '<strong>Asenna ydinmoduulit:</strong> Seuraa näytön ohjeita ydinmoduulien asennuksen viimeistelemiseksi'
+      step3: '<strong>Määritä oletus Agent CLI:</strong> Valitse tällä hetkellä tuettu Agent CLI ja suorita tarvittavat sisäänkirjautumis-, valtuutus- tai paikalliset asennusvaiheet.'
+      note: Desktop-käyttöliittymä ohjaa koko prosessia. Pidä verkko saatavilla ensimmäisellä käynnistyksellä, jotta Hagicode Core voi latautua; jotkin Agent CLI:t vaativat edelleen manuaalista asennusta tai todennusta, mutta ne ovat yhä osa nykyistä tukialuetta.
+      done: Kun olet suorittanut nämä vaiheet, voit käyttää kaikkia Hagicode Desktopin ominaisuuksia normaalisti.
     q3:
-      question: How do I check for updates?
-      answer: Desktop automatically checks for updates. When a new version is available, a prompt will appear in the top right corner of the interface. You can also manually check for updates in "Settings".
+      question: Kuin tarkistan päivitykset?
+      answer: Desktop tarkistaa päivitykset automaattisesti. Kun uusi versio on saatavilla, ilmoitus tulee näkyviin käyttöliittymän oikeassa yläkulmassa. Voit myös tarkistaa päivitykset manuaalisesti "Asetuksista".
     q4:
-      question: Which AI Agent CLIs are supported?
-      intro: 'Hagicode Desktop currently supports the following Agent CLIs:'
-      active: <strong>Currently supported:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents, and Codebuddy
-      manual: <strong>Manual installation or authentication:</strong> Hermes, Gemini, and DeepAgents require a local install or auth step first; the other CLIs provide one-click installation entry points or guided install flows.
-      legacy: <strong>Legacy compatibility only:</strong> IFlowCli remains only for historical data compatibility and is not part of the current active support range.
-      closing: Support scope and setup mode are separate concerns. A CLI that needs manual installation is still supported now.
+      question: Mitä tekoäly Agent CLI:iä tuetaan?
+      intro: 'Hagicode Desktop tukee tällä hetkellä seuraavia Agent CLI:iä:'
+      active: '<strong>Tällä hetkellä tuetut:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents ja Codebuddy'
+      manual: '<strong>Manuaalinen asennus tai todennus:</strong> Hermes, Gemini ja DeepAgents vaativat paikallisen asennuksen tai todennusvaiheen ensin; muut CLI:t tarjoavat yhden klikkauksen asennuslinkin tai ohjatun asennuksen.'
+      legacy: '<strong>Vain vanhan tietoyhteensopivuuden tuki:</strong> IFlowCli on säilytetty vain historiallista tietoyhteensopivuutta varten eikä kuulu nykyiseen aktiiviseen tukialueeseen.'
+      closing: Tukialue ja asennustapa ovat erillisiä asioita. CLI, joka vaatii manuaalisen asennuksen, on edelleen tuettu.
     q5:
-      question: Does it support offline usage?
-      intro: 'Yes! Hagicode Desktop supports complete offline usage:'
-      point1: Network connection required for initial installation and configuration (downloading core components and AI models)
-      point2: All features can be used offline after configuration
-      point3: Your code and data are never uploaded to the cloud
-      point4: All AI processing is completed locally
+      question: Tukeeko offline-käyttöä?
+      intro: 'Kyllä! Hagicode Desktop tukee täydellistä offline-käyttöä:'
+      point1: Verkkoyhteys tarvitaan alkuperäiseen asennukseen ja määritykseen (ydinmoduulien ja tekoälymallien lataaminen)
+      point2: Kaikkia ominaisuuksia voidaan käyttää offline-tilassa määrityksen jälkeen
+      point3: Koodisi ja tietosi eivät koskaan siirry pilveen
+      point4: Kaikki tekoälykäsittely tapahtuu paikallisesti
     q6:
-      question: macOS says Hagicode.app is damaged or can't be opened. What should I do?
-      intro: If Hagicode Desktop is installed in the default path /Applications/Hagicode.app and macOS Gatekeeper blocks the first launch, use the following command to remove the quarantine attribute from the app.
-      cause: This happens because macOS adds the com.apple.quarantine attribute to apps downloaded from the internet. It is a macOS security isolation issue, not a failure in the Hagicode installer.
+      question: macOS sanoo, että Hagicode.app on vaurioitunut tai sitä ei voi avata. Mitä minun pitäisi tehdä?
+      intro: Jos Hagicode Desktop on asennettu oletuspolkuun /Applications/Hagicode.app ja macOS Gatekeeper estää ensimmäisen käynnistyksen, käytä seuraavaa komentoa poistaaksesi sovelluksen karanteenimääritteen.
+      cause: Tämä tapahtuu, koska macOS lisää com.apple.quarantine-määritteen Internetistä ladattuihin sovelluksiin. Kyseessä on macOS:n turvaeristysongelma, ei Hagicoden asennusohjelman vika.
       command: sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app
-      note: Run the command in Terminal with administrator privileges, then relaunch Hagicode Desktop.
+      note: Suorita komento Terminalissa järjestelmänvalvojan oikeuksilla ja käynnistä sitten Hagicode Desktop uudelleen.
     q7:
-      question: How to get help when encountering issues?
-      intro: 'If you encounter issues while using Hagicode Desktop, you can get help through:'
-      point1: <strong>Technical Support Group:</strong> Join QQ Group 610394020
-      point2: <strong>Online Documentation:</strong> View complete usage documentation and tutorials
-      point3: <strong>GitHub Issues:</strong> Submit issue reports in the project repository
+      question: Kuinka saada apua, kun kohtaat ongelmia?
+      intro: 'Jos kohtaat ongelmia Hagicode Desktopin käytössä, voit saada apua seuraavien kautta:'
+      point1: '<strong>Tekninen tukiryhmä:</strong> Liity QQ-ryhmään 610394020'
+      point2: '<strong>Verkkodokumentaatio:</strong> Katso täydellinen käyttödokumentaatio ja oppaat'
+      point3: '<strong>GitHub Issues:</strong> Lähetä ongelmaraportteja projektin tietovarastossa'

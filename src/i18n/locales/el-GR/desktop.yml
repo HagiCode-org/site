@@ -1,123 +1,123 @@
 desktop:
-  title: Hagicode Desktop - Download
-  description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
+  title: Hagicode Desktop - Λήψη
+  description: Κατεβάστε το Hagicode Desktop, έναν εντοπισμένο βοηθό κώδικα AI. Υποστηρίζει Windows, macOS και Linux. Προστασία ιδιωτικότητας, γρήγορη απόκριση.
   features:
-    title: Key Features
+    title: Βασικά χαρακτηριστικά
     local:
-      title: Local Execution
-      description: All data is processed locally without uploading to the cloud, ensuring code privacy and security
+      title: Τοπική εκτέλεση
+      description: Όλα τα δεδομένα επεξεργάζονται τοπικά χωρίς μεταφόρτωση στο cloud, διασφαλίζοντας το ιδιωτικό και την ασφάλεια του κώδικα
     privacy:
-      title: Privacy Protection
-      description: Code is never uploaded, supports offline usage, protecting your intellectual property
+      title: Προστασία ιδιωτικότητας
+      description: Ο κώδικας δεν μεταφορτώνεται ποτέ, υποστηρίζει χρήση εκτός σύνδεσης, προστατεύοντας την πνευματική σας ιδιοκτησία
     fast:
-      title: Fast Response
-      description: Millisecond-level response time, no network requests needed, boosting development efficiency
+      title: Γρήγορη απόκριση
+      description: Χρόνος απόκρισης σε επίπεδο χιλιοστού του δευτερολέπτου, δεν απαιτούνται αιτήματα δικτύου, ενισχύοντας την αποδοτικότητα ανάπτυξης
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports Windows, macOS, and Linux to meet different development environment needs
+      title: Υποστήριξη πολλαπλών πλατφορμών
+      description: Υποστηρίζει Windows, macOS και Linux για την ικανοποίηση διαφορετικών αναγκών αναπτυξιακού περιβάλλοντος
     autoUpdate:
-      title: Auto Updates
-      description: Automatically checks for updates and upgrades to the latest version with one click
+      title: Αυτόματες ενημερώσεις
+      description: Ελέγχει αυτόματα για ενημερώσεις και αναβαθμίζει στην πιο πρόσφατη έκδοση με ένα κλικ
     multiLanguage:
-      title: Multi-Language Support
-      description: Built-in Chinese and English interface, supporting international team collaboration
+      title: Πολυγλωσσική υποστήριξη
+      description: Ενσωματωμένη κινεζική και αγγλική διεπαφή, υποστηρίζοντας διεθνή ομαδική συνεργασία
   systemRequirements:
-    title: System Requirements
+    title: Απαιτήσεις συστήματος
     windows: Windows
     macos: macOS
     linux: Linux
-    os: Operating System
-    processor: Processor
-    memory: Memory
-    diskSpace: Disk Space
-    network: Network
+    os: Λειτουργικό σύστημα
+    processor: Επεξεργαστής
+    memory: Μνήμη
+    diskSpace: Χώρος στον δίσκο
+    network: Δίκτυο
     windowsOs: Windows 10/11 (64-bit)
-    macosOs: macOS 12+ (Monterey or higher)
-    linuxOs: Ubuntu 20.04+ / Debian 11+ / Other mainstream distributions
-    windowsProcessor: Intel Core i3 or equivalent processor
-    macosProcessor: Apple Silicon (M1/M2/M3) or Intel Core i3+
-    linuxProcessor: Intel Core i3 or equivalent processor
-    memoryRec: 4GB RAM (8GB recommended)
-    disk: 2GB available space
-    networkDesc: Network connection required for initial download (can be used offline afterwards)
+    macosOs: macOS 12+ (Monterey ή νεότερο)
+    linuxOs: Ubuntu 20.04+ / Debian 11+ / Άλλες κύριες διανομές
+    windowsProcessor: Intel Core i3 ή ισοδύναμος επεξεργαστής
+    macosProcessor: Apple Silicon (M1/M2/M3) ή Intel Core i3+
+    linuxProcessor: Intel Core i3 ή ισοδύναμος επεξεργαστής
+    memoryRec: 4GB RAM (8GB συνιστάται)
+    disk: 2GB διαθέσιμος χώρος
+    networkDesc: Απαιτείται σύνδεση δικτύου για την αρχική λήψη (μπορεί να χρησιμοποιηθεί εκτός σύνδεσης στη συνέχεια)
   download:
-    title: Download Packages
-    windowsDesc: Stable installers for Windows 10/11, including setup and portable builds.
-    macosDesc: Native builds for Apple Silicon and Intel Macs.
-    linuxDesc: AppImage and tarball packages for mainstream x64 and ARM64 Linux distributions.
-    note: If the package list here fails to load, use the version history link in the hero area to access the canonical index.
+    title: Πακέτα λήψης
+    windowsDesc: Σταθερά προγράμματα εγκατάστασης για Windows 10/11, συμπεριλαμβανομένων εκδόσεων εγκατάστασης και φορητών.
+    macosDesc: Εγγενείς εκδόσεις για Apple Silicon και Intel Mac.
+    linuxDesc: Πακέτα AppImage και tarball για κύριες διανομές Linux x64 και ARM64.
+    note: Αν η λίστα πακέτων εδώ αποτύχει να φορτώσει, χρησιμοποιήστε τον σύνδεσμο ιστορικού εκδόσεων στην περιοχή hero για πρόσβαση στο κανονικό ευρετήριο.
     features:
-      signed: Signed packages
-      autoUpdate: Automatic update detection
-      multiLanguage: Multi-language interface
+      signed: Υπογεγραμμένα πακέτα
+      autoUpdate: Αυτόματη ανίχνευση ενημερώσεων
+      multiLanguage: Πολυγλωσσική διεπαφή
   installation:
-    title: Quick Installation
+    title: Γρήγορη εγκατάσταση
     step1:
       number: '1'
-      title: Download Installer
-      description: Select the appropriate installer for your operating system
+      title: Λήψη προγράμματος εγκατάστασης
+      description: Επιλέξτε το κατάλληλο πρόγραμμα εγκατάστασης για το λειτουργικό σας σύστημα
     step2:
       number: '2'
-      title: Run Installer
-      description: Double-click the downloaded installer and follow the prompts to complete installation
+      title: Εκτέλεση προγράμματος εγκατάστασης
+      description: Κάντε διπλό κλικ στο ληφθέν πρόγραμμα εγκατάστασης και ακολουθήστε τις οδηγίες για να ολοκληρώσετε την εγκατάσταση
     step3:
       number: '3'
-      title: Launch App
-      description: On first launch, it will guide you through initial configuration
+      title: Εκκίνηση εφαρμογής
+      description: Κατά την πρώτη εκκίνηση, θα σας καθοδηγήσει στην αρχική διαμόρφωση
     step4:
       number: '4'
-      title: Start Using
-      description: After configuration, you can start using Hagicode Desktop
+      title: Ξεκινήστε τη χρήση
+      description: Μετά τη διαμόρφωση, μπορείτε να ξεκινήσετε να χρησιμοποιείτε το Hagicode Desktop
   faq:
-    title: FAQ
+    title: Συχνές ερωτήσεις
     q1:
-      question: What's the difference between Desktop and Server versions?
-      intro: 'Hagicode offers two deployment options: Desktop version and Server version. Each has its advantages, but both adopt a user-controlled server and data approach, providing better data protection.'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      serverTitle: Server Version
-      server1: Can be deployed on remote servers
-      server2: Supports multi-user remote access
-      server3: Better suited for team collaboration and scaling
-      server4: Prepares for future enterprise features and multi-device sync
-      conclusion: Whichever version you choose, you have complete control over your server and data, enjoying better privacy protection and data security.
+      question: Ποια είναι η διαφορά μεταξύ των εκδόσεων Desktop και Server;
+      intro: 'Το Hagicode προσφέρει δύο επιλογές ανάπτυξης: έκδοση Desktop και έκδοση Server. Καθεμία έχει τα πλεονεκτήματά της, αλλά και οι δύο υιοθετούν μια προσέγγιση ελεγχόμενου από τον χρήστη διακομιστή και δεδομένων, παρέχοντας καλύτερη προστασία δεδομένων.'
+      desktopTitle: Έκδοση Desktop
+      desktop1: Εκτελείται τοπικά στον υπολογιστή σας, πιο ελαφριά
+      desktop2: Δεν απαιτείται διαμόρφωση διακομιστή, έτοιμη για χρήση αμέσως
+      desktop3: Κατάλληλη για μεμονωμένους προγραμματιστές και ελαφριά σενάρια χρήσης
+      desktop4: Όλα τα δεδομένα πλήρως εντοπισμένα
+      serverTitle: Έκδοση Server
+      server1: Μπορεί να αναπτυχθεί σε απομακρυσμένους διακομιστές
+      server2: Υποστηρίζει πολυ-χρηστική απομακρυσμένη πρόσβαση
+      server3: Πιο κατάλληλη για ομαδική συνεργασία και κλιμάκωση
+      server4: Προετοιμάζει για μελλοντικές επιχειρηματικές λειτουργίες και συγχρονισμό πολλαπλών συσκευών
+      conclusion: Όποια έκδοση κι αν επιλέξετε, έχετε πλήρη έλεγχο του διακομιστή και των δεδομένων σας, απολαμβάνοντας καλύτερη προστασία ιδιωτικότητας και ασφάλεια δεδομένων.
     q2:
-      question: What do I need to do after installation?
-      intro: 'Hagicode Desktop is essentially a launcher. On first launch after installation, it will guide you through these steps:'
-      step1: <strong>Download Hagicode Core:</strong> Desktop will automatically detect and prompt you to download Hagicode core components
-      step2: <strong>Install Core Components:</strong> Follow the on-screen prompts to complete core component installation
-      step3: <strong>Configure your default Agent CLI:</strong> Choose a currently supported Agent CLI and finish the required sign-in, authorization, or local installation steps.
-      note: The Desktop interface guides the whole flow. Keep the network available on first launch so Hagicode Core can download; some Agent CLIs still require manual installation or authentication, but they are still part of the current support range.
-      done: After completing these steps, you can use all Hagicode Desktop features normally.
+      question: Τι πρέπει να κάνω μετά την εγκατάσταση;
+      intro: 'Το Hagicode Desktop είναι ουσιαστικά ένας εκκινητής. Κατά την πρώτη εκκίνηση μετά την εγκατάσταση, θα σας καθοδηγήσει στα εξής βήματα:'
+      step1: <strong>Λήψη Hagicode Core:</strong> Το Desktop θα ανιχνεύσει αυτόματα και θα σας προτρέψει να κατεβάσετε τα βασικά στοιχεία του Hagicode
+      step2: <strong>Εγκατάσταση βασικών στοιχείων:</strong> Ακολουθήστε τις οδηγίες στην οθόνη για να ολοκληρώσετε την εγκατάσταση των βασικών στοιχείων
+      step3: <strong>Διαμόρφωση του προεπιλεγμένου Agent CLI:</strong> Επιλέξτε ένα προς το παρόν υποστηριζόμενο Agent CLI και ολοκληρώστε τα απαιτούμενα βήματα σύνδεσης, εξουσιοδότησης ή τοπικής εγκατάστασης.
+      note: Η διεπαφή του Desktop καθοδηγεί σε όλη τη ροή. Διατηρήστε το δίκτυο διαθέσιμο κατά την πρώτη εκκίνηση ώστε το Hagicode Core να μπορέσει να ληφθεί· ορισμένα Agent CLIs εξακολουθούν να απαιτούν μη αυτόματη εγκατάσταση ή ταυτοποίηση, αλλά αποτελούν ακόμα μέρος του τρέχοντος εύρους υποστήριξης.
+      done: Αφού ολοκληρώσετε αυτά τα βήματα, μπορείτε να χρησιμοποιήσετε όλες τις λειτουργίες του Hagicode Desktop κανονικά.
     q3:
-      question: How do I check for updates?
-      answer: Desktop automatically checks for updates. When a new version is available, a prompt will appear in the top right corner of the interface. You can also manually check for updates in "Settings".
+      question: Πώς ελέγχω για ενημερώσεις;
+      answer: Το Desktop ελέγχει αυτόματα για ενημερώσεις. Όταν είναι διαθέσιμη μια νέα έκδοση, θα εμφανιστεί μια ειδοποίηση στην πάνω δεξιά γωνία της διεπαφής. Μπορείτε επίσης να ελέγξετε μη αυτόματα για ενημερώσεις στις "Ρυθμίσεις".
     q4:
-      question: Which AI Agent CLIs are supported?
-      intro: 'Hagicode Desktop currently supports the following Agent CLIs:'
-      active: <strong>Currently supported:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents, and Codebuddy
-      manual: <strong>Manual installation or authentication:</strong> Hermes, Gemini, and DeepAgents require a local install or auth step first; the other CLIs provide one-click installation entry points or guided install flows.
-      legacy: <strong>Legacy compatibility only:</strong> IFlowCli remains only for historical data compatibility and is not part of the current active support range.
-      closing: Support scope and setup mode are separate concerns. A CLI that needs manual installation is still supported now.
+      question: Ποια AI Agent CLIs υποστηρίζονται;
+      intro: 'Το Hagicode Desktop υποστηρίζει προς το παρόν τα εξής Agent CLIs:'
+      active: <strong>Προς το παρόν υποστηριζόμενα:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents και Codebuddy
+      manual: <strong>Μη αυτόματη εγκατάσταση ή ταυτοποίηση:</strong> Τα Hermes, Gemini και DeepAgents απαιτούν πρώτα τοπική εγκατάσταση ή βήμα ταυτοποίησης· τα υπόλοιπα CLIs παρέχουν σημεία εισόδου εγκατάστασης με ένα κλικ ή καθοδηγούμενες ροές εγκατάστασης.
+      legacy: <strong>Μόνο για συμβατότητα παλαιού τύπου:</strong> Το IFlowCli παραμένει μόνο για συμβατότητα ιστορικών δεδομένων και δεν αποτελεί μέρος του τρέχοντος ενεργού εύρους υποστήριξης.
+      closing: Το εύρος υποστήριξης και η λειτουργία ρύθμισης είναι ξεχωριστά ζητήματα. Ένα CLI που χρειάζεται μη αυτόματη εγκατάσταση εξακολουθεί να υποστηρίζεται.
     q5:
-      question: Does it support offline usage?
-      intro: 'Yes! Hagicode Desktop supports complete offline usage:'
-      point1: Network connection required for initial installation and configuration (downloading core components and AI models)
-      point2: All features can be used offline after configuration
-      point3: Your code and data are never uploaded to the cloud
-      point4: All AI processing is completed locally
+      question: Υποστηρίζει χρήση εκτός σύνδεσης;
+      intro: 'Ναι! Το Hagicode Desktop υποστηρίζει πλήρη χρήση εκτός σύνδεσης:'
+      point1: Απαιτείται σύνδεση δικτύου για την αρχική εγκατάσταση και διαμόρφωση (λήψη βασικών στοιχείων και μοντέλων AI)
+      point2: Όλες οι λειτουργίες μπορούν να χρησιμοποιηθούν εκτός σύνδεσης μετά τη διαμόρφωση
+      point3: Ο κώδικας και τα δεδομένα σας δεν μεταφορτώνονται ποτέ στο cloud
+      point4: Όλη η επεξεργασία AI ολοκληρώνεται τοπικά
     q6:
-      question: macOS says Hagicode.app is damaged or can't be opened. What should I do?
-      intro: If Hagicode Desktop is installed in the default path /Applications/Hagicode.app and macOS Gatekeeper blocks the first launch, use the following command to remove the quarantine attribute from the app.
-      cause: This happens because macOS adds the com.apple.quarantine attribute to apps downloaded from the internet. It is a macOS security isolation issue, not a failure in the Hagicode installer.
+      question: Το macOS αναφέρει ότι το Hagicode.app είναι κατεστραμμένο ή δεν μπορεί να ανοιχτεί. Τι πρέπει να κάνω;
+      intro: Αν το Hagicode Desktop είναι εγκατεστημένο στην προεπιλεγμένη διαδρομή /Applications/Hagicode.app και το macOS Gatekeeper αποτρέπει την πρώτη εκκίνηση, χρησιμοποιήστε την ακόλουθη εντολή για να καταργήσετε το χαρακτηριστικό καραντίνας από την εφαρμογή.
+      cause: Αυτό συμβαίνει επειδή το macOS προσθέτει το χαρακτηριστικό com.apple.quarantine σε εφαρμογές που λήφθηκαν από το διαδίκτυο. Είναι ένα ζήτημα απομόνωσης ασφάλειας του macOS, όχι μια αποτυχία του εγκαταστάτη Hagicode.
       command: sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app
-      note: Run the command in Terminal with administrator privileges, then relaunch Hagicode Desktop.
+      note: Εκτελέστε την εντολή στο Terminal με δικαιώματα διαχειριστή και, στη συνέχεια, επανεκκινήστε το Hagicode Desktop.
     q7:
-      question: How to get help when encountering issues?
-      intro: 'If you encounter issues while using Hagicode Desktop, you can get help through:'
-      point1: <strong>Technical Support Group:</strong> Join QQ Group 610394020
-      point2: <strong>Online Documentation:</strong> View complete usage documentation and tutorials
-      point3: <strong>GitHub Issues:</strong> Submit issue reports in the project repository
+      question: Πώς να λάβετε βοήθεια όταν αντιμετωπίζετε προβλήματα;
+      intro: 'Αν αντιμετωπίσετε προβλήματα κατά τη χρήση του Hagicode Desktop, μπορείτε να λάβετε βοήθεια μέσω:'
+      point1: <strong>Ομάδα τεχνικής υποστήριξης:</strong> Εγγραφείτε στην QQ Ομάδα 610394020
+      point2: <strong>Ηλεκτρονική τεκμηρίωση:</strong> Προβολή πλήρους τεκμηρίωσης χρήσης και εκπαιδευτικών οδηγιών
+      point3: <strong>GitHub Issues:</strong> Υποβολή αναφορών προβλημάτων στο αποθετήριο του έργου

@@ -1,126 +1,126 @@
 hero:
-  tagline: Boost development efficiency with AI-powered coding tools
-  description: HagiCode helps developers focus on code, not repetitive work
-  ctaButton: Get Started
+  tagline: Tăng cường hiệu suất phát triển với các công cụ mã hóa hỗ trợ AI
+  description: HagiCode giúp các nhà phát triển tập trung vào mã, không phải công việc lặp đi lặp lại
+  ctaButton: Bắt đầu
   taglines:
-    smart: Smart · Efficient · Fun
-    aiDriven: AI Orchestrated · Multi-Agent Parallel
-    openspec: OpenSpec · Workflow Revolution
-    multiThread: Multi-Agent · Multi-Instance
+    smart: Thông minh · Hiệu quả · Vui vẻ
+    aiDriven: AI Điều phối · Đa Agent Song song
+    openspec: OpenSpec · Cách mạng Quy trình
+    multiThread: Đa Agent · Đa Phiên bản
   lunarTaglines:
-    happyNewYear: Happy New Year · Year of the Horse
-    aiPowered: AI Empowered · Code to Success
-    smartCoding: Smart Coding · Best Wishes
-    openspecLuck: OpenSpec · Prosperity and Success
-    efficiency: Double Efficiency · Good Fortune
-  problem: Traditional AI coding tools have
-  painPoint: pain points
-  painPoints: ': limited context, messy sessions, lack of collaboration.'
-  solution: Hagicode redefines AI coding experience with
+    happyNewYear: Chúc Mừng Năm Mới · Năm Ngọ
+    aiPowered: AI Trao Quyền · Mã Hóa Thành Công
+    smartCoding: Mã Hóa Thông minh · Chúc Tốt Nhất
+    openspecLuck: OpenSpec · Thịnh Vượng và Thành Công
+    efficiency: Hiệu Suất Kép · May Mắn
+  problem: Các công cụ mã hóa AI truyền thống có
+  painPoint: điểm nghẽn
+  painPoints: ': ngữ cảnh hạn chế, phiên lộn xộn, thiếu cộng tác.'
+  solution: Hagicode định nghĩa lại trải nghiệm mã hóa AI với
   features:
-    - OpenSpec workflow
-    - multi-agent multi-instance execution
-    - Hero Dungeon gameplay
+    - quy trình OpenSpec
+    - thực thi đa agent đa phiên bản
+    - lối chơi Hầm ngục Anh hùng
   redefine: .
   valueCards:
     smart:
-      title: Smart
-      description: OpenSpec moves ideas into execution faster.
+      title: Thông minh
+      description: OpenSpec chuyển ý tưởng thành thực thi nhanh hơn.
     efficient:
-      title: Efficient
-      description: Multi-agent execution turns waiting into throughput.
+      title: Hiệu quả
+      description: Thực thi đa agent biến sự chờ đợi thành thông lượng.
     interesting:
-      title: Interesting
-      description: Hero Dungeon makes teamwork and practice feel like an adventure.
+      title: Thú vị
+      description: Hầm ngục Anh hùng biến làm việc nhóm và thực hành thành một cuộc phiêu lưu.
   buttons:
-    desktopApp: Install Desktop App
-    containerApp: Install Container App
-    learnMore: Learn More
+    desktopApp: Cài đặt Ứng dụng Máy tính
+    containerApp: Cài đặt Ứng dụng Container
+    learnMore: Tìm hiểu Thêm
   techStack:
-    poweredBy: Powered by
+    poweredBy: Được hỗ trợ bởi
   qqGroup:
-    title: Join Technical Support Group
-    description: Hagicode Technical Support QQ Group
-    joinButton: Join Now
-  secondaryLine: Hagicode supports mainstream agents, doubles parallel management efficiency, and reduces hallucinations with OpenSpec.
+    title: Tham gia Nhóm Hỗ trợ Kỹ thuật
+    description: Nhóm Hỗ trợ Kỹ thuật Hagicode QQ
+    joinButton: Tham gia Ngay
+  secondaryLine: Hagicode hỗ trợ các agent phổ biến, nhân đôi hiệu quả quản lý song song và giảm ảo giác với OpenSpec.
 features:
   showcase:
-    title: Three Core Features
-    subtitle: Redefine your AI coding experience
+    title: Ba Tính năng Cốt lõi
+    subtitle: Định nghĩa lại trải nghiệm mã hóa AI của bạn
   smart:
-    badge: SMART
-    title: Smart
-    subtitle: OpenSpec workflow, boost AI coding efficiency
-    efficiency: Efficiency Boost
-    traditional: Traditional
+    badge: THÔNG MINH
+    title: Thông minh
+    subtitle: Quy trình OpenSpec, tăng cường hiệu quả mã hóa AI
+    efficiency: Tăng cường Hiệu suất
+    traditional: Truyền thống
     hagicode: Hagicode
-    description: A complete 9-stage proposal workflow from idea to archive, with AI assistance throughout. Boost your coding efficiency by 3x.
+    description: Quy trình đề xuất 9 giai đoạn hoàn chỉnh từ ý tưởng đến lưu trữ, với hỗ trợ AI xuyên suốt. Tăng gấp 3 hiệu suất mã hóa của bạn.
     workflow:
       idea:
-        label: Idea
-        desc: Start from idea
+        label: Ý tưởng
+        desc: Bắt đầu từ ý tưởng
       proposal:
-        label: Proposal
-        desc: AI generates proposal
+        label: Đề xuất
+        desc: AI tạo đề xuất
       review:
-        label: Review
-        desc: Auto review
+        label: Xem xét
+        desc: Tự động xem xét
       tasks:
-        label: Tasks
-        desc: Task breakdown
+        label: Nhiệm vụ
+        desc: Phân chia nhiệm vụ
       code:
-        label: Code
-        desc: Smart coding
+        label: Mã
+        desc: Mã hóa thông minh
       test:
-        label: Test
-        desc: Auto testing
+        label: Kiểm thử
+        desc: Tự động kiểm thử
       refactor:
-        label: Refactor
-        desc: Code refactor
+        label: Tái cấu trúc
+        desc: Tái cấu trúc mã
       docs:
-        label: Docs
-        desc: Docs generation
+        label: Tài liệu
+        desc: Tạo tài liệu
       archive:
-        label: Archive
-        desc: Knowledge archive
-    paused: Paused - Click node to switch
+        label: Lưu trữ
+        desc: Lưu trữ kiến thức
+    paused: Tạm dừng - Nhấn vào nút để chuyển đổi
   convenient:
-    badge: EFFICIENT
-    title: Efficient
-    subtitle: Multi-agent, multi-instance execution that keeps your quota moving
-    traditional: Traditional single-agent / single-instance
-    multiThread: Multi-agent parallel matrix
-    boost: Throughput Boost
-    boostValue: 10x+ parallel
-    description: Current supported Agent CLIs such as Claude Code, Codex, GitHub Copilot, OpenCode, and Hermes can work across multiple instances at the same time, so proposals, fixes, and reviews move in parallel instead of waiting in a serial queue.
+    badge: HIỆU QUẢ
+    title: Hiệu quả
+    subtitle: Thực thi đa agent, đa phiên bản giúp giữ cho hạn mức của bạn di chuyển
+    traditional: Truyền thống đơn agent / đơn phiên bản
+    multiThread: Ma trận song song đa agent
+    boost: Tăng cường Thông lượng
+    boostValue: 10x+ song song
+    description: Các Agent CLI hiện được hỗ trợ như Claude Code, Codex, GitHub Copilot, OpenCode và Hermes có thể hoạt động trên nhiều phiên bản cùng lúc, do đó các đề xuất, sửa lỗi và xem xét di chuyển song song thay vì chờ trong hàng đợi tuần tự.
     agentMatrix:
-      title: Parallel execution matrix
-      badge: Multiple agents / multiple instances
-      status: Multiple agents are driving multiple instances right now
+      title: Ma trận thực thi song song
+      badge: Nhiều agent / nhiều phiên bản
+      status: Nhiều agent đang điều khiển nhiều phiên bản ngay bây giờ
       agents:
         claude:
           name: Claude Code
-          role: Proposal / review
+          role: Đề xuất / xem xét
           instances:
-            - Draft spec
-            - Check design
-            - Archive review
+            - Bản nháp spec
+            - Kiểm tra thiết kế
+            - Xem xét lưu trữ
         codex:
           name: Codex
-          role: Implementation / fixes
+          role: Triển khai / sửa lỗi
           instances:
-            - Build feature A
-            - Build feature B
-            - Regression fix
+            - Xây dựng tính năng A
+            - Xây dựng tính năng B
+            - Sửa lỗi hồi quy
         router:
           name: Qwen · GLM
-          role: Analysis / support
+          role: Phân tích / hỗ trợ
           instances:
-            - Trace issue
-            - Polish copy
-            - Capture insights
+            - Truy vết vấn đề
+            - Chỉnh sửa văn bản
+            - Ghi nhận insights
       supportedNames:
-        title: 11 currently supported Agent CLIs
+        title: 11 Agent CLI hiện được hỗ trợ
         names:
           - Claude Code
           - Codex
@@ -133,207 +133,207 @@ features:
           - Gemini
           - DeepAgents
           - Codebuddy
-    supportedProvidersNote: OpenCode can load the shared OmniRoute catalog into hero model defaults while keeping custom raw model identifiers editable for branch-specific workflows.
+    supportedProvidersNote: OpenCode có thể tải danh mục OmniRoute dùng chung vào mặc định mô hình anh hùng trong khi vẫn giữ cho các mã định danh mô hình thô tùy chỉnh có thể chỉnh sửa cho quy trình làm việc theo nhánh cụ thể.
   interesting:
-    badge: INTERESTING
-    title: Fun
-    subtitle: Hero Dungeon makes campus collaboration and practice feel alive
+    badge: THÚ VỊ
+    title: Vui vẻ
+    subtitle: Hầm ngục Anh hùng biến cộng tác và thực hành trong khuôn viên trường trở nên sống động
     features:
       dungeons:
-        label: Hero Dungeons
-        desc: Turn generation, execution, and prompt workbenches into dungeon runs
+        label: Hầm ngục Anh hùng
+        desc: Biến tạo, thực thi và bàn làm việc prompt thành các lần chạy hầm ngục
       captains:
-        label: Captain Roster
-        desc: Assign the right hero captain to each dungeon
+        label: Đội hình Đội trưởng
+        desc: Phân công đội trưởng anh hùng phù hợp cho mỗi hầm ngục
       battle:
-        label: Battle Reports
-        desc: Review XP, levels, and execution results after each push
-    description: Fun no longer depends on achievement badges. Hero Dungeon, captain rosters, prompt visuals, and battle reports turn daily AI coding practice into a workflow that feels more like a coordinated adventure for campus labs and student teams.
+        label: Báo cáo Chiến đấu
+        desc: Xem lại XP, cấp độ và kết quả thực thi sau mỗi lần push
+    description: Niềm vui không còn phụ thuộc vào huy hiệu thành tựu. Hầm ngục Anh hùng, đội hình đội trưởng, hình ảnh prompt và báo cáo chiến đấu biến thực hành mã hóa AI hàng ngày thành một quy trình cảm giác giống như một cuộc phiêu lưu phối hợp cho các phòng thí nghiệm khuôn viên trường và nhóm sinh viên.
     dungeonCards:
       proposal:
-        title: Proposal Dungeon
-        desc: OpenSpec generate / apply / archive
-        status: Captain ready
+        title: Hầm ngục Đề xuất
+        desc: OpenSpec tạo / áp dụng / lưu trữ
+        status: Đội trưởng sẵn sàng
       autotask:
-        title: AutoTask Dungeon
-        desc: Parallel fixes and batch automation
-        status: 2 instances active
+        title: Hầm ngục Tự động Nhiệm vụ
+        desc: Sửa lỗi song song và tự động hóa hàng loạt
+        status: 2 phiên bản hoạt động
       prompt:
-        title: Prompt Dungeon
-        desc: Prompt preview and style workbench
-        status: Visual sync ready
+        title: Hầm ngục Prompt
+        desc: Xem trước prompt và bàn làm việc phong cách
+        status: Đồng bộ trực quan sẵn sàng
     roster:
-      title: Current captain roster
+      title: Đội hình đội trưởng hiện tại
       heroes:
         strategist:
-          name: Spec Strategist
-          role: Proposal captain
+          name: Chiến lược gia Spec
+          role: Đội trưởng đề xuất
         runner:
-          name: Patch Runner
-          role: Execution captain
+          name: Người chạy Patch
+          role: Đội trưởng thực thi
         artist:
-          name: Prompt Artist
-          role: Visual support
+          name: Nghệ sĩ Prompt
+          role: Hỗ trợ trực quan
     battleReport:
-      title: Today's dungeon report
-      badge: Hero Battle
+      title: Báo cáo hầm ngục hôm nay
+      badge: Trận đấu Anh hùng
       metrics:
         dungeons:
           value: '4'
-          label: Dungeons pushed
+          label: Hầm ngục đã hoàn thành
         level:
           value: Lv.27
-          label: Captain level
+          label: Cấp độ đội trưởng
         xp:
           value: 12.8M
-          label: XP today
-      note: When several dungeons move in parallel, the report rolls up experience, levels, and execution outcomes into one readout.
+          label: XP hôm nay
+      note: Khi một số hầm ngục di chuyển song song, báo cáo tổng hợp kinh nghiệm, cấp độ và kết quả thực thi thành một bản đọc duy nhất.
     gallery:
       dungeons:
-        title: Dungeon map carousel
-        subtitle: 10 random visuals from the current frontend dungeon and prompt map collection.
+        title: Carousel bản đồ hầm ngục
+        subtitle: 10 hình ảnh ngẫu nhiên từ bộ sưu tập bản đồ hầm ngục và prompt frontend hiện tại.
       heroes:
-        title: Hero gallery carousel
-        subtitle: 10 random hero visuals from the current frontend hero collection.
+        title: Carousel galeri anh hùng
+        subtitle: 10 hình ảnh anh hùng ngẫu nhiên từ bộ sưu tập anh hùng frontend hiện tại.
 productOverviewVideo:
-  title: Understand Hagicode before the feature tour
+  title: Hiểu về Hagicode trước chuyến tham quan tính năng
 videoShowcase:
-  eyebrow: Supporting Product Demos
-  title: Keep exploring Hagicode in real coding sessions
-  description: After the main overview, these focused demos show how Hagicode behaves in playful and model-specific scenarios without repeating the primary product introduction.
-  supportingLabel: Focused demo
+  eyebrow: Demo Sản phẩm Bổ sung
+  title: Tiếp tục khám phá Hagicode trong các phiên mã hóa thực tế
+  description: Sau phần tổng quan chính, các demo tập trung này cho thấy Hagicode hoạt động như thế nào trong các kịch bản vui vẻ và theo mô hình cụ thể mà không lặp lại phần giới thiệu sản phẩm chính.
+  supportingLabel: Demo tập trung
 homepageVideos:
   overview:
     youtube:
-      title: Hagicode Product Overview on YouTube
-      description: The main English-language introduction to Hagicode's workflow, multi-agent execution style, and why the product feels broader than a generic AI coding chat box.
-      ctaLabel: Open on YouTube
+      title: Tổng quan Sản phẩm Hagicode trên YouTube
+      description: Giới thiệu chính bằng tiếng Anh về quy trình làm việc của Hagicode, phong cách thực thi đa agent và lý do tại sao sản phẩm cảm thấy rộng hơn một hộp trò chuyện mã hóa AI thông thường.
+      ctaLabel: Mở trên YouTube
     bilibili:
-      title: Hagicode Product Overview on Bilibili
-      description: A Bilibili-hosted version of the core product introduction for visitors whose browsers signal a Chinese-language preference or who prefer the domestic playback path.
-      ctaLabel: Open on Bilibili
+      title: Tổng quan Sản phẩm Hagicode trên Bilibili
+      description: Phiên bản giới thiệu sản phẩm cốt lõi được lưu trữ trên Bilibili cho khách truy cập có trình duyệt báo hiệu ưu tiên tiếng Trung hoặc những người thích đường dẫn phát trong nước.
+      ctaLabel: Mở trên Bilibili
   supporting:
     first:
-      title: AI Playing Games While Coding
-      description: A playful supporting clip that shows the assistant staying lively and surprising during real coding sessions instead of feeling like a dry code generator.
-      ctaLabel: Open on Bilibili
+      title: AI Chơi Game Trong Khi Mã Hóa
+      description: Một đoạn clip bổ trợ vui vẻ cho thấy trợ lý luôn lively và đáng ngạc nhiên trong các phiên mã hóa thực tế thay vì cảm giác như một trình tạo mã khô khan.
+      ctaLabel: Mở trên Bilibili
     second:
-      title: 'GPT Codex in Hagicode: Live Trial'
-      description: A focused validation run that lets prospective users judge how GPT Codex behaves inside the actual product after they've seen the main localized introduction.
-      ctaLabel: Open on Bilibili
+      title: 'GPT Codex trong Hagicode: Thử nghiệm Trực tiếp'
+      description: Một lần chạy xác thực tập trung cho phép người dùng tiềm năng đánh giá cách GPT Codex hoạt động bên trong sản phẩm thực tế sau khi đã xem phần giới thiệu địa phương hóa chính.
+      ctaLabel: Mở trên Bilibili
   hero:
-    steamAriaLabel: Open Hagicode on Steam
-    ctaGroupLabel: Primary homepage actions
+    steamAriaLabel: Mở Hagicode trên Steam
+    ctaGroupLabel: Hành động trang chủ chính
 pricing:
   docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
-  title: Editions & Pricing
-  limitTitle: Proposal concurrency rule
-  limitDescription: Free and Steam both include a 3-proposal cap. Proposals in generating, executing, and archiving all count toward the same limit. Turbo Engine DLC expands that limit to 32.
-  plusTitle: Hagicode Plus note
-  plusDescription: Hagicode Plus is the official Steam bundle that combines the main Steam edition with Turbo Engine DLC.
-  featureHeader: Feature
-  includedLabel: Included
-  notIncludedLabel: Not included
+  title: Phiên bản và Giá
+  limitTitle: Quy tắc đồng thời đề xuất
+  limitDescription: Bản miễn phí và Steam đều bao gồm giới hạn 3 đề xuất. Các đề xuất đang tạo, thực thi và lưu trữ đều tính vào cùng một giới hạn. Turbo Engine DLC mở rộng giới hạn đó lên 32.
+  plusTitle: Ghi chú về Hagicode Plus
+  plusDescription: Hagicode Plus là gói Steam chính thức kết hợp phiên bản Steam chính với Turbo Engine DLC.
+  featureHeader: Tính năng
+  includedLabel: Đã bao gồm
+  notIncludedLabel: Không bao gồm
   editions:
     desktop:
-      title: Desktop
+      title: Máy tính
     container:
       title: Container
   rows:
-    pricing: Pricing
-    allFreeFeaturesIncluded: All free features included
-    vault: Vault
-    skills: Skills
-    proposalWorkflow: Proposal workflow
-    localAchievements: Local achievements
-    allAgentCliIntegrations: All Agent CLI integrations
-    speechRecognition: Speech recognition
-    omniRouteIntegration: OmniRoute integration
-    githubIntegration: GitHub integration
-    gitManagement: Git management
-    maximumConcurrentProposals: Maximum concurrent proposals
-    copySwitchingSupport: Copy switching support
-    turboEngineAvatarPacks: Turbo Engine avatar packs
-    customAvatarUploads: Custom avatar uploads
-    customLogo: Custom logo
-    customTitle: Custom title
-    customCoAuthoredByInfo: Custom Co-Authored-By info
-    steamCloudAchievements: Steam cloud achievements
-    freeDlcSupport: Free DLC support
-    steamWorkshopSupport: Steam Workshop support
-    cloudSaveSupport: Cloud save support
+    pricing: Giá
+    allFreeFeaturesIncluded: Đã bao gồm tất cả tính năng miễn phí
+    vault: Kho lưu trữ
+    skills: Kỹ năng
+    proposalWorkflow: Quy trình đề xuất
+    localAchievements: Thành tựu cục bộ
+    allAgentCliIntegrations: Tất cả tích hợp Agent CLI
+    speechRecognition: Nhận dạng giọng nói
+    omniRouteIntegration: Tích hợp OmniRoute
+    githubIntegration: Tích hợp GitHub
+    gitManagement: Quản lý Git
+    maximumConcurrentProposals: Số đề xuất đồng thời tối đa
+    copySwitchingSupport: Hỗ trợ chuyển đổi bản sao
+    turboEngineAvatarPacks: Gói avatar Turbo Engine
+    customAvatarUploads: Tải lên avatar tùy chỉnh
+    customLogo: Logo tùy chỉnh
+    customTitle: Tiêu đề tùy chỉnh
+    customCoAuthoredByInfo: Thông tin Co-Authored-By tùy chỉnh
+    steamCloudAchievements: Thành tựu đám mây Steam
+    freeDlcSupport: Hỗ trợ DLC miễn phí
+    steamWorkshopSupport: Hỗ trợ Steam Workshop
+    cloudSaveSupport: Hỗ trợ lưu đám mây
   values:
-    free: Free
-    viewOnSteam: View on Steam
+    free: Miễn phí
+    viewOnSteam: Xem trên Steam
   dlc:
-    label: DLC & Bundles
-    title: Optional packs
+    label: DLC và Gói
+    title: Các gói tùy chọn
     actions:
-      openSteam: Open Steam
+      openSteam: Mở Steam
     preview:
-      bundlePending: Bundle visuals pending
-      productPending: Product visuals pending
+      bundlePending: Hình ảnh gói đang chờ
+      productPending: Hình ảnh sản phẩm đang chờ
     items:
       allBeauties:
-        category: Free DLC
+        category: DLC Miễn phí
         title: Hagicode - All Beauties Pack
-        price: Free
-        description: An extra cosmetics pack for Steam users.
+        price: Miễn phí
+        description: Gói mỹ phẩm bổ sung cho người dùng Steam.
         bullets:
-          - Adds 1,000 anime-girl-style avatars
-          - Leaves room for more beauty-themed content in future updates
+          - Thêm 1.000 avatar phong cách anime-girl
+          - Để lại không gian cho nội dung theo chủ đề sắc đẹp trong các bản cập nhật tương lai
       turboEngine:
-        category: Performance DLC
+        category: DLC Hiệu suất
         title: 'Hagicode: Turbo Engine DLC'
         price: Steam
-        description: You can buy this DLC on its own to expand the original proposal concurrency cap, unlock copy switching, add five avatar packs with 10 standalone avatars each, enable custom avatar uploads, customize the top-left logo and title, and align AI-generated commit trailers with your own Co-Authored-By naming rules. We will usually highlight a bundled purchase option called Hagicode Plus so the overall purchase price stays lower. Please check our store page for the latest changes.
+        description: Bạn có thể mua DLC này riêng lẻ để mở rộng giới hạn đồng thời đề xuất ban đầu, mở khóa chuyển đổi bản sao, thêm năm gói avatar với 10 avatar độc lập mỗi gói, bật tải lên avatar tùy chỉnh, tùy chỉnh logo và tiêu đề góc trên bên trái, và căn chỉnh các trailer commit do AI tạo ra với quy tắc đặt tên Co-Authored-By của riêng bạn. Chúng tôi thường làm nổi bật tùy chọn mua gói được gọi là Hagicode Plus để giá mua tổng thể thấp hơn. Vui lòng kiểm tra trang cửa hàng của chúng tôi để biết các thay đổi mới nhất.
         bullets:
-          - Supports custom top-left logos and titles
-          - Includes five avatar packs with 10 selectable avatars in each pack
-          - Supports custom avatar uploads
-          - Lets teams customize the AI Co-Authored-By signature for commit workflows
-          - Unlocks copy and wording switching support
-          - Expands the maximum concurrent proposal limit to 32
+          - Hỗ trợ logo và tiêu đề góc trên bên trái tùy chỉnh
+          - Bao gồm năm gói avatar với 10 avatar có thể chọn trong mỗi gói
+          - Hỗ trợ tải lên avatar tùy chỉnh
+          - Cho phép các nhóm tùy chỉnh chữ ký AI Co-Authored-By cho quy trình commit
+          - Mở khóa hỗ trợ chuyển đổi bản sao và cách diễn đạt
+          - Mở rộng giới hạn đồng thời đề xuất tối đa lên 32
       hagicodePlus:
-        category: Bundle
+        category: Gói Bundle
         title: Hagicode Plus
         price: Steam
-        description: The official Steam bundle that combines the Hagicode base edition with Turbo Engine DLC in one purchase path.
+        description: Gói Steam chính thức kết hợp phiên bản cơ bản Hagicode với Turbo Engine DLC trong một đường dẫn mua hàng duy nhất.
         bullets:
-          - Bundles the main Steam edition and Turbo Engine DLC together
-          - Keeps the higher 32-proposal concurrency upgrade attached to the bundle path
-          - Works as the clearest purchase entry when you want the full Steam setup at once
+          - Đóng gói phiên bản Steam chính và Turbo Engine DLC cùng nhau
+          - Giữ nâng cấp đồng thời 32 đề xuất cao hơn gắn liền với đường dẫn gói
+          - Hoạt động như điểm vào mua hàng rõ ràng nhất khi bạn muốn thiết lập Steam đầy đủ cùng lúc
       sponsor:
-        category: Supporter DLC
+        category: DLC Nhà tài trợ
         title: Hagicode - Sponsor Pack
         price: Steam
-        description: If you think Hagicode is genuinely excellent and want to provide direct financial support, buying Sponsor Pack gives the project more fuel and helps us keep it running for the long term.
+        description: Nếu bạn nghĩ Hagicode thực sự xuất sắc và muốn cung cấp hỗ trợ tài chính trực tiếp, việc mua Sponsor Pack cung cấp thêm nhiên liệu cho dự án và giúp chúng tôi duy trì hoạt động trong dài hạn.
         bullets:
-          - One exclusive dark theme
-          - One exclusive light theme
-          - One exclusive Steam achievement
+          - Một chủ đề tối độc quyền
+          - Một chủ đề sáng độc quyền
+          - Một thành tựu Steam độc quyền
 workflowBoard:
   titleLines:
-    - Mainstream Agents Supported
-    - 10x Parallel Management Efficiency
-    - OpenSpec Reduces Hallucinations
-  taskLabel: Task
-  headerSummary: Task / Agent
+    - Hỗ trợ Các Agent Phổ biến
+    - Hiệu quả Quản lý Song song 10x
+    - OpenSpec Giảm Ảo giác
+  taskLabel: Nhiệm vụ
+  headerSummary: Nhiệm vụ / Agent
   steps:
-    - Ideate
-    - Propose
-    - Execute
-    - Archive
+    - Lên ý tưởng
+    - Đề xuất
+    - Thực thi
+    - Lưu trữ
   activeStates:
-    - Ideating
-    - Proposing
-    - Executing
-    - Archiving
-  completedState: Complete
+    - Đang lên ý tưởng
+    - Đang đề xuất
+    - Đang thực thi
+    - Đang lưu trữ
+  completedState: Hoàn thành
   metrics:
-    completed: Completed Tasks
-    efficiency: Live Efficiency
-    serialTime: Equivalent Serial Time
-    elapsedTime: Elapsed Time
-    formula: Efficiency = equivalent serial work / natural elapsed time
-    serialHint: relative to a single serial worker
+    completed: Nhiệm vụ Hoàn thành
+    efficiency: Hiệu suất Trực tiếp
+    serialTime: Thời gian Tuần tự Tương đương
+    elapsedTime: Thời gian Đã trôi qua
+    formula: Hiệu suất = công việc tuần tự tương đương / thời gian tự nhiên đã trôi qua
+    serialHint: so với một worker tuần tự đơn lẻ

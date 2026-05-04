@@ -1,125 +1,125 @@
 container:
-  title: Hagicode Container - Container Deployment
-  description: Deploy Hagicode via Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and auto updates.
+  title: Hagicode Container - Контейнерно внедряване
+  description: Внедрете Hagicode чрез Docker Compose Builder. Проста конфигурация, готова за използване. Поддържа множество източници на изображения и автоматични актуализации.
   hero:
-    badge: Container
+    badge: Контейнер
     title: Hagicode Container
-    tagline: Deploy quickly with Docker Compose Builder, simple configuration, ready to use
-    value1: Visual configuration, no coding required
-    value2: Environment isolation, data security
-    value3: One-click deployment, fast startup
-    ctaButton: Deploy with Docker Compose Builder
+    tagline: Бързо внедряване с Docker Compose Builder, проста конфигурация, готова за използване
+    value1: Визуална конфигурация, не е необходимо кодиране
+    value2: Изолация на средата, сигурност на данните
+    value3: Внедряване с един клик, бърз старт
+    ctaButton: Внедрете с Docker Compose Builder
     features:
-      isolation: Environment Isolation
-      oneClick: One-Click Deployment
-      fastStart: Fast Startup
+      isolation: Изолация на средата
+      oneClick: Внедряване с един клик
+      fastStart: Бърз старт
   features:
-    title: Why Choose Container Deployment?
+    title: Защо да изберете контейнерно внедряване?
     isolation:
-      title: Environment Isolation
-      description: Containerized deployment avoids dependency conflicts, doesn't affect system environment, keeps system clean
+      title: Изолация на средата
+      description: Контейнеризираното внедряване избягва конфликти на зависимости, не влияе на системната среда, поддържа системата чиста
     simple:
-      title: Simple Configuration
-      description: Use Docker Compose Builder for visual configuration, no need to write complex scripts
+      title: Проста конфигурация
+      description: Използвайте Docker Compose Builder за визуална конфигурация, не е необходимо да пишете сложни скриптове
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports x86_64 architecture, suitable for various servers and cloud platforms
+      title: Кросплатформена поддръжка
+      description: Поддържа x86_64 архитектура, подходяща за различни сървъри и облачни платформи
     persistent:
-      title: Data Persistence
-      description: Supports Volume mounting, secure and reliable data, no data loss on container restart
+      title: Постоянство на данните
+      description: Поддържа монтиране на Volume, сигурни и надеждни данни, без загуба на данни при рестартиране на контейнера
     autoUpdate:
-      title: Auto Updates
-      description: Supports watchtower for automatic updates, easily get the latest version
+      title: Автоматични актуализации
+      description: Поддържа watchtower за автоматични актуализации, лесно получаване на най-новата версия
     productionReady:
-      title: Production Ready
-      description: Designed for production environments, supports high availability and horizontal scaling
+      title: Готово за производство
+      description: Проектирано за производствени среди, поддържа висока наличност и хоризонтално мащабиране
   builder:
     title: Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
+    subtitle: Най-простият и препоръчителен метод за контейнерно внедряване
     visual:
-      title: Visual Configuration
-      description: Configure all parameters through a friendly Web interface, no need to manually edit YAML files
+      title: Визуална конфигурация
+      description: Конфигурирайте всички параметри чрез приятелски уеб интерфейс, не е необходимо ръчно редактиране на YAML файлове
     generate:
-      title: One-Click Configuration Generation
-      description: Automatically generate complete docker-compose.yml files with best practice configurations
+      title: Генериране на конфигурация с един клик
+      description: Автоматично генерирайте пълни docker-compose.yml файлове с конфигурации по най-добри практики
     deploy:
-      title: Fast Deployment
-      description: One-click download configuration files and start services, complete deployment in minutes
+      title: Бързо внедряване
+      description: Изтеглете конфигурационни файлове с един клик и стартирайте услуги, завършете внедряването за минути
     secure:
-      title: Secure and Reliable
-      description: Built-in security best practices, automatically configures data volumes and restart policies
-    ctaButton: Go to Docker Compose Builder
+      title: Сигурно и надеждно
+      description: Вградени най-добри практики за сигурност, автоматично конфигурира томове с данни и правила за рестартиране
+    ctaButton: Отидете на Docker Compose Builder
   mirrors:
-    title: Image Source Selection
-    description: Choose the most suitable image source based on your network environment and location
+    title: Избор на източник на изображения
+    description: Изберете най-подходящия източник на изображения въз основа на вашата мрежова среда и местоположение
     dockerHub: Docker Hub
-    dockerHubDesc: The world's largest container image registry, suitable for international network users
+    dockerHubDesc: Най-големият в света регистър за контейнерни изображения, подходящ за потребители с международна мрежа
     dockerHubCmd: newbe36524/hagicode:0
     azure: Azure ACR
-    azureDesc: Microsoft Azure's image service, faster access from China
+    azureDesc: Услуга за изображения на Microsoft Azure, по-бърз достъп от Китай
     azureCmd: hagicode.azurecr.io/hagicode:0
     aliyun: Aliyun ACR
-    aliyunDesc: Aliyun's domestic image acceleration, recommended for users in mainland China
+    aliyunDesc: Вътрешно ускорение на изображения на Aliyun, препоръчително за потребители в континентален Китай
     aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
   faq:
-    title: FAQ
+    title: ЧЗВ
     q1:
-      question: What's the difference between Container and Desktop versions?
-      intro: 'Both versions have their advantages. You can choose based on your usage scenario:'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      containerTitle: Container Version
-      container1: Can be deployed on servers, supports remote access
-      container2: Environment isolation, doesn't affect system environment
-      container3: Better suited for team collaboration and production environments
-      container4: Supports automated deployment and horizontal scaling
+      question: Каква е разликата между контейнерната и десктоп версиите?
+      intro: 'И двете версии имат своите предимства. Можете да изберете въз основа на вашия сценарий на използване:'
+      desktopTitle: Десктоп версия
+      desktop1: Работи локално на вашия компютър, по-лека
+      desktop2: Не е необходима конфигурация на сървър, готова за използване веднага
+      desktop3: Подходяща за индивидуални разработчици и леки сценарии на използване
+      desktop4: Всички данни напълно локализирани
+      containerTitle: Контейнерна версия
+      container1: Може да се внедрява на сървъри, поддържа отдалечен достъп
+      container2: Изолация на средата, не влияе на системната среда
+      container3: По-подходяща за екипно сътрудничество и производствени среди
+      container4: Поддържа автоматизирано внедряване и хоризонтално мащабиране
     q2:
-      question: What is Docker Compose Builder?
-      intro: 'Docker Compose Builder is our visual configuration tool that helps you:'
-      point1: Configure all container parameters through a Web interface
-      point2: Automatically generate docker-compose.yml files
-      point3: Built-in best practices and security configurations
-      point4: One-click download and start services
-      note: No need to manually write complex YAML configurations. Even Docker beginners can deploy easily.
+      question: Какво е Docker Compose Builder?
+      intro: 'Docker Compose Builder е нашият визуален конфигурационен инструмент, който ви помага:'
+      point1: Да конфигурирате всички контейнерни параметри чрез уеб интерфейс
+      point2: Да генерирате автоматично docker-compose.yml файлове
+      point3: Вградени най-добри практики и конфигурации за сигурност
+      point4: Изтегляне и стартиране на услуги с един клик
+      note: Не е необходимо ръчно да пишете сложни YAML конфигурации. Дори начинаещите в Docker могат да внедрят лесно.
     q3:
-      question: Which system architectures does the container version support?
-      answer: Hagicode container images currently support <strong>x86_64 (amd64)</strong> architecture, suitable for most servers and PCs.
-      note: Docker will automatically select the appropriate architecture for your system when pulling images.
+      question: Кои системни архитектури поддържа контейнерната версия?
+      answer: Контейнерните изображения на Hagicode в момента поддържат <strong>x86_64 (amd64)</strong> архитектура, подходяща за повечето сървъри и ПК.
+      note: Docker автоматично ще избере подходящата архитектура за вашата система при изтегляне на изображения.
     q4:
-      question: How to update the container?
-      intro: 'When using Docker Compose deployment, updating is very simple:'
+      question: Как да актуализирам контейнера?
+      intro: 'Когато използвате Docker Compose внедряване, актуализирането е много просто:'
       code: |-
         docker-compose pull
         docker-compose up -d
-      watchtower: Or use Watchtower for automatic updates.
+      watchtower: Или използвайте Watchtower за автоматични актуализации.
     q5:
-      question: How to configure data persistence?
-      intro: 'Docker Compose Builder automatically configures data volumes. By default, your data will be stored in Docker Volumes, ensuring:'
-      point1: Data is not lost when containers are deleted
-      point2: Data is preserved during container upgrades
-      point3: Easy backup and recovery
+      question: Как да конфигурирам постоянство на данните?
+      intro: 'Docker Compose Builder автоматично конфигурира томове с данни. По подразбиране вашите данни ще се съхраняват в Docker Volumes, осигурявайки:'
+      point1: Данните не се губят при изтриване на контейнерите
+      point2: Данните се запазват при надграждане на контейнерите
+      point3: Лесно архивиране и възстановяване
     q6:
-      question: What to do if container startup fails?
-      intro: 'Steps to troubleshoot container startup failure:'
+      question: Какво да направя, ако стартът на контейнера не успее?
+      intro: 'Стъпки за отстраняване на неизправности при старт на контейнер:'
       step1:
-        title: 'Check container status:'
+        title: 'Проверете състоянието на контейнера:'
         code: docker-compose ps
       step2:
-        title: 'Check container logs:'
+        title: 'Проверете дневниците на контейнера:'
         code: docker-compose logs hagicode
       step3:
-        title: 'Check port occupancy:'
-        desc: 'If your service port is 3000, use this command to check:'
+        title: 'Проверете заетостта на портовете:'
+        desc: 'Ако портът на вашата услуга е 3000, използвайте тази команда за проверка:'
         code: netstat -tlnp | grep 3000
-        solution: 'If the port is occupied, you can:'
-        solution1: Stop the process occupying the port
-        solution2: Or configure a different port in Docker Compose Builder
-      help: If the issue persists, please check the detailed documentation or contact technical support.
+        solution: 'Ако портът е зает, можете:'
+        solution1: Да спрете процеса, който заема порта
+        solution2: Или да конфигурирате различен порт в Docker Compose Builder
+      help: Ако проблемът продължава, моля, проверете подробната документация или се свържете с техническата поддръжка.
   cta:
-    title: Start Using Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
-    button: Go to Deployment Guide
-    github: GitHub Repository
+    title: Започнете да използвате Docker Compose Builder
+    subtitle: Най-простият и препоръчителен метод за контейнерно внедряване
+    button: Отидете на ръководството за внедряване
+    github: GitHub хранилище

@@ -1,24 +1,24 @@
 page:
-  seoTitle: About the HagiCode Team
-  seoDescription: Meet the HagiCode team and browse official stores, group channels, content platforms, and scannable cards from the latest bundled about snapshot.
-  title: Grow through exchange
+  seoTitle: Про команду HagiCode
+  seoDescription: Ознайомтеся з командою HagiCode та перегляньте офіційні магазини, групові канали, контент-платформи та скановані картки з останнього знімка about.
+  title: Зростання через обмін
   sections:
-    store: Store
-    community: Grow through exchange
-    content: Follow where the team publishes
+    store: Магазин
+    community: Зростання через обмін
+    content: Підписуйтесь на платформи, де публікує команда
   kindLabels:
-    store: Store
-    link: Channel
-    contact: Handle
-    qr: QR Card
-    image: Image Card
-  contactFallbackDetail: Use this handle in the app
-  comboLabel: Channel + QR
+    store: Магазин
+    link: Канал
+    contact: Ідентифікатор
+    qr: QR-картка
+    image: Картка зображення
+  contactFallbackDetail: Використовуйте цей ідентифікатор у додатку
+  comboLabel: Канал + QR
   platformBadges:
-    steam: Official store
-    youtube: Official channel
+    steam: Офіційний магазин
+    youtube: Офіційний канал
   genericLinkText:
-    link: Open page
-    contact: Open profile
-    qr: Open QR card
-    image: Open image
+    link: Відкрити сторінку
+    contact: Відкрити профіль
+    qr: Відкрити QR-картку
+    image: Відкрити зображення

@@ -1,190 +1,190 @@
 navbar:
-  home: Home
-  docs: Docs
+  home: Domů
+  docs: Dokumentace
   blog: Blog
-  about: About
-  desktop: Desktop App
-  container: Container
-  support: Get Support
-  mobileOpenMenu: Open menu
-  mobileCloseMenu: Close menu
-  mobileNav: Mobile site navigation
+  about: O nás
+  desktop: Desktopová aplikace
+  container: Kontejner
+  support: Získat podporu
+  mobileOpenMenu: Otevřít menu
+  mobileCloseMenu: Zavřít menu
+  mobileNav: Mobilní navigace webu
 themeToggle:
-  theme: Theme
-  darkMode: Switch to dark mode
-  lightMode: Switch to light mode
-  lunarNewYearMode: Switch to Lunar New Year theme
+  theme: Téma
+  darkMode: Přepnout na tmavý režim
+  lightMode: Přepnout na světlý režim
+  lunarNewYearMode: Přepnout na téma Lunárního nového roku
 languageSwitcher:
-  label: Language
-  dialogTitle: Select language
-  currentLocaleLabel: Current language
-  close: Close language chooser
-  selectedState: Current
+  label: Jazyk
+  dialogTitle: Vyberte jazyk
+  currentLocaleLabel: Aktuální jazyk
+  close: Zavřít výběr jazyka
+  selectedState: Aktuální
   switchToChinese: 切换到中文
-  switchToEnglish: Switch to English
+  switchToEnglish: Přepnout do angličtiny
 videoPlayer:
-  play: Play
-  pause: Pause
-  fullscreen: Fullscreen
+  play: Přehrát
+  pause: Pozastavit
+  fullscreen: Celá obrazovka
 footer:
-  copyright: © {year} Hagicode. All rights reserved.
-  product: Product
-  quickLinks: Quick Links
-  community: Community
-  productInfo: Hagicode Introduction
-  downloadClient: Download Client
-  productDocs: Product Docs
-  blogPosts: Blog Posts
-  rssSubscribe: RSS Subscribe
+  copyright: © {year} Hagicode. Všechna práva vyhrazena.
+  product: Produkt
+  quickLinks: Rychlé odkazy
+  community: Komunita
+  productInfo: Úvod do Hagicode
+  downloadClient: Stáhnout klienta
+  productDocs: Dokumentace produktu
+  blogPosts: Příspěvky na blogu
+  rssSubscribe: RSS odběr
   github: GitHub
-  issueFeedback: Issue Feedback
-  contactEmail: Contact Email
-  qqGroup: QQ Group 610394020
-  icpLabel: View ICP Filing Information
-  gonganLabel: View Public Security Filing Information
-  visitPage: Visit {title} page
-  discord: Discord Community
-  costCalculator: AI Replacement Calculator
+  issueFeedback: Zpětná vazba na problémy
+  contactEmail: Kontaktní e-mail
+  qqGroup: QQ Skupina 610394020
+  icpLabel: Zobrazit ICP registraci
+  gonganLabel: Zobrazit registraci veřejné bezpečnosti
+  visitPage: Navštivte stránku {title}
+  discord: Discord komunita
+  costCalculator: Kalkulačka nahrazení AI
   steam: Steam
-  relatedSitesTitle: Related Sites
+  relatedSitesTitle: Související stránky
 socialProof:
   highlights:
-    multiAgent: Multi-Agent Parallel
-    multiAgentDesc: Claude Code, Codex, and others can drive multiple instances at once
-    privacy: Privacy First
-    privacyDesc: Local deployment, no code upload
-    openspec: OpenSpec Orchestration
-    openspecDesc: Standardized proposal, execution, and archive flow
-    heroDungeons: Hero Dungeon Workflow
-    heroDungeonsDesc: Dungeons, captains, and battle reports close the loop
+    multiAgent: Multi-Agent paralelní zpracování
+    multiAgentDesc: Claude Code, Codex a další mohou řídit více instancí najednou
+    privacy: Soukromí na prvním místě
+    privacyDesc: Lokální nasazení, bez nahrávání kódu
+    openspec: OpenSpec orchestrace
+    openspecDesc: Standardizovaný průběh návrhu, provedení a archivace
+    heroDungeons: Hero Dungeon pracovní postup
+    heroDungeonsDesc: Kobky, kapitáni a bojové zprávy uzavírají smyčku
   badges:
     claude: Claude AI
-    claudeDesc: Powered by
+    claudeDesc: Poháněno
     opensource: Open Source
     opensourceDesc: GitHub
-    ssl: SSL Secure
-    sslDesc: Secure Encryption
+    ssl: SSL zabezpečení
+    sslDesc: Bezpečné šifrování
 installCTA:
-  button: Install HagiCode
+  button: Nainstalovat Hagicode
 activityMetrics:
-  title: People Are Using It
-  description: Community keeps growing, thanks to every contributor
+  title: Lidé to používají
+  description: Komunita neustále roste, díky každému přispěvateli
   dockerHub: Docker Hub
-  pullCount: Pull Count
-  activeUsers: Active Users
-  activeSessions: Active Sessions
-  recentDays: Last 3 days
+  pullCount: Počet stažení
+  activeUsers: Aktivní uživatelé
+  activeSessions: Aktivní relace
+  recentDays: Poslední 3 dny
   emptyState:
-    title: Data Coming Soon
-    description: Activity data will be displayed here when available. Stay tuned for community growth!
-  imageError: Image failed to load
+    title: Data přijdou brzy
+    description: Data o aktivitě budou zobrazena zde, jakmile budou k dispozici. Sledujte růst komunity!
+  imageError: Obrázek se nepodařilo načíst
   starHistory:
-    title: GitHub Star History
-    value: Live
-    description: Real-time community momentum
-    alt: Star history chart for the HagiCode site repository
-    cta: View full chart
+    title: Historie hvězdiček na GitHubu
+    value: Živě
+    description: Dynamika komunity v reálném čase
+    alt: Graf historie hvězdiček pro repozitář HagiCode stránky
+    cta: Zobrazit celý graf
 showcase:
-  title: Latest Product Views
-  description: From proposal execution and session boards to token analytics, workspace management, and achievement progress, the homepage now uses the latest curated screenshots maintained with the docs site.
+  title: Nejnovější pohledy na produkt
+  description: Od provádění návrhů a panelů relací přes tokenovou analytiku, správu pracovních prostor a postup v úspěších — domovská stránka nyní používá nejnovější kurátorsky vybrané snímky spravované společně s dokumentačním webem.
   controls:
-    previous: Previous
-    next: Next
-    current: Featured view
-    railLabel: Product screenshot navigation
-    selectPrefix: 'Switch to: '
-    activeState: Showing now
-    previewState: Preview
-    imageUnavailable: Image unavailable
-    openFullscreen: 'Open fullscreen: '
-    openFullscreenHint: Click to enlarge
-    closeFullscreen: Close fullscreen
+    previous: Předchozí
+    next: Další
+    current: Představený pohled
+    railLabel: Navigace snímků produktu
+    selectPrefix: 'Přepnout na: '
+    activeState: Zobrazeno nyní
+    previewState: Náhled
+    imageUnavailable: Obrázek není k dispozici
+    openFullscreen: 'Otevřít na celou obrazovku: '
+    openFullscreenHint: Klikněte pro zvětšení
+    closeFullscreen: Zavřít celou obrazovku
   screenshots:
     proposalWorkflow:
-      title: Proposal execution overview
-      description: Keep the workflow stage, execution result, and session context in one screen so teams can see exactly where a change stands before moving on.
-      alt: HagiCode proposal execution screenshot showing workflow stages, execution result, and session sidebar
+      title: Přehled provádění návrhů
+      description: Udržujte fázi pracovního postupu, výsledek provedení a kontext relace na jedné obrazovce, aby týmy přesně viděly, kde se nachází změna, než budou pokračovat.
+      alt: Snímek obrazovky provádění návrhů HagiCode zobrazující fáze pracovního postupu, výsledek provedení a postranní panel relace
     sessionBoard:
-      title: Session board and dungeon planning
-      description: Pending, in-progress, and archived sessions stay visible beside a fantasy task panel so parallel agent work is easy to scan at a glance.
-      alt: HagiCode session board screenshot showing pending, in-progress, and archived columns beside a fantasy task panel
+      title: Panel relací a plánování kobek
+      description: Čekající, probíhající a archivované relace zůstávají viditelné vedle fantasy panelu úkolů, takže paralelní práce agentů je snadno přehledná na první pohled.
+      alt: Snímek obrazovky panelu relací HagiCode zobrazující čekající, probíhající a archivované sloupce vedle fantasy panelu úkolů
     tokenAnalytics:
-      title: Real-time token analytics
-      description: Watch throughput, recent API activity, and total usage in one metrics surface so cost and pacing stay controllable during parallel execution.
-      alt: HagiCode token analytics screenshot showing throughput, recent API activity, and total usage
+      title: Analýza tokenů v reálném čase
+      description: Sledujte propustnost, nedávnou API aktivitu a celkové využití na jedné metrické ploše, aby náklady a tempo zůstaly kontrolovatelné během paralelního provádění.
+      alt: Snímek obrazovky tokenové analytiky HagiCode zobrazující propustnost, nedávnou API aktivitu a celkové využití
     workspaceManagement:
-      title: Workspace and vault management
-      description: Manage user vaults, system vaults, and code-server entry points from one control surface built for shared environments and fast maintenance.
-      alt: HagiCode workspace management screenshot showing user vaults, system vaults, and code-server actions
+      title: Správa pracovních prostor a trezorů
+      description: Spravujte uživatelské trezory, systémové trezory a vstupní body code-server z jedné řídicí plochy navržené pro sdílená prostředí a rychlou údržbu.
+      alt: Snímek obrazovky správy pracovních prostor HagiCode zobrazující uživatelské trezory, systémové trezory a akce code-server
     achievementProgress:
-      title: Achievement and growth progress
-      description: Daily progress, global growth, and lifecycle metrics roll into one dashboard so long-running adoption feels measurable instead of abstract.
-      alt: HagiCode achievement dashboard screenshot showing daily progress, global growth, and lifecycle metrics
+      title: Postup úspěchů a růstu
+      description: Denní postup, globální růst a metriky životního cyklu se spojují do jednoho panelu, takže dlouhodobé přijetí působí měřitelně místo abstraktně.
+      alt: Snímek obrazovky panelu úspěchů HagiCode zobrazující denní postup, globální růst a metriky životního cyklu
 installOptions:
-  sectionTitle: Choose Your Installation Method
-  sectionDescription: Choose the most suitable installation method based on your usage scenario
+  sectionTitle: Vyberte si způsob instalace
+  sectionDescription: Vyberte nejvhodnější způsob instalace na základě vašeho scénáře použití
   desktop:
-    title: Desktop App
-    description: Runs locally on your computer, lightweight and convenient, ready to use out of the box
+    title: Desktopová aplikace
+    description: Běží lokálně na vašem počítači, lehká a pohodlná, připravená k okamžitému použití
     features:
-      - Local execution, complete data privacy
-      - Supports Windows, macOS, and Linux
-      - No server configuration needed
-      - Auto updates, stay with latest version
-      - Suitable for individual developers
-    ctaText: Download Desktop App
+      - Lokální provádění, úplné soukromí dat
+      - Podporuje Windows, macOS a Linux
+      - Není nutná konfigurace serveru
+      - Automatické aktualizace, vždy nejnovější verze
+      - Vhodné pro individuální vývojáře
+    ctaText: Stáhnout desktopovou aplikaci
   container:
-    title: Container Version
-    description: Deploy on servers, supports remote access, suitable for team collaboration
+    title: Kontejnerová verze
+    description: Nasazení na serverech, podporuje vzdálený přístup, vhodné pro týmovou spolupráci
     features:
-      - Supports x86_64 architecture
-      - Environment isolation, doesn't affect system
-      - Supports Docker Compose Builder
-      - Data persistence, secure and reliable
-      - Suitable for production environments
-    ctaText: Container Deployment Guide
-  badge: Recommended
+      - Podporuje architekturu x86_64
+      - Izolace prostředí, neovlivňuje systém
+      - Podporuje Docker Compose Builder
+      - Perzistence dat, bezpečné a spolehlivé
+      - Vhodné pro produkční prostředí
+    ctaText: Průvodce nasazením kontejneru
+  badge: Doporučeno
 desktopHero:
-  loading: Loading version information...
+  loading: Načítání informací o verzi...
   error:
-    title: Cannot load version information
-    gotoDownload: Go to download page
-    redirectingToHistory: Unable to load desktop packages here. Redirecting to the Index version history...
+    title: Nelze načíst informace o verzi
+    gotoDownload: Přejít na stránku stahování
+    redirectingToHistory: Nepodařilo se načíst desktopové balíčky. Přesměrování na historii verzí Index...
   badge: Desktop
   title: Hagicode Desktop
-  tagline: Localized AI code assistant, privacy protection, enhanced efficiency
+  tagline: Lokalizovaný AI asistent pro kódování, ochrana soukromí, zvýšená efektivita
   valuePoints:
-    local: 100% local execution, code never uploaded
-    fast: Millisecond-level response, no waiting
-    oneClick: One-click installation, ready to use
+    local: 100% lokální provádění, kód se nikdy nenahrává
+    fast: Odezva na úrovni milisekund, bez čekání
+    oneClick: Instalace jedním kliknutím, připraveno k použití
   download:
-    ariaLabel: Download {platform} version
-    recommended: Recommended
-    unknown: Unknown error
-    openVersionHistory: Open version history
-    openContainerPage: Open Container page
-    macNotice: 'For macOS users: the Container edition is recommended at the moment.'
-  selectOtherVersions: Select other versions of {platform}
-  versionInfo: 'Current version: {version}'
+    ariaLabel: Stáhnout verzi pro {platform}
+    recommended: Doporučeno
+    unknown: Neznámá chyba
+    openVersionHistory: Otevřít historii verzí
+    openContainerPage: Otevřít stránku kontejnerů
+    macNotice: 'Pro uživatele macOS: v tuto chvíli je doporučena kontejnerová verze.'
+  selectOtherVersions: Vyberte jiné verze pro {platform}
+  versionInfo: 'Aktuální verze: {version}'
   testVersion: ' (Beta)'
   channels:
-    stable: Stable
+    stable: Stabilní
     beta: Beta
   betaWarning:
-    title: Beta Version Warning
-    description: This is a beta version and may be unstable. Recommended for testing only. Please use the stable version for production environments.
+    title: Varování o beta verzi
+    description: Toto je beta verze a může být nestabilní. Doporučeno pouze pro testování. Pro produkční prostředí prosím používejte stabilní verzi.
   features:
-    privacy: 🔒 Privacy Protection
-    fast: ⚡ Fast Response
-    crossPlatform: 💻 Cross-Platform Support
+    privacy: 🔒 Ochrana soukromí
+    fast: ⚡ Rychlá odezva
+    crossPlatform: 💻 Multiplatformní podpora
   steam:
-    description: The Steam edition supports Steam features including Cloud Saves and the Workshop. Click to open on Steam.
-    ariaLabel: Open Hagicode on Steam
+    description: Verze na Steam podporuje funkce Steam včetně Cloud Saves a Workshop. Klikněte pro otevření na Steam.
+    ariaLabel: Otevřít Hagicode na Steam
   downloadActions:
     torrent: Torrent
   assetTypes:
-    windowsSetup: Installer
-    windowsPortable: Portable
+    windowsSetup: Instalátor
+    windowsPortable: Přenosná
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
     macosIntel: Intel
@@ -192,37 +192,37 @@ desktopHero:
     linuxArm64AppImage: AppImage (ARM64)
     linuxTarball: Tarball (x64)
     linuxArm64Tarball: Tarball (ARM64)
-    source: Source code
-    other: Other
+    source: Zdrojový kód
+    other: Jiné
 productHuntBadge:
-  eyebrow: Trusted by early adopters
-  title: See Hagicode on Product Hunt
-  linkLabel: Open Hagicode on Product Hunt
-  cta: View the Product Hunt listing
+  eyebrow: Důvěra prvních uživatelů
+  title: Zobrazit Hagicode na Product Hunt
+  linkLabel: Otevřít Hagicode na Product Hunt
+  cta: Zobrazit stránku na Product Hunt
 promote:
-  badgeFallback: Promoted
-  closeLabel: Dismiss promotion
-  ariaLabel: Promotion
+  badgeFallback: Propagováno
+  closeLabel: Zavřít propagaci
+  ariaLabel: Propagace
 pageMeta:
   home:
-    title: Hagicode - Smart · Efficient · Fun AI Coding Assistant
-    description: Redefine coding with AI. OpenSpec workflows, multi-agent multi-instance execution, and Hero Dungeon gameplay make building faster and more engaging
+    title: Hagicode - Chytrý · Efektivní · Zábavný AI asistent pro kódování
+    description: Předefinujte kódování pomocí AI. Pracovní postupy OpenSpec, multi-agent multi-instance provádění a Hero Dungeon hratelnost dělají tvorbu rychlejší a poutavější
   desktop:
-    title: Hagicode Desktop - Download
-    description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
-    runtimeFallbackLabel: Fallback
-    runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
+    title: Hagicode Desktop - Stažení
+    description: Stáhněte si Hagicode Desktop, lokalizovaného AI asistenta pro kódování. Podporuje Windows, macOS a Linux. Ochrana soukromí, rychlá odezva.
+    runtimeFallbackLabel: Záložní
+    runtimeFallbackCopy: 'Pokud se balíčky nepodaří načíst, tato stránka přesměruje na kanonickou historii verzí Index Desktop:'
   container:
-    title: Hagicode Container - Docker Deployment
-    description: Deploy Hagicode with Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and automatic updates.
-    faqHelp: If the issue persists, please check the <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">detailed documentation</a> or contact technical support.
+    title: Hagicode Container - Docker nasazení
+    description: Nasaďte Hagicode pomocí Docker Compose Builder. Jednoduchá konfigurace, připraveno k použití. Podporuje více zdrojů obrazů a automatické aktualizace.
+    faqHelp: Pokud problém přetrvává, zkontrolujte prosím <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">podrobnou dokumentaci</a> nebo kontaktujte technickou podporu.
 commonActions:
-  retry: Retry
-  unavailable: Unavailable
-  noExtraSource: No extra source
-  moreDownloads: More downloads
-  moreVersions: More versions
-  package: Package
-  platform: Platform
-  china: China
-  default: Default
+  retry: Zkusit znovu
+  unavailable: Nedostupné
+  noExtraSource: Žádný další zdroj
+  moreDownloads: Více stažení
+  moreVersions: Více verzí
+  package: Balíček
+  platform: Platforma
+  china: Čína
+  default: Výchozí

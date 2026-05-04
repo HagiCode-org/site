@@ -1,190 +1,190 @@
 navbar:
-  home: Home
-  docs: Docs
-  blog: Blog
-  about: About
-  desktop: Desktop App
-  container: Container
-  support: Get Support
-  mobileOpenMenu: Open menu
-  mobileCloseMenu: Close menu
-  mobileNav: Mobile site navigation
+  home: Головна
+  docs: Документація
+  blog: Блог
+  about: Про нас
+  desktop: Додаток для ПК
+  container: Контейнер
+  support: Отримати підтримку
+  mobileOpenMenu: Відкрити меню
+  mobileCloseMenu: Закрити меню
+  mobileNav: Мобільна навігація сайту
 themeToggle:
-  theme: Theme
-  darkMode: Switch to dark mode
-  lightMode: Switch to light mode
-  lunarNewYearMode: Switch to Lunar New Year theme
+  theme: Тема
+  darkMode: Перемкнути на темний режим
+  lightMode: Перемкнути на світлий режим
+  lunarNewYearMode: Перемкнути на тему Місячного Нового року
 languageSwitcher:
-  label: Language
-  dialogTitle: Select language
-  currentLocaleLabel: Current language
-  close: Close language chooser
-  selectedState: Current
+  label: Мова
+  dialogTitle: Виберіть мову
+  currentLocaleLabel: Поточна мова
+  close: Закрити вибір мови
+  selectedState: Поточна
   switchToChinese: 切换到中文
-  switchToEnglish: Switch to English
+  switchToEnglish: Перемкнути на англійську
 videoPlayer:
-  play: Play
-  pause: Pause
-  fullscreen: Fullscreen
+  play: Відтворити
+  pause: Пауза
+  fullscreen: Повноекранний режим
 footer:
-  copyright: © {year} Hagicode. All rights reserved.
-  product: Product
-  quickLinks: Quick Links
-  community: Community
-  productInfo: Hagicode Introduction
-  downloadClient: Download Client
-  productDocs: Product Docs
-  blogPosts: Blog Posts
-  rssSubscribe: RSS Subscribe
+  copyright: '© {year} Hagicode. Усі права захищені.'
+  product: Продукт
+  quickLinks: Швидкі посилання
+  community: Спільнота
+  productInfo: Знайомство з Hagicode
+  downloadClient: Завантажити клієнт
+  productDocs: Документація продукту
+  blogPosts: Записи блогу
+  rssSubscribe: RSS підписка
   github: GitHub
-  issueFeedback: Issue Feedback
-  contactEmail: Contact Email
-  qqGroup: QQ Group 610394020
-  icpLabel: View ICP Filing Information
-  gonganLabel: View Public Security Filing Information
-  visitPage: Visit {title} page
-  discord: Discord Community
-  costCalculator: AI Replacement Calculator
+  issueFeedback: Зворотний зв'язок
+  contactEmail: Контактна електронна пошта
+  qqGroup: QQ група 610394020
+  icpLabel: Переглянути реєстраційну інформацію ICP
+  gonganLabel: Переглянути реєстраційну інформацію громадської безпеки
+  visitPage: 'Відвідати сторінку {title}'
+  discord: Спільнота Discord
+  costCalculator: Калькулятор заміни AI
   steam: Steam
-  relatedSitesTitle: Related Sites
+  relatedSitesTitle: Пов'язані сайти
 socialProof:
   highlights:
-    multiAgent: Multi-Agent Parallel
-    multiAgentDesc: Claude Code, Codex, and others can drive multiple instances at once
-    privacy: Privacy First
-    privacyDesc: Local deployment, no code upload
-    openspec: OpenSpec Orchestration
-    openspecDesc: Standardized proposal, execution, and archive flow
-    heroDungeons: Hero Dungeon Workflow
-    heroDungeonsDesc: Dungeons, captains, and battle reports close the loop
+    multiAgent: Паралельна робота кількох агентів
+    multiAgentDesc: Claude Code, Codex та інші можуть одночасно керувати кількома екземплярами
+    privacy: Конфіденційність понад усе
+    privacyDesc: Локальне розгортання, без завантаження коду
+    openspec: Оркестрація OpenSpec
+    openspecDesc: Стандартизований процес пропозиції, виконання та архівування
+    heroDungeons: Робочий процес «Підземелля героїв»
+    heroDungeonsDesc: Підземелля, капітани та звіти про бої замикають цикл
   badges:
     claude: Claude AI
-    claudeDesc: Powered by
-    opensource: Open Source
+    claudeDesc: Працює на базі
+    opensource: Відкритий код
     opensourceDesc: GitHub
-    ssl: SSL Secure
-    sslDesc: Secure Encryption
+    ssl: SSL захист
+    sslDesc: Безпечне шифрування
 installCTA:
-  button: Install HagiCode
+  button: Встановити Hagicode
 activityMetrics:
-  title: People Are Using It
-  description: Community keeps growing, thanks to every contributor
+  title: Люди вже користуються
+  description: Спільнота продовжує зростати, дякуємо кожному учаснику
   dockerHub: Docker Hub
-  pullCount: Pull Count
-  activeUsers: Active Users
-  activeSessions: Active Sessions
-  recentDays: Last 3 days
+  pullCount: Кількість завантажень
+  activeUsers: Активні користувачі
+  activeSessions: Активні сесії
+  recentDays: Останні 3 дні
   emptyState:
-    title: Data Coming Soon
-    description: Activity data will be displayed here when available. Stay tuned for community growth!
-  imageError: Image failed to load
+    title: Дані незабаром з'являться
+    description: Дані активності будуть відображені тут, коли стануть доступними. Слідкуйте за зростанням спільноти!
+  imageError: Не вдалося завантажити зображення
   starHistory:
-    title: GitHub Star History
-    value: Live
-    description: Real-time community momentum
-    alt: Star history chart for the HagiCode site repository
-    cta: View full chart
+    title: Історія зірок GitHub
+    value: У реальному часі
+    description: Динаміка спільноти в реальному часі
+    alt: Діаграма історії зірок для репозиторію сайту HagiCode
+    cta: Переглянути повну діаграму
 showcase:
-  title: Latest Product Views
-  description: From proposal execution and session boards to token analytics, workspace management, and achievement progress, the homepage now uses the latest curated screenshots maintained with the docs site.
+  title: Останні вигляди продукту
+  description: Від виконання пропозицій та сесійних панелей до токен-аналітики, управління робочим простором та прогресу досягнень, головна сторінка тепер використовує найновіші кураторські знімки екрана, які підтримуються разом із сайтом документації.
   controls:
-    previous: Previous
-    next: Next
-    current: Featured view
-    railLabel: Product screenshot navigation
-    selectPrefix: 'Switch to: '
-    activeState: Showing now
-    previewState: Preview
-    imageUnavailable: Image unavailable
-    openFullscreen: 'Open fullscreen: '
-    openFullscreenHint: Click to enlarge
-    closeFullscreen: Close fullscreen
+    previous: Попередній
+    next: Наступний
+    current: Рекомендований вигляд
+    railLabel: Навігація знімками екрана продукту
+    selectPrefix: 'Перемкнути на: '
+    activeState: Зараз відображається
+    previewState: Попередній перегляд
+    imageUnavailable: Зображення недоступне
+    openFullscreen: 'Відкрити повноекранний режим: '
+    openFullscreenHint: Натисніть для збільшення
+    closeFullscreen: Закрити повноекранний режим
   screenshots:
     proposalWorkflow:
-      title: Proposal execution overview
-      description: Keep the workflow stage, execution result, and session context in one screen so teams can see exactly where a change stands before moving on.
-      alt: HagiCode proposal execution screenshot showing workflow stages, execution result, and session sidebar
+      title: Огляд виконання пропозицій
+      description: Зберігайте стадію робочого процесу, результат виконання та контекст сесії на одному екрані, щоб команди бачили, де саме знаходиться зміна перед продовженням.
+      alt: Знімок екрана виконання пропозицій HagiCode, що показує стадії робочого процесу, результат виконання та бічну панель сесій
     sessionBoard:
-      title: Session board and dungeon planning
-      description: Pending, in-progress, and archived sessions stay visible beside a fantasy task panel so parallel agent work is easy to scan at a glance.
-      alt: HagiCode session board screenshot showing pending, in-progress, and archived columns beside a fantasy task panel
+      title: Панель сесій та планування підземель
+      description: Очікувані, поточні та архівовані сесії залишаються видимими поруч із фентезі-панеллю завдань, тому паралельну роботу агентів легко переглядати з першого погляду.
+      alt: Знімок екрана панелі сесій HagiCode, що показує колонки «очікувані», «поточні» та «архівовані» поруч із фентезі-панеллю завдань
     tokenAnalytics:
-      title: Real-time token analytics
-      description: Watch throughput, recent API activity, and total usage in one metrics surface so cost and pacing stay controllable during parallel execution.
-      alt: HagiCode token analytics screenshot showing throughput, recent API activity, and total usage
+      title: Токен-аналітика в реальному часі
+      description: Спостерігайте за пропускною здатністю, останньою активністю API та загальним використанням на одній метричній панелі, щоб вартість та темп залишалися контрольованими під час паралельного виконання.
+      alt: Знімок екрана токен-аналітики HagiCode, що показує пропускну здатність, останню активність API та загальне використання
     workspaceManagement:
-      title: Workspace and vault management
-      description: Manage user vaults, system vaults, and code-server entry points from one control surface built for shared environments and fast maintenance.
-      alt: HagiCode workspace management screenshot showing user vaults, system vaults, and code-server actions
+      title: Управління робочим простором та сховищем
+      description: Керуйте сховищами користувачів, системними сховищами та точками входу code-server з однієї панелі управління, створеної для спільних середовищ та швидкого обслуговування.
+      alt: Знімок екрана управління робочим простором HagiCode, що показує сховища користувачів, системні сховища та дії code-server
     achievementProgress:
-      title: Achievement and growth progress
-      description: Daily progress, global growth, and lifecycle metrics roll into one dashboard so long-running adoption feels measurable instead of abstract.
-      alt: HagiCode achievement dashboard screenshot showing daily progress, global growth, and lifecycle metrics
+      title: Прогрес досягнень та зростання
+      description: Щоденний прогрес, глобальне зростання та метрики життєвого циклу об'єднуються в одну панель, тому довготривале впровадження відчувається вимірним, а не абстрактним.
+      alt: Знімок екрана панелі досягнень HagiCode, що показує щоденний прогрес, глобальне зростання та метрики життєвого циклу
 installOptions:
-  sectionTitle: Choose Your Installation Method
-  sectionDescription: Choose the most suitable installation method based on your usage scenario
+  sectionTitle: Виберіть спосіб встановлення
+  sectionDescription: Виберіть найбільш підходящий спосіб встановлення залежно від вашого сценарію використання
   desktop:
-    title: Desktop App
-    description: Runs locally on your computer, lightweight and convenient, ready to use out of the box
+    title: Додаток для ПК
+    description: Працює локально на вашому комп'ютері, легкий та зручний, готовий до використання одразу
     features:
-      - Local execution, complete data privacy
-      - Supports Windows, macOS, and Linux
-      - No server configuration needed
-      - Auto updates, stay with latest version
-      - Suitable for individual developers
-    ctaText: Download Desktop App
+      - Локальне виконання, повна конфіденційність даних
+      - Підтримка Windows, macOS та Linux
+      - Не потребує налаштування сервера
+      - Автоматичні оновлення, завжди актуальна версія
+      - Підходить для індивідуальних розробників
+    ctaText: Завантажити додаток для ПК
   container:
-    title: Container Version
-    description: Deploy on servers, supports remote access, suitable for team collaboration
+    title: Контейнерна версія
+    description: Розгортання на серверах, підтримка віддаленого доступу, підходить для командної роботи
     features:
-      - Supports x86_64 architecture
-      - Environment isolation, doesn't affect system
-      - Supports Docker Compose Builder
-      - Data persistence, secure and reliable
-      - Suitable for production environments
-    ctaText: Container Deployment Guide
-  badge: Recommended
+      - Підтримка архітектури x86_64
+      - Ізоляція середовища, не впливає на систему
+      - Підтримка Docker Compose Builder
+      - Збереження даних, безпека та надійність
+      - Підходить для виробничих середовищ
+    ctaText: Керівництво з контейнерного розгортання
+  badge: Рекомендовано
 desktopHero:
-  loading: Loading version information...
+  loading: Завантаження інформації про версію...
   error:
-    title: Cannot load version information
-    gotoDownload: Go to download page
-    redirectingToHistory: Unable to load desktop packages here. Redirecting to the Index version history...
-  badge: Desktop
-  title: Hagicode Desktop
-  tagline: Localized AI code assistant, privacy protection, enhanced efficiency
+    title: Не вдалося завантажити інформацію про версію
+    gotoDownload: Перейти на сторінку завантаження
+    redirectingToHistory: Не вдалося завантажити пакети для ПК тут. Перенаправлення на історію версій Index...
+  badge: ПК
+  title: Hagicode для ПК
+  tagline: Локальний AI-асистент з коду, захист конфіденційності, підвищена ефективність
   valuePoints:
-    local: 100% local execution, code never uploaded
-    fast: Millisecond-level response, no waiting
-    oneClick: One-click installation, ready to use
+    local: '100% локальне виконання, код ніколи не завантажується'
+    fast: 'Відповідь на рівні мілісекунд, без очікування'
+    oneClick: 'Встановлення в один клік, готово до використання'
   download:
-    ariaLabel: Download {platform} version
-    recommended: Recommended
-    unknown: Unknown error
-    openVersionHistory: Open version history
-    openContainerPage: Open Container page
-    macNotice: 'For macOS users: the Container edition is recommended at the moment.'
-  selectOtherVersions: Select other versions of {platform}
-  versionInfo: 'Current version: {version}'
+    ariaLabel: 'Завантажити версію для {platform}'
+    recommended: Рекомендовано
+    unknown: Невідома помилка
+    openVersionHistory: Відкрити історію версій
+    openContainerPage: Відкрити сторінку контейнера
+    macNotice: 'Для користувачів macOS: наразі рекомендується контейнерна версія.'
+  selectOtherVersions: 'Виберіть інші версії для {platform}'
+  versionInfo: 'Поточна версія: {version}'
   testVersion: ' (Beta)'
   channels:
-    stable: Stable
+    stable: Стабільна
     beta: Beta
   betaWarning:
-    title: Beta Version Warning
-    description: This is a beta version and may be unstable. Recommended for testing only. Please use the stable version for production environments.
+    title: Попередження про бета-версію
+    description: Це бета-версія, яка може бути нестабільною. Рекомендується лише для тестування. Для виробничих середовищ використовуйте стабільну версію.
   features:
-    privacy: 🔒 Privacy Protection
-    fast: ⚡ Fast Response
-    crossPlatform: 💻 Cross-Platform Support
+    privacy: '🔒 Захист конфіденційності'
+    fast: '⚡ Швидка відповідь'
+    crossPlatform: '💻 Крос-платформна підтримка'
   steam:
-    description: The Steam edition supports Steam features including Cloud Saves and the Workshop. Click to open on Steam.
-    ariaLabel: Open Hagicode on Steam
+    description: Версія Steam підтримує функції Steam, включаючи хмарні збереження та Майстерню. Натисніть, щоб відкрити в Steam.
+    ariaLabel: Відкрити Hagicode в Steam
   downloadActions:
     torrent: Torrent
   assetTypes:
-    windowsSetup: Installer
-    windowsPortable: Portable
+    windowsSetup: Інсталятор
+    windowsPortable: Портативна версія
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
     macosIntel: Intel
@@ -192,37 +192,37 @@ desktopHero:
     linuxArm64AppImage: AppImage (ARM64)
     linuxTarball: Tarball (x64)
     linuxArm64Tarball: Tarball (ARM64)
-    source: Source code
-    other: Other
+    source: Вихідний код
+    other: Інше
 productHuntBadge:
-  eyebrow: Trusted by early adopters
-  title: See Hagicode on Product Hunt
-  linkLabel: Open Hagicode on Product Hunt
-  cta: View the Product Hunt listing
+  eyebrow: Довіряють ранні користувачі
+  title: Побачте Hagicode на Product Hunt
+  linkLabel: Відкрити Hagicode на Product Hunt
+  cta: Переглянути сторінку на Product Hunt
 promote:
-  badgeFallback: Promoted
-  closeLabel: Dismiss promotion
-  ariaLabel: Promotion
+  badgeFallback: Промо
+  closeLabel: Закрити рекламу
+  ariaLabel: Реклама
 pageMeta:
   home:
-    title: Hagicode - Smart · Efficient · Fun AI Coding Assistant
-    description: Redefine coding with AI. OpenSpec workflows, multi-agent multi-instance execution, and Hero Dungeon gameplay make building faster and more engaging
+    title: 'Hagicode - Розумний · Ефективний · Цікавий AI-асистент з коду'
+    description: Перевизначте кодування за допомогою AI. Робочі процеси OpenSpec, паралельне виконання кількох агентів та ігровий процес «Підземелля героїв» роблять створення швидшим і захопливішим
   desktop:
-    title: Hagicode Desktop - Download
-    description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
-    runtimeFallbackLabel: Fallback
-    runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
+    title: 'Hagicode для ПК - Завантажити'
+    description: Завантажте Hagicode для ПК — локального AI-асистента з коду. Підтримка Windows, macOS та Linux. Захист конфіденційності, швидка відповідь.
+    runtimeFallbackLabel: Резервний варіант
+    runtimeFallbackCopy: 'Якщо завантаження пакетів тут не вдасться, ця сторінка перенаправить на канонічну історію версій Index для ПК:'
   container:
-    title: Hagicode Container - Docker Deployment
-    description: Deploy Hagicode with Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and automatic updates.
-    faqHelp: If the issue persists, please check the <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">detailed documentation</a> or contact technical support.
+    title: 'Контейнер Hagicode - Розгортання Docker'
+    description: Розгорніть Hagicode за допомогою Docker Compose Builder. Проста конфігурація, готово до використання. Підтримка кількох джерел образів та автоматичних оновлень.
+    faqHelp: 'Якщо проблема не зникає, будь ласка, перевірте <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">детальну документацію</a> або зверніться до технічної підтримки.'
 commonActions:
-  retry: Retry
-  unavailable: Unavailable
-  noExtraSource: No extra source
-  moreDownloads: More downloads
-  moreVersions: More versions
-  package: Package
-  platform: Platform
-  china: China
-  default: Default
+  retry: Спробувати знову
+  unavailable: Недоступно
+  noExtraSource: Немає додаткового джерела
+  moreDownloads: Більше завантажень
+  moreVersions: Більше версій
+  package: Пакет
+  platform: Платформа
+  china: Китай
+  default: За замовчуванням

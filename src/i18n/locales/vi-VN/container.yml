@@ -1,125 +1,125 @@
 container:
-  title: Hagicode Container - Container Deployment
-  description: Deploy Hagicode via Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and auto updates.
+  title: Hagicode Container - Triển khai Container
+  description: Triển khai Hagicode qua Docker Compose Builder. Cấu hình đơn giản, sẵn sàng sử dụng. Hỗ trợ nhiều nguồn hình ảnh và tự động cập nhật.
   hero:
     badge: Container
     title: Hagicode Container
-    tagline: Deploy quickly with Docker Compose Builder, simple configuration, ready to use
-    value1: Visual configuration, no coding required
-    value2: Environment isolation, data security
-    value3: One-click deployment, fast startup
-    ctaButton: Deploy with Docker Compose Builder
+    tagline: Triển khai nhanh chóng với Docker Compose Builder, cấu hình đơn giản, sẵn sàng sử dụng
+    value1: Cấu hình trực quan, không cần lập trình
+    value2: Cô lập môi trường, bảo mật dữ liệu
+    value3: Triển khai một chạm, khởi động nhanh chóng
+    ctaButton: Triển khai với Docker Compose Builder
     features:
-      isolation: Environment Isolation
-      oneClick: One-Click Deployment
-      fastStart: Fast Startup
+      isolation: Cô lập Môi trường
+      oneClick: Triển khai Một Chạm
+      fastStart: Khởi động Nhanh
   features:
-    title: Why Choose Container Deployment?
+    title: Tại sao nên chọn Triển khai Container?
     isolation:
-      title: Environment Isolation
-      description: Containerized deployment avoids dependency conflicts, doesn't affect system environment, keeps system clean
+      title: Cô lập Môi trường
+      description: Triển khai bằng container tránh xung đột phụ thuộc, không ảnh hưởng đến môi trường hệ thống, giữ hệ thống sạch sẽ
     simple:
-      title: Simple Configuration
-      description: Use Docker Compose Builder for visual configuration, no need to write complex scripts
+      title: Cấu hình Đơn giản
+      description: Sử dụng Docker Compose Builder để cấu hình trực quan, không cần viết script phức tạp
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports x86_64 architecture, suitable for various servers and cloud platforms
+      title: Hỗ trợ Đa nền tảng
+      description: Hỗ trợ kiến trúc x86_64, phù hợp với nhiều máy chủ và nền tảng đám mây
     persistent:
-      title: Data Persistence
-      description: Supports Volume mounting, secure and reliable data, no data loss on container restart
+      title: Duy trì Dữ liệu
+      description: Hỗ trợ gắn Volume, dữ liệu an toàn và đáng tin cậy, không mất dữ liệu khi khởi động lại container
     autoUpdate:
-      title: Auto Updates
-      description: Supports watchtower for automatic updates, easily get the latest version
+      title: Tự động Cập nhật
+      description: Hỗ trợ watchtower để tự động cập nhật, dễ dàng nhận phiên bản mới nhất
     productionReady:
-      title: Production Ready
-      description: Designed for production environments, supports high availability and horizontal scaling
+      title: Sẵn sàng cho Sản xuất
+      description: Được thiết kế cho môi trường sản xuất, hỗ trợ tính sẵn sàng cao và mở rộng theo chiều ngang
   builder:
     title: Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
+    subtitle: Phương thức triển khai container đơn giản và được đề xuất nhất
     visual:
-      title: Visual Configuration
-      description: Configure all parameters through a friendly Web interface, no need to manually edit YAML files
+      title: Cấu hình Trực quan
+      description: Cấu hình tất cả các tham số qua giao diện Web thân thiện, không cần chỉnh sửa file YAML thủ công
     generate:
-      title: One-Click Configuration Generation
-      description: Automatically generate complete docker-compose.yml files with best practice configurations
+      title: Tạo Cấu hình Một Chạm
+      description: Tự động tạo file docker-compose.yml hoàn chỉnh với cấu hình theo thực hành tốt nhất
     deploy:
-      title: Fast Deployment
-      description: One-click download configuration files and start services, complete deployment in minutes
+      title: Triển khai Nhanh chóng
+      description: Tải xuống file cấu hình và khởi động dịch vụ một chạm, hoàn tất triển khai trong vài phút
     secure:
-      title: Secure and Reliable
-      description: Built-in security best practices, automatically configures data volumes and restart policies
-    ctaButton: Go to Docker Compose Builder
+      title: An toàn và Đáng tin cậy
+      description: Thực hành bảo mật tốt nhất được tích hợp sẵn, tự động cấu hình volume dữ liệu và chính sách khởi động lại
+    ctaButton: Đi đến Docker Compose Builder
   mirrors:
-    title: Image Source Selection
-    description: Choose the most suitable image source based on your network environment and location
+    title: Chọn Nguồn Hình ảnh
+    description: Chọn nguồn hình ảnh phù hợp nhất dựa trên môi trường mạng và vị trí của bạn
     dockerHub: Docker Hub
-    dockerHubDesc: The world's largest container image registry, suitable for international network users
+    dockerHubDesc: Sổ đăng ký hình ảnh container lớn nhất thế giới, phù hợp cho người dùng mạng quốc tế
     dockerHubCmd: newbe36524/hagicode:0
     azure: Azure ACR
-    azureDesc: Microsoft Azure's image service, faster access from China
+    azureDesc: Dịch vụ hình ảnh của Microsoft Azure, truy cập nhanh hơn từ Trung Quốc
     azureCmd: hagicode.azurecr.io/hagicode:0
     aliyun: Aliyun ACR
-    aliyunDesc: Aliyun's domestic image acceleration, recommended for users in mainland China
+    aliyunDesc: Tăng tốc hình ảnh trong nước của Aliyun, được đề xuất cho người dùng ở đại lục Trung Quốc
     aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
   faq:
-    title: FAQ
+    title: Câu hỏi Thường gặp
     q1:
-      question: What's the difference between Container and Desktop versions?
-      intro: 'Both versions have their advantages. You can choose based on your usage scenario:'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      containerTitle: Container Version
-      container1: Can be deployed on servers, supports remote access
-      container2: Environment isolation, doesn't affect system environment
-      container3: Better suited for team collaboration and production environments
-      container4: Supports automated deployment and horizontal scaling
+      question: Sự khác biệt giữa phiên bản Container và Máy tính là gì?
+      intro: 'Cả hai phiên bản đều có ưu điểm riêng. Bạn có thể chọn dựa trên kịch bản sử dụng của mình:'
+      desktopTitle: Phiên bản Máy tính
+      desktop1: Chạy cục bộ trên máy tính của bạn, nhẹ hơn
+      desktop2: Không cần cấu hình máy chủ, sẵn sàng sử dụng ngay
+      desktop3: Phù hợp cho nhà phát triển cá nhân và kịch bản sử dụng nhẹ
+      desktop4: Tất cả dữ liệu hoàn toàn cục bộ
+      containerTitle: Phiên bản Container
+      container1: Có thể triển khai trên máy chủ, hỗ trợ truy cập từ xa
+      container2: Cô lập môi trường, không ảnh hưởng đến môi trường hệ thống
+      container3: Phù hợp hơn cho cộng tác nhóm và môi trường sản xuất
+      container4: Hỗ trợ triển khai tự động và mở rộng theo chiều ngang
     q2:
-      question: What is Docker Compose Builder?
-      intro: 'Docker Compose Builder is our visual configuration tool that helps you:'
-      point1: Configure all container parameters through a Web interface
-      point2: Automatically generate docker-compose.yml files
-      point3: Built-in best practices and security configurations
-      point4: One-click download and start services
-      note: No need to manually write complex YAML configurations. Even Docker beginners can deploy easily.
+      question: Docker Compose Builder là gì?
+      intro: 'Docker Compose Builder là công cụ cấu hình trực quan của chúng tôi giúp bạn:'
+      point1: Cấu hình tất cả tham số container qua giao diện Web
+      point2: Tự động tạo file docker-compose.yml
+      point3: Thực hành tốt nhất và cấu hình bảo mật được tích hợp sẵn
+      point4: Tải xuống và khởi động dịch vụ một chạm
+      note: Không cần viết cấu hình YAML phức tạp thủ công. Ngay cả người mới bắt đầu Docker cũng có thể triển khai dễ dàng.
     q3:
-      question: Which system architectures does the container version support?
-      answer: Hagicode container images currently support <strong>x86_64 (amd64)</strong> architecture, suitable for most servers and PCs.
-      note: Docker will automatically select the appropriate architecture for your system when pulling images.
+      question: Phiên bản container hỗ trợ kiến trúc hệ thống nào?
+      answer: Hình ảnh container Hagicode hiện hỗ trợ kiến trúc <strong>x86_64 (amd64)</strong>, phù hợp với hầu hết máy chủ và PC.
+      note: Docker sẽ tự động chọn kiến trúc phù hợp cho hệ thống của bạn khi kéo hình ảnh.
     q4:
-      question: How to update the container?
-      intro: 'When using Docker Compose deployment, updating is very simple:'
+      question: Cách cập nhật container?
+      intro: 'Khi sử dụng triển khai Docker Compose, việc cập nhật rất đơn giản:'
       code: |-
         docker-compose pull
         docker-compose up -d
-      watchtower: Or use Watchtower for automatic updates.
+      watchtower: Hoặc sử dụng Watchtower để tự động cập nhật.
     q5:
-      question: How to configure data persistence?
-      intro: 'Docker Compose Builder automatically configures data volumes. By default, your data will be stored in Docker Volumes, ensuring:'
-      point1: Data is not lost when containers are deleted
-      point2: Data is preserved during container upgrades
-      point3: Easy backup and recovery
+      question: Cách cấu hình duy trì dữ liệu?
+      intro: 'Docker Compose Builder tự động cấu hình volume dữ liệu. Mặc định, dữ liệu của bạn sẽ được lưu trữ trong Docker Volumes, đảm bảo:'
+      point1: Dữ liệu không bị mất khi xóa container
+      point2: Dữ liệu được giữ lại khi nâng cấp container
+      point3: Dễ dàng sao lưu và khôi phục
     q6:
-      question: What to do if container startup fails?
-      intro: 'Steps to troubleshoot container startup failure:'
+      question: Phải làm gì nếu container không khởi động được?
+      intro: 'Các bước khắc phục sự cố khởi động container:'
       step1:
-        title: 'Check container status:'
+        title: 'Kiểm tra trạng thái container:'
         code: docker-compose ps
       step2:
-        title: 'Check container logs:'
+        title: 'Kiểm tra nhật ký container:'
         code: docker-compose logs hagicode
       step3:
-        title: 'Check port occupancy:'
-        desc: 'If your service port is 3000, use this command to check:'
+        title: 'Kiểm tra việc sử dụng cổng:'
+        desc: 'Nếu cổng dịch vụ của bạn là 3000, sử dụng lệnh này để kiểm tra:'
         code: netstat -tlnp | grep 3000
-        solution: 'If the port is occupied, you can:'
-        solution1: Stop the process occupying the port
-        solution2: Or configure a different port in Docker Compose Builder
-      help: If the issue persists, please check the detailed documentation or contact technical support.
+        solution: 'Nếu cổng đã được sử dụng, bạn có thể:'
+        solution1: Dừng tiến trình đang sử dụng cổng
+        solution2: Hoặc cấu hình cổng khác trong Docker Compose Builder
+      help: Nếu vấn đề vẫn tiếp diễn, vui lòng kiểm tra tài liệu chi tiết hoặc liên hệ với bộ phận hỗ trợ kỹ thuật.
   cta:
-    title: Start Using Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
-    button: Go to Deployment Guide
-    github: GitHub Repository
+    title: Bắt đầu Sử dụng Docker Compose Builder
+    subtitle: Phương thức triển khai container đơn giản và được đề xuất nhất
+    button: Đi đến Hướng dẫn Triển khai
+    github: Kho lưu trữ GitHub

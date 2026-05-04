@@ -1,190 +1,190 @@
 navbar:
-  home: Home
-  docs: Docs
+  home: Αρχική
+  docs: Τεκμηρίωση
   blog: Blog
-  about: About
-  desktop: Desktop App
+  about: Σχετικά
+  desktop: Εφαρμογή Desktop
   container: Container
-  support: Get Support
-  mobileOpenMenu: Open menu
-  mobileCloseMenu: Close menu
-  mobileNav: Mobile site navigation
+  support: Λήψη υποστήριξης
+  mobileOpenMenu: Άνοιγμα μενού
+  mobileCloseMenu: Κλείσιμο μενού
+  mobileNav: Πλοήγηση κινητού ιστοτόπου
 themeToggle:
-  theme: Theme
-  darkMode: Switch to dark mode
-  lightMode: Switch to light mode
-  lunarNewYearMode: Switch to Lunar New Year theme
+  theme: Θέμα
+  darkMode: Εναλλαγή σε σκοτεινή λειτουργία
+  lightMode: Εναλλαγή σε φωτεινή λειτουργία
+  lunarNewYearMode: Εναλλαγή στο θέμα Σελήνης Νέου Έτους
 languageSwitcher:
-  label: Language
-  dialogTitle: Select language
-  currentLocaleLabel: Current language
-  close: Close language chooser
-  selectedState: Current
+  label: Γλώσσα
+  dialogTitle: Επιλογή γλώσσας
+  currentLocaleLabel: Τρέχουσα γλώσσα
+  close: Κλείσιμο επιλογής γλώσσας
+  selectedState: Τρέχουσα
   switchToChinese: 切换到中文
-  switchToEnglish: Switch to English
+  switchToEnglish: Εναλλαγή στα αγγλικά
 videoPlayer:
-  play: Play
-  pause: Pause
-  fullscreen: Fullscreen
+  play: Αναπαραγωγή
+  pause: Παύση
+  fullscreen: Πλήρης οθόνη
 footer:
-  copyright: © {year} Hagicode. All rights reserved.
-  product: Product
-  quickLinks: Quick Links
-  community: Community
-  productInfo: Hagicode Introduction
-  downloadClient: Download Client
-  productDocs: Product Docs
-  blogPosts: Blog Posts
-  rssSubscribe: RSS Subscribe
+  copyright: © {year} Hagicode. Με επιφύλαξη παντός δικαιώματος.
+  product: Προϊόν
+  quickLinks: Γρήγοροι σύνδεσμοι
+  community: Κοινότητα
+  productInfo: Εισαγωγή στο Hagicode
+  downloadClient: Λήψη πελάτη
+  productDocs: Τεκμηρίωση προϊόντος
+  blogPosts: Αναρτήσεις blog
+  rssSubscribe: Συνδρομή RSS
   github: GitHub
-  issueFeedback: Issue Feedback
-  contactEmail: Contact Email
-  qqGroup: QQ Group 610394020
-  icpLabel: View ICP Filing Information
-  gonganLabel: View Public Security Filing Information
-  visitPage: Visit {title} page
-  discord: Discord Community
-  costCalculator: AI Replacement Calculator
+  issueFeedback: Ανατροφοδότηση προβλημάτων
+  contactEmail: Email επικοινωνίας
+  qqGroup: QQ Ομάδα 610394020
+  icpLabel: Προβολή πληροφοριών καταχώρησης ICP
+  gonganLabel: Προβολή πληροφοριών καταχώρησης δημόσιας ασφάλειας
+  visitPage: Επισκεφθείτε τη σελίδα {title}
+  discord: Κοινότητα Discord
+  costCalculator: Αριθμομηχανή αντικατάστασης AI
   steam: Steam
-  relatedSitesTitle: Related Sites
+  relatedSitesTitle: Σχετικοί ιστοτόποι
 socialProof:
   highlights:
-    multiAgent: Multi-Agent Parallel
-    multiAgentDesc: Claude Code, Codex, and others can drive multiple instances at once
-    privacy: Privacy First
-    privacyDesc: Local deployment, no code upload
-    openspec: OpenSpec Orchestration
-    openspecDesc: Standardized proposal, execution, and archive flow
-    heroDungeons: Hero Dungeon Workflow
-    heroDungeonsDesc: Dungeons, captains, and battle reports close the loop
+    multiAgent: Πολυπρακτορική παράλληλη εκτέλεση
+    multiAgentDesc: Claude Code, Codex και άλλα μπορούν να οδηγήσουν πολλαπλές εμφανίσεις ταυτόχρονα
+    privacy: Ιδιωτικότητα πρώτα
+    privacyDesc: Τοπική ανάπτυξη, χωρίς μεταφόρτωση κώδικα
+    openspec: OpenSpec ενορχήστρωση
+    openspecDesc: Τυποποιημένη ροή πρότασης, εκτέλεσης και αρχειοθέτησης
+    heroDungeons: Ροή εργασίας Hero Dungeon
+    heroDungeonsDesc: Dungeons, καπετάνιοι και αναφορές μάχης κλείνουν τον κύκλο
   badges:
     claude: Claude AI
-    claudeDesc: Powered by
-    opensource: Open Source
+    claudeDesc: Τροφοδοτούμενο από
+    opensource: Ανοιχτός κώδικας
     opensourceDesc: GitHub
-    ssl: SSL Secure
-    sslDesc: Secure Encryption
+    ssl: Ασφάλεια SSL
+    sslDesc: Ασφαλής κρυπτογράφηση
 installCTA:
-  button: Install HagiCode
+  button: Εγκατάσταση Hagicode
 activityMetrics:
-  title: People Are Using It
-  description: Community keeps growing, thanks to every contributor
+  title: Οι άνθρωποι το χρησιμοποιούν
+  description: Η κοινότητα συνεχίζει να αναπτύσσεται, χάρη σε κάθε συνεισφέροντα
   dockerHub: Docker Hub
-  pullCount: Pull Count
-  activeUsers: Active Users
-  activeSessions: Active Sessions
-  recentDays: Last 3 days
+  pullCount: Αριθμός λήψεων
+  activeUsers: Ενεργοί χρήστες
+  activeSessions: Ενεργές συνεδρίες
+  recentDays: Τελευταίες 3 ημέρες
   emptyState:
-    title: Data Coming Soon
-    description: Activity data will be displayed here when available. Stay tuned for community growth!
-  imageError: Image failed to load
+    title: Δεδομένα έρχονται σύντομα
+    description: Τα δεδομένα δραστηριότητας θα εμφανιστούν εδώ όταν είναι διαθέσιμα. Μείνετε συντονισμένοι για την ανάπτυξη της κοινότητας!
+  imageError: Η εικόνα απέτυχε να φορτώσει
   starHistory:
-    title: GitHub Star History
-    value: Live
-    description: Real-time community momentum
-    alt: Star history chart for the HagiCode site repository
-    cta: View full chart
+    title: Ιστορικό GitHub Stars
+    value: Ζωντανά
+    description: Ορμή κοινότητας σε πραγματικό χρόνο
+    alt: Διάγραμμα ιστορικού Stars για το αποθετήριο του HagiCode site
+    cta: Προβολή πλήρους διαγράμματος
 showcase:
-  title: Latest Product Views
-  description: From proposal execution and session boards to token analytics, workspace management, and achievement progress, the homepage now uses the latest curated screenshots maintained with the docs site.
+  title: Τελευταίες προβολές προϊόντος
+  description: Από την εκτέλεση προτάσεων και τους πίνακες συνεδριών μέχρι την ανάλυση tokens, τη διαχείριση χώρων εργασίας και την πρόοδο επιτευγμάτων, η αρχική σελίδα χρησιμοποιεί πλέον τις πιο πρόσφατες επιμελημένες στιγμιότυποι που συντηρούνται με τον ιστοτόπο τεκμηρίωσης.
   controls:
-    previous: Previous
-    next: Next
-    current: Featured view
-    railLabel: Product screenshot navigation
-    selectPrefix: 'Switch to: '
-    activeState: Showing now
-    previewState: Preview
-    imageUnavailable: Image unavailable
-    openFullscreen: 'Open fullscreen: '
-    openFullscreenHint: Click to enlarge
-    closeFullscreen: Close fullscreen
+    previous: Προηγούμενο
+    next: Επόμενο
+    current: Επιλεγμένη προβολή
+    railLabel: Πλοήγηση στιγμιότυπων προϊόντος
+    selectPrefix: 'Εναλλαγή σε: '
+    activeState: Εμφανίζεται τώρα
+    previewState: Προεπισκόπηση
+    imageUnavailable: Η εικόνα δεν είναι διαθέσιμη
+    openFullscreen: 'Άνοιγμα πλήρους οθόνης: '
+    openFullscreenHint: Κλικ για μεγέθυνση
+    closeFullscreen: Κλείσιμο πλήρους οθόνης
   screenshots:
     proposalWorkflow:
-      title: Proposal execution overview
-      description: Keep the workflow stage, execution result, and session context in one screen so teams can see exactly where a change stands before moving on.
-      alt: HagiCode proposal execution screenshot showing workflow stages, execution result, and session sidebar
+      title: Επισκόπηση εκτέλεσης προτάσεων
+      description: Διατηρήστε το στάδιο ροής εργασίας, το αποτέλεσμα εκτέλεσης και το πλαίσιο συνεδρίας σε μια οθόνη ώστε οι ομάδες να βλέπουν ακριβώς πού βρίσκεται μια αλλαγή πριν προχωρήσουν.
+      alt: Στιγμιότυπο οθόνης εκτέλεσης προτάσεων HagiCode που εμφανίζει στάδια ροής εργασίας, αποτέλεσμα εκτέλεσης και πλαϊνό πλαίσιο συνεδρίας
     sessionBoard:
-      title: Session board and dungeon planning
-      description: Pending, in-progress, and archived sessions stay visible beside a fantasy task panel so parallel agent work is easy to scan at a glance.
-      alt: HagiCode session board screenshot showing pending, in-progress, and archived columns beside a fantasy task panel
+      title: Πίνακας συνεδριών και σχεδιασμός dungeons
+      description: Εκκρεμείς, σε εξέλιξη και αρχειοθετημένες συνεδρίες παραμένουν ορατές δίπλα σε έναν πίνακα φανταστικών εργασιών, ώστε η παράλληλη εργασία πρακτόρων να είναι εύκολα σαρωμένη με μια ματιά.
+      alt: Στιγμιότυπο οθόνης πίνακα συνεδριών HagiCode που εμφανίζει εκκρεμείς, σε εξέλιξη και αρχειοθετημένες στήλες δίπλα σε έναν πίνακα φανταστικών εργασιών
     tokenAnalytics:
-      title: Real-time token analytics
-      description: Watch throughput, recent API activity, and total usage in one metrics surface so cost and pacing stay controllable during parallel execution.
-      alt: HagiCode token analytics screenshot showing throughput, recent API activity, and total usage
+      title: Ανάλυση tokens σε πραγματικό χρόνο
+      description: Παρακολουθήστε την απόδοση, την πρόσφατη δραστηριότητα API και τη συνολική χρήση σε μια επιφάνεια μετρικών ώστε το κόστος και ο ρυθμός να παραμένουν ελεγχόσιμα κατά την παράλληλη εκτέλεση.
+      alt: Στιγμιότυπο οθόνης ανάλυσης tokens HagiCode που εμφανίζει απόδοση, πρόσφατη δραστηριότητα API και συνολική χρήση
     workspaceManagement:
-      title: Workspace and vault management
-      description: Manage user vaults, system vaults, and code-server entry points from one control surface built for shared environments and fast maintenance.
-      alt: HagiCode workspace management screenshot showing user vaults, system vaults, and code-server actions
+      title: Διαχείριση χώρων εργασίας και θησαυροφυλακίων
+      description: Διαχειριστείτε θησαυροφυλάκια χρηστών, συστημικά θησαυροφυλάκια και σημεία εισόδου code-server από μια επιφάνεια ελέγχου σχεδιασμένη για κοινόχρηστα περιβάλλοντα και γρήγη συντήρηση.
+      alt: Στιγμιότυπο οθόνης διαχείρισης χώρων εργασίας HagiCode που εμφανίζει θησαυροφυλάκια χρηστών, συστημικά θησαυροφυλάκια και ενέργειες code-server
     achievementProgress:
-      title: Achievement and growth progress
-      description: Daily progress, global growth, and lifecycle metrics roll into one dashboard so long-running adoption feels measurable instead of abstract.
-      alt: HagiCode achievement dashboard screenshot showing daily progress, global growth, and lifecycle metrics
+      title: Πρόοδος επιτευγμάτων και ανάπτυξης
+      description: Ημερήσια πρόοδος, παγκόσμια ανάπτυξη και μετρήσεις κύκλου ζωής συγκεντρώνονται σε έναν πίνακα ελέγχου ώστε η μακροχρόνια υιοθέτηση να αισθάνεται μετρήσιμη αντί για αφηρημένη.
+      alt: Στιγμιότυπο οθόνης πίνακα επιτευγμάτων HagiCode που εμφανίζει ημερήσια πρόοδο, παγκόσμια ανάπτυξη και μετρήσεις κύκλου ζωής
 installOptions:
-  sectionTitle: Choose Your Installation Method
-  sectionDescription: Choose the most suitable installation method based on your usage scenario
+  sectionTitle: Επιλέξτε τη μέθοδο εγκατάστασής σας
+  sectionDescription: Επιλέξτε την πιο κατάλληλη μέθοδο εγκατάστασης βάσει του σεναρίου χρήσης σας
   desktop:
-    title: Desktop App
-    description: Runs locally on your computer, lightweight and convenient, ready to use out of the box
+    title: Εφαρμογή Desktop
+    description: Εκτελείται τοπικά στον υπολογιστή σας, ελαφριά και βολική, έτοιμη για χρήση αμέσως
     features:
-      - Local execution, complete data privacy
-      - Supports Windows, macOS, and Linux
-      - No server configuration needed
-      - Auto updates, stay with latest version
-      - Suitable for individual developers
-    ctaText: Download Desktop App
+      - Τοπική εκτέλεση, πλήρης ιδιωτικότητα δεδομένων
+      - Υποστηρίζει Windows, macOS και Linux
+      - Δεν απαιτείται διαμόρφωση διακομιστή
+      - Αυτόματες ενημερώσεις, πάντα με την πιο πρόσφατη έκδοση
+      - Κατάλληλη για μεμονωμένους προγραμματιστές
+    ctaText: Λήψη εφαρμογής Desktop
   container:
-    title: Container Version
-    description: Deploy on servers, supports remote access, suitable for team collaboration
+    title: Έκδοση Container
+    description: Ανάπτυξη σε διακομιστές, υποστηρίζει απομακρυσμένη πρόσβαση, κατάλληλη για ομαδική συνεργασία
     features:
-      - Supports x86_64 architecture
-      - Environment isolation, doesn't affect system
-      - Supports Docker Compose Builder
-      - Data persistence, secure and reliable
-      - Suitable for production environments
-    ctaText: Container Deployment Guide
-  badge: Recommended
+      - Υποστηρίζει αρχιτεκτονική x86_64
+      - Απομόνωση περιβάλλοντος, δεν επηρεάζει το σύστημα
+      - Υποστηρίζει Docker Compose Builder
+      - Μόνιμα δεδομένα, ασφαλή και αξιόπιστα
+      - Κατάλληλη για περιβάλλοντα παραγωγής
+    ctaText: Οδηγός ανάπτυξης container
+  badge: Προτεινόμενο
 desktopHero:
-  loading: Loading version information...
+  loading: Φόρτωση πληροφοριών έκδοσης...
   error:
-    title: Cannot load version information
-    gotoDownload: Go to download page
-    redirectingToHistory: Unable to load desktop packages here. Redirecting to the Index version history...
+    title: Αδυναμία φόρτωσης πληροφοριών έκδοσης
+    gotoDownload: Μετάβαση στη σελίδα λήψης
+    redirectingToHistory: Αδυναμία φόρτωσης πακέτων desktop εδώ. Ανακατεύθυνση στο ιστορικό εκδόσεων του Index...
   badge: Desktop
   title: Hagicode Desktop
-  tagline: Localized AI code assistant, privacy protection, enhanced efficiency
+  tagline: Εντοπισμένος βοηθός κώδικα AI, προστασία ιδιωτικότητας, ενισχυμένη αποδοτικότητα
   valuePoints:
-    local: 100% local execution, code never uploaded
-    fast: Millisecond-level response, no waiting
-    oneClick: One-click installation, ready to use
+    local: 100% τοπική εκτέλεση, ο κώδικας δεν μεταφορτώνεται ποτέ
+    fast: Απόκριση σε επίπεδο χιλιοστού του δευτερολέπτου, χωρίς αναμονή
+    oneClick: Εγκατάσταση με ένα κλικ, έτοιμο για χρήση
   download:
-    ariaLabel: Download {platform} version
-    recommended: Recommended
-    unknown: Unknown error
-    openVersionHistory: Open version history
-    openContainerPage: Open Container page
-    macNotice: 'For macOS users: the Container edition is recommended at the moment.'
-  selectOtherVersions: Select other versions of {platform}
-  versionInfo: 'Current version: {version}'
+    ariaLabel: Λήψη έκδοσης {platform}
+    recommended: Προτεινόμενο
+    unknown: Άγνωστο σφάλμα
+    openVersionHistory: Άνοιγμα ιστορικού εκδόσεων
+    openContainerPage: Άνοιγμα σελίδας Container
+    macNotice: 'Για χρήστες macOS: η έκδοση Container προτείνεται προς το παρόν.'
+  selectOtherVersions: Επιλέξτε άλλες εκδόσεις του {platform}
+  versionInfo: 'Τρέχουσα έκδοση: {version}'
   testVersion: ' (Beta)'
   channels:
-    stable: Stable
+    stable: Σταθερή
     beta: Beta
   betaWarning:
-    title: Beta Version Warning
-    description: This is a beta version and may be unstable. Recommended for testing only. Please use the stable version for production environments.
+    title: Προειδοποίηση έκδοσης Beta
+    description: Αυτή είναι μια έκδοση beta και ενδέχεται να είναι ασταθής. Προτείνεται μόνο για δοκιμές. Παρακαλούμε χρησιμοποιήστε τη σταθερή έκδοση για περιβάλλοντα παραγωγής.
   features:
-    privacy: 🔒 Privacy Protection
-    fast: ⚡ Fast Response
-    crossPlatform: 💻 Cross-Platform Support
+    privacy: 🔒 Προστασία Ιδιωτικότητας
+    fast: ⚡ Γρήγορη Απόκριση
+    crossPlatform: 💻 Υποστήριξη Πολλαπλών Πλατφορμών
   steam:
-    description: The Steam edition supports Steam features including Cloud Saves and the Workshop. Click to open on Steam.
-    ariaLabel: Open Hagicode on Steam
+    description: Η έκδοση Steam υποστηρίζει λειτουργίες Steam συμπεριλαμβανομένων Cloud Saves και Workshop. Κάντε κλικ για άνοιγμα στο Steam.
+    ariaLabel: Άνοιγμα Hagicode στο Steam
   downloadActions:
     torrent: Torrent
   assetTypes:
-    windowsSetup: Installer
-    windowsPortable: Portable
+    windowsSetup: Πρόγραμμα εγκατάστασης
+    windowsPortable: Φορητή
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
     macosIntel: Intel
@@ -192,37 +192,37 @@ desktopHero:
     linuxArm64AppImage: AppImage (ARM64)
     linuxTarball: Tarball (x64)
     linuxArm64Tarball: Tarball (ARM64)
-    source: Source code
-    other: Other
+    source: Πηγαίος κώδικας
+    other: Άλλο
 productHuntBadge:
-  eyebrow: Trusted by early adopters
-  title: See Hagicode on Product Hunt
-  linkLabel: Open Hagicode on Product Hunt
-  cta: View the Product Hunt listing
+  eyebrow: Αξιόπιστο από πρώιμους χρήστες
+  title: Δείτε το Hagicode στο Product Hunt
+  linkLabel: Άνοιγμα Hagicode στο Product Hunt
+  cta: Προβολή της λίστας στο Product Hunt
 promote:
-  badgeFallback: Promoted
-  closeLabel: Dismiss promotion
-  ariaLabel: Promotion
+  badgeFallback: Προωθούμενο
+  closeLabel: Απόρριψη προώθησης
+  ariaLabel: Προώθηση
 pageMeta:
   home:
-    title: Hagicode - Smart · Efficient · Fun AI Coding Assistant
-    description: Redefine coding with AI. OpenSpec workflows, multi-agent multi-instance execution, and Hero Dungeon gameplay make building faster and more engaging
+    title: Hagicode - Έξυπνος · Αποδοτικός · Διασκεδαστικός Βοηθός Κώδικα AI
+    description: Επαναπροσδιορίστε τον προγραμματισμό με AI. Οι ροές εργασίας OpenSpec, η εκτέλεση πολλαπλών πρακτόρων-πολλαπλών εμφανίσεων και το gameplay Hero Dungeon κάνουν την ανάπτυξη πιο γρήγορη και ελκυστική
   desktop:
-    title: Hagicode Desktop - Download
-    description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
-    runtimeFallbackLabel: Fallback
-    runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
+    title: Hagicode Desktop - Λήψη
+    description: Κατεβάστε το Hagicode Desktop, έναν εντοπισμένο βοηθό κώδικα AI. Υποστηρίζει Windows, macOS και Linux. Προστασία ιδιωτικότητας, γρήγορη απόκριση.
+    runtimeFallbackLabel: Εναλλακτική
+    runtimeFallbackCopy: 'Αν η φόρτωση πακέτων αποτύχει εδώ, αυτή η σελίδα ανακατευθύνει στο κανονικό ιστορικό εκδόσεων του Index Desktop:'
   container:
-    title: Hagicode Container - Docker Deployment
-    description: Deploy Hagicode with Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and automatic updates.
-    faqHelp: If the issue persists, please check the <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">detailed documentation</a> or contact technical support.
+    title: Hagicode Container - Ανάπτυξη Docker
+    description: Αναπτύξτε το Hagicode με Docker Compose Builder. Απλή διαμόρφωση, έτοιμο για χρήση. Υποστηρίζει πολλαπλές πηγές εικόνων και αυτόματες ενημερώσεις.
+    faqHelp: Αν το πρόβλημα παραμένει, ελέγξτε την <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">αναλυτική τεκμηρίωση</a> ή επικοινωνήστε με την τεχνική υποστήριξη.
 commonActions:
-  retry: Retry
-  unavailable: Unavailable
-  noExtraSource: No extra source
-  moreDownloads: More downloads
-  moreVersions: More versions
-  package: Package
-  platform: Platform
-  china: China
-  default: Default
+  retry: Επανάληψη
+  unavailable: Μη διαθέσιμο
+  noExtraSource: Κανένα επιπλέον αρχείο
+  moreDownloads: Περισσότερες λήψεις
+  moreVersions: Περισσότερες εκδόσεις
+  package: Πακέτο
+  platform: Πλατφόρμα
+  china: Κίνα
+  default: Προεπιλογή

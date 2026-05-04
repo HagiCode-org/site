@@ -1,125 +1,125 @@
 container:
-  title: Hagicode Container - Container Deployment
-  description: Deploy Hagicode via Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and auto updates.
+  title: Hagicode Container - Penyebaran Kontainer
+  description: Sebarkan Hagicode dengan Docker Compose Builder. Konfigurasi sederhana, siap digunakan. Mendukung berbagai sumber image dan pembaruan otomatis.
   hero:
-    badge: Container
+    badge: Kontainer
     title: Hagicode Container
-    tagline: Deploy quickly with Docker Compose Builder, simple configuration, ready to use
-    value1: Visual configuration, no coding required
-    value2: Environment isolation, data security
-    value3: One-click deployment, fast startup
-    ctaButton: Deploy with Docker Compose Builder
+    tagline: Penyebaran cepat dengan Docker Compose Builder, konfigurasi sederhana, siap digunakan
+    value1: Konfigurasi visual, tanpa pengkodean
+    value2: Isolasi lingkungan, keamanan data
+    value3: Penyebaran satu klik, mulai cepat
+    ctaButton: Sebarkan dengan Docker Compose Builder
     features:
-      isolation: Environment Isolation
-      oneClick: One-Click Deployment
-      fastStart: Fast Startup
+      isolation: Isolasi Lingkungan
+      oneClick: Penyebaran Satu Klik
+      fastStart: Mulai Cepat
   features:
-    title: Why Choose Container Deployment?
+    title: Mengapa Memilih Penyebaran Kontainer?
     isolation:
-      title: Environment Isolation
-      description: Containerized deployment avoids dependency conflicts, doesn't affect system environment, keeps system clean
+      title: Isolasi Lingkungan
+      description: Penyebaran terkontainerisasi menghindari konflik dependensi, tidak memengaruhi lingkungan sistem, menjaga sistem tetap bersih
     simple:
-      title: Simple Configuration
-      description: Use Docker Compose Builder for visual configuration, no need to write complex scripts
+      title: Konfigurasi Sederhana
+      description: Gunakan Docker Compose Builder untuk konfigurasi visual, tidak perlu menulis skrip yang rumit
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports x86_64 architecture, suitable for various servers and cloud platforms
+      title: Dukungan Lintas Platform
+      description: Mendukung arsitektur x86_64, cocok untuk berbagai server dan platform cloud
     persistent:
-      title: Data Persistence
-      description: Supports Volume mounting, secure and reliable data, no data loss on container restart
+      title: Persistensi Data
+      description: Mendukung pengaitan Volume, data aman dan andal, tidak ada kehilangan data saat kontainer dimulai ulang
     autoUpdate:
-      title: Auto Updates
-      description: Supports watchtower for automatic updates, easily get the latest version
+      title: Pembaruan Otomatis
+      description: Mendukung Watchtower untuk pembaruan otomatis, dengan mudah mendapatkan versi terbaru
     productionReady:
-      title: Production Ready
-      description: Designed for production environments, supports high availability and horizontal scaling
+      title: Siap Produksi
+      description: Dirancang untuk lingkungan produksi, mendukung ketersediaan tinggi dan penskalaan horizontal
   builder:
     title: Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
+    subtitle: Metode penyebaran kontainer paling sederhana dan paling direkomendasikan
     visual:
-      title: Visual Configuration
-      description: Configure all parameters through a friendly Web interface, no need to manually edit YAML files
+      title: Konfigurasi Visual
+      description: Konfigurasikan semua parameter melalui antarmuka Web yang ramah, tidak perlu mengedit file YAML secara manual
     generate:
-      title: One-Click Configuration Generation
-      description: Automatically generate complete docker-compose.yml files with best practice configurations
+      title: Pembuatan Konfigurasi Satu Klik
+      description: Otomatis menghasilkan file docker-compose.yml lengkap dengan konfigurasi praktik terbaik
     deploy:
-      title: Fast Deployment
-      description: One-click download configuration files and start services, complete deployment in minutes
+      title: Penyebaran Cepat
+      description: Unduh file konfigurasi dengan satu klik dan mulai layanan, selesaikan penyebaran dalam hitungan menit
     secure:
-      title: Secure and Reliable
-      description: Built-in security best practices, automatically configures data volumes and restart policies
-    ctaButton: Go to Docker Compose Builder
+      title: Aman dan Andal
+      description: Praktik terbaik keamanan bawaan, otomatis mengonfigurasi volume data dan kebijakan mulai ulang
+    ctaButton: Buka Docker Compose Builder
   mirrors:
-    title: Image Source Selection
-    description: Choose the most suitable image source based on your network environment and location
+    title: Pemilihan Sumber Image
+    description: Pilih sumber image yang paling sesuai berdasarkan lingkungan jaringan dan lokasi Anda
     dockerHub: Docker Hub
-    dockerHubDesc: The world's largest container image registry, suitable for international network users
+    dockerHubDesc: Registri image kontainer terbesar di dunia, cocok untuk pengguna jaringan internasional
     dockerHubCmd: newbe36524/hagicode:0
     azure: Azure ACR
-    azureDesc: Microsoft Azure's image service, faster access from China
+    azureDesc: Layanan image Microsoft Azure, akses lebih cepat dari Tiongkok
     azureCmd: hagicode.azurecr.io/hagicode:0
     aliyun: Aliyun ACR
-    aliyunDesc: Aliyun's domestic image acceleration, recommended for users in mainland China
+    aliyunDesc: Akselerasi image domestik Aliyun, direkomendasikan untuk pengguna di Tiongkok daratan
     aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
   faq:
     title: FAQ
     q1:
-      question: What's the difference between Container and Desktop versions?
-      intro: 'Both versions have their advantages. You can choose based on your usage scenario:'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      containerTitle: Container Version
-      container1: Can be deployed on servers, supports remote access
-      container2: Environment isolation, doesn't affect system environment
-      container3: Better suited for team collaboration and production environments
-      container4: Supports automated deployment and horizontal scaling
+      question: Apa perbedaan antara versi Kontainer dan Desktop?
+      intro: 'Kedua versi memiliki keunggulannya masing-masing. Anda dapat memilih berdasarkan skenario penggunaan Anda:'
+      desktopTitle: Versi Desktop
+      desktop1: Berjalan secara lokal di komputer Anda, lebih ringan
+      desktop2: Tidak perlu konfigurasi server, siap digunakan langsung
+      desktop3: Cocok untuk pengembang individu dan skenario penggunaan ringan
+      desktop4: Semua data sepenuhnya lokal
+      containerTitle: Versi Kontainer
+      container1: Dapat disebarkan di server, mendukung akses jarak jauh
+      container2: Isolasi lingkungan, tidak memengaruhi lingkungan sistem
+      container3: Lebih cocok untuk kolaborasi tim dan lingkungan produksi
+      container4: Mendukung penyebaran otomatis dan penskalaan horizontal
     q2:
-      question: What is Docker Compose Builder?
-      intro: 'Docker Compose Builder is our visual configuration tool that helps you:'
-      point1: Configure all container parameters through a Web interface
-      point2: Automatically generate docker-compose.yml files
-      point3: Built-in best practices and security configurations
-      point4: One-click download and start services
-      note: No need to manually write complex YAML configurations. Even Docker beginners can deploy easily.
+      question: Apa itu Docker Compose Builder?
+      intro: 'Docker Compose Builder adalah alat konfigurasi visual kami yang membantu Anda:'
+      point1: Mengonfigurasi semua parameter kontainer melalui antarmuka Web
+      point2: Otomatis menghasilkan file docker-compose.yml
+      point3: Praktik terbaik dan konfigurasi keamanan bawaan
+      point4: Mengunduh dan memulai layanan dengan satu klik
+      note: Tidak perlu menulis konfigurasi YAML yang rumit secara manual. Bahkan pemula Docker dapat menyebarkan dengan mudah.
     q3:
-      question: Which system architectures does the container version support?
-      answer: Hagicode container images currently support <strong>x86_64 (amd64)</strong> architecture, suitable for most servers and PCs.
-      note: Docker will automatically select the appropriate architecture for your system when pulling images.
+      question: Arsitektur sistem apa yang didukung oleh versi kontainer?
+      answer: Image kontainer Hagicode saat ini mendukung arsitektur <strong>x86_64 (amd64)</strong>, cocok untuk sebagian besar server dan PC.
+      note: Docker akan otomatis memilih arsitektur yang sesuai untuk sistem Anda saat menarik image.
     q4:
-      question: How to update the container?
-      intro: 'When using Docker Compose deployment, updating is very simple:'
+      question: Bagaimana cara memperbarui kontainer?
+      intro: 'Saat menggunakan penyebaran Docker Compose, pembaruan sangat sederhana:'
       code: |-
         docker-compose pull
         docker-compose up -d
-      watchtower: Or use Watchtower for automatic updates.
+      watchtower: Atau gunakan Watchtower untuk pembaruan otomatis.
     q5:
-      question: How to configure data persistence?
-      intro: 'Docker Compose Builder automatically configures data volumes. By default, your data will be stored in Docker Volumes, ensuring:'
-      point1: Data is not lost when containers are deleted
-      point2: Data is preserved during container upgrades
-      point3: Easy backup and recovery
+      question: Bagaimana cara mengonfigurasi persistensi data?
+      intro: 'Docker Compose Builder secara otomatis mengonfigurasi volume data. Secara bawaan, data Anda akan disimpan dalam Docker Volumes, memastikan:'
+      point1: Data tidak hilang saat kontainer dihapus
+      point2: Data dipertahankan selama peningkatan kontainer
+      point3: Pencadangan dan pemulihan yang mudah
     q6:
-      question: What to do if container startup fails?
-      intro: 'Steps to troubleshoot container startup failure:'
+      question: Apa yang harus dilakukan jika kontainer gagal dimulai?
+      intro: 'Langkah-langkah untuk mengatasi kegagalan mulai kontainer:'
       step1:
-        title: 'Check container status:'
+        title: 'Periksa status kontainer:'
         code: docker-compose ps
       step2:
-        title: 'Check container logs:'
+        title: 'Periksa log kontainer:'
         code: docker-compose logs hagicode
       step3:
-        title: 'Check port occupancy:'
-        desc: 'If your service port is 3000, use this command to check:'
+        title: 'Periksa penggunaan port:'
+        desc: 'Jika port layanan Anda adalah 3000, gunakan perintah ini untuk memeriksa:'
         code: netstat -tlnp | grep 3000
-        solution: 'If the port is occupied, you can:'
-        solution1: Stop the process occupying the port
-        solution2: Or configure a different port in Docker Compose Builder
-      help: If the issue persists, please check the detailed documentation or contact technical support.
+        solution: 'Jika port terpakai, Anda dapat:'
+        solution1: Menghentikan proses yang menggunakan port
+        solution2: Atau mengonfigurasi port yang berbeda di Docker Compose Builder
+      help: Jika masalah berlanjut, silakan periksa dokumentasi terperinci atau hubungi dukungan teknis.
   cta:
-    title: Start Using Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
-    button: Go to Deployment Guide
-    github: GitHub Repository
+    title: Mulai Menggunakan Docker Compose Builder
+    subtitle: Metode penyebaran kontainer paling sederhana dan paling direkomendasikan
+    button: Buka Panduan Penyebaran
+    github: Repositori GitHub

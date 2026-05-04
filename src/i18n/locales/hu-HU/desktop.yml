@@ -1,123 +1,123 @@
 desktop:
-  title: Hagicode Desktop - Download
-  description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
+  title: Hagicode Desktop - Letöltés
+  description: Töltsd le a Hagicode Desktopot, egy lokalizált AI kódasszisztenst. Windows, macOS és Linux támogatás. Adatvédelem, gyors válaszidő.
   features:
-    title: Key Features
+    title: Főbb funkciók
     local:
-      title: Local Execution
-      description: All data is processed locally without uploading to the cloud, ensuring code privacy and security
+      title: Helyi végrehajtás
+      description: Minden adat helyileg kerül feldolgozásra felhőbe töltés nélkül, biztosítva a kód adatvédelmét és biztonságát
     privacy:
-      title: Privacy Protection
-      description: Code is never uploaded, supports offline usage, protecting your intellectual property
+      title: Adatvédelem
+      description: A kód soha nem kerül feltöltésre, támogatja az offline használatot, védi szellemi tulajdonodat
     fast:
-      title: Fast Response
-      description: Millisecond-level response time, no network requests needed, boosting development efficiency
+      title: Gyors válasz
+      description: Ezredmásodperces válaszidő, nincs szükség hálózati kérésekre, növeli a fejlesztési hatékonyságot
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports Windows, macOS, and Linux to meet different development environment needs
+      title: Többplatformos támogatás
+      description: Windows, macOS és Linux támogatás a különböző fejlesztői környezeti igények kielégítésére
     autoUpdate:
-      title: Auto Updates
-      description: Automatically checks for updates and upgrades to the latest version with one click
+      title: Automatikus frissítések
+      description: Automatikusan ellenőrzi a frissítéseket és egy kattintással frissít a legújabb verzióra
     multiLanguage:
-      title: Multi-Language Support
-      description: Built-in Chinese and English interface, supporting international team collaboration
+      title: Többnyelvű támogatás
+      description: Beépített kínai és angol felület, támogatja a nemzetközi csapatmunkát
   systemRequirements:
-    title: System Requirements
+    title: Rendszerkövetelmények
     windows: Windows
     macos: macOS
     linux: Linux
-    os: Operating System
-    processor: Processor
-    memory: Memory
-    diskSpace: Disk Space
-    network: Network
-    windowsOs: Windows 10/11 (64-bit)
-    macosOs: macOS 12+ (Monterey or higher)
-    linuxOs: Ubuntu 20.04+ / Debian 11+ / Other mainstream distributions
-    windowsProcessor: Intel Core i3 or equivalent processor
-    macosProcessor: Apple Silicon (M1/M2/M3) or Intel Core i3+
-    linuxProcessor: Intel Core i3 or equivalent processor
-    memoryRec: 4GB RAM (8GB recommended)
-    disk: 2GB available space
-    networkDesc: Network connection required for initial download (can be used offline afterwards)
+    os: Operációs rendszer
+    processor: Processzor
+    memory: Memória
+    diskSpace: Lemezterület
+    network: Hálózat
+    windowsOs: Windows 10/11 (64 bites)
+    macosOs: macOS 12+ (Monterey vagy újabb)
+    linuxOs: Ubuntu 20.04+ / Debian 11+ / Egyéb主流 disztribúciók
+    windowsProcessor: Intel Core i3 vagy azzal egyenértékű processzor
+    macosProcessor: Apple Silicon (M1/M2/M3) vagy Intel Core i3+
+    linuxProcessor: Intel Core i3 vagy azzal egyenértékű processzor
+    memoryRec: 4 GB RAM (8 GB ajánlott)
+    disk: 2 GB szabad hely
+    networkDesc: Hálózati kapcsolat szükséges a kezdeti letöltéshez (utána offline is használható)
   download:
-    title: Download Packages
-    windowsDesc: Stable installers for Windows 10/11, including setup and portable builds.
-    macosDesc: Native builds for Apple Silicon and Intel Macs.
-    linuxDesc: AppImage and tarball packages for mainstream x64 and ARM64 Linux distributions.
-    note: If the package list here fails to load, use the version history link in the hero area to access the canonical index.
+    title: Letöltési csomagok
+    windowsDesc: Stabil telepítők Windows 10/11 rendszerhez, telepítő és hordozható változatban.
+    macosDesc: Natív buildek Apple Silicon és Intel Mac-ekhez.
+    linuxDesc: AppImage és tarball csomagok a mainstream x64 és ARM64 Linux disztribúciókhoz.
+    note: Ha a csomaglista itt nem tölt be, használd a hero területen lévő verziótörténet linket a kanonikus index eléréséhez.
     features:
-      signed: Signed packages
-      autoUpdate: Automatic update detection
-      multiLanguage: Multi-language interface
+      signed: Aláírt csomagok
+      autoUpdate: Automatikus frissítés-érzékelés
+      multiLanguage: Többnyelvű felület
   installation:
-    title: Quick Installation
+    title: Gyors telepítés
     step1:
       number: '1'
-      title: Download Installer
-      description: Select the appropriate installer for your operating system
+      title: Telepítő letöltése
+      description: Válaszd ki az operációs rendszerednek megfelelő telepítőt
     step2:
       number: '2'
-      title: Run Installer
-      description: Double-click the downloaded installer and follow the prompts to complete installation
+      title: Telepítő futtatása
+      description: Kattints duplán a letöltött telepítőre, és kövesd az utasításokat a telepítés befejezéséhez
     step3:
       number: '3'
-      title: Launch App
-      description: On first launch, it will guide you through initial configuration
+      title: Alkalmazás indítása
+      description: Első indításkor végigvezet a kezdeti konfiguráción
     step4:
       number: '4'
-      title: Start Using
-      description: After configuration, you can start using Hagicode Desktop
+      title: Használat megkezdése
+      description: A konfiguráció után elkezdheted használni a Hagicode Desktopot
   faq:
-    title: FAQ
+    title: GYIK
     q1:
-      question: What's the difference between Desktop and Server versions?
-      intro: 'Hagicode offers two deployment options: Desktop version and Server version. Each has its advantages, but both adopt a user-controlled server and data approach, providing better data protection.'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      serverTitle: Server Version
-      server1: Can be deployed on remote servers
-      server2: Supports multi-user remote access
-      server3: Better suited for team collaboration and scaling
-      server4: Prepares for future enterprise features and multi-device sync
-      conclusion: Whichever version you choose, you have complete control over your server and data, enjoying better privacy protection and data security.
+      question: Mi a különbség a Desktop és a Szerver verzió között?
+      intro: 'A Hagicode két telepítési lehetőséget kínál: Desktop verziót és Szerver verziót. Mindkettőnek megvannak az előnyei, de mindkettő felhasználó által irányított szerver és adat megközelítést alkalmaz, jobb adatvédelmet biztosítva.'
+      desktopTitle: Desktop verzió
+      desktop1: Helyileg fut a számítógépeden, könnyebb
+      desktop2: Nincs szükség szerverkonfigurációra, azonnal használható
+      desktop3: Egyéni fejlesztőknek és könnyű használati esetekhez alkalmas
+      desktop4: Minden adat teljesen helyi
+      serverTitle: Szerver verzió
+      server1: Távoli szervereken telepíthető
+      server2: Támogatja a többfelhasználós távoli hozzáférést
+      server3: Jobban alkalmas csapatmunkához és skálázáshoz
+      server4: Felkészülés a jövőbeli vállalati funkciókra és több eszköz szinkronizálására
+      conclusion: Bármelyik verziót is választod, teljes mértékben te irányítod a szerveredet és adataidat, élvezve a jobb adatvédelmet és adatbiztonságot.
     q2:
-      question: What do I need to do after installation?
-      intro: 'Hagicode Desktop is essentially a launcher. On first launch after installation, it will guide you through these steps:'
-      step1: <strong>Download Hagicode Core:</strong> Desktop will automatically detect and prompt you to download Hagicode core components
-      step2: <strong>Install Core Components:</strong> Follow the on-screen prompts to complete core component installation
-      step3: <strong>Configure your default Agent CLI:</strong> Choose a currently supported Agent CLI and finish the required sign-in, authorization, or local installation steps.
-      note: The Desktop interface guides the whole flow. Keep the network available on first launch so Hagicode Core can download; some Agent CLIs still require manual installation or authentication, but they are still part of the current support range.
-      done: After completing these steps, you can use all Hagicode Desktop features normally.
+      question: Mit kell tennem a telepítés után?
+      intro: 'A Hagicode Desktop lényegében egy indító. A telepítés utáni első indításkor végigvezet ezeken a lépéseken:'
+      step1: '<strong>Hagicode Core letöltése:</strong> A Desktop automatikusan észleli és felkér, hogy töltsd le a Hagicode alapkomponenseket'
+      step2: '<strong>Alapkomponensek telepítése:</strong> Kövesd a képernyőn megjelenő utasításokat az alapkomponensek telepítésének befejezéséhez'
+      step3: '<strong>Alapértelmezett Agent CLI konfigurálása:</strong> Válassz egy jelenleg támogatott Agent CLI-t, és fejezd be a szükséges bejelentkezési, hitelesítési vagy helyi telepítési lépéseket.'
+      note: A Desktop felület végigvezeti a teljes folyamaton. Tartsd elérhetővé a hálózatot az első indításkor, hogy a Hagicode Core letöltődhessen; néhány Agent CLI még mindig igényel manuális telepítést vagy hitelesítést, de továbbra is a jelenlegi támogatási kör részét képezik.
+      done: Ezeknek a lépéseknek a befejezése után a Hagicode Desktop összes funkcióját normálisan használhatod.
     q3:
-      question: How do I check for updates?
-      answer: Desktop automatically checks for updates. When a new version is available, a prompt will appear in the top right corner of the interface. You can also manually check for updates in "Settings".
+      question: Hogyan ellenőrizzem a frissítéseket?
+      answer: A Desktop automatikusan ellenőrzi a frissítéseket. Amikor új verzió válik elérhetővé, egy értesítés jelenik meg a felület jobb felső sarkában. Manuálisan is ellenőrizheted a frissítéseket a "Beállítások"ban.
     q4:
-      question: Which AI Agent CLIs are supported?
-      intro: 'Hagicode Desktop currently supports the following Agent CLIs:'
-      active: <strong>Currently supported:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents, and Codebuddy
-      manual: <strong>Manual installation or authentication:</strong> Hermes, Gemini, and DeepAgents require a local install or auth step first; the other CLIs provide one-click installation entry points or guided install flows.
-      legacy: <strong>Legacy compatibility only:</strong> IFlowCli remains only for historical data compatibility and is not part of the current active support range.
-      closing: Support scope and setup mode are separate concerns. A CLI that needs manual installation is still supported now.
+      question: Milyen AI Agent CLI-eket támogat?
+      intro: 'A Hagicode Desktop jelenleg a következő Agent CLI-eket támogatja:'
+      active: '<strong>Jelenleg támogatottak:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents és Codebuddy'
+      manual: '<strong>Manuális telepítés vagy hitelesítés:</strong> A Hermes, Gemini és DeepAgents helyi telepítést vagy hitelesítési lépést igényel először; a többi CLI egykattintásos telepítési belépési pontot vagy irányított telepítési folyamatot biztosít.'
+      legacy: '<strong>Csak örökölt kompatibilitás:</strong> Az IFlowCli csak történelmi adatok kompatibilitása miatt maradt, és nem része a jelenlegi aktív támogatási körnek.'
+      closing: A támogatási kör és a beállítási mód különálló kérdések. Egy CLI, amely manuális telepítést igényel, továbbra is támogatott.
     q5:
-      question: Does it support offline usage?
-      intro: 'Yes! Hagicode Desktop supports complete offline usage:'
-      point1: Network connection required for initial installation and configuration (downloading core components and AI models)
-      point2: All features can be used offline after configuration
-      point3: Your code and data are never uploaded to the cloud
-      point4: All AI processing is completed locally
+      question: Támogatja az offline használatot?
+      intro: 'Igen! A Hagicode Desktop teljes offline használatot támogat:'
+      point1: Hálózati kapcsolat szükséges a kezdeti telepítéshez és konfigurációhoz (alapkomponensek és AI modellek letöltése)
+      point2: A konfiguráció után minden funkció offline használható
+      point3: A kódod és adataid soha nem kerülnek feltöltésre a felhőbe
+      point4: Minden AI feldolgozás helyileg történik
     q6:
-      question: macOS says Hagicode.app is damaged or can't be opened. What should I do?
-      intro: If Hagicode Desktop is installed in the default path /Applications/Hagicode.app and macOS Gatekeeper blocks the first launch, use the following command to remove the quarantine attribute from the app.
-      cause: This happens because macOS adds the com.apple.quarantine attribute to apps downloaded from the internet. It is a macOS security isolation issue, not a failure in the Hagicode installer.
+      question: A macOS azt mondja, hogy a Hagicode.app sérült vagy nem nyitható meg. Mit tegyek?
+      intro: Ha a Hagicode Desktop az alapértelmezett /Applications/Hagicode.app útvonalra van telepítve, és a macOS Gatekeeper blokkolja az első indítást, használd a következő parancsot az alkalmazás karantén attribútumának eltávolításához.
+      cause: Ez azért történik, mert macOS hozzáadja a com.apple.quarantine attribútumot az internetről letöltött alkalmazásokhoz. Ez egy macOS biztonsági izolációs probléma, nem a Hagicode telepítő hibája.
       command: sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app
-      note: Run the command in Terminal with administrator privileges, then relaunch Hagicode Desktop.
+      note: Futtasd a parancsot a Terminalban rendszergazdai jogosultságokkal, majd indítsd újra a Hagicode Desktopot.
     q7:
-      question: How to get help when encountering issues?
-      intro: 'If you encounter issues while using Hagicode Desktop, you can get help through:'
-      point1: <strong>Technical Support Group:</strong> Join QQ Group 610394020
-      point2: <strong>Online Documentation:</strong> View complete usage documentation and tutorials
-      point3: <strong>GitHub Issues:</strong> Submit issue reports in the project repository
+      question: Hogyan kaphatok segítséget, ha problémával találkozom?
+      intro: 'Ha problémával találkozol a Hagicode Desktop használata során, a következő módokon kaphatsz segítséget:'
+      point1: '<strong>Technikai támogató csoport:</strong> Csatlakozz a QQ csoporthoz 610394020'
+      point2: '<strong>Online dokumentáció:</strong> Tekintsd meg a teljes használati dokumentációt és oktatóanyagokat'
+      point3: '<strong>GitHub Issues:</strong> Küldj problémajelentést a projekt tárolójában'

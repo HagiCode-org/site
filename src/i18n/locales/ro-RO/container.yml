@@ -1,125 +1,125 @@
 container:
-  title: Hagicode Container - Container Deployment
-  description: Deploy Hagicode via Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and auto updates.
+  title: Hagicode Container - Implementare Container
+  description: Implementați Hagicode via Docker Compose Builder. Configurație simplă, gata de utilizare. Suportă surse multiple de imagini și actualizări automate.
   hero:
     badge: Container
     title: Hagicode Container
-    tagline: Deploy quickly with Docker Compose Builder, simple configuration, ready to use
-    value1: Visual configuration, no coding required
-    value2: Environment isolation, data security
-    value3: One-click deployment, fast startup
-    ctaButton: Deploy with Docker Compose Builder
+    tagline: Implementați rapid cu Docker Compose Builder, configurație simplă, gata de utilizare
+    value1: Configurație vizuală, fără programare necesară
+    value2: Izolare mediu, securitate date
+    value3: Implementare cu un click, pornire rapidă
+    ctaButton: Implementați cu Docker Compose Builder
     features:
-      isolation: Environment Isolation
-      oneClick: One-Click Deployment
-      fastStart: Fast Startup
+      isolation: Izolare Mediu
+      oneClick: Implementare cu Un Click
+      fastStart: Pornire Rapidă
   features:
-    title: Why Choose Container Deployment?
+    title: De Ce Să Alegeți Implementarea prin Container?
     isolation:
-      title: Environment Isolation
-      description: Containerized deployment avoids dependency conflicts, doesn't affect system environment, keeps system clean
+      title: Izolare Mediu
+      description: Implementarea containerizată evită conflictele de dependențe, nu afectează mediul sistemului, menține sistemul curat
     simple:
-      title: Simple Configuration
-      description: Use Docker Compose Builder for visual configuration, no need to write complex scripts
+      title: Configurație Simplă
+      description: Folosiți Docker Compose Builder pentru configurație vizuală, fără a scrie scripturi complexe
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports x86_64 architecture, suitable for various servers and cloud platforms
+      title: Suport Multiplataformă
+      description: Suportă arhitectura x86_64, potrivită pentru diverse servere și platforme cloud
     persistent:
-      title: Data Persistence
-      description: Supports Volume mounting, secure and reliable data, no data loss on container restart
+      title: Persistență Date
+      description: Suportă montare Volume, date sigure și fiabile, fără pierderi de date la repornirea containerului
     autoUpdate:
-      title: Auto Updates
-      description: Supports watchtower for automatic updates, easily get the latest version
+      title: Actualizări Automate
+      description: Suportă watchtower pentru actualizări automate, obțineți ușor cea mai recentă versiune
     productionReady:
-      title: Production Ready
-      description: Designed for production environments, supports high availability and horizontal scaling
+      title: Gata pentru Producție
+      description: Proiectat pentru medii de producție, suportă disponibilitate ridicată și scalare orizontală
   builder:
     title: Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
+    subtitle: Cea mai simplă și recomandată metodă de implementare prin container
     visual:
-      title: Visual Configuration
-      description: Configure all parameters through a friendly Web interface, no need to manually edit YAML files
+      title: Configurație Vizuală
+      description: Configurați toți parametrii printr-o interfață Web prietenoasă, fără a edita manual fișiere YAML
     generate:
-      title: One-Click Configuration Generation
-      description: Automatically generate complete docker-compose.yml files with best practice configurations
+      title: Generare Configurație cu Un Click
+      description: Generează automat fișiere docker-compose.yml complete cu configurații de bune practici
     deploy:
-      title: Fast Deployment
-      description: One-click download configuration files and start services, complete deployment in minutes
+      title: Implementare Rapidă
+      description: Descărcați fișiere de configurație cu un click și porniți serviciile, completați implementarea în minute
     secure:
-      title: Secure and Reliable
-      description: Built-in security best practices, automatically configures data volumes and restart policies
-    ctaButton: Go to Docker Compose Builder
+      title: Sigur și Fiabil
+      description: Bune practici de securitate integrate, configurează automat volume de date și politici de repornire
+    ctaButton: Mergeți la Docker Compose Builder
   mirrors:
-    title: Image Source Selection
-    description: Choose the most suitable image source based on your network environment and location
+    title: Selecție Sursă Imagine
+    description: Alegeți sursa de imagine cea mai potrivită în funcție de mediul de rețea și locația dumneavoastră
     dockerHub: Docker Hub
-    dockerHubDesc: The world's largest container image registry, suitable for international network users
+    dockerHubDesc: Cel mai mare registru de imagini de containere din lume, potrivit pentru utilizatorii de rețele internaționale
     dockerHubCmd: newbe36524/hagicode:0
     azure: Azure ACR
-    azureDesc: Microsoft Azure's image service, faster access from China
+    azureDesc: Serviciul de imagini Microsoft Azure, acces mai rapid din China
     azureCmd: hagicode.azurecr.io/hagicode:0
     aliyun: Aliyun ACR
-    aliyunDesc: Aliyun's domestic image acceleration, recommended for users in mainland China
+    aliyunDesc: Accelerare imagine internă Aliyun, recomandată pentru utilizatorii din China continentală
     aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
   faq:
-    title: FAQ
+    title: Întrebări Frecvente
     q1:
-      question: What's the difference between Container and Desktop versions?
-      intro: 'Both versions have their advantages. You can choose based on your usage scenario:'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      containerTitle: Container Version
-      container1: Can be deployed on servers, supports remote access
-      container2: Environment isolation, doesn't affect system environment
-      container3: Better suited for team collaboration and production environments
-      container4: Supports automated deployment and horizontal scaling
+      question: Care este diferența dintre versiunile Container și Desktop?
+      intro: 'Ambele versiuni au avantajele lor. Puteți alege în funcție de scenariul de utilizare:'
+      desktopTitle: Versiunea Desktop
+      desktop1: Rulează local pe calculator, mai ușoară
+      desktop2: Nu necesită configurare server, gata de utilizare imediat
+      desktop3: Potrivită pentru dezvoltatori individuali și scenarii de utilizare ușoară
+      desktop4: Toate datele complet localizate
+      containerTitle: Versiunea Container
+      container1: Poate fi implementată pe servere, suportă acces de la distanță
+      container2: Izolare mediu, nu afectează mediul sistemului
+      container3: Mai potrivită pentru colaborare în echipă și medii de producție
+      container4: Suportă implementare automatizată și scalare orizontală
     q2:
-      question: What is Docker Compose Builder?
-      intro: 'Docker Compose Builder is our visual configuration tool that helps you:'
-      point1: Configure all container parameters through a Web interface
-      point2: Automatically generate docker-compose.yml files
-      point3: Built-in best practices and security configurations
-      point4: One-click download and start services
-      note: No need to manually write complex YAML configurations. Even Docker beginners can deploy easily.
+      question: Ce este Docker Compose Builder?
+      intro: 'Docker Compose Builder este instrumentul nostru de configurație vizuală care vă ajută să:'
+      point1: Configurați toți parametrii containerului printr-o interfață Web
+      point2: Generați automat fișiere docker-compose.yml
+      point3: Bune practici și configurații de securitate integrate
+      point4: Descărcați și porniți serviciile cu un click
+      note: Nu este necesar să scrieți manual configurații YAML complexe. Chiar și începătorii Docker pot implementa cu ușurință.
     q3:
-      question: Which system architectures does the container version support?
-      answer: Hagicode container images currently support <strong>x86_64 (amd64)</strong> architecture, suitable for most servers and PCs.
-      note: Docker will automatically select the appropriate architecture for your system when pulling images.
+      question: Ce arhitecturi de sistem suportă versiunea container?
+      answer: 'Imaginile container Hagicode suportă în prezent arhitectura <strong>x86_64 (amd64)</strong>, potrivită pentru majoritatea serverelor și PC-urilor.'
+      note: Docker va selecta automat arhitectura potrivită pentru sistemul dumneavoastră la tragerea imaginilor.
     q4:
-      question: How to update the container?
-      intro: 'When using Docker Compose deployment, updating is very simple:'
+      question: Cum se actualizează containerul?
+      intro: 'Când folosiți implementarea Docker Compose, actualizarea este foarte simplă:'
       code: |-
         docker-compose pull
         docker-compose up -d
-      watchtower: Or use Watchtower for automatic updates.
+      watchtower: Sau folosiți Watchtower pentru actualizări automate.
     q5:
-      question: How to configure data persistence?
-      intro: 'Docker Compose Builder automatically configures data volumes. By default, your data will be stored in Docker Volumes, ensuring:'
-      point1: Data is not lost when containers are deleted
-      point2: Data is preserved during container upgrades
-      point3: Easy backup and recovery
+      question: Cum se configurează persistența datelor?
+      intro: 'Docker Compose Builder configurează automat volumele de date. În mod implicit, datele dumneavoastră vor fi stocate în Docker Volumes, asigurând:'
+      point1: Datele nu se pierd când containerele sunt șterse
+      point2: Datele sunt păstrate în timpul actualizărilor containerelor
+      point3: Copie de rezervă și recuperare ușoare
     q6:
-      question: What to do if container startup fails?
-      intro: 'Steps to troubleshoot container startup failure:'
+      question: Ce să faceți dacă pornirea containerului eșuează?
+      intro: 'Pași pentru depanarea eșecului la pornirea containerului:'
       step1:
-        title: 'Check container status:'
+        title: 'Verificați starea containerului:'
         code: docker-compose ps
       step2:
-        title: 'Check container logs:'
+        title: 'Verificați jurnalele containerului:'
         code: docker-compose logs hagicode
       step3:
-        title: 'Check port occupancy:'
-        desc: 'If your service port is 3000, use this command to check:'
+        title: 'Verificați ocuparea portului:'
+        desc: 'Dacă portul serviciului dumneavoastră este 3000, folosiți această comandă pentru verificare:'
         code: netstat -tlnp | grep 3000
-        solution: 'If the port is occupied, you can:'
-        solution1: Stop the process occupying the port
-        solution2: Or configure a different port in Docker Compose Builder
-      help: If the issue persists, please check the detailed documentation or contact technical support.
+        solution: 'Dacă portul este ocupat, puteți:'
+        solution1: Opri procesul care ocupă portul
+        solution2: Sau configurați un port diferit în Docker Compose Builder
+      help: Dacă problema persistă, verificați documentația detaliată sau contactați suportul tehnic.
   cta:
-    title: Start Using Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
-    button: Go to Deployment Guide
-    github: GitHub Repository
+    title: Începeți Să Folosiți Docker Compose Builder
+    subtitle: Cea mai simplă și recomandată metodă de implementare prin container
+    button: Mergeți la Ghidul de Implementare
+    github: Repository GitHub

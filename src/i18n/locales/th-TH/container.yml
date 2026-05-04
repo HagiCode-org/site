@@ -1,125 +1,125 @@
 container:
-  title: Hagicode Container - Container Deployment
-  description: Deploy Hagicode via Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and auto updates.
+  title: Hagicode Container - การปรับใช้คอนเทนเนอร์
+  description: ปรับใช้ Hagicode ผ่าน Docker Compose Builder กำหนดค่าง่าย พร้อมใช้งาน รองรับแหล่งภาพหลายแหล่งและการอัปเดตอัตโนมัติ
   hero:
-    badge: Container
+    badge: คอนเทนเนอร์
     title: Hagicode Container
-    tagline: Deploy quickly with Docker Compose Builder, simple configuration, ready to use
-    value1: Visual configuration, no coding required
-    value2: Environment isolation, data security
-    value3: One-click deployment, fast startup
-    ctaButton: Deploy with Docker Compose Builder
+    tagline: ปรับใช้ได้อย่างรวดเร็วด้วย Docker Compose Builder กำหนดค่าง่าย พร้อมใช้งาน
+    value1: กำหนดค่าแบบภาพ ไม่ต้องเขียนโค้ด
+    value2: แยกสภาพแวดล้อม ข้อมูลปลอดภัย
+    value3: ปรับใช้คลิกเดียว เริ่มต้นเร็ว
+    ctaButton: ปรับใช้ด้วย Docker Compose Builder
     features:
-      isolation: Environment Isolation
-      oneClick: One-Click Deployment
-      fastStart: Fast Startup
+      isolation: แยกสภาพแวดล้อม
+      oneClick: ปรับใช้คลิกเดียว
+      fastStart: เริ่มต้นเร็ว
   features:
-    title: Why Choose Container Deployment?
+    title: ทำไมต้องเลือกการปรับใช้คอนเทนเนอร์?
     isolation:
-      title: Environment Isolation
-      description: Containerized deployment avoids dependency conflicts, doesn't affect system environment, keeps system clean
+      title: แยกสภาพแวดล้อม
+      description: การปรับใช้แบบคอนเทนเนอร์หลีกเลี่ยงความขัดแย้งของ dependencies ไม่กระทบสภาพแวดล้อมระบบ รักษาระบบให้สะอาด
     simple:
-      title: Simple Configuration
-      description: Use Docker Compose Builder for visual configuration, no need to write complex scripts
+      title: กำหนดค่าง่าย
+      description: ใช้ Docker Compose Builder สำหรับการกำหนดค่าแบบภาพ ไม่ต้องเขียนสคริปต์ที่ซับซ้อน
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports x86_64 architecture, suitable for various servers and cloud platforms
+      title: รองรับหลายแพลตฟอร์ม
+      description: รองรับสถาปัตยกรรม x86_64 เหมาะสำหรับเซิร์ฟเวอร์และแพลตฟอร์มคลาวด์หลากหลาย
     persistent:
-      title: Data Persistence
-      description: Supports Volume mounting, secure and reliable data, no data loss on container restart
+      title: ข้อมูลคงอยู่
+      description: รองรับการเมาท์ Volume ข้อมูลปลอดภัยและเชื่อถือได้ ไม่สูญเสียข้อมูลเมื่อรีสตาร์ทคอนเทนเนอร์
     autoUpdate:
-      title: Auto Updates
-      description: Supports watchtower for automatic updates, easily get the latest version
+      title: อัปเดตอัตโนมัติ
+      description: รองรับ watchtower สำหรับการอัปเดตอัตโนมัติ รับเวอร์ชันล่าสุดได้ง่าย
     productionReady:
-      title: Production Ready
-      description: Designed for production environments, supports high availability and horizontal scaling
+      title: พร้อมสำหรับการผลิต
+      description: ออกแบบสำหรับสภาพแวดล้อมการผลิต รองรับความพร้อมใช้งานสูงและการขยายแนวนอน
   builder:
     title: Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
+    subtitle: วิธีการปรับใช้คอนเทนเนอร์ที่ง่ายและแนะนำที่สุด
     visual:
-      title: Visual Configuration
-      description: Configure all parameters through a friendly Web interface, no need to manually edit YAML files
+      title: กำหนดค่าแบบภาพ
+      description: กำหนดค่าพารามิเตอร์ทั้งหมดผ่านอินเทอร์เฟซ Web ที่เป็นมิตร ไม่ต้องแก้ไขไฟล์ YAML ด้วยตนเอง
     generate:
-      title: One-Click Configuration Generation
-      description: Automatically generate complete docker-compose.yml files with best practice configurations
+      title: สร้างการกำหนดค่าคลิกเดียว
+      description: สร้างไฟล์ docker-compose.yml ที่สมบูรณ์โดยอัตโนมัติพร้อมการกำหนดค่าแนวทางปฏิบัติที่ดีที่สุด
     deploy:
-      title: Fast Deployment
-      description: One-click download configuration files and start services, complete deployment in minutes
+      title: ปรับใช้รวดเร็ว
+      description: ดาวน์โหลดไฟล์กำหนดค่าและเริ่มบริการคลิกเดียว ปรับใช้เสร็จในไม่กี่นาที
     secure:
-      title: Secure and Reliable
-      description: Built-in security best practices, automatically configures data volumes and restart policies
-    ctaButton: Go to Docker Compose Builder
+      title: ปลอดภัยและเชื่อถือได้
+      description: แนวทางปฏิบัติด้านความปลอดภัยที่ดีที่สุดในตัว กำหนดค่า volume ข้อมูลและนโยบายการรีสตาร์ทอัตโนมัติ
+    ctaButton: ไปที่ Docker Compose Builder
   mirrors:
-    title: Image Source Selection
-    description: Choose the most suitable image source based on your network environment and location
+    title: เลือกแหล่งภาพ
+    description: เลือกแหล่งภาพที่เหมาะสมที่สุดตามสภาพแวดล้อมเครือข่ายและตำแหน่งของคุณ
     dockerHub: Docker Hub
-    dockerHubDesc: The world's largest container image registry, suitable for international network users
+    dockerHubDesc: รีจิสตรีภาพคอนเทนเนอร์ที่ใหญ่ที่สุดในโลก เหมาะสำหรับผู้ใช้เครือข่ายระหว่างประเทศ
     dockerHubCmd: newbe36524/hagicode:0
     azure: Azure ACR
-    azureDesc: Microsoft Azure's image service, faster access from China
+    azureDesc: บริการภาพของ Microsoft Azure เข้าถึงได้เร็วกว่าจากประเทศจีน
     azureCmd: hagicode.azurecr.io/hagicode:0
     aliyun: Aliyun ACR
-    aliyunDesc: Aliyun's domestic image acceleration, recommended for users in mainland China
+    aliyunDesc: การเร่งความเร็วภาพภายในประเทศของ Aliyun แนะนำสำหรับผู้ใช้ในจีนแผ่นดินใหญ่
     aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
   faq:
-    title: FAQ
+    title: คำถามที่พบบ่อย
     q1:
-      question: What's the difference between Container and Desktop versions?
-      intro: 'Both versions have their advantages. You can choose based on your usage scenario:'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      containerTitle: Container Version
-      container1: Can be deployed on servers, supports remote access
-      container2: Environment isolation, doesn't affect system environment
-      container3: Better suited for team collaboration and production environments
-      container4: Supports automated deployment and horizontal scaling
+      question: ความแตกต่างระหว่างเวอร์ชันคอนเทนเนอร์และเดสก์ท็อปคืออะไร?
+      intro: 'ทั้งสองเวอร์ชันมีข้อดีของตัวเอง คุณสามารถเลือกตามสถานการณ์การใช้งานของคุณ:'
+      desktopTitle: เวอร์ชันเดสก์ท็อป
+      desktop1: ทำงานบนคอมพิวเตอร์ของคุณ เบากว่า
+      desktop2: ไม่ต้องตั้งค่าเซิร์ฟเวอร์ พร้อมใช้งานทันที
+      desktop3: เหมาะสำหรับนักพัฒนาที่ทำงานคนเดียวและสถานการณ์การใช้งานเบาๆ
+      desktop4: ข้อมูลทั้งหมดอยู่ในเครื่องทั้งหมด
+      containerTitle: เวอร์ชันคอนเทนเนอร์
+      container1: สามารถปรับใช้บนเซิร์ฟเวอร์ รองรับการเข้าถึงระยะไกล
+      container2: แยกสภาพแวดล้อม ไม่กระทบสภาพแวดล้อมระบบ
+      container3: เหมาะสำหรับการทำงานร่วมกันในทีมและสภาพแวดล้อมการผลิตมากกว่า
+      container4: รองรับการปรับใช้อัตโนมัติและการขยายแนวนอน
     q2:
-      question: What is Docker Compose Builder?
-      intro: 'Docker Compose Builder is our visual configuration tool that helps you:'
-      point1: Configure all container parameters through a Web interface
-      point2: Automatically generate docker-compose.yml files
-      point3: Built-in best practices and security configurations
-      point4: One-click download and start services
-      note: No need to manually write complex YAML configurations. Even Docker beginners can deploy easily.
+      question: Docker Compose Builder คืออะไร?
+      intro: 'Docker Compose Builder เป็นเครื่องมือกำหนดค่าแบบภาพของเราที่ช่วยคุณ:'
+      point1: กำหนดค่าพารามิเตอร์คอนเทนเนอร์ทั้งหมดผ่านอินเทอร์เฟซ Web
+      point2: สร้างไฟล์ docker-compose.yml อัตโนมัติ
+      point3: แนวทางปฏิบัติที่ดีที่สุดและการกำหนดค่าความปลอดภัยในตัว
+      point4: ดาวน์โหลดและเริ่มบริการคลิกเดียว
+      note: ไม่ต้องเขียนการกำหนดค่า YAML ที่ซับซ้อนด้วยตนเอง แม้ผู้เริ่มต้น Docker ก็ปรับใช้ได้ง่าย
     q3:
-      question: Which system architectures does the container version support?
-      answer: Hagicode container images currently support <strong>x86_64 (amd64)</strong> architecture, suitable for most servers and PCs.
-      note: Docker will automatically select the appropriate architecture for your system when pulling images.
+      question: คอนเทนเนอร์รองรับสถาปัตยกรรมระบบใดบ้าง?
+      answer: 'ภาพคอนเทนเนอร์ Hagicode รองรับสถาปัตยกรรม <strong>x86_64 (amd64)</strong> ในปัจจุบัน เหมาะสำหรับเซิร์ฟเวอร์และ PC ส่วนใหญ่'
+      note: Docker จะเลือกสถาปัตยกรรมที่เหมาะสมสำหรับระบบของคุณโดยอัตโนมัติเมื่อดึงภาพ
     q4:
-      question: How to update the container?
-      intro: 'When using Docker Compose deployment, updating is very simple:'
+      question: จะอัปเดตคอนเทนเนอร์อย่างไร?
+      intro: 'เมื่อใช้การปรับใช้ Docker Compose การอัปเดตทำได้ง่ายมาก:'
       code: |-
         docker-compose pull
         docker-compose up -d
-      watchtower: Or use Watchtower for automatic updates.
+      watchtower: หรือใช้ Watchtower สำหรับการอัปเดตอัตโนมัติ
     q5:
-      question: How to configure data persistence?
-      intro: 'Docker Compose Builder automatically configures data volumes. By default, your data will be stored in Docker Volumes, ensuring:'
-      point1: Data is not lost when containers are deleted
-      point2: Data is preserved during container upgrades
-      point3: Easy backup and recovery
+      question: จะกำหนดค่าการคงอยู่ของข้อมูลอย่างไร?
+      intro: 'Docker Compose Builder กำหนดค่า volume ข้อมูลอัตโนมัติ โดยค่าเริ่มต้น ข้อมูลของคุณจะถูกเก็บใน Docker Volumes โดยมั่นใจว่า:'
+      point1: ข้อมูลไม่สูญหายเมื่อลบคอนเทนเนอร์
+      point2: ข้อมูลยังคงอยู่ระหว่างการอัปเดตคอนเทนเนอร์
+      point3: สำรองและกู้คืนข้อมูลได้ง่าย
     q6:
-      question: What to do if container startup fails?
-      intro: 'Steps to troubleshoot container startup failure:'
+      question: ทำอย่างไรถ้าคอนเทนเนอร์เริ่มต้นไม่สำเร็จ?
+      intro: 'ขั้นตอนแก้ไขปัญหาการเริ่มต้นคอนเทนเนอร์ล้มเหลว:'
       step1:
-        title: 'Check container status:'
+        title: 'ตรวจสอบสถานะคอนเทนเนอร์:'
         code: docker-compose ps
       step2:
-        title: 'Check container logs:'
+        title: 'ตรวจสอบบันทึกคอนเทนเนอร์:'
         code: docker-compose logs hagicode
       step3:
-        title: 'Check port occupancy:'
-        desc: 'If your service port is 3000, use this command to check:'
+        title: 'ตรวจสอบการใช้งานพอร์ต:'
+        desc: 'หากพอร์ตบริการของคุณคือ 3000 ใช้คำสั่งนี้เพื่อตรวจสอบ:'
         code: netstat -tlnp | grep 3000
-        solution: 'If the port is occupied, you can:'
-        solution1: Stop the process occupying the port
-        solution2: Or configure a different port in Docker Compose Builder
-      help: If the issue persists, please check the detailed documentation or contact technical support.
+        solution: 'หากพอร์ตถูกใช้งาน คุณสามารถ:'
+        solution1: หยุดโปรเซสที่ใช้พอร์ตอยู่
+        solution2: หรือกำหนดค่าพอร์ตอื่นใน Docker Compose Builder
+      help: หากปัญหายังคงอยู่ โปรดตรวจสอบเอกสารประกอบโดยละเอียดหรือติดต่อฝ่ายสนับสนุนทางเทคนิค
   cta:
-    title: Start Using Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
-    button: Go to Deployment Guide
-    github: GitHub Repository
+    title: เริ่มใช้ Docker Compose Builder
+    subtitle: วิธีการปรับใช้คอนเทนเนอร์ที่ง่ายและแนะนำที่สุด
+    button: ไปที่คู่มือการปรับใช้
+    github: Repository GitHub

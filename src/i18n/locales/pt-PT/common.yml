@@ -1,190 +1,190 @@
 navbar:
-  home: Home
-  docs: Docs
-  blog: Blog
-  about: About
-  desktop: Desktop App
-  container: Container
-  support: Get Support
-  mobileOpenMenu: Open menu
-  mobileCloseMenu: Close menu
-  mobileNav: Mobile site navigation
+  home: Início
+  docs: Documentação
+  blog: Blogue
+  about: Sobre
+  desktop: Aplicação Desktop
+  container: Contentor
+  support: Obter Suporte
+  mobileOpenMenu: Abrir menu
+  mobileCloseMenu: Fechar menu
+  mobileNav: Navegação móvel do site
 themeToggle:
-  theme: Theme
-  darkMode: Switch to dark mode
-  lightMode: Switch to light mode
-  lunarNewYearMode: Switch to Lunar New Year theme
+  theme: Tema
+  darkMode: Mudar para modo escuro
+  lightMode: Mudar para modo claro
+  lunarNewYearMode: Mudar para tema de Ano Novo Lunar
 languageSwitcher:
-  label: Language
-  dialogTitle: Select language
-  currentLocaleLabel: Current language
-  close: Close language chooser
-  selectedState: Current
+  label: Idioma
+  dialogTitle: Selecionar idioma
+  currentLocaleLabel: Idioma atual
+  close: Fechar seletor de idioma
+  selectedState: Atual
   switchToChinese: 切换到中文
-  switchToEnglish: Switch to English
+  switchToEnglish: Mudar para inglês
 videoPlayer:
-  play: Play
-  pause: Pause
-  fullscreen: Fullscreen
+  play: Reproduzir
+  pause: Pausar
+  fullscreen: Ecrã inteiro
 footer:
-  copyright: © {year} Hagicode. All rights reserved.
-  product: Product
-  quickLinks: Quick Links
-  community: Community
-  productInfo: Hagicode Introduction
-  downloadClient: Download Client
-  productDocs: Product Docs
-  blogPosts: Blog Posts
-  rssSubscribe: RSS Subscribe
+  copyright: "© {year} Hagicode. Todos os direitos reservados."
+  product: Produto
+  quickLinks: Links Rápidos
+  community: Comunidade
+  productInfo: Introdução ao Hagicode
+  downloadClient: Transferir Cliente
+  productDocs: Documentação do Produto
+  blogPosts: Publicações do Blogue
+  rssSubscribe: Subscrição RSS
   github: GitHub
-  issueFeedback: Issue Feedback
-  contactEmail: Contact Email
-  qqGroup: QQ Group 610394020
-  icpLabel: View ICP Filing Information
-  gonganLabel: View Public Security Filing Information
-  visitPage: Visit {title} page
-  discord: Discord Community
-  costCalculator: AI Replacement Calculator
+  issueFeedback: Feedback de Problemas
+  contactEmail: Email de Contacto
+  qqGroup: Grupo QQ 610394020
+  icpLabel: Ver Informação de Registo ICP
+  gonganLabel: Ver Informação de Registo de Segurança Pública
+  visitPage: Visitar página {title}
+  discord: Comunidade Discord
+  costCalculator: Calculadora de Substituição de IA
   steam: Steam
-  relatedSitesTitle: Related Sites
+  relatedSitesTitle: Sites Relacionados
 socialProof:
   highlights:
-    multiAgent: Multi-Agent Parallel
-    multiAgentDesc: Claude Code, Codex, and others can drive multiple instances at once
-    privacy: Privacy First
-    privacyDesc: Local deployment, no code upload
-    openspec: OpenSpec Orchestration
-    openspecDesc: Standardized proposal, execution, and archive flow
-    heroDungeons: Hero Dungeon Workflow
-    heroDungeonsDesc: Dungeons, captains, and battle reports close the loop
+    multiAgent: Multi-Agent Paralelo
+    multiAgentDesc: Claude Code, Codex, entre outros, podem gerir múltiplas instâncias em simultâneo
+    privacy: Privacidade em Primeiro Lugar
+    privacyDesc: Implementação local, sem carregamento de código
+    openspec: Orquestração OpenSpec
+    openspecDesc: Fluxo padronizado de proposta, execução e arquivo
+    heroDungeons: Fluxo de Trabalho Hero Dungeon
+    heroDungeonsDesc: Dungeons, capitães e relatórios de batalha fecham o ciclo
   badges:
     claude: Claude AI
-    claudeDesc: Powered by
-    opensource: Open Source
+    claudeDesc: Alimentado por
+    opensource: Código Aberto
     opensourceDesc: GitHub
-    ssl: SSL Secure
-    sslDesc: Secure Encryption
+    ssl: SSL Seguro
+    sslDesc: Encriptação Segura
 installCTA:
-  button: Install HagiCode
+  button: Instalar HagiCode
 activityMetrics:
-  title: People Are Using It
-  description: Community keeps growing, thanks to every contributor
+  title: As Pessoas Estão a Usar
+  description: A comunidade continua a crescer, graças a cada contribuidor
   dockerHub: Docker Hub
-  pullCount: Pull Count
-  activeUsers: Active Users
-  activeSessions: Active Sessions
-  recentDays: Last 3 days
+  pullCount: Número de Pulls
+  activeUsers: Utilizadores Ativos
+  activeSessions: Sessões Ativas
+  recentDays: Últimos 3 dias
   emptyState:
-    title: Data Coming Soon
-    description: Activity data will be displayed here when available. Stay tuned for community growth!
-  imageError: Image failed to load
+    title: Dados em Breve
+    description: Os dados de atividade serão apresentados aqui quando disponíveis. Fique atento ao crescimento da comunidade!
+  imageError: A imagem não carregou
   starHistory:
-    title: GitHub Star History
-    value: Live
-    description: Real-time community momentum
-    alt: Star history chart for the HagiCode site repository
-    cta: View full chart
+    title: Histórico de Stars no GitHub
+    value: Em direto
+    description: Impulso comunitário em tempo real
+    alt: Gráfico do histórico de stars do repositório do site HagiCode
+    cta: Ver gráfico completo
 showcase:
-  title: Latest Product Views
-  description: From proposal execution and session boards to token analytics, workspace management, and achievement progress, the homepage now uses the latest curated screenshots maintained with the docs site.
+  title: Últimas Vistas do Produto
+  description: Desde a execução de propostas e painéis de sessão até à análise de tokens, gestão de espaços de trabalho e progresso de conquistas, a página inicial agora utiliza as capturas de ecrã mais recentes mantidas com o site de documentação.
   controls:
-    previous: Previous
-    next: Next
-    current: Featured view
-    railLabel: Product screenshot navigation
-    selectPrefix: 'Switch to: '
-    activeState: Showing now
-    previewState: Preview
-    imageUnavailable: Image unavailable
-    openFullscreen: 'Open fullscreen: '
-    openFullscreenHint: Click to enlarge
-    closeFullscreen: Close fullscreen
+    previous: Anterior
+    next: Seguinte
+    current: Vista em destaque
+    railLabel: Navegação de capturas de ecrã do produto
+    selectPrefix: 'Mudar para: '
+    activeState: A mostrar agora
+    previewState: Pré-visualização
+    imageUnavailable: Imagem indisponível
+    openFullscreen: 'Abrir em ecrã inteiro: '
+    openFullscreenHint: Clique para ampliar
+    closeFullscreen: Fechar ecrã inteiro
   screenshots:
     proposalWorkflow:
-      title: Proposal execution overview
-      description: Keep the workflow stage, execution result, and session context in one screen so teams can see exactly where a change stands before moving on.
-      alt: HagiCode proposal execution screenshot showing workflow stages, execution result, and session sidebar
+      title: Visão geral da execução de propostas
+      description: Mantenha o estágio do fluxo de trabalho, o resultado da execução e o contexto da sessão num só ecrã para que as equipas vejam exatamente onde uma alteração se encontra antes de avançar.
+      alt: Captura de ecrã da execução de propostas do HagiCode mostrando estágios do fluxo de trabalho, resultado da execução e barra lateral da sessão
     sessionBoard:
-      title: Session board and dungeon planning
-      description: Pending, in-progress, and archived sessions stay visible beside a fantasy task panel so parallel agent work is easy to scan at a glance.
-      alt: HagiCode session board screenshot showing pending, in-progress, and archived columns beside a fantasy task panel
+      title: Painel de sessões e planeamento de dungeons
+      description: Sessões pendentes, em progresso e arquivadas mantêm-se visíveis ao lado de um painel de tarefas fantasia para que o trabalho paralelo de agentes seja fácil de analisar de relance.
+      alt: Captura de ecrã do painel de sessões do HagiCode mostrando colunas pendentes, em progresso e arquivadas ao lado de um painel de tarefas fantasia
     tokenAnalytics:
-      title: Real-time token analytics
-      description: Watch throughput, recent API activity, and total usage in one metrics surface so cost and pacing stay controllable during parallel execution.
-      alt: HagiCode token analytics screenshot showing throughput, recent API activity, and total usage
+      title: Análise de tokens em tempo real
+      description: Observe o débito, a atividade recente da API e o uso total numa superfície de métricas para que o custo e o ritmo se mantenham controláveis durante a execução paralela.
+      alt: Captura de ecrã da análise de tokens do HagiCode mostrando débito, atividade recente da API e uso total
     workspaceManagement:
-      title: Workspace and vault management
-      description: Manage user vaults, system vaults, and code-server entry points from one control surface built for shared environments and fast maintenance.
-      alt: HagiCode workspace management screenshot showing user vaults, system vaults, and code-server actions
+      title: Gestão de espaços de trabalho e cofres
+      description: Gira cofres de utilizador, cofres de sistema e pontos de entrada do code-server a partir de uma superfície de controlo construída para ambientes partilhados e manutenção rápida.
+      alt: Captura de ecrã da gestão de espaços de trabalho do HagiCode mostrando cofres de utilizador, cofres de sistema e ações do code-server
     achievementProgress:
-      title: Achievement and growth progress
-      description: Daily progress, global growth, and lifecycle metrics roll into one dashboard so long-running adoption feels measurable instead of abstract.
-      alt: HagiCode achievement dashboard screenshot showing daily progress, global growth, and lifecycle metrics
+      title: Progresso de conquistas e crescimento
+      description: Progresso diário, crescimento global e métricas de ciclo de vida convergem num único painel para que a adoção de longa duração se sinta mensurável em vez de abstrata.
+      alt: Captura de ecrã do painel de conquistas do HagiCode mostrando progresso diário, crescimento global e métricas de ciclo de vida
 installOptions:
-  sectionTitle: Choose Your Installation Method
-  sectionDescription: Choose the most suitable installation method based on your usage scenario
+  sectionTitle: Escolha o Seu Método de Instalação
+  sectionDescription: Escolha o método de instalação mais adequado com base no seu cenário de utilização
   desktop:
-    title: Desktop App
-    description: Runs locally on your computer, lightweight and convenient, ready to use out of the box
+    title: Aplicação Desktop
+    description: Corre localmente no seu computador, leve e conveniente, pronto a usar de imediato
     features:
-      - Local execution, complete data privacy
-      - Supports Windows, macOS, and Linux
-      - No server configuration needed
-      - Auto updates, stay with latest version
-      - Suitable for individual developers
-    ctaText: Download Desktop App
+      - Execução local, privacidade completa dos dados
+      - Suporta Windows, macOS e Linux
+      - Sem necessidade de configuração de servidor
+      - Atualizações automáticas, mantenha-se com a versão mais recente
+      - Adequado para programadores individuais
+    ctaText: Transferir Aplicação Desktop
   container:
-    title: Container Version
-    description: Deploy on servers, supports remote access, suitable for team collaboration
+    title: Versão Contentor
+    description: Implemente em servidores, suporta acesso remoto, adequado para colaboração em equipa
     features:
-      - Supports x86_64 architecture
-      - Environment isolation, doesn't affect system
-      - Supports Docker Compose Builder
-      - Data persistence, secure and reliable
-      - Suitable for production environments
-    ctaText: Container Deployment Guide
-  badge: Recommended
+      - Suporta arquitetura x86_64
+      - Isolamento de ambiente, não afeta o sistema
+      - Suporta Docker Compose Builder
+      - Persistência de dados, seguro e fiável
+      - Adequado para ambientes de produção
+    ctaText: Guia de Implementação por Contentor
+  badge: Recomendado
 desktopHero:
-  loading: Loading version information...
+  loading: A carregar informações da versão...
   error:
-    title: Cannot load version information
-    gotoDownload: Go to download page
-    redirectingToHistory: Unable to load desktop packages here. Redirecting to the Index version history...
+    title: Não é possível carregar informações da versão
+    gotoDownload: Ir para a página de transferência
+    redirectingToHistory: Incapaz de carregar pacotes desktop aqui. A redirecionar para o histórico de versões do Index...
   badge: Desktop
   title: Hagicode Desktop
-  tagline: Localized AI code assistant, privacy protection, enhanced efficiency
+  tagline: Assistente de código IA localizado, proteção de privacidade, eficiência melhorada
   valuePoints:
-    local: 100% local execution, code never uploaded
-    fast: Millisecond-level response, no waiting
-    oneClick: One-click installation, ready to use
+    local: 100% execução local, o código nunca é carregado
+    fast: Resposta em milissegundos, sem espera
+    oneClick: Instalação com um clique, pronto a usar
   download:
-    ariaLabel: Download {platform} version
-    recommended: Recommended
-    unknown: Unknown error
-    openVersionHistory: Open version history
-    openContainerPage: Open Container page
-    macNotice: 'For macOS users: the Container edition is recommended at the moment.'
-  selectOtherVersions: Select other versions of {platform}
-  versionInfo: 'Current version: {version}'
+    ariaLabel: Transferir versão {platform}
+    recommended: Recomendado
+    unknown: Erro desconhecido
+    openVersionHistory: Abrir histórico de versões
+    openContainerPage: Abrir página do Contentor
+    macNotice: 'Para utilizadores de macOS: a edição Contentor é recomendada de momento.'
+  selectOtherVersions: Selecionar outras versões de {platform}
+  versionInfo: 'Versão atual: {version}'
   testVersion: ' (Beta)'
   channels:
-    stable: Stable
+    stable: Estável
     beta: Beta
   betaWarning:
-    title: Beta Version Warning
-    description: This is a beta version and may be unstable. Recommended for testing only. Please use the stable version for production environments.
+    title: Aviso de Versão Beta
+    description: Esta é uma versão beta e pode ser instável. Recomendada apenas para testes. Por favor, utilize a versão estável para ambientes de produção.
   features:
-    privacy: 🔒 Privacy Protection
-    fast: ⚡ Fast Response
-    crossPlatform: 💻 Cross-Platform Support
+    privacy: "🔒 Proteção de Privacidade"
+    fast: "⚡ Resposta Rápida"
+    crossPlatform: "💻 Suporte Multiplataforma"
   steam:
-    description: The Steam edition supports Steam features including Cloud Saves and the Workshop. Click to open on Steam.
-    ariaLabel: Open Hagicode on Steam
+    description: A edição Steam suporta funcionalidades Steam incluindo Cloud Saves e a Workshop. Clique para abrir no Steam.
+    ariaLabel: Abrir Hagicode no Steam
   downloadActions:
     torrent: Torrent
   assetTypes:
-    windowsSetup: Installer
-    windowsPortable: Portable
+    windowsSetup: Instalador
+    windowsPortable: Portátil
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
     macosIntel: Intel
@@ -192,37 +192,37 @@ desktopHero:
     linuxArm64AppImage: AppImage (ARM64)
     linuxTarball: Tarball (x64)
     linuxArm64Tarball: Tarball (ARM64)
-    source: Source code
-    other: Other
+    source: Código-fonte
+    other: Outro
 productHuntBadge:
-  eyebrow: Trusted by early adopters
-  title: See Hagicode on Product Hunt
-  linkLabel: Open Hagicode on Product Hunt
-  cta: View the Product Hunt listing
+  eyebrow: Confiado por primeiros adotantes
+  title: Veja o Hagicode no Product Hunt
+  linkLabel: Abrir Hagicode no Product Hunt
+  cta: Ver a listagem no Product Hunt
 promote:
-  badgeFallback: Promoted
-  closeLabel: Dismiss promotion
-  ariaLabel: Promotion
+  badgeFallback: Promovido
+  closeLabel: Descartar promoção
+  ariaLabel: Promoção
 pageMeta:
   home:
-    title: Hagicode - Smart · Efficient · Fun AI Coding Assistant
-    description: Redefine coding with AI. OpenSpec workflows, multi-agent multi-instance execution, and Hero Dungeon gameplay make building faster and more engaging
+    title: "Hagicode - Inteligente · Eficiente · Divertido Assistente de Codificação IA"
+    description: Redefina a codificação com IA. Fluxos de trabalho OpenSpec, execução multi-agent multi-instância e jogabilidade Hero Dungeon tornam a construção mais rápida e envolvente
   desktop:
-    title: Hagicode Desktop - Download
-    description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
-    runtimeFallbackLabel: Fallback
-    runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
+    title: Hagicode Desktop - Transferir
+    description: Transfira o Hagicode Desktop, um assistente de código IA localizado. Suporta Windows, macOS e Linux. Proteção de privacidade, resposta rápida.
+    runtimeFallbackLabel: Alternativa
+    runtimeFallbackCopy: 'Se o carregamento do pacote falhar aqui, esta página redireciona para o histórico de versões canónico do Index Desktop:'
   container:
-    title: Hagicode Container - Docker Deployment
-    description: Deploy Hagicode with Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and automatic updates.
-    faqHelp: If the issue persists, please check the <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">detailed documentation</a> or contact technical support.
+    title: Contentor Hagicode - Implementação Docker
+    description: Implemente o Hagicode com Docker Compose Builder. Configuração simples, pronto a usar. Suporta múltiplas origens de imagens e atualizações automáticas.
+    faqHelp: 'Se o problema persistir, consulte a <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">documentação detalhada</a> ou contacte o suporte técnico.'
 commonActions:
-  retry: Retry
-  unavailable: Unavailable
-  noExtraSource: No extra source
-  moreDownloads: More downloads
-  moreVersions: More versions
-  package: Package
-  platform: Platform
+  retry: Tentar novamente
+  unavailable: Indisponível
+  noExtraSource: Sem fonte extra
+  moreDownloads: Mais transferências
+  moreVersions: Mais versões
+  package: Pacote
+  platform: Plataforma
   china: China
-  default: Default
+  default: Predefinido

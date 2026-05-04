@@ -1,126 +1,126 @@
 hero:
-  tagline: Boost development efficiency with AI-powered coding tools
-  description: HagiCode helps developers focus on code, not repetitive work
-  ctaButton: Get Started
+  tagline: AI destekli kodlama araçlarıyla geliştirme verimliliğini artırın
+  description: HagiCode, geliştiricilerin tekrarlayan işler yerine koda odaklanmasına yardımcı olur
+  ctaButton: Başlayın
   taglines:
-    smart: Smart · Efficient · Fun
-    aiDriven: AI Orchestrated · Multi-Agent Parallel
-    openspec: OpenSpec · Workflow Revolution
-    multiThread: Multi-Agent · Multi-Instance
+    smart: Akıllı · Verimli · Eğlenceli
+    aiDriven: AI Orkestreli · Çoklu Aracı Paralel
+    openspec: OpenSpec · İş Akışı Devrimi
+    multiThread: Çoklu Aracı · Çoklu Örnek
   lunarTaglines:
-    happyNewYear: Happy New Year · Year of the Horse
-    aiPowered: AI Empowered · Code to Success
-    smartCoding: Smart Coding · Best Wishes
-    openspecLuck: OpenSpec · Prosperity and Success
-    efficiency: Double Efficiency · Good Fortune
-  problem: Traditional AI coding tools have
-  painPoint: pain points
-  painPoints: ': limited context, messy sessions, lack of collaboration.'
-  solution: Hagicode redefines AI coding experience with
+    happyNewYear: Mutlu Yıllar · At Yılı
+    aiPowered: AI Destekli · Koda Başarı
+    smartCoding: Akıllı Kodlama · En İyi Dilekler
+    openspecLuck: OpenSpec · Refah ve Başarı
+    efficiency: Çifte Verimlilik · İyi Şanslar
+  problem: Geleneksel AI kodlama araçlarının
+  painPoint: acı noktaları
+  painPoints: ': sınırlı bağlam, karmaşık oturumlar, işbirliği eksikliği.'
+  solution: Hagicode, AI kodlama deneyimini şununla yeniden tanımlıyor
   features:
-    - OpenSpec workflow
-    - multi-agent multi-instance execution
-    - Hero Dungeon gameplay
+    - OpenSpec iş akışı
+    - çoklu aracı çoklu örnek yürütme
+    - Kahraman Zindanı oynanışı
   redefine: .
   valueCards:
     smart:
-      title: Smart
-      description: OpenSpec moves ideas into execution faster.
+      title: Akıllı
+      description: OpenSpec fikirleri daha hızlı yürütmeye taşır.
     efficient:
-      title: Efficient
-      description: Multi-agent execution turns waiting into throughput.
+      title: Verimli
+      description: Çoklu aracı yürütme, beklemeyi iş hacmine dönüştürür.
     interesting:
-      title: Interesting
-      description: Hero Dungeon makes teamwork and practice feel like an adventure.
+      title: İlginç
+      description: Kahraman Zindanı, ekip çalışmasını ve pratiği bir macera gibi hissettirir.
   buttons:
-    desktopApp: Install Desktop App
-    containerApp: Install Container App
-    learnMore: Learn More
+    desktopApp: Masaüstü Uygulamasını Kur
+    containerApp: Kapsayıcı Uygulamasını Kur
+    learnMore: Daha Fazla Bilgi
   techStack:
-    poweredBy: Powered by
+    poweredBy: Tarafından desteklenmektedir
   qqGroup:
-    title: Join Technical Support Group
-    description: Hagicode Technical Support QQ Group
-    joinButton: Join Now
-  secondaryLine: Hagicode supports mainstream agents, doubles parallel management efficiency, and reduces hallucinations with OpenSpec.
+    title: Teknik Destek Grubuna Katılın
+    description: Hagicode Teknik Destek QQ Grubu
+    joinButton: Şimdi Katıl
+  secondaryLine: Hagicode, ana akım aracıları destekler, paralel yönetim verimliliğini ikiye katlar ve OpenSpec ile halüsinasyonları azaltır.
 features:
   showcase:
-    title: Three Core Features
-    subtitle: Redefine your AI coding experience
+    title: Üç Temel Özellik
+    subtitle: AI kodlama deneyiminizi yeniden tanımlayın
   smart:
-    badge: SMART
-    title: Smart
-    subtitle: OpenSpec workflow, boost AI coding efficiency
-    efficiency: Efficiency Boost
-    traditional: Traditional
+    badge: AKILLI
+    title: Akıllı
+    subtitle: OpenSpec iş akışı, AI kodlama verimliliğini artırır
+    efficiency: Verimlilik Artışı
+    traditional: Geleneksel
     hagicode: Hagicode
-    description: A complete 9-stage proposal workflow from idea to archive, with AI assistance throughout. Boost your coding efficiency by 3x.
+    description: Fikirden arşive kadar eksiksiz 9 aşamalı teklif iş akışı, boyunca AI yardımı. Kodlama verimliliğinizi 3 kat artırın.
     workflow:
       idea:
-        label: Idea
-        desc: Start from idea
+        label: Fikir
+        desc: Fikirden başlayın
       proposal:
-        label: Proposal
-        desc: AI generates proposal
+        label: Teklif
+        desc: AI teklif oluşturur
       review:
-        label: Review
-        desc: Auto review
+        label: İnceleme
+        desc: Otomatik inceleme
       tasks:
-        label: Tasks
-        desc: Task breakdown
+        label: Görevler
+        desc: Görev parçalama
       code:
-        label: Code
-        desc: Smart coding
+        label: Kod
+        desc: Akıllı kodlama
       test:
         label: Test
-        desc: Auto testing
+        desc: Otomatik test
       refactor:
-        label: Refactor
-        desc: Code refactor
+        label: Yeniden Düzenle
+        desc: Kod yeniden düzenleme
       docs:
-        label: Docs
-        desc: Docs generation
+        label: Belgeler
+        desc: Belge oluşturma
       archive:
-        label: Archive
-        desc: Knowledge archive
-    paused: Paused - Click node to switch
+        label: Arşiv
+        desc: Bilgi arşivi
+    paused: Duraklatıldı - Değiştirmek için düğüme tıklayın
   convenient:
-    badge: EFFICIENT
-    title: Efficient
-    subtitle: Multi-agent, multi-instance execution that keeps your quota moving
-    traditional: Traditional single-agent / single-instance
-    multiThread: Multi-agent parallel matrix
-    boost: Throughput Boost
-    boostValue: 10x+ parallel
-    description: Current supported Agent CLIs such as Claude Code, Codex, GitHub Copilot, OpenCode, and Hermes can work across multiple instances at the same time, so proposals, fixes, and reviews move in parallel instead of waiting in a serial queue.
+    badge: VERİMLİ
+    title: Verimli
+    subtitle: Çoklu aracı, çoklu örnek yürütme, kotalarınızı hareket ettirir
+    traditional: Geleneksel tek aracı / tek örnek
+    multiThread: Çoklu aracı paralel matris
+    boost: İş Hacmi Artışı
+    boostValue: 10x+ paralel
+    description: Claude Code, Codex, GitHub Copilot, OpenCode ve Hermes gibi şu anda desteklenen Agent CLI'leri aynı anda birden fazla örnek üzerinde çalışabilir, böylece teklifler, düzeltmeler ve incelemeler seri bir kuyrukta beklemek yerine paralel olarak ilerler.
     agentMatrix:
-      title: Parallel execution matrix
-      badge: Multiple agents / multiple instances
-      status: Multiple agents are driving multiple instances right now
+      title: Paralel yürütme matrisi
+      badge: Birden fazla aracı / birden fazla örnek
+      status: Birden fazla aracı şu anda birden fazla örneği yönetiyor
       agents:
         claude:
           name: Claude Code
-          role: Proposal / review
+          role: Teklif / inceleme
           instances:
-            - Draft spec
-            - Check design
-            - Archive review
+            - Taslak spesifikasyon
+            - Tasarım kontrolü
+            - Arşiv incelemesi
         codex:
           name: Codex
-          role: Implementation / fixes
+          role: Uygulama / düzeltmeler
           instances:
-            - Build feature A
-            - Build feature B
-            - Regression fix
+            - Özellik A'yı oluştur
+            - Özellik B'yi oluştur
+            - Gerileme düzeltmesi
         router:
           name: Qwen · GLM
-          role: Analysis / support
+          role: Analiz / destek
           instances:
-            - Trace issue
-            - Polish copy
-            - Capture insights
+            - Sorun izleme
+            - Metin düzenleme
+            - Çıkarımları yakalama
       supportedNames:
-        title: 11 currently supported Agent CLIs
+        title: Şu anda desteklenen 11 Agent CLI
         names:
           - Claude Code
           - Codex
@@ -133,207 +133,207 @@ features:
           - Gemini
           - DeepAgents
           - Codebuddy
-    supportedProvidersNote: OpenCode can load the shared OmniRoute catalog into hero model defaults while keeping custom raw model identifiers editable for branch-specific workflows.
+    supportedProvidersNote: OpenCode, paylaşılan OmniRoute kataloğunu kahraman modeli varsayılanlarına yükleyebilirken, dal özelli iş akışları için özel ham model tanımlayıcılarını düzenlenebilir tutar.
   interesting:
-    badge: INTERESTING
-    title: Fun
-    subtitle: Hero Dungeon makes campus collaboration and practice feel alive
+    badge: EĞLENCELİ
+    title: Eğlenceli
+    subtitle: Kahraman Zindanı, kampüs işbirliğini ve pratiği canlı hissettirir
     features:
       dungeons:
-        label: Hero Dungeons
-        desc: Turn generation, execution, and prompt workbenches into dungeon runs
+        label: Kahraman Zindanları
+        desc: Oluşturma, yürütme ve prompt çalışma tezgahlarını zindan koşularına dönüştürün
       captains:
-        label: Captain Roster
-        desc: Assign the right hero captain to each dungeon
+        label: Kaptan Kadrosu
+        desc: Her zindana doğru kahraman kaptanı atayın
       battle:
-        label: Battle Reports
-        desc: Review XP, levels, and execution results after each push
-    description: Fun no longer depends on achievement badges. Hero Dungeon, captain rosters, prompt visuals, and battle reports turn daily AI coding practice into a workflow that feels more like a coordinated adventure for campus labs and student teams.
+        label: Savaş Raporları
+        desc: Her push'tan sonra XP, seviye ve yürütme sonuçlarını inceleyin
+    description: Eğlence artık başarı rozetlerine bağlı değil. Kahraman Zindanı, kaptan kadroları, prompt görselleri ve savaş raporları, günlük AI kodlama pratiğini kampüs laboratuvarları ve öğrenci ekipleri için koordine bir maceraya benzeyen bir iş akışına dönüştürür.
     dungeonCards:
       proposal:
-        title: Proposal Dungeon
-        desc: OpenSpec generate / apply / archive
-        status: Captain ready
+        title: Teklif Zindanı
+        desc: OpenSpec oluştur / uygula / arşivle
+        status: Kaptan hazır
       autotask:
-        title: AutoTask Dungeon
-        desc: Parallel fixes and batch automation
-        status: 2 instances active
+        title: OtomatikGörev Zindanı
+        desc: Paralel düzeltmeler ve toplu otomasyon
+        status: 2 örnek aktif
       prompt:
-        title: Prompt Dungeon
-        desc: Prompt preview and style workbench
-        status: Visual sync ready
+        title: Prompt Zindanı
+        desc: Prompt önizleme ve stil çalışma tezgahı
+        status: Görsel senkronizasyon hazır
     roster:
-      title: Current captain roster
+      title: Mevcut kaptan kadrosu
       heroes:
         strategist:
-          name: Spec Strategist
-          role: Proposal captain
+          name: Spesifikasyon Stratejisti
+          role: Teklif kaptanı
         runner:
-          name: Patch Runner
-          role: Execution captain
+          name: Yama Koşucusu
+          role: Yürütme kaptanı
         artist:
-          name: Prompt Artist
-          role: Visual support
+          name: Prompt Sanatçısı
+          role: Görsel destek
     battleReport:
-      title: Today's dungeon report
-      badge: Hero Battle
+      title: Bugünün zindan raporu
+      badge: Kahraman Savaşı
       metrics:
         dungeons:
           value: '4'
-          label: Dungeons pushed
+          label: İlerlenen zindanlar
         level:
           value: Lv.27
-          label: Captain level
+          label: Kaptan seviyesi
         xp:
           value: 12.8M
-          label: XP today
-      note: When several dungeons move in parallel, the report rolls up experience, levels, and execution outcomes into one readout.
+          label: Bugünkü XP
+      note: Birkaç zindan paralel ilerlediğinde, rapor deneyim, seviye ve yürütme sonuçlarını tek bir okumada birleştirir.
     gallery:
       dungeons:
-        title: Dungeon map carousel
-        subtitle: 10 random visuals from the current frontend dungeon and prompt map collection.
+        title: Zindan haritası carouseli
+        subtitle: Mevcut frontend zindanından ve prompt haritası koleksiyonundan 10 rastgele görsel.
       heroes:
-        title: Hero gallery carousel
-        subtitle: 10 random hero visuals from the current frontend hero collection.
+        title: Kahraman galeri carouseli
+        subtitle: Mevcut frontend kahraman koleksiyonundan 10 rastgele kahraman görseli.
 productOverviewVideo:
-  title: Understand Hagicode before the feature tour
+  title: Özellik turundan önce Hagicode'u anlayın
 videoShowcase:
-  eyebrow: Supporting Product Demos
-  title: Keep exploring Hagicode in real coding sessions
-  description: After the main overview, these focused demos show how Hagicode behaves in playful and model-specific scenarios without repeating the primary product introduction.
-  supportingLabel: Focused demo
+  eyebrow: Destekleyici Ürün Demoları
+  title: Gerçek kodlama oturumlarında Hagicode'u keşfetmeye devam edin
+  description: Ana genel bakıştan sonra, bu odaklı demolar, birincil ürün tanıtımını tekrarlamadan Hagicode'un eğlenceli ve modele özel senaryolarda nasıl davrandığını gösterir.
+  supportingLabel: Odaklı demo
 homepageVideos:
   overview:
     youtube:
-      title: Hagicode Product Overview on YouTube
-      description: The main English-language introduction to Hagicode's workflow, multi-agent execution style, and why the product feels broader than a generic AI coding chat box.
-      ctaLabel: Open on YouTube
+      title: YouTube'da Hagicode Ürün Genel Bakışı
+      description: Hagicode'un iş akışı, çoklu aracı yürütme tarzı ve ürünün neden genel bir AI kodlama sohbet kutusundan daha geniş hissettirdiğine dair ana İngilizce tanıtımı.
+      ctaLabel: YouTube'da Aç
     bilibili:
-      title: Hagicode Product Overview on Bilibili
-      description: A Bilibili-hosted version of the core product introduction for visitors whose browsers signal a Chinese-language preference or who prefer the domestic playback path.
-      ctaLabel: Open on Bilibili
+      title: Bilibili'de Hagicode Ürün Genel Bakışı
+      description: Çince dil tercihi gösteren tarayıcılara sahip ziyaretçiler veya yurtiçi oynatma yolunu tercih edenler için çekirdek ürün tanıtımının Bilibili'de barındırılan sürümü.
+      ctaLabel: Bilibili'de Aç
   supporting:
     first:
-      title: AI Playing Games While Coding
-      description: A playful supporting clip that shows the assistant staying lively and surprising during real coding sessions instead of feeling like a dry code generator.
-      ctaLabel: Open on Bilibili
+      title: Kodlarken AI Oyun Oynuyor
+      description: Asistanın gerçek kodlama oturumlarında canlı ve şaşırtıcı kaldığını, kuru bir kod üreticisi gibi hissettirmediğini gösteren eğlenceli bir destek klibi.
+      ctaLabel: Bilibili'de Aç
     second:
-      title: 'GPT Codex in Hagicode: Live Trial'
-      description: A focused validation run that lets prospective users judge how GPT Codex behaves inside the actual product after they've seen the main localized introduction.
-      ctaLabel: Open on Bilibili
+      title: 'Hagicode''da GPT Codex: Canlı Deneme'
+      description: Potansiyel kullanıcıların, ana yerelleştirilmiş tanıtımı gördükten sonra GPT Codex'in gerçek ürün içinde nasıl davrandığını değerlendirmesine olanak tanıyan odaklı bir doğrulama çalışması.
+      ctaLabel: Bilibili'de Aç
   hero:
-    steamAriaLabel: Open Hagicode on Steam
-    ctaGroupLabel: Primary homepage actions
+    steamAriaLabel: Hagicode'u Steam'de aç
+    ctaGroupLabel: Birincil ana sayfa eylemleri
 pricing:
   docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
-  title: Editions & Pricing
-  limitTitle: Proposal concurrency rule
-  limitDescription: Free and Steam both include a 3-proposal cap. Proposals in generating, executing, and archiving all count toward the same limit. Turbo Engine DLC expands that limit to 32.
-  plusTitle: Hagicode Plus note
-  plusDescription: Hagicode Plus is the official Steam bundle that combines the main Steam edition with Turbo Engine DLC.
-  featureHeader: Feature
-  includedLabel: Included
-  notIncludedLabel: Not included
+  title: Sürümler ve Fiyatlandırma
+  limitTitle: Teklif eşzamanlılık kuralı
+  limitDescription: Ücretsiz ve Steam sürümleri 3 teklif sınırı içerir. Oluşturma, yürütme ve arşivleme aşamasındaki teklifler aynı sınıra sayılır. Turbo Engine DLC bu sınırı 32'ye yükseltir.
+  plusTitle: Hagicode Plus notu
+  plusDescription: Hagicode Plus, ana Steam sürümünü Turbo Engine DLC ile birleştiren resmi Steam paketidir.
+  featureHeader: Özellik
+  includedLabel: Dahil
+  notIncludedLabel: Dahil değil
   editions:
     desktop:
-      title: Desktop
+      title: Masaüstü
     container:
-      title: Container
+      title: Kapsayıcı
   rows:
-    pricing: Pricing
-    allFreeFeaturesIncluded: All free features included
-    vault: Vault
-    skills: Skills
-    proposalWorkflow: Proposal workflow
-    localAchievements: Local achievements
-    allAgentCliIntegrations: All Agent CLI integrations
-    speechRecognition: Speech recognition
-    omniRouteIntegration: OmniRoute integration
-    githubIntegration: GitHub integration
-    gitManagement: Git management
-    maximumConcurrentProposals: Maximum concurrent proposals
-    copySwitchingSupport: Copy switching support
-    turboEngineAvatarPacks: Turbo Engine avatar packs
-    customAvatarUploads: Custom avatar uploads
-    customLogo: Custom logo
-    customTitle: Custom title
-    customCoAuthoredByInfo: Custom Co-Authored-By info
-    steamCloudAchievements: Steam cloud achievements
-    freeDlcSupport: Free DLC support
-    steamWorkshopSupport: Steam Workshop support
-    cloudSaveSupport: Cloud save support
+    pricing: Fiyatlandırma
+    allFreeFeaturesIncluded: Tüm ücretsiz özellikler dahil
+    vault: Kasa
+    skills: Beceriler
+    proposalWorkflow: Teklif iş akışı
+    localAchievements: Yerel başarılar
+    allAgentCliIntegrations: Tüm Agent CLI entegrasyonları
+    speechRecognition: Konuşma tanıma
+    omniRouteIntegration: OmniRoute entegrasyonu
+    githubIntegration: GitHub entegrasyonu
+    gitManagement: Git yönetimi
+    maximumConcurrentProposals: Maksimum eşzamanlı teklif
+    copySwitchingSupport: Kopya geçiş desteği
+    turboEngineAvatarPacks: Turbo Engine avatar paketleri
+    customAvatarUploads: Özel avatar yüklemeleri
+    customLogo: Özel logo
+    customTitle: Özel başlık
+    customCoAuthoredByInfo: Özel Co-Authored-By bilgisi
+    steamCloudAchievements: Steam bulut başarıları
+    freeDlcSupport: Ücretsiz DLC desteği
+    steamWorkshopSupport: Steam Atölye desteği
+    cloudSaveSupport: Bulut kayıt desteği
   values:
-    free: Free
-    viewOnSteam: View on Steam
+    free: Ücretsiz
+    viewOnSteam: Steam'de Görüntüle
   dlc:
-    label: DLC & Bundles
-    title: Optional packs
+    label: DLC ve Paketler
+    title: İsteğe bağlı paketler
     actions:
-      openSteam: Open Steam
+      openSteam: Steam'i Aç
     preview:
-      bundlePending: Bundle visuals pending
-      productPending: Product visuals pending
+      bundlePending: Paket görselleri bekleniyor
+      productPending: Ürün görselleri bekleniyor
     items:
       allBeauties:
-        category: Free DLC
+        category: Ücretsiz DLC
         title: Hagicode - All Beauties Pack
-        price: Free
-        description: An extra cosmetics pack for Steam users.
+        price: Ücretsiz
+        description: Steam kullanıcıları için ekstra kozmetik paketi.
         bullets:
-          - Adds 1,000 anime-girl-style avatars
-          - Leaves room for more beauty-themed content in future updates
+          - 1.000 anime kız tarzı avatar ekler
+          - Gelecek güncellemelerde daha fazla güzellik temalı içerik için yer bırakır
       turboEngine:
-        category: Performance DLC
+        category: Performans DLC
         title: 'Hagicode: Turbo Engine DLC'
         price: Steam
-        description: You can buy this DLC on its own to expand the original proposal concurrency cap, unlock copy switching, add five avatar packs with 10 standalone avatars each, enable custom avatar uploads, customize the top-left logo and title, and align AI-generated commit trailers with your own Co-Authored-By naming rules. We will usually highlight a bundled purchase option called Hagicode Plus so the overall purchase price stays lower. Please check our store page for the latest changes.
+        description: Bu DLC'yi tek başına satın alarak orijinal teklif eşzamanlılık sınırını genişletebilir, kopya geçişini açabilir, her biri 10 bağımsız avatar içeren beş avatar paketi ekleyebilir, özel avatar yüklemelerini etkinleştirebilir, sol üst logoyu ve başlığı özelleştirebilir ve AI tarafından oluşturulan commit tanıtımlarını kendi Co-Authored-By adlandırma kurallarınızla hizalayabilirsiniz. Genellikle Hagicode Plus adında paketlenmiş bir satın alma seçeneğini öne çıkarırız, böylece genel satın alma fiyatı daha düşük kalır. Lütfen en son değişiklikler için mağaza sayfamızı kontrol edin.
         bullets:
-          - Supports custom top-left logos and titles
-          - Includes five avatar packs with 10 selectable avatars in each pack
-          - Supports custom avatar uploads
-          - Lets teams customize the AI Co-Authored-By signature for commit workflows
-          - Unlocks copy and wording switching support
-          - Expands the maximum concurrent proposal limit to 32
+          - Özel sol üst logoları ve başlıkları destekler
+          - Her pakette 10 seçilebilir avatar içeren beş avatar paketi dahildir
+          - Özel avatar yüklemelerini destekler
+          - Ekiplerin commit iş akışları için AI Co-Authored-By imzasını özelleştirmesine olanak tanır
+          - Kopya ve ifade geçiş desteğini açar
+          - Maksimum eşzamanlı teklif sınırını 32'ye yükseltir
       hagicodePlus:
-        category: Bundle
+        category: Paket
         title: Hagicode Plus
         price: Steam
-        description: The official Steam bundle that combines the Hagicode base edition with Turbo Engine DLC in one purchase path.
+        description: Hagicode temel sürümünü Turbo Engine DLC ile tek bir satın alma yolunda birleştiren resmi Steam paketi.
         bullets:
-          - Bundles the main Steam edition and Turbo Engine DLC together
-          - Keeps the higher 32-proposal concurrency upgrade attached to the bundle path
-          - Works as the clearest purchase entry when you want the full Steam setup at once
+          - Ana Steam sürümünü ve Turbo Engine DLC'yi birlikte paketler
+          - Daha yüksek 32 teklif eşzamanlılık yükseltmesini paket yoluna bağlı tutar
+          - Tam Steam kurulumunu bir kerede istediğinizde en net satın alma girişi olarak çalışır
       sponsor:
-        category: Supporter DLC
+        category: Destekçi DLC
         title: Hagicode - Sponsor Pack
         price: Steam
-        description: If you think Hagicode is genuinely excellent and want to provide direct financial support, buying Sponsor Pack gives the project more fuel and helps us keep it running for the long term.
+        description: Hagicode'un gerçekten mükemmel olduğunu düşünüyorsanız ve doğrudan mali destek sağlamak istiyorsanız, Sponsor Pack satın almak projeye daha fazla yakıt verir ve uzun vadeli çalışmasını sürdürmemize yardımcı olur.
         bullets:
-          - One exclusive dark theme
-          - One exclusive light theme
-          - One exclusive Steam achievement
+          - Bir özel karanlık tema
+          - Bir özel aydınlık tema
+          - Bir özel Steam başarısı
 workflowBoard:
   titleLines:
-    - Mainstream Agents Supported
-    - 10x Parallel Management Efficiency
-    - OpenSpec Reduces Hallucinations
-  taskLabel: Task
-  headerSummary: Task / Agent
+    - Ana Akım Aracılar Desteklenir
+    - 10x Paralel Yönetim Verimliliği
+    - OpenSpec Halüsinasyonları Azaltır
+  taskLabel: Görev
+  headerSummary: Görev / Aracı
   steps:
-    - Ideate
-    - Propose
-    - Execute
-    - Archive
+    - Fikir Üret
+    - Teklif
+    - Yürüt
+    - Arşivle
   activeStates:
-    - Ideating
-    - Proposing
-    - Executing
-    - Archiving
-  completedState: Complete
+    - Fikir Üretiliyor
+    - Teklif Veriliyor
+    - Yürütülüyor
+    - Arşivleniyor
+  completedState: Tamamlandı
   metrics:
-    completed: Completed Tasks
-    efficiency: Live Efficiency
-    serialTime: Equivalent Serial Time
-    elapsedTime: Elapsed Time
-    formula: Efficiency = equivalent serial work / natural elapsed time
-    serialHint: relative to a single serial worker
+    completed: Tamamlanan Görevler
+    efficiency: Canlı Verimlilik
+    serialTime: Eşdeğer Seri Zaman
+    elapsedTime: Geçen Zaman
+    formula: Verimlilik = eşdeğer seri iş / doğal geçen zaman
+    serialHint: tek bir seri çalışana göre

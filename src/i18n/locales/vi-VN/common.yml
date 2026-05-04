@@ -1,190 +1,190 @@
 navbar:
-  home: Home
-  docs: Docs
+  home: Trang chủ
+  docs: Tài liệu
   blog: Blog
-  about: About
-  desktop: Desktop App
+  about: Giới thiệu
+  desktop: Ứng dụng Máy tính
   container: Container
-  support: Get Support
-  mobileOpenMenu: Open menu
-  mobileCloseMenu: Close menu
-  mobileNav: Mobile site navigation
+  support: Nhận Hỗ trợ
+  mobileOpenMenu: Mở menu
+  mobileCloseMenu: Đóng menu
+  mobileNav: Điều hướng trang di động
 themeToggle:
-  theme: Theme
-  darkMode: Switch to dark mode
-  lightMode: Switch to light mode
-  lunarNewYearMode: Switch to Lunar New Year theme
+  theme: Giao diện
+  darkMode: Chuyển sang chế độ tối
+  lightMode: Chuyển sang chế độ sáng
+  lunarNewYearMode: Chuyển sang giao diện Tết Nguyên Đán
 languageSwitcher:
-  label: Language
-  dialogTitle: Select language
-  currentLocaleLabel: Current language
-  close: Close language chooser
-  selectedState: Current
+  label: Ngôn ngữ
+  dialogTitle: Chọn ngôn ngữ
+  currentLocaleLabel: Ngôn ngữ hiện tại
+  close: Đóng bộ chọn ngôn ngữ
+  selectedState: Hiện tại
   switchToChinese: 切换到中文
-  switchToEnglish: Switch to English
+  switchToEnglish: Chuyển sang tiếng Anh
 videoPlayer:
-  play: Play
-  pause: Pause
-  fullscreen: Fullscreen
+  play: Phát
+  pause: Tạm dừng
+  fullscreen: Toàn màn hình
 footer:
-  copyright: © {year} Hagicode. All rights reserved.
-  product: Product
-  quickLinks: Quick Links
-  community: Community
-  productInfo: Hagicode Introduction
-  downloadClient: Download Client
-  productDocs: Product Docs
-  blogPosts: Blog Posts
-  rssSubscribe: RSS Subscribe
+  copyright: '© {year} Hagicode. Mọi quyền được bảo lưu.'
+  product: Sản phẩm
+  quickLinks: Liên kết Nhanh
+  community: Cộng đồng
+  productInfo: Giới thiệu Hagicode
+  downloadClient: Tải Ứng dụng
+  productDocs: Tài liệu Sản phẩm
+  blogPosts: Bài viết Blog
+  rssSubscribe: Đăng ký RSS
   github: GitHub
-  issueFeedback: Issue Feedback
-  contactEmail: Contact Email
-  qqGroup: QQ Group 610394020
-  icpLabel: View ICP Filing Information
-  gonganLabel: View Public Security Filing Information
-  visitPage: Visit {title} page
-  discord: Discord Community
-  costCalculator: AI Replacement Calculator
+  issueFeedback: Phản hồi Vấn đề
+  contactEmail: Email Liên hệ
+  qqGroup: Nhóm QQ 610394020
+  icpLabel: Xem Thông tin Đăng ký ICP
+  gonganLabel: Xem Thông tin Đăng ký Công an
+  visitPage: 'Truy cập trang {title}'
+  discord: Cộng đồng Discord
+  costCalculator: Máy tính Thay thế AI
   steam: Steam
-  relatedSitesTitle: Related Sites
+  relatedSitesTitle: Trang web Liên quan
 socialProof:
   highlights:
-    multiAgent: Multi-Agent Parallel
-    multiAgentDesc: Claude Code, Codex, and others can drive multiple instances at once
-    privacy: Privacy First
-    privacyDesc: Local deployment, no code upload
-    openspec: OpenSpec Orchestration
-    openspecDesc: Standardized proposal, execution, and archive flow
-    heroDungeons: Hero Dungeon Workflow
-    heroDungeonsDesc: Dungeons, captains, and battle reports close the loop
+    multiAgent: Đa Agent Song song
+    multiAgentDesc: Claude Code, Codex và các agent khác có thể điều khiển nhiều phiên bản cùng lúc
+    privacy: Quyền Riêng tư Trước tiên
+    privacyDesc: Triển khai cục bộ, không tải mã lên
+    openspec: Điều phối OpenSpec
+    openspecDesc: Quy trình đề xuất, thực thi và lưu trữ chuẩn hóa
+    heroDungeons: Quy trình Hầm ngục Anh hùng
+    heroDungeonsDesc: Hầm ngục, đội trưởng và báo cáo chiến đấu tạo thành vòng lặp hoàn chỉnh
   badges:
     claude: Claude AI
-    claudeDesc: Powered by
-    opensource: Open Source
+    claudeDesc: Được hỗ trợ bởi
+    opensource: Mã nguồn Mở
     opensourceDesc: GitHub
-    ssl: SSL Secure
-    sslDesc: Secure Encryption
+    ssl: SSL An toàn
+    sslDesc: Mã hóa An toàn
 installCTA:
-  button: Install HagiCode
+  button: Cài đặt Hagicode
 activityMetrics:
-  title: People Are Using It
-  description: Community keeps growing, thanks to every contributor
+  title: Mọi người đang Sử dụng
+  description: Cộng đồng không ngừng phát triển, cảm ơn mọi người đóng góp
   dockerHub: Docker Hub
-  pullCount: Pull Count
-  activeUsers: Active Users
-  activeSessions: Active Sessions
-  recentDays: Last 3 days
+  pullCount: Số lượt Pull
+  activeUsers: Người dùng Hoạt động
+  activeSessions: Phiên Hoạt động
+  recentDays: 3 ngày gần nhất
   emptyState:
-    title: Data Coming Soon
-    description: Activity data will be displayed here when available. Stay tuned for community growth!
-  imageError: Image failed to load
+    title: Dữ liệu Sắp có
+    description: Dữ liệu hoạt động sẽ được hiển thị tại đây khi có sẵn. Hãy đón chờ sự phát triển của cộng đồng!
+  imageError: Không thể tải hình ảnh
   starHistory:
-    title: GitHub Star History
-    value: Live
-    description: Real-time community momentum
-    alt: Star history chart for the HagiCode site repository
-    cta: View full chart
+    title: Lịch sử Star GitHub
+    value: Trực tiếp
+    description: Động lượng cộng đồng theo thời gian thực
+    alt: Biểu đồ lịch sử star cho kho lưu trữ trang web HagiCode
+    cta: Xem biểu đồ đầy đủ
 showcase:
-  title: Latest Product Views
-  description: From proposal execution and session boards to token analytics, workspace management, and achievement progress, the homepage now uses the latest curated screenshots maintained with the docs site.
+  title: Giao diện Sản phẩm Mới nhất
+  description: Từ thực thi đề xuất và bảng phiên đến phân tích token, quản lý không gian làm việc và tiến trình thành tựu, trang chủ hiện sử dụng các ảnh chụp màn hình được quản lý mới nhất cùng với trang tài liệu.
   controls:
-    previous: Previous
-    next: Next
-    current: Featured view
-    railLabel: Product screenshot navigation
-    selectPrefix: 'Switch to: '
-    activeState: Showing now
-    previewState: Preview
-    imageUnavailable: Image unavailable
-    openFullscreen: 'Open fullscreen: '
-    openFullscreenHint: Click to enlarge
-    closeFullscreen: Close fullscreen
+    previous: Trước
+    next: Tiếp theo
+    current: Chế độ nổi bật
+    railLabel: Điều hướng ảnh chụp màn hình sản phẩm
+    selectPrefix: 'Chuyển sang: '
+    activeState: Đang hiển thị
+    previewState: Xem trước
+    imageUnavailable: Hình ảnh không khả dụng
+    openFullscreen: 'Mở toàn màn hình: '
+    openFullscreenHint: Nhấn để phóng to
+    closeFullscreen: Đóng toàn màn hình
   screenshots:
     proposalWorkflow:
-      title: Proposal execution overview
-      description: Keep the workflow stage, execution result, and session context in one screen so teams can see exactly where a change stands before moving on.
-      alt: HagiCode proposal execution screenshot showing workflow stages, execution result, and session sidebar
+      title: Tổng quan thực thi đề xuất
+      description: Giữ giai đoạn quy trình, kết quả thực thi và ngữ cảnh phiên trên một màn hình để các nhóm có thể thấy chính xác nơi một thay đổi đang ở trước khi tiếp tục.
+      alt: Ảnh chụp màn hình thực thi đề xuất HagiCode hiển thị các giai đoạn quy trình, kết quả thực thi và thanh bên phiên
     sessionBoard:
-      title: Session board and dungeon planning
-      description: Pending, in-progress, and archived sessions stay visible beside a fantasy task panel so parallel agent work is easy to scan at a glance.
-      alt: HagiCode session board screenshot showing pending, in-progress, and archived columns beside a fantasy task panel
+      title: Bảng phiên và lập kế hoạch hầm ngục
+      description: Các phiên đang chờ, đang thực hiện và đã lưu trữ hiển thị bên cạnh bảng nhiệm vụ giả tưởng để dễ dàng xem công việc agent song song chỉ trong một cái nhìn.
+      alt: Ảnh chụp màn hình bảng phiên HagiCode hiển thị các cột đang chờ, đang thực hiện và đã lưu trữ bên cạnh bảng nhiệm vụ giả tưởng
     tokenAnalytics:
-      title: Real-time token analytics
-      description: Watch throughput, recent API activity, and total usage in one metrics surface so cost and pacing stay controllable during parallel execution.
-      alt: HagiCode token analytics screenshot showing throughput, recent API activity, and total usage
+      title: Phân tích token theo thời gian thực
+      description: Theo dõi thông lượng, hoạt động API gần đây và tổng mức sử dụng trên một bảng chỉ số để chi phí và tiến độ có thể kiểm soát được trong quá trình thực thi song song.
+      alt: Ảnh chụp màn hình phân tích token HagiCode hiển thị thông lượng, hoạt động API gần đây và tổng mức sử dụng
     workspaceManagement:
-      title: Workspace and vault management
-      description: Manage user vaults, system vaults, and code-server entry points from one control surface built for shared environments and fast maintenance.
-      alt: HagiCode workspace management screenshot showing user vaults, system vaults, and code-server actions
+      title: Quản lý không gian làm việc và kho lưu trữ
+      description: Quản lý kho lưu trữ người dùng, kho lưu trữ hệ thống và điểm vào code-server từ một bảng điều khiển được thiết kế cho môi trường dùng chung và bảo trì nhanh chóng.
+      alt: Ảnh chụp màn hình quản lý không gian làm việc HagiCode hiển thị kho lưu trữ người dùng, kho lưu trữ hệ thống và hành động code-server
     achievementProgress:
-      title: Achievement and growth progress
-      description: Daily progress, global growth, and lifecycle metrics roll into one dashboard so long-running adoption feels measurable instead of abstract.
-      alt: HagiCode achievement dashboard screenshot showing daily progress, global growth, and lifecycle metrics
+      title: Tiến trình thành tựu và tăng trưởng
+      description: Tiến trình hàng ngày, tăng trưởng toàn cầu và chỉ số vòng đời được tổng hợp trong một bảng điều khiển để việc áp dụng lâu dài trở nên có thể đo lường thay vì trừu tượng.
+      alt: Ảnh chụp màn hình bảng thành tựu HagiCode hiển thị tiến trình hàng ngày, tăng trưởng toàn cầu và chỉ số vòng đời
 installOptions:
-  sectionTitle: Choose Your Installation Method
-  sectionDescription: Choose the most suitable installation method based on your usage scenario
+  sectionTitle: Chọn Phương thức Cài đặt
+  sectionDescription: Chọn phương thức cài đặt phù hợp nhất dựa trên kịch bản sử dụng của bạn
   desktop:
-    title: Desktop App
-    description: Runs locally on your computer, lightweight and convenient, ready to use out of the box
+    title: Ứng dụng Máy tính
+    description: Chạy cục bộ trên máy tính của bạn, nhẹ và tiện lợi, sẵn sàng sử dụng ngay
     features:
-      - Local execution, complete data privacy
-      - Supports Windows, macOS, and Linux
-      - No server configuration needed
-      - Auto updates, stay with latest version
-      - Suitable for individual developers
-    ctaText: Download Desktop App
+      - Thực thi cục bộ, quyền riêng tư dữ liệu hoàn toàn
+      - Hỗ trợ Windows, macOS và Linux
+      - Không cần cấu hình máy chủ
+      - Tự động cập nhật, luôn ở phiên bản mới nhất
+      - Phù hợp cho nhà phát triển cá nhân
+    ctaText: Tải Ứng dụng Máy tính
   container:
-    title: Container Version
-    description: Deploy on servers, supports remote access, suitable for team collaboration
+    title: Phiên bản Container
+    description: Triển khai trên máy chủ, hỗ trợ truy cập từ xa, phù hợp cho cộng tác nhóm
     features:
-      - Supports x86_64 architecture
-      - Environment isolation, doesn't affect system
-      - Supports Docker Compose Builder
-      - Data persistence, secure and reliable
-      - Suitable for production environments
-    ctaText: Container Deployment Guide
-  badge: Recommended
+      - Hỗ trợ kiến trúc x86_64
+      - Cô lập môi trường, không ảnh hưởng đến hệ thống
+      - Hỗ trợ Docker Compose Builder
+      - Duy trì dữ liệu, an toàn và đáng tin cậy
+      - Phù hợp cho môi trường sản xuất
+    ctaText: Hướng dẫn Triển khai Container
+  badge: Đề xuất
 desktopHero:
-  loading: Loading version information...
+  loading: Đang tải thông tin phiên bản...
   error:
-    title: Cannot load version information
-    gotoDownload: Go to download page
-    redirectingToHistory: Unable to load desktop packages here. Redirecting to the Index version history...
-  badge: Desktop
-  title: Hagicode Desktop
-  tagline: Localized AI code assistant, privacy protection, enhanced efficiency
+    title: Không thể tải thông tin phiên bản
+    gotoDownload: Đi đến trang tải xuống
+    redirectingToHistory: Không thể tải gói máy tính tại đây. Đang chuyển hướng đến lịch sử phiên bản Index...
+  badge: Máy tính
+  title: Hagicode Máy tính
+  tagline: Trợ lý mã AI cục bộ, bảo vệ quyền riêng tư, tăng cường hiệu suất
   valuePoints:
-    local: 100% local execution, code never uploaded
-    fast: Millisecond-level response, no waiting
-    oneClick: One-click installation, ready to use
+    local: '100% thực thi cục bộ, mã không bao giờ được tải lên'
+    fast: 'Phản hồi tính bằng mili-giây, không cần chờ đợi'
+    oneClick: 'Cài đặt một chạm, sẵn sàng sử dụng'
   download:
-    ariaLabel: Download {platform} version
-    recommended: Recommended
-    unknown: Unknown error
-    openVersionHistory: Open version history
-    openContainerPage: Open Container page
-    macNotice: 'For macOS users: the Container edition is recommended at the moment.'
-  selectOtherVersions: Select other versions of {platform}
-  versionInfo: 'Current version: {version}'
+    ariaLabel: 'Tải xuống phiên bản {platform}'
+    recommended: Đề xuất
+    unknown: Lỗi không xác định
+    openVersionHistory: Mở lịch sử phiên bản
+    openContainerPage: Mở trang Container
+    macNotice: 'Dành cho người dùng macOS: hiện tại phiên bản Container được đề xuất.'
+  selectOtherVersions: 'Chọn các phiên bản khác của {platform}'
+  versionInfo: 'Phiên bản hiện tại: {version}'
   testVersion: ' (Beta)'
   channels:
-    stable: Stable
+    stable: Ổn định
     beta: Beta
   betaWarning:
-    title: Beta Version Warning
-    description: This is a beta version and may be unstable. Recommended for testing only. Please use the stable version for production environments.
+    title: Cảnh báo Phiên bản Beta
+    description: Đây là phiên bản beta và có thể không ổn định. Chỉ được khuyến nghị cho việc thử nghiệm. Vui lòng sử dụng phiên bản ổn định cho môi trường sản xuất.
   features:
-    privacy: 🔒 Privacy Protection
-    fast: ⚡ Fast Response
-    crossPlatform: 💻 Cross-Platform Support
+    privacy: '🔒 Bảo vệ Quyền riêng tư'
+    fast: '⚡ Phản hồi Nhanh'
+    crossPlatform: '💻 Hỗ trợ Đa nền tảng'
   steam:
-    description: The Steam edition supports Steam features including Cloud Saves and the Workshop. Click to open on Steam.
-    ariaLabel: Open Hagicode on Steam
+    description: Phiên bản Steam hỗ trợ các tính năng Steam bao gồm Lưu đám mây và Workshop. Nhấn để mở trên Steam.
+    ariaLabel: Mở Hagicode trên Steam
   downloadActions:
     torrent: Torrent
   assetTypes:
-    windowsSetup: Installer
-    windowsPortable: Portable
+    windowsSetup: Trình cài đặt
+    windowsPortable: Phiên bản di động
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
     macosIntel: Intel
@@ -192,37 +192,37 @@ desktopHero:
     linuxArm64AppImage: AppImage (ARM64)
     linuxTarball: Tarball (x64)
     linuxArm64Tarball: Tarball (ARM64)
-    source: Source code
-    other: Other
+    source: Mã nguồn
+    other: Khác
 productHuntBadge:
-  eyebrow: Trusted by early adopters
-  title: See Hagicode on Product Hunt
-  linkLabel: Open Hagicode on Product Hunt
-  cta: View the Product Hunt listing
+  eyebrow: Được tin dùng bởi những người dùng sớm
+  title: Xem Hagicode trên Product Hunt
+  linkLabel: Mở Hagicode trên Product Hunt
+  cta: Xem trang Product Hunt
 promote:
-  badgeFallback: Promoted
-  closeLabel: Dismiss promotion
-  ariaLabel: Promotion
+  badgeFallback: Được quảng bá
+  closeLabel: Đóng quảng cáo
+  ariaLabel: Quảng cáo
 pageMeta:
   home:
-    title: Hagicode - Smart · Efficient · Fun AI Coding Assistant
-    description: Redefine coding with AI. OpenSpec workflows, multi-agent multi-instance execution, and Hero Dungeon gameplay make building faster and more engaging
+    title: 'Hagicode - Thông minh · Hiệu quả · Vui vẻ - Trợ lý Mã AI'
+    description: Định nghĩa lại việc viết mã với AI. Quy trình OpenSpec, thực thi đa agent đa phiên bản và lối chơi Hầm ngục Anh hùng giúp xây dựng nhanh hơn và thú vị hơn
   desktop:
-    title: Hagicode Desktop - Download
-    description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
-    runtimeFallbackLabel: Fallback
-    runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
+    title: 'Hagicode Máy tính - Tải xuống'
+    description: Tải xuống Hagicode Máy tính, trợ lý mã AI cục bộ. Hỗ trợ Windows, macOS và Linux. Bảo vệ quyền riêng tư, phản hồi nhanh.
+    runtimeFallbackLabel: Dự phòng
+    runtimeFallbackCopy: 'Nếu tải gói không thành công tại đây, trang này sẽ chuyển hướng đến lịch sử phiên bản Máy tính Index chuẩn:'
   container:
-    title: Hagicode Container - Docker Deployment
-    description: Deploy Hagicode with Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and automatic updates.
-    faqHelp: If the issue persists, please check the <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">detailed documentation</a> or contact technical support.
+    title: 'Hagicode Container - Triển khai Docker'
+    description: Triển khai Hagicode với Docker Compose Builder. Cấu hình đơn giản, sẵn sàng sử dụng. Hỗ trợ nhiều nguồn hình ảnh và tự động cập nhật.
+    faqHelp: 'Nếu vấn đề vẫn tiếp diễn, vui lòng kiểm tra <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">tài liệu chi tiết</a> hoặc liên hệ với bộ phận hỗ trợ kỹ thuật.'
 commonActions:
-  retry: Retry
-  unavailable: Unavailable
-  noExtraSource: No extra source
-  moreDownloads: More downloads
-  moreVersions: More versions
-  package: Package
-  platform: Platform
-  china: China
-  default: Default
+  retry: Thử lại
+  unavailable: Không khả dụng
+  noExtraSource: Không có nguồn bổ sung
+  moreDownloads: Tải xuống thêm
+  moreVersions: Phiên bản khác
+  package: Gói
+  platform: Nền tảng
+  china: Trung Quốc
+  default: Mặc định

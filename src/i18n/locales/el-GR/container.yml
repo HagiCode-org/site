@@ -1,125 +1,125 @@
 container:
-  title: Hagicode Container - Container Deployment
-  description: Deploy Hagicode via Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and auto updates.
+  title: Hagicode Container - Ανάπτυξη Container
+  description: Αναπτύξτε το Hagicode μέσω Docker Compose Builder. Απλή διαμόρφωση, έτοιμο για χρήση. Υποστηρίζει πολλαπλές πηγές εικόνων και αυτόματες ενημερώσεις.
   hero:
     badge: Container
     title: Hagicode Container
-    tagline: Deploy quickly with Docker Compose Builder, simple configuration, ready to use
-    value1: Visual configuration, no coding required
-    value2: Environment isolation, data security
-    value3: One-click deployment, fast startup
-    ctaButton: Deploy with Docker Compose Builder
+    tagline: Γρήγη ανάπτυξη με Docker Compose Builder, απλή διαμόρφωση, έτοιμο για χρήση
+    value1: Οπτική διαμόρφωση, δεν απαιτείται κώδικας
+    value2: Απομόνωση περιβάλλοντος, ασφάλεια δεδομένων
+    value3: Ανάπτυξη με ένα κλικ, γρήγορη εκκίνηση
+    ctaButton: Ανάπτυξη με Docker Compose Builder
     features:
-      isolation: Environment Isolation
-      oneClick: One-Click Deployment
-      fastStart: Fast Startup
+      isolation: Απομόνωση περιβάλλοντος
+      oneClick: Ανάπτυξη με ένα κλικ
+      fastStart: Γρήγορη εκκίνηση
   features:
-    title: Why Choose Container Deployment?
+    title: Γιατί να επιλέξετε ανάπτυξη Container;
     isolation:
-      title: Environment Isolation
-      description: Containerized deployment avoids dependency conflicts, doesn't affect system environment, keeps system clean
+      title: Απομόνωση περιβάλλοντος
+      description: Η ανάπτυξη σε container αποφεύγει συγκρούσεις εξαρτήσεων, δεν επηρεάζει το περιβάλλον συστήματος, διατηρεί το σύστημα καθαρό
     simple:
-      title: Simple Configuration
-      description: Use Docker Compose Builder for visual configuration, no need to write complex scripts
+      title: Απλή διαμόρφωση
+      description: Χρησιμοποιήστε το Docker Compose Builder για οπτική διαμόρφωση, δεν χρειάζεται να γράψετε πολύπλοκα σενάρια
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports x86_64 architecture, suitable for various servers and cloud platforms
+      title: Υποστήριξη πολλαπλών πλατφορμών
+      description: Υποστηρίζει αρχιτεκτονική x86_64, κατάλληλη για διάφορους διακομιστές και πλατφόρμες cloud
     persistent:
-      title: Data Persistence
-      description: Supports Volume mounting, secure and reliable data, no data loss on container restart
+      title: Μονιμότητα δεδομένων
+      description: Υποστηρίζει προσάρτηση Volume, ασφαλή και αξιόπιστα δεδομένα, χωρίς απώλεια δεδομένων κατά την επανεκκίνηση του container
     autoUpdate:
-      title: Auto Updates
-      description: Supports watchtower for automatic updates, easily get the latest version
+      title: Αυτόματες ενημερώσεις
+      description: Υποστηρίζει watchtower για αυτόματες ενημερώσεις, εύκολη απόκτηση της πιο πρόσφατης έκδοσης
     productionReady:
-      title: Production Ready
-      description: Designed for production environments, supports high availability and horizontal scaling
+      title: Έτοιμο για παραγωγή
+      description: Σχεδιασμένο για περιβάλλοντα παραγωγής, υποστηρίζει υψηλή διαθεσιμότητα και οριζόντια κλιμάκωση
   builder:
     title: Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
+    subtitle: Η πιο απλή και προτεινόμενη μέθοδος ανάπτυξης container
     visual:
-      title: Visual Configuration
-      description: Configure all parameters through a friendly Web interface, no need to manually edit YAML files
+      title: Οπτική διαμόρφωση
+      description: Διαμορφώστε όλες τις παραμέτρους μέσα από ένα φιλικό περιβάλλον ιστού, δεν χρειάζεται να επεξεργαστείτε μη αυτόματα αρχεία YAML
     generate:
-      title: One-Click Configuration Generation
-      description: Automatically generate complete docker-compose.yml files with best practice configurations
+      title: Δημιουργία διαμόρφωσης με ένα κλικ
+      description: Δημιουργήστε αυτόματα πλήρη αρχεία docker-compose.yml με διαμορφώσεις βέλτιστων πρακτικών
     deploy:
-      title: Fast Deployment
-      description: One-click download configuration files and start services, complete deployment in minutes
+      title: Γρήγη ανάπτυξη
+      description: Λήψη αρχείων διαμόρφωσης και εκκίνηση υπηρεσιών με ένα κλικ, ολοκλήρωση ανάπτυξης σε λίγα λεπτά
     secure:
-      title: Secure and Reliable
-      description: Built-in security best practices, automatically configures data volumes and restart policies
-    ctaButton: Go to Docker Compose Builder
+      title: Ασφαλές και αξιόπιστο
+      description: Ενσωματωμένες βέλτιστες πρακτικές ασφάλειας, διαμορφώνει αυτόματα τόμους δεδομένων και πολιτικές επανεκκίνησης
+    ctaButton: Μετάβαση στο Docker Compose Builder
   mirrors:
-    title: Image Source Selection
-    description: Choose the most suitable image source based on your network environment and location
+    title: Επιλογή πηγής εικόνων
+    description: Επιλέξτε την πιο κατάλληλη πηγή εικόνων βάσει του περιβάλλοντος δικτύου και της τοποθεσίας σας
     dockerHub: Docker Hub
-    dockerHubDesc: The world's largest container image registry, suitable for international network users
+    dockerHubDesc: Το μεγαλύτερο μητρώο εικόνων container στον κόσμο, κατάλληλο για χρήστες με διεθνές δίκτυο
     dockerHubCmd: newbe36524/hagicode:0
     azure: Azure ACR
-    azureDesc: Microsoft Azure's image service, faster access from China
+    azureDesc: Η υπηρεσία εικόνων του Microsoft Azure, ταχύτερη πρόσβαση από την Κίνα
     azureCmd: hagicode.azurecr.io/hagicode:0
     aliyun: Aliyun ACR
-    aliyunDesc: Aliyun's domestic image acceleration, recommended for users in mainland China
+    aliyunDesc: Εγχώρια επιτάχυνση εικόνων Aliyun, συνιστάται για χρήστες στην ηπειρωτική Κίνα
     aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
   faq:
-    title: FAQ
+    title: Συχνές ερωτήσεις
     q1:
-      question: What's the difference between Container and Desktop versions?
-      intro: 'Both versions have their advantages. You can choose based on your usage scenario:'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      containerTitle: Container Version
-      container1: Can be deployed on servers, supports remote access
-      container2: Environment isolation, doesn't affect system environment
-      container3: Better suited for team collaboration and production environments
-      container4: Supports automated deployment and horizontal scaling
+      question: Ποια είναι η διαφορά μεταξύ των εκδόσεων Container και Desktop;
+      intro: 'Και οι δύο εκδόσεις έχουν τα πλεονεκτήματά τους. Μπορείτε να επιλέξετε με βάση το σενάριο χρήσης σας:'
+      desktopTitle: Έκδοση Desktop
+      desktop1: Εκτελείται τοπικά στον υπολογιστή σας, πιο ελαφριά
+      desktop2: Δεν απαιτείται διαμόρφωση διακομιστή, έτοιμη για χρήση αμέσως
+      desktop3: Κατάλληλη για μεμονωμένους προγραμματιστές και ελαφριά σενάρια χρήσης
+      desktop4: Όλα τα δεδομένα πλήρως εντοπισμένα
+      containerTitle: Έκδοση Container
+      container1: Μπορεί να αναπτυχθεί σε διακομιστές, υποστηρίζει απομακρυσμένη πρόσβαση
+      container2: Απομόνωση περιβάλλοντος, δεν επηρεάζει το περιβάλλον συστήματος
+      container3: Πιο κατάλληλη για ομαδική συνεργασία και περιβάλλοντα παραγωγής
+      container4: Υποστηρίζει αυτοματοποιημένη ανάπτυξη και οριζόντια κλιμάκωση
     q2:
-      question: What is Docker Compose Builder?
-      intro: 'Docker Compose Builder is our visual configuration tool that helps you:'
-      point1: Configure all container parameters through a Web interface
-      point2: Automatically generate docker-compose.yml files
-      point3: Built-in best practices and security configurations
-      point4: One-click download and start services
-      note: No need to manually write complex YAML configurations. Even Docker beginners can deploy easily.
+      question: Τι είναι το Docker Compose Builder;
+      intro: 'Το Docker Compose Builder είναι το οπτικό μας εργαλείο διαμόρφωσης που σας βοηθά:'
+      point1: Να διαμορφώσετε όλες τις παραμέτρους container μέσω περιβάλλοντος ιστού
+      point2: Να δημιουργήσετε αυτόματα αρχεία docker-compose.yml
+      point3: Ενσωματωμένες βέλτιστες πρακτικές και διαμορφώσεις ασφάλειας
+      point4: Λήψη και εκκίνηση υπηρεσιών με ένα κλικ
+      note: Δεν χρειάζεται να γράψετε μη αυτόματα πολύπλοκες διαμορφώσεις YAML. Ακόμα και οι αρχάριοι στο Docker μπορούν να αναπτύξουν εύκολα.
     q3:
-      question: Which system architectures does the container version support?
-      answer: Hagicode container images currently support <strong>x86_64 (amd64)</strong> architecture, suitable for most servers and PCs.
-      note: Docker will automatically select the appropriate architecture for your system when pulling images.
+      question: Ποιες αρχιτεκτονικές συστήματος υποστηρίζει η έκδοση container;
+      answer: Οι εικόνες container του Hagicode υποστηρίζουν προς το παρόν την αρχιτεκτονική <strong>x86_64 (amd64)</strong>, κατάλληλη για τους περισσότερους διακομιστές και υπολογιστές.
+      note: Το Docker θα επιλέξει αυτόματα την κατάλληλη αρχιτεκτονική για το σύστημά σας κατά τη λήψη εικόνων.
     q4:
-      question: How to update the container?
-      intro: 'When using Docker Compose deployment, updating is very simple:'
+      question: Πώς να ενημερώσω το container;
+      intro: 'Κατά τη χρήση ανάπτυξης Docker Compose, η ενημέρωση είναι πολύ απλή:'
       code: |-
         docker-compose pull
         docker-compose up -d
-      watchtower: Or use Watchtower for automatic updates.
+      watchtower: Ή χρησιμοποιήστε το Watchtower για αυτόματες ενημερώσεις.
     q5:
-      question: How to configure data persistence?
-      intro: 'Docker Compose Builder automatically configures data volumes. By default, your data will be stored in Docker Volumes, ensuring:'
-      point1: Data is not lost when containers are deleted
-      point2: Data is preserved during container upgrades
-      point3: Easy backup and recovery
+      question: Πώς να διαμορφώσω τη μονιμότητα δεδομένων;
+      intro: 'Το Docker Compose Builder διαμορφώνει αυτόματα τόμους δεδομένων. Από προεπιλογή, τα δεδομένα σας θα αποθηκεύονται σε Docker Volumes, διασφαλίζοντας:'
+      point1: Τα δεδομένα δεν χάνονται όταν διαγράφονται τα container
+      point2: Τα δεδομένα διατηρούνται κατά τις αναβαθμίσεις container
+      point3: Εύκολη δημιουργία αντιγράφων ασφαλείας και ανάκτηση
     q6:
-      question: What to do if container startup fails?
-      intro: 'Steps to troubleshoot container startup failure:'
+      question: Τι να κάνω αν η εκκίνηση του container αποτύχει;
+      intro: 'Βήματα αντιμετώπισης αποτυχίας εκκίνησης container:'
       step1:
-        title: 'Check container status:'
+        title: 'Έλεγχος κατάστασης container:'
         code: docker-compose ps
       step2:
-        title: 'Check container logs:'
+        title: 'Έλεγχος καταγραφών container:'
         code: docker-compose logs hagicode
       step3:
-        title: 'Check port occupancy:'
-        desc: 'If your service port is 3000, use this command to check:'
+        title: 'Έλεγχος κατάληψης θύρας:'
+        desc: 'Αν η θύρα της υπηρεσίας σας είναι 3000, χρησιμοποιήστε αυτή την εντολή για έλεγχο:'
         code: netstat -tlnp | grep 3000
-        solution: 'If the port is occupied, you can:'
-        solution1: Stop the process occupying the port
-        solution2: Or configure a different port in Docker Compose Builder
-      help: If the issue persists, please check the detailed documentation or contact technical support.
+        solution: 'Αν η θύρα είναι κατειλημμένη, μπορείτε:'
+        solution1: Να σταματήσετε τη διαδικασία που καταλαμβάνει τη θύρα
+        solution2: Ή να διαμορφώσετε μια διαφορετική θύρα στο Docker Compose Builder
+      help: Αν το πρόβλημα παραμένει, ελέγξτε την αναλυτική τεκμηρίωση ή επικοινωνήστε με την τεχνική υποστήριξη.
   cta:
-    title: Start Using Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
-    button: Go to Deployment Guide
-    github: GitHub Repository
+    title: Ξεκινήστε να χρησιμοποιείτε το Docker Compose Builder
+    subtitle: Η πιο απλή και προτεινόμενη μέθοδος ανάπτυξης container
+    button: Μετάβαση στον οδηγό ανάπτυξης
+    github: Αποθετήριο GitHub

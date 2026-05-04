@@ -1,125 +1,125 @@
 container:
-  title: Hagicode Container - Container Deployment
-  description: Deploy Hagicode via Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and auto updates.
+  title: Hagicode Container - Container-distribusjon
+  description: Distribuer Hagicode via Docker Compose Builder. Enkel konfigurasjon, klar til bruk. Støtter flere bildekilder og automatiske oppdateringer.
   hero:
     badge: Container
     title: Hagicode Container
-    tagline: Deploy quickly with Docker Compose Builder, simple configuration, ready to use
-    value1: Visual configuration, no coding required
-    value2: Environment isolation, data security
-    value3: One-click deployment, fast startup
-    ctaButton: Deploy with Docker Compose Builder
+    tagline: Distribuer raskt med Docker Compose Builder, enkel konfigurasjon, klar til bruk
+    value1: Visuell konfigurasjon, ingen koding nødvendig
+    value2: Miljøisolasjon, datasikkerhet
+    value3: Ett-klikks distribusjon, rask oppstart
+    ctaButton: Distribuer med Docker Compose Builder
     features:
-      isolation: Environment Isolation
-      oneClick: One-Click Deployment
-      fastStart: Fast Startup
+      isolation: Miljøisolasjon
+      oneClick: Ett-klikks distribusjon
+      fastStart: Rask oppstart
   features:
-    title: Why Choose Container Deployment?
+    title: Hvorfor velge container-distribusjon?
     isolation:
-      title: Environment Isolation
-      description: Containerized deployment avoids dependency conflicts, doesn't affect system environment, keeps system clean
+      title: Miljøisolasjon
+      description: Containerisert distribusjon unngår avhengighetskonflikter, påvirker ikke systemmiljøet, holder systemet rent
     simple:
-      title: Simple Configuration
-      description: Use Docker Compose Builder for visual configuration, no need to write complex scripts
+      title: Enkel konfigurasjon
+      description: Bruk Docker Compose Builder for visuell konfigurasjon, ingen behov for å skrive komplekse skript
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports x86_64 architecture, suitable for various servers and cloud platforms
+      title: Kryssplattformstøtte
+      description: Støtter x86_64-arkitektur, egnet for ulike servere og skylplattformer
     persistent:
-      title: Data Persistence
-      description: Supports Volume mounting, secure and reliable data, no data loss on container restart
+      title: Datapersistens
+      description: Støtter Volume-montering, sikre og pålitelige data, ingen datatap ved container-omstart
     autoUpdate:
-      title: Auto Updates
-      description: Supports watchtower for automatic updates, easily get the latest version
+      title: Automatiske oppdateringer
+      description: Støtter watchtower for automatiske oppdateringer, få enkelt den nyeste versjonen
     productionReady:
-      title: Production Ready
-      description: Designed for production environments, supports high availability and horizontal scaling
+      title: Klar for produksjon
+      description: Designet for produksjonsmiljøer, støtter høy tilgjengelighet og horisontal skalering
   builder:
     title: Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
+    subtitle: Den enkleste og anbefalte container-distribusjonsmetoden
     visual:
-      title: Visual Configuration
-      description: Configure all parameters through a friendly Web interface, no need to manually edit YAML files
+      title: Visuell konfigurasjon
+      description: Konfigurer alle parametere gjennom et brukervennlig webgrensesnitt, ingen behov for å manuelt redigere YAML-filer
     generate:
-      title: One-Click Configuration Generation
-      description: Automatically generate complete docker-compose.yml files with best practice configurations
+      title: Ett-klikks konfigurasjonsgenerering
+      description: Generer automatisk komplette docker-compose.yml-filer med beste praksis-konfigurasjoner
     deploy:
-      title: Fast Deployment
-      description: One-click download configuration files and start services, complete deployment in minutes
+      title: Rask distribusjon
+      description: Ett-klikks nedlasting av konfigurasjonsfiler og start av tjenester, fullfør distribusjon på minutter
     secure:
-      title: Secure and Reliable
-      description: Built-in security best practices, automatically configures data volumes and restart policies
-    ctaButton: Go to Docker Compose Builder
+      title: Sikkert og pålitelig
+      description: Innebygde sikkerhetsbestepraksiser, konfigurerer automatisk datavolumer og omstartspolicyer
+    ctaButton: Gå til Docker Compose Builder
   mirrors:
-    title: Image Source Selection
-    description: Choose the most suitable image source based on your network environment and location
+    title: Bildekildevalg
+    description: Velg den mest passende bildekilden basert på ditt nettverksmiljø og plassering
     dockerHub: Docker Hub
-    dockerHubDesc: The world's largest container image registry, suitable for international network users
+    dockerHubDesc: Verdens største container-bilderegister, egnet for internasjonale nettverksbrukere
     dockerHubCmd: newbe36524/hagicode:0
     azure: Azure ACR
-    azureDesc: Microsoft Azure's image service, faster access from China
+    azureDesc: Microsoft Azures bildetjeneste, raskere tilgang fra Kina
     azureCmd: hagicode.azurecr.io/hagicode:0
     aliyun: Aliyun ACR
-    aliyunDesc: Aliyun's domestic image acceleration, recommended for users in mainland China
+    aliyunDesc: Aliyuns innenlandske bildeakselerasjon, anbefalt for brukere i Fastlands-Kina
     aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
   faq:
-    title: FAQ
+    title: Vanlige spørsmål
     q1:
-      question: What's the difference between Container and Desktop versions?
-      intro: 'Both versions have their advantages. You can choose based on your usage scenario:'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      containerTitle: Container Version
-      container1: Can be deployed on servers, supports remote access
-      container2: Environment isolation, doesn't affect system environment
-      container3: Better suited for team collaboration and production environments
-      container4: Supports automated deployment and horizontal scaling
+      question: Hva er forskjellen mellom Container- og Desktop-versjonene?
+      intro: 'Begge versjonene har sine fordeler. Du kan velge basert på ditt bruksscenario:'
+      desktopTitle: Desktop-versjon
+      desktop1: Kjører lokalt på datamaskinen din, mer lettvektig
+      desktop2: Ingen serverkonfigurasjon nødvendig, klar til bruk rett ut av esken
+      desktop3: Egnet for individuelle utviklere og lette bruksscenarioer
+      desktop4: Alle data fullstendig lokalisert
+      containerTitle: Container-versjon
+      container1: Kan distribueres på servere, støtter ekstern tilgang
+      container2: Miljøisolasjon, påvirker ikke systemmiljøet
+      container3: Bedre egnet for teamssamarbeid og produksjonsmiljøer
+      container4: Støtter automatisert distribusjon og horisontal skalering
     q2:
-      question: What is Docker Compose Builder?
-      intro: 'Docker Compose Builder is our visual configuration tool that helps you:'
-      point1: Configure all container parameters through a Web interface
-      point2: Automatically generate docker-compose.yml files
-      point3: Built-in best practices and security configurations
-      point4: One-click download and start services
-      note: No need to manually write complex YAML configurations. Even Docker beginners can deploy easily.
+      question: Hva er Docker Compose Builder?
+      intro: 'Docker Compose Builder er vårt visuelle konfigurasjonsverktøy som hjelper deg med å:'
+      point1: Konfigurere alle container-parametere gjennom et webgrensesnitt
+      point2: Automatisk generere docker-compose.yml-filer
+      point3: Innebygde beste praksiser og sikkerhetskonfigurasjoner
+      point4: Ett-klikks nedlasting og start av tjenester
+      note: Ingen behov for å manuelt skrive komplekse YAML-konfigurasjoner. Selv Docker-nybegynnere kan distribuere enkelt.
     q3:
-      question: Which system architectures does the container version support?
-      answer: Hagicode container images currently support <strong>x86_64 (amd64)</strong> architecture, suitable for most servers and PCs.
-      note: Docker will automatically select the appropriate architecture for your system when pulling images.
+      question: Hvilke systemarkitekturer støtter container-versjonen?
+      answer: Hagicode container-bilder støtter for øyeblikket <strong>x86_64 (amd64)</strong>-arkitektur, egnet for de fleste servere og PC-er.
+      note: Docker vil automatisk velge riktig arkitektur for ditt system ved pulling av bilder.
     q4:
-      question: How to update the container?
-      intro: 'When using Docker Compose deployment, updating is very simple:'
+      question: Hvordan oppdatere containeren?
+      intro: 'Når du bruker Docker Compose-distribusjon, er oppdatering veldig enkelt:'
       code: |-
         docker-compose pull
         docker-compose up -d
-      watchtower: Or use Watchtower for automatic updates.
+      watchtower: Eller bruk Watchtower for automatiske oppdateringer.
     q5:
-      question: How to configure data persistence?
-      intro: 'Docker Compose Builder automatically configures data volumes. By default, your data will be stored in Docker Volumes, ensuring:'
-      point1: Data is not lost when containers are deleted
-      point2: Data is preserved during container upgrades
-      point3: Easy backup and recovery
+      question: Hvordan konfigurere datapersistens?
+      intro: 'Docker Compose Builder konfigurerer automatisk datavolumer. Som standard vil dataene dine bli lagret i Docker Volumes, som sikrer:'
+      point1: Data går ikke tapt når containere slettes
+      point2: Data bevares under container-oppgraderinger
+      point3: Enkel sikkerhetskopiering og gjenoppretting
     q6:
-      question: What to do if container startup fails?
-      intro: 'Steps to troubleshoot container startup failure:'
+      question: Hva gjør jeg hvis container-oppstart feiler?
+      intro: 'Trinn for å feilsøke container-oppstartsfeil:'
       step1:
-        title: 'Check container status:'
+        title: 'Sjekk container-status:'
         code: docker-compose ps
       step2:
-        title: 'Check container logs:'
+        title: 'Sjekk container-logger:'
         code: docker-compose logs hagicode
       step3:
-        title: 'Check port occupancy:'
-        desc: 'If your service port is 3000, use this command to check:'
+        title: 'Sjekk portbruk:'
+        desc: 'Hvis tjenesteporten din er 3000, bruk denne kommandoen for å sjekke:'
         code: netstat -tlnp | grep 3000
-        solution: 'If the port is occupied, you can:'
-        solution1: Stop the process occupying the port
-        solution2: Or configure a different port in Docker Compose Builder
-      help: If the issue persists, please check the detailed documentation or contact technical support.
+        solution: 'Hvis porten er i bruk, kan du:'
+        solution1: Stoppe prosessen som bruker porten
+        solution2: Eller konfigurere en annen port i Docker Compose Builder
+      help: Hvis problemet vedvarer, sjekk den detaljerte dokumentasjonen eller kontakt teknisk støtte.
   cta:
-    title: Start Using Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
-    button: Go to Deployment Guide
-    github: GitHub Repository
+    title: Begynn å bruke Docker Compose Builder
+    subtitle: Den enkleste og anbefalte container-distribusjonsmetoden
+    button: Gå til distribusjonsguide
+    github: GitHub-repositorium

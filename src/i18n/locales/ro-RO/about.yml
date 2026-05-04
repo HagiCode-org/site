@@ -1,24 +1,24 @@
 page:
-  seoTitle: About the HagiCode Team
-  seoDescription: Meet the HagiCode team and browse official stores, group channels, content platforms, and scannable cards from the latest bundled about snapshot.
-  title: Grow through exchange
+  seoTitle: Despre echipa HagiCode
+  seoDescription: Cunoaște echipa HagiCode și explorează magazinele oficiale, canalele de grup, platformele de conținut și cardurile scanabile din cel mai recent instantaneu grupat despre.
+  title: Creștem prin schimb
   sections:
-    store: Store
-    community: Grow through exchange
-    content: Follow where the team publishes
+    store: Magazin
+    community: Creștem prin schimb
+    content: Urmărește unde publică echipa
   kindLabels:
-    store: Store
-    link: Channel
-    contact: Handle
-    qr: QR Card
-    image: Image Card
-  contactFallbackDetail: Use this handle in the app
-  comboLabel: Channel + QR
+    store: Magazin
+    link: Canal
+    contact: Identificator
+    qr: Card QR
+    image: Card Imagine
+  contactFallbackDetail: Folosește acest identificator în aplicație
+  comboLabel: Canal + QR
   platformBadges:
-    steam: Official store
-    youtube: Official channel
+    steam: Magazin oficial
+    youtube: Canal oficial
   genericLinkText:
-    link: Open page
-    contact: Open profile
-    qr: Open QR card
-    image: Open image
+    link: Deschide pagina
+    contact: Deschide profilul
+    qr: Deschide cardul QR
+    image: Deschide imaginea

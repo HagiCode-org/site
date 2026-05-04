@@ -1,126 +1,126 @@
 hero:
-  tagline: Boost development efficiency with AI-powered coding tools
-  description: HagiCode helps developers focus on code, not repetitive work
-  ctaButton: Get Started
+  tagline: Crește eficiența dezvoltării cu instrumente de codare alimentate de AI
+  description: HagiCode ajută dezvoltatorii să se concentreze pe cod, nu pe munca repetitivă
+  ctaButton: Începe
   taglines:
-    smart: Smart · Efficient · Fun
-    aiDriven: AI Orchestrated · Multi-Agent Parallel
-    openspec: OpenSpec · Workflow Revolution
-    multiThread: Multi-Agent · Multi-Instance
+    smart: Inteligent · Eficient · Distractiv
+    aiDriven: AI Orchestrat · Multi-Agent Paralel
+    openspec: OpenSpec · Revoluția Fluxului de Lucru
+    multiThread: Multi-Agent · Multi-Instanță
   lunarTaglines:
-    happyNewYear: Happy New Year · Year of the Horse
-    aiPowered: AI Empowered · Code to Success
-    smartCoding: Smart Coding · Best Wishes
-    openspecLuck: OpenSpec · Prosperity and Success
-    efficiency: Double Efficiency · Good Fortune
-  problem: Traditional AI coding tools have
-  painPoint: pain points
-  painPoints: ': limited context, messy sessions, lack of collaboration.'
-  solution: Hagicode redefines AI coding experience with
+    happyNewYear: An Nou Fericit · Anul Calului
+    aiPowered: AI Empowered · Cod către Succes
+    smartCoding: Codare Inteligentă · Cele Mai Bune Urări
+    openspecLuck: OpenSpec · Prosperitate și Succes
+    efficiency: Eficiență Dublă · Mult Noroc
+  problem: Instrumentele tradiționale de codare AI au
+  painPoint: puncte slabe
+  painPoints: ': context limitat, sesiuni dezordonate, lipsă de colaborare.'
+  solution: Hagicode redefinește experiența de codare AI cu
   features:
-    - OpenSpec workflow
-    - multi-agent multi-instance execution
-    - Hero Dungeon gameplay
+    - Flux de lucru OpenSpec
+    - execuție multi-agent multi-instanță
+    - joc Hero Dungeon
   redefine: .
   valueCards:
     smart:
-      title: Smart
-      description: OpenSpec moves ideas into execution faster.
+      title: Inteligent
+      description: OpenSpec transformă ideile în execuție mai repede.
     efficient:
-      title: Efficient
-      description: Multi-agent execution turns waiting into throughput.
+      title: Eficient
+      description: Execuția multi-agent transformă așteptarea în debit.
     interesting:
-      title: Interesting
-      description: Hero Dungeon makes teamwork and practice feel like an adventure.
+      title: Interesant
+      description: Hero Dungeon face munca în echipă și practica o aventură.
   buttons:
-    desktopApp: Install Desktop App
-    containerApp: Install Container App
-    learnMore: Learn More
+    desktopApp: Instalează Aplicația Desktop
+    containerApp: Instalează Aplicația Container
+    learnMore: Află Mai Multe
   techStack:
-    poweredBy: Powered by
+    poweredBy: Susținut de
   qqGroup:
-    title: Join Technical Support Group
-    description: Hagicode Technical Support QQ Group
-    joinButton: Join Now
-  secondaryLine: Hagicode supports mainstream agents, doubles parallel management efficiency, and reduces hallucinations with OpenSpec.
+    title: Alătură-te Grupului de Suport Tehnic
+    description: Grup QQ de Suport Tehnic Hagicode
+    joinButton: Alătură-te Acum
+  secondaryLine: Hagicode suportă agenți mainstream, dublează eficiența gestionării paralele și reduce halucinațiile cu OpenSpec.
 features:
   showcase:
-    title: Three Core Features
-    subtitle: Redefine your AI coding experience
+    title: Trei Funcționalități Principale
+    subtitle: Redefinește experiența ta de codare AI
   smart:
-    badge: SMART
-    title: Smart
-    subtitle: OpenSpec workflow, boost AI coding efficiency
-    efficiency: Efficiency Boost
-    traditional: Traditional
+    badge: INTELIGENT
+    title: Inteligent
+    subtitle: Flux de lucru OpenSpec, crește eficiența codării AI
+    efficiency: Creștere Eficiență
+    traditional: Tradițional
     hagicode: Hagicode
-    description: A complete 9-stage proposal workflow from idea to archive, with AI assistance throughout. Boost your coding efficiency by 3x.
+    description: Un flux de lucru complet de 9 etape de la idee la arhivă, cu asistență AI pe tot parcursul. Crește eficiența codării de 3 ori.
     workflow:
       idea:
-        label: Idea
-        desc: Start from idea
+        label: Idee
+        desc: Începe de la idee
       proposal:
-        label: Proposal
-        desc: AI generates proposal
+        label: Propunere
+        desc: AI generează propunerea
       review:
-        label: Review
-        desc: Auto review
+        label: Revizuire
+        desc: Revizuire automată
       tasks:
-        label: Tasks
-        desc: Task breakdown
+        label: Sarcini
+        desc: Descompunerea sarcinilor
       code:
-        label: Code
-        desc: Smart coding
+        label: Cod
+        desc: Codare inteligentă
       test:
         label: Test
-        desc: Auto testing
+        desc: Testare automată
       refactor:
-        label: Refactor
-        desc: Code refactor
+        label: Refactorizare
+        desc: Refactorizare cod
       docs:
         label: Docs
-        desc: Docs generation
+        desc: Generare documentație
       archive:
-        label: Archive
-        desc: Knowledge archive
-    paused: Paused - Click node to switch
+        label: Arhivă
+        desc: Arhivare cunoștințe
+    paused: În Pauză - Click pe nod pentru a schimba
   convenient:
-    badge: EFFICIENT
-    title: Efficient
-    subtitle: Multi-agent, multi-instance execution that keeps your quota moving
-    traditional: Traditional single-agent / single-instance
-    multiThread: Multi-agent parallel matrix
-    boost: Throughput Boost
-    boostValue: 10x+ parallel
-    description: Current supported Agent CLIs such as Claude Code, Codex, GitHub Copilot, OpenCode, and Hermes can work across multiple instances at the same time, so proposals, fixes, and reviews move in parallel instead of waiting in a serial queue.
+    badge: EFICIENT
+    title: Eficient
+    subtitle: Execuție multi-agent, multi-instanță care menține cota în mișcare
+    traditional: Agent unic tradițional / instanță unică
+    multiThread: Matrice paralelă multi-agent
+    boost: Creștere Debit
+    boostValue: 10x+ paralel
+    description: Agent CLI-urile actualmente suportate precum Claude Code, Codex, GitHub Copilot, OpenCode și Hermes pot lucra pe mai multe instanțe în același timp, astfel încât propunerile, corecțiile și revizuirile avansează în paralel în loc să aștepte într-o coadă serială.
     agentMatrix:
-      title: Parallel execution matrix
-      badge: Multiple agents / multiple instances
-      status: Multiple agents are driving multiple instances right now
+      title: Matrice de execuție paralelă
+      badge: Agenți multipli / instanțe multiple
+      status: Agenți multipli conduc instanțe multiple chiar acum
       agents:
         claude:
           name: Claude Code
-          role: Proposal / review
+          role: Propunere / revizuire
           instances:
-            - Draft spec
-            - Check design
-            - Archive review
+            - Schiță spec
+            - Verificare design
+            - Revizuire arhivă
         codex:
           name: Codex
-          role: Implementation / fixes
+          role: Implementare / corecții
           instances:
-            - Build feature A
-            - Build feature B
-            - Regression fix
+            - Construiește funcționalitatea A
+            - Construiește funcționalitatea B
+            - Corecție regresie
         router:
           name: Qwen · GLM
-          role: Analysis / support
+          role: Analiză / suport
           instances:
-            - Trace issue
-            - Polish copy
-            - Capture insights
+            - Urmărește problema
+            - Rafinează text
+            - Capturează insight-uri
       supportedNames:
-        title: 11 currently supported Agent CLIs
+        title: 11 Agent CLI-uri actualmente suportate
         names:
           - Claude Code
           - Codex
@@ -133,207 +133,207 @@ features:
           - Gemini
           - DeepAgents
           - Codebuddy
-    supportedProvidersNote: OpenCode can load the shared OmniRoute catalog into hero model defaults while keeping custom raw model identifiers editable for branch-specific workflows.
+    supportedProvidersNote: OpenCode poate încărca catalogul partajat OmniRoute în valorile implicite ale modelelor erou menținând identificatorii de modele brute personalizate editabili pentru fluxuri de lucru specifice branch-ului.
   interesting:
-    badge: INTERESTING
-    title: Fun
-    subtitle: Hero Dungeon makes campus collaboration and practice feel alive
+    badge: INTERESANT
+    title: Distractiv
+    subtitle: Hero Dungeon face colaborarea și practica pe campus mai animate
     features:
       dungeons:
         label: Hero Dungeons
-        desc: Turn generation, execution, and prompt workbenches into dungeon runs
+        desc: Transformă generarea, execuția și workbenches-urile de prompt-uri în dungeon runs
       captains:
-        label: Captain Roster
-        desc: Assign the right hero captain to each dungeon
+        label: Listă Căpitani
+        desc: Asignează căpitanul erou potrivit fiecărui dungeon
       battle:
-        label: Battle Reports
-        desc: Review XP, levels, and execution results after each push
-    description: Fun no longer depends on achievement badges. Hero Dungeon, captain rosters, prompt visuals, and battle reports turn daily AI coding practice into a workflow that feels more like a coordinated adventure for campus labs and student teams.
+        label: Rapoarte de Bătălie
+        desc: Revizuiește XP, niveluri și rezultate de execuție după fiecare push
+    description: Distracția nu mai depinde de insigne de realizări. Hero Dungeon, liste de căpitani, vizualizări de prompt-uri și rapoarte de luptă transformă practica zilnică de codare AI într-un flux de lucru care seamănă mai mult cu o aventură coordonată pentru laboratoare de campus și echipe de studenți.
     dungeonCards:
       proposal:
-        title: Proposal Dungeon
-        desc: OpenSpec generate / apply / archive
-        status: Captain ready
+        title: Dungeon Propuneri
+        desc: OpenSpec generează / aplică / arhivează
+        status: Căpitan pregătit
       autotask:
-        title: AutoTask Dungeon
-        desc: Parallel fixes and batch automation
-        status: 2 instances active
+        title: Dungeon AutoTask
+        desc: Corecții paralele și automatizare în lot
+        status: 2 instanțe active
       prompt:
-        title: Prompt Dungeon
-        desc: Prompt preview and style workbench
-        status: Visual sync ready
+        title: Dungeon Prompt-uri
+        desc: Previzualizare prompt-uri și workbench de stil
+        status: Sincronizare vizuală pregătită
     roster:
-      title: Current captain roster
+      title: Lista actuală a căpitanilor
       heroes:
         strategist:
-          name: Spec Strategist
-          role: Proposal captain
+          name: Strategist Spec
+          role: Căpitan propuneri
         runner:
           name: Patch Runner
-          role: Execution captain
+          role: Căpitan execuție
         artist:
-          name: Prompt Artist
-          role: Visual support
+          name: Artist Prompt
+          role: Suport vizual
     battleReport:
-      title: Today's dungeon report
-      badge: Hero Battle
+      title: Raportul dungeon-ului de azi
+      badge: Bătălie Eroi
       metrics:
         dungeons:
           value: '4'
-          label: Dungeons pushed
+          label: Dungeon-uri finalizate
         level:
           value: Lv.27
-          label: Captain level
+          label: Nivel căpitan
         xp:
           value: 12.8M
-          label: XP today
-      note: When several dungeons move in parallel, the report rolls up experience, levels, and execution outcomes into one readout.
+          label: XP azi
+      note: Când mai multe dungeon-uri avansează în paralel, raportul consolidează experiența, nivelurile și rezultatele execuției într-un singur rezumat.
     gallery:
       dungeons:
-        title: Dungeon map carousel
-        subtitle: 10 random visuals from the current frontend dungeon and prompt map collection.
+        title: Caruselul hărții dungeon-urilor
+        subtitle: 10 vizualizări aleatorii din dungeon-ul frontend curent și colecția de hărți de prompt-uri.
       heroes:
-        title: Hero gallery carousel
-        subtitle: 10 random hero visuals from the current frontend hero collection.
+        title: Caruselul galeriei eroilor
+        subtitle: 10 vizualizări aleatorii de eroi din colecția frontend curentă de eroi.
 productOverviewVideo:
-  title: Understand Hagicode before the feature tour
+  title: Înțelege Hagicode înainte de turul funcționalităților
 videoShowcase:
-  eyebrow: Supporting Product Demos
-  title: Keep exploring Hagicode in real coding sessions
-  description: After the main overview, these focused demos show how Hagicode behaves in playful and model-specific scenarios without repeating the primary product introduction.
-  supportingLabel: Focused demo
+  eyebrow: Demonstrații Produs de Suport
+  title: Continuă să explorezi Hagicode în sesiuni reale de codare
+  description: După prezentarea generală principală, aceste demonstrații concentrate arată cum Hagicode se comportă în scenarii ludice și specifice modelelor fără a repeta introducerea primară a produsului.
+  supportingLabel: Demo concentrat
 homepageVideos:
   overview:
     youtube:
-      title: Hagicode Product Overview on YouTube
-      description: The main English-language introduction to Hagicode's workflow, multi-agent execution style, and why the product feels broader than a generic AI coding chat box.
-      ctaLabel: Open on YouTube
+      title: Prezentare Generală Produs Hagicode pe YouTube
+      description: Introducerea principală în limba engleză a fluxului de lucru Hagicode, stilului de execuție multi-agent și motivul pentru care produsul pare mai amplu decât o casetă de chat AI generică.
+      ctaLabel: Deschide pe YouTube
     bilibili:
-      title: Hagicode Product Overview on Bilibili
-      description: A Bilibili-hosted version of the core product introduction for visitors whose browsers signal a Chinese-language preference or who prefer the domestic playback path.
-      ctaLabel: Open on Bilibili
+      title: Prezentare Generală Produs Hagicode pe Bilibili
+      description: O versiune găzduită pe Bilibili a introducerii principale a produsului pentru vizitatorii ale căror browsere indică o preferință de limbă chineză sau care preferă calea de redare internă.
+      ctaLabel: Deschide pe Bilibili
   supporting:
     first:
-      title: AI Playing Games While Coding
-      description: A playful supporting clip that shows the assistant staying lively and surprising during real coding sessions instead of feeling like a dry code generator.
-      ctaLabel: Open on Bilibili
+      title: AI Joacă Jocuri În Timp Ce Codează
+      description: Un clip de suport jucăuș care arată asistentul rămânând plin de viață și surprinzător în timpul sesiunilor reale de codare în loc să se simtă ca un generator de cod uscat.
+      ctaLabel: Deschide pe Bilibili
     second:
-      title: 'GPT Codex in Hagicode: Live Trial'
-      description: A focused validation run that lets prospective users judge how GPT Codex behaves inside the actual product after they've seen the main localized introduction.
-      ctaLabel: Open on Bilibili
+      title: 'GPT Codex în Hagicode: Test Live'
+      description: O execuție de validare concentrată care permite utilizatorilor potențiali să evalueze cum se comportă GPT Codex în interiorul produsului real după ce au văzut introducerea localizată principală.
+      ctaLabel: Deschide pe Bilibili
   hero:
-    steamAriaLabel: Open Hagicode on Steam
-    ctaGroupLabel: Primary homepage actions
+    steamAriaLabel: Deschide Hagicode pe Steam
+    ctaGroupLabel: Acțiuni principale pagina de start
 pricing:
   docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
-  title: Editions & Pricing
-  limitTitle: Proposal concurrency rule
-  limitDescription: Free and Steam both include a 3-proposal cap. Proposals in generating, executing, and archiving all count toward the same limit. Turbo Engine DLC expands that limit to 32.
-  plusTitle: Hagicode Plus note
-  plusDescription: Hagicode Plus is the official Steam bundle that combines the main Steam edition with Turbo Engine DLC.
-  featureHeader: Feature
-  includedLabel: Included
-  notIncludedLabel: Not included
+  title: Ediții și Prețuri
+  limitTitle: Regula de concurență a propunerilor
+  limitDescription: Versiunile Gratuită și Steam includ ambele un plafon de 3 propuneri. Propunerile în generare, execuție și arhivare se numără toate în aceeași limită. Turbo Engine DLC extinde acea limită la 32.
+  plusTitle: Notă Hagicode Plus
+  plusDescription: Hagicode Plus este pachetul oficial Steam care combină ediția principală Steam cu Turbo Engine DLC.
+  featureHeader: Funcționalitate
+  includedLabel: Inclus
+  notIncludedLabel: Nu este inclus
   editions:
     desktop:
       title: Desktop
     container:
       title: Container
   rows:
-    pricing: Pricing
-    allFreeFeaturesIncluded: All free features included
-    vault: Vault
-    skills: Skills
-    proposalWorkflow: Proposal workflow
-    localAchievements: Local achievements
-    allAgentCliIntegrations: All Agent CLI integrations
-    speechRecognition: Speech recognition
-    omniRouteIntegration: OmniRoute integration
-    githubIntegration: GitHub integration
-    gitManagement: Git management
-    maximumConcurrentProposals: Maximum concurrent proposals
-    copySwitchingSupport: Copy switching support
-    turboEngineAvatarPacks: Turbo Engine avatar packs
-    customAvatarUploads: Custom avatar uploads
-    customLogo: Custom logo
-    customTitle: Custom title
-    customCoAuthoredByInfo: Custom Co-Authored-By info
-    steamCloudAchievements: Steam cloud achievements
-    freeDlcSupport: Free DLC support
-    steamWorkshopSupport: Steam Workshop support
-    cloudSaveSupport: Cloud save support
+    pricing: Prețuri
+    allFreeFeaturesIncluded: Toate funcționalitățile gratuite incluse
+    vault: Seif
+    skills: Abilități
+    proposalWorkflow: Flux de lucru propuneri
+    localAchievements: Realizări locale
+    allAgentCliIntegrations: Toate integrările Agent CLI
+    speechRecognition: Recunoaștere vocală
+    omniRouteIntegration: Integrare OmniRoute
+    githubIntegration: Integrare GitHub
+    gitManagement: Gestionare Git
+    maximumConcurrentProposals: Maximum propuneri concurente
+    copySwitchingSupport: Suport comutare copie
+    turboEngineAvatarPacks: Pachete avatare Turbo Engine
+    customAvatarUploads: Încărcări avatare personalizate
+    customLogo: Logo personalizat
+    customTitle: Titlu personalizat
+    customCoAuthoredByInfo: Info Co-Authored-By personalizat
+    steamCloudAchievements: Realizări Steam în cloud
+    freeDlcSupport: Suport DLC gratuit
+    steamWorkshopSupport: Suport Steam Workshop
+    cloudSaveSupport: Suport Cloud Save
   values:
-    free: Free
-    viewOnSteam: View on Steam
+    free: Gratuit
+    viewOnSteam: Vezi pe Steam
   dlc:
-    label: DLC & Bundles
-    title: Optional packs
+    label: DLC și Pachete
+    title: Pachete opționale
     actions:
-      openSteam: Open Steam
+      openSteam: Deschide Steam
     preview:
-      bundlePending: Bundle visuals pending
-      productPending: Product visuals pending
+      bundlePending: Vizualizări pachet în așteptare
+      productPending: Vizualizări produs în așteptare
     items:
       allBeauties:
-        category: Free DLC
+        category: DLC Gratuit
         title: Hagicode - All Beauties Pack
-        price: Free
-        description: An extra cosmetics pack for Steam users.
+        price: Gratuit
+        description: Un pachet cosmetic suplimentar pentru utilizatorii Steam.
         bullets:
-          - Adds 1,000 anime-girl-style avatars
-          - Leaves room for more beauty-themed content in future updates
+          - Adaugă 1.000 avatare stil anime
+          - Lasă loc pentru mai mult conținut cu temă de frumusețe în actualizările viitoare
       turboEngine:
-        category: Performance DLC
+        category: DLC Performanță
         title: 'Hagicode: Turbo Engine DLC'
         price: Steam
-        description: You can buy this DLC on its own to expand the original proposal concurrency cap, unlock copy switching, add five avatar packs with 10 standalone avatars each, enable custom avatar uploads, customize the top-left logo and title, and align AI-generated commit trailers with your own Co-Authored-By naming rules. We will usually highlight a bundled purchase option called Hagicode Plus so the overall purchase price stays lower. Please check our store page for the latest changes.
+        description: Puteți cumpăra acest DLC separat pentru a extinde plafonul original de concurență al propunerilor, debloca comutarea copiei, adăuga cinci pachete de avatare cu câte 10 avatare individuale fiecare, activa încărcările de avatare personalizate, personaliza logo-ul și titlul din stânga sus și alinia trailerele de commit generate de AI cu propriile reguli de denumire Co-Authored-By. Vom evidenția de obicei o opțiune de cumpărare în pachet numită Hagicode Plus pentru ca prețul general de cumpărare să rămână mai mic. Verificați pagina noastră de magazin pentru cele mai recente modificări.
         bullets:
-          - Supports custom top-left logos and titles
-          - Includes five avatar packs with 10 selectable avatars in each pack
-          - Supports custom avatar uploads
-          - Lets teams customize the AI Co-Authored-By signature for commit workflows
-          - Unlocks copy and wording switching support
-          - Expands the maximum concurrent proposal limit to 32
+          - Suportă logo-uri și titluri personalizate în stânga sus
+          - Include cinci pachete de avatare cu 10 avatare selectabile în fiecare pachet
+          - Suportă încărcări de avatare personalizate
+          - Permite echipelor să personalizeze semnătura AI Co-Authored-By pentru fluxurile de lucru commit
+          - Deblochează suportul de comutare a copiei și formulării
+          - Extinde limita maximă de propuneri concurente la 32
       hagicodePlus:
-        category: Bundle
+        category: Pachet
         title: Hagicode Plus
         price: Steam
-        description: The official Steam bundle that combines the Hagicode base edition with Turbo Engine DLC in one purchase path.
+        description: Pachetul oficial Steam care combină ediția de bază Hagicode cu Turbo Engine DLC într-un singur parcurs de cumpărare.
         bullets:
-          - Bundles the main Steam edition and Turbo Engine DLC together
-          - Keeps the higher 32-proposal concurrency upgrade attached to the bundle path
-          - Works as the clearest purchase entry when you want the full Steam setup at once
+          - Grupează ediția principală Steam și Turbo Engine DLC împreună
+          - Menține actualizarea de concurență de 32 propuneri atașată la parcursul pachetului
+          - Funcționează ca cea mai clară intrare de cumpărare când doriți configurația Steam completă dintr-o dată
       sponsor:
-        category: Supporter DLC
+        category: DLC Susținător
         title: Hagicode - Sponsor Pack
         price: Steam
-        description: If you think Hagicode is genuinely excellent and want to provide direct financial support, buying Sponsor Pack gives the project more fuel and helps us keep it running for the long term.
+        description: Dacă credeți că Hagicode este cu adevărat excelent și doriți să oferiți sprijin financiar direct, cumpărarea Sponsor Pack oferă proiectului mai mult combustibil și ne ajută să îl menținem funcțional pe termen lung.
         bullets:
-          - One exclusive dark theme
-          - One exclusive light theme
-          - One exclusive Steam achievement
+          - O temă întunecată exclusivă
+          - O temă luminoasă exclusivă
+          - O realizare Steam exclusivă
 workflowBoard:
   titleLines:
-    - Mainstream Agents Supported
-    - 10x Parallel Management Efficiency
-    - OpenSpec Reduces Hallucinations
-  taskLabel: Task
-  headerSummary: Task / Agent
+    - Agenți Mainstream Suportați
+    - 10x Eficiență Gestionare Paralelă
+    - OpenSpec Reduce Halucinațiile
+  taskLabel: Sarcină
+  headerSummary: Sarcină / Agent
   steps:
-    - Ideate
-    - Propose
-    - Execute
-    - Archive
+    - Idează
+    - Propune
+    - Execută
+    - Arhivează
   activeStates:
-    - Ideating
-    - Proposing
-    - Executing
-    - Archiving
-  completedState: Complete
+    - Idează
+    - Propune
+    - Execută
+    - Arhivează
+  completedState: Finalizat
   metrics:
-    completed: Completed Tasks
-    efficiency: Live Efficiency
-    serialTime: Equivalent Serial Time
-    elapsedTime: Elapsed Time
-    formula: Efficiency = equivalent serial work / natural elapsed time
-    serialHint: relative to a single serial worker
+    completed: Sarcini Finalizate
+    efficiency: Eficiență Live
+    serialTime: Timp Serial Echivalent
+    elapsedTime: Timp Scurs
+    formula: Eficiență = muncă serială echivalentă / timp natural scurs
+    serialHint: relativ la un singur lucrător serial

@@ -1,123 +1,123 @@
 desktop:
   title: Hagicode Desktop - Download
-  description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
+  description: Download Hagicode Desktop, een gelokaliseerde AI-codeassistent. Ondersteunt Windows, macOS en Linux. Privacybescherming, snelle reactie.
   features:
-    title: Key Features
+    title: Belangrijkste functies
     local:
-      title: Local Execution
-      description: All data is processed locally without uploading to the cloud, ensuring code privacy and security
+      title: Lokale uitvoering
+      description: Alle gegevens worden lokaal verwerkt zonder upload naar de cloud, wat code-privacy en beveiliging garandeert
     privacy:
-      title: Privacy Protection
-      description: Code is never uploaded, supports offline usage, protecting your intellectual property
+      title: Privacybescherming
+      description: Code wordt nooit geüpload, ondersteunt offline gebruik, beschermt uw intellectueel eigendom
     fast:
-      title: Fast Response
-      description: Millisecond-level response time, no network requests needed, boosting development efficiency
+      title: Snelle respons
+      description: Reactietijd op millisecondeniveau, geen netwerkverzoeken nodig, verhoogt ontwikkelingsefficiëntie
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports Windows, macOS, and Linux to meet different development environment needs
+      title: Kruisplatformondersteuning
+      description: Ondersteunt Windows, macOS en Linux om aan verschillende ontwikkelomgevingsbehoeften te voldoen
     autoUpdate:
-      title: Auto Updates
-      description: Automatically checks for updates and upgrades to the latest version with one click
+      title: Automatische updates
+      description: Controleert automatisch op updates en upgradet naar de nieuwste versie met één klik
     multiLanguage:
-      title: Multi-Language Support
-      description: Built-in Chinese and English interface, supporting international team collaboration
+      title: Meertalige ondersteuning
+      description: Ingebouwde Chinese en Engelse interface, ondersteunt internationale teamsamenwerking
   systemRequirements:
-    title: System Requirements
+    title: Systeemvereisten
     windows: Windows
     macos: macOS
     linux: Linux
-    os: Operating System
+    os: Besturingssysteem
     processor: Processor
-    memory: Memory
-    diskSpace: Disk Space
-    network: Network
+    memory: Geheugen
+    diskSpace: Schijfruimte
+    network: Netwerk
     windowsOs: Windows 10/11 (64-bit)
-    macosOs: macOS 12+ (Monterey or higher)
-    linuxOs: Ubuntu 20.04+ / Debian 11+ / Other mainstream distributions
-    windowsProcessor: Intel Core i3 or equivalent processor
-    macosProcessor: Apple Silicon (M1/M2/M3) or Intel Core i3+
-    linuxProcessor: Intel Core i3 or equivalent processor
-    memoryRec: 4GB RAM (8GB recommended)
-    disk: 2GB available space
-    networkDesc: Network connection required for initial download (can be used offline afterwards)
+    macosOs: macOS 12+ (Monterey of hoger)
+    linuxOs: Ubuntu 20.04+ / Debian 11+ / Andere gangbare distributies
+    windowsProcessor: Intel Core i3 of equivalente processor
+    macosProcessor: Apple Silicon (M1/M2/M3) of Intel Core i3+
+    linuxProcessor: Intel Core i3 of equivalente processor
+    memoryRec: 4GB RAM (8GB aanbevolen)
+    disk: 2GB beschikbare ruimte
+    networkDesc: Netwerkverbinding vereist voor initiële download (kan daarna offline worden gebruikt)
   download:
-    title: Download Packages
-    windowsDesc: Stable installers for Windows 10/11, including setup and portable builds.
-    macosDesc: Native builds for Apple Silicon and Intel Macs.
-    linuxDesc: AppImage and tarball packages for mainstream x64 and ARM64 Linux distributions.
-    note: If the package list here fails to load, use the version history link in the hero area to access the canonical index.
+    title: Downloadpakketten
+    windowsDesc: Stabiele installatieprogramma's voor Windows 10/11, inclusief setup en portable versies.
+    macosDesc: Native builds voor Apple Silicon en Intel Macs.
+    linuxDesc: AppImage- en tarball-pakketten voor gangbare x64- en ARM64 Linux-distributies.
+    note: Als de pakketlijst hier niet laadt, gebruik de versiegeschiedenislink in het hero-gebied om toegang te krijgen tot de canonieke index.
     features:
-      signed: Signed packages
-      autoUpdate: Automatic update detection
-      multiLanguage: Multi-language interface
+      signed: Ondertekende pakketten
+      autoUpdate: Automatische update-detectie
+      multiLanguage: Meertalige interface
   installation:
-    title: Quick Installation
+    title: Snelle installatie
     step1:
       number: '1'
-      title: Download Installer
-      description: Select the appropriate installer for your operating system
+      title: Installatieprogramma downloaden
+      description: Selecteer het juiste installatieprogramma voor uw besturingssysteem
     step2:
       number: '2'
-      title: Run Installer
-      description: Double-click the downloaded installer and follow the prompts to complete installation
+      title: Installatieprogramma uitvoeren
+      description: Dubbelklik op het gedownloade installatieprogramma en volg de instructies om de installatie te voltooien
     step3:
       number: '3'
-      title: Launch App
-      description: On first launch, it will guide you through initial configuration
+      title: App starten
+      description: Bij de eerste start wordt u begeleid door de initiële configuratie
     step4:
       number: '4'
-      title: Start Using
-      description: After configuration, you can start using Hagicode Desktop
+      title: Begin met gebruiken
+      description: Na configuratie kunt u Hagicode Desktop gaan gebruiken
   faq:
-    title: FAQ
+    title: Veelgestelde vragen
     q1:
-      question: What's the difference between Desktop and Server versions?
-      intro: 'Hagicode offers two deployment options: Desktop version and Server version. Each has its advantages, but both adopt a user-controlled server and data approach, providing better data protection.'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      serverTitle: Server Version
-      server1: Can be deployed on remote servers
-      server2: Supports multi-user remote access
-      server3: Better suited for team collaboration and scaling
-      server4: Prepares for future enterprise features and multi-device sync
-      conclusion: Whichever version you choose, you have complete control over your server and data, enjoying better privacy protection and data security.
+      question: Wat is het verschil tussen de Desktop- en Server-versies?
+      intro: 'Hagicode biedt twee implementatieopties: Desktop-versie en Server-versie. Elke heeft zijn voordelen, maar beide gebruiken een door de gebruiker gecontroleerde server- en gegevensbenadering die betere gegevensbescherming biedt.'
+      desktopTitle: Desktop-versie
+      desktop1: Werkt lokaal op uw computer, lichter
+      desktop2: Geen serverconfiguratie nodig, direct klaar voor gebruik
+      desktop3: Geschikt voor individuele ontwikkelaars en licht gebruiksscenario's
+      desktop4: Alle gegevens volledig gelokaliseerd
+      serverTitle: Server-versie
+      server1: Kan op externe servers worden geïmplementeerd
+      server2: Ondersteunt multi-gebruiker externe toegang
+      server3: Beter geschikt voor teamsamenwerking en schaling
+      server4: Bereidt voor op toekomstige enterprise-functies en multi-apparaat synchronisatie
+      conclusion: Welke versie u ook kiest, u heeft volledige controle over uw server en gegevens, met betere privacybescherming en gegevensbeveiliging.
     q2:
-      question: What do I need to do after installation?
-      intro: 'Hagicode Desktop is essentially a launcher. On first launch after installation, it will guide you through these steps:'
-      step1: <strong>Download Hagicode Core:</strong> Desktop will automatically detect and prompt you to download Hagicode core components
-      step2: <strong>Install Core Components:</strong> Follow the on-screen prompts to complete core component installation
-      step3: <strong>Configure your default Agent CLI:</strong> Choose a currently supported Agent CLI and finish the required sign-in, authorization, or local installation steps.
-      note: The Desktop interface guides the whole flow. Keep the network available on first launch so Hagicode Core can download; some Agent CLIs still require manual installation or authentication, but they are still part of the current support range.
-      done: After completing these steps, you can use all Hagicode Desktop features normally.
+      question: Wat moet ik doen na de installatie?
+      intro: 'Hagicode Desktop is in wezen een launcher. Bij de eerste start na installatie wordt u door deze stappen geleid:'
+      step1: '<strong>Download Hagicode Core:</strong> Desktop detecteert automatisch en vraagt u Hagicode-kerncomponenten te downloaden'
+      step2: '<strong>Installeer kerncomponenten:</strong> Volg de instructies op het scherm om de installatie van kerncomponenten te voltooien'
+      step3: '<strong>Configureer uw standaard Agent CLI:</strong> Kies een momenteel ondersteunde Agent CLI en voltooi de vereiste inlog-, autorisatie- of lokale installatiestappen.'
+      note: De Desktop-interface begeleidt de hele flow. Houd het netwerk beschikbaar bij de eerste start zodat Hagicode Core kan downloaden; sommige Agent CLI's vereisen nog steeds handmatige installatie of authenticatie, maar maken nog steeds deel uit van het huidige ondersteuningsbereik.
+      done: Na het voltooien van deze stappen kunt u alle Hagicode Desktop-functies normaal gebruiken.
     q3:
-      question: How do I check for updates?
-      answer: Desktop automatically checks for updates. When a new version is available, a prompt will appear in the top right corner of the interface. You can also manually check for updates in "Settings".
+      question: Hoe controleer ik op updates?
+      answer: Desktop controleert automatisch op updates. Wanneer een nieuwe versie beschikbaar is, verschijnt er een melding in de rechterbovenhoek van de interface. U kunt ook handmatig controleren op updates in "Instellingen".
     q4:
-      question: Which AI Agent CLIs are supported?
-      intro: 'Hagicode Desktop currently supports the following Agent CLIs:'
-      active: <strong>Currently supported:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents, and Codebuddy
-      manual: <strong>Manual installation or authentication:</strong> Hermes, Gemini, and DeepAgents require a local install or auth step first; the other CLIs provide one-click installation entry points or guided install flows.
-      legacy: <strong>Legacy compatibility only:</strong> IFlowCli remains only for historical data compatibility and is not part of the current active support range.
-      closing: Support scope and setup mode are separate concerns. A CLI that needs manual installation is still supported now.
+      question: Welke AI Agent CLI's worden ondersteund?
+      intro: 'Hagicode Desktop ondersteunt momenteel de volgende Agent CLI''s:'
+      active: '<strong>Momenteel ondersteund:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents en Codebuddy'
+      manual: '<strong>Handmatige installatie of authenticatie:</strong> Hermes, Gemini en DeepAgents vereisen eerst een lokale installatie of authenticatiestap; de andere CLI''s bieden installatie-ingangspunten met één klik of geleide installatieflows.'
+      legacy: '<strong>Alleen legacy-compatibiliteit:</strong> IFlowCli blijft alleen voor historische datacompatibiliteit en maakt geen deel uit van het huidige actieve ondersteuningsbereik.'
+      closing: Ondersteuningsbereik en installatiemodus zijn afzonderlijke zaken. Een CLI die handmatige installatie vereist wordt nog steeds ondersteund.
     q5:
-      question: Does it support offline usage?
-      intro: 'Yes! Hagicode Desktop supports complete offline usage:'
-      point1: Network connection required for initial installation and configuration (downloading core components and AI models)
-      point2: All features can be used offline after configuration
-      point3: Your code and data are never uploaded to the cloud
-      point4: All AI processing is completed locally
+      question: Wordt offline gebruik ondersteund?
+      intro: 'Ja! Hagicode Desktop ondersteunt volledig offline gebruik:'
+      point1: Netwerkverbinding vereist voor initiële installatie en configuratie (downloaden van kerncomponenten en AI-modellen)
+      point2: Alle functies kunnen offline worden gebruikt na configuratie
+      point3: Uw code en gegevens worden nooit geüpload naar de cloud
+      point4: Alle AI-verwerking wordt lokaal voltooid
     q6:
-      question: macOS says Hagicode.app is damaged or can't be opened. What should I do?
-      intro: If Hagicode Desktop is installed in the default path /Applications/Hagicode.app and macOS Gatekeeper blocks the first launch, use the following command to remove the quarantine attribute from the app.
-      cause: This happens because macOS adds the com.apple.quarantine attribute to apps downloaded from the internet. It is a macOS security isolation issue, not a failure in the Hagicode installer.
+      question: macOS zegt dat Hagicode.app beschadigd is of niet kan worden geopend. Wat moet ik doen?
+      intro: Als Hagicode Desktop is geïnstalleerd op het standaardpad /Applications/Hagicode.app en macOS Gatekeeper de eerste start blokkeert, gebruik het volgende commando om het quarantaine-attribuut van de app te verwijderen.
+      cause: Dit gebeurt omdat macOS het com.apple.quarantine-attribuut toevoegt aan apps die van internet zijn gedownload. Het is een macOS-beveiligingsisolatieprobleem, geen fout in het Hagicode-installatieprogramma.
       command: sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app
-      note: Run the command in Terminal with administrator privileges, then relaunch Hagicode Desktop.
+      note: Voer het commando uit in Terminal met beheerdersrechten en start Hagicode Desktop vervolgens opnieuw.
     q7:
-      question: How to get help when encountering issues?
-      intro: 'If you encounter issues while using Hagicode Desktop, you can get help through:'
-      point1: <strong>Technical Support Group:</strong> Join QQ Group 610394020
-      point2: <strong>Online Documentation:</strong> View complete usage documentation and tutorials
-      point3: <strong>GitHub Issues:</strong> Submit issue reports in the project repository
+      question: Hoe krijg ik hulp bij problemen?
+      intro: 'Als u problemen ondervindt bij het gebruik van Hagicode Desktop, kunt u hulp krijgen via:'
+      point1: '<strong>Technische ondersteuningsgroep:</strong> Word lid van QQ-groep 610394020'
+      point2: '<strong>Online documentatie:</strong> Bekijk complete gebruiksdocumentatie en tutorials'
+      point3: '<strong>GitHub Issues:</strong> Dien probleemrapporten in in de projectrepository'

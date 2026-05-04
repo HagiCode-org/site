@@ -1,190 +1,190 @@
 navbar:
-  home: Home
-  docs: Docs
+  home: Ana Sayfa
+  docs: Belgeler
   blog: Blog
-  about: About
-  desktop: Desktop App
-  container: Container
-  support: Get Support
-  mobileOpenMenu: Open menu
-  mobileCloseMenu: Close menu
-  mobileNav: Mobile site navigation
+  about: Hakkında
+  desktop: Masaüstü Uygulaması
+  container: Kapsayıcı
+  support: Destek Alın
+  mobileOpenMenu: Menüyü aç
+  mobileCloseMenu: Menüyü kapat
+  mobileNav: Mobil site gezintisi
 themeToggle:
-  theme: Theme
-  darkMode: Switch to dark mode
-  lightMode: Switch to light mode
-  lunarNewYearMode: Switch to Lunar New Year theme
+  theme: Tema
+  darkMode: Karanlık moda geç
+  lightMode: Aydınlık moda geç
+  lunarNewYearMode: Ay Yeni Yılı temasına geç
 languageSwitcher:
-  label: Language
-  dialogTitle: Select language
-  currentLocaleLabel: Current language
-  close: Close language chooser
-  selectedState: Current
+  label: Dil
+  dialogTitle: Dil seçin
+  currentLocaleLabel: Geçerli dil
+  close: Dil seçicisini kapat
+  selectedState: Geçerli
   switchToChinese: 切换到中文
-  switchToEnglish: Switch to English
+  switchToEnglish: İngilizceye geç
 videoPlayer:
-  play: Play
-  pause: Pause
-  fullscreen: Fullscreen
+  play: Oynat
+  pause: Duraklat
+  fullscreen: Tam ekran
 footer:
-  copyright: © {year} Hagicode. All rights reserved.
-  product: Product
-  quickLinks: Quick Links
-  community: Community
-  productInfo: Hagicode Introduction
-  downloadClient: Download Client
-  productDocs: Product Docs
-  blogPosts: Blog Posts
-  rssSubscribe: RSS Subscribe
+  copyright: '© {year} Hagicode. Tüm hakları saklıdır.'
+  product: Ürün
+  quickLinks: Hızlı Bağlantılar
+  community: Topluluk
+  productInfo: Hagicode Tanıtımı
+  downloadClient: İstemciyi İndir
+  productDocs: Ürün Belgeleri
+  blogPosts: Blog Yazıları
+  rssSubscribe: RSS Aboneliği
   github: GitHub
-  issueFeedback: Issue Feedback
-  contactEmail: Contact Email
-  qqGroup: QQ Group 610394020
-  icpLabel: View ICP Filing Information
-  gonganLabel: View Public Security Filing Information
-  visitPage: Visit {title} page
-  discord: Discord Community
-  costCalculator: AI Replacement Calculator
+  issueFeedback: Sorun Bildirimi
+  contactEmail: İletişim E-postası
+  qqGroup: QQ Grubu 610394020
+  icpLabel: ICP Kayıt Bilgilerini Görüntüle
+  gonganLabel: Kamu Güvenliği Kayıt Bilgilerini Görüntüle
+  visitPage: '{title} sayfasını ziyaret et'
+  discord: Discord Topluluğu
+  costCalculator: AI Değiştirme Hesaplayıcısı
   steam: Steam
-  relatedSitesTitle: Related Sites
+  relatedSitesTitle: İlgili Siteler
 socialProof:
   highlights:
-    multiAgent: Multi-Agent Parallel
-    multiAgentDesc: Claude Code, Codex, and others can drive multiple instances at once
-    privacy: Privacy First
-    privacyDesc: Local deployment, no code upload
-    openspec: OpenSpec Orchestration
-    openspecDesc: Standardized proposal, execution, and archive flow
-    heroDungeons: Hero Dungeon Workflow
-    heroDungeonsDesc: Dungeons, captains, and battle reports close the loop
+    multiAgent: Çoklu Aracı Paralel
+    multiAgentDesc: Claude Code, Codex ve diğerleri aynı anda birden fazla örneği yönetebilir
+    privacy: Gizlilik Önceliklidir
+    privacyDesc: Yerel dağıtım, kod yüklemesi yok
+    openspec: OpenSpec Orkestrasyonu
+    openspecDesc: Standartlaştırılmış teklif, yürütme ve arşivleme akışı
+    heroDungeons: Kahraman Zindanı İş Akışı
+    heroDungeonsDesc: Zindanlar, kaptanlar ve savaş raporları döngüyü tamamlar
   badges:
     claude: Claude AI
-    claudeDesc: Powered by
-    opensource: Open Source
+    claudeDesc: Tarafından desteklenmektedir
+    opensource: Açık Kaynak
     opensourceDesc: GitHub
-    ssl: SSL Secure
-    sslDesc: Secure Encryption
+    ssl: SSL Güvenli
+    sslDesc: Güvenli Şifreleme
 installCTA:
-  button: Install HagiCode
+  button: Hagicode'u Kur
 activityMetrics:
-  title: People Are Using It
-  description: Community keeps growing, thanks to every contributor
+  title: İnsanlar Kullanıyor
+  description: Topluluk büyümeye devam ediyor, her katkıda bulunana teşekkürler
   dockerHub: Docker Hub
-  pullCount: Pull Count
-  activeUsers: Active Users
-  activeSessions: Active Sessions
-  recentDays: Last 3 days
+  pullCount: Çekme Sayısı
+  activeUsers: Aktif Kullanıcılar
+  activeSessions: Aktif Oturumlar
+  recentDays: Son 3 gün
   emptyState:
-    title: Data Coming Soon
-    description: Activity data will be displayed here when available. Stay tuned for community growth!
-  imageError: Image failed to load
+    title: Veriler Yakında
+    description: Etkinlik verileri kullanılabilir olduğunda burada görüntülenecektir. Topluluk büyümesini bekleyin!
+  imageError: Görsel yüklenemedi
   starHistory:
-    title: GitHub Star History
-    value: Live
-    description: Real-time community momentum
-    alt: Star history chart for the HagiCode site repository
-    cta: View full chart
+    title: GitHub Yıldız Geçmişi
+    value: Canlı
+    description: Gerçek zamanlı topluluk ivmesi
+    alt: HagiCode site deposu için yıldız geçmişi grafiği
+    cta: Tam grafiği görüntüle
 showcase:
-  title: Latest Product Views
-  description: From proposal execution and session boards to token analytics, workspace management, and achievement progress, the homepage now uses the latest curated screenshots maintained with the docs site.
+  title: En Son Ürün Görünümleri
+  description: Teklif yürütme ve oturum panellerinden token analitiğine, çalışma alanı yönetimine ve başarı ilerlemesine kadar, ana sayfa artık belgeler sitesiyle birlikte sürdürülen en son seçilmiş ekran görüntülerini kullanıyor.
   controls:
-    previous: Previous
-    next: Next
-    current: Featured view
-    railLabel: Product screenshot navigation
-    selectPrefix: 'Switch to: '
-    activeState: Showing now
-    previewState: Preview
-    imageUnavailable: Image unavailable
-    openFullscreen: 'Open fullscreen: '
-    openFullscreenHint: Click to enlarge
-    closeFullscreen: Close fullscreen
+    previous: Önceki
+    next: Sonraki
+    current: Öne çıkan görünüm
+    railLabel: Ürün ekran görüntüsü gezintisi
+    selectPrefix: 'Şuna geç: '
+    activeState: Şimdi gösteriliyor
+    previewState: Önizleme
+    imageUnavailable: Görsel mevcut değil
+    openFullscreen: 'Tam ekran aç: '
+    openFullscreenHint: Büyütmek için tıklayın
+    closeFullscreen: Tam ekranı kapat
   screenshots:
     proposalWorkflow:
-      title: Proposal execution overview
-      description: Keep the workflow stage, execution result, and session context in one screen so teams can see exactly where a change stands before moving on.
-      alt: HagiCode proposal execution screenshot showing workflow stages, execution result, and session sidebar
+      title: Teklif yürütme genel görünümü
+      description: İş akışı aşamasını, yürütme sonucunu ve oturum bağlamını tek bir ekranda tutarak ekiplerin bir değişikliğin tam olarak nerede olduğunu devam etmeden önce görmesini sağlar.
+      alt: İş akışı aşamalarını, yürütme sonucunu ve oturum kenar çubuğunu gösteren HagiCode teklif yürütme ekran görüntüsü
     sessionBoard:
-      title: Session board and dungeon planning
-      description: Pending, in-progress, and archived sessions stay visible beside a fantasy task panel so parallel agent work is easy to scan at a glance.
-      alt: HagiCode session board screenshot showing pending, in-progress, and archived columns beside a fantasy task panel
+      title: Oturum panosu ve zindan planlaması
+      description: Bekleyen, devam eden ve arşivlenmiş oturumlar, fantastik bir görev panelinin yanında görünür kalır, böylece paralel aracı çalışmasını bir bakışta taramak kolaydır.
+      alt: Bekleyen, devam eden ve arşivlenmiş sütunları fantastik bir görev panelinin yanında gösteren HagiCode oturum panosu ekran görüntüsü
     tokenAnalytics:
-      title: Real-time token analytics
-      description: Watch throughput, recent API activity, and total usage in one metrics surface so cost and pacing stay controllable during parallel execution.
-      alt: HagiCode token analytics screenshot showing throughput, recent API activity, and total usage
+      title: Gerçek zamanlı token analitiği
+      description: İş hacmini, son API etkinliğini ve toplam kullanımı tek bir metrik yüzeyinde izleyin, böylece paralel yürütme sırasında maliyet ve hız kontrol altında kalır.
+      alt: İş hacmini, son API etkinliğini ve toplam kullanımı gösteren HagiCode token analitiği ekran görüntüsü
     workspaceManagement:
-      title: Workspace and vault management
-      description: Manage user vaults, system vaults, and code-server entry points from one control surface built for shared environments and fast maintenance.
-      alt: HagiCode workspace management screenshot showing user vaults, system vaults, and code-server actions
+      title: Çalışma alanı ve kasa yönetimi
+      description: Kullanıcı kasalarını, sistem kasalarını ve code-server giriş noktalarını, paylaşılan ortamlar ve hızlı bakım için tasarlanmış tek bir kontrol yüzeyinden yönetin.
+      alt: Kullanıcı kasalarını, sistem kasalarını ve code-server eylemlerini gösteren HagiCode çalışma alanı yönetimi ekran görüntüsü
     achievementProgress:
-      title: Achievement and growth progress
-      description: Daily progress, global growth, and lifecycle metrics roll into one dashboard so long-running adoption feels measurable instead of abstract.
-      alt: HagiCode achievement dashboard screenshot showing daily progress, global growth, and lifecycle metrics
+      title: Başarı ve büyüme ilerlemesi
+      description: Günlük ilerleme, küresel büyüme ve yaşam döngüsü metrikleri tek bir panoda toplanır, böylece uzun süreli benimseme soyut yerine ölçülebilir hissedilir.
+      alt: Günlük ilerlemeyi, küresel büyümeyi ve yaşam döngüsü metriklerini gösteren HagiCode başarı panosu ekran görüntüsü
 installOptions:
-  sectionTitle: Choose Your Installation Method
-  sectionDescription: Choose the most suitable installation method based on your usage scenario
+  sectionTitle: Kurulum Yönteminizi Seçin
+  sectionDescription: Kullanım senaryonuza göre en uygun kurulum yöntemini seçin
   desktop:
-    title: Desktop App
-    description: Runs locally on your computer, lightweight and convenient, ready to use out of the box
+    title: Masaüstü Uygulaması
+    description: Bilgisayarınızda yerel olarak çalışır, hafif ve kullanışlıdır, kutudan çıkarılmış halde kullanıma hazırdır
     features:
-      - Local execution, complete data privacy
-      - Supports Windows, macOS, and Linux
-      - No server configuration needed
-      - Auto updates, stay with latest version
-      - Suitable for individual developers
-    ctaText: Download Desktop App
+      - Yerel yürütme, tam veri gizliliği
+      - Windows, macOS ve Linux desteği
+      - Sunucu yapılandırması gerekmez
+      - Otomatik güncellemeler, en son sürümde kalın
+      - Bireysel geliştiriciler için uygundur
+    ctaText: Masaüstü Uygulamasını İndir
   container:
-    title: Container Version
-    description: Deploy on servers, supports remote access, suitable for team collaboration
+    title: Kapsayıcı Sürümü
+    description: Sunucularda dağıtım yapar, uzaktan erişimi destekler, ekip işbirliği için uygundur
     features:
-      - Supports x86_64 architecture
-      - Environment isolation, doesn't affect system
-      - Supports Docker Compose Builder
-      - Data persistence, secure and reliable
-      - Suitable for production environments
-    ctaText: Container Deployment Guide
-  badge: Recommended
+      - x86_64 mimarisi desteği
+      - Ortam yalıtımı, sistemi etkilemez
+      - Docker Compose Builder desteği
+      - Veri kalıcılığı, güvenli ve güvenilir
+      - Üretim ortamları için uygundur
+    ctaText: Kapsayıcı Dağıtım Kılavuzu
+  badge: Önerilen
 desktopHero:
-  loading: Loading version information...
+  loading: Sürüm bilgisi yükleniyor...
   error:
-    title: Cannot load version information
-    gotoDownload: Go to download page
-    redirectingToHistory: Unable to load desktop packages here. Redirecting to the Index version history...
-  badge: Desktop
-  title: Hagicode Desktop
-  tagline: Localized AI code assistant, privacy protection, enhanced efficiency
+    title: Sürüm bilgisi yüklenemiyor
+    gotoDownload: İndirme sayfasına git
+    redirectingToHistory: Masaüstü paketleri burada yüklenemiyor. Index sürüm geçmişine yönlendiriliyorsunuz...
+  badge: Masaüstü
+  title: Hagicode Masaüstü
+  tagline: Yerel AI kod asistanı, gizlilik koruması, artırılmış verimlilik
   valuePoints:
-    local: 100% local execution, code never uploaded
-    fast: Millisecond-level response, no waiting
-    oneClick: One-click installation, ready to use
+    local: '%100 yerel yürütme, kod asla yüklenmez'
+    fast: 'Milisaniye düzeyinde yanıt, bekleme yok'
+    oneClick: 'Tek tıkla kurulum, kullanıma hazır'
   download:
-    ariaLabel: Download {platform} version
-    recommended: Recommended
-    unknown: Unknown error
-    openVersionHistory: Open version history
-    openContainerPage: Open Container page
-    macNotice: 'For macOS users: the Container edition is recommended at the moment.'
-  selectOtherVersions: Select other versions of {platform}
-  versionInfo: 'Current version: {version}'
+    ariaLabel: '{platform} sürümünü indir'
+    recommended: Önerilen
+    unknown: Bilinmeyen hata
+    openVersionHistory: Sürüm geçmişini aç
+    openContainerPage: Kapsayıcı sayfasını aç
+    macNotice: 'macOS kullanıcıları için: Şu anda Kapsayıcı sürümü önerilmektedir.'
+  selectOtherVersions: '{platform} için diğer sürümleri seçin'
+  versionInfo: 'Geçerli sürüm: {version}'
   testVersion: ' (Beta)'
   channels:
-    stable: Stable
+    stable: Kararlı
     beta: Beta
   betaWarning:
-    title: Beta Version Warning
-    description: This is a beta version and may be unstable. Recommended for testing only. Please use the stable version for production environments.
+    title: Beta Sürüm Uyarısı
+    description: Bu bir beta sürümüdür ve kararsız olabilir. Yalnızca test için önerilir. Üretim ortamları için lütfen kararlı sürümü kullanın.
   features:
-    privacy: 🔒 Privacy Protection
-    fast: ⚡ Fast Response
-    crossPlatform: 💻 Cross-Platform Support
+    privacy: '🔒 Gizlilik Koruması'
+    fast: '⚡ Hızlı Yanıt'
+    crossPlatform: '💻 Çapraz Platform Desteği'
   steam:
-    description: The Steam edition supports Steam features including Cloud Saves and the Workshop. Click to open on Steam.
-    ariaLabel: Open Hagicode on Steam
+    description: Steam sürümü, Bulut Kayıtları ve Atölye dahil Steam özelliklerini destekler. Steam'de açmak için tıklayın.
+    ariaLabel: Hagicode'u Steam'de aç
   downloadActions:
     torrent: Torrent
   assetTypes:
-    windowsSetup: Installer
-    windowsPortable: Portable
+    windowsSetup: Yükleyici
+    windowsPortable: Taşınabilir
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
     macosIntel: Intel
@@ -192,37 +192,37 @@ desktopHero:
     linuxArm64AppImage: AppImage (ARM64)
     linuxTarball: Tarball (x64)
     linuxArm64Tarball: Tarball (ARM64)
-    source: Source code
-    other: Other
+    source: Kaynak kodu
+    other: Diğer
 productHuntBadge:
-  eyebrow: Trusted by early adopters
-  title: See Hagicode on Product Hunt
-  linkLabel: Open Hagicode on Product Hunt
-  cta: View the Product Hunt listing
+  eyebrow: Erken benimseyenlerin güvendiği
+  title: Hagicode'u Product Hunt'ta görün
+  linkLabel: Hagicode'u Product Hunt'ta aç
+  cta: Product Hunt sayfasını görüntüle
 promote:
-  badgeFallback: Promoted
-  closeLabel: Dismiss promotion
-  ariaLabel: Promotion
+  badgeFallback: Tanıtılan
+  closeLabel: Tanıtımı kapat
+  ariaLabel: Tanıtım
 pageMeta:
   home:
-    title: Hagicode - Smart · Efficient · Fun AI Coding Assistant
-    description: Redefine coding with AI. OpenSpec workflows, multi-agent multi-instance execution, and Hero Dungeon gameplay make building faster and more engaging
+    title: 'Hagicode - Akıllı · Verimli · Eğlenceli AI Kodlama Asistanı'
+    description: AI ile kodlamayı yeniden tanımlayın. OpenSpec iş akışları, çoklu aracı çoklu örnek yürütme ve Kahraman Zindanı oynanışı, inşa etmeyi daha hızlı ve daha eğlenceli hale getirir
   desktop:
-    title: Hagicode Desktop - Download
-    description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
-    runtimeFallbackLabel: Fallback
-    runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
+    title: 'Hagicode Masaüstü - İndir'
+    description: Yerel bir AI kod asistanı olan Hagicode Masaüstü'nü indirin. Windows, macOS ve Linux desteği. Gizlilik koruması, hızlı yanıt.
+    runtimeFallbackLabel: Yedek
+    runtimeFallbackCopy: 'Paketler burada yüklenemezse, bu sayfa standart Index Masaüstü sürüm geçmişine yönlendirir:'
   container:
-    title: Hagicode Container - Docker Deployment
-    description: Deploy Hagicode with Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and automatic updates.
-    faqHelp: If the issue persists, please check the <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">detailed documentation</a> or contact technical support.
+    title: 'Hagicode Kapsayıcı - Docker Dağıtımı'
+    description: Docker Compose Builder ile Hagicode'u dağıtın. Basit yapılandırma, kullanıma hazır. Birden fazla görüntü kaynağı ve otomatik güncellemeleri destekler.
+    faqHelp: 'Sorun devam ederse, lütfen <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">ayrıntılı belgeleri</a> kontrol edin veya teknik destekle iletişime geçin.'
 commonActions:
-  retry: Retry
-  unavailable: Unavailable
-  noExtraSource: No extra source
-  moreDownloads: More downloads
-  moreVersions: More versions
-  package: Package
+  retry: Tekrar Dene
+  unavailable: Kullanılamaz
+  noExtraSource: Ek kaynak yok
+  moreDownloads: Daha fazla indirme
+  moreVersions: Daha fazla sürüm
+  package: Paket
   platform: Platform
-  china: China
-  default: Default
+  china: Çin
+  default: Varsayılan

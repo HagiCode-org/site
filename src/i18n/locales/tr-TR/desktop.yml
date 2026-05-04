@@ -1,123 +1,123 @@
 desktop:
-  title: Hagicode Desktop - Download
-  description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
+  title: Hagicode Masaüstü - İndir
+  description: Yerel bir AI kod asistanı olan Hagicode Masaüstü'nü indirin. Windows, macOS ve Linux desteği. Gizlilik koruması, hızlı yanıt.
   features:
-    title: Key Features
+    title: Temel Özellikler
     local:
-      title: Local Execution
-      description: All data is processed locally without uploading to the cloud, ensuring code privacy and security
+      title: Yerel Yürütme
+      description: Tüm veriler buluta yüklenmeden yerel olarak işlenir, kod gizliliğini ve güvenliğini sağlar
     privacy:
-      title: Privacy Protection
-      description: Code is never uploaded, supports offline usage, protecting your intellectual property
+      title: Gizlilik Koruması
+      description: Kod asla yüklenmez, çevrimdışı kullanımı destekler, fikri mülkiyetinizi korur
     fast:
-      title: Fast Response
-      description: Millisecond-level response time, no network requests needed, boosting development efficiency
+      title: Hızlı Yanıt
+      description: Milisaniye düzeyinde yanıt süresi, ağ isteği gerekmez, geliştirme verimliliğini artırır
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports Windows, macOS, and Linux to meet different development environment needs
+      title: Çapraz Platform Desteği
+      description: Farklı geliştirme ortamı ihtiyaçlarını karşılamak için Windows, macOS ve Linux destekler
     autoUpdate:
-      title: Auto Updates
-      description: Automatically checks for updates and upgrades to the latest version with one click
+      title: Otomatik Güncellemeler
+      description: Güncellemeleri otomatik olarak kontrol eder ve tek tıkla en son sürüme yükseltir
     multiLanguage:
-      title: Multi-Language Support
-      description: Built-in Chinese and English interface, supporting international team collaboration
+      title: Çoklu Dil Desteği
+      description: Yerleşik Çince ve İngilizce arayüz, uluslararası ekip işbirliğini destekler
   systemRequirements:
-    title: System Requirements
+    title: Sistem Gereksinimleri
     windows: Windows
     macos: macOS
     linux: Linux
-    os: Operating System
-    processor: Processor
-    memory: Memory
-    diskSpace: Disk Space
-    network: Network
+    os: İşletim Sistemi
+    processor: İşlemci
+    memory: Bellek
+    diskSpace: Disk Alanı
+    network: Ağ
     windowsOs: Windows 10/11 (64-bit)
-    macosOs: macOS 12+ (Monterey or higher)
-    linuxOs: Ubuntu 20.04+ / Debian 11+ / Other mainstream distributions
-    windowsProcessor: Intel Core i3 or equivalent processor
-    macosProcessor: Apple Silicon (M1/M2/M3) or Intel Core i3+
-    linuxProcessor: Intel Core i3 or equivalent processor
-    memoryRec: 4GB RAM (8GB recommended)
-    disk: 2GB available space
-    networkDesc: Network connection required for initial download (can be used offline afterwards)
+    macosOs: macOS 12+ (Monterey veya üzeri)
+    linuxOs: Ubuntu 20.04+ / Debian 11+ / Diğer ana akım dağıtımlar
+    windowsProcessor: Intel Core i3 veya eşdeğer işlemci
+    macosProcessor: Apple Silicon (M1/M2/M3) veya Intel Core i3+
+    linuxProcessor: Intel Core i3 veya eşdeğer işlemci
+    memoryRec: 4GB RAM (8GB önerilir)
+    disk: 2GB kullanılabilir alan
+    networkDesc: İlk indirme için ağ bağlantısı gerekir (daha sonra çevrimdışı kullanılabilir)
   download:
-    title: Download Packages
-    windowsDesc: Stable installers for Windows 10/11, including setup and portable builds.
-    macosDesc: Native builds for Apple Silicon and Intel Macs.
-    linuxDesc: AppImage and tarball packages for mainstream x64 and ARM64 Linux distributions.
-    note: If the package list here fails to load, use the version history link in the hero area to access the canonical index.
+    title: İndirme Paketleri
+    windowsDesc: Windows 10/11 için kararlı yükleyiciler, kurulum ve taşınabilir sürümler dahil.
+    macosDesc: Apple Silicon ve Intel Mac'ler için yerel sürümler.
+    linuxDesc: Ana akım x64 ve ARM64 Linux dağıtımları için AppImage ve tarball paketleri.
+    note: Buradaki paket listesi yüklenemezse, hero alanındaki sürüm geçmişi bağlantısını kullanarak standart dizine erişin.
     features:
-      signed: Signed packages
-      autoUpdate: Automatic update detection
-      multiLanguage: Multi-language interface
+      signed: İmzalanmış paketler
+      autoUpdate: Otomatik güncelleme algılama
+      multiLanguage: Çoklu dil arayüzü
   installation:
-    title: Quick Installation
+    title: Hızlı Kurulum
     step1:
       number: '1'
-      title: Download Installer
-      description: Select the appropriate installer for your operating system
+      title: Yükleyiciyi İndir
+      description: İşletim sisteminiz için uygun yükleyiciyi seçin
     step2:
       number: '2'
-      title: Run Installer
-      description: Double-click the downloaded installer and follow the prompts to complete installation
+      title: Yükleyiciyi Çalıştır
+      description: İndirilen yükleyiciyi çift tıklayın ve kurulumu tamamlamak için yönergeleri izleyin
     step3:
       number: '3'
-      title: Launch App
-      description: On first launch, it will guide you through initial configuration
+      title: Uygulamayı Başlat
+      description: İlk başlatmada, sizi ilk yapılandırma süreçlerinde yönlendirecektir
     step4:
       number: '4'
-      title: Start Using
-      description: After configuration, you can start using Hagicode Desktop
+      title: Kullanmaya Başlayın
+      description: Yapılandırma tamamlandıktan sonra Hagicode Masaüstü'nü kullanmaya başlayabilirsiniz
   faq:
-    title: FAQ
+    title: SSS
     q1:
-      question: What's the difference between Desktop and Server versions?
-      intro: 'Hagicode offers two deployment options: Desktop version and Server version. Each has its advantages, but both adopt a user-controlled server and data approach, providing better data protection.'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      serverTitle: Server Version
-      server1: Can be deployed on remote servers
-      server2: Supports multi-user remote access
-      server3: Better suited for team collaboration and scaling
-      server4: Prepares for future enterprise features and multi-device sync
-      conclusion: Whichever version you choose, you have complete control over your server and data, enjoying better privacy protection and data security.
+      question: Masaüstü ve Sunucu sürümleri arasındaki fark nedir?
+      intro: 'Hagicode iki dağıtım seçeneği sunar: Masaüstü sürümü ve Sunucu sürümü. Her birinin avantajları vardır, ancak her ikisi de kullanıcı kontrollü sunucu ve veri yaklaşımını benimser ve daha iyi veri koruması sağlar.'
+      desktopTitle: Masaüstü Sürümü
+      desktop1: Bilgisayarınızda yerel olarak çalışır, daha hafiftir
+      desktop2: Sunucu yapılandırması gerekmez, kutudan çıkarılmış halde kullanıma hazırdır
+      desktop3: Bireysel geliştiriciler ve hafif kullanım senaryoları için uygundur
+      desktop4: Tüm veriler tamamen yereldir
+      serverTitle: Sunucu Sürümü
+      server1: Uzak sunucularda dağıtılabilir
+      server2: Çok kullanıcılı uzaktan erişimi destekler
+      server3: Ekip işbirliği ve ölçeklendirme için daha uygundur
+      server4: Gelecekteki kurumsal özellikler ve çoklu cihaz senkronizasyonu için hazırlık sağlar
+      conclusion: Hangi sürümü seçerseniz seçin, sunucunuz ve verileriniz üzerinde tam kontrole sahipsiniz, daha iyi gizlilik koruması ve veri güvenliğinin tadını çıkarırsınız.
     q2:
-      question: What do I need to do after installation?
-      intro: 'Hagicode Desktop is essentially a launcher. On first launch after installation, it will guide you through these steps:'
-      step1: <strong>Download Hagicode Core:</strong> Desktop will automatically detect and prompt you to download Hagicode core components
-      step2: <strong>Install Core Components:</strong> Follow the on-screen prompts to complete core component installation
-      step3: <strong>Configure your default Agent CLI:</strong> Choose a currently supported Agent CLI and finish the required sign-in, authorization, or local installation steps.
-      note: The Desktop interface guides the whole flow. Keep the network available on first launch so Hagicode Core can download; some Agent CLIs still require manual installation or authentication, but they are still part of the current support range.
-      done: After completing these steps, you can use all Hagicode Desktop features normally.
+      question: Kurulumdan sonra ne yapmalıyım?
+      intro: 'Hagicode Masaüstü temelde bir başlatıcıdır. Kurulumdan sonraki ilk başlatmada, sizi şu adımlarda yönlendirecektir:'
+      step1: '<strong>Hagicode Core''u İndir:</strong> Masaüstü, Hagicode çekirdek bileşenlerini otomatik olarak algılayacak ve indirmenizi isteyecektir'
+      step2: '<strong>Çekirdek Bileşenleri Kur:</strong> Ekrandaki yönergeleri izleyerek çekirdek bileşen kurulumunu tamamlayın'
+      step3: '<strong>Varsayılan Agent CLI''nizi Yapılandır:</strong> Şu anda desteklenen bir Agent CLI seçin ve gerekli oturum açma, yetkilendirme veya yerel kurulum adımlarını tamamlayın.'
+      note: Masaüstü arayüzü tüm süreci yönlendirir. Hagicode Core'un indirebilmesi için ilk başlatmada ağ bağlantısını kullanılabilir tutun; bazı Agent CLI'ler hala manuel kurulum veya kimlik doğrulama gerektirebilir, ancak bunlar hala mevcut destek kapsamının bir parçasıdır.
+      done: Bu adımları tamamladıktan sonra, tüm Hagicode Masaüstü özelliklerini normal olarak kullanabilirsiniz.
     q3:
-      question: How do I check for updates?
-      answer: Desktop automatically checks for updates. When a new version is available, a prompt will appear in the top right corner of the interface. You can also manually check for updates in "Settings".
+      question: Güncellemeleri nasıl kontrol edebilirim?
+      answer: Masaüstü güncellemeleri otomatik olarak kontrol eder. Yeni bir sürüm mevcut olduğunda, arayüzün sağ üst köşesinde bir bildirim görünecektir. "Ayarlar"dan da manuel olarak güncelleme kontrolü yapabilirsiniz.
     q4:
-      question: Which AI Agent CLIs are supported?
-      intro: 'Hagicode Desktop currently supports the following Agent CLIs:'
-      active: <strong>Currently supported:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents, and Codebuddy
-      manual: <strong>Manual installation or authentication:</strong> Hermes, Gemini, and DeepAgents require a local install or auth step first; the other CLIs provide one-click installation entry points or guided install flows.
-      legacy: <strong>Legacy compatibility only:</strong> IFlowCli remains only for historical data compatibility and is not part of the current active support range.
-      closing: Support scope and setup mode are separate concerns. A CLI that needs manual installation is still supported now.
+      question: Hangi AI Agent CLI'leri destekleniyor?
+      intro: 'Hagicode Masaüstü şu anda şu Agent CLI''leri desteklemektedir:'
+      active: '<strong>Şu anda desteklenen:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents ve Codebuddy'
+      manual: '<strong>Manuel kurulum veya kimlik doğrulama:</strong> Hermes, Gemini ve DeepAgents önce yerel bir kurulum veya kimlik doğrulama adımı gerektirir; diğer CLI''ler tek tıkla kurulum giriş noktaları veya yönlendirmeli kurulum akışları sağlar.'
+      legacy: '<strong>Yalnızca eski uyumluluk:</strong> IFlowCli yalnızca geçmiş veri uyumluluğu için kalmıştır ve mevcut aktif destek kapsamının bir parçası değildir.'
+      closing: Destek kapsamı ve kurulum modu ayrı konulardır. Manuel kurulum gerektiren bir CLI hala desteklenmektedir.
     q5:
-      question: Does it support offline usage?
-      intro: 'Yes! Hagicode Desktop supports complete offline usage:'
-      point1: Network connection required for initial installation and configuration (downloading core components and AI models)
-      point2: All features can be used offline after configuration
-      point3: Your code and data are never uploaded to the cloud
-      point4: All AI processing is completed locally
+      question: Çevrimdışı kullanımı destekliyor mu?
+      intro: 'Evet! Hagicode Masaüstü tam çevrimdışı kullanımı destekler:'
+      point1: İlk kurulum ve yapılandırma için ağ bağlantısı gerekir (çekirdek bileşenler ve AI modellerinin indirilmesi)
+      point2: Yapılandırma sonrasında tüm özellikler çevrimdışı kullanılabilir
+      point3: Kodunuz ve verileriniz asla buluta yüklenmez
+      point4: Tüm AI işleme yerel olarak tamamlanır
     q6:
-      question: macOS says Hagicode.app is damaged or can't be opened. What should I do?
-      intro: If Hagicode Desktop is installed in the default path /Applications/Hagicode.app and macOS Gatekeeper blocks the first launch, use the following command to remove the quarantine attribute from the app.
-      cause: This happens because macOS adds the com.apple.quarantine attribute to apps downloaded from the internet. It is a macOS security isolation issue, not a failure in the Hagicode installer.
+      question: macOS, Hagicode.app hasarlı veya açılamıyor diyor. Ne yapmalıyım?
+      intro: Hagicode Masaüstü varsayılan yola /Applications/Hagicode.app olarak yüklenmişse ve macOS Gatekeeper ilk başlatmayı engelliyorsa, uygulamadan karantina özniteliğini kaldırmak için şu komutu kullanın.
+      cause: Bu, macOS'un internetten indirilen uygulamalara com.apple.quarantine özniteliği eklemesi nedeniyle oluşur. Bu bir macOS güvenlik yalıtımı sorunudur, Hagicode yükleyicisindeki bir hata değildir.
       command: sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app
-      note: Run the command in Terminal with administrator privileges, then relaunch Hagicode Desktop.
+      note: Komutu yönetici ayrıcalıklarıyla Terminal'de çalıştırın, ardından Hagicode Masaüstü'nü yeniden başlatın.
     q7:
-      question: How to get help when encountering issues?
-      intro: 'If you encounter issues while using Hagicode Desktop, you can get help through:'
-      point1: <strong>Technical Support Group:</strong> Join QQ Group 610394020
-      point2: <strong>Online Documentation:</strong> View complete usage documentation and tutorials
-      point3: <strong>GitHub Issues:</strong> Submit issue reports in the project repository
+      question: Sorunlarla karşılaştığımda nasıl yardım alabilirim?
+      intro: 'Hagicode Masaüstü''nü kullanırken sorunlarla karşılaşırsanız, şu yollarla yardım alabilirsiniz:'
+      point1: '<strong>Teknik Destek Grubu:</strong> QQ Grubu 610394020''ye katılın'
+      point2: '<strong>Çevrimiçi Belgeler:</strong> Kapsamlı kullanım belgelerini ve eğitimleri görüntüleyin'
+      point3: '<strong>GitHub Sorunları:</strong> Proje deposunda sorun raporları gönderin'

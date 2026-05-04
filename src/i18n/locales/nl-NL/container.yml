@@ -1,125 +1,125 @@
 container:
-  title: Hagicode Container - Container Deployment
-  description: Deploy Hagicode via Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and auto updates.
+  title: Hagicode Container - Container-implementatie
+  description: Implementeer Hagicode via Docker Compose Builder. Eenvoudige configuratie, direct klaar voor gebruik. Ondersteunt meerdere afbeeldingsbronnen en automatische updates.
   hero:
     badge: Container
     title: Hagicode Container
-    tagline: Deploy quickly with Docker Compose Builder, simple configuration, ready to use
-    value1: Visual configuration, no coding required
-    value2: Environment isolation, data security
-    value3: One-click deployment, fast startup
-    ctaButton: Deploy with Docker Compose Builder
+    tagline: Implementeer snel met Docker Compose Builder, eenvoudige configuratie, direct klaar voor gebruik
+    value1: Visuele configuratie, geen programmeervaardigheden nodig
+    value2: Omgevingsisolatie, gegevensbeveiliging
+    value3: Implementatie met één klik, snelle opstart
+    ctaButton: Implementeer met Docker Compose Builder
     features:
-      isolation: Environment Isolation
-      oneClick: One-Click Deployment
-      fastStart: Fast Startup
+      isolation: Omgevingsisolatie
+      oneClick: Implementatie met één klik
+      fastStart: Snelle opstart
   features:
-    title: Why Choose Container Deployment?
+    title: Waarom kiezen voor container-implementatie?
     isolation:
-      title: Environment Isolation
-      description: Containerized deployment avoids dependency conflicts, doesn't affect system environment, keeps system clean
+      title: Omgevingsisolatie
+      description: Gecontaineriseerde implementatie vermijdt afhankelijkheidsconflicten, beïnvloedt de systeemomgeving niet, houdt het systeem schoon
     simple:
-      title: Simple Configuration
-      description: Use Docker Compose Builder for visual configuration, no need to write complex scripts
+      title: Eenvoudige configuratie
+      description: Gebruik Docker Compose Builder voor visuele configuratie, geen behoefte aan complexe scripts
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports x86_64 architecture, suitable for various servers and cloud platforms
+      title: Kruisplatformondersteuning
+      description: Ondersteunt x86_64-architectuur, geschikt voor diverse servers en cloudplatformen
     persistent:
-      title: Data Persistence
-      description: Supports Volume mounting, secure and reliable data, no data loss on container restart
+      title: Gegevenspersistentie
+      description: Ondersteunt Volume-mounting, veilige en betrouwbare gegevens, geen gegevensverlies bij container-herstart
     autoUpdate:
-      title: Auto Updates
-      description: Supports watchtower for automatic updates, easily get the latest version
+      title: Automatische updates
+      description: Ondersteunt watchtower voor automatische updates, verkrijg eenvoudig de nieuwste versie
     productionReady:
-      title: Production Ready
-      description: Designed for production environments, supports high availability and horizontal scaling
+      title: Productieklaar
+      description: Ontworpen voor productieomgevingen, ondersteunt hoge beschikbaarheid en horizontale schaling
   builder:
     title: Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
+    subtitle: De eenvoudigste en aanbevolen container-implementatiemethode
     visual:
-      title: Visual Configuration
-      description: Configure all parameters through a friendly Web interface, no need to manually edit YAML files
+      title: Visuele configuratie
+      description: Configureer alle parameters via een gebruiksvriendelijke webinterface, geen behoefte om YAML-bestanden handmatig te bewerken
     generate:
-      title: One-Click Configuration Generation
-      description: Automatically generate complete docker-compose.yml files with best practice configurations
+      title: Configuratiegeneratie met één klik
+      description: Genereer automatisch complete docker-compose.yml-bestanden met best-practiceconfiguraties
     deploy:
-      title: Fast Deployment
-      description: One-click download configuration files and start services, complete deployment in minutes
+      title: Snelle implementatie
+      description: Download configuratiebestanden met één klik en start services, voltooi implementatie in enkele minuten
     secure:
-      title: Secure and Reliable
-      description: Built-in security best practices, automatically configures data volumes and restart policies
-    ctaButton: Go to Docker Compose Builder
+      title: Veilig en betrouwbaar
+      description: Ingebouwde best practices voor beveiliging, configureert automatisch gegevensvolumes en herstartbeleid
+    ctaButton: Ga naar Docker Compose Builder
   mirrors:
-    title: Image Source Selection
-    description: Choose the most suitable image source based on your network environment and location
+    title: Afbeeldingsbronselectie
+    description: Kies de meest geschikte afbeeldingsbron op basis van uw netwerkomgeving en locatie
     dockerHub: Docker Hub
-    dockerHubDesc: The world's largest container image registry, suitable for international network users
-    dockerHubCmd: newbe36524/hagicode:0
+    dockerHubDesc: "'s Werelds grootste container-afbeeldingsregister, geschikt voor internationale netwerkgebruikers"
+    dockerHubCmd: 'newbe36524/hagicode:0'
     azure: Azure ACR
-    azureDesc: Microsoft Azure's image service, faster access from China
-    azureCmd: hagicode.azurecr.io/hagicode:0
+    azureDesc: Microsoft Azure's afbeeldingsservice, snellere toegang vanuit China
+    azureCmd: 'hagicode.azurecr.io/hagicode:0'
     aliyun: Aliyun ACR
-    aliyunDesc: Aliyun's domestic image acceleration, recommended for users in mainland China
-    aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
+    aliyunDesc: Aliyun's binnenlandse afbeeldingsversnelling, aanbevolen voor gebruikers in het vasteland van China
+    aliyunCmd: 'registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0'
   faq:
-    title: FAQ
+    title: Veelgestelde vragen
     q1:
-      question: What's the difference between Container and Desktop versions?
-      intro: 'Both versions have their advantages. You can choose based on your usage scenario:'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      containerTitle: Container Version
-      container1: Can be deployed on servers, supports remote access
-      container2: Environment isolation, doesn't affect system environment
-      container3: Better suited for team collaboration and production environments
-      container4: Supports automated deployment and horizontal scaling
+      question: Wat is het verschil tussen de Container- en Desktop-versies?
+      intro: 'Beide versies hebben hun voordelen. U kunt kiezen op basis van uw gebruiksscenario:'
+      desktopTitle: Desktop-versie
+      desktop1: Werkt lokaal op uw computer, lichter
+      desktop2: Geen serverconfiguratie nodig, direct klaar voor gebruik
+      desktop3: Geschikt voor individuele ontwikkelaars en licht gebruiksscenario's
+      desktop4: Alle gegevens volledig gelokaliseerd
+      containerTitle: Container-versie
+      container1: Kan op servers worden geïmplementeerd, ondersteunt externe toegang
+      container2: Omgevingsisolatie, beïnvloedt de systeemomgeving niet
+      container3: Beter geschikt voor teamsamenwerking en productieomgevingen
+      container4: Ondersteunt geautomatiseerde implementatie en horizontale schaling
     q2:
-      question: What is Docker Compose Builder?
-      intro: 'Docker Compose Builder is our visual configuration tool that helps you:'
-      point1: Configure all container parameters through a Web interface
-      point2: Automatically generate docker-compose.yml files
-      point3: Built-in best practices and security configurations
-      point4: One-click download and start services
-      note: No need to manually write complex YAML configurations. Even Docker beginners can deploy easily.
+      question: Wat is Docker Compose Builder?
+      intro: 'Docker Compose Builder is onze visuele configuratietool die u helpt bij:'
+      point1: Alle containerparameters configureren via een webinterface
+      point2: Automatisch docker-compose.yml-bestanden genereren
+      point3: Ingebouwde best practices en beveiligingsconfiguraties
+      point4: Configuratiebestanden downloaden en services starten met één klik
+      note: U hoeft niet handmatig complexe YAML-configuraties te schrijven. Zelfs Docker-beginners kunnen eenvoudig implementeren.
     q3:
-      question: Which system architectures does the container version support?
-      answer: Hagicode container images currently support <strong>x86_64 (amd64)</strong> architecture, suitable for most servers and PCs.
-      note: Docker will automatically select the appropriate architecture for your system when pulling images.
+      question: Welke systeemarchitecturen ondersteunt de container-versie?
+      answer: Hagicode container-afbeeldingen ondersteunen momenteel de <strong>x86_64 (amd64)</strong>-architectuur, geschikt voor de meeste servers en pc's.
+      note: Docker zal automatisch de juiste architectuur voor uw systeem selecteren bij het pullen van afbeeldingen.
     q4:
-      question: How to update the container?
-      intro: 'When using Docker Compose deployment, updating is very simple:'
+      question: Hoe de container bijwerken?
+      intro: 'Bij gebruik van Docker Compose-implementatie is het bijwerken heel eenvoudig:'
       code: |-
         docker-compose pull
         docker-compose up -d
-      watchtower: Or use Watchtower for automatic updates.
+      watchtower: Of gebruik Watchtower voor automatische updates.
     q5:
-      question: How to configure data persistence?
-      intro: 'Docker Compose Builder automatically configures data volumes. By default, your data will be stored in Docker Volumes, ensuring:'
-      point1: Data is not lost when containers are deleted
-      point2: Data is preserved during container upgrades
-      point3: Easy backup and recovery
+      question: Hoe gegevenspersistentie configureren?
+      intro: 'Docker Compose Builder configureert automatisch gegevensvolumes. Standaard worden uw gegevens opgeslagen in Docker Volumes, wat zorgt voor:'
+      point1: Gegevens gaan niet verloren wanneer containers worden verwijderd
+      point2: Gegevens blijven behouden tijdens container-upgrades
+      point3: Eenvoudige back-up en herstel
     q6:
-      question: What to do if container startup fails?
-      intro: 'Steps to troubleshoot container startup failure:'
+      question: Wat te doen bij container-opstartfout?
+      intro: 'Stappen om container-opstartfouten op te lossen:'
       step1:
-        title: 'Check container status:'
+        title: 'Controleer containerstatus:'
         code: docker-compose ps
       step2:
-        title: 'Check container logs:'
+        title: 'Controleer containerlogs:'
         code: docker-compose logs hagicode
       step3:
-        title: 'Check port occupancy:'
-        desc: 'If your service port is 3000, use this command to check:'
+        title: 'Controleer poortbezetting:'
+        desc: 'Als uw servicepoort 3000 is, gebruik dit commando om te controleren:'
         code: netstat -tlnp | grep 3000
-        solution: 'If the port is occupied, you can:'
-        solution1: Stop the process occupying the port
-        solution2: Or configure a different port in Docker Compose Builder
-      help: If the issue persists, please check the detailed documentation or contact technical support.
+        solution: 'Als de poort bezet is, kunt u:'
+        solution1: Het proces stoppen dat de poort bezet
+        solution2: Of een andere poort configureren in Docker Compose Builder
+      help: Als het probleem aanhoudt, raadpleeg de gedetailleerde documentatie of neem contact op met technische ondersteuning.
   cta:
-    title: Start Using Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
-    button: Go to Deployment Guide
-    github: GitHub Repository
+    title: Begin met Docker Compose Builder
+    subtitle: De eenvoudigste en aanbevolen container-implementatiemethode
+    button: Ga naar implementatiehandleiding
+    github: GitHub-repository

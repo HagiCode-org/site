@@ -1,24 +1,24 @@
 page:
-  seoTitle: About the HagiCode Team
-  seoDescription: Meet the HagiCode team and browse official stores, group channels, content platforms, and scannable cards from the latest bundled about snapshot.
-  title: Grow through exchange
+  seoTitle: Tentang Tim HagiCode
+  seoDescription: Kenali tim HagiCode dan jelajahi toko resmi, kanal komunitas, platform konten, dan kartu yang dapat dipindai dari snapshot about terbaru.
+  title: Tumbuh melalui pertukaran
   sections:
-    store: Store
-    community: Grow through exchange
-    content: Follow where the team publishes
+    store: Toko
+    community: Tumbuh melalui pertukaran
+    content: Ikuti kanal tempat tim mempublikasikan konten
   kindLabels:
-    store: Store
-    link: Channel
+    store: Toko
+    link: Kanal
     contact: Handle
-    qr: QR Card
-    image: Image Card
-  contactFallbackDetail: Use this handle in the app
-  comboLabel: Channel + QR
+    qr: Kartu QR
+    image: Kartu gambar
+  contactFallbackDetail: Gunakan handle ini di aplikasi
+  comboLabel: Kanal + QR
   platformBadges:
-    steam: Official store
-    youtube: Official channel
+    steam: Toko resmi
+    youtube: Kanal resmi
   genericLinkText:
-    link: Open page
-    contact: Open profile
-    qr: Open QR card
-    image: Open image
+    link: Buka halaman
+    contact: Buka profil
+    qr: Buka kartu QR
+    image: Buka gambar

@@ -1,126 +1,126 @@
 hero:
-  tagline: Boost development efficiency with AI-powered coding tools
-  description: HagiCode helps developers focus on code, not repetitive work
-  ctaButton: Get Started
+  tagline: Öka utvecklingseffektiviteten med AI-drivna kodningsverktyg
+  description: HagiCode hjälper utvecklare att fokusera på kod, inte repetitivt arbete
+  ctaButton: Kom Igång
   taglines:
-    smart: Smart · Efficient · Fun
-    aiDriven: AI Orchestrated · Multi-Agent Parallel
-    openspec: OpenSpec · Workflow Revolution
-    multiThread: Multi-Agent · Multi-Instance
+    smart: Smart · Effektiv · Rolig
+    aiDriven: AI-orchestrerad · Multi-Agent Parallell
+    openspec: OpenSpec · Arbetsflödesrevolution
+    multiThread: Multi-Agent · Multi-Instans
   lunarTaglines:
-    happyNewYear: Happy New Year · Year of the Horse
-    aiPowered: AI Empowered · Code to Success
-    smartCoding: Smart Coding · Best Wishes
-    openspecLuck: OpenSpec · Prosperity and Success
-    efficiency: Double Efficiency · Good Fortune
-  problem: Traditional AI coding tools have
-  painPoint: pain points
-  painPoints: ': limited context, messy sessions, lack of collaboration.'
-  solution: Hagicode redefines AI coding experience with
+    happyNewYear: Gott Nytt År · Hästens År
+    aiPowered: AI-drivet · Koda Framgång
+    smartCoding: Smart Kodning · Bästa Önskningar
+    openspecLuck: OpenSpec · Framgång och Välgång
+    efficiency: Dubbel Effektivitet · Lycka Till
+  problem: Traditionella AI-kodningsverktyg har
+  painPoint: smärtpunkter
+  painPoints: ': begränsad kontext, röriga sessioner, brist på samarbete.'
+  solution: Hagicode omdefinierar AI-kodningsupplevelsen med
   features:
-    - OpenSpec workflow
-    - multi-agent multi-instance execution
-    - Hero Dungeon gameplay
+    - OpenSpec-arbetsflöde
+    - multi-agent multi-instans-exekvering
+    - Hero Dungeon-spel
   redefine: .
   valueCards:
     smart:
       title: Smart
-      description: OpenSpec moves ideas into execution faster.
+      description: OpenSpec förvandlar idéer till exekvering snabbare.
     efficient:
-      title: Efficient
-      description: Multi-agent execution turns waiting into throughput.
+      title: Effektiv
+      description: Multi-agent-exekvering förvandlar väntan till genomströmning.
     interesting:
-      title: Interesting
-      description: Hero Dungeon makes teamwork and practice feel like an adventure.
+      title: Intressant
+      description: Hero Dungeon gör teamwork och träning till ett äventyr.
   buttons:
-    desktopApp: Install Desktop App
-    containerApp: Install Container App
-    learnMore: Learn More
+    desktopApp: Installera Skrivbordsapp
+    containerApp: Installera Containerapp
+    learnMore: Läs Mer
   techStack:
-    poweredBy: Powered by
+    poweredBy: Drivs av
   qqGroup:
-    title: Join Technical Support Group
-    description: Hagicode Technical Support QQ Group
-    joinButton: Join Now
-  secondaryLine: Hagicode supports mainstream agents, doubles parallel management efficiency, and reduces hallucinations with OpenSpec.
+    title: Gå Med i Teknisk Supportgrupp
+    description: Hagicode Teknisk Support QQ-grupp
+    joinButton: Gå Med Nu
+  secondaryLine: Hagicode stöder mainstream-agenter, fördubblar parallell hanteringseffektivitet och reducerar hallucinationer med OpenSpec.
 features:
   showcase:
-    title: Three Core Features
-    subtitle: Redefine your AI coding experience
+    title: Tre Kärnfunktioner
+    subtitle: Omdefiniera din AI-kodningsupplevelse
   smart:
     badge: SMART
     title: Smart
-    subtitle: OpenSpec workflow, boost AI coding efficiency
-    efficiency: Efficiency Boost
-    traditional: Traditional
+    subtitle: OpenSpec-arbetsflöde, öka AI-kodningseffektiviteten
+    efficiency: Effektivitetsökning
+    traditional: Traditionell
     hagicode: Hagicode
-    description: A complete 9-stage proposal workflow from idea to archive, with AI assistance throughout. Boost your coding efficiency by 3x.
+    description: Ett komplett 9-stegs förslagsarbetsflöde från idé till arkiv, med AI-assistans hela vägen. Öka din kodningseffektivitet 3x.
     workflow:
       idea:
-        label: Idea
-        desc: Start from idea
+        label: Idé
+        desc: Börja från idé
       proposal:
-        label: Proposal
-        desc: AI generates proposal
+        label: Förslag
+        desc: AI genererar förslag
       review:
-        label: Review
-        desc: Auto review
+        label: Granskning
+        desc: Auto-granskning
       tasks:
-        label: Tasks
-        desc: Task breakdown
+        label: Uppgifter
+        desc: Uppgiftsnedbrytning
       code:
-        label: Code
-        desc: Smart coding
+        label: Kod
+        desc: Smart kodning
       test:
         label: Test
-        desc: Auto testing
+        desc: Auto-testning
       refactor:
-        label: Refactor
-        desc: Code refactor
+        label: Refaktorering
+        desc: Kodrefaktorering
       docs:
         label: Docs
-        desc: Docs generation
+        desc: Dokumentationsgenerering
       archive:
-        label: Archive
-        desc: Knowledge archive
-    paused: Paused - Click node to switch
+        label: Arkiv
+        desc: Kunskapsarkiv
+    paused: Pausad - Klicka på nod för att byta
   convenient:
-    badge: EFFICIENT
-    title: Efficient
-    subtitle: Multi-agent, multi-instance execution that keeps your quota moving
-    traditional: Traditional single-agent / single-instance
-    multiThread: Multi-agent parallel matrix
-    boost: Throughput Boost
-    boostValue: 10x+ parallel
-    description: Current supported Agent CLIs such as Claude Code, Codex, GitHub Copilot, OpenCode, and Hermes can work across multiple instances at the same time, so proposals, fixes, and reviews move in parallel instead of waiting in a serial queue.
+    badge: EFFEKTIV
+    title: Effektiv
+    subtitle: Multi-agent, multi-instans-exekvering som håller din kvot i rörelse
+    traditional: Traditionell enkel-agent / single-instans
+    multiThread: Multi-agent parallell matris
+    boost: Genomströmningsökning
+    boostValue: 10x+ parallell
+    description: För närvarande stödda Agent CLI:er som Claude Code, Codex, GitHub Copilot, OpenCode och Hermes kan arbeta över flera instanser samtidigt, så förslag, korrigeringar och granskningar rör sig parallellt istället för att vänta i en seriell kö.
     agentMatrix:
-      title: Parallel execution matrix
-      badge: Multiple agents / multiple instances
-      status: Multiple agents are driving multiple instances right now
+      title: Parallell exekveringsmatris
+      badge: Flera agenter / flera instanser
+      status: Flera agenter driver flera instanser just nu
       agents:
         claude:
           name: Claude Code
-          role: Proposal / review
+          role: Förslag / granskning
           instances:
-            - Draft spec
-            - Check design
-            - Archive review
+            - Utkast spec
+            - Kontrollera design
+            - Arkivera granskning
         codex:
           name: Codex
-          role: Implementation / fixes
+          role: Implementering / korrigeringar
           instances:
-            - Build feature A
-            - Build feature B
-            - Regression fix
+            - Bygg funktion A
+            - Bygg funktion B
+            - Regressionskorrigering
         router:
           name: Qwen · GLM
-          role: Analysis / support
+          role: Analys / support
           instances:
-            - Trace issue
-            - Polish copy
-            - Capture insights
+            - Spåra problem
+            - Putsa text
+            - Fånga insikter
       supportedNames:
-        title: 11 currently supported Agent CLIs
+        title: 11 för närvarande stödda Agent CLI:er
         names:
           - Claude Code
           - Codex
@@ -133,207 +133,207 @@ features:
           - Gemini
           - DeepAgents
           - Codebuddy
-    supportedProvidersNote: OpenCode can load the shared OmniRoute catalog into hero model defaults while keeping custom raw model identifiers editable for branch-specific workflows.
+    supportedProvidersNote: OpenCode kan ladda den delade OmniRoute-katalogen i standardvärden för hjältmodeller samtidigt som anpassade råa modellidentifierare förblir redigerbara för grenspecifika arbetsflöden.
   interesting:
-    badge: INTERESTING
-    title: Fun
-    subtitle: Hero Dungeon makes campus collaboration and practice feel alive
+    badge: INTRESSANT
+    title: Rolig
+    subtitle: Hero Dungeon gör campus-samarbete och träning levande
     features:
       dungeons:
         label: Hero Dungeons
-        desc: Turn generation, execution, and prompt workbenches into dungeon runs
+        desc: Förvandla generering, exekvering och prompt-arbetsbänkar till dungeon-run
       captains:
-        label: Captain Roster
-        desc: Assign the right hero captain to each dungeon
+        label: Kaptenlista
+        desc: Tilldela rätt hjältkapten till varje dungeon
       battle:
-        label: Battle Reports
-        desc: Review XP, levels, and execution results after each push
-    description: Fun no longer depends on achievement badges. Hero Dungeon, captain rosters, prompt visuals, and battle reports turn daily AI coding practice into a workflow that feels more like a coordinated adventure for campus labs and student teams.
+        label: Stridsrapporter
+        desc: Granska XP, nivåer och exekveringsresultat efter varje push
+    description: Roligt beror inte längre på prestationsmärken. Hero Dungeon, kaptenlistor, prompt-visualiseringar och stridsrapporter förvandlar daglig AI-kodningsträning till ett arbetsflöde som känns mer som ett samordnat äventyr för campuslabb och studentteam.
     dungeonCards:
       proposal:
-        title: Proposal Dungeon
-        desc: OpenSpec generate / apply / archive
-        status: Captain ready
+        title: Förslagsdungeon
+        desc: OpenSpec generera / tillämpa / arkivera
+        status: Kapten redo
       autotask:
-        title: AutoTask Dungeon
-        desc: Parallel fixes and batch automation
-        status: 2 instances active
+        title: AutoTask-dungeon
+        desc: Parallella korrigeringar och batchautomatisering
+        status: 2 instanser aktiva
       prompt:
-        title: Prompt Dungeon
-        desc: Prompt preview and style workbench
-        status: Visual sync ready
+        title: Prompt-dungeon
+        desc: Prompt-förhandsgranskning och stil-arbetsbänk
+        status: Visuell synk redo
     roster:
-      title: Current captain roster
+      title: Nuvarande kaptenlista
       heroes:
         strategist:
-          name: Spec Strategist
-          role: Proposal captain
+          name: Spec Strateg
+          role: Förslagskapten
         runner:
           name: Patch Runner
-          role: Execution captain
+          role: Exekveringskapten
         artist:
           name: Prompt Artist
-          role: Visual support
+          role: Visuellt stöd
     battleReport:
-      title: Today's dungeon report
-      badge: Hero Battle
+      title: Dagens dungeon-rapport
+      badge: Hjältestrid
       metrics:
         dungeons:
           value: '4'
-          label: Dungeons pushed
+          label: Dungeon-avklarade
         level:
           value: Lv.27
-          label: Captain level
+          label: Kaptennivå
         xp:
           value: 12.8M
-          label: XP today
-      note: When several dungeons move in parallel, the report rolls up experience, levels, and execution outcomes into one readout.
+          label: XP idag
+      note: När flera dungeon rör sig parallellt, rullar rapporten upp erfarenhet, nivåer och exekveringsresultat till en avläsning.
     gallery:
       dungeons:
-        title: Dungeon map carousel
-        subtitle: 10 random visuals from the current frontend dungeon and prompt map collection.
+        title: Dungeon-karta karusell
+        subtitle: 10 slumpmässiga visualiseringar från den nuvarande frontend-dungeon och prompt-kart-samlingen.
       heroes:
-        title: Hero gallery carousel
-        subtitle: 10 random hero visuals from the current frontend hero collection.
+        title: Hjältegalleri karusell
+        subtitle: 10 slumpmässiga hjältvisualiseringar från den nuvarande frontend-hjältesamlingen.
 productOverviewVideo:
-  title: Understand Hagicode before the feature tour
+  title: Förstå Hagicode innan funktionsturen
 videoShowcase:
-  eyebrow: Supporting Product Demos
-  title: Keep exploring Hagicode in real coding sessions
-  description: After the main overview, these focused demos show how Hagicode behaves in playful and model-specific scenarios without repeating the primary product introduction.
-  supportingLabel: Focused demo
+  eyebrow: Stödjande Produkt demo
+  title: Fortsätt utforska Hagicode i riktiga kodningssessioner
+  description: Efter den huvudsakliga översikten visar dessa fokuserade demos hur Hagicode beter sig i lekfulla och modellspecifika scenarier utan att upprepa den primära produktintroduktionen.
+  supportingLabel: Fokuserad demo
 homepageVideos:
   overview:
     youtube:
-      title: Hagicode Product Overview on YouTube
-      description: The main English-language introduction to Hagicode's workflow, multi-agent execution style, and why the product feels broader than a generic AI coding chat box.
-      ctaLabel: Open on YouTube
+      title: Hagicode Produktöversikt på YouTube
+      description: Den huvudsakliga engelskspråkiga introduktionen till Hagicodes arbetsflöde, multi-agent-exekveringsstil och varför produkten känns bredare än en generisk AI-kodningschattruta.
+      ctaLabel: Öppna på YouTube
     bilibili:
-      title: Hagicode Product Overview on Bilibili
-      description: A Bilibili-hosted version of the core product introduction for visitors whose browsers signal a Chinese-language preference or who prefer the domestic playback path.
-      ctaLabel: Open on Bilibili
+      title: Hagicode Produktöversikt på Bilibili
+      description: En Bilibili-värd version av den kärnpunktsintroduktionen för besökare vars webbläsare signalerar kinesisk språkinställning eller som föredrar den inhemska uppspelningsvägen.
+      ctaLabel: Öppna på Bilibili
   supporting:
     first:
-      title: AI Playing Games While Coding
-      description: A playful supporting clip that shows the assistant staying lively and surprising during real coding sessions instead of feeling like a dry code generator.
-      ctaLabel: Open on Bilibili
+      title: AI Spelar Spel Medan Kodning
+      description: En lekfull stödjande klipp som visar assistenten vara livlig och överraskande under riktiga kodningssessioner istället för att kännas som en torr kodgenerator.
+      ctaLabel: Öppna på Bilibili
     second:
-      title: 'GPT Codex in Hagicode: Live Trial'
-      description: A focused validation run that lets prospective users judge how GPT Codex behaves inside the actual product after they've seen the main localized introduction.
-      ctaLabel: Open on Bilibili
+      title: 'GPT Codex i Hagicode: Live-test'
+      description: En fokuserad valideringskörning som låter potentiella användare bedöma hur GPT Codex beter sig inuti den faktiska produkten efter att ha sett den huvudsakliga lokaliserade introduktionen.
+      ctaLabel: Öppna på Bilibili
   hero:
-    steamAriaLabel: Open Hagicode on Steam
-    ctaGroupLabel: Primary homepage actions
+    steamAriaLabel: Öppna Hagicode på Steam
+    ctaGroupLabel: Primära hemsid-åtgärder
 pricing:
   docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
-  title: Editions & Pricing
-  limitTitle: Proposal concurrency rule
-  limitDescription: Free and Steam both include a 3-proposal cap. Proposals in generating, executing, and archiving all count toward the same limit. Turbo Engine DLC expands that limit to 32.
-  plusTitle: Hagicode Plus note
-  plusDescription: Hagicode Plus is the official Steam bundle that combines the main Steam edition with Turbo Engine DLC.
-  featureHeader: Feature
-  includedLabel: Included
-  notIncludedLabel: Not included
+  title: Utgåvor och Prissättning
+  limitTitle: Regel för förslagskonkurrens
+  limitDescription: Gratis och Steam inkluderar båda ett tak på 3 förslag. Förslag i generering, exekvering och arkivering räknas alla mot samma gräns. Turbo Engine DLC expanderar den gränsen till 32.
+  plusTitle: Hagicode Plus-notering
+  plusDescription: Hagicode Plus är det officiella Steam-paketet som kombinerar huvud Steam-utgåvan med Turbo Engine DLC.
+  featureHeader: Funktion
+  includedLabel: Inkluderat
+  notIncludedLabel: Inte inkluderat
   editions:
     desktop:
       title: Desktop
     container:
       title: Container
   rows:
-    pricing: Pricing
-    allFreeFeaturesIncluded: All free features included
-    vault: Vault
-    skills: Skills
-    proposalWorkflow: Proposal workflow
-    localAchievements: Local achievements
-    allAgentCliIntegrations: All Agent CLI integrations
-    speechRecognition: Speech recognition
-    omniRouteIntegration: OmniRoute integration
-    githubIntegration: GitHub integration
-    gitManagement: Git management
-    maximumConcurrentProposals: Maximum concurrent proposals
-    copySwitchingSupport: Copy switching support
-    turboEngineAvatarPacks: Turbo Engine avatar packs
-    customAvatarUploads: Custom avatar uploads
-    customLogo: Custom logo
-    customTitle: Custom title
-    customCoAuthoredByInfo: Custom Co-Authored-By info
-    steamCloudAchievements: Steam cloud achievements
-    freeDlcSupport: Free DLC support
-    steamWorkshopSupport: Steam Workshop support
-    cloudSaveSupport: Cloud save support
+    pricing: Prissättning
+    allFreeFeaturesIncluded: Alla gratisfunktioner inkluderade
+    vault: Valv
+    skills: Färdigheter
+    proposalWorkflow: Förslagsarbetsflöde
+    localAchievements: Lokala prestationer
+    allAgentCliIntegrations: Alla Agent CLI-integrationer
+    speechRecognition: Taligenkänning
+    omniRouteIntegration: OmniRoute-integration
+    githubIntegration: GitHub-integration
+    gitManagement: Git-hantering
+    maximumConcurrentProposals: Maximalt samtidiga förslag
+    copySwitchingSupport: Kopieringsbytesstöd
+    turboEngineAvatarPacks: Turbo Engine-avatarpaket
+    customAvatarUploads: Anpassade avataruppladdningar
+    customLogo: Anpassad logotyp
+    customTitle: Anpassad titel
+    customCoAuthoredByInfo: Anpassad Co-Authored-By-info
+    steamCloudAchievements: Steam moln-prestationer
+    freeDlcSupport: Gratis DLC-stöd
+    steamWorkshopSupport: Steam Workshop-stöd
+    cloudSaveSupport: Cloud Save-stöd
   values:
-    free: Free
-    viewOnSteam: View on Steam
+    free: Gratis
+    viewOnSteam: Visa på Steam
   dlc:
-    label: DLC & Bundles
-    title: Optional packs
+    label: DLC och Paket
+    title: Valfria paket
     actions:
-      openSteam: Open Steam
+      openSteam: Öppna Steam
     preview:
-      bundlePending: Bundle visuals pending
-      productPending: Product visuals pending
+      bundlePending: Paketvisualiseringar väntande
+      productPending: Produktvisualiseringar väntande
     items:
       allBeauties:
-        category: Free DLC
+        category: Gratis DLC
         title: Hagicode - All Beauties Pack
-        price: Free
-        description: An extra cosmetics pack for Steam users.
+        price: Gratis
+        description: Ett extra kosmetikpaket för Steam-användare.
         bullets:
-          - Adds 1,000 anime-girl-style avatars
-          - Leaves room for more beauty-themed content in future updates
+          - Lägger till 1 000 anime-tjej-stil-avatare
+          - Lämnar utrymme för mer skönhetstematiskt innehåll i framtida uppdateringar
       turboEngine:
-        category: Performance DLC
+        category: Prestanda-DLC
         title: 'Hagicode: Turbo Engine DLC'
         price: Steam
-        description: You can buy this DLC on its own to expand the original proposal concurrency cap, unlock copy switching, add five avatar packs with 10 standalone avatars each, enable custom avatar uploads, customize the top-left logo and title, and align AI-generated commit trailers with your own Co-Authored-By naming rules. We will usually highlight a bundled purchase option called Hagicode Plus so the overall purchase price stays lower. Please check our store page for the latest changes.
+        description: Du kan köpa detta DLC separat för att expandera den ursprungliga gränsen för förslagskonkurrens, låsa upp kopieringsbyte, lägga till fem avatarpaket med 10 fristående avatare var, aktivera anpassade avataruppladdningar, anpassa den övre vänstra logotypen och titeln och anpassa AI-genererade commit-trailers med dina egna Co-Authored-By-namnregler. Vi kommer vanligtvis att lyfta fram ett paketat köpalternativ som kallas Hagicode Plus så att det totala köp_priset förblir lägre. Kontrollera vår butikssida för de senaste ändringarna.
         bullets:
-          - Supports custom top-left logos and titles
-          - Includes five avatar packs with 10 selectable avatars in each pack
-          - Supports custom avatar uploads
-          - Lets teams customize the AI Co-Authored-By signature for commit workflows
-          - Unlocks copy and wording switching support
-          - Expands the maximum concurrent proposal limit to 32
+          - Stöder anpassade övre vänstra logotyper och titlar
+          - Inkluderar fem avatarpaket med 10 valbara avatare i varje paket
+          - Stöder anpassade avataruppladdningar
+          - Låter team anpassa AI Co-Authored-By-signaturen för commit-arbetsflöden
+          - Låser upp stöd för kopierings- och formuläringsbyte
+          - Expanderar den maximala gränsen för samtidiga förslag till 32
       hagicodePlus:
-        category: Bundle
+        category: Paket
         title: Hagicode Plus
         price: Steam
-        description: The official Steam bundle that combines the Hagicode base edition with Turbo Engine DLC in one purchase path.
+        description: Det officiella Steam-paketet som kombinerar Hagicode basutgåva med Turbo Engine DLC i en köpväg.
         bullets:
-          - Bundles the main Steam edition and Turbo Engine DLC together
-          - Keeps the higher 32-proposal concurrency upgrade attached to the bundle path
-          - Works as the clearest purchase entry when you want the full Steam setup at once
+          - Paketerar huvud Steam-utgåvan och Turbo Engine DLC tillsammans
+          - Behåller den högre 32-förslagskonkurrensuppgraderingen kopplad till paketvägen
+          - Fungerar som den tydligaste köpingången när du vill ha den fulla Steam-konfigurationen på en gång
       sponsor:
-        category: Supporter DLC
+        category: Supporter-DLC
         title: Hagicode - Sponsor Pack
         price: Steam
-        description: If you think Hagicode is genuinely excellent and want to provide direct financial support, buying Sponsor Pack gives the project more fuel and helps us keep it running for the long term.
+        description: Om du tycker att Hagicode är genuint utmärkt och vill ge direkt ekonomiskt stöd ger köp av Sponsor Pack projektet mer bränsle och hjälper oss att hålla det igång på lång sikt.
         bullets:
-          - One exclusive dark theme
-          - One exclusive light theme
-          - One exclusive Steam achievement
+          - Ett exklusivt mörkt tema
+          - Ett exklusivt ljust tema
+          - En exklusiv Steam-prestation
 workflowBoard:
   titleLines:
-    - Mainstream Agents Supported
-    - 10x Parallel Management Efficiency
-    - OpenSpec Reduces Hallucinations
-  taskLabel: Task
-  headerSummary: Task / Agent
+    - Mainstream-agenter Stödda
+    - 10x Parallell Hanteringseffektivitet
+    - OpenSpec Reducerar Hallucinationer
+  taskLabel: Uppgift
+  headerSummary: Uppgift / Agent
   steps:
-    - Ideate
-    - Propose
-    - Execute
-    - Archive
+    - Ideera
+    - Föreslå
+    - Exekvera
+    - Arkivera
   activeStates:
-    - Ideating
-    - Proposing
-    - Executing
-    - Archiving
-  completedState: Complete
+    - Ideerar
+    - Föreslår
+    - Exekverar
+    - Arkiverar
+  completedState: Komplett
   metrics:
-    completed: Completed Tasks
-    efficiency: Live Efficiency
-    serialTime: Equivalent Serial Time
-    elapsedTime: Elapsed Time
-    formula: Efficiency = equivalent serial work / natural elapsed time
-    serialHint: relative to a single serial worker
+    completed: Slutförda Uppgifter
+    efficiency: Live-effektivitet
+    serialTime: Ekvivalent Seriell Tid
+    elapsedTime: Förfluten Tid
+    formula: Effektivitet = ekvivalent seriellt arbete / naturlig förfluten tid
+    serialHint: relativ till en enda seriell arbetare

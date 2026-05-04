@@ -1,126 +1,126 @@
 hero:
-  tagline: Boost development efficiency with AI-powered coding tools
-  description: HagiCode helps developers focus on code, not repetitive work
-  ctaButton: Get Started
+  tagline: เพิ่มประสิทธิภาพการพัฒนาด้วยเครื่องมือเขียนโค้ดที่ขับเคลื่อนด้วย AI
+  description: HagiCode ช่วยนักพัฒนาให้โฟกัสที่โค้ด ไม่ใช่งานซ้ำซาก
+  ctaButton: เริ่มต้นใช้งาน
   taglines:
-    smart: Smart · Efficient · Fun
-    aiDriven: AI Orchestrated · Multi-Agent Parallel
-    openspec: OpenSpec · Workflow Revolution
+    smart: อัจฉริยะ · มีประสิทธิภาพ · สนุก
+    aiDriven: AI ควบคุม · Multi-Agent ขนาน
+    openspec: OpenSpec · ปฏิวัติเวิร์กโฟลว์
     multiThread: Multi-Agent · Multi-Instance
   lunarTaglines:
-    happyNewYear: Happy New Year · Year of the Horse
-    aiPowered: AI Empowered · Code to Success
-    smartCoding: Smart Coding · Best Wishes
-    openspecLuck: OpenSpec · Prosperity and Success
-    efficiency: Double Efficiency · Good Fortune
-  problem: Traditional AI coding tools have
-  painPoint: pain points
-  painPoints: ': limited context, messy sessions, lack of collaboration.'
-  solution: Hagicode redefines AI coding experience with
+    happyNewYear: สวัสดีปีใหม่ · ปีม้า
+    aiPowered: AI ขับเคลื่อน · เขียนโค้ดสู่ความสำเร็จ
+    smartCoding: เขียนโค้ดอย่างชาญฉลาด · ขอให้โชคดี
+    openspecLuck: OpenSpec · ความเจริญรุ่งเรืองและสำเร็จ
+    efficiency: ประสิทธิภาพสองเท่า · โชคดี
+  problem: เครื่องมือเขียนโค้ด AI แบบดั้งเดิมมี
+  painPoint: จุดอ่อน
+  painPoints: ': บริบทจำกัด เซสชันรก เห็นได้ยาก ขาดการทำงานร่วมกัน'
+  solution: Hagicode นิยามใหม่ประสบการณ์การเขียนโค้ด AI ด้วย
   features:
-    - OpenSpec workflow
-    - multi-agent multi-instance execution
-    - Hero Dungeon gameplay
+    - เวิร์กโฟลว์ OpenSpec
+    - การดำเนินการ multi-agent multi-instance
+    - การเล่นเกม Hero Dungeon
   redefine: .
   valueCards:
     smart:
-      title: Smart
-      description: OpenSpec moves ideas into execution faster.
+      title: อัจฉริยะ
+      description: OpenSpec เปลี่ยนไอเดียให้เป็นการดำเนินการได้เร็วขึ้น
     efficient:
-      title: Efficient
-      description: Multi-agent execution turns waiting into throughput.
+      title: มีประสิทธิภาพ
+      description: การดำเนินการ multi-agent เปลี่ยนการรอคอยให้เป็นปริมาณงาน
     interesting:
-      title: Interesting
-      description: Hero Dungeon makes teamwork and practice feel like an adventure.
+      title: น่าสนใจ
+      description: Hero Dungeon ทำให้การทำงานเป็นทีมและการฝึกฝนเป็นการผจญภัย
   buttons:
-    desktopApp: Install Desktop App
-    containerApp: Install Container App
-    learnMore: Learn More
+    desktopApp: ติดตั้งแอปเดสก์ท็อป
+    containerApp: ติดตั้งแอปคอนเทนเนอร์
+    learnMore: เรียนรู้เพิ่มเติม
   techStack:
-    poweredBy: Powered by
+    poweredBy: ขับเคลื่อนโดย
   qqGroup:
-    title: Join Technical Support Group
-    description: Hagicode Technical Support QQ Group
-    joinButton: Join Now
-  secondaryLine: Hagicode supports mainstream agents, doubles parallel management efficiency, and reduces hallucinations with OpenSpec.
+    title: เข้าร่วมกลุ่มสนับสนุนทางเทคนิค
+    description: กลุ่ม QQ สนับสนุนทางเทคนิค Hagicode
+    joinButton: เข้าร่วมเลย
+  secondaryLine: Hagicode รองรับ agent หลัก เพิ่มประสิทธิภาพการจัดการขนานสองเท่า และลดอาการหลงประเด็นด้วย OpenSpec
 features:
   showcase:
-    title: Three Core Features
-    subtitle: Redefine your AI coding experience
+    title: คุณสมบัติหลักสามประการ
+    subtitle: นิยามใหม่ประสบการณ์การเขียนโค้ด AI ของคุณ
   smart:
-    badge: SMART
-    title: Smart
-    subtitle: OpenSpec workflow, boost AI coding efficiency
-    efficiency: Efficiency Boost
-    traditional: Traditional
+    badge: อัจฉริยะ
+    title: อัจฉริยะ
+    subtitle: เวิร์กโฟลว์ OpenSpec เพิ่มประสิทธิภาพการเขียนโค้ด AI
+    efficiency: เพิ่มประสิทธิภาพ
+    traditional: แบบดั้งเดิม
     hagicode: Hagicode
-    description: A complete 9-stage proposal workflow from idea to archive, with AI assistance throughout. Boost your coding efficiency by 3x.
+    description: เวิร์กโฟลว์ข้อเสนอ 9 ขั้นตอนที่สมบูรณ์จากไอเดียสู่การเก็บถาวร พร้อมความช่วยเหลือจาก AI ตลอดทาง เพิ่มประสิทธิภาพการเขียนโค้ดของคุณ 3 เท่า
     workflow:
       idea:
-        label: Idea
-        desc: Start from idea
+        label: ไอเดีย
+        desc: เริ่มจากไอเดีย
       proposal:
-        label: Proposal
-        desc: AI generates proposal
+        label: ข้อเสนอ
+        desc: AI สร้างข้อเสนอ
       review:
-        label: Review
-        desc: Auto review
+        label: รีวิว
+        desc: รีวิวอัตโนมัติ
       tasks:
-        label: Tasks
-        desc: Task breakdown
+        label: งาน
+        desc: แบ่งย่อยงาน
       code:
-        label: Code
-        desc: Smart coding
+        label: โค้ด
+        desc: เขียนโค้ดอย่างชาญฉลาด
       test:
-        label: Test
-        desc: Auto testing
+        label: ทดสอบ
+        desc: ทดสอบอัตโนมัติ
       refactor:
-        label: Refactor
-        desc: Code refactor
+        label: รีแฟคเตอร์
+        desc: รีแฟคเตอร์โค้ด
       docs:
-        label: Docs
-        desc: Docs generation
+        label: เอกสาร
+        desc: สร้างเอกสาร
       archive:
-        label: Archive
-        desc: Knowledge archive
-    paused: Paused - Click node to switch
+        label: เก็บถาวร
+        desc: เก็บถาวรความรู้
+    paused: หยุดชั่วคราว - คลิกโหนดเพื่อสลับ
   convenient:
-    badge: EFFICIENT
-    title: Efficient
-    subtitle: Multi-agent, multi-instance execution that keeps your quota moving
-    traditional: Traditional single-agent / single-instance
-    multiThread: Multi-agent parallel matrix
-    boost: Throughput Boost
-    boostValue: 10x+ parallel
-    description: Current supported Agent CLIs such as Claude Code, Codex, GitHub Copilot, OpenCode, and Hermes can work across multiple instances at the same time, so proposals, fixes, and reviews move in parallel instead of waiting in a serial queue.
+    badge: มีประสิทธิภาพ
+    title: มีประสิทธิภาพ
+    subtitle: การดำเนินการ multi-agent, multi-instance ที่ทำให้โควต้าของคุณเคลื่อนไป
+    traditional: แบบดั้งเดิม agent เดียว / instance เดียว
+    multiThread: เมทริกซ์ขนาน multi-agent
+    boost: เพิ่มปริมาณงาน
+    boostValue: ขนาน 10x+
+    description: Agent CLI ที่รองรับในปัจจุบัน เช่น Claude Code, Codex, GitHub Copilot, OpenCode และ Hermes สามารถทำงานข้ามหลาย instance ในเวลาเดียวกัน ทำให้ข้อเสนอ การแก้ไข และการรีวิวดำเนินไปพร้อมกันแทนที่จะรอในคิวแบบอนุกรม
     agentMatrix:
-      title: Parallel execution matrix
-      badge: Multiple agents / multiple instances
-      status: Multiple agents are driving multiple instances right now
+      title: เมทริกซ์การดำเนินการขนาน
+      badge: หลาย agent / หลาย instance
+      status: หลาย agent กำลังขับเคลื่อนหลาย instance ในขณะนี้
       agents:
         claude:
           name: Claude Code
-          role: Proposal / review
+          role: ข้อเสนอ / รีวิว
           instances:
-            - Draft spec
-            - Check design
-            - Archive review
+            - ร่าง spec
+            - ตรวจสอบ design
+            - เก็บถาวรรีวิว
         codex:
           name: Codex
-          role: Implementation / fixes
+          role: การใช้งาน / แก้ไข
           instances:
-            - Build feature A
-            - Build feature B
-            - Regression fix
+            - สร้างฟีเจอร์ A
+            - สร้างฟีเจอร์ B
+            - แก้ไขการถดถอย
         router:
           name: Qwen · GLM
-          role: Analysis / support
+          role: วิเคราะห์ / สนับสนุน
           instances:
-            - Trace issue
-            - Polish copy
-            - Capture insights
+            - ติดตามปัญหา
+            - ปรับปรุงข้อความ
+            - รวบรวม insights
       supportedNames:
-        title: 11 currently supported Agent CLIs
+        title: Agent CLI ที่รองรับ 11 ตัวในปัจจุบัน
         names:
           - Claude Code
           - Codex
@@ -133,207 +133,207 @@ features:
           - Gemini
           - DeepAgents
           - Codebuddy
-    supportedProvidersNote: OpenCode can load the shared OmniRoute catalog into hero model defaults while keeping custom raw model identifiers editable for branch-specific workflows.
+    supportedProvidersNote: OpenCode สามารถโหลดแคตตาล็อก OmniRoute ที่แชร์ลงในค่าเริ่มต้นของโมเดลฮีโร่ในขณะที่ยังคงตัวระบุโมเดล raw แบบกำหนดเองให้แก้ไขได้สำหรับเวิร์กโฟลว์เฉพาะ branch
   interesting:
-    badge: INTERESTING
-    title: Fun
-    subtitle: Hero Dungeon makes campus collaboration and practice feel alive
+    badge: น่าสนใจ
+    title: สนุก
+    subtitle: Hero Dungeon ทำให้การทำงานร่วมกันและการฝึกฝนบนวิทยาเขตมีชีวิตชีวา
     features:
       dungeons:
         label: Hero Dungeons
-        desc: Turn generation, execution, and prompt workbenches into dungeon runs
+        desc: เปลี่ยนการสร้าง การดำเนินการ และเวิร์กเบนช์ prompt ให้เป็น dungeon runs
       captains:
-        label: Captain Roster
-        desc: Assign the right hero captain to each dungeon
+        label: รายชื่อกัปตัน
+        desc: มอบหมายกัปตันฮีโร่ที่เหมาะสมให้กับแต่ละ dungeon
       battle:
-        label: Battle Reports
-        desc: Review XP, levels, and execution results after each push
-    description: Fun no longer depends on achievement badges. Hero Dungeon, captain rosters, prompt visuals, and battle reports turn daily AI coding practice into a workflow that feels more like a coordinated adventure for campus labs and student teams.
+        label: รายงานการต่อสู้
+        desc: รีวิว XP ระดับ และผลการดำเนินการหลังจาก push แต่ละครั้ง
+    description: ความสนุกไม่ได้ขึ้นอยู่กับเหรียญรางวัลอีกต่อไป Hero Dungeon รายชื่อกัปตัน ภาพ prompt และรายงานการต่อสู้เปลี่ยนการฝึกฝนเขียนโค้ด AI ประจำวันให้เป็นเวิร์กโฟลว์ที่รู้สึกเหมือนการผจญภัยที่ประสานงานกันสำหรับแล็บในวิทยาเขตและทีมนักเรียน
     dungeonCards:
       proposal:
-        title: Proposal Dungeon
-        desc: OpenSpec generate / apply / archive
-        status: Captain ready
+        title: Dungeon ข้อเสนอ
+        desc: OpenSpec สร้าง / ใช้ / เก็บถาวร
+        status: กัปตันพร้อม
       autotask:
-        title: AutoTask Dungeon
-        desc: Parallel fixes and batch automation
-        status: 2 instances active
+        title: Dungeon AutoTask
+        desc: แก้ไขแบบขนานและระบบอัตโนมัติแบบกลุ่ม
+        status: 2 instance ทำงานอยู่
       prompt:
-        title: Prompt Dungeon
-        desc: Prompt preview and style workbench
-        status: Visual sync ready
+        title: Dungeon Prompt
+        desc: ดูตัวอย่าง prompt และเวิร์กเบนช์สไตล์
+        status: ซิงค์ภาพพร้อม
     roster:
-      title: Current captain roster
+      title: รายชื่อกัปตันปัจจุบัน
       heroes:
         strategist:
           name: Spec Strategist
-          role: Proposal captain
+          role: กัปตันข้อเสนอ
         runner:
           name: Patch Runner
-          role: Execution captain
+          role: กัปตันการดำเนินการ
         artist:
           name: Prompt Artist
-          role: Visual support
+          role: สนับสนุนภาพ
     battleReport:
-      title: Today's dungeon report
-      badge: Hero Battle
+      title: รายงาน dungeon ของวันนี้
+      badge: การต่อสู้ฮีโร่
       metrics:
         dungeons:
           value: '4'
-          label: Dungeons pushed
+          label: Dungeon ที่เสร็จสิ้น
         level:
           value: Lv.27
-          label: Captain level
+          label: ระดับกัปตัน
         xp:
           value: 12.8M
-          label: XP today
-      note: When several dungeons move in parallel, the report rolls up experience, levels, and execution outcomes into one readout.
+          label: XP วันนี้
+      note: เมื่อหลาย dungeon ดำเนินไปพร้อมกัน รายงานจะรวมประสบการณ์ ระดับ และผลการดำเนินการเป็นสรุปเดียว
     gallery:
       dungeons:
-        title: Dungeon map carousel
-        subtitle: 10 random visuals from the current frontend dungeon and prompt map collection.
+        title: ภาพสไลด์แผนที่ dungeon
+        subtitle: ภาพ 10 ภาพแบบสุ่มจาก dungeon frontend ปัจจุบันและคอลเลกชันแผนที่ prompt
       heroes:
-        title: Hero gallery carousel
-        subtitle: 10 random hero visuals from the current frontend hero collection.
+        title: ภาพสไลด์แกลเลอรี่ฮีโร่
+        subtitle: ภาพฮีโร่ 10 ภาพแบบสุ่มจากคอลเลกชันฮีโร่ frontend ปัจจุบัน
 productOverviewVideo:
-  title: Understand Hagicode before the feature tour
+  title: เข้าใจ Hagicode ก่อนทัวร์ฟีเจอร์
 videoShowcase:
-  eyebrow: Supporting Product Demos
-  title: Keep exploring Hagicode in real coding sessions
-  description: After the main overview, these focused demos show how Hagicode behaves in playful and model-specific scenarios without repeating the primary product introduction.
-  supportingLabel: Focused demo
+  eyebrow: สาธิตผลิตภัณฑ์สนับสนุน
+  title: สำรวจ Hagicode ต่อในเซสชันเขียนโค้ดจริง
+  description: หลังจากภาพรวมหลัก การสาธิตที่เน้นเหล่านี้แสดงให้เห็นว่า Hagicode ทำงานอย่างไรในสถานการณ์ที่สนุกและเจาะจงโมเดลโดยไม่ต้องทำซ้ำการแนะนำผลิตภัณฑ์หลัก
+  supportingLabel: เดโมที่เน้น
 homepageVideos:
   overview:
     youtube:
-      title: Hagicode Product Overview on YouTube
-      description: The main English-language introduction to Hagicode's workflow, multi-agent execution style, and why the product feels broader than a generic AI coding chat box.
-      ctaLabel: Open on YouTube
+      title: ภาพรวมผลิตภัณฑ์ Hagicode บน YouTube
+      description: การแนะนำหลักในภาษาอังกฤษเกี่ยวกับเวิร์กโฟลว์ของ Hagicode สไตล์การดำเนินการ multi-agent และทำไมผลิตภัณฑ์ถึงดูกว้างขวางกว่ากล่องแชทเขียนโค้ด AI ทั่วไป
+      ctaLabel: เปิดบน YouTube
     bilibili:
-      title: Hagicode Product Overview on Bilibili
-      description: A Bilibili-hosted version of the core product introduction for visitors whose browsers signal a Chinese-language preference or who prefer the domestic playback path.
-      ctaLabel: Open on Bilibili
+      title: ภาพรวมผลิตภัณฑ์ Hagicode บน Bilibili
+      description: เวอร์ชันที่โฮสต์บน Bilibili ของการแนะนำผลิตภัณฑ์หลักสำหรับผู้เยี่ยมชมที่เบราว์เซอร์แสดงการตั้งค่าภาษาจีนหรือชอบเส้นทางการเล่นภายในประเทศ
+      ctaLabel: เปิดบน Bilibili
   supporting:
     first:
-      title: AI Playing Games While Coding
-      description: A playful supporting clip that shows the assistant staying lively and surprising during real coding sessions instead of feeling like a dry code generator.
-      ctaLabel: Open on Bilibili
+      title: AI เล่นเกมขณะเขียนโค้ด
+      description: คลิปสนับสนุนที่สนุกสนานที่แสดงผู้ช่วยยังคงมีชีวิตชีวาและน่าประหลาดใจระหว่างเซสชันเขียนโค้ดจริงแทนที่จะรู้สึกเหมือนเครื่องสร้างโค้ดแห้งแล้ง
+      ctaLabel: เปิดบน Bilibili
     second:
-      title: 'GPT Codex in Hagicode: Live Trial'
-      description: A focused validation run that lets prospective users judge how GPT Codex behaves inside the actual product after they've seen the main localized introduction.
-      ctaLabel: Open on Bilibili
+      title: 'GPT Codex ใน Hagicode: ทดลองใช้สด'
+      description: การทดสอบยืนยันที่เน้นให้ผู้ใช้ที่คาดหวังตัดสินว่า GPT Codex ทำงานอย่างไรในผลิตภัณฑ์จริงหลังจากดูการแนะนำหลักที่แปลแล้ว
+      ctaLabel: เปิดบน Bilibili
   hero:
-    steamAriaLabel: Open Hagicode on Steam
-    ctaGroupLabel: Primary homepage actions
+    steamAriaLabel: เปิด Hagicode บน Steam
+    ctaGroupLabel: การดำเนินการหน้าแรกหลัก
 pricing:
   docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
-  title: Editions & Pricing
-  limitTitle: Proposal concurrency rule
-  limitDescription: Free and Steam both include a 3-proposal cap. Proposals in generating, executing, and archiving all count toward the same limit. Turbo Engine DLC expands that limit to 32.
-  plusTitle: Hagicode Plus note
-  plusDescription: Hagicode Plus is the official Steam bundle that combines the main Steam edition with Turbo Engine DLC.
-  featureHeader: Feature
-  includedLabel: Included
-  notIncludedLabel: Not included
+  title: รุ่นและราคา
+  limitTitle: กฎการทำงานพร้อมกันของข้อเสนอ
+  limitDescription: ทั้งเวอร์ชันฟรีและ Steam มีขีดจำกัดข้อเสนอ 3 รายการ ข้อเสนอที่กำลังสร้าง ดำเนินการ และเก็บถาวรนับรวมในขีดจำกัดเดียวกัน Turbo Engine DLC ขยายขีดจำกัดนั้นเป็น 32
+  plusTitle: หมายเหตุ Hagicode Plus
+  plusDescription: Hagicode Plus เป็นแพ็กเกจ Steam อย่างเป็นทางการที่รวมเวอร์ชัน Steam หลักกับ Turbo Engine DLC
+  featureHeader: ฟีเจอร์
+  includedLabel: รวมอยู่
+  notIncludedLabel: ไม่รวม
   editions:
     desktop:
-      title: Desktop
+      title: เดสก์ท็อป
     container:
-      title: Container
+      title: คอนเทนเนอร์
   rows:
-    pricing: Pricing
-    allFreeFeaturesIncluded: All free features included
-    vault: Vault
-    skills: Skills
-    proposalWorkflow: Proposal workflow
-    localAchievements: Local achievements
-    allAgentCliIntegrations: All Agent CLI integrations
-    speechRecognition: Speech recognition
-    omniRouteIntegration: OmniRoute integration
-    githubIntegration: GitHub integration
-    gitManagement: Git management
-    maximumConcurrentProposals: Maximum concurrent proposals
-    copySwitchingSupport: Copy switching support
-    turboEngineAvatarPacks: Turbo Engine avatar packs
-    customAvatarUploads: Custom avatar uploads
-    customLogo: Custom logo
-    customTitle: Custom title
-    customCoAuthoredByInfo: Custom Co-Authored-By info
-    steamCloudAchievements: Steam cloud achievements
-    freeDlcSupport: Free DLC support
-    steamWorkshopSupport: Steam Workshop support
-    cloudSaveSupport: Cloud save support
+    pricing: ราคา
+    allFreeFeaturesIncluded: ฟีเจอร์ฟรีทั้งหมดรวมอยู่
+    vault: ตู้นิรภัย
+    skills: ทักษะ
+    proposalWorkflow: เวิร์กโฟลว์ข้อเสนอ
+    localAchievements: ความสำเร็จในเครื่อง
+    allAgentCliIntegrations: การรวม Agent CLI ทั้งหมด
+    speechRecognition: การจดจำคำพูด
+    omniRouteIntegration: การรวม OmniRoute
+    githubIntegration: การรวม GitHub
+    gitManagement: การจัดการ Git
+    maximumConcurrentProposals: ข้อเสนอพร้อมกันสูงสุด
+    copySwitchingSupport: รองรับการสลับสำเนา
+    turboEngineAvatarPacks: แพ็กเกจอวาตาร์ Turbo Engine
+    customAvatarUploads: อัปโหลดอวาตาร์แบบกำหนดเอง
+    customLogo: โลโก้แบบกำหนดเอง
+    customTitle: ชื่อเรื่องแบบกำหนดเอง
+    customCoAuthoredByInfo: ข้อมูล Co-Authored-By แบบกำหนดเอง
+    steamCloudAchievements: ความสำเร็จ Steam Cloud
+    freeDlcSupport: รองรับ DLC ฟรี
+    steamWorkshopSupport: รองรับ Steam Workshop
+    cloudSaveSupport: รองรับ Cloud Save
   values:
-    free: Free
-    viewOnSteam: View on Steam
+    free: ฟรี
+    viewOnSteam: ดูบน Steam
   dlc:
-    label: DLC & Bundles
-    title: Optional packs
+    label: DLC และแพ็กเกจ
+    title: แพ็กเกจเสริม
     actions:
-      openSteam: Open Steam
+      openSteam: เปิด Steam
     preview:
-      bundlePending: Bundle visuals pending
-      productPending: Product visuals pending
+      bundlePending: ภาพแพ็กเกจรอดำเนินการ
+      productPending: ภาพผลิตภัณฑ์รอดำเนินการ
     items:
       allBeauties:
-        category: Free DLC
+        category: DLC ฟรี
         title: Hagicode - All Beauties Pack
-        price: Free
-        description: An extra cosmetics pack for Steam users.
+        price: ฟรี
+        description: แพ็กเกจคอสเมติกเพิ่มเติมสำหรับผู้ใช้ Steam
         bullets:
-          - Adds 1,000 anime-girl-style avatars
-          - Leaves room for more beauty-themed content in future updates
+          - เพิ่มอวาตาร์สไตล์อนิเมะ 1,000 รายการ
+          - เว้นพื้นที่สำหรับเนื้อหาธีมความงามเพิ่มเติมในอัปเดตอนาคต
       turboEngine:
-        category: Performance DLC
+        category: DLC ประสิทธิภาพ
         title: 'Hagicode: Turbo Engine DLC'
         price: Steam
-        description: You can buy this DLC on its own to expand the original proposal concurrency cap, unlock copy switching, add five avatar packs with 10 standalone avatars each, enable custom avatar uploads, customize the top-left logo and title, and align AI-generated commit trailers with your own Co-Authored-By naming rules. We will usually highlight a bundled purchase option called Hagicode Plus so the overall purchase price stays lower. Please check our store page for the latest changes.
+        description: คุณสามารถซื้อ DLC นี้แยกต่างหากเพื่อขยายขีดจำกัดการทำงานพร้อมกันของข้อเสนอเดิม ปลดล็อกการสลับสำเนา เพิ่มแพ็กเกจอวาตาร์ห้าแพ็กเกจที่มีอวาตาร์แบบ standalone 10 รายการในแต่ละแพ็กเกจ เปิดใช้งานการอัปโหลดอวาตาร์แบบกำหนดเอง ปรับแต่งโลโก้และชื่อที่มุมซ้ายบน และจัดตำแหน่ง commit trailers ที่ AI สร้างกับกฎการตั้งชื่อ Co-Authored-By ของคุณเอง เรามักจะเน้นตัวเลือกการซื้อแบบแพ็กเกจที่เรียกว่า Hagicode Plus เพื่อให้ราคาซื้อโดยรวมต่ำกว่า โปรดตรวจสอบหน้าร้านค้าของเราสำหรับการเปลี่ยนแปลงล่าสุด
         bullets:
-          - Supports custom top-left logos and titles
-          - Includes five avatar packs with 10 selectable avatars in each pack
-          - Supports custom avatar uploads
-          - Lets teams customize the AI Co-Authored-By signature for commit workflows
-          - Unlocks copy and wording switching support
-          - Expands the maximum concurrent proposal limit to 32
+          - รองรับโลโก้และชื่อแบบกำหนดเองที่มุมซ้ายบน
+          - รวมแพ็กเกจอวาตาร์ห้าแพ็กเกจที่มีอวาตาร์ให้เลือก 10 รายการในแต่ละแพ็กเกจ
+          - รองรับการอัปโหลดอวาตาร์แบบกำหนดเอง
+          - ให้ทีมปรับแต่งลายเซ็น Co-Authored-By ของ AI สำหรับเวิร์กโฟลว์ commit
+          - ปลดล็อกการรองรับการสลับสำเนาและคำพูด
+          - ขยายขีดจำกัดข้อเสนอพร้อมกันสูงสุดเป็น 32
       hagicodePlus:
-        category: Bundle
+        category: แพ็กเกจ
         title: Hagicode Plus
         price: Steam
-        description: The official Steam bundle that combines the Hagicode base edition with Turbo Engine DLC in one purchase path.
+        description: แพ็กเกจ Steam อย่างเป็นทางการที่รวมเวอร์ชันฐาน Hagicode กับ Turbo Engine DLC ในเส้นทางการซื้อเดียว
         bullets:
-          - Bundles the main Steam edition and Turbo Engine DLC together
-          - Keeps the higher 32-proposal concurrency upgrade attached to the bundle path
-          - Works as the clearest purchase entry when you want the full Steam setup at once
+          - รวมเวอร์ชัน Steam หลักและ Turbo Engine DLC เข้าด้วยกัน
+          - รักษาการอัปเกรดการทำงานพร้อมกันของข้อเสนอ 32 รายการที่สูงขึ้นไว้กับเส้นทางแพ็กเกจ
+          - ทำหน้าที่เป็นจุดเข้าซื้อที่ชัดเจนที่สุดเมื่อคุณต้องการตั้งค่า Steam แบบเต็มในครั้งเดียว
       sponsor:
-        category: Supporter DLC
+        category: DLC ผู้สนับสนุน
         title: Hagicode - Sponsor Pack
         price: Steam
-        description: If you think Hagicode is genuinely excellent and want to provide direct financial support, buying Sponsor Pack gives the project more fuel and helps us keep it running for the long term.
+        description: หากคุณคิดว่า Hagicode ยอดเยี่ยมอย่างแท้จริงและต้องการให้การสนับสนุนทางการเงินโดยตรง การซื้อ Sponsor Pack ให้เชื้อเพลิงเพิ่มเติมแก่โปรเจกต์และช่วยเราดำเนินการต่อไปในระยะยาว
         bullets:
-          - One exclusive dark theme
-          - One exclusive light theme
-          - One exclusive Steam achievement
+          - ธีมมืดพิเศษ 1 รายการ
+          - ธีมสว่างพิเศษ 1 รายการ
+          - ความสำเร็จ Steam พิเศษ 1 รายการ
 workflowBoard:
   titleLines:
-    - Mainstream Agents Supported
-    - 10x Parallel Management Efficiency
-    - OpenSpec Reduces Hallucinations
-  taskLabel: Task
-  headerSummary: Task / Agent
+    - รองรับ Agent หลัก
+    - ประสิทธิภาพการจัดการขนาน 10x
+    - OpenSpec ลดอาการหลงประเด็น
+  taskLabel: งาน
+  headerSummary: งาน / Agent
   steps:
-    - Ideate
-    - Propose
-    - Execute
-    - Archive
+    - คิดไอเดีย
+    - เสนอ
+    - ดำเนินการ
+    - เก็บถาวร
   activeStates:
-    - Ideating
-    - Proposing
-    - Executing
-    - Archiving
-  completedState: Complete
+    - กำลังคิดไอเดีย
+    - กำลังเสนอ
+    - กำลังดำเนินการ
+    - กำลังเก็บถาวร
+  completedState: เสร็จสมบูรณ์
   metrics:
-    completed: Completed Tasks
-    efficiency: Live Efficiency
-    serialTime: Equivalent Serial Time
-    elapsedTime: Elapsed Time
-    formula: Efficiency = equivalent serial work / natural elapsed time
-    serialHint: relative to a single serial worker
+    completed: งานที่เสร็จสมบูรณ์
+    efficiency: ประสิทธิภาพสด
+    serialTime: เวลาอนุกรมเทียบเท่า
+    elapsedTime: เวลาที่ผ่านไป
+    formula: ประสิทธิภาพ = งานอนุกรมเทียบเท่า / เวลาที่ผ่านไปตามธรรมชาติ
+    serialHint: เทียบกับผู้ทำงานอนุกรมเดี่ยว

@@ -1,190 +1,190 @@
 navbar:
-  home: Home
-  docs: Docs
+  home: Beranda
+  docs: Dokumentasi
   blog: Blog
-  about: About
-  desktop: Desktop App
-  container: Container
-  support: Get Support
-  mobileOpenMenu: Open menu
-  mobileCloseMenu: Close menu
-  mobileNav: Mobile site navigation
+  about: Tentang
+  desktop: Aplikasi Desktop
+  container: Kontainer
+  support: Dapatkan Dukungan
+  mobileOpenMenu: Buka menu
+  mobileCloseMenu: Tutup menu
+  mobileNav: Navigasi situs seluler
 themeToggle:
-  theme: Theme
-  darkMode: Switch to dark mode
-  lightMode: Switch to light mode
-  lunarNewYearMode: Switch to Lunar New Year theme
+  theme: Tema
+  darkMode: Beralih ke mode gelap
+  lightMode: Beralih ke mode terang
+  lunarNewYearMode: Beralih ke tema Tahun Baru Imlek
 languageSwitcher:
-  label: Language
-  dialogTitle: Select language
-  currentLocaleLabel: Current language
-  close: Close language chooser
-  selectedState: Current
+  label: Bahasa
+  dialogTitle: Pilih bahasa
+  currentLocaleLabel: Bahasa saat ini
+  close: Tutup pemilih bahasa
+  selectedState: Saat ini
   switchToChinese: 切换到中文
-  switchToEnglish: Switch to English
+  switchToEnglish: Beralih ke bahasa Inggris
 videoPlayer:
-  play: Play
-  pause: Pause
-  fullscreen: Fullscreen
+  play: Putar
+  pause: Jeda
+  fullscreen: Layar penuh
 footer:
-  copyright: © {year} Hagicode. All rights reserved.
-  product: Product
-  quickLinks: Quick Links
-  community: Community
-  productInfo: Hagicode Introduction
-  downloadClient: Download Client
-  productDocs: Product Docs
-  blogPosts: Blog Posts
-  rssSubscribe: RSS Subscribe
+  copyright: © {year} Hagicode. Hak cipta dilindungi.
+  product: Produk
+  quickLinks: Tautan Cepat
+  community: Komunitas
+  productInfo: Pengenalan Hagicode
+  downloadClient: Unduh Klien
+  productDocs: Dokumentasi Produk
+  blogPosts: Postingan Blog
+  rssSubscribe: Langganan RSS
   github: GitHub
-  issueFeedback: Issue Feedback
-  contactEmail: Contact Email
-  qqGroup: QQ Group 610394020
-  icpLabel: View ICP Filing Information
-  gonganLabel: View Public Security Filing Information
-  visitPage: Visit {title} page
-  discord: Discord Community
-  costCalculator: AI Replacement Calculator
+  issueFeedback: Umpan Balik Masalah
+  contactEmail: Email Kontak
+  qqGroup: Grup QQ 610394020
+  icpLabel: Lihat Informasi Pendaftaran ICP
+  gonganLabel: Lihat Informasi Pendaftaran Keamanan Publik
+  visitPage: Kunjungi halaman {title}
+  discord: Komunitas Discord
+  costCalculator: Kalkulator Pengganti AI
   steam: Steam
-  relatedSitesTitle: Related Sites
+  relatedSitesTitle: Situs Terkait
 socialProof:
   highlights:
-    multiAgent: Multi-Agent Parallel
-    multiAgentDesc: Claude Code, Codex, and others can drive multiple instances at once
-    privacy: Privacy First
-    privacyDesc: Local deployment, no code upload
-    openspec: OpenSpec Orchestration
-    openspecDesc: Standardized proposal, execution, and archive flow
-    heroDungeons: Hero Dungeon Workflow
-    heroDungeonsDesc: Dungeons, captains, and battle reports close the loop
+    multiAgent: Multi-Agent Paralel
+    multiAgentDesc: Claude Code, Codex, dan lainnya dapat menjalankan banyak instan secara bersamaan
+    privacy: Privasi Utama
+    privacyDesc: Penyebaran lokal, tanpa unggahan kode
+    openspec: Orkestrasi OpenSpec
+    openspecDesc: Alur proposal, eksekusi, dan arsip yang terstandarisasi
+    heroDungeons: Alur Hero Dungeon
+    heroDungeonsDesc: Dungeon, kapten, dan laporan pertempuran menutup siklus
   badges:
     claude: Claude AI
-    claudeDesc: Powered by
-    opensource: Open Source
+    claudeDesc: Didukung oleh
+    opensource: Sumber Terbuka
     opensourceDesc: GitHub
-    ssl: SSL Secure
-    sslDesc: Secure Encryption
+    ssl: Keamanan SSL
+    sslDesc: Enkripsi Aman
 installCTA:
-  button: Install HagiCode
+  button: Instal Hagicode
 activityMetrics:
-  title: People Are Using It
-  description: Community keeps growing, thanks to every contributor
+  title: Orang-orang Menggunakannya
+  description: Komunitas terus bertumbuh, terima kasih kepada setiap kontributor
   dockerHub: Docker Hub
-  pullCount: Pull Count
-  activeUsers: Active Users
-  activeSessions: Active Sessions
-  recentDays: Last 3 days
+  pullCount: Jumlah Tarikan
+  activeUsers: Pengguna Aktif
+  activeSessions: Sesi Aktif
+  recentDays: 3 hari terakhir
   emptyState:
-    title: Data Coming Soon
-    description: Activity data will be displayed here when available. Stay tuned for community growth!
-  imageError: Image failed to load
+    title: Data Segera Hadir
+    description: Data aktivitas akan ditampilkan di sini saat tersedia. Nantikan pertumbuhan komunitas!
+  imageError: Gambar gagal dimuat
   starHistory:
-    title: GitHub Star History
-    value: Live
-    description: Real-time community momentum
-    alt: Star history chart for the HagiCode site repository
-    cta: View full chart
+    title: Riwayat Bintang GitHub
+    value: Langsung
+    description: Momentum komunitas secara langsung
+    alt: Bagan riwayat bintang untuk repositori situs HagiCode
+    cta: Lihat bagan lengkap
 showcase:
-  title: Latest Product Views
-  description: From proposal execution and session boards to token analytics, workspace management, and achievement progress, the homepage now uses the latest curated screenshots maintained with the docs site.
+  title: Tampilan Produk Terbaru
+  description: Dari eksekusi proposal dan papan sesi hingga analitik token, manajemen ruang kerja, dan kemajuan pencapaian, beranda kini menggunakan tangkapan layar terkurasi terbaru yang dikelola bersama situs dokumentasi.
   controls:
-    previous: Previous
-    next: Next
-    current: Featured view
-    railLabel: Product screenshot navigation
-    selectPrefix: 'Switch to: '
-    activeState: Showing now
-    previewState: Preview
-    imageUnavailable: Image unavailable
-    openFullscreen: 'Open fullscreen: '
-    openFullscreenHint: Click to enlarge
-    closeFullscreen: Close fullscreen
+    previous: Sebelumnya
+    next: Berikutnya
+    current: Tampilan unggulan
+    railLabel: Navigasi tangkapan layar produk
+    selectPrefix: 'Beralih ke: '
+    activeState: Sedang ditampilkan
+    previewState: Pratinjau
+    imageUnavailable: Gambar tidak tersedia
+    openFullscreen: 'Buka layar penuh: '
+    openFullscreenHint: Klik untuk memperbesar
+    closeFullscreen: Tutup layar penuh
   screenshots:
     proposalWorkflow:
-      title: Proposal execution overview
-      description: Keep the workflow stage, execution result, and session context in one screen so teams can see exactly where a change stands before moving on.
-      alt: HagiCode proposal execution screenshot showing workflow stages, execution result, and session sidebar
+      title: Ringkasan eksekusi proposal
+      description: Pertahankan tahapan alur kerja, hasil eksekusi, dan konteks sesi dalam satu layar sehingga tim dapat melihat dengan tepat di mana posisi suatu perubahan sebelum melanjutkan.
+      alt: Tangkapan layar eksekusi proposal HagiCode yang menampilkan tahapan alur kerja, hasil eksekusi, dan bilah sisi sesi
     sessionBoard:
-      title: Session board and dungeon planning
-      description: Pending, in-progress, and archived sessions stay visible beside a fantasy task panel so parallel agent work is easy to scan at a glance.
-      alt: HagiCode session board screenshot showing pending, in-progress, and archived columns beside a fantasy task panel
+      title: Papan sesi dan perencanaan dungeon
+      description: Sesi tertunda, sedang berjalan, dan diarsip tetap terlihat di samping panel tugas fantasi sehingga pekerjaan agent paralel mudah dipindai dalam sekejap.
+      alt: Tangkapan layar papan sesi HagiCode yang menampilkan kolom tertunda, sedang berjalan, dan diarsip di samping panel tugas fantasi
     tokenAnalytics:
-      title: Real-time token analytics
-      description: Watch throughput, recent API activity, and total usage in one metrics surface so cost and pacing stay controllable during parallel execution.
-      alt: HagiCode token analytics screenshot showing throughput, recent API activity, and total usage
+      title: Analitik token secara langsung
+      description: Pantau throughput, aktivitas API terbaru, dan total penggunaan dalam satu permukaan metrik sehingga biaya dan kecepatan tetap terkendali selama eksekusi paralel.
+      alt: Tangkapan layar analitik token HagiCode yang menampilkan throughput, aktivitas API terbaru, dan total penggunaan
     workspaceManagement:
-      title: Workspace and vault management
-      description: Manage user vaults, system vaults, and code-server entry points from one control surface built for shared environments and fast maintenance.
-      alt: HagiCode workspace management screenshot showing user vaults, system vaults, and code-server actions
+      title: Manajemen ruang kerja dan brankas
+      description: Kelola brankas pengguna, brankas sistem, dan titik masuk code-server dari satu permukaan kontrol yang dirancang untuk lingkungan bersama dan pemeliharaan cepat.
+      alt: Tangkapan layar manajemen ruang kerja HagiCode yang menampilkan brankas pengguna, brankas sistem, dan tindakan code-server
     achievementProgress:
-      title: Achievement and growth progress
-      description: Daily progress, global growth, and lifecycle metrics roll into one dashboard so long-running adoption feels measurable instead of abstract.
-      alt: HagiCode achievement dashboard screenshot showing daily progress, global growth, and lifecycle metrics
+      title: Kemajuan pencapaian dan pertumbuhan
+      description: Kemajuan harian, pertumbuhan global, dan metrik siklus hidup digabungkan menjadi satu dasbor sehingga adopsi jangka panjang terasa terukur, bukan abstrak.
+      alt: Tangkapan layar dasbor pencapaian HagiCode yang menampilkan kemajuan harian, pertumbuhan global, dan metrik siklus hidup
 installOptions:
-  sectionTitle: Choose Your Installation Method
-  sectionDescription: Choose the most suitable installation method based on your usage scenario
+  sectionTitle: Pilih Metode Instalasi Anda
+  sectionDescription: Pilih metode instalasi yang paling sesuai berdasarkan skenario penggunaan Anda
   desktop:
-    title: Desktop App
-    description: Runs locally on your computer, lightweight and convenient, ready to use out of the box
+    title: Aplikasi Desktop
+    description: Berjalan secara lokal di komputer Anda, ringan dan nyaman, siap digunakan langsung
     features:
-      - Local execution, complete data privacy
-      - Supports Windows, macOS, and Linux
-      - No server configuration needed
-      - Auto updates, stay with latest version
-      - Suitable for individual developers
-    ctaText: Download Desktop App
+      - Eksekusi lokal, privasi data lengkap
+      - Mendukung Windows, macOS, dan Linux
+      - Tidak perlu konfigurasi server
+      - Pembaruan otomatis, tetap dengan versi terbaru
+      - Cocok untuk pengembang individu
+    ctaText: Unduh Aplikasi Desktop
   container:
-    title: Container Version
-    description: Deploy on servers, supports remote access, suitable for team collaboration
+    title: Versi Kontainer
+    description: Sebarkan di server, mendukung akses jarak jauh, cocok untuk kolaborasi tim
     features:
-      - Supports x86_64 architecture
-      - Environment isolation, doesn't affect system
-      - Supports Docker Compose Builder
-      - Data persistence, secure and reliable
-      - Suitable for production environments
-    ctaText: Container Deployment Guide
-  badge: Recommended
+      - Mendukung arsitektur x86_64
+      - Isolasi lingkungan, tidak memengaruhi sistem
+      - Mendukung Docker Compose Builder
+      - Persistensi data, aman dan andal
+      - Cocok untuk lingkungan produksi
+    ctaText: Panduan Penyebaran Kontainer
+  badge: Direkomendasikan
 desktopHero:
-  loading: Loading version information...
+  loading: Memuat informasi versi...
   error:
-    title: Cannot load version information
-    gotoDownload: Go to download page
-    redirectingToHistory: Unable to load desktop packages here. Redirecting to the Index version history...
+    title: Tidak dapat memuat informasi versi
+    gotoDownload: Buka halaman unduhan
+    redirectingToHistory: Tidak dapat memuat paket desktop di sini. Mengalihkan ke riwayat versi indeks...
   badge: Desktop
   title: Hagicode Desktop
-  tagline: Localized AI code assistant, privacy protection, enhanced efficiency
+  tagline: Asisten kode AI yang dilokalkan, perlindungan privasi, efisiensi yang ditingkatkan
   valuePoints:
-    local: 100% local execution, code never uploaded
-    fast: Millisecond-level response, no waiting
-    oneClick: One-click installation, ready to use
+    local: 100% eksekusi lokal, kode tidak pernah diunggah
+    fast: Respons milidetik, tanpa menunggu
+    oneClick: Instalasi satu klik, siap digunakan
   download:
-    ariaLabel: Download {platform} version
-    recommended: Recommended
-    unknown: Unknown error
-    openVersionHistory: Open version history
-    openContainerPage: Open Container page
-    macNotice: 'For macOS users: the Container edition is recommended at the moment.'
-  selectOtherVersions: Select other versions of {platform}
-  versionInfo: 'Current version: {version}'
+    ariaLabel: Unduh versi {platform}
+    recommended: Direkomendasikan
+    unknown: Kesalahan tidak diketahui
+    openVersionHistory: Buka riwayat versi
+    openContainerPage: Buka halaman Kontainer
+    macNotice: 'Untuk pengguna macOS: versi Kontainer direkomendasikan saat ini.'
+  selectOtherVersions: Pilih versi lain dari {platform}
+  versionInfo: 'Versi saat ini: {version}'
   testVersion: ' (Beta)'
   channels:
-    stable: Stable
+    stable: Stabil
     beta: Beta
   betaWarning:
-    title: Beta Version Warning
-    description: This is a beta version and may be unstable. Recommended for testing only. Please use the stable version for production environments.
+    title: Peringatan Versi Beta
+    description: Ini adalah versi beta dan mungkin tidak stabil. Direkomendasikan hanya untuk pengujian. Gunakan versi stabil untuk lingkungan produksi.
   features:
-    privacy: 🔒 Privacy Protection
-    fast: ⚡ Fast Response
-    crossPlatform: 💻 Cross-Platform Support
+    privacy: 🔒 Perlindungan Privasi
+    fast: ⚡ Respons Cepat
+    crossPlatform: 💻 Dukungan Lintas Platform
   steam:
-    description: The Steam edition supports Steam features including Cloud Saves and the Workshop. Click to open on Steam.
-    ariaLabel: Open Hagicode on Steam
+    description: Edisi Steam mendukung fitur Steam termasuk Cloud Saves dan Workshop. Klik untuk membuka di Steam.
+    ariaLabel: Buka Hagicode di Steam
   downloadActions:
     torrent: Torrent
   assetTypes:
-    windowsSetup: Installer
-    windowsPortable: Portable
+    windowsSetup: Penginstal
+    windowsPortable: Portabel
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
     macosIntel: Intel
@@ -192,37 +192,37 @@ desktopHero:
     linuxArm64AppImage: AppImage (ARM64)
     linuxTarball: Tarball (x64)
     linuxArm64Tarball: Tarball (ARM64)
-    source: Source code
-    other: Other
+    source: Kode sumber
+    other: Lainnya
 productHuntBadge:
-  eyebrow: Trusted by early adopters
-  title: See Hagicode on Product Hunt
-  linkLabel: Open Hagicode on Product Hunt
-  cta: View the Product Hunt listing
+  eyebrow: Dipercaya oleh pengguna awal
+  title: Lihat Hagicode di Product Hunt
+  linkLabel: Buka Hagicode di Product Hunt
+  cta: Lihat daftar Product Hunt
 promote:
-  badgeFallback: Promoted
-  closeLabel: Dismiss promotion
-  ariaLabel: Promotion
+  badgeFallback: Dipromosikan
+  closeLabel: Tutup promosi
+  ariaLabel: Promosi
 pageMeta:
   home:
-    title: Hagicode - Smart · Efficient · Fun AI Coding Assistant
-    description: Redefine coding with AI. OpenSpec workflows, multi-agent multi-instance execution, and Hero Dungeon gameplay make building faster and more engaging
+    title: Hagicode - Cerdas · Efisien · Menyenangkan Asisten Koding AI
+    description: Tentukan ulang koding dengan AI. Alur kerja OpenSpec, eksekusi multi-agent multi-instan, dan gameplay Hero Dungeon membuat pembangunan lebih cepat dan menarik
   desktop:
-    title: Hagicode Desktop - Download
-    description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
-    runtimeFallbackLabel: Fallback
-    runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
+    title: Hagicode Desktop - Unduh
+    description: Unduh Hagicode Desktop, asisten kode AI yang dilokalkan. Mendukung Windows, macOS, dan Linux. Perlindungan privasi, respons cepat.
+    runtimeFallbackLabel: Alternatif
+    runtimeFallbackCopy: 'Jika pemuatan paket gagal di sini, halaman ini mengalihkan ke riwayat versi Desktop indeks kanonik:'
   container:
-    title: Hagicode Container - Docker Deployment
-    description: Deploy Hagicode with Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and automatic updates.
-    faqHelp: If the issue persists, please check the <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">detailed documentation</a> or contact technical support.
+    title: Hagicode Container - Penyebaran Docker
+    description: Sebarkan Hagicode dengan Docker Compose Builder. Konfigurasi sederhana, siap digunakan. Mendukung berbagai sumber image dan pembaruan otomatis.
+    faqHelp: Jika masalah berlanjut, silakan periksa <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">dokumentasi terperinci</a> atau hubungi dukungan teknis.
 commonActions:
-  retry: Retry
-  unavailable: Unavailable
-  noExtraSource: No extra source
-  moreDownloads: More downloads
-  moreVersions: More versions
-  package: Package
+  retry: Coba Lagi
+  unavailable: Tidak Tersedia
+  noExtraSource: Tidak ada sumber tambahan
+  moreDownloads: Lebih banyak unduhan
+  moreVersions: Lebih banyak versi
+  package: Paket
   platform: Platform
-  china: China
-  default: Default
+  china: Tiongkok
+  default: Bawaan

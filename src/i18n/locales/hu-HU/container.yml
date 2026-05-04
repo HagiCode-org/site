@@ -1,125 +1,125 @@
 container:
-  title: Hagicode Container - Container Deployment
-  description: Deploy Hagicode via Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and auto updates.
+  title: Hagicode Container - Konténer telepítés
+  description: Telepítsd a Hagicode-ot Docker Compose Builderrel. Egyszerű konfiguráció, azonnal használható. Több lemezkép-forrás és automatikus frissítések támogatása.
   hero:
-    badge: Container
+    badge: Konténer
     title: Hagicode Container
-    tagline: Deploy quickly with Docker Compose Builder, simple configuration, ready to use
-    value1: Visual configuration, no coding required
-    value2: Environment isolation, data security
-    value3: One-click deployment, fast startup
-    ctaButton: Deploy with Docker Compose Builder
+    tagline: Gyors telepítés Docker Compose Builderrel, egyszerű konfiguráció, azonnal használható
+    value1: Vizuális konfiguráció, nincs szükség kódolásra
+    value2: Környezeti izoláció, adatbiztonság
+    value3: Egykattintásos telepítés, gyors indítás
+    ctaButton: Telepítés Docker Compose Builderrel
     features:
-      isolation: Environment Isolation
-      oneClick: One-Click Deployment
-      fastStart: Fast Startup
+      isolation: Környezeti izoláció
+      oneClick: Egykattintásos telepítés
+      fastStart: Gyors indítás
   features:
-    title: Why Choose Container Deployment?
+    title: Miért érdemes a konténer telepítést választani?
     isolation:
-      title: Environment Isolation
-      description: Containerized deployment avoids dependency conflicts, doesn't affect system environment, keeps system clean
+      title: Környezeti izoláció
+      description: A konténerizált telepítés elkerüli a függőségi ütközéseket, nem befolyásolja a rendszerkörnyezetet, tisztán tartja a rendszert
     simple:
-      title: Simple Configuration
-      description: Use Docker Compose Builder for visual configuration, no need to write complex scripts
+      title: Egyszerű konfiguráció
+      description: Használd a Docker Compose Buildert vizuális konfigurációhoz, nem kell bonyolult szkripteket írni
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports x86_64 architecture, suitable for various servers and cloud platforms
+      title: Többplatformos támogatás
+      description: x86_64 architektúra támogatás, különféle szerverekhez és felhőplatformokhoz alkalmas
     persistent:
-      title: Data Persistence
-      description: Supports Volume mounting, secure and reliable data, no data loss on container restart
+      title: Adatmegőrzés
+      description: Volume csatolás támogatása, biztonságos és megbízható adatok, nincs adatvesztés a konténer újraindításakor
     autoUpdate:
-      title: Auto Updates
-      description: Supports watchtower for automatic updates, easily get the latest version
+      title: Automatikus frissítések
+      description: Watchtower támogatás automatikus frissítésekhez, könnyen hozzáférhetsz a legújabb verzióhoz
     productionReady:
-      title: Production Ready
-      description: Designed for production environments, supports high availability and horizontal scaling
+      title: Termelésre kész
+      description: Termelési környezetekhez tervezve, támogatja a magas rendelkezésre állást és a vízszintes skálázást
   builder:
     title: Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
+    subtitle: A legegyszerűbb és leginkább ajánlott konténer telepítési módszer
     visual:
-      title: Visual Configuration
-      description: Configure all parameters through a friendly Web interface, no need to manually edit YAML files
+      title: Vizuális konfiguráció
+      description: Állíts be minden paramétert egy barátságos webes felületen keresztül, nem kell manuálisan szerkeszteni a YAML fájlokat
     generate:
-      title: One-Click Configuration Generation
-      description: Automatically generate complete docker-compose.yml files with best practice configurations
+      title: Egykattintásos konfiguráció generálás
+      description: Automatikusan generál teljes docker-compose.yml fájlokat a legjobb gyakorlatok konfigurációival
     deploy:
-      title: Fast Deployment
-      description: One-click download configuration files and start services, complete deployment in minutes
+      title: Gyors telepítés
+      description: Egy kattintással töltsd le a konfigurációs fájlokat és indítsd el a szolgáltatásokat, végezd el a telepítést percek alatt
     secure:
-      title: Secure and Reliable
-      description: Built-in security best practices, automatically configures data volumes and restart policies
-    ctaButton: Go to Docker Compose Builder
+      title: Biztonságos és megbízható
+      description: Beépített biztonsági legjobb gyakorlatok, automatikusan konfigurálja az adatköteteket és az újraindítási szabályokat
+    ctaButton: Ugrás a Docker Compose Builderhez
   mirrors:
-    title: Image Source Selection
-    description: Choose the most suitable image source based on your network environment and location
+    title: Lemezkép-forrás kiválasztása
+    description: Válaszd a legmegfelelőbb lemezkép-forrást a hálózati környezeted és helyzeted alapján
     dockerHub: Docker Hub
-    dockerHubDesc: The world's largest container image registry, suitable for international network users
+    dockerHubDesc: A világ legnagyobb konténer lemezkép-nyilvántartója, nemzetközi hálózati felhasználóknak megfelelő
     dockerHubCmd: newbe36524/hagicode:0
     azure: Azure ACR
-    azureDesc: Microsoft Azure's image service, faster access from China
+    azureDesc: Microsoft Azure lemezkép-szolgáltatás, Kínából gyorsabb hozzáféréssel
     azureCmd: hagicode.azurecr.io/hagicode:0
     aliyun: Aliyun ACR
-    aliyunDesc: Aliyun's domestic image acceleration, recommended for users in mainland China
+    aliyunDesc: Aliyun belföldi lemezkép-gyorsítás, Kína szárazföldi felhasználóknak ajánlott
     aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
   faq:
-    title: FAQ
+    title: GYIK
     q1:
-      question: What's the difference between Container and Desktop versions?
-      intro: 'Both versions have their advantages. You can choose based on your usage scenario:'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      containerTitle: Container Version
-      container1: Can be deployed on servers, supports remote access
-      container2: Environment isolation, doesn't affect system environment
-      container3: Better suited for team collaboration and production environments
-      container4: Supports automated deployment and horizontal scaling
+      question: Mi a különbség a konténer és az asztali verzió között?
+      intro: 'Mindkét verziónak megvannak az előnyei. A használati eseted alapján választhatsz:'
+      desktopTitle: Asztali verzió
+      desktop1: Helyileg fut a számítógépeden, könnyebb
+      desktop2: Nincs szükség szerverkonfigurációra, azonnal használható
+      desktop3: Egyéni fejlesztőknek és könnyű használati esetekhez alkalmas
+      desktop4: Minden adat teljesen helyi
+      containerTitle: Konténer verzió
+      container1: Szervereken telepíthető, támogatja a távoli hozzáférést
+      container2: Környezeti izoláció, nem befolyásolja a rendszerkörnyezetet
+      container3: Jobban alkalmas csapatmunkához és termelési környezetekhez
+      container4: Támogatja az automatizált telepítést és vízszintes skálázást
     q2:
-      question: What is Docker Compose Builder?
-      intro: 'Docker Compose Builder is our visual configuration tool that helps you:'
-      point1: Configure all container parameters through a Web interface
-      point2: Automatically generate docker-compose.yml files
-      point3: Built-in best practices and security configurations
-      point4: One-click download and start services
-      note: No need to manually write complex YAML configurations. Even Docker beginners can deploy easily.
+      question: Mi az a Docker Compose Builder?
+      intro: 'A Docker Compose Builder a vizuális konfigurációs eszközünk, amely segít neked:'
+      point1: Minden konténer paramétert beállítani egy webes felületen keresztül
+      point2: Automatikusan docker-compose.yml fájlokat generálni
+      point3: Beépített legjobb gyakorlatok és biztonsági konfigurációk
+      point4: Egy kattintással letölteni és elindítani a szolgáltatásokat
+      note: Nem kell manuálisan bonyolult YAML konfigurációkat írni. Még a Docker kezdők is könnyen telepíthetnek.
     q3:
-      question: Which system architectures does the container version support?
-      answer: Hagicode container images currently support <strong>x86_64 (amd64)</strong> architecture, suitable for most servers and PCs.
-      note: Docker will automatically select the appropriate architecture for your system when pulling images.
+      question: Milyen rendszerarchitektúrákat támogat a konténer verzió?
+      answer: A Hagicode konténer lemezképek jelenleg az <strong>x86_64 (amd64)</strong> architektúrát támogatják, amely a legtöbb szerverhez és PC-hez megfelelő.
+      note: A Docker automatikusan kiválasztja a megfelelő architektúrát a rendszerednek a lemezképek lekérésekor.
     q4:
-      question: How to update the container?
-      intro: 'When using Docker Compose deployment, updating is very simple:'
+      question: Hogyan frissíteni a konténert?
+      intro: 'Amikor Docker Compose telepítést használsz, a frissítés nagyon egyszerű:'
       code: |-
         docker-compose pull
         docker-compose up -d
-      watchtower: Or use Watchtower for automatic updates.
+      watchtower: Vagy használj Watchtowert automatikus frissítésekhez.
     q5:
-      question: How to configure data persistence?
-      intro: 'Docker Compose Builder automatically configures data volumes. By default, your data will be stored in Docker Volumes, ensuring:'
-      point1: Data is not lost when containers are deleted
-      point2: Data is preserved during container upgrades
-      point3: Easy backup and recovery
+      question: Hogyan beállítani az adatmegőrzést?
+      intro: 'A Docker Compose Builder automatikusan konfigurálja az adatköteteket. Alapértelmezés szerint az adataid Docker Volumes-ben lesznek tárolva, biztosítva:'
+      point1: Az adatok nem vesznek el, ha a konténereket törlik
+      point2: Az adatok megmaradnak a konténer frissítések során
+      point3: Egyszerű biztonsági mentés és helyreállítás
     q6:
-      question: What to do if container startup fails?
-      intro: 'Steps to troubleshoot container startup failure:'
+      question: Mit tegyünk, ha a konténer nem indul el?
+      intro: 'Lépések a konténer indítási hiba elhárításához:'
       step1:
-        title: 'Check container status:'
+        title: 'Ellenőrizd a konténer állapotát:'
         code: docker-compose ps
       step2:
-        title: 'Check container logs:'
+        title: 'Ellenőrizd a konténer naplóit:'
         code: docker-compose logs hagicode
       step3:
-        title: 'Check port occupancy:'
-        desc: 'If your service port is 3000, use this command to check:'
+        title: 'Ellenőrizd a portfoglaltságot:'
+        desc: 'Ha a szolgáltatás portja 3000, használd ezt a parancsot az ellenőrzéshez:'
         code: netstat -tlnp | grep 3000
-        solution: 'If the port is occupied, you can:'
-        solution1: Stop the process occupying the port
-        solution2: Or configure a different port in Docker Compose Builder
-      help: If the issue persists, please check the detailed documentation or contact technical support.
+        solution: 'Ha a port foglalt, akkor:'
+        solution1: Állítsd le a portot foglaló folyamatot
+        solution2: Vagy állíts be másik portot a Docker Compose Builderben
+      help: Ha a probléma továbbra is fennáll, ellenőrizd a részletes dokumentációt, vagy vedd fel a kapcsolatot a technikai támogatással.
   cta:
-    title: Start Using Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
-    button: Go to Deployment Guide
-    github: GitHub Repository
+    title: Kezdd el használni a Docker Compose Buildert
+    subtitle: A legegyszerűbb és leginkább ajánlott konténer telepítési módszer
+    button: Ugrás a telepítési útmutatóhoz
+    github: GitHub tároló

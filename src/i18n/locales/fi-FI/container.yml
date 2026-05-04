@@ -1,125 +1,125 @@
 container:
-  title: Hagicode Container - Container Deployment
-  description: Deploy Hagicode via Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and auto updates.
+  title: Hagicode Container - Konttikerääminen
+  description: Ota Hagicode käyttöön Docker Compose Builderilla. Yksinkertainen määritys, käyttövalmis. Tukee useita levykuvan lähteitä ja automaattisia päivityksiä.
   hero:
-    badge: Container
+    badge: Kontti
     title: Hagicode Container
-    tagline: Deploy quickly with Docker Compose Builder, simple configuration, ready to use
-    value1: Visual configuration, no coding required
-    value2: Environment isolation, data security
-    value3: One-click deployment, fast startup
-    ctaButton: Deploy with Docker Compose Builder
+    tagline: Nopea käyttöönotto Docker Compose Builderilla, yksinkertainen määritys, käyttövalmis
+    value1: Visuaalinen määritys, ei koodausta
+    value2: Ympäristöeristys, tietoturva
+    value3: Yhden klikkauksen käyttöönotto, nopea käynnistys
+    ctaButton: Ota käyttöön Docker Compose Builderilla
     features:
-      isolation: Environment Isolation
-      oneClick: One-Click Deployment
-      fastStart: Fast Startup
+      isolation: Ympäristöeristys
+      oneClick: Yhden klikkauksen käyttöönotto
+      fastStart: Nopee käynnistys
   features:
-    title: Why Choose Container Deployment?
+    title: Miksi valita konttikäyttöönotto?
     isolation:
-      title: Environment Isolation
-      description: Containerized deployment avoids dependency conflicts, doesn't affect system environment, keeps system clean
+      title: Ympäristöeristys
+      description: Kontitettu käyttöönotto välttää riippuvuusristiriidat, ei vaikuta järjestelmäympäristöön, pitää järjestelmän puhtaana
     simple:
-      title: Simple Configuration
-      description: Use Docker Compose Builder for visual configuration, no need to write complex scripts
+      title: Yksinkertainen määritys
+      description: Käytä Docker Compose Builderia visuaaliseen määritykseen, ei tarvitse kirjoittaa monimutkaisia skriptejä
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports x86_64 architecture, suitable for various servers and cloud platforms
+      title: Monialustatuki
+      description: Tukee x86_64-arkkitehtuuria, sopii erilaisille palvelimille ja pilvialustoille
     persistent:
-      title: Data Persistence
-      description: Supports Volume mounting, secure and reliable data, no data loss on container restart
+      title: Tietojen pysyvyys
+      description: Tukea Volume-liitoksia, turvalliset ja luotettavat tiedot, ei tietojen häviämistä kontin uudelleenkäynnistyksessä
     autoUpdate:
-      title: Auto Updates
-      description: Supports watchtower for automatic updates, easily get the latest version
+      title: Automaattiset päivitykset
+      description: Tukee Watchtoweria automaattisiin päivityksiin, saat helposti uusimman version
     productionReady:
-      title: Production Ready
-      description: Designed for production environments, supports high availability and horizontal scaling
+      title: Tuotantovalmis
+      description: Suunniteltu tuotantoympäristöihin, tukee korkeaa saatavuutta ja vaakasuuntaista skaalausta
   builder:
     title: Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
+    subtitle: Yksinkertaisin ja suositelluin konttikäyttöönoton menetelmä
     visual:
-      title: Visual Configuration
-      description: Configure all parameters through a friendly Web interface, no need to manually edit YAML files
+      title: Visuaalinen määritys
+      description: Määritä kaikki parametrit käyttäjäystävällisen Web-käyttöliittymän kautta, ei tarvitse muokata YAML-tiedostoja manuaalisesti
     generate:
-      title: One-Click Configuration Generation
-      description: Automatically generate complete docker-compose.yml files with best practice configurations
+      title: Yhden klikkauksen määrityksen luonti
+      description: Luo automaattisesti täydelliset docker-compose.yml-tiedostot parhaiden käytäntöjen määrityksillä
     deploy:
-      title: Fast Deployment
-      description: One-click download configuration files and start services, complete deployment in minutes
+      title: Nopea käyttöönotto
+      description: Lataa määritystiedostot yhdellä klikkauksella ja käynnistä palvelut, suorita käyttöönotto minuuteissa
     secure:
-      title: Secure and Reliable
-      description: Built-in security best practices, automatically configures data volumes and restart policies
-    ctaButton: Go to Docker Compose Builder
+      title: Turvallinen ja luotettava
+      description: Sisäänrakennetut tietoturvan parhaat käytännöt, määrittää automaattisesti tietoasemat ja uudelleenkäynnistyskäytännöt
+    ctaButton: Siirry Docker Compose Builderiin
   mirrors:
-    title: Image Source Selection
-    description: Choose the most suitable image source based on your network environment and location
+    title: Levykuvan lähteen valinta
+    description: Valitse sopivin levykuvan lähde verkkoympäristösi ja sijaintisi perusteella
     dockerHub: Docker Hub
-    dockerHubDesc: The world's largest container image registry, suitable for international network users
+    dockerHubDesc: Maailman suurin konttilevykuvan rekisteri, sopii kansainvälisen verkon käyttäjille
     dockerHubCmd: newbe36524/hagicode:0
     azure: Azure ACR
-    azureDesc: Microsoft Azure's image service, faster access from China
+    azureDesc: Microsoft Azuren levykuvaluonti, nopeampi pääsy Kiinasta
     azureCmd: hagicode.azurecr.io/hagicode:0
     aliyun: Aliyun ACR
-    aliyunDesc: Aliyun's domestic image acceleration, recommended for users in mainland China
+    aliyunDesc: Aliyunin kotimainen levykuvan kiihdytys, suositeltu Manner-Kiinan käyttäjille
     aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
   faq:
-    title: FAQ
+    title: UKK
     q1:
-      question: What's the difference between Container and Desktop versions?
-      intro: 'Both versions have their advantages. You can choose based on your usage scenario:'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      containerTitle: Container Version
-      container1: Can be deployed on servers, supports remote access
-      container2: Environment isolation, doesn't affect system environment
-      container3: Better suited for team collaboration and production environments
-      container4: Supports automated deployment and horizontal scaling
+      question: Mikä ero on kontti- ja työpöytäversioiden välillä?
+      intro: 'Molemmilla versioilla on omat etunsa. Voit valita käyttötapahtumasi mukaan:'
+      desktopTitle: Työpöytäversio
+      desktop1: Suoritetaan paikallisesti tietokoneellasi, kevyempi
+      desktop2: Ei palvelinmäärityksiä tarvita, käyttövalmis suoraan
+      desktop3: Sopii yksittäisille kehittäjille ja kevyteen käyttöön
+      desktop4: Kaikki tiedot täysin paikallisia
+      containerTitle: Konttiversio
+      container1: Voidaan ottaa käyttöön palvelimilla, tukee etäyhteyksiä
+      container2: Ympäristöeristys, ei vaikuta järjestelmäympäristöön
+      container3: Sopii paremmin tiimityöhön ja tuotantoympäristöihin
+      container4: Tukee automatisoitua käyttöönottoa ja vaakasuuntaista skaalausta
     q2:
-      question: What is Docker Compose Builder?
-      intro: 'Docker Compose Builder is our visual configuration tool that helps you:'
-      point1: Configure all container parameters through a Web interface
-      point2: Automatically generate docker-compose.yml files
-      point3: Built-in best practices and security configurations
-      point4: One-click download and start services
-      note: No need to manually write complex YAML configurations. Even Docker beginners can deploy easily.
+      question: Mikä on Docker Compose Builder?
+      intro: 'Docker Compose Builder on visuaalinen määritystyökalumme, joka auttaa sinua:'
+      point1: Määrittämään kaikki konttiparametrit Web-käyttöliittymän kautta
+      point2: Generoimaan automaattisesti docker-compose.yml-tiedostoja
+      point3: Sisäänrakennetut parhaat käytännöt ja tietoturvamääritykset
+      point4: Lataamaan ja käynnistämään palvelut yhdellä klikkauksella
+      note: Ei tarvitse kirjoittaa monimutkaisia YAML-määrityksiä manuaalisesti. Myös Dockerin aloittelijat voivat ottaa käyttöön helposti.
     q3:
-      question: Which system architectures does the container version support?
-      answer: Hagicode container images currently support <strong>x86_64 (amd64)</strong> architecture, suitable for most servers and PCs.
-      note: Docker will automatically select the appropriate architecture for your system when pulling images.
+      question: Mitä järjestelmäarkkitehtuureja konttiversio tukee?
+      answer: Hagicode-konttilevykuvat tukevat tällä hetkellä <strong>x86_64 (amd64)</strong>-arkkitehtuuria, joka sopii useimmille palvelimille ja tietokoneille.
+      note: Docker valitsee automaattisesti oikean arkkitehtuurin järjestelmällesi kuvia noudettaessa.
     q4:
-      question: How to update the container?
-      intro: 'When using Docker Compose deployment, updating is very simple:'
+      question: Kuinka päivittää kontti?
+      intro: 'Kun käytät Docker Compose -käyttöönottoa, päivittäminen on hyvin yksinkertaista:'
       code: |-
         docker-compose pull
         docker-compose up -d
-      watchtower: Or use Watchtower for automatic updates.
+      watchtower: Tai käytä Watchtoweria automaattisiin päivityksiin.
     q5:
-      question: How to configure data persistence?
-      intro: 'Docker Compose Builder automatically configures data volumes. By default, your data will be stored in Docker Volumes, ensuring:'
-      point1: Data is not lost when containers are deleted
-      point2: Data is preserved during container upgrades
-      point3: Easy backup and recovery
+      question: Kuin määrittää tietojen pysyvyyden?
+      intro: 'Docker Compose Builder määrittää automaattisesti tietoasemat. Oletuksena tietosi tallennetaan Docker Volumes -asemiin, varmistaen:'
+      point1: Tiedot eivät katoa, kun kontit poistetaan
+      point2: Tiedot säilyvät konttipäivitysten aikana
+      point3: Helppo varmuuskopiointi ja palautus
     q6:
-      question: What to do if container startup fails?
-      intro: 'Steps to troubleshoot container startup failure:'
+      question: Mitä tehdä, jos kontin käynnistys epäonnistuu?
+      intro: 'Vaiheet kontin käynnistysongelman ratkaisemiseksi:'
       step1:
-        title: 'Check container status:'
+        title: 'Tarkista kontin tila:'
         code: docker-compose ps
       step2:
-        title: 'Check container logs:'
+        title: 'Tarkista kontin lokit:'
         code: docker-compose logs hagicode
       step3:
-        title: 'Check port occupancy:'
-        desc: 'If your service port is 3000, use this command to check:'
+        title: 'Tarkista portin käyttö:'
+        desc: 'Jos palvelusi portti on 3000, käytä tätä komentoa tarkistaaksesi:'
         code: netstat -tlnp | grep 3000
-        solution: 'If the port is occupied, you can:'
-        solution1: Stop the process occupying the port
-        solution2: Or configure a different port in Docker Compose Builder
-      help: If the issue persists, please check the detailed documentation or contact technical support.
+        solution: 'Jos portti on varattu, voit:'
+        solution1: Pysäyttää portin varaavan prosessin
+        solution2: Tai määrittää eri portin Docker Compose Builderissa
+      help: Jos ongelma jatkuu, tarkista yksityiskohtainen dokumentaatio tai ota yhteyttä tekniseen tukeen.
   cta:
-    title: Start Using Docker Compose Builder
-    subtitle: The simplest and recommended container deployment method
-    button: Go to Deployment Guide
-    github: GitHub Repository
+    title: Aloita Docker Compose Builderin käyttö
+    subtitle: Yksinkertaisin ja suositelluin konttikäyttöönoton menetelmä
+    button: Siirry käyttöönotto-oppaaseen
+    github: GitHub-repositorio

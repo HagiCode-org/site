@@ -1,126 +1,126 @@
 hero:
-  tagline: Boost development efficiency with AI-powered coding tools
-  description: HagiCode helps developers focus on code, not repetitive work
-  ctaButton: Get Started
+  tagline: Zvyšte efektivitu vývoje pomocí AI nástrojů pro kódování
+  description: HagiCode pomáhá vývojářům soustředit se na kód, ne na opakující se práci
+  ctaButton: Začít
   taglines:
-    smart: Smart · Efficient · Fun
-    aiDriven: AI Orchestrated · Multi-Agent Parallel
-    openspec: OpenSpec · Workflow Revolution
+    smart: Chytrý · Efektivní · Zábavný
+    aiDriven: AI orcherstrovaný · Multi-Agent paralelní
+    openspec: OpenSpec · Revoluce pracovního postupu
     multiThread: Multi-Agent · Multi-Instance
   lunarTaglines:
-    happyNewYear: Happy New Year · Year of the Horse
-    aiPowered: AI Empowered · Code to Success
-    smartCoding: Smart Coding · Best Wishes
-    openspecLuck: OpenSpec · Prosperity and Success
-    efficiency: Double Efficiency · Good Fortune
-  problem: Traditional AI coding tools have
-  painPoint: pain points
-  painPoints: ': limited context, messy sessions, lack of collaboration.'
-  solution: Hagicode redefines AI coding experience with
+    happyNewYear: Šťastný nový rok · Rok koně
+    aiPowered: AI posílený · Kód k úspěchu
+    smartCoding: Chytré kódování · Vše nejlepší
+    openspecLuck: OpenSpec · Prosperita a úspěch
+    efficiency: Dvojnásobná efektivita · Štěstí
+  problem: Tradiční AI nástroje pro kódování mají
+  painPoint: problematická místa
+  painPoints: ': omezený kontext, nepřehledné relace, nedostatek spolupráce.'
+  solution: Hagicode předefinovává zážitek z AI kódování pomocí
   features:
-    - OpenSpec workflow
-    - multi-agent multi-instance execution
-    - Hero Dungeon gameplay
+    - OpenSpec pracovní postup
+    - multi-agent multi-instance provádění
+    - Hero Dungeon hratelnost
   redefine: .
   valueCards:
     smart:
-      title: Smart
-      description: OpenSpec moves ideas into execution faster.
+      title: Chytrý
+      description: OpenSpec přesouvá nápady do provedení rychleji.
     efficient:
-      title: Efficient
-      description: Multi-agent execution turns waiting into throughput.
+      title: Efektivní
+      description: Multi-agent provádění mění čekání na propustnost.
     interesting:
-      title: Interesting
-      description: Hero Dungeon makes teamwork and practice feel like an adventure.
+      title: Zajímavý
+      description: Hero Dungeon dělá týmovou práci a praxi dobrodružstvím.
   buttons:
-    desktopApp: Install Desktop App
-    containerApp: Install Container App
-    learnMore: Learn More
+    desktopApp: Nainstalovat desktopovou aplikaci
+    containerApp: Nainstalovat kontejnerovou aplikaci
+    learnMore: Další informace
   techStack:
-    poweredBy: Powered by
+    poweredBy: Poháněno
   qqGroup:
-    title: Join Technical Support Group
-    description: Hagicode Technical Support QQ Group
-    joinButton: Join Now
-  secondaryLine: Hagicode supports mainstream agents, doubles parallel management efficiency, and reduces hallucinations with OpenSpec.
+    title: Připojte se ke skupině technické podpory
+    description: Skupina technické podpory Hagicode QQ
+    joinButton: Připojit se nyní
+  secondaryLine: Hagicode podporuje běžné agenty, zdvojnásobuje efektivitu paralelní správy a snižuje halucinace pomocí OpenSpec.
 features:
   showcase:
-    title: Three Core Features
-    subtitle: Redefine your AI coding experience
+    title: Tři klíčové funkce
+    subtitle: Předefinujte svůj zážitek z AI kódování
   smart:
-    badge: SMART
-    title: Smart
-    subtitle: OpenSpec workflow, boost AI coding efficiency
-    efficiency: Efficiency Boost
-    traditional: Traditional
+    badge: CHYTRÝ
+    title: Chytrý
+    subtitle: Pracovní postup OpenSpec, zvyšte efektivitu AI kódování
+    efficiency: Zvýšení efektivity
+    traditional: Tradiční
     hagicode: Hagicode
-    description: A complete 9-stage proposal workflow from idea to archive, with AI assistance throughout. Boost your coding efficiency by 3x.
+    description: Kompletní 9-fázový pracovní postup návrhů od nápadu po archivaci, s asistencí AI po celou dobu. Zvýšte svou efektivitu kódování 3x.
     workflow:
       idea:
-        label: Idea
-        desc: Start from idea
+        label: Nápad
+        desc: Začněte od nápadu
       proposal:
-        label: Proposal
-        desc: AI generates proposal
+        label: Návrh
+        desc: AI generuje návrh
       review:
-        label: Review
-        desc: Auto review
+        label: Revize
+        desc: Automatická revize
       tasks:
-        label: Tasks
-        desc: Task breakdown
+        label: Úkoly
+        desc: Rozdělení úkolů
       code:
-        label: Code
-        desc: Smart coding
+        label: Kód
+        desc: Chytré kódování
       test:
         label: Test
-        desc: Auto testing
+        desc: Automatické testování
       refactor:
-        label: Refactor
-        desc: Code refactor
+        label: Refaktoring
+        desc: Refaktoring kódu
       docs:
-        label: Docs
-        desc: Docs generation
+        label: Dokumentace
+        desc: Generování dokumentace
       archive:
-        label: Archive
-        desc: Knowledge archive
-    paused: Paused - Click node to switch
+        label: Archivace
+        desc: Archivace znalostí
+    paused: Pozastaveno - Klikněte na uzel pro přepnutí
   convenient:
-    badge: EFFICIENT
-    title: Efficient
-    subtitle: Multi-agent, multi-instance execution that keeps your quota moving
-    traditional: Traditional single-agent / single-instance
-    multiThread: Multi-agent parallel matrix
-    boost: Throughput Boost
-    boostValue: 10x+ parallel
-    description: Current supported Agent CLIs such as Claude Code, Codex, GitHub Copilot, OpenCode, and Hermes can work across multiple instances at the same time, so proposals, fixes, and reviews move in parallel instead of waiting in a serial queue.
+    badge: EFEKTIVNÍ
+    title: Efektivní
+    subtitle: Multi-agent, multi-instance provádění, které udržuje vaši kvótu v pohybu
+    traditional: Tradiční jeden agent / jedna instance
+    multiThread: Multi-agent paralelní matice
+    boost: Zvýšení propustnosti
+    boostValue: 10x+ paralelně
+    description: Aktuálně podporované Agent CLIs jako Claude Code, Codex, GitHub Copilot, OpenCode a Hermes mohou pracovat napříč více instancemi ve stejnou dobu, takže návrhy, opravy a revize postupují paralelně místo čekání v sériové frontě.
     agentMatrix:
-      title: Parallel execution matrix
-      badge: Multiple agents / multiple instances
-      status: Multiple agents are driving multiple instances right now
+      title: Matice paralelního provedení
+      badge: Více agentů / více instancí
+      status: Více agentů právě řídí více instancí
       agents:
         claude:
           name: Claude Code
-          role: Proposal / review
+          role: Návrh / revize
           instances:
-            - Draft spec
-            - Check design
-            - Archive review
+            - Koncept specifikace
+            - Kontrola designu
+            - Archivační revize
         codex:
           name: Codex
-          role: Implementation / fixes
+          role: Implementace / opravy
           instances:
-            - Build feature A
-            - Build feature B
-            - Regression fix
+            - Vytvořit funkci A
+            - Vytvořit funkci B
+            - Oprava regrese
         router:
           name: Qwen · GLM
-          role: Analysis / support
+          role: Analýza / podpora
           instances:
-            - Trace issue
-            - Polish copy
-            - Capture insights
+            - Sledování problému
+            - Úprava textu
+            - Zachycení poznatků
       supportedNames:
-        title: 11 currently supported Agent CLIs
+        title: 11 aktuálně podporovaných Agent CLIs
         names:
           - Claude Code
           - Codex
@@ -133,207 +133,207 @@ features:
           - Gemini
           - DeepAgents
           - Codebuddy
-    supportedProvidersNote: OpenCode can load the shared OmniRoute catalog into hero model defaults while keeping custom raw model identifiers editable for branch-specific workflows.
+    supportedProvidersNote: OpenCode může načíst sdílený katalog OmniRoute do výchozích nastavení hrdinských modelů, zatímco zachová vlastní surové identifikátory modelů editovatelné pro pracovní postupy specifické pro danou větev.
   interesting:
-    badge: INTERESTING
-    title: Fun
-    subtitle: Hero Dungeon makes campus collaboration and practice feel alive
+    badge: ZAJÍMAVÝ
+    title: Zábavný
+    subtitle: Hero Dungeon dělá kampusovou spolupráci a praxi živou
     features:
       dungeons:
         label: Hero Dungeons
-        desc: Turn generation, execution, and prompt workbenches into dungeon runs
+        desc: Proměňte generování, provádění a prompt workbenches v dungeonové běhy
       captains:
-        label: Captain Roster
-        desc: Assign the right hero captain to each dungeon
+        label: Seznam kapitánů
+        desc: Přiřaďte správného hrdinu kapitána ke každé kobce
       battle:
-        label: Battle Reports
-        desc: Review XP, levels, and execution results after each push
-    description: Fun no longer depends on achievement badges. Hero Dungeon, captain rosters, prompt visuals, and battle reports turn daily AI coding practice into a workflow that feels more like a coordinated adventure for campus labs and student teams.
+        label: Bojové zprávy
+        desc: Zkontrolujte XP, úrovně a výsledky provedení po každém tlačení
+    description: Zábava už nezávisí na odznacích úspěchů. Hero Dungeon, seznamy kapitánů, vizualizace promptů a bojové zprávy proměňují každodenní AI kódovací praxi v pracovní postup, který se více podobá koordinovanému dobrodružství pro kampusové laboratoře a studentské týmy.
     dungeonCards:
       proposal:
-        title: Proposal Dungeon
-        desc: OpenSpec generate / apply / archive
-        status: Captain ready
+        title: Kobka návrhů
+        desc: OpenSpec generování / použití / archivace
+        status: Kapitán připraven
       autotask:
-        title: AutoTask Dungeon
-        desc: Parallel fixes and batch automation
-        status: 2 instances active
+        title: AutoTask kobka
+        desc: Paralelní opravy a dávková automatizace
+        status: 2 instance aktivní
       prompt:
-        title: Prompt Dungeon
-        desc: Prompt preview and style workbench
-        status: Visual sync ready
+        title: Prompt kobka
+        desc: Náhled promptů a stylový workbench
+        status: Vizuální synchronizace připravena
     roster:
-      title: Current captain roster
+      title: Aktuální seznam kapitánů
       heroes:
         strategist:
           name: Spec Strategist
-          role: Proposal captain
+          role: Kapitán návrhů
         runner:
           name: Patch Runner
-          role: Execution captain
+          role: Kapitán provedení
         artist:
           name: Prompt Artist
-          role: Visual support
+          role: Vizuální podpora
     battleReport:
-      title: Today's dungeon report
-      badge: Hero Battle
+      title: Denní zpráva o kobkách
+      badge: Hrdinská bitva
       metrics:
         dungeons:
           value: '4'
-          label: Dungeons pushed
+          label: Dokončené kobky
         level:
           value: Lv.27
-          label: Captain level
+          label: Úroveň kapitána
         xp:
           value: 12.8M
-          label: XP today
-      note: When several dungeons move in parallel, the report rolls up experience, levels, and execution outcomes into one readout.
+          label: XP dnes
+      note: Když se několik kobek pohybuje paralelně, zpráva shrnuje zkušenosti, úrovně a výsledky provedení do jednoho přehledu.
     gallery:
       dungeons:
-        title: Dungeon map carousel
-        subtitle: 10 random visuals from the current frontend dungeon and prompt map collection.
+        title: Karusela mapy kobek
+        subtitle: 10 náhodných vizuálů ze současné frontendové kolekce kobek a promptových map.
       heroes:
-        title: Hero gallery carousel
-        subtitle: 10 random hero visuals from the current frontend hero collection.
+        title: Karusela galerie hrdinů
+        subtitle: 10 náhodných vizuálů hrdinů ze současné frontendové kolekce hrdinů.
 productOverviewVideo:
-  title: Understand Hagicode before the feature tour
+  title: Pochopte Hagicode před prohlídkou funkcí
 videoShowcase:
-  eyebrow: Supporting Product Demos
-  title: Keep exploring Hagicode in real coding sessions
-  description: After the main overview, these focused demos show how Hagicode behaves in playful and model-specific scenarios without repeating the primary product introduction.
-  supportingLabel: Focused demo
+  eyebrow: Podpůrná produktová dema
+  title: Pokračujte v objevování Hagicode ve skutečných kódovacích relacích
+  description: Po hlavním přehledu tato zaměřená dema ukazují, jak se Hagicode chová v hravých a specifických scénářích bez opakování primárního představení produktu.
+  supportingLabel: Zaměřené demo
 homepageVideos:
   overview:
     youtube:
-      title: Hagicode Product Overview on YouTube
-      description: The main English-language introduction to Hagicode's workflow, multi-agent execution style, and why the product feels broader than a generic AI coding chat box.
-      ctaLabel: Open on YouTube
+      title: Přehled produktu Hagicode na YouTube
+      description: Hlavní anglojazyčné představení pracovního postupu Hagicode, stylu multi-agent provádění a toho, proč se produkt zdá být širší než generická AI chatovací schránka pro kódování.
+      ctaLabel: Otevřít na YouTube
     bilibili:
-      title: Hagicode Product Overview on Bilibili
-      description: A Bilibili-hosted version of the core product introduction for visitors whose browsers signal a Chinese-language preference or who prefer the domestic playback path.
-      ctaLabel: Open on Bilibili
+      title: Přehled produktu Hagicode na Bilibili
+      description: Verze základního představení produktu hostovaná na Bilibili pro návštěvníky, jejichž prohlížeče signalizují předvolbu čínštiny nebo kteří preferují domácí cestu přehrávání.
+      ctaLabel: Otevřít na Bilibili
   supporting:
     first:
-      title: AI Playing Games While Coding
-      description: A playful supporting clip that shows the assistant staying lively and surprising during real coding sessions instead of feeling like a dry code generator.
-      ctaLabel: Open on Bilibili
+      title: AI hraje hry při kódování
+      description: Hravý podpůrný klip, který ukazuje asistenta, jak zůstává živý a překvapivý během skutečných kódovacích relací, místo aby působil jako suchý generátor kódu.
+      ctaLabel: Otevřít na Bilibili
     second:
-      title: 'GPT Codex in Hagicode: Live Trial'
-      description: A focused validation run that lets prospective users judge how GPT Codex behaves inside the actual product after they've seen the main localized introduction.
-      ctaLabel: Open on Bilibili
+      title: 'GPT Codex v Hagicode: Živý test'
+      description: Zaměřený validační test, který umožňuje potenciálním uživatelům posoudit, jak se GPT Codex chová uvnitř skutečného produktu poté, co viděli hlavní lokalizované představení.
+      ctaLabel: Otevřít na Bilibili
   hero:
-    steamAriaLabel: Open Hagicode on Steam
-    ctaGroupLabel: Primary homepage actions
+    steamAriaLabel: Otevřít Hagicode na Steam
+    ctaGroupLabel: Hlavní akce domovské stránky
 pricing:
   docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
-  title: Editions & Pricing
-  limitTitle: Proposal concurrency rule
-  limitDescription: Free and Steam both include a 3-proposal cap. Proposals in generating, executing, and archiving all count toward the same limit. Turbo Engine DLC expands that limit to 32.
-  plusTitle: Hagicode Plus note
-  plusDescription: Hagicode Plus is the official Steam bundle that combines the main Steam edition with Turbo Engine DLC.
-  featureHeader: Feature
-  includedLabel: Included
-  notIncludedLabel: Not included
+  title: Edice a ceny
+  limitTitle: Pravidlo souběžnosti návrhů
+  limitDescription: Bezplatná i Steam verze obsahují limit 3 návrhů. Návrhy ve fázi generování, provádění a archivace se všechny počítají do stejného limitu. Turbo Engine DLC tento limit rozšiřuje na 32.
+  plusTitle: Poznámka k Hagicode Plus
+  plusDescription: Hagicode Plus je oficiální Steam balíček, který kombinuje hlavní Steam edici s Turbo Engine DLC.
+  featureHeader: Funkce
+  includedLabel: Zahrnuto
+  notIncludedLabel: Nezahrnuto
   editions:
     desktop:
       title: Desktop
     container:
-      title: Container
+      title: Kontejner
   rows:
-    pricing: Pricing
-    allFreeFeaturesIncluded: All free features included
-    vault: Vault
-    skills: Skills
-    proposalWorkflow: Proposal workflow
-    localAchievements: Local achievements
-    allAgentCliIntegrations: All Agent CLI integrations
-    speechRecognition: Speech recognition
-    omniRouteIntegration: OmniRoute integration
-    githubIntegration: GitHub integration
-    gitManagement: Git management
-    maximumConcurrentProposals: Maximum concurrent proposals
-    copySwitchingSupport: Copy switching support
-    turboEngineAvatarPacks: Turbo Engine avatar packs
-    customAvatarUploads: Custom avatar uploads
-    customLogo: Custom logo
-    customTitle: Custom title
-    customCoAuthoredByInfo: Custom Co-Authored-By info
-    steamCloudAchievements: Steam cloud achievements
-    freeDlcSupport: Free DLC support
-    steamWorkshopSupport: Steam Workshop support
-    cloudSaveSupport: Cloud save support
+    pricing: Ceny
+    allFreeFeaturesIncluded: Všechny bezplatné funkce zahrnuty
+    vault: Trezor
+    skills: Dovednosti
+    proposalWorkflow: Pracovní postup návrhů
+    localAchievements: Lokální úspěchy
+    allAgentCliIntegrations: Všechny integrace Agent CLI
+    speechRecognition: Rozpoznávání řeči
+    omniRouteIntegration: Integrace s OmniRoute
+    githubIntegration: Integrace s GitHub
+    gitManagement: Správa Git
+    maximumConcurrentProposals: Maximum souběžných návrhů
+    copySwitchingSupport: Podpora přepínání kopií
+    turboEngineAvatarPacks: Turbo Engine balíčky avatarů
+    customAvatarUploads: Nahrávání vlastních avatarů
+    customLogo: Vlastní logo
+    customTitle: Vlastní název
+    customCoAuthoredByInfo: Vlastní Co-Authored-By informace
+    steamCloudAchievements: Steam cloudové úspěchy
+    freeDlcSupport: Podpora bezplatného DLC
+    steamWorkshopSupport: Podpora Steam Workshop
+    cloudSaveSupport: Podpora cloudového ukládání
   values:
-    free: Free
-    viewOnSteam: View on Steam
+    free: Zdarma
+    viewOnSteam: Zobrazit na Steam
   dlc:
-    label: DLC & Bundles
-    title: Optional packs
+    label: DLC a balíčky
+    title: Volitelné balíčky
     actions:
-      openSteam: Open Steam
+      openSteam: Otevřít Steam
     preview:
-      bundlePending: Bundle visuals pending
-      productPending: Product visuals pending
+      bundlePending: Vizuály balíčku budou brzy k dispozici
+      productPending: Produktové vizuály budou brzy k dispozici
     items:
       allBeauties:
-        category: Free DLC
+        category: Bezplatné DLC
         title: Hagicode - All Beauties Pack
-        price: Free
-        description: An extra cosmetics pack for Steam users.
+        price: Zdarma
+        description: Extra kosmetický balíček pro uživatele Steam.
         bullets:
-          - Adds 1,000 anime-girl-style avatars
-          - Leaves room for more beauty-themed content in future updates
+          - Přidává 1 000 avatarů v anime stylu
+          - Nechává prostor pro další obsah s tématem krásy v budoucích aktualizacích
       turboEngine:
-        category: Performance DLC
+        category: DLC pro výkon
         title: 'Hagicode: Turbo Engine DLC'
         price: Steam
-        description: You can buy this DLC on its own to expand the original proposal concurrency cap, unlock copy switching, add five avatar packs with 10 standalone avatars each, enable custom avatar uploads, customize the top-left logo and title, and align AI-generated commit trailers with your own Co-Authored-By naming rules. We will usually highlight a bundled purchase option called Hagicode Plus so the overall purchase price stays lower. Please check our store page for the latest changes.
+        description: Toto DLC si můžete zakoupit samostatně pro rozšíření původního limitu souběžnosti návrhů, odemčení přepínání kopií, přidání pěti balíčků avatarů s 10 samostatnými avatary v každém, povolení nahrávání vlastních avatarů, přizpůsobení loga a názvu vlevo nahoře a sladění AI generovaných commit zpráv s vašimi vlastními Co-Authored-By pravidly pojmenování. Obvykle zvýrazníme možnost balíčkového nákupu s názvem Hagicode Plus, aby celková kupní cena zůstala nižší. Zkontrolujte prosím naši obchodní stránku pro nejnovější změny.
         bullets:
-          - Supports custom top-left logos and titles
-          - Includes five avatar packs with 10 selectable avatars in each pack
-          - Supports custom avatar uploads
-          - Lets teams customize the AI Co-Authored-By signature for commit workflows
-          - Unlocks copy and wording switching support
-          - Expands the maximum concurrent proposal limit to 32
+          - Podporuje vlastní loga a názvy vlevo nahoře
+          - Obsahuje pět balíčků avatarů s 10 volitelnými avatary v každém balíčku
+          - Podporuje nahrávání vlastních avatarů
+          - Umožňuje týmům přizpůsobit AI Co-Authored-By podpis pro commit pracovní postupy
+          - Odemyká podporu přepínání kopií a znění
+          - Rozšiřuje maximální limit souběžných návrhů na 32
       hagicodePlus:
-        category: Bundle
+        category: Balíček
         title: Hagicode Plus
         price: Steam
-        description: The official Steam bundle that combines the Hagicode base edition with Turbo Engine DLC in one purchase path.
+        description: Oficiální Steam balíček, který kombinuje základní edici Hagicode s Turbo Engine DLC v jedné nákupní cestě.
         bullets:
-          - Bundles the main Steam edition and Turbo Engine DLC together
-          - Keeps the higher 32-proposal concurrency upgrade attached to the bundle path
-          - Works as the clearest purchase entry when you want the full Steam setup at once
+          - Spojuje hlavní Steam edici a Turbo Engine DLC dohromady
+          - Zachovává vyšší upgrade 32-návrhové souběžnosti připojený k balíčkové cestě
+          - Slouží jako nejjasnější vstup pro nákup, když chcete kompletní Steam nastavení najednou
       sponsor:
-        category: Supporter DLC
+        category: DLC podporovatele
         title: Hagicode - Sponsor Pack
         price: Steam
-        description: If you think Hagicode is genuinely excellent and want to provide direct financial support, buying Sponsor Pack gives the project more fuel and helps us keep it running for the long term.
+        description: Pokud si myslíte, že Hagicode je skutečně vynikající a chcete poskytnout přímou finanční podporu, zakoupení Sponsor Packu dává projektu více paliva a pomáhá nám jej udržovat v provozu v dlouhodobém horizontu.
         bullets:
-          - One exclusive dark theme
-          - One exclusive light theme
-          - One exclusive Steam achievement
+          - Jedna exkluzivní tmavá tema
+          - Jedna exkluzivní světlá tema
+          - Jedno exkluzivní Steam úspěch
 workflowBoard:
   titleLines:
-    - Mainstream Agents Supported
-    - 10x Parallel Management Efficiency
-    - OpenSpec Reduces Hallucinations
-  taskLabel: Task
-  headerSummary: Task / Agent
+    - Podporovány běžné agenty
+    - 10x paralelní efektivita správy
+    - OpenSpec snižuje halucinace
+  taskLabel: Úkol
+  headerSummary: Úkol / Agent
   steps:
-    - Ideate
-    - Propose
-    - Execute
-    - Archive
+    - Nápad
+    - Návrh
+    - Provést
+    - Archivovat
   activeStates:
-    - Ideating
-    - Proposing
-    - Executing
-    - Archiving
-  completedState: Complete
+    - Tvorba nápadů
+    - Tvorba návrhů
+    - Provádění
+    - Archivace
+  completedState: Dokončeno
   metrics:
-    completed: Completed Tasks
-    efficiency: Live Efficiency
-    serialTime: Equivalent Serial Time
-    elapsedTime: Elapsed Time
-    formula: Efficiency = equivalent serial work / natural elapsed time
-    serialHint: relative to a single serial worker
+    completed: Dokončené úkoly
+    efficiency: Živá efektivita
+    serialTime: Ekvivalentní sériový čas
+    elapsedTime: Uplynulý čas
+    formula: Efektivita = ekvivalentní sériová práce / přirozený uplynulý čas
+    serialHint: vzhledem k jednomu sériovému pracovníkovi

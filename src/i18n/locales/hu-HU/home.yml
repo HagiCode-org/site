@@ -1,126 +1,126 @@
 hero:
-  tagline: Boost development efficiency with AI-powered coding tools
-  description: HagiCode helps developers focus on code, not repetitive work
-  ctaButton: Get Started
+  tagline: Növeld a fejlesztési hatékonyságot AI-alapú kódoló eszközökkel
+  description: A HagiCode segít a fejlesztőknek a kódra koncentrálni, nem az ismétlődő munkára
+  ctaButton: Kezdés
   taglines:
-    smart: Smart · Efficient · Fun
-    aiDriven: AI Orchestrated · Multi-Agent Parallel
-    openspec: OpenSpec · Workflow Revolution
-    multiThread: Multi-Agent · Multi-Instance
+    smart: Okos · Hatékony · Szórakoztató
+    aiDriven: AI Irányítás · Többágens Parhuzamos
+    openspec: OpenSpec · Munkafolyamat Forradalom
+    multiThread: Multi-Agent · Multi-Példány
   lunarTaglines:
-    happyNewYear: Happy New Year · Year of the Horse
-    aiPowered: AI Empowered · Code to Success
-    smartCoding: Smart Coding · Best Wishes
-    openspecLuck: OpenSpec · Prosperity and Success
-    efficiency: Double Efficiency · Good Fortune
-  problem: Traditional AI coding tools have
-  painPoint: pain points
-  painPoints: ': limited context, messy sessions, lack of collaboration.'
-  solution: Hagicode redefines AI coding experience with
+    happyNewYear: Boldog Új Évet · Ló Éve
+    aiPowered: AI Erő · Kódold a Sikerhez
+    smartCoding: Okos Kódolás · Legjobb Kívánságok
+    openspecLuck: OpenSpec · Jólét és Siker
+    efficiency: Dupla Hatékonyság · Jó Szerencse
+  problem: A hagyományos AI kódoló eszközök
+  painPoint: fájdalomponttal rendelkeznek
+  painPoints: ': korlátozott kontextus, rendetlen munkamenetek, együttműködés hiánya.'
+  solution: A Hagicode újradefiniálja az AI kódolási élményt
   features:
-    - OpenSpec workflow
-    - multi-agent multi-instance execution
-    - Hero Dungeon gameplay
+    - OpenSpec munkafolyamat
+    - többágenses többpéldányos végrehajtás
+    - Hero Dungeon játékmenet
   redefine: .
   valueCards:
     smart:
-      title: Smart
-      description: OpenSpec moves ideas into execution faster.
+      title: Okos
+      description: Az OpenSpec gyorsabban viszi az ötleteket a végrehajtásig.
     efficient:
-      title: Efficient
-      description: Multi-agent execution turns waiting into throughput.
+      title: Hatékony
+      description: A többágenses végrehajtás várakozássá alakítja a átvitelt.
     interesting:
-      title: Interesting
-      description: Hero Dungeon makes teamwork and practice feel like an adventure.
+      title: Szórakoztató
+      description: A Hero Dungeon kalanddá teszi a csapatmunkát és a gyakorlást.
   buttons:
-    desktopApp: Install Desktop App
-    containerApp: Install Container App
-    learnMore: Learn More
+    desktopApp: Asztali alkalmazás telepítése
+    containerApp: Konténer alkalmazás telepítése
+    learnMore: További információ
   techStack:
-    poweredBy: Powered by
+    poweredBy: Hajtóerő
   qqGroup:
-    title: Join Technical Support Group
-    description: Hagicode Technical Support QQ Group
-    joinButton: Join Now
-  secondaryLine: Hagicode supports mainstream agents, doubles parallel management efficiency, and reduces hallucinations with OpenSpec.
+    title: Csatlakozz a technikai támogató csoporthoz
+    description: Hagicode Technikai Támogatás QQ Csoport
+    joinButton: Csatlakozás most
+  secondaryLine: A Hagicode támogatja a mainstream agenteket, megduplázza a párhuzamos kezelési hatékonyságot és csökkenti a hallucinációkat az OpenSpec segítségével.
 features:
   showcase:
-    title: Three Core Features
-    subtitle: Redefine your AI coding experience
+    title: Három alapvető funkció
+    subtitle: Határozd újra az AI kódolási élményedet
   smart:
-    badge: SMART
-    title: Smart
-    subtitle: OpenSpec workflow, boost AI coding efficiency
-    efficiency: Efficiency Boost
-    traditional: Traditional
+    badge: OKOS
+    title: Okos
+    subtitle: OpenSpec munkafolyamat, növeld az AI kódolás hatékonyságát
+    efficiency: Hatékonyság növekedés
+    traditional: Hagyományos
     hagicode: Hagicode
-    description: A complete 9-stage proposal workflow from idea to archive, with AI assistance throughout. Boost your coding efficiency by 3x.
+    description: Teljes 9 szakaszos javaslati munkafolyamat az ötlettől az archiválásig, AI segítséggel végig. Háromszorosára növeld a kódolási hatékonyságod.
     workflow:
       idea:
-        label: Idea
-        desc: Start from idea
+        label: Ötlet
+        desc: Kezdd az ötlettől
       proposal:
-        label: Proposal
-        desc: AI generates proposal
+        label: Javaslat
+        desc: AI generál javaslatot
       review:
-        label: Review
-        desc: Auto review
+        label: Felülvizsgálat
+        desc: Automatikus felülvizsgálat
       tasks:
-        label: Tasks
-        desc: Task breakdown
+        label: Feladatok
+        desc: Feladatok lebontása
       code:
-        label: Code
-        desc: Smart coding
+        label: Kód
+        desc: Okos kódolás
       test:
-        label: Test
-        desc: Auto testing
+        label: Teszt
+        desc: Automatikus tesztelés
       refactor:
-        label: Refactor
-        desc: Code refactor
+        label: Refaktorálás
+        desc: Kód refaktorálás
       docs:
-        label: Docs
-        desc: Docs generation
+        label: Dokumentáció
+        desc: Dokumentáció generálás
       archive:
-        label: Archive
-        desc: Knowledge archive
-    paused: Paused - Click node to switch
+        label: Archívum
+        desc: Tudás archiválás
+    paused: Szünetel - Kattints a csomópontra a váltáshoz
   convenient:
-    badge: EFFICIENT
-    title: Efficient
-    subtitle: Multi-agent, multi-instance execution that keeps your quota moving
-    traditional: Traditional single-agent / single-instance
-    multiThread: Multi-agent parallel matrix
-    boost: Throughput Boost
-    boostValue: 10x+ parallel
-    description: Current supported Agent CLIs such as Claude Code, Codex, GitHub Copilot, OpenCode, and Hermes can work across multiple instances at the same time, so proposals, fixes, and reviews move in parallel instead of waiting in a serial queue.
+    badge: HATÉKONY
+    title: Hatékony
+    subtitle: Többágenses, többpéldányos végrehajtás, amely mozgásban tartja a kvótádat
+    traditional: Hagyományos egyágens / egypéldány
+    multiThread: Többágenses párhuzamos mátrix
+    boost: Átviteli növekedés
+    boostValue: 10x+ párhuzamos
+    description: A jelenleg támogatott Agent CLI-k, mint a Claude Code, Codex, GitHub Copilot, OpenCode és Hermes, egyszerre több példányon tudnak dolgozni, így a javaslatok, javítások és felülvizsgálatok párhuzamosan haladnak a soros várakozás helyett.
     agentMatrix:
-      title: Parallel execution matrix
-      badge: Multiple agents / multiple instances
-      status: Multiple agents are driving multiple instances right now
+      title: Párhuzamos végrehajtási mátrix
+      badge: Több agent / több példány
+      status: Több agent éppen több példányt vezérel
       agents:
         claude:
           name: Claude Code
-          role: Proposal / review
+          role: Javaslat / felülvizsgálat
           instances:
-            - Draft spec
-            - Check design
-            - Archive review
+            - Specifikáció vázlat
+            - Tervezés ellenőrzése
+            - Archiválási felülvizsgálat
         codex:
           name: Codex
-          role: Implementation / fixes
+          role: Megvalósítás / javítások
           instances:
-            - Build feature A
-            - Build feature B
-            - Regression fix
+            - A funkció építése
+            - B funkció építése
+            - Regresszió javítás
         router:
           name: Qwen · GLM
-          role: Analysis / support
+          role: Elemzés / támogatás
           instances:
-            - Trace issue
-            - Polish copy
-            - Capture insights
+            - Probléma nyomkövetés
+            - Szöveg csiszolása
+            - Megállapítások rögzítése
       supportedNames:
-        title: 11 currently supported Agent CLIs
+        title: 11 jelenleg támogatott Agent CLI
         names:
           - Claude Code
           - Codex
@@ -133,207 +133,206 @@ features:
           - Gemini
           - DeepAgents
           - Codebuddy
-    supportedProvidersNote: OpenCode can load the shared OmniRoute catalog into hero model defaults while keeping custom raw model identifiers editable for branch-specific workflows.
+    supportedProvidersNote: Az OpenCode képes betölteni a megosztott OmniRoute katalógust a hős modell alapértékekbe, miközben az egyéni nyers modellazonosítók szerkeszthetők maradnak az ágspecifikus munkafolyamatokhoz.
   interesting:
-    badge: INTERESTING
-    title: Fun
-    subtitle: Hero Dungeon makes campus collaboration and practice feel alive
+    badge: SZÓRAKOZTATÓ
+    title: Szórakoztató
+    subtitle: A Hero Dungeon élettel telivé teszi a campus együttműködést és gyakorlást
     features:
       dungeons:
-        label: Hero Dungeons
-        desc: Turn generation, execution, and prompt workbenches into dungeon runs
+        label: Hero Dungeonok
+        desc: Alakítsd a generálást, végrehajtást és prompt munkapadot dungeon futásokká
       captains:
-        label: Captain Roster
-        desc: Assign the right hero captain to each dungeon
+        label: Kapitánylista
+        desc: Rendeld a megfelelő hős kapitányt minden dungeonhoz
       battle:
-        label: Battle Reports
-        desc: Review XP, levels, and execution results after each push
-    description: Fun no longer depends on achievement badges. Hero Dungeon, captain rosters, prompt visuals, and battle reports turn daily AI coding practice into a workflow that feels more like a coordinated adventure for campus labs and student teams.
+        label: Harci jelentések
+        desc: Tekintsd át az XP-t, szinteket és végrehajtási eredményeket minden push után
+    description: A szórakozás már nem függ a teljesítményjelvényektől. A Hero Dungeon, kapitánylisták, prompt vizualizációk és harci jelentések a mindennapos AI kódolási gyakorlatot olyan munkafolyamattá alakítják, amely campus laborok és diákcsapatok számára koordinált kalandnak érződik.
     dungeonCards:
       proposal:
-        title: Proposal Dungeon
-        desc: OpenSpec generate / apply / archive
-        status: Captain ready
+        title: Javaslat Dungeon
+        desc: OpenSpec generálás / alkalmazás / archiválás
+        status: Kapitány készen áll
       autotask:
         title: AutoTask Dungeon
-        desc: Parallel fixes and batch automation
-        status: 2 instances active
+        desc: Párhuzamos javítások és kötegautomatizálás
+        status: 2 példány aktív
       prompt:
         title: Prompt Dungeon
-        desc: Prompt preview and style workbench
-        status: Visual sync ready
+        desc: Prompt előnézet és stílus munkapad
+        status: Vizuális szinkronizáció készen
     roster:
-      title: Current captain roster
+      title: Jelenlegi kapitánylista
       heroes:
         strategist:
           name: Spec Strategist
-          role: Proposal captain
+          role: Javaslati kapitány
         runner:
           name: Patch Runner
-          role: Execution captain
+          role: Végrehajtási kapitány
         artist:
           name: Prompt Artist
-          role: Visual support
+          role: Vizuális támogatás
     battleReport:
-      title: Today's dungeon report
-      badge: Hero Battle
+      title: Mai dungeon jelentés
+      badge: Hős Csata
       metrics:
         dungeons:
           value: '4'
-          label: Dungeons pushed
+          label: Dungeonok teljesítve
         level:
           value: Lv.27
-          label: Captain level
+          label: Kapitány szint
         xp:
           value: 12.8M
-          label: XP today
-      note: When several dungeons move in parallel, the report rolls up experience, levels, and execution outcomes into one readout.
+          label: XP ma
+      note: Amikor több dungeon halad párhuzamosan, a jelentés egyesíti a tapasztalatot, szinteket és végrehajtási eredményeket egyetlen összesítőbe.
     gallery:
       dungeons:
-        title: Dungeon map carousel
-        subtitle: 10 random visuals from the current frontend dungeon and prompt map collection.
+        title: Dungeon térkép körhinta
+        subtitle: 10 véletlenszerű vizuália a jelenlegi frontend dungeon és prompt térkép gyűjteményből.
       heroes:
-        title: Hero gallery carousel
-        subtitle: 10 random hero visuals from the current frontend hero collection.
+        title: Hős galéria körhinta
+        subtitle: 10 véletlenszerű hős vizuália a jelenlegi frontend hős gyűjteményből.
 productOverviewVideo:
-  title: Understand Hagicode before the feature tour
+  title: Ismerd meg a Hagicode-ot a funkcióbemutató előtt
 videoShowcase:
-  eyebrow: Supporting Product Demos
-  title: Keep exploring Hagicode in real coding sessions
-  description: After the main overview, these focused demos show how Hagicode behaves in playful and model-specific scenarios without repeating the primary product introduction.
-  supportingLabel: Focused demo
+  eyebrow: Termék támogató demók
+  title: Folytasd a Hagicode felfedezését valós kódolási munkamenetekben
+  description: A fő áttekintés után ezek a fókuszált demók megmutatják, hogyan viselkedik a Hagicode játékos és modellspecifikus forgatókönyvekben az elsődleges termék bemutatás ismétlése nélkül.
+  supportingLabel: Fókuszált demo
 homepageVideos:
   overview:
     youtube:
-      title: Hagicode Product Overview on YouTube
-      description: The main English-language introduction to Hagicode's workflow, multi-agent execution style, and why the product feels broader than a generic AI coding chat box.
-      ctaLabel: Open on YouTube
+      title: Hagicode termék áttekintés a YouTube-on
+      description: A fő angol nyelvű bemutató a Hagicode munkafolyamatáról, többágenses végrehajtási stílusáról és arról, hogy a termék miért tűnik szélesebbnek mint egy általános AI kódoló chat.
+      ctaLabel: Megnyitás a YouTube-on
     bilibili:
-      title: Hagicode Product Overview on Bilibili
-      description: A Bilibili-hosted version of the core product introduction for visitors whose browsers signal a Chinese-language preference or who prefer the domestic playback path.
-      ctaLabel: Open on Bilibili
+      title: Hagicode termék áttekintés a Bilibili-n
+      description: A Bilibili által tárolt változata az alapvető termék bemutatónak azoknak a látogatóknak, akik böngészője kínai nyelvi preferenciát jelez vagy akik a hazai lejátszási útvonalat részesítik előnyben.
+      ctaLabel: Megnyitás a Bilibili-n
   supporting:
     first:
-      title: AI Playing Games While Coding
-      description: A playful supporting clip that shows the assistant staying lively and surprising during real coding sessions instead of feeling like a dry code generator.
-      ctaLabel: Open on Bilibili
+      title: AI játszik miközben kódol
+      description: Egy játékos támogató klip, amely megmutatja, hogy az asszisztens élénk és meglepő marad a valós kódolási munkamenetekben ahelyett, hogy száraz kódgenerátornak tűnne.
+      ctaLabel: Megnyitás a Bilibili-n
     second:
-      title: 'GPT Codex in Hagicode: Live Trial'
-      description: A focused validation run that lets prospective users judge how GPT Codex behaves inside the actual product after they've seen the main localized introduction.
-      ctaLabel: Open on Bilibili
+      title: 'GPT Codex a Hagicode-ban: Élő próba'
+      description: Egy fókuszált validációs futás, amely lehetővé teszi a leendő felhasználóknak, hogy megítéljék, hogyan viselkedik a GPT Codex a tényleges termékben a fő lokalizált bemutató megtekintése után.
+      ctaLabel: Megnyitás a Bilibili-n
   hero:
-    steamAriaLabel: Open Hagicode on Steam
-    ctaGroupLabel: Primary homepage actions
+    steamAriaLabel: Hagicode megnyitása a Steamen
+    ctaGroupLabel: Kezdőlap elsődleges műveletek
 pricing:
   docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
-  title: Editions & Pricing
-  limitTitle: Proposal concurrency rule
-  limitDescription: Free and Steam both include a 3-proposal cap. Proposals in generating, executing, and archiving all count toward the same limit. Turbo Engine DLC expands that limit to 32.
-  plusTitle: Hagicode Plus note
-  plusDescription: Hagicode Plus is the official Steam bundle that combines the main Steam edition with Turbo Engine DLC.
-  featureHeader: Feature
-  includedLabel: Included
-  notIncludedLabel: Not included
+  title: Verziók és árazás
+  limitTitle: Javaslati egyidejűségi szabály
+  limitDescription: Az ingyenes és Steam verziók is tartalmaznak 3 javaslat korlátot. A generálásban, végrehajtásban és archiválásban lévő javaslatok mind ugyanabba a korlátba számítanak bele. A Turbo Engine DLC 32-re bővíti ezt a korlátot.
+  plusTitle: Hagicode Plus megjegyzés
+  plusDescription: A Hagicode Plus a hivatalos Steam csomag, amely a fő Steam verziót a Turbo Engine DLC-vel kombinálja.
+  featureHeader: Funkció
+  includedLabel: Benne van
+  notIncludedLabel: Nincs benne
   editions:
     desktop:
       title: Desktop
     container:
       title: Container
   rows:
-    pricing: Pricing
-    allFreeFeaturesIncluded: All free features included
-    vault: Vault
-    skills: Skills
-    proposalWorkflow: Proposal workflow
-    localAchievements: Local achievements
-    allAgentCliIntegrations: All Agent CLI integrations
-    speechRecognition: Speech recognition
-    omniRouteIntegration: OmniRoute integration
-    githubIntegration: GitHub integration
-    gitManagement: Git management
-    maximumConcurrentProposals: Maximum concurrent proposals
-    copySwitchingSupport: Copy switching support
-    turboEngineAvatarPacks: Turbo Engine avatar packs
-    customAvatarUploads: Custom avatar uploads
-    customLogo: Custom logo
-    customTitle: Custom title
-    customCoAuthoredByInfo: Custom Co-Authored-By info
-    steamCloudAchievements: Steam cloud achievements
-    freeDlcSupport: Free DLC support
-    steamWorkshopSupport: Steam Workshop support
-    cloudSaveSupport: Cloud save support
+    pricing: Árazás
+    allFreeFeaturesIncluded: Minden ingyenes funkció benne van
+    vault: Széf
+    skills: Készségek
+    proposalWorkflow: Javaslati munkafolyamat
+    localAchievements: Helyi teljesítmények
+    allAgentCliIntegrations: Minden Agent CLI integráció
+    speechRecognition: Beszédfelismerés
+    omniRouteIntegration: OmniRoute integráció
+    githubIntegration: GitHub integráció
+    gitManagement: Git kezelés
+    maximumConcurrentProposals: Maximális egyidejű javaslatok
+    copySwitchingSupport: Másolatváltás támogatás
+    turboEngineAvatarPacks: Turbo Engine avatar csomagok
+    customAvatarUploads: Egyedi avatar feltöltések
+    customLogo: Egyedi logó
+    customTitle: Egyedi cím
+    customCoAuthoredByInfo: Egyedi Co-Authored-By információ
+    steamCloudAchievements: Steam felhő teljesítmények
+    freeDlcSupport: Ingyenes DLC támogatás
+    steamWorkshopSupport: Steam Workshop támogatás
+    cloudSaveSupport: Felhőmentés támogatás
   values:
-    free: Free
-    viewOnSteam: View on Steam
+    free: Ingyenes
+    viewOnSteam: Megtekintés a Steamen
   dlc:
-    label: DLC & Bundles
-    title: Optional packs
+    label: DLC és csomagok
+    title: Opcionális csomagok
     actions:
-      openSteam: Open Steam
+      openSteam: Steam megnyitása
     preview:
-      bundlePending: Bundle visuals pending
-      productPending: Product visuals pending
+      bundlePending: Csomag képek függőben
+      productPending: Termék képek függőben
     items:
       allBeauties:
-        category: Free DLC
+        category: Ingyenes DLC
         title: Hagicode - All Beauties Pack
-        price: Free
-        description: An extra cosmetics pack for Steam users.
+        price: Ingyenes
+        description: Egy extra kozmetikai csomag Steam felhasználóknak.
         bullets:
-          - Adds 1,000 anime-girl-style avatars
-          - Leaves room for more beauty-themed content in future updates
+          - 1 000 anime-stílusú avatárt ad hozzá
+          - További szépség témájú tartalomnak hagy teret a jövőbeli frissítésekben
       turboEngine:
-        category: Performance DLC
+        category: Teljesítmény DLC
         title: 'Hagicode: Turbo Engine DLC'
         price: Steam
-        description: You can buy this DLC on its own to expand the original proposal concurrency cap, unlock copy switching, add five avatar packs with 10 standalone avatars each, enable custom avatar uploads, customize the top-left logo and title, and align AI-generated commit trailers with your own Co-Authored-By naming rules. We will usually highlight a bundled purchase option called Hagicode Plus so the overall purchase price stays lower. Please check our store page for the latest changes.
+        description: Megvásárolhatod ezt a DLC-t külön, hogy kibővítsd az eredeti javaslati egyidejűségi korlátot, feloldd a másolatváltást, adj hozzá öt avatar csomagot egyenként 10 önálló avatarral, engedélyezd az egyedi avatar feltöltéseket, testreszabd a bal felső logót és címet, és igazítsd az AI által generált commit trailereket a saját Co-Authored-By elnevezési szabályaidhoz. Általában kiemelünk egy Hagicode Plus nevű csomagvásárlási lehetőséget, hogy a teljes vásárlási ár alacsonyabb maradjon. Kérjük, ellenőrizd a boltunkat a legfrissebb változásokért.
         bullets:
-          - Supports custom top-left logos and titles
-          - Includes five avatar packs with 10 selectable avatars in each pack
-          - Supports custom avatar uploads
-          - Lets teams customize the AI Co-Authored-By signature for commit workflows
-          - Unlocks copy and wording switching support
-          - Expands the maximum concurrent proposal limit to 32
+          - Támogatja az egyedi bal felső logókat és címeket
+          - Öt avatar csomagot tartalmaz, mindegyikben 10 választható avatarral
+          - Támogatja az egyedi avatar feltöltéseket
+          - Lehetővé teszi a csapatok számára az AI Co-Authored-By aláírás testreszabását a commit munkafolyamatokban
+          - Kiterjeszti a maximális egyidejű javaslati korlátot 32-re
       hagicodePlus:
-        category: Bundle
+        category: Csomag
         title: Hagicode Plus
         price: Steam
-        description: The official Steam bundle that combines the Hagicode base edition with Turbo Engine DLC in one purchase path.
+        description: A hivatalos Steam csomag, amely a Hagicode alapverziót és a Turbo Engine DLC-t egy vásárlási útvonalban egyesíti.
         bullets:
-          - Bundles the main Steam edition and Turbo Engine DLC together
-          - Keeps the higher 32-proposal concurrency upgrade attached to the bundle path
-          - Works as the clearest purchase entry when you want the full Steam setup at once
+          - A fő Steam verziót és a Turbo Engine DLC-t egyesíti
+          - Megtartja a magasabb 32 javaslat egyidejűségi frissítést a csomag útvonalán
+          - A legtisztább vásárlási belépésként működik, ha a teljes Steam beállítást egyszerre szeretnéd
       sponsor:
-        category: Supporter DLC
+        category: Támogató DLC
         title: Hagicode - Sponsor Pack
         price: Steam
-        description: If you think Hagicode is genuinely excellent and want to provide direct financial support, buying Sponsor Pack gives the project more fuel and helps us keep it running for the long term.
+        description: Ha úgy gondolod, hogy a Hagicode valóban kiváló és közvetlen pénzügyi támogatást szeretnél nyújtani, a Sponsor Pack megvásárlása több üzemanyagot ad a projektnek és segít minket abban, hogy hosszú távon fenntartsuk.
         bullets:
-          - One exclusive dark theme
-          - One exclusive light theme
-          - One exclusive Steam achievement
+          - Egy exkluzív sötét téma
+          - Egy exkluzív világos téma
+          - Egy exkluzív Steam teljesítmény
 workflowBoard:
   titleLines:
-    - Mainstream Agents Supported
-    - 10x Parallel Management Efficiency
-    - OpenSpec Reduces Hallucinations
-  taskLabel: Task
-  headerSummary: Task / Agent
+    - Mainstream Agentek Támogatva
+    - 10x Párhuzamos Kezelési Hatékonyság
+    - OpenSpec Csökkenti a Hallucinációkat
+  taskLabel: Feladat
+  headerSummary: Feladat / Agent
   steps:
-    - Ideate
-    - Propose
-    - Execute
-    - Archive
+    - Ötletelés
+    - Javaslat
+    - Végrehajtás
+    - Archiválás
   activeStates:
-    - Ideating
-    - Proposing
-    - Executing
-    - Archiving
-  completedState: Complete
+    - Ötletelés
+    - Javaslat
+    - Végrehajtás
+    - Archiválás
+  completedState: Kész
   metrics:
-    completed: Completed Tasks
-    efficiency: Live Efficiency
-    serialTime: Equivalent Serial Time
-    elapsedTime: Elapsed Time
-    formula: Efficiency = equivalent serial work / natural elapsed time
-    serialHint: relative to a single serial worker
+    completed: Befejezett feladatok
+    efficiency: Élő hatékonyság
+    serialTime: Egyenértékű soros idő
+    elapsedTime: Eltelt idő
+    formula: Hatékonyság = egyenértékű soros munka / természetes eltelt idő
+    serialHint: egyetlen soros munkavégzőhöz képest

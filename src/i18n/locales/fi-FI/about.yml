@@ -1,24 +1,24 @@
 page:
-  seoTitle: About the HagiCode Team
-  seoDescription: Meet the HagiCode team and browse official stores, group channels, content platforms, and scannable cards from the latest bundled about snapshot.
-  title: Grow through exchange
+  seoTitle: Tietoa HagiCode-tiimistä
+  seoDescription: Tutustu HagiCode-tiimiin ja selaa virallisia kauppoja, yhteisökanavia, sisältöalustoja ja skannattavia kortteja uusimmasta about-tilannekuvasta.
+  title: Kasva vaihdon kautta
   sections:
-    store: Store
-    community: Grow through exchange
-    content: Follow where the team publishes
+    store: Kauppa
+    community: Kasva vaihdon kautta
+    content: Seuraa kanavia, joilla tiimi julkaisee
   kindLabels:
-    store: Store
-    link: Channel
-    contact: Handle
-    qr: QR Card
-    image: Image Card
-  contactFallbackDetail: Use this handle in the app
-  comboLabel: Channel + QR
+    store: Kauppa
+    link: Kanava
+    contact: Käyttäjätunnus
+    qr: QR-kortti
+    image: Kuvakortti
+  contactFallbackDetail: Käytä tätä tunnusta sovelluksessa
+  comboLabel: Kanava + QR
   platformBadges:
-    steam: Official store
-    youtube: Official channel
+    steam: Virallinen kauppa
+    youtube: Virallinen kanava
   genericLinkText:
-    link: Open page
-    contact: Open profile
-    qr: Open QR card
-    image: Open image
+    link: Avaa sivu
+    contact: Avaa profiili
+    qr: Avaa QR-kortti
+    image: Avaa kuva

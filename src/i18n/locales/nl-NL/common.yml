@@ -1,190 +1,190 @@
 navbar:
   home: Home
-  docs: Docs
+  docs: Documentatie
   blog: Blog
-  about: About
-  desktop: Desktop App
+  about: Over ons
+  desktop: Desktop-app
   container: Container
-  support: Get Support
-  mobileOpenMenu: Open menu
-  mobileCloseMenu: Close menu
-  mobileNav: Mobile site navigation
+  support: Ondersteuning
+  mobileOpenMenu: Menu openen
+  mobileCloseMenu: Menu sluiten
+  mobileNav: Mobiele sitenavigatie
 themeToggle:
-  theme: Theme
-  darkMode: Switch to dark mode
-  lightMode: Switch to light mode
-  lunarNewYearMode: Switch to Lunar New Year theme
+  theme: Thema
+  darkMode: Schakel naar donker thema
+  lightMode: Schakel naar licht thema
+  lunarNewYearMode: Schakel naar Maanjaarthema
 languageSwitcher:
-  label: Language
-  dialogTitle: Select language
-  currentLocaleLabel: Current language
-  close: Close language chooser
-  selectedState: Current
+  label: Taal
+  dialogTitle: Taal selecteren
+  currentLocaleLabel: Huidige taal
+  close: Taalkiezer sluiten
+  selectedState: Huidige
   switchToChinese: 切换到中文
-  switchToEnglish: Switch to English
+  switchToEnglish: Schakel naar Engels
 videoPlayer:
-  play: Play
-  pause: Pause
-  fullscreen: Fullscreen
+  play: Afspelen
+  pause: Pauzeren
+  fullscreen: Volledig scherm
 footer:
-  copyright: © {year} Hagicode. All rights reserved.
+  copyright: "© {year} Hagicode. Alle rechten voorbehouden."
   product: Product
-  quickLinks: Quick Links
+  quickLinks: Snelle links
   community: Community
-  productInfo: Hagicode Introduction
-  downloadClient: Download Client
-  productDocs: Product Docs
-  blogPosts: Blog Posts
-  rssSubscribe: RSS Subscribe
+  productInfo: Hagicode introductie
+  downloadClient: Client downloaden
+  productDocs: Productdocumentatie
+  blogPosts: Blogberichten
+  rssSubscribe: RSS-abonnement
   github: GitHub
-  issueFeedback: Issue Feedback
-  contactEmail: Contact Email
-  qqGroup: QQ Group 610394020
-  icpLabel: View ICP Filing Information
-  gonganLabel: View Public Security Filing Information
-  visitPage: Visit {title} page
-  discord: Discord Community
-  costCalculator: AI Replacement Calculator
+  issueFeedback: Probleemfeedback
+  contactEmail: Contact-e-mail
+  qqGroup: QQ-groep 610394020
+  icpLabel: ICP-registratie-informatie bekijken
+  gonganLabel: Politieregistratie-informatie bekijken
+  visitPage: Pagina {title} bezoeken
+  discord: Discord-community
+  costCalculator: AI-vervangingscalculator
   steam: Steam
-  relatedSitesTitle: Related Sites
+  relatedSitesTitle: Gerelateerde sites
 socialProof:
   highlights:
-    multiAgent: Multi-Agent Parallel
-    multiAgentDesc: Claude Code, Codex, and others can drive multiple instances at once
-    privacy: Privacy First
-    privacyDesc: Local deployment, no code upload
-    openspec: OpenSpec Orchestration
-    openspecDesc: Standardized proposal, execution, and archive flow
-    heroDungeons: Hero Dungeon Workflow
-    heroDungeonsDesc: Dungeons, captains, and battle reports close the loop
+    multiAgent: Multi-agent parallel
+    multiAgentDesc: Claude Code, Codex en andere kunnen meerdere instanties tegelijk aansturen
+    privacy: Privacy eerst
+    privacyDesc: Lokale implementatie, geen code-upload
+    openspec: OpenSpec-orkestratie
+    openspecDesc: Gestandaardiseerde voorstel-, uitvoerings- en archiveringsflow
+    heroDungeons: Hero Dungeon-workflow
+    heroDungeonsDesc: Dungeons, kapiteins en gevechtsrapporten sluiten de lus
   badges:
     claude: Claude AI
-    claudeDesc: Powered by
-    opensource: Open Source
+    claudeDesc: Aangedreven door
+    opensource: Open source
     opensourceDesc: GitHub
-    ssl: SSL Secure
-    sslDesc: Secure Encryption
+    ssl: SSL-beveiligd
+    sslDesc: Veilige encryptie
 installCTA:
-  button: Install HagiCode
+  button: Hagicode installeren
 activityMetrics:
-  title: People Are Using It
-  description: Community keeps growing, thanks to every contributor
+  title: Mensen gebruiken het
+  description: De community blijft groeien, dank aan elke bijdrager
   dockerHub: Docker Hub
-  pullCount: Pull Count
-  activeUsers: Active Users
-  activeSessions: Active Sessions
-  recentDays: Last 3 days
+  pullCount: Aantal pulls
+  activeUsers: Actieve gebruikers
+  activeSessions: Actieve sessies
+  recentDays: Laatste 3 dagen
   emptyState:
-    title: Data Coming Soon
-    description: Activity data will be displayed here when available. Stay tuned for community growth!
-  imageError: Image failed to load
+    title: Data komt binnenkort
+    description: Activiteitsdata wordt hier weergegeven wanneer beschikbaar. Blijf op de hoogte voor community-groei!
+  imageError: Afbeelding kon niet laden
   starHistory:
-    title: GitHub Star History
+    title: GitHub Star-geschiedenis
     value: Live
-    description: Real-time community momentum
-    alt: Star history chart for the HagiCode site repository
-    cta: View full chart
+    description: Community-momentum in realtime
+    alt: Star-geschiedenisgrafiek voor het HagiCode-siterepository
+    cta: Volledige grafiek bekijken
 showcase:
-  title: Latest Product Views
-  description: From proposal execution and session boards to token analytics, workspace management, and achievement progress, the homepage now uses the latest curated screenshots maintained with the docs site.
+  title: Nieuwste productweergaven
+  description: Van voorsteluitvoering en sessieborden tot token-analyses, werkruimtebeheer en prestatievoortgang gebruikt de homepage nu de nieuwst samengestelde schermafbeeldingen die worden onderhouden met de documentatiesite.
   controls:
-    previous: Previous
-    next: Next
-    current: Featured view
-    railLabel: Product screenshot navigation
-    selectPrefix: 'Switch to: '
-    activeState: Showing now
-    previewState: Preview
-    imageUnavailable: Image unavailable
-    openFullscreen: 'Open fullscreen: '
-    openFullscreenHint: Click to enlarge
-    closeFullscreen: Close fullscreen
+    previous: Vorige
+    next: Volgende
+    current: Uitgelichte weergave
+    railLabel: Productschermafbeelding-navigatie
+    selectPrefix: 'Schakel naar: '
+    activeState: Nu weergegeven
+    previewState: Voorbeeld
+    imageUnavailable: Afbeelding niet beschikbaar
+    openFullscreen: 'Volledig scherm openen: '
+    openFullscreenHint: Klik om te vergroten
+    closeFullscreen: Volledig scherm sluiten
   screenshots:
     proposalWorkflow:
-      title: Proposal execution overview
-      description: Keep the workflow stage, execution result, and session context in one screen so teams can see exactly where a change stands before moving on.
-      alt: HagiCode proposal execution screenshot showing workflow stages, execution result, and session sidebar
+      title: Overzicht voorsteluitvoering
+      description: Houd de workflowfase, het uitvoeringsresultaat en de sessiecontext op één scherm, zodat teams precies kunnen zien waar een wijziging staat voordat ze verdergaan.
+      alt: HagiCode voorsteluitvoering schermafbeelding die workflowfasen, uitvoeringsresultaat en sessie-zijbalk toont
     sessionBoard:
-      title: Session board and dungeon planning
-      description: Pending, in-progress, and archived sessions stay visible beside a fantasy task panel so parallel agent work is easy to scan at a glance.
-      alt: HagiCode session board screenshot showing pending, in-progress, and archived columns beside a fantasy task panel
+      title: Sessiebord en dungeon-planning
+      description: In afwachting zijnde, lopende en gearchiveerde sessies blijven zichtbaar naast een fantasy-taakpaneel, zodat parallel agent-werk in één oogopslag te scannen is.
+      alt: HagiCode sessiebord schermafbeelding die in afwachting zijnde, lopende en gearchiveerde kolommen toont naast een fantasy-taakpaneel
     tokenAnalytics:
-      title: Real-time token analytics
-      description: Watch throughput, recent API activity, and total usage in one metrics surface so cost and pacing stay controllable during parallel execution.
-      alt: HagiCode token analytics screenshot showing throughput, recent API activity, and total usage
+      title: Realtime token-analyses
+      description: Bekijk doorvoer, recente API-activiteit en totaal gebruik op één metriekvlak, zodat kosten en tempo beheersbaar blijven tijdens parallelle uitvoering.
+      alt: HagiCode token-analyses schermafbeelding die doorvoer, recente API-activiteit en totaal gebruik toont
     workspaceManagement:
-      title: Workspace and vault management
-      description: Manage user vaults, system vaults, and code-server entry points from one control surface built for shared environments and fast maintenance.
-      alt: HagiCode workspace management screenshot showing user vaults, system vaults, and code-server actions
+      title: Werkruimte en kluisbeheer
+      description: Beheer gebruikerskluizen, systeemkluizen en code-server-toegangspunten vanaf één besturingsvlak gebouwd voor gedeelde omgevingen en snel onderhoud.
+      alt: HagiCode werkruimtebeheer schermafbeelding die gebruikerskluizen, systeemkluizen en code-server-acties toont
     achievementProgress:
-      title: Achievement and growth progress
-      description: Daily progress, global growth, and lifecycle metrics roll into one dashboard so long-running adoption feels measurable instead of abstract.
-      alt: HagiCode achievement dashboard screenshot showing daily progress, global growth, and lifecycle metrics
+      title: Prestatie- en groeivoortgang
+      description: Dagelijkse voortgang, wereldwijde groei en levenscyclusmetrieken rollen in één dashboard, zodat langetermijnadoptie meetbaar voelt in plaats van abstract.
+      alt: HagiCode prestatiedashboard schermafbeelding die dagelijkse voortgang, wereldwijde groei en levenscyclusmetrieken toont
 installOptions:
-  sectionTitle: Choose Your Installation Method
-  sectionDescription: Choose the most suitable installation method based on your usage scenario
+  sectionTitle: Kies uw installatiemethode
+  sectionDescription: Kies de meest geschikte installatiemethode op basis van uw gebruiksscenario
   desktop:
-    title: Desktop App
-    description: Runs locally on your computer, lightweight and convenient, ready to use out of the box
+    title: Desktop-app
+    description: Werkt lokaal op uw computer, lichtgewicht en handig, direct klaar voor gebruik
     features:
-      - Local execution, complete data privacy
-      - Supports Windows, macOS, and Linux
-      - No server configuration needed
-      - Auto updates, stay with latest version
-      - Suitable for individual developers
-    ctaText: Download Desktop App
+      - Lokale uitvoering, volledige gegevensprivacy
+      - Ondersteunt Windows, macOS en Linux
+      - Geen serverconfiguratie nodig
+      - Automatische updates, blijf up-to-date
+      - Geschikt voor individuele ontwikkelaars
+    ctaText: Desktop-app downloaden
   container:
-    title: Container Version
-    description: Deploy on servers, supports remote access, suitable for team collaboration
+    title: Container-versie
+    description: Implementeer op servers, ondersteunt externe toegang, geschikt voor teamsamenwerking
     features:
-      - Supports x86_64 architecture
-      - Environment isolation, doesn't affect system
-      - Supports Docker Compose Builder
-      - Data persistence, secure and reliable
-      - Suitable for production environments
-    ctaText: Container Deployment Guide
-  badge: Recommended
+      - Ondersteunt x86_64-architectuur
+      - Omgevingsisolatie, beïnvloedt het systeem niet
+      - Ondersteunt Docker Compose Builder
+      - Gegevenspersistentie, veilig en betrouwbaar
+      - Geschikt voor productieomgevingen
+    ctaText: Handleiding container-implementatie
+  badge: Aanbevolen
 desktopHero:
-  loading: Loading version information...
+  loading: Versie-informatie laden...
   error:
-    title: Cannot load version information
-    gotoDownload: Go to download page
-    redirectingToHistory: Unable to load desktop packages here. Redirecting to the Index version history...
+    title: Kan versie-informatie niet laden
+    gotoDownload: Ga naar downloadpagina
+    redirectingToHistory: Kan desktop-pakketten hier niet laden. Doorverwijzen naar de Index-versiegeschiedenis...
   badge: Desktop
   title: Hagicode Desktop
-  tagline: Localized AI code assistant, privacy protection, enhanced efficiency
+  tagline: Gelokaliseerde AI-codeassistent, privacybescherming, verhoogde efficiëntie
   valuePoints:
-    local: 100% local execution, code never uploaded
-    fast: Millisecond-level response, no waiting
-    oneClick: One-click installation, ready to use
+    local: 100% lokale uitvoering, code wordt nooit geüpload
+    fast: Reactie in milliseconden, geen wachttijd
+    oneClick: Installatie met één klik, direct klaar voor gebruik
   download:
-    ariaLabel: Download {platform} version
-    recommended: Recommended
-    unknown: Unknown error
-    openVersionHistory: Open version history
-    openContainerPage: Open Container page
-    macNotice: 'For macOS users: the Container edition is recommended at the moment.'
-  selectOtherVersions: Select other versions of {platform}
-  versionInfo: 'Current version: {version}'
+    ariaLabel: Download {platform}-versie
+    recommended: Aanbevolen
+    unknown: Onbekende fout
+    openVersionHistory: Versiegeschiedenis openen
+    openContainerPage: Container-pagina openen
+    macNotice: 'Voor macOS-gebruikers: de Container-editie wordt momenteel aanbevolen.'
+  selectOtherVersions: Selecteer andere versies van {platform}
+  versionInfo: 'Huidige versie: {version}'
   testVersion: ' (Beta)'
   channels:
-    stable: Stable
+    stable: Stabiel
     beta: Beta
   betaWarning:
-    title: Beta Version Warning
-    description: This is a beta version and may be unstable. Recommended for testing only. Please use the stable version for production environments.
+    title: Waarschuwing betaversie
+    description: Dit is een betaversie en kan instabiel zijn. Alleen aanbevolen voor testdoeleinden. Gebruik de stabiele versie voor productieomgevingen.
   features:
-    privacy: 🔒 Privacy Protection
-    fast: ⚡ Fast Response
-    crossPlatform: 💻 Cross-Platform Support
+    privacy: "🔒 Privacybescherming"
+    fast: "⚡ Snelle respons"
+    crossPlatform: "💻 Kruisplatformondersteuning"
   steam:
-    description: The Steam edition supports Steam features including Cloud Saves and the Workshop. Click to open on Steam.
-    ariaLabel: Open Hagicode on Steam
+    description: De Steam-editie ondersteunt Steam-functies inclusief Cloud Saves en de Workshop. Klik om op Steam te openen.
+    ariaLabel: Hagicode op Steam openen
   downloadActions:
     torrent: Torrent
   assetTypes:
-    windowsSetup: Installer
-    windowsPortable: Portable
+    windowsSetup: Installatieprogramma
+    windowsPortable: Draagbaar
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
     macosIntel: Intel
@@ -192,37 +192,37 @@ desktopHero:
     linuxArm64AppImage: AppImage (ARM64)
     linuxTarball: Tarball (x64)
     linuxArm64Tarball: Tarball (ARM64)
-    source: Source code
-    other: Other
+    source: Broncode
+    other: Overig
 productHuntBadge:
-  eyebrow: Trusted by early adopters
-  title: See Hagicode on Product Hunt
-  linkLabel: Open Hagicode on Product Hunt
-  cta: View the Product Hunt listing
+  eyebrow: Vertrouwd door vroege adopters
+  title: Zie Hagicode op Product Hunt
+  linkLabel: Hagicode op Product Hunt openen
+  cta: De Product Hunt-vermelding bekijken
 promote:
-  badgeFallback: Promoted
-  closeLabel: Dismiss promotion
-  ariaLabel: Promotion
+  badgeFallback: Gepromoot
+  closeLabel: Promotie sluiten
+  ariaLabel: Promotie
 pageMeta:
   home:
-    title: Hagicode - Smart · Efficient · Fun AI Coding Assistant
-    description: Redefine coding with AI. OpenSpec workflows, multi-agent multi-instance execution, and Hero Dungeon gameplay make building faster and more engaging
+    title: Hagicode - Slim · Efficiënt · Leuk AI-codeassistent
+    description: Herdefinieer coderen met AI. OpenSpec-workflows, multi-agent multi-instantie uitvoering en Hero Dungeon-gameplay maken bouwen sneller en boeiender
   desktop:
     title: Hagicode Desktop - Download
-    description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
-    runtimeFallbackLabel: Fallback
-    runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
+    description: Download Hagicode Desktop, een gelokaliseerde AI-codeassistent. Ondersteunt Windows, macOS en Linux. Privacybescherming, snelle reactie.
+    runtimeFallbackLabel: Alternatief
+    runtimeFallbackCopy: 'Als pakketladen hier faalt, verwijst deze pagina door naar de canonieke Index Desktop-versiegeschiedenis:'
   container:
-    title: Hagicode Container - Docker Deployment
-    description: Deploy Hagicode with Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and automatic updates.
-    faqHelp: If the issue persists, please check the <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">detailed documentation</a> or contact technical support.
+    title: Hagicode Container - Docker-implementatie
+    description: Implementeer Hagicode met Docker Compose Builder. Eenvoudige configuratie, direct klaar voor gebruik. Ondersteunt meerdere afbeeldingsbronnen en automatische updates.
+    faqHelp: 'Als het probleem aanhoudt, raadpleeg de <a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">gedetailleerde documentatie</a> of neem contact op met technische ondersteuning.'
 commonActions:
-  retry: Retry
-  unavailable: Unavailable
-  noExtraSource: No extra source
-  moreDownloads: More downloads
-  moreVersions: More versions
-  package: Package
+  retry: Opnieuw proberen
+  unavailable: Niet beschikbaar
+  noExtraSource: Geen extra bron
+  moreDownloads: Meer downloads
+  moreVersions: Meer versies
+  package: Pakket
   platform: Platform
   china: China
-  default: Default
+  default: Standaard

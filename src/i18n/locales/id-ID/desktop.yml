@@ -1,123 +1,123 @@
 desktop:
-  title: Hagicode Desktop - Download
-  description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
+  title: Hagicode Desktop - Unduh
+  description: Unduh Hagicode Desktop, asisten kode AI yang dilokalkan. Mendukung Windows, macOS, dan Linux. Perlindungan privasi, respons cepat.
   features:
-    title: Key Features
+    title: Fitur Utama
     local:
-      title: Local Execution
-      description: All data is processed locally without uploading to the cloud, ensuring code privacy and security
+      title: Eksekusi Lokal
+      description: Semua data diproses secara lokal tanpa diunggah ke cloud, memastikan privasi dan keamanan kode
     privacy:
-      title: Privacy Protection
-      description: Code is never uploaded, supports offline usage, protecting your intellectual property
+      title: Perlindungan Privasi
+      description: Kode tidak pernah diunggah, mendukung penggunaan offline, melindungi hak kekayaan intelektual Anda
     fast:
-      title: Fast Response
-      description: Millisecond-level response time, no network requests needed, boosting development efficiency
+      title: Respons Cepat
+      description: Waktu respons milidetik, tidak perlu permintaan jaringan, meningkatkan efisiensi pengembangan
     crossPlatform:
-      title: Cross-Platform Support
-      description: Supports Windows, macOS, and Linux to meet different development environment needs
+      title: Dukungan Lintas Platform
+      description: Mendukung Windows, macOS, dan Linux untuk memenuhi kebutuhan lingkungan pengembangan yang berbeda
     autoUpdate:
-      title: Auto Updates
-      description: Automatically checks for updates and upgrades to the latest version with one click
+      title: Pembaruan Otomatis
+      description: Secara otomatis memeriksa pembaruan dan meningkatkan ke versi terbaru dengan satu klik
     multiLanguage:
-      title: Multi-Language Support
-      description: Built-in Chinese and English interface, supporting international team collaboration
+      title: Dukungan Multibahasa
+      description: Antarmuka bahasa Tionghoa dan Inggris bawaan, mendukung kolaborasi tim internasional
   systemRequirements:
-    title: System Requirements
+    title: Persyaratan Sistem
     windows: Windows
     macos: macOS
     linux: Linux
-    os: Operating System
-    processor: Processor
-    memory: Memory
-    diskSpace: Disk Space
-    network: Network
+    os: Sistem Operasi
+    processor: Prosesor
+    memory: Memori
+    diskSpace: Ruang Disk
+    network: Jaringan
     windowsOs: Windows 10/11 (64-bit)
-    macosOs: macOS 12+ (Monterey or higher)
-    linuxOs: Ubuntu 20.04+ / Debian 11+ / Other mainstream distributions
-    windowsProcessor: Intel Core i3 or equivalent processor
-    macosProcessor: Apple Silicon (M1/M2/M3) or Intel Core i3+
-    linuxProcessor: Intel Core i3 or equivalent processor
-    memoryRec: 4GB RAM (8GB recommended)
-    disk: 2GB available space
-    networkDesc: Network connection required for initial download (can be used offline afterwards)
+    macosOs: macOS 12+ (Monterey atau lebih baru)
+    linuxOs: Ubuntu 20.04+ / Debian 11+ / Distribusi mainstream lainnya
+    windowsProcessor: Intel Core i3 atau prosesor setara
+    macosProcessor: Apple Silicon (M1/M2/M3) atau Intel Core i3+
+    linuxProcessor: Intel Core i3 atau prosesor setara
+    memoryRec: RAM 4GB (8GB direkomendasikan)
+    disk: Ruang tersedia 2GB
+    networkDesc: Koneksi jaringan diperlukan untuk unduhan awal (dapat digunakan offline setelahnya)
   download:
-    title: Download Packages
-    windowsDesc: Stable installers for Windows 10/11, including setup and portable builds.
-    macosDesc: Native builds for Apple Silicon and Intel Macs.
-    linuxDesc: AppImage and tarball packages for mainstream x64 and ARM64 Linux distributions.
-    note: If the package list here fails to load, use the version history link in the hero area to access the canonical index.
+    title: Paket Unduhan
+    windowsDesc: Penginstal stabil untuk Windows 10/11, termasuk versi penginstalan dan portabel.
+    macosDesc: Build natif untuk Mac Apple Silicon dan Intel.
+    linuxDesc: Paket AppImage dan tarball untuk distribusi Linux x64 dan ARM64 mainstream.
+    note: Jika daftar paket di sini gagal dimuat, gunakan tautan riwayat versi di area hero untuk mengakses indeks kanonik.
     features:
-      signed: Signed packages
-      autoUpdate: Automatic update detection
-      multiLanguage: Multi-language interface
+      signed: Paket yang ditandatangani
+      autoUpdate: Deteksi pembaruan otomatis
+      multiLanguage: Antarmuka multibahasa
   installation:
-    title: Quick Installation
+    title: Instalasi Cepat
     step1:
       number: '1'
-      title: Download Installer
-      description: Select the appropriate installer for your operating system
+      title: Unduh Penginstal
+      description: Pilih penginstal yang sesuai untuk sistem operasi Anda
     step2:
       number: '2'
-      title: Run Installer
-      description: Double-click the downloaded installer and follow the prompts to complete installation
+      title: Jalankan Penginstal
+      description: Klik dua kali penginstal yang diunduh dan ikuti petunjuk untuk menyelesaikan instalasi
     step3:
       number: '3'
-      title: Launch App
-      description: On first launch, it will guide you through initial configuration
+      title: Luncurkan Aplikasi
+      description: Saat peluncuran pertama, aplikasi akan memandu Anda melalui konfigurasi awal
     step4:
       number: '4'
-      title: Start Using
-      description: After configuration, you can start using Hagicode Desktop
+      title: Mulai Menggunakan
+      description: Setelah konfigurasi, Anda dapat mulai menggunakan Hagicode Desktop
   faq:
     title: FAQ
     q1:
-      question: What's the difference between Desktop and Server versions?
-      intro: 'Hagicode offers two deployment options: Desktop version and Server version. Each has its advantages, but both adopt a user-controlled server and data approach, providing better data protection.'
-      desktopTitle: Desktop Version
-      desktop1: Runs locally on your computer, more lightweight
-      desktop2: No server configuration needed, ready to use out of the box
-      desktop3: Suitable for individual developers and light usage scenarios
-      desktop4: All data completely localized
-      serverTitle: Server Version
-      server1: Can be deployed on remote servers
-      server2: Supports multi-user remote access
-      server3: Better suited for team collaboration and scaling
-      server4: Prepares for future enterprise features and multi-device sync
-      conclusion: Whichever version you choose, you have complete control over your server and data, enjoying better privacy protection and data security.
+      question: Apa perbedaan antara versi Desktop dan Server?
+      intro: 'Hagicode menawarkan dua opsi penyebaran: versi Desktop dan versi Server. Masing-masing memiliki keunggulannya, tetapi keduanya mengadopsi pendekatan server dan data yang dikendalikan pengguna, memberikan perlindungan data yang lebih baik.'
+      desktopTitle: Versi Desktop
+      desktop1: Berjalan secara lokal di komputer Anda, lebih ringan
+      desktop2: Tidak perlu konfigurasi server, siap digunakan langsung
+      desktop3: Cocok untuk pengembang individu dan skenario penggunaan ringan
+      desktop4: Semua data sepenuhnya lokal
+      serverTitle: Versi Server
+      server1: Dapat disebarkan di server jarak jauh
+      server2: Mendukung akses jarak jauh multi-pengguna
+      server3: Lebih cocok untuk kolaborasi tim dan penskalaan
+      server4: Mempersiapkan fitur perusahaan masa depan dan sinkronisasi multi-perangkat
+      conclusion: Versi mana pun yang Anda pilih, Anda memiliki kendali penuh atas server dan data Anda, menikmati perlindungan privasi dan keamanan data yang lebih baik.
     q2:
-      question: What do I need to do after installation?
-      intro: 'Hagicode Desktop is essentially a launcher. On first launch after installation, it will guide you through these steps:'
-      step1: <strong>Download Hagicode Core:</strong> Desktop will automatically detect and prompt you to download Hagicode core components
-      step2: <strong>Install Core Components:</strong> Follow the on-screen prompts to complete core component installation
-      step3: <strong>Configure your default Agent CLI:</strong> Choose a currently supported Agent CLI and finish the required sign-in, authorization, or local installation steps.
-      note: The Desktop interface guides the whole flow. Keep the network available on first launch so Hagicode Core can download; some Agent CLIs still require manual installation or authentication, but they are still part of the current support range.
-      done: After completing these steps, you can use all Hagicode Desktop features normally.
+      question: Apa yang perlu saya lakukan setelah instalasi?
+      intro: 'Hagicode Desktop pada dasarnya adalah peluncur. Saat peluncuran pertama setelah instalasi, aplikasi akan memandu Anda melalui langkah-langkah berikut:'
+      step1: '<strong>Unduh Hagicode Core:</strong> Desktop akan secara otomatis mendeteksi dan meminta Anda untuk mengunduh komponen inti Hagicode'
+      step2: '<strong>Instal Komponen Inti:</strong> Ikuti petunjuk di layar untuk menyelesaikan instalasi komponen inti'
+      step3: '<strong>Konfigurasikan Agent CLI default Anda:</strong> Pilih Agent CLI yang saat ini didukung dan selesaikan langkah masuk, otorisasi, atau instalasi lokal yang diperlukan.'
+      note: Antarmuka Desktop memandu seluruh alur. Jaga jaringan tersedia saat peluncuran pertama agar Hagicode Core dapat diunduh; beberapa Agent CLI masih memerlukan instalasi manual atau autentikasi, tetapi tetap menjadi bagian dari cakupan dukungan saat ini.
+      done: Setelah menyelesaikan langkah-langkah ini, Anda dapat menggunakan semua fitur Hagicode Desktop secara normal.
     q3:
-      question: How do I check for updates?
-      answer: Desktop automatically checks for updates. When a new version is available, a prompt will appear in the top right corner of the interface. You can also manually check for updates in "Settings".
+      question: Bagaimana cara memeriksa pembaruan?
+      answer: Desktop secara otomatis memeriksa pembaruan. Ketika versi baru tersedia, pemberitahuan akan muncul di sudut kanan atas antarmuka. Anda juga dapat memeriksa pembaruan secara manual di "Pengaturan".
     q4:
-      question: Which AI Agent CLIs are supported?
-      intro: 'Hagicode Desktop currently supports the following Agent CLIs:'
-      active: <strong>Currently supported:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents, and Codebuddy
-      manual: <strong>Manual installation or authentication:</strong> Hermes, Gemini, and DeepAgents require a local install or auth step first; the other CLIs provide one-click installation entry points or guided install flows.
-      legacy: <strong>Legacy compatibility only:</strong> IFlowCli remains only for historical data compatibility and is not part of the current active support range.
-      closing: Support scope and setup mode are separate concerns. A CLI that needs manual installation is still supported now.
+      question: Agent CLI AI apa saja yang didukung?
+      intro: 'Hagicode Desktop saat ini mendukung Agent CLI berikut:'
+      active: '<strong>Saat ini didukung:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents, dan Codebuddy'
+      manual: '<strong>Instalasi manual atau autentikasi:</strong> Hermes, Gemini, dan DeepAgents memerlukan instalasi lokal atau langkah autentikasi terlebih dahulu; CLI lainnya menyediakan titik masuk instalasi satu klik atau alur instalasi terpandu.'
+      legacy: '<strong>Hanya kompatibilitas lama:</strong> IFlowCli tetap ada hanya untuk kompatibilitas data historis dan bukan bagian dari cakupan dukungan aktif saat ini.'
+      closing: Cakupan dukungan dan mode penyiapan adalah hal terpisah. CLI yang memerlukan instalasi manual tetap didukung saat ini.
     q5:
-      question: Does it support offline usage?
-      intro: 'Yes! Hagicode Desktop supports complete offline usage:'
-      point1: Network connection required for initial installation and configuration (downloading core components and AI models)
-      point2: All features can be used offline after configuration
-      point3: Your code and data are never uploaded to the cloud
-      point4: All AI processing is completed locally
+      question: Apakah mendukung penggunaan offline?
+      intro: 'Ya! Hagicode Desktop mendukung penggunaan offline secara lengkap:'
+      point1: Koneksi jaringan diperlukan untuk instalasi dan konfigurasi awal (mengunduh komponen inti dan model AI)
+      point2: Semua fitur dapat digunakan offline setelah konfigurasi
+      point3: Kode dan data Anda tidak pernah diunggah ke cloud
+      point4: Semua pemrosesan AI diselesaikan secara lokal
     q6:
-      question: macOS says Hagicode.app is damaged or can't be opened. What should I do?
-      intro: If Hagicode Desktop is installed in the default path /Applications/Hagicode.app and macOS Gatekeeper blocks the first launch, use the following command to remove the quarantine attribute from the app.
-      cause: This happens because macOS adds the com.apple.quarantine attribute to apps downloaded from the internet. It is a macOS security isolation issue, not a failure in the Hagicode installer.
+      question: macOS mengatakan Hagicode.app rusak atau tidak dapat dibuka. Apa yang harus saya lakukan?
+      intro: Jika Hagicode Desktop diinstal di jalur default /Applications/Hagicode.app dan macOS Gatekeeper memblokir peluncuran pertama, gunakan perintah berikut untuk menghapus atribut karantina dari aplikasi.
+      cause: Ini terjadi karena macOS menambahkan atribut com.apple.quarantine ke aplikasi yang diunduh dari internet. Ini adalah masalah isolasi keamanan macOS, bukan kegagalan dalam penginstal Hagicode.
       command: sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app
-      note: Run the command in Terminal with administrator privileges, then relaunch Hagicode Desktop.
+      note: Jalankan perintah di Terminal dengan hak administrator, kemudian luncurkan kembali Hagicode Desktop.
     q7:
-      question: How to get help when encountering issues?
-      intro: 'If you encounter issues while using Hagicode Desktop, you can get help through:'
-      point1: <strong>Technical Support Group:</strong> Join QQ Group 610394020
-      point2: <strong>Online Documentation:</strong> View complete usage documentation and tutorials
-      point3: <strong>GitHub Issues:</strong> Submit issue reports in the project repository
+      question: Bagaimana cara mendapatkan bantuan saat mengalami masalah?
+      intro: 'Jika Anda mengalami masalah saat menggunakan Hagicode Desktop, Anda bisa mendapatkan bantuan melalui:'
+      point1: '<strong>Grup Dukungan Teknis:</strong> Bergabung dengan Grup QQ 610394020'
+      point2: '<strong>Dokumentasi Online:</strong> Lihat dokumentasi penggunaan lengkap dan tutorial'
+      point3: '<strong>GitHub Issues:</strong> Kirim laporan masalah di repositori proyek'
