@@ -16,6 +16,10 @@ themeToggle:
   lunarNewYearMode: Switch to Lunar New Year theme
 languageSwitcher:
   label: Language
+  dialogTitle: Select language
+  currentLocaleLabel: Current language
+  close: Close language chooser
+  selectedState: Current
   switchToChinese: 切换到中文
   switchToEnglish: Switch to English
 videoPlayer:

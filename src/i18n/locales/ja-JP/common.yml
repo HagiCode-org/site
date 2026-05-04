@@ -16,6 +16,10 @@ themeToggle:
   lunarNewYearMode: 旧正月テーマに切り替え
 languageSwitcher:
   label: 言語
+  dialogTitle: Select language
+  currentLocaleLabel: Current language
+  close: Close language chooser
+  selectedState: Current
   switchToChinese: 切换到中文
   switchToEnglish: 英語に切り替え
 videoPlayer:
@@ -207,7 +211,7 @@ pageMeta:
     title: Hagicode Desktop - ダウンロード
     description: ローカル実行型 AI コーディングアシスタント Hagicode Desktop をダウンロード。Windows、macOS、Linux に対応し、プライバシー保護と高速応答を提供します。
     runtimeFallbackLabel: フォールバック
-    runtimeFallbackCopy: 'このページでパッケージの読み込みに失敗した場合は、公式の Index Desktop バージョン履歴ページへ移動します：'
+    runtimeFallbackCopy: このページでパッケージの読み込みに失敗した場合は、公式の Index Desktop バージョン履歴ページへ移動します：
   container:
     title: Hagicode Container - Docker デプロイ
     description: Docker Compose Builder を使って Hagicode をデプロイ。設定はシンプルで、すぐに使い始められます。複数のイメージソースと自動更新に対応しています。
