@@ -1,4 +1,5 @@
 import { requireLocaleResourceString } from '@/i18n/resource-lookup';
+import { SUPPORTED_SITE_LOCALES } from '@/i18n/locale-metadata';
 import type { SiteLocale } from '@/lib/locale-routing';
 import type {
   AboutSnapshotEntry,
@@ -20,18 +21,10 @@ function resolveAboutCopyLocale(locale: SiteLocale): AboutCopyLocale {
 }
 
 const localeRegionPriority: Record<SiteLocale, AboutSnapshotRegionPriority> = Object.fromEntries(
-  [
-    'zh-CN',
-    'zh-Hant',
-    'en-US',
-    'ja-JP',
-    'ko-KR',
-    'de-DE',
-    'fr-FR',
-    'es-ES',
-    'pt-BR',
-    'ru-RU',
-  ].map((locale) => [locale, locale.toLowerCase().startsWith('zh') ? 'china-first' : 'international-first']),
+  SUPPORTED_SITE_LOCALES.map((locale) => [
+    locale,
+    locale.toLowerCase().startsWith('zh') ? 'china-first' : 'international-first',
+  ]),
 ) as Record<SiteLocale, AboutSnapshotRegionPriority>;
 
 const entryCopyOverrides = {

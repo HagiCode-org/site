@@ -4,7 +4,7 @@ import {
   resolveLocaleFromPathname,
   type SiteLocale,
 } from '@/lib/locale-routing';
-import { resolveSiteLocale } from '@/i18n/locale-metadata';
+import { getSiteLocaleFallbackChain, resolveSiteLocale } from '@/i18n/locale-metadata';
 
 /**
  * Common link registry for the marketing site.
@@ -36,7 +36,7 @@ export interface LinkConfig {
 
 type DocsRouteLocale = 'root' | 'en-US' | 'zh-Hant' | 'ja-JP' | 'ko-KR' | 'de-DE' | 'fr-FR' | 'es-ES' | 'pt-BR' | 'ru-RU';
 
-const DOCS_ROUTE_LOCALE_BY_SITE_LOCALE: Record<SiteLocale, DocsRouteLocale> = {
+const DOCS_ROUTE_LOCALE_BY_SITE_LOCALE: Partial<Record<SiteLocale, DocsRouteLocale>> = {
   'zh-CN': 'root',
   'zh-Hant': 'zh-Hant',
   'en-US': 'en-US',
@@ -47,6 +47,11 @@ const DOCS_ROUTE_LOCALE_BY_SITE_LOCALE: Record<SiteLocale, DocsRouteLocale> = {
   'es-ES': 'es-ES',
   'pt-BR': 'pt-BR',
   'ru-RU': 'ru-RU',
+};
+
+const RELATED_DOCS_ROUTE_LOCALE_BY_SITE_LOCALE: Partial<Record<SiteLocale, DocsRouteLocale>> = {
+  'es-419': 'es-ES',
+  'pt-PT': 'pt-BR',
 };
 
 function normalizeAbsolutePath(pathname: string): string {
@@ -78,7 +83,21 @@ function stripDocsLocalePrefix(pathname: string): string {
 }
 
 function getDocsRouteLocale(locale?: string): DocsRouteLocale {
-  return DOCS_ROUTE_LOCALE_BY_SITE_LOCALE[normalizeLocale(locale)];
+  const resolvedLocale = normalizeLocale(locale);
+
+  for (const candidate of [resolvedLocale, ...getSiteLocaleFallbackChain(resolvedLocale)]) {
+    const directRouteLocale = DOCS_ROUTE_LOCALE_BY_SITE_LOCALE[candidate];
+    if (directRouteLocale) {
+      return directRouteLocale;
+    }
+
+    const relatedRouteLocale = RELATED_DOCS_ROUTE_LOCALE_BY_SITE_LOCALE[candidate];
+    if (relatedRouteLocale) {
+      return relatedRouteLocale;
+    }
+  }
+
+  return 'en-US';
 }
 
 function getLocalizedDocsPath(pathname: string, locale?: string): string {

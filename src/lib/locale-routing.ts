@@ -50,10 +50,17 @@ function getLeadingSegment(pathname: string): string | null {
   return leadingSegment || null;
 }
 
-export function resolveLocaleFromPathname(pathname: string): SiteLocale {
+export function getCanonicalLocalePrefix(pathname: string): SiteLocale | null {
   const leadingSegment = getLeadingSegment(pathname);
-  const resolvedLocale = normalizeSiteLocale(leadingSegment);
-  return resolvedLocale ?? DEFAULT_LOCALE;
+  return leadingSegment ? normalizeSiteLocale(leadingSegment) : null;
+}
+
+export function hasExplicitLocalePrefix(pathname: string): boolean {
+  return getCanonicalLocalePrefix(pathname) !== null;
+}
+
+export function resolveLocaleFromPathname(pathname: string): SiteLocale {
+  return getCanonicalLocalePrefix(pathname) ?? DEFAULT_LOCALE;
 }
 
 export function isLegacyEnglishPath(pathname: string): boolean {
@@ -62,8 +69,7 @@ export function isLegacyEnglishPath(pathname: string): boolean {
 
 export function stripLocalePrefix(pathname: string): string {
   const normalized = normalizePathname(pathname);
-  const leadingSegment = getLeadingSegment(normalized);
-  if (!leadingSegment || !normalizeSiteLocale(leadingSegment)) {
+  if (!hasExplicitLocalePrefix(normalized)) {
     return normalized;
   }
 

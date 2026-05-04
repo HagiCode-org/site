@@ -1,10 +1,13 @@
 import { describe, expect, it } from 'vitest';
+import { SUPPORTED_SITE_LOCALES } from '@/i18n/locale-metadata';
 import {
   buildLegacyEnglishPath,
+  getCanonicalLocalePrefix,
   getAbsoluteSiteUrl,
   getAlternateLocalePaths,
   getLocalizedPath,
   getLocaleSwitchPath,
+  hasExplicitLocalePrefix,
   joinWithSiteBase,
   resolveLocaleFromPathname,
   stripLocalePrefix,
@@ -20,13 +23,20 @@ describe('locale routing', () => {
   it('resolves explicit locale prefixes across the full locale catalog', () => {
     expect(resolveLocaleFromPathname('/zh-CN/')).toBe('zh-CN');
     expect(resolveLocaleFromPathname('/zh-CN/desktop/')).toBe('zh-CN');
+    expect(resolveLocaleFromPathname('/it-IT/about/')).toBe('it-IT');
     expect(resolveLocaleFromPathname('/ja-JP/container/')).toBe('ja-JP');
+    expect(resolveLocaleFromPathname('/es-419/about/')).toBe('es-419');
+    expect(resolveLocaleFromPathname('/pt-PT/desktop/')).toBe('pt-PT');
+    expect(resolveLocaleFromPathname('/vi-VN/about/')).toBe('vi-VN');
     expect(resolveLocaleFromPathname('/fr-FR/about/')).toBe('fr-FR');
     expect(resolveLocaleFromPathname('/zh-TW/about/')).toBe('zh-Hant');
+    expect(resolveLocaleFromPathname('/zh-HK/about/')).toBe('zh-Hant');
   });
 
   it('keeps legacy /en routes mapped to English', () => {
     expect(resolveLocaleFromPathname('/en/')).toBe('en-US');
+    expect(getCanonicalLocalePrefix('/en/about/')).toBe('en-US');
+    expect(hasExplicitLocalePrefix('/en/about/')).toBe(true);
     expect(stripLocalePrefix('/en/desktop/')).toBe('/desktop');
     expect(stripLocalePrefix('/en/container/')).toBe('/container');
     expect(buildLegacyEnglishPath('/desktop/')).toBe('/en/desktop/');
@@ -60,6 +70,14 @@ describe('locale routing', () => {
         hash: '#pricing',
       }),
     ).toBe('/en-US/container/?tab=faq#pricing');
+
+    expect(
+      getLocaleSwitchPath('pt-PT', {
+        pathname: '/zh-TW/container/',
+        search: 'channel=stable',
+        hash: 'faq',
+      }),
+    ).toBe('/pt-PT/container/?channel=stable#faq');
   });
 
   it('builds canonical URLs with the canonical default root and localized alternates', () => {
@@ -73,10 +91,14 @@ describe('locale routing', () => {
 
   it('builds alternate paths for every supported locale', () => {
     const alternates = getAlternateLocalePaths('/desktop/');
+    expect(Object.keys(alternates)).toHaveLength(SUPPORTED_SITE_LOCALES.length);
     expect(alternates['en-US']).toBe('/en-US/desktop/');
+    expect(alternates['it-IT']).toBe('/it-IT/desktop/');
     expect(alternates['zh-CN']).toBe('/zh-CN/desktop/');
     expect(alternates['zh-Hant']).toBe('/zh-Hant/desktop/');
+    expect(alternates['es-419']).toBe('/es-419/desktop/');
     expect(alternates['ru-RU']).toBe('/ru-RU/desktop/');
+    expect(alternates['vi-VN']).toBe('/vi-VN/desktop/');
   });
 
   it('respects an optional site base when building localized paths', () => {

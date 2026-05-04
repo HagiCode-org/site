@@ -7,6 +7,7 @@ import {
 } from '@/i18n/locale-metadata';
 import {
   getLocaleSwitchPath,
+  hasExplicitLocalePrefix,
   resolveLocaleFromPathname,
 } from './locale-routing';
 
@@ -34,6 +35,15 @@ function readStoredLocale(): SiteLocale | null {
   }
 }
 
+function persistStoredLocale(locale: SiteLocale) {
+  try {
+    localStorage.setItem(LOCALE_STORAGE_KEY, locale);
+    localStorage.removeItem('lang');
+  } catch (error) {
+    console.warn('Unable to persist site locale.', error);
+  }
+}
+
 export function useLocale() {
   const [locale, setLocaleState] = useState<SiteLocale>(() => getClientLocale());
 
@@ -47,6 +57,10 @@ export function useLocale() {
       setLocaleState((previousLocale) =>
         previousLocale === nextLocale ? previousLocale : nextLocale,
       );
+
+      if (hasExplicitLocalePrefix(window.location.pathname)) {
+        persistStoredLocale(nextLocale);
+      }
     };
 
     const storedLocale = readStoredLocale();
@@ -72,12 +86,7 @@ export function useLocale() {
       return;
     }
 
-    try {
-      localStorage.setItem(LOCALE_STORAGE_KEY, resolvedLocale);
-      localStorage.removeItem('lang');
-    } catch (error) {
-      console.warn('Unable to persist site locale.', error);
-    }
+    persistStoredLocale(resolvedLocale);
 
     const nextUrl = getLocaleSwitchPath(resolvedLocale, {
       pathname: window.location.pathname,

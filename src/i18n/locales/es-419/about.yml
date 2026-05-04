@@ -1,0 +1,24 @@
+page:
+  seoTitle: About the HagiCode Team
+  seoDescription: Meet the HagiCode team and browse official stores, group channels, content platforms, and scannable cards from the latest bundled about snapshot.
+  title: Grow through exchange
+  sections:
+    store: Store
+    community: Grow through exchange
+    content: Follow where the team publishes
+  kindLabels:
+    store: Store
+    link: Channel
+    contact: Handle
+    qr: QR Card
+    image: Image Card
+  contactFallbackDetail: Use this handle in the app
+  comboLabel: Channel + QR
+  platformBadges:
+    steam: Official store
+    youtube: Official channel
+  genericLinkText:
+    link: Open page
+    contact: Open profile
+    qr: Open QR card
+    image: Open image

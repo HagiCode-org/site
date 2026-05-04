@@ -1,11 +1,38 @@
 import { requireLocaleResourceString } from '@/i18n/resource-lookup';
-import { resolveSiteLocale, type SiteLocale } from '@/i18n/locale-metadata';
+import {
+  DEFAULT_LOCALE,
+  getSiteLocaleFallbackChain,
+  resolveSiteLocale,
+  type SiteLocale,
+} from '@/i18n/locale-metadata';
 import type {
   FeaturedVideosByProvider,
   VideoShowcaseItem,
 } from '@/components/home/VideoShowcase';
 
-const homePageSeoCopy = {
+type LocalizedSitePageCopy<T> = Partial<Record<SiteLocale, T>>;
+
+function resolveSitePageCopy<T>(
+  locale: SiteLocale,
+  catalog: LocalizedSitePageCopy<T>,
+  catalogName: string,
+): T {
+  for (const candidate of [locale, ...getSiteLocaleFallbackChain(locale)]) {
+    const value = catalog[candidate];
+    if (value) {
+      return value;
+    }
+  }
+
+  const fallbackValue = catalog[DEFAULT_LOCALE];
+  if (!fallbackValue) {
+    throw new Error(`Missing ${catalogName} fallback for ${DEFAULT_LOCALE}`);
+  }
+
+  return fallbackValue;
+}
+
+const homePageSeoCopy: LocalizedSitePageCopy<{ title: string; description: string }> = {
   'en-US': {
     title: 'Hagicode - Smart · Efficient · Fun AI Coding Assistant',
     description:
@@ -56,9 +83,13 @@ const homePageSeoCopy = {
     description:
       'Переосмыслите разработку с ИИ. Workflow OpenSpec, параллельное выполнение с несколькими агентами и экземплярами и геймификация Hero Dungeon делают создание быстрее и интереснее.',
   },
-} as const satisfies Record<SiteLocale, { title: string; description: string }>;
+};
 
-const desktopRuntimeNoteCopy = {
+const desktopRuntimeNoteCopy: LocalizedSitePageCopy<{
+  label: string;
+  copy: string;
+  ariaLabel: string;
+}> = {
   'en-US': {
     label: 'Fallback',
     copy:
@@ -117,14 +148,15 @@ const desktopRuntimeNoteCopy = {
       'Если загрузка пакета здесь не удалась, эта страница перенаправит на canonical страницу истории версий Index Desktop:',
     ariaLabel: 'Уведомление о резервном переходе при ошибке загрузки пакета',
   },
-} as const satisfies Record<SiteLocale, { label: string; copy: string; ariaLabel: string }>;
+};
 
 export function getHomePageCopy(locale: SiteLocale) {
   const resolvedLocale = resolveSiteLocale(locale);
+  const pageCopy = resolveSitePageCopy(resolvedLocale, homePageSeoCopy, 'home page SEO copy');
 
   return {
-    title: homePageSeoCopy[resolvedLocale].title,
-    description: homePageSeoCopy[resolvedLocale].description,
+    title: pageCopy.title,
+    description: pageCopy.description,
     featuredHomepageVideos: {
       youtube: {
         provider: 'youtube',
@@ -231,7 +263,11 @@ export function getHomePageCopy(locale: SiteLocale) {
 
 export function getDesktopPageCopy(locale: SiteLocale) {
   const resolvedLocale = resolveSiteLocale(locale);
-  const runtimeNote = desktopRuntimeNoteCopy[resolvedLocale];
+  const runtimeNote = resolveSitePageCopy(
+    resolvedLocale,
+    desktopRuntimeNoteCopy,
+    'desktop runtime note copy',
+  );
 
   return {
     title: requireLocaleResourceString(resolvedLocale, 'desktop', 'desktop.title'),

@@ -14,7 +14,7 @@ export interface FooterCatalogLink {
   href: string;
 }
 
-type LocalizedFooterField = string | Readonly<Record<SiteLocale, string>>;
+type LocalizedFooterField = string | Readonly<Partial<Record<SiteLocale, string>>>;
 
 type FooterSnapshotEntry = {
   id: string;

@@ -1,0 +1,125 @@
+container:
+  title: Hagicode Container - Container Deployment
+  description: Deploy Hagicode via Docker Compose Builder. Simple configuration, ready to use. Supports multiple image sources and auto updates.
+  hero:
+    badge: Container
+    title: Hagicode Container
+    tagline: Deploy quickly with Docker Compose Builder, simple configuration, ready to use
+    value1: Visual configuration, no coding required
+    value2: Environment isolation, data security
+    value3: One-click deployment, fast startup
+    ctaButton: Deploy with Docker Compose Builder
+    features:
+      isolation: Environment Isolation
+      oneClick: One-Click Deployment
+      fastStart: Fast Startup
+  features:
+    title: Why Choose Container Deployment?
+    isolation:
+      title: Environment Isolation
+      description: Containerized deployment avoids dependency conflicts, doesn't affect system environment, keeps system clean
+    simple:
+      title: Simple Configuration
+      description: Use Docker Compose Builder for visual configuration, no need to write complex scripts
+    crossPlatform:
+      title: Cross-Platform Support
+      description: Supports x86_64 architecture, suitable for various servers and cloud platforms
+    persistent:
+      title: Data Persistence
+      description: Supports Volume mounting, secure and reliable data, no data loss on container restart
+    autoUpdate:
+      title: Auto Updates
+      description: Supports watchtower for automatic updates, easily get the latest version
+    productionReady:
+      title: Production Ready
+      description: Designed for production environments, supports high availability and horizontal scaling
+  builder:
+    title: Docker Compose Builder
+    subtitle: The simplest and recommended container deployment method
+    visual:
+      title: Visual Configuration
+      description: Configure all parameters through a friendly Web interface, no need to manually edit YAML files
+    generate:
+      title: One-Click Configuration Generation
+      description: Automatically generate complete docker-compose.yml files with best practice configurations
+    deploy:
+      title: Fast Deployment
+      description: One-click download configuration files and start services, complete deployment in minutes
+    secure:
+      title: Secure and Reliable
+      description: Built-in security best practices, automatically configures data volumes and restart policies
+    ctaButton: Go to Docker Compose Builder
+  mirrors:
+    title: Image Source Selection
+    description: Choose the most suitable image source based on your network environment and location
+    dockerHub: Docker Hub
+    dockerHubDesc: The world's largest container image registry, suitable for international network users
+    dockerHubCmd: newbe36524/hagicode:0
+    azure: Azure ACR
+    azureDesc: Microsoft Azure's image service, faster access from China
+    azureCmd: hagicode.azurecr.io/hagicode:0
+    aliyun: Aliyun ACR
+    aliyunDesc: Aliyun's domestic image acceleration, recommended for users in mainland China
+    aliyunCmd: registry.cn-hangzhou.aliyuncs.com/hagicode/hagicode:0
+  faq:
+    title: FAQ
+    q1:
+      question: What's the difference between Container and Desktop versions?
+      intro: 'Both versions have their advantages. You can choose based on your usage scenario:'
+      desktopTitle: Desktop Version
+      desktop1: Runs locally on your computer, more lightweight
+      desktop2: No server configuration needed, ready to use out of the box
+      desktop3: Suitable for individual developers and light usage scenarios
+      desktop4: All data completely localized
+      containerTitle: Container Version
+      container1: Can be deployed on servers, supports remote access
+      container2: Environment isolation, doesn't affect system environment
+      container3: Better suited for team collaboration and production environments
+      container4: Supports automated deployment and horizontal scaling
+    q2:
+      question: What is Docker Compose Builder?
+      intro: 'Docker Compose Builder is our visual configuration tool that helps you:'
+      point1: Configure all container parameters through a Web interface
+      point2: Automatically generate docker-compose.yml files
+      point3: Built-in best practices and security configurations
+      point4: One-click download and start services
+      note: No need to manually write complex YAML configurations. Even Docker beginners can deploy easily.
+    q3:
+      question: Which system architectures does the container version support?
+      answer: Hagicode container images currently support <strong>x86_64 (amd64)</strong> architecture, suitable for most servers and PCs.
+      note: Docker will automatically select the appropriate architecture for your system when pulling images.
+    q4:
+      question: How to update the container?
+      intro: 'When using Docker Compose deployment, updating is very simple:'
+      code: |-
+        docker-compose pull
+        docker-compose up -d
+      watchtower: Or use Watchtower for automatic updates.
+    q5:
+      question: How to configure data persistence?
+      intro: 'Docker Compose Builder automatically configures data volumes. By default, your data will be stored in Docker Volumes, ensuring:'
+      point1: Data is not lost when containers are deleted
+      point2: Data is preserved during container upgrades
+      point3: Easy backup and recovery
+    q6:
+      question: What to do if container startup fails?
+      intro: 'Steps to troubleshoot container startup failure:'
+      step1:
+        title: 'Check container status:'
+        code: docker-compose ps
+      step2:
+        title: 'Check container logs:'
+        code: docker-compose logs hagicode
+      step3:
+        title: 'Check port occupancy:'
+        desc: 'If your service port is 3000, use this command to check:'
+        code: netstat -tlnp | grep 3000
+        solution: 'If the port is occupied, you can:'
+        solution1: Stop the process occupying the port
+        solution2: Or configure a different port in Docker Compose Builder
+      help: If the issue persists, please check the detailed documentation or contact technical support.
+  cta:
+    title: Start Using Docker Compose Builder
+    subtitle: The simplest and recommended container deployment method
+    button: Go to Deployment Guide
+    github: GitHub Repository
