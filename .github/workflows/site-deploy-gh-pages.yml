@@ -5,15 +5,6 @@ on:
     branches:
       - main
   workflow_dispatch:
-    inputs:
-      publish_source:
-        description: Select the source used for a manual publication run.
-        required: true
-        default: latest-gh-pages
-        type: choice
-        options:
-          - latest-gh-pages
-          - current-ref-build
 
 concurrency:
   group: site-deploy-gh-pages
@@ -35,57 +26,27 @@ jobs:
       contents: read
     steps:
       - name: Checkout current source ref
-        if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.publish_source == 'current-ref-build' }}
         uses: actions/checkout@v4
-
-      - name: Checkout latest gh-pages source
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.publish_source == 'latest-gh-pages' }}
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          fetch-depth: 1
 
       - name: Setup Node.js
-        if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.publish_source == 'current-ref-build' }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
 
       - name: Install dependencies
-        if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.publish_source == 'current-ref-build' }}
         run: npm ci
 
       - name: Build and verify site
-        if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.publish_source == 'current-ref-build' }}
         run: npm run build
 
       - name: Assemble gh-pages publication payload
-        if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.publish_source == 'current-ref-build' }}
         run: |
           rm -rf "${SITE_GH_PAGES_PAYLOAD_DIR}"
           mkdir -p "${SITE_GH_PAGES_PAYLOAD_DIR}/dist"
           cp .github/gh-pages/esa.jsonc "${SITE_GH_PAGES_PAYLOAD_DIR}/esa.jsonc"
+          cp .github/gh-pages/wrangler.jsonc "${SITE_GH_PAGES_PAYLOAD_DIR}/wrangler.jsonc"
           cp -R dist/. "${SITE_GH_PAGES_PAYLOAD_DIR}/dist/"
-
-      - name: Assemble payload from latest gh-pages branch
-        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.publish_source == 'latest-gh-pages' }}
-        run: |
-          if [ ! -f "esa.jsonc" ]; then
-            echo "::error title=Missing gh-pages payload::The latest gh-pages branch snapshot does not contain esa.jsonc."
-            exit 1
-          fi
-
-          if [ ! -d "dist" ]; then
-            echo "::error title=Missing gh-pages dist::The latest gh-pages branch snapshot does not contain dist/."
-            exit 1
-          fi
-
-          rm -rf "${SITE_GH_PAGES_PAYLOAD_DIR}"
-          mkdir -p "${SITE_GH_PAGES_PAYLOAD_DIR}/dist"
-          cp esa.jsonc "${SITE_GH_PAGES_PAYLOAD_DIR}/esa.jsonc"
-          cp -R dist/. "${SITE_GH_PAGES_PAYLOAD_DIR}/dist/"
-          echo "Prepared publication payload from the latest gh-pages branch snapshot for manual publication."
 
       - name: Upload validated gh-pages payload
         uses: actions/upload-artifact@v4
@@ -96,7 +57,6 @@ jobs:
 
   deploy:
     name: Publish validated snapshot to gh-pages
-    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.publish_source == 'current-ref-build' }}
     runs-on: ubuntu-latest
     needs: build
     permissions:
@@ -127,172 +87,9 @@ jobs:
       - name: Summarize deployment output
         run: |
           echo "## Publication status" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Publication source: validated build artifact" >> "$GITHUB_STEP_SUMMARY"
           echo "- \`gh-pages\` publication: succeeded" >> "$GITHUB_STEP_SUMMARY"
-          echo "- R2 upload: pending downstream \`upload-r2\` job using the validated \`site-gh-pages-payload\` artifact" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Published payload: branch-root \`esa.jsonc\` plus \`dist/\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Published payload: branch-root \`esa.jsonc\`, \`wrangler.jsonc\`, plus \`dist/\`" >> "$GITHUB_STEP_SUMMARY"
           echo "- GitHub environment: site-production" >> "$GITHUB_STEP_SUMMARY"
           echo "- Expected public URL: https://hagicode.com" >> "$GITHUB_STEP_SUMMARY"
-          echo "Published the validated gh-pages payload with ./esa.jsonc and ./dist/."
-          echo "Downstream R2 upload will reuse site-gh-pages-payload without rebuilding the site."
-
-  upload-r2:
-    name: Upload dist contents to R2
-    if: ${{ always() && needs.build.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped') }}
-    runs-on: ubuntu-latest
-    needs:
-      - build
-      - deploy
-    permissions:
-      contents: read
-    environment:
-      name: site-production
-      url: https://hagicode.com
-    steps:
-      - name: Download validated gh-pages payload
-        uses: actions/download-artifact@v4
-        with:
-          name: site-gh-pages-payload
-          path: .deploy/gh-pages
-
-      - name: Validate R2 configuration
-        id: validate-r2
-        env:
-          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
-          R2_BUCKET: ${{ secrets.R2_BUCKET }}
-          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          R2_PREFIX: ${{ secrets.R2_PREFIX }}
-        run: |
-          required_vars=(
-            R2_ENDPOINT
-            R2_BUCKET
-            R2_ACCESS_KEY_ID
-            R2_SECRET_ACCESS_KEY
-          )
-          missing=()
-
-          for var_name in "${required_vars[@]}"; do
-            if [ -z "${!var_name}" ]; then
-              missing+=("${var_name}")
-            fi
-          done
-
-          normalized_prefix="${R2_PREFIX#/}"
-          normalized_prefix="${normalized_prefix%/}"
-
-          if [ -n "${normalized_prefix}" ]; then
-            target_root="s3://${R2_BUCKET}/${normalized_prefix}"
-            prefix_display="${normalized_prefix}"
-          else
-            target_root="s3://${R2_BUCKET}"
-            prefix_display="<bucket-root>"
-          fi
-
-          if [ "${#missing[@]}" -gt 0 ]; then
-            echo "::error title=Missing R2 configuration::Missing required settings: ${missing[*]}"
-            echo "R2 upload configuration is incomplete. Missing: ${missing[*]}"
-            exit 1
-          fi
-
-          echo "target_root=${target_root}" >> "$GITHUB_OUTPUT"
-          echo "prefix_display=${prefix_display}" >> "$GITHUB_OUTPUT"
-          echo "normalized_prefix=${normalized_prefix}" >> "$GITHUB_OUTPUT"
-
-          echo "Resolved R2 endpoint: ${R2_ENDPOINT}"
-          echo "Resolved R2 bucket: ${R2_BUCKET}"
-          echo "Resolved R2 prefix root: ${prefix_display}"
-          echo "Uploading .deploy/gh-pages/dist/ contents directly to ${target_root}/ without adding an extra dist/ path segment."
-
-      - name: Upload validated dist contents to R2
-        id: sync-r2
-        env:
-          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
-          R2_BUCKET: ${{ secrets.R2_BUCKET }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: auto
-          AWS_REGION: auto
-          TARGET_ROOT: ${{ steps.validate-r2.outputs.target_root }}
-        run: |
-          echo "Starting R2 sync from .deploy/gh-pages/dist/ to ${TARGET_ROOT}/."
-          aws s3 sync .deploy/gh-pages/dist/ "${TARGET_ROOT}/" \
-            --delete \
-            --endpoint-url "${R2_ENDPOINT}" \
-            --no-progress
-
-      - name: Summarize publication result
-        if: ${{ always() }}
-        env:
-          R2_BUCKET: ${{ secrets.R2_BUCKET }}
-          R2_PREFIX: ${{ secrets.R2_PREFIX }}
-          PUBLISH_SOURCE: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.publish_source || 'current-ref-build' }}
-          VALIDATE_OUTCOME: ${{ steps.validate-r2.outcome }}
-          SYNC_OUTCOME: ${{ steps.sync-r2.outcome }}
-          TARGET_ROOT: ${{ steps.validate-r2.outputs.target_root }}
-          PREFIX_DISPLAY: ${{ steps.validate-r2.outputs.prefix_display }}
-        run: |
-          normalized_prefix="${R2_PREFIX#/}"
-          normalized_prefix="${normalized_prefix%/}"
-
-          if [ -n "${TARGET_ROOT}" ]; then
-            resolved_target="${TARGET_ROOT}"
-          elif [ -n "${normalized_prefix}" ]; then
-            resolved_target="s3://${R2_BUCKET:-<missing>}/${normalized_prefix}"
-          else
-            resolved_target="s3://${R2_BUCKET:-<missing>}"
-          fi
-
-          if [ -n "${PREFIX_DISPLAY}" ]; then
-            resolved_prefix="${PREFIX_DISPLAY}"
-          elif [ -n "${normalized_prefix}" ]; then
-            resolved_prefix="${normalized_prefix}"
-          else
-            resolved_prefix="<bucket-root>"
-          fi
-
-          if [ "${PUBLISH_SOURCE}" = "latest-gh-pages" ]; then
-            gh_pages_status="reused latest gh-pages branch snapshot (manual dispatch)"
-            publication_mode="manual replay from latest gh-pages"
-          else
-            gh_pages_status="succeeded"
-            publication_mode="validated build artifact"
-          fi
-
-          if [ "${VALIDATE_OUTCOME}" != "success" ]; then
-            r2_status="failed before transfer"
-            if [ "${PUBLISH_SOURCE}" = "latest-gh-pages" ]; then
-              publication_status="Manual publication reused the latest gh-pages branch snapshot, but the R2 upload stopped during configuration validation."
-            else
-              publication_status="gh-pages publication succeeded, but the R2 upload stopped during configuration validation."
-            fi
-          elif [ "${SYNC_OUTCOME}" = "success" ]; then
-            r2_status="succeeded"
-            if [ "${PUBLISH_SOURCE}" = "latest-gh-pages" ]; then
-              publication_status="Manual publication succeeded: the latest gh-pages branch snapshot was uploaded to R2."
-            else
-              publication_status="Dual-channel publication succeeded: gh-pages and R2 are both up to date."
-            fi
-          else
-            r2_status="failed during transfer"
-            if [ "${PUBLISH_SOURCE}" = "latest-gh-pages" ]; then
-              publication_status="Manual publication reused the latest gh-pages branch snapshot, but the R2 upload failed during object sync."
-            else
-              publication_status="gh-pages publication succeeded, but the R2 upload failed during object sync."
-            fi
-          fi
-
-          echo "## Publication status" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Publication source: ${publication_mode}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- \`gh-pages\` publication: ${gh_pages_status}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- R2 upload: ${r2_status}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- R2 bucket: \`${R2_BUCKET:-<missing>}\`" >> "$GITHUB_STEP_SUMMARY"
-          echo "- R2 prefix root: \`${resolved_prefix}\`" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Resolved R2 target: \`${resolved_target}\`" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Upload mapping: \`.deploy/gh-pages/dist/\` contents -> target root (no extra \`dist/\` segment)" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Result: ${publication_status}" >> "$GITHUB_STEP_SUMMARY"
-
-          echo "${publication_status}"
-          echo "Resolved R2 bucket: ${R2_BUCKET:-<missing>}"
-          echo "Resolved R2 prefix root: ${resolved_prefix}"
-          echo "Resolved R2 target: ${resolved_target}"
-          echo "Upload mapping: .deploy/gh-pages/dist/ contents -> target root (no extra dist/ segment)"
+          echo "Published the validated gh-pages payload with ./esa.jsonc, ./wrangler.jsonc, and ./dist/."
