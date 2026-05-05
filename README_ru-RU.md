@@ -28,15 +28,15 @@
 
 | Превью | Продукт | Что это | С чего начать |
 | --- | --- | --- | --- |
-| <img src="./public/img/readme-sync/steam/hagicode-wide-capsule.png" alt="Широкое изображение HagiCode в Steam" width="280" /> | **HagiCode** | Базовое приложение в Steam с Cloud Saves, поддержкой Workshop и самым понятным публичным путём установки desktop-версии. | [Открыть в Steam](https://store.steampowered.com/app/4625540/Hagicode/) |
-| <img src="./public/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Широкое изображение бандла Hagicode Plus в Steam" width="280" /> | **Hagicode Plus** | Руководство по бандлу для более полной конфигурации. Включает HagiCode и DLC Turbo Engine в одном сценарии покупки. | [Открыть руководство по бандлу](https://docs.hagicode.com/en/bundles/hagicode-plus/) · [Посмотреть бандл в Steam](https://store.steampowered.com/bundle/73989/Hagicode_Plus/) |
-| <img src="./public/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Широкое изображение DLC Turbo Engine в Steam" width="280" /> | **Turbo Engine DLC** | DLC для HagiCode, открывающее до 32 одновременных онлайн-сессий и больше возможностей настройки. | [Посмотреть DLC](https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/) |
+| <img src="./src/assets/img/readme-sync/steam/hagicode-wide-capsule.png" alt="Широкое изображение HagiCode в Steam" width="280" /> | **HagiCode** | Базовое приложение в Steam с Cloud Saves, поддержкой Workshop и самым понятным публичным путём установки desktop-версии. | [Открыть в Steam](https://store.steampowered.com/app/4625540/Hagicode/) |
+| <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Широкое изображение бандла Hagicode Plus в Steam" width="280" /> | **Hagicode Plus** | Руководство по бандлу для более полной конфигурации. Включает HagiCode и DLC Turbo Engine в одном сценарии покупки. | [Открыть руководство по бандлу](https://docs.hagicode.com/en/bundles/hagicode-plus/) · [Посмотреть бандл в Steam](https://store.steampowered.com/bundle/73989/Hagicode_Plus/) |
+| <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Широкое изображение DLC Turbo Engine в Steam" width="280" /> | **Turbo Engine DLC** | DLC для HagiCode, открывающее до 32 одновременных онлайн-сессий и больше возможностей настройки. | [Посмотреть DLC](https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/) |
 
 ## Что такое HagiCode
 
 HagiCode создавался не как ещё одно чат-окно для кода. Он встраивает ИИ во весь процесс разработки ПО: понимание репозиториев, планирование изменений, реализация кода, организация коммитов, накопление знаний и поддержание всего потока от идеи до архива в удобном для ревью виде.
 
-![Обзор рабочего пространства HagiCode с сессиями, заметками к коммитам и основными действиями в одном интерфейсе.](./public/img/readme-sync/workspace-overview.png)
+![Обзор рабочего пространства HagiCode с сессиями, заметками к коммитам и основными действиями в одном интерфейсе.](./src/assets/img/readme-sync/workspace-overview.png)
 
 ## Ключевые возможности
 
@@ -44,13 +44,13 @@ HagiCode создавался не как ещё одно чат-окно для
 
 Для нетривиальной работы HagiCode начинает с предложения, а не сразу переходит к правке файлов. OpenSpec превращает запросы в область работ, задачи, анализ влияния, шаги проверки и историю выполнения, которую удобно просматривать и проверять.
 
-![Экран сессии предложения в HagiCode с шагами процесса, результатами выполнения и историческим контекстом.](./public/img/readme-sync/open-spec-proposal-workflow.png)
+![Экран сессии предложения в HagiCode с шагами процесса, результатами выполнения и историческим контекстом.](./src/assets/img/readme-sync/open-spec-proposal-workflow.png)
 
 ### 2. Популярные Agent CLI и OmniRoute
 
 HagiCode поддерживает Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents и Codebuddy. OmniRoute отделяет выбор CLI от уровня моделей и подписок, чтобы команды могли маршрутизировать модели и endpoints без жёсткой привязки ко всему одному стеку по умолчанию.
 
-![Страница настроек OmniRoute с конфигурацией маршрутизации, управлением endpoints и статусом выполнения.](./public/img/readme-sync/omniroute-routing.png)
+![Страница настроек OmniRoute с конфигурацией маршрутизации, управлением endpoints и статусом выполнения.](./src/assets/img/readme-sync/omniroute-routing.png)
 
 ### 3. Полноценное рабочее пространство разработки, а не только чат
 
@@ -62,19 +62,19 @@ HagiCode поддерживает Codex, Claude Code, GitHub Copilot, OpenCode, 
 - `AI Compose Commit` и интеграция с `code-server`, чтобы завершать работу в том же потоке
 
 <p align="center">
-  <img src="./public/img/readme-sync/monospecs-multi-repo.png" alt="Обзор MonoSpecs со статусом изменений в нескольких репозиториях." width="49%" />
-  <img src="./public/img/readme-sync/skills-gallery.png" alt="HagiCode Skills Gallery с поиском по устанавливаемым навыкам и фильтрами по источникам." width="49%" />
+  <img src="./src/assets/img/readme-sync/monospecs-multi-repo.png" alt="Обзор MonoSpecs со статусом изменений в нескольких репозиториях." width="49%" />
+  <img src="./src/assets/img/readme-sync/skills-gallery.png" alt="HagiCode Skills Gallery с поиском по устанавливаемым навыкам и фильтрами по источникам." width="49%" />
 </p>
 
 <p align="center">
-  <img src="./public/img/readme-sync/vault-workspace.png" alt="Рабочее пространство Vault с переиспользуемыми источниками знаний и действиями рабочего пространства." width="100%" />
+  <img src="./src/assets/img/readme-sync/vault-workspace.png" alt="Рабочее пространство Vault с переиспользуемыми источниками знаний и действиями рабочего пространства." width="100%" />
 </p>
 
 ### 4. Игровая обратная связь, которая остаётся полезной в работе
 
 HagiCode рассматривает достижения, ежедневные отчёты, множители эффективности, пропускную способность токенов и тематическую обратную связь интерфейса как часть продукта, а не как декоративные остатки. В результате получается рабочее пространство, где долгие AI-процессы остаются видимыми, а не сплющиваются в одну бесконечно прокручиваемую переписку.
 
-![Зал достижений с ежедневным прогрессом, метриками этапов и долгосрочными поверхностями обратной связи.](./public/img/readme-sync/gamified-feedback.png)
+![Зал достижений с ежедневным прогрессом, метриками этапов и долгосрочными поверхностями обратной связи.](./src/assets/img/readme-sync/gamified-feedback.png)
 
 ## Официальные точки входа
 

@@ -28,15 +28,15 @@
 
 | Aperçu | Produit | Description | Point de départ |
 | --- | --- | --- | --- |
-| <img src="./public/img/readme-sync/steam/hagicode-wide-capsule.png" alt="Capsule large Steam de HagiCode" width="280" /> | **HagiCode** | Application de base sur Steam avec Cloud Saves, prise en charge du Workshop et le chemin d'installation public le plus clair pour l'édition desktop. | [Ouvrir sur Steam](https://store.steampowered.com/app/4625540/Hagicode/) |
-| <img src="./public/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Capsule large Steam du bundle Hagicode Plus" width="280" /> | **Hagicode Plus** | Guide du bundle pour une configuration plus complète. Il inclut HagiCode et le DLC Turbo Engine dans un même parcours. | [Lire le guide du bundle](https://docs.hagicode.com/en/bundles/hagicode-plus/) · [Voir le bundle sur Steam](https://store.steampowered.com/bundle/73989/Hagicode_Plus/) |
-| <img src="./public/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Capsule large Steam du DLC Turbo Engine" width="280" /> | **Turbo Engine DLC** | DLC pour HagiCode qui débloque jusqu'à 32 sessions en ligne simultanées et davantage d'options de personnalisation. | [Voir le DLC](https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/) |
+| <img src="./src/assets/img/readme-sync/steam/hagicode-wide-capsule.png" alt="Capsule large Steam de HagiCode" width="280" /> | **HagiCode** | Application de base sur Steam avec Cloud Saves, prise en charge du Workshop et le chemin d'installation public le plus clair pour l'édition desktop. | [Ouvrir sur Steam](https://store.steampowered.com/app/4625540/Hagicode/) |
+| <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Capsule large Steam du bundle Hagicode Plus" width="280" /> | **Hagicode Plus** | Guide du bundle pour une configuration plus complète. Il inclut HagiCode et le DLC Turbo Engine dans un même parcours. | [Lire le guide du bundle](https://docs.hagicode.com/en/bundles/hagicode-plus/) · [Voir le bundle sur Steam](https://store.steampowered.com/bundle/73989/Hagicode_Plus/) |
+| <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Capsule large Steam du DLC Turbo Engine" width="280" /> | **Turbo Engine DLC** | DLC pour HagiCode qui débloque jusqu'à 32 sessions en ligne simultanées et davantage d'options de personnalisation. | [Voir le DLC](https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/) |
 
 ## Ce qu'est HagiCode
 
 HagiCode n'a pas été conçu pour être une simple boîte de dialogue dédiée au code. Il fait entrer l'IA dans l'ensemble du processus de développement logiciel : comprendre des dépôts, planifier des changements, implémenter du code, organiser des commits, capitaliser la connaissance et garder l'ensemble du flux, de l'idée à l'archive, facilement révisable.
 
-![Vue d'ensemble de l'espace de travail HagiCode montrant les sessions, les notes de commit et les actions principales dans une interface intégrée.](./public/img/readme-sync/workspace-overview.png)
+![Vue d'ensemble de l'espace de travail HagiCode montrant les sessions, les notes de commit et les actions principales dans une interface intégrée.](./src/assets/img/readme-sync/workspace-overview.png)
 
 ## Capacités principales
 
@@ -44,13 +44,13 @@ HagiCode n'a pas été conçu pour être une simple boîte de dialogue dédiée 
 
 Pour les travaux non triviaux, HagiCode commence par une proposition au lieu de passer directement à l'édition de fichiers. OpenSpec transforme les demandes en périmètre, tâches, analyse d'impact, étapes de validation et trace d'exécution qui reste simple à relire.
 
-![Vue de session de proposition HagiCode montrant les étapes du flux, les résultats d'exécution et le contexte historique.](./public/img/readme-sync/open-spec-proposal-workflow.png)
+![Vue de session de proposition HagiCode montrant les étapes du flux, les résultats d'exécution et le contexte historique.](./src/assets/img/readme-sync/open-spec-proposal-workflow.png)
 
 ### 2. CLI d'agents grand public avec OmniRoute
 
 HagiCode prend en charge Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents et Codebuddy. OmniRoute sépare le choix du CLI de la couche modèle et abonnement, afin que les équipes puissent router les modèles et les endpoints sans tout lier rigidement à une pile par défaut unique.
 
-![Page de paramètres OmniRoute montrant la configuration du routage, les contrôles d'endpoint et l'état d'exécution.](./public/img/readme-sync/omniroute-routing.png)
+![Page de paramètres OmniRoute montrant la configuration du routage, les contrôles d'endpoint et l'état d'exécution.](./src/assets/img/readme-sync/omniroute-routing.png)
 
 ### 3. Un espace de développement complet, pas seulement un panneau de chat
 
@@ -62,19 +62,19 @@ L'espace de travail réunit des capacités qui finissent souvent dispersées dan
 - `AI Compose Commit` et l'intégration `code-server` pour terminer le travail dans le même flux
 
 <p align="center">
-  <img src="./public/img/readme-sync/monospecs-multi-repo.png" alt="Vue d'ensemble MonoSpecs montrant l'état des changements sur plusieurs dépôts." width="49%" />
-  <img src="./public/img/readme-sync/skills-gallery.png" alt="HagiCode Skills Gallery montrant des compétences installables, consultables et filtrables par source." width="49%" />
+  <img src="./src/assets/img/readme-sync/monospecs-multi-repo.png" alt="Vue d'ensemble MonoSpecs montrant l'état des changements sur plusieurs dépôts." width="49%" />
+  <img src="./src/assets/img/readme-sync/skills-gallery.png" alt="HagiCode Skills Gallery montrant des compétences installables, consultables et filtrables par source." width="49%" />
 </p>
 
 <p align="center">
-  <img src="./public/img/readme-sync/vault-workspace.png" alt="Espace Vault montrant des sources de connaissance réutilisables et les actions du workspace." width="100%" />
+  <img src="./src/assets/img/readme-sync/vault-workspace.png" alt="Espace Vault montrant des sources de connaissance réutilisables et les actions du workspace." width="100%" />
 </p>
 
 ### 4. Un retour gamifié qui reste utile en pratique
 
 HagiCode traite les succès, les rapports quotidiens, les multiplicateurs d'efficacité, le débit de tokens et les retours d'interface thématiques comme des éléments du produit, et non comme de simples décorations. Le résultat est un espace de travail qui garde visibles les travaux IA de longue durée au lieu de tout aplatir dans un seul fil de discussion sans fin.
 
-![Hall des succès montrant la progression quotidienne, les métriques d'étape et les surfaces de retour à long terme.](./public/img/readme-sync/gamified-feedback.png)
+![Hall des succès montrant la progression quotidienne, les métriques d'étape et les surfaces de retour à long terme.](./src/assets/img/readme-sync/gamified-feedback.png)
 
 ## Points d'entrée officiels
 

@@ -28,15 +28,15 @@
 
 | 預覽 | 產品 | 說明 | 開始位置 |
 | --- | --- | --- | --- |
-| <img src="./public/img/readme-sync/steam/hagicode-wide-capsule.png" alt="HagiCode Steam 寬版宣傳圖" width="280" /> | **HagiCode** | Steam 上的基礎應用程式，提供 Cloud Saves、Workshop 支援，以及最清楚的桌面版公開安裝路徑。 | [在 Steam 上開啟](https://store.steampowered.com/app/4625540/Hagicode/) |
-| <img src="./public/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus Steam 套裝寬版宣傳圖" width="280" /> | **Hagicode Plus** | 面向完整配置的套裝導覽，包含 HagiCode 與 Turbo Engine DLC。 | [閱讀套裝指南](https://docs.hagicode.com/en/bundles/hagicode-plus/) · [在 Steam 上查看套裝](https://store.steampowered.com/bundle/73989/Hagicode_Plus/) |
-| <img src="./public/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC Steam 寬版宣傳圖" width="280" /> | **Turbo Engine DLC** | HagiCode 的 DLC，可解鎖最多 32 個並行線上工作階段以及更多自訂選項。 | [查看 DLC](https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/) |
+| <img src="./src/assets/img/readme-sync/steam/hagicode-wide-capsule.png" alt="HagiCode Steam 寬版宣傳圖" width="280" /> | **HagiCode** | Steam 上的基礎應用程式，提供 Cloud Saves、Workshop 支援，以及最清楚的桌面版公開安裝路徑。 | [在 Steam 上開啟](https://store.steampowered.com/app/4625540/Hagicode/) |
+| <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus Steam 套裝寬版宣傳圖" width="280" /> | **Hagicode Plus** | 面向完整配置的套裝導覽，包含 HagiCode 與 Turbo Engine DLC。 | [閱讀套裝指南](https://docs.hagicode.com/en/bundles/hagicode-plus/) · [在 Steam 上查看套裝](https://store.steampowered.com/bundle/73989/Hagicode_Plus/) |
+| <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC Steam 寬版宣傳圖" width="280" /> | **Turbo Engine DLC** | HagiCode 的 DLC，可解鎖最多 32 個並行線上工作階段以及更多自訂選項。 | [查看 DLC](https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/) |
 
 ## HagiCode 是什麼
 
 HagiCode 並不是另一個只會聊天的程式碼對話框。它把 AI 帶進完整的軟體開發流程：理解儲存庫、規劃變更、實作程式碼、整理提交、追蹤知識，並讓從想法到封存的整條流程都保持可審閱。
 
-![HagiCode 工作台總覽，展示工作階段、提交說明與頂部操作入口。](./public/img/readme-sync/workspace-overview.png)
+![HagiCode 工作台總覽，展示工作階段、提交說明與頂部操作入口。](./src/assets/img/readme-sync/workspace-overview.png)
 
 ## 核心能力
 
@@ -44,13 +44,13 @@ HagiCode 並不是另一個只會聊天的程式碼對話框。它把 AI 帶進�
 
 面對非簡單工作時，HagiCode 不會直接跳進檔案修改，而是先從提案開始。OpenSpec 會把需求整理成範圍、任務、影響分析、驗證步驟，以及一條始終易於審閱的執行軌跡。
 
-![HagiCode 提案工作階段檢視，展示工作流步驟、執行結果與歷史上下文。](./public/img/readme-sync/open-spec-proposal-workflow.png)
+![HagiCode 提案工作階段檢視，展示工作流步驟、執行結果與歷史上下文。](./src/assets/img/readme-sync/open-spec-proposal-workflow.png)
 
 ### 2. 主流 Agent CLI 與 OmniRoute
 
 HagiCode 支援 Codex、Claude Code、GitHub Copilot、OpenCode、Hermes、QoderCLI、Kiro、Kimi、Gemini、DeepAgents 和 Codebuddy。OmniRoute 把 CLI 的選擇與模型和訂閱層分開，讓團隊可以路由模型與端點，而不用把所有內容硬綁到單一預設堆疊上。
 
-![OmniRoute 設定頁面，展示路由設定、端點控制與執行狀態。](./public/img/readme-sync/omniroute-routing.png)
+![OmniRoute 設定頁面，展示路由設定、端點控制與執行狀態。](./src/assets/img/readme-sync/omniroute-routing.png)
 
 ### 3. 完整的開發工作台，而不只是聊天面板
 
@@ -62,19 +62,19 @@ HagiCode 支援 Codex、Claude Code、GitHub Copilot、OpenCode、Hermes、Qoder
 - `AI Compose Commit` 與 `code-server` 整合，用於把收尾工作也留在同一流程中完成
 
 <p align="center">
-  <img src="./public/img/readme-sync/monospecs-multi-repo.png" alt="MonoSpecs 多儲存庫狀態總覽，展示多個儲存庫的變更狀態。" width="49%" />
-  <img src="./public/img/readme-sync/skills-gallery.png" alt="HagiCode Skills Gallery，展示可搜尋的安裝型技能與來源篩選。" width="49%" />
+  <img src="./src/assets/img/readme-sync/monospecs-multi-repo.png" alt="MonoSpecs 多儲存庫狀態總覽，展示多個儲存庫的變更狀態。" width="49%" />
+  <img src="./src/assets/img/readme-sync/skills-gallery.png" alt="HagiCode Skills Gallery，展示可搜尋的安裝型技能與來源篩選。" width="49%" />
 </p>
 
 <p align="center">
-  <img src="./public/img/readme-sync/vault-workspace.png" alt="Vault 工作區，展示可重用知識來源與工作台操作。" width="100%" />
+  <img src="./src/assets/img/readme-sync/vault-workspace.png" alt="Vault 工作區，展示可重用知識來源與工作台操作。" width="100%" />
 </p>
 
 ### 4. 遊戲化回饋，同時維持操作上的實用性
 
 HagiCode 把成就、每日報告、效率倍率、Token 吞吐量和主題化介面回饋視為產品的一部分，而不是裝飾性殘留。結果是一個能讓長時運行的 AI 工作保持可見的工作台，而不是把一切壓扁成無限滾動的聊天紀錄。
 
-![成就大廳，展示每日進度、里程碑指標與長期回饋面板。](./public/img/readme-sync/gamified-feedback.png)
+![成就大廳，展示每日進度、里程碑指標與長期回饋面板。](./src/assets/img/readme-sync/gamified-feedback.png)
 
 ## 官方入口
 

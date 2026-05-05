@@ -28,15 +28,15 @@
 
 | Preview | Product | What it is | Start here |
 | --- | --- | --- | --- |
-| <img src="./public/img/readme-sync/steam/hagicode-wide-capsule.png" alt="HagiCode wide Steam capsule" width="280" /> | **HagiCode** | Base application on Steam with Cloud Saves, Workshop support, and the clearest public install path for the desktop edition. | [Open on Steam](https://store.steampowered.com/app/4625540/Hagicode/) |
-| <img src="./public/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus wide Steam bundle capsule" width="280" /> | **Hagicode Plus** | Bundle guide for the fuller setup. Includes HagiCode and Turbo Engine DLC in one bundle path. | [Read Bundle Guide](https://docs.hagicode.com/en/bundles/hagicode-plus/) · [View Bundle on Steam](https://store.steampowered.com/bundle/73989/Hagicode_Plus/) |
-| <img src="./public/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC wide Steam capsule" width="280" /> | **Turbo Engine DLC** | DLC for HagiCode that unlocks up to 32 concurrent online sessions and more customization options. | [View DLC](https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/) |
+| <img src="./src/assets/img/readme-sync/steam/hagicode-wide-capsule.png" alt="HagiCode wide Steam capsule" width="280" /> | **HagiCode** | Base application on Steam with Cloud Saves, Workshop support, and the clearest public install path for the desktop edition. | [Open on Steam](https://store.steampowered.com/app/4625540/Hagicode/) |
+| <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus wide Steam bundle capsule" width="280" /> | **Hagicode Plus** | Bundle guide for the fuller setup. Includes HagiCode and Turbo Engine DLC in one bundle path. | [Read Bundle Guide](https://docs.hagicode.com/en/bundles/hagicode-plus/) · [View Bundle on Steam](https://store.steampowered.com/bundle/73989/Hagicode_Plus/) |
+| <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC wide Steam capsule" width="280" /> | **Turbo Engine DLC** | DLC for HagiCode that unlocks up to 32 concurrent online sessions and more customization options. | [View DLC](https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/) |
 
 ## What HagiCode Is
 
 HagiCode was not built to be another code chat box. It brings AI into the full software development process: understanding repositories, planning changes, implementing code, organizing commits, tracking knowledge, and keeping work reviewable from idea to archive.
 
-![HagiCode workspace overview showing sessions, commit notes, and top-level actions in one integrated workspace.](./public/img/readme-sync/workspace-overview.png)
+![HagiCode workspace overview showing sessions, commit notes, and top-level actions in one integrated workspace.](./src/assets/img/readme-sync/workspace-overview.png)
 
 ## Core Capabilities
 
@@ -44,13 +44,13 @@ HagiCode was not built to be another code chat box. It brings AI into the full s
 
 For non-trivial work, HagiCode starts with a proposal instead of jumping straight into file edits. OpenSpec turns requests into scope, tasks, impact analysis, validation steps, and an execution trail that stays easy to review.
 
-![HagiCode proposal session view showing workflow steps, execution results, and historical context.](./public/img/readme-sync/open-spec-proposal-workflow.png)
+![HagiCode proposal session view showing workflow steps, execution results, and historical context.](./src/assets/img/readme-sync/open-spec-proposal-workflow.png)
 
 ### 2. Mainstream Agent CLIs with OmniRoute
 
 HagiCode supports Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents, and Codebuddy. OmniRoute keeps the CLI choice separate from the model and subscription layer, so teams can route models and endpoints without hard-binding everything to one default stack.
 
-![OmniRoute settings page showing routing configuration, endpoint controls, and runtime status.](./public/img/readme-sync/omniroute-routing.png)
+![OmniRoute settings page showing routing configuration, endpoint controls, and runtime status.](./src/assets/img/readme-sync/omniroute-routing.png)
 
 ### 3. A full development workspace, not just a chat pane
 
@@ -62,19 +62,19 @@ The workspace ties together the capabilities that usually end up scattered acros
 - `AI Compose Commit` and `code-server` integration for finishing the job inside the same flow
 
 <p align="center">
-  <img src="./public/img/readme-sync/monospecs-multi-repo.png" alt="MonoSpecs multi-repository status overview showing change status across multiple repositories." width="49%" />
-  <img src="./public/img/readme-sync/skills-gallery.png" alt="HagiCode Skills Gallery showing searchable installable skills and source filters." width="49%" />
+  <img src="./src/assets/img/readme-sync/monospecs-multi-repo.png" alt="MonoSpecs multi-repository status overview showing change status across multiple repositories." width="49%" />
+  <img src="./src/assets/img/readme-sync/skills-gallery.png" alt="HagiCode Skills Gallery showing searchable installable skills and source filters." width="49%" />
 </p>
 
 <p align="center">
-  <img src="./public/img/readme-sync/vault-workspace.png" alt="Vault workspace showing reusable knowledge sources and workspace actions." width="100%" />
+  <img src="./src/assets/img/readme-sync/vault-workspace.png" alt="Vault workspace showing reusable knowledge sources and workspace actions." width="100%" />
 </p>
 
 ### 4. Gamified feedback that stays operationally useful
 
 HagiCode treats achievements, daily reports, efficiency multipliers, token throughput, and themed interface feedback as part of the product, not cosmetic leftovers. The result is a workspace that keeps long-running AI work visible instead of flattening everything into one scrolling transcript.
 
-![Achievement hall showing daily progress, milestone metrics, and long-term feedback surfaces.](./public/img/readme-sync/gamified-feedback.png)
+![Achievement hall showing daily progress, milestone metrics, and long-term feedback surfaces.](./src/assets/img/readme-sync/gamified-feedback.png)
 
 ## Official Entry Points
 
