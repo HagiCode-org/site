@@ -8,7 +8,7 @@
     {
       "slug": "value-proposition-proposal-driven",
       "promptFile": "prompts/product-images/value-proposition-proposal-driven/prompt.json",
-      "exportTo": "../public/img/product-overview/value-proposition-proposal-driven/illustration.png",
+      "exportTo": "../src/assets/img/product-overview/value-proposition-proposal-driven/illustration.png",
       "annotate": true,
       "tags": [
         "product-overview",
@@ -19,7 +19,7 @@
     {
       "slug": "value-proposition-dual-mode",
       "promptFile": "prompts/product-images/value-proposition-dual-mode/prompt.json",
-      "exportTo": "../public/img/product-overview/value-proposition-dual-mode/illustration.png",
+      "exportTo": "../src/assets/img/product-overview/value-proposition-dual-mode/illustration.png",
       "annotate": true,
       "tags": [
         "product-overview",
@@ -30,7 +30,7 @@
     {
       "slug": "value-proposition-ai-assisted-coding",
       "promptFile": "prompts/product-images/value-proposition-ai-assisted-coding/prompt.json",
-      "exportTo": "../public/img/product-overview/value-proposition-ai-assisted-coding/illustration.png",
+      "exportTo": "../src/assets/img/product-overview/value-proposition-ai-assisted-coding/illustration.png",
       "annotate": true,
       "tags": [
         "product-overview",
@@ -41,7 +41,7 @@
     {
       "slug": "value-proposition-self-bootstrapping",
       "promptFile": "prompts/product-images/value-proposition-self-bootstrapping/prompt.json",
-      "exportTo": "../public/img/product-overview/value-proposition-self-bootstrapping/illustration.png",
+      "exportTo": "../src/assets/img/product-overview/value-proposition-self-bootstrapping/illustration.png",
       "annotate": true,
       "tags": [
         "product-overview",
@@ -52,7 +52,7 @@
     {
       "slug": "positioning-competitive-comparison",
       "promptFile": "prompts/product-images/positioning-competitive-comparison/prompt.json",
-      "exportTo": "../public/img/product-overview/positioning-competitive-comparison/illustration.png",
+      "exportTo": "../src/assets/img/product-overview/positioning-competitive-comparison/illustration.png",
       "annotate": true,
       "tags": [
         "product-overview",
@@ -63,7 +63,7 @@
     {
       "slug": "self-bootstrapping-documentation",
       "promptFile": "prompts/product-images/self-bootstrapping-documentation/prompt.json",
-      "exportTo": "../public/img/product-overview/self-bootstrapping-documentation/illustration.png",
+      "exportTo": "../src/assets/img/product-overview/self-bootstrapping-documentation/illustration.png",
       "annotate": true,
       "tags": [
         "product-overview",
@@ -74,7 +74,7 @@
     {
       "slug": "self-bootstrapping-repository",
       "promptFile": "prompts/product-images/self-bootstrapping-repository/prompt.json",
-      "exportTo": "../public/img/product-overview/self-bootstrapping-repository/illustration.png",
+      "exportTo": "../src/assets/img/product-overview/self-bootstrapping-repository/illustration.png",
       "annotate": true,
       "tags": [
         "product-overview",
@@ -85,7 +85,7 @@
     {
       "slug": "self-bootstrapping-iteration",
       "promptFile": "prompts/product-images/self-bootstrapping-iteration/prompt.json",
-      "exportTo": "../public/img/product-overview/self-bootstrapping-iteration/illustration.png",
+      "exportTo": "../src/assets/img/product-overview/self-bootstrapping-iteration/illustration.png",
       "annotate": true,
       "tags": [
         "product-overview",
@@ -96,7 +96,7 @@
     {
       "slug": "core-features-architecture",
       "promptFile": "prompts/product-images/core-features-architecture/prompt.json",
-      "exportTo": "../public/img/product-overview/core-features-architecture/illustration.png",
+      "exportTo": "../src/assets/img/product-overview/core-features-architecture/illustration.png",
       "annotate": true,
       "tags": [
         "product-overview",
@@ -107,7 +107,7 @@
     {
       "slug": "story-newcomer-onboarding",
       "promptFile": "prompts/product-images/story-newcomer-onboarding/prompt.json",
-      "exportTo": "../public/img/product-overview/story-newcomer-onboarding/illustration.png",
+      "exportTo": "../src/assets/img/product-overview/story-newcomer-onboarding/illustration.png",
       "annotate": true,
       "tags": [
         "product-overview",
@@ -118,7 +118,7 @@
     {
       "slug": "story-complex-change",
       "promptFile": "prompts/product-images/story-complex-change/prompt.json",
-      "exportTo": "../public/img/product-overview/story-complex-change/illustration.png",
+      "exportTo": "../src/assets/img/product-overview/story-complex-change/illustration.png",
       "annotate": true,
       "tags": [
         "product-overview",
@@ -129,7 +129,7 @@
     {
       "slug": "story-team-knowledge",
       "promptFile": "prompts/product-images/story-team-knowledge/prompt.json",
-      "exportTo": "../public/img/product-overview/story-team-knowledge/illustration.png",
+      "exportTo": "../src/assets/img/product-overview/story-team-knowledge/illustration.png",
       "annotate": true,
       "tags": [
         "product-overview",

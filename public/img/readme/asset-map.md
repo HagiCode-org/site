@@ -1,7 +1,7 @@
 # README Visual Asset Map
 
 This file records the README visual tour asset mapping for the multilingual repository README set in `repos/site/README*.md`.
-All target filenames use stable ASCII names under `repos/site/public/img/readme/`.
+All target filenames use stable ASCII names under `repos/site/src/assets/img/readme/`.
 The current selection includes 7 UI screenshots and 1 product visual.
 
 ## proposal-nine-stage-overview.png

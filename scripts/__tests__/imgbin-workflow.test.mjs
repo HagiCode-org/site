@@ -249,7 +249,7 @@ describe('site ImgBin workflow helpers', () => {
 
     expect(config.jobs).toHaveLength(12);
     expect(config.jobs[0].promptFile).toContain(path.join('scripts', 'prompts', 'product-images'));
-    expect(config.jobs[0].exportTo).toContain(path.join('public', 'img', 'product-overview'));
+    expect(config.jobs[0].exportTo).toContain(path.join('src', 'assets', 'img', 'product-overview'));
     expect(promptFile.basePrompt).toContain("Children's hand-drawing style");
     expect(promptFile._metadata.defaultStyle).toBe('hand-drawn');
   });

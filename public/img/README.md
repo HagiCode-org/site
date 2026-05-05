@@ -1,31 +1,16 @@
-# Static Images Directory
+# Site Image Notes
 
-This directory is for static image files that will be served by your Astro site.
+This directory is now documentation-only.
 
 ## Usage
 
-Place images in this directory and reference them in your markdown files using:
+Place site-managed images in `src/assets/img/` and import them so Vite fingerprints and bundles them.
 
-```markdown
-![Alt text](/img/your-image.png)
+```ts
+import heroImage from '@/assets/img/your-image.png';
 ```
-
-## Supported Formats
-
-Common image formats are supported:
-- PNG (.png)
-- JPEG (.jpg, .jpeg)
-- GIF (.gif)
-- SVG (.svg)
-- WebP (.webp)
-
-## Best Practices
-
-1. **Optimize images** - Compress images before adding them to keep page load times fast
-2. **Use descriptive names** - Name your files clearly (e.g., `installation-screenshot.png`)
-3. **Organize** - Consider creating subdirectories if you have many images
 
 ## Notes
 
-- Files in this directory are copied to the `dist/` directory as-is during the build process
-- The `/img/` path is relative to the `public/` directory
+- Keep `public/` for passthrough files that must retain stable names, such as `favicon.ico`, `robots.txt`, or verification files.
+- Legacy asset-map markdown files can stay here for reference, but image binaries now live under `src/assets/img/`.
