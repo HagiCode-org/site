@@ -7,6 +7,7 @@ import { useState, useEffect, useMemo, type ReactElement } from "react";
 import ThemeToggle from "./ThemeToggle";
 import InstallButton from "./InstallButton";
 import { LanguageSwitcher } from "../LanguageSwitcher";
+import logoImage from "@/assets/logo.png?url";
 import { resolveSiteLocale } from "@/i18n/locale-metadata";
 import { useLocale } from "@/lib/useLocale";
 import { useTranslation } from "@/i18n/ui";
@@ -150,7 +151,7 @@ export default function Navbar({
         <a href={homeUrl} className={styles.logo} aria-label={t('navbar.home')}>
           <div className={styles.logoIcon}>
             <img
-              src="/logo.png"
+              src={logoImage}
               alt="Hagicode"
               width="32"
               height="32"

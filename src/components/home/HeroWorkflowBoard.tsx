@@ -1,8 +1,8 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import styles from './HeroWorkflowBoard.module.css';
+import { homeHeroImages } from '@/assets/siteAssetUrls';
 import { getTranslation } from '@/i18n/ui';
-import { withBasePath } from '@/utils/path';
 
 type Locale = string;
 
@@ -76,18 +76,7 @@ const BASE_STAGE_DURATIONS = [1200, 2100, 2900, 1100] as const;
 const BASE_TOTAL_DURATION = BASE_STAGE_DURATIONS.reduce((sum, value) => sum + value, 0);
 const CARD_EXIT_MS = 460;
 const CARD_ENTER_MS = 420;
-const HERO_IMAGES = [
-  '/img/home/interesting/heroes/aurora-04.webp',
-  '/img/home/interesting/heroes/cat-ink-09.webp',
-  '/img/home/interesting/heroes/cat-line-03.webp',
-  '/img/home/interesting/heroes/cat-oil-09.webp',
-  '/img/home/interesting/heroes/cat-paper-04.webp',
-  '/img/home/interesting/heroes/cat-sticker-02.webp',
-  '/img/home/interesting/heroes/cat-sticker-08.webp',
-  '/img/home/interesting/heroes/royal-10.webp',
-  '/img/home/interesting/heroes/thorn-06.webp',
-  '/img/home/interesting/heroes/tide-09.webp',
-] as const;
+const HERO_IMAGES = homeHeroImages;
 
 function mixSeed(seed: number) {
   let value = seed >>> 0;
@@ -436,7 +425,7 @@ export default function HeroWorkflowBoard({ locale = 'zh-CN' }: HeroWorkflowBoar
                   <div className={styles.summaryTopline}>
                     <span className={styles.heroAvatar}>
                       <img
-                        src={withBasePath(HERO_IMAGES[lane.heroVariant] ?? HERO_IMAGES[0])}
+                        src={HERO_IMAGES[lane.heroVariant] ?? HERO_IMAGES[0]}
                         alt=""
                         className={styles.heroAvatarImage}
                         loading="lazy"

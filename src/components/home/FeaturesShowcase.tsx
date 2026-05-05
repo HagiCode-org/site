@@ -12,6 +12,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
+import { getSiteAssetUrl } from '@/assets/siteAssetUrls';
 import styles from './FeaturesShowcase.module.css';
 
 // 定义 Variants 类型
@@ -116,7 +117,7 @@ const humanizeGalleryLabel = (fileName: string) => fileName
 
 const buildGalleryAssets = (group: 'dungeons' | 'heroes', files: string[]): GalleryAsset[] => (
   files.map((file) => ({
-    src: `/img/home/interesting/${group}/${file}`,
+    src: getSiteAssetUrl(`img/home/interesting/${group}/${file}`),
     label: humanizeGalleryLabel(file),
   }))
 );

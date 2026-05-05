@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { withBasePath } from '../../utils/path';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
+import { homeShowcaseImages } from '@/assets/siteAssetUrls';
 import styles from './ShowcaseSection.module.css';
 
 interface ScreenshotItem {
@@ -42,35 +42,35 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: strin
   const screenshots: ScreenshotItem[] = [
     {
       id: 'proposalWorkflow',
-      src: withBasePath('/img/home/showcase-proposal-workflow.png'),
+      src: homeShowcaseImages.proposalWorkflow,
       title: t('showcase.screenshots.proposalWorkflow.title'),
       description: t('showcase.screenshots.proposalWorkflow.description'),
       alt: t('showcase.screenshots.proposalWorkflow.alt')
     },
     {
       id: 'sessionBoard',
-      src: withBasePath('/img/home/showcase-session-board.png'),
+      src: homeShowcaseImages.sessionBoard,
       title: t('showcase.screenshots.sessionBoard.title'),
       description: t('showcase.screenshots.sessionBoard.description'),
       alt: t('showcase.screenshots.sessionBoard.alt')
     },
     {
       id: 'tokenAnalytics',
-      src: withBasePath('/img/home/showcase-token-analytics.png'),
+      src: homeShowcaseImages.tokenAnalytics,
       title: t('showcase.screenshots.tokenAnalytics.title'),
       description: t('showcase.screenshots.tokenAnalytics.description'),
       alt: t('showcase.screenshots.tokenAnalytics.alt')
     },
     {
       id: 'workspaceManagement',
-      src: withBasePath('/img/home/showcase-workspace-management.png'),
+      src: homeShowcaseImages.workspaceManagement,
       title: t('showcase.screenshots.workspaceManagement.title'),
       description: t('showcase.screenshots.workspaceManagement.description'),
       alt: t('showcase.screenshots.workspaceManagement.alt')
     },
     {
       id: 'achievementProgress',
-      src: withBasePath('/img/home/showcase-achievement-progress.png'),
+      src: homeShowcaseImages.achievementProgress,
       title: t('showcase.screenshots.achievementProgress.title'),
       description: t('showcase.screenshots.achievementProgress.description'),
       alt: t('showcase.screenshots.achievementProgress.alt')
