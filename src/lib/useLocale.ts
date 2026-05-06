@@ -10,8 +10,10 @@ import {
   hasExplicitLocalePrefix,
   resolveLocaleFromPathname,
 } from './locale-routing';
-
-const LOCALE_STORAGE_KEY = 'hagicode:site-locale';
+import {
+  LEGACY_SITE_LOCALE_STORAGE_KEY,
+  SITE_LOCALE_STORAGE_KEY,
+} from './site-entry-locale';
 
 function getClientLocale(): SiteLocale {
   if (typeof window === 'undefined') {
@@ -27,7 +29,8 @@ function readStoredLocale(): SiteLocale | null {
   }
 
   try {
-    const storedLocale = localStorage.getItem(LOCALE_STORAGE_KEY) ?? localStorage.getItem('lang');
+    const storedLocale = localStorage.getItem(SITE_LOCALE_STORAGE_KEY)
+      ?? localStorage.getItem(LEGACY_SITE_LOCALE_STORAGE_KEY);
     return storedLocale ? resolveSiteLocale(storedLocale, DEFAULT_LOCALE) : null;
   } catch (error) {
     console.warn('Unable to read stored site locale.', error);
@@ -37,8 +40,8 @@ function readStoredLocale(): SiteLocale | null {
 
 function persistStoredLocale(locale: SiteLocale) {
   try {
-    localStorage.setItem(LOCALE_STORAGE_KEY, locale);
-    localStorage.removeItem('lang');
+    localStorage.setItem(SITE_LOCALE_STORAGE_KEY, locale);
+    localStorage.removeItem(LEGACY_SITE_LOCALE_STORAGE_KEY);
   } catch (error) {
     console.warn('Unable to persist site locale.', error);
   }
