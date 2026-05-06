@@ -5,9 +5,10 @@ interface Props {
   targetPath: string;
   destinationName: string;
   movedCopy: string;
+  entryTargetPath?: string;
 }
 
-const { targetPath, destinationName, movedCopy } = Astro.props;
+const { targetPath, destinationName, movedCopy, entryTargetPath } = Astro.props;
 const siteBase = import.meta.env.VITE_SITE_BASE || '';
 const redirectPath = joinWithSiteBase(siteBase, targetPath);
 const canonicalUrl = getAbsoluteSiteUrl(targetPath, 'en-US', siteBase);
@@ -24,10 +25,22 @@ const description = `This page now points to ${destinationName} at ${redirectPat
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    <script is:inline define:vars={{ redirectPath }}>
-      const nextUrl = `${redirectPath}${window.location.search}${window.location.hash}`;
-      window.location.replace(nextUrl);
-    </script>
+    {entryTargetPath ? (
+      <>
+        <meta name="hagicode-site-base" content={siteBase} />
+        <meta name="hagicode-site-landing-target" content={entryTargetPath} />
+        <script>
+          import { applySiteEntryRouting } from '@/scripts/site-entry-routing';
+
+          applySiteEntryRouting();
+        </script>
+      </>
+    ) : (
+      <script is:inline define:vars={{ redirectPath }}>
+        const nextUrl = `${redirectPath}${window.location.search}${window.location.hash}`;
+        window.location.replace(nextUrl);
+      </script>
+    )}
   </head>
   <body class="redirect-page">
     <main class="redirect-card">

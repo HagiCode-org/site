@@ -5,13 +5,20 @@ interface Props {
   target: string;
   destinationName?: string;
   movedCopy?: string;
+  entryTargetPath?: string;
 }
 
 const {
   target,
   destinationName = 'the current page',
   movedCopy = 'This entry now points to the current route so older links can keep working.',
+  entryTargetPath,
 } = Astro.props;
 ---
 
-<LegacyLocaleRedirect targetPath={target} destinationName={destinationName} movedCopy={movedCopy} />
+<LegacyLocaleRedirect
+  targetPath={target}
+  destinationName={destinationName}
+  movedCopy={movedCopy}
+  entryTargetPath={entryTargetPath}
+/>

@@ -2,4 +2,9 @@
 import LegacyLocaleRedirectPage from '@/page-templates/LegacyLocaleRedirectPage.astro';
 ---
 
-<LegacyLocaleRedirectPage target="/en-US/about/" destinationName="the English about page" />
+<LegacyLocaleRedirectPage
+  target="/en-US/about/"
+  entryTargetPath="/about/"
+  destinationName="the localized about page"
+  movedCopy="This entry chooses the best language version for the about page and keeps older links working."
+/>
