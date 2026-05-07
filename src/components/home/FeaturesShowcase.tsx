@@ -856,7 +856,7 @@ export default function FeaturesShowcase({ locale: propLocale }: { locale?: stri
       <div className="container">
         <div className={styles.showcaseHeader}>
           <h2 className={styles.showcaseTitle}>
-            <span className={styles.titleHighlight}>{t('features.showcase.title')}</span>
+            <span className={styles.titleAccent}>{t('features.showcase.title')}</span>
           </h2>
           <p className={styles.showcaseSubtitle}>
             {t('features.showcase.subtitle')}

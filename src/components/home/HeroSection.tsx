@@ -4,7 +4,6 @@
  * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
  * 支持农历新年主题
  */
-import { motion } from 'framer-motion';
 import { useMemo, useState, useEffect } from 'react';
 import { useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
@@ -223,31 +222,8 @@ export default function HeroSection({
 
       {/* 浮动装饰元素 */}
       <div className={styles.floatingElements}>
-        <motion.div
-          className={styles.techOrb}
-          animate={{
-            y: [0, -20, 0],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        <motion.div
-          className={`${styles.techOrb} ${styles.techOrb2}`}
-          animate={{
-            y: [0, 20, 0],
-            opacity: [0.2, 0.5, 0.2],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 1,
-          }}
-        />
+        <div className={styles.techOrb} />
+        <div className={`${styles.techOrb} ${styles.techOrb2}`} />
       </div>
 
       {/* HUD 装饰边框 */}
@@ -256,31 +232,19 @@ export default function HeroSection({
       <div className={styles.hudBottomLeft} />
       <div className={styles.hudBottomRight} />
 
-      <motion.div
-        className={styles.heroContent}
-      >
+      <div className={styles.heroContent}>
         {/* Logo/Icon - 科技感旋转 */}
-        <motion.div
-          className={styles.heroLogo}
-          animate={{
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        >
+        <div className={styles.heroLogo}>
           <div className={styles.logoContainer}>
             {renderLogoIcons()}
           </div>
-        </motion.div>
+        </div>
 
         {/* 主标题 */}
-        <motion.h1 className={styles.heroTitle}>
+        <h1 className={styles.heroTitle}>
           <span className={styles.titlePrefix}>Hagi</span>
-          <span className={styles.titleGradient}>code</span>
-        </motion.h1>
+          <span className={styles.titleAccent}>code</span>
+        </h1>
 
         {productOverviewVideo && (
           <ProductOverviewVideoSection
@@ -292,7 +256,7 @@ export default function HeroSection({
         )}
 
         {/* CTA 按钮组 */}
-        <motion.div className={styles.heroButtons} role="group" aria-label={ctaGroupLabel}>
+        <div className={styles.heroButtons} role="group" aria-label={ctaGroupLabel}>
           {/* 桌面应用安装按钮 - 主按钮 */}
           <a
             href={desktopUrl}
@@ -347,10 +311,10 @@ export default function HeroSection({
           >
             <span className={styles.buttonText}>{t('hero.buttons.learnMore')}</span>
           </a>
-        </motion.div>
+        </div>
 
         <HeroWorkflowBoard locale={locale} />
-      </motion.div>
+      </div>
     </section>
   );
 }

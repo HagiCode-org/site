@@ -24,10 +24,10 @@ import { getTranslation, useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import { getLinkWithLocale } from '@/lib/shared/links';
 import { getBundledSteamStoreLink, loadSteamStoreLink } from '@/lib/shared/steam-store-link';
-import type {
+import {
   AssetType,
-  DesktopVersion,
-  DownloadAction,
+  type DesktopVersion,
+  type DownloadAction,
 } from '@/lib/shared/types/desktop';
 import { getDesktopDownloadEventName } from '@/lib/analytics/events';
 import { trackEvent } from '@/lib/analytics/tracker';
