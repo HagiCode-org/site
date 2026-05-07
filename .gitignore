@@ -46,3 +46,4 @@ Thumbs.db
 tsconfig.tsbuildinfo
 .imgbin-library/
 src/i18n/generated-locales/
+.impeccable/
