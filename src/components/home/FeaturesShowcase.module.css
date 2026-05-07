@@ -46,36 +46,26 @@
   font-family: var(--font-display);
 }
 
-.titleHighlight {
-  background: var(--gradient-primary);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientFlow 8s ease infinite;
+.titleAccent {
+  color: var(--color-primary);
   position: relative;
 }
 
-/* 科技感扫描线装饰 */
-.titleHighlight::after {
+.titleAccent::after {
   content: '';
   position: absolute;
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100px;
-  height: 2px;
-  background: var(--gradient-primary);
-  box-shadow: var(--shadow-glow);
+  width: 88px;
+  height: 3px;
+  background: currentColor;
+  opacity: 0.35;
+  border-radius: 999px;
 }
 
-[data-theme='dark'] .titleHighlight::after {
-  box-shadow: var(--shadow-glow-cyan);
-}
-
-@keyframes gradientFlow {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+[data-theme='dark'] .titleAccent {
+  color: var(--color-secondary);
 }
 
 .showcaseSubtitle {
@@ -109,10 +99,16 @@
      临时移除以测试层叠问题，后续可以考虑其他方式实现玻璃态效果 */
   /* backdrop-filter: blur(16px); */
   /* -webkit-backdrop-filter: blur(16px); */
-  background: var(--color-surface-glass, rgba(255, 255, 255, 0.85));
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 100%),
+    var(--color-surface-glass, rgba(255, 255, 255, 0.85));
   border: 1px solid var(--color-border);
-  transition: all var(--duration-normal, 0.3s) var(--ease-out, cubic-bezier(0.4, 0, 0.2, 1));
+  transition:
+    border-color var(--duration-normal, 0.3s) var(--ease-out, cubic-bezier(0.4, 0, 0.2, 1)),
+    box-shadow var(--duration-normal, 0.3s) var(--ease-out, cubic-bezier(0.4, 0, 0.2, 1)),
+    transform var(--duration-normal, 0.3s) var(--ease-out, cubic-bezier(0.4, 0, 0.2, 1));
   cursor: default;
+  box-shadow: var(--shadow-sm);
 }
 
 /* HUD 角标装饰 - 科技感方括号 */
@@ -121,7 +117,7 @@
   width: 20px;
   height: 20px;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.22;
   transition: opacity 0.3s ease;
 }
 
@@ -136,7 +132,6 @@
 [data-theme='dark'] .hudCorner::before,
 [data-theme='dark'] .hudCorner::after {
   background: var(--color-secondary);
-  box-shadow: 0 0 8px var(--color-secondary);
 }
 
 /* 左上角 */
@@ -221,12 +216,7 @@
 
 /* Hover 时角标高亮 */
 .featureZone:hover .hudCorner {
-  opacity: 1;
-}
-
-.featureZone:hover .hudCorner::before,
-.featureZone:hover .hudCorner::after {
-  box-shadow: 0 0 10px currentColor;
+  opacity: 0.42;
 }
 
 /* 扫描线效果 - 暗色模式增强 */
@@ -246,11 +236,11 @@
 }
 
 [data-theme='dark'] .scanline {
-  opacity: 0.4;
+  opacity: 0.08;
 }
 
 .featureZone:hover .scanline {
-  opacity: 0.6;
+  opacity: 0.14;
 }
 
 /* 数据流动画 */
@@ -292,90 +282,83 @@
 }
 
 [data-theme='dark'] .featureZone {
-  background: rgba(20, 25, 50, 0.6);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%),
+    rgba(20, 25, 50, 0.66);
   border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Theme variants with gradient accents - 科技感配色 */
 .featureZone.smart {
   background:
-    linear-gradient(135deg, rgba(0, 128, 255, 0.05) 0%, rgba(0, 255, 255, 0.03) 100%),
+    linear-gradient(180deg, rgba(0, 128, 255, 0.06) 0%, rgba(0, 128, 255, 0.015) 100%),
     var(--color-surface-glass);
-  border-color: rgba(0, 128, 255, 0.2);
+  border-color: rgba(0, 128, 255, 0.14);
 }
 
 .featureZone.smart:hover {
   border-color: var(--color-primary);
-  box-shadow:
-    var(--shadow-lg),
-    0 0 30px rgba(0, 128, 255, 0.12);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 [data-theme='dark'] .featureZone.smart {
   background:
-    linear-gradient(135deg, rgba(0, 128, 255, 0.08) 0%, rgba(0, 255, 255, 0.04) 100%),
-    rgba(20, 25, 50, 0.6);
+    linear-gradient(180deg, rgba(0, 128, 255, 0.12) 0%, rgba(0, 128, 255, 0.03) 100%),
+    rgba(20, 25, 50, 0.66);
 }
 
 [data-theme='dark'] .featureZone.smart:hover {
   border-color: var(--color-secondary);
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.5),
-    0 0 25px rgba(0, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.42);
 }
 
 .featureZone.convenient {
   background:
-    linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(34, 197, 94, 0.03) 100%),
+    linear-gradient(180deg, rgba(0, 255, 255, 0.05) 0%, rgba(34, 197, 94, 0.015) 100%),
     var(--color-surface-glass);
-  border-color: rgba(0, 255, 255, 0.2);
+  border-color: rgba(0, 255, 255, 0.14);
 }
 
 .featureZone.convenient:hover {
   border-color: var(--color-secondary);
-  box-shadow:
-    var(--shadow-lg),
-    0 0 30px rgba(0, 255, 255, 0.12);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 [data-theme='dark'] .featureZone.convenient {
   background:
-    linear-gradient(135deg, rgba(0, 255, 255, 0.08) 0%, rgba(34, 197, 94, 0.04) 100%),
-    rgba(20, 25, 50, 0.6);
+    linear-gradient(180deg, rgba(0, 255, 255, 0.11) 0%, rgba(34, 197, 94, 0.03) 100%),
+    rgba(20, 25, 50, 0.66);
 }
 
 [data-theme='dark'] .featureZone.convenient:hover {
   border-color: var(--color-success);
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.5),
-    0 0 25px rgba(0, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.42);
 }
 
 .featureZone.interesting {
   background:
-    linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(236, 72, 153, 0.03) 100%),
+    linear-gradient(180deg, rgba(139, 92, 246, 0.05) 0%, rgba(236, 72, 153, 0.015) 100%),
     var(--color-surface-glass);
-  border-color: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.14);
 }
 
 .featureZone.interesting:hover {
   border-color: var(--color-accent);
-  box-shadow:
-    var(--shadow-lg),
-    0 0 30px rgba(139, 92, 246, 0.12);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 [data-theme='dark'] .featureZone.interesting {
   background:
-    linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(236, 72, 153, 0.04) 100%),
-    rgba(20, 25, 50, 0.6);
+    linear-gradient(180deg, rgba(139, 92, 246, 0.11) 0%, rgba(236, 72, 153, 0.03) 100%),
+    rgba(20, 25, 50, 0.66);
 }
 
 [data-theme='dark'] .featureZone.interesting:hover {
   border-color: #EC4899;
-  box-shadow:
-    0 10px 40px rgba(0, 0, 0, 0.5),
-    0 0 25px rgba(139, 92, 246, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.42);
 }
 
 /* Background pattern */
@@ -542,11 +525,12 @@
 .efficiencyNumber {
   font-size: 3rem;
   font-weight: 800;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary);
   font-family: var(--font-display);
+}
+
+[data-theme='dark'] .efficiencyNumber {
+  color: var(--color-secondary);
 }
 
 .efficiencyPercent {
@@ -852,11 +836,12 @@
 .boostValue {
   font-size: 1.5rem;
   font-weight: 800;
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary);
   font-family: var(--font-display);
+}
+
+[data-theme='dark'] .boostValue {
+  color: var(--color-secondary);
 }
 
 /* ==========================================================================
@@ -2072,16 +2057,12 @@
 }
 
 .reportGrade.gradeS {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary);
   position: relative;
 }
 
-/* 科技感评级发光效果 */
 [data-theme='dark'] .reportGrade.gradeS {
-  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+  color: var(--color-secondary);
 }
 
 .reportStats {
@@ -2353,7 +2334,7 @@
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
-  .titleHighlight,
+  .titleAccent,
   .progressFill,
   .threadBar,
   .workflowNode,

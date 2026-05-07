@@ -138,10 +138,11 @@
   font-size: 1.25rem;
   font-weight: 700;
   font-family: var(--font-display);
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .logoText {
+  color: var(--color-secondary);
 }
 
 /* ==========================================================================

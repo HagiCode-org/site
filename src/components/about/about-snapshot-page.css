@@ -192,9 +192,8 @@
   gap: 1rem;
   padding: 1rem 1.05rem;
   border: 1px solid color-mix(in srgb, var(--page-border) 100%, transparent);
-  border-left: 3px solid var(--entry-accent);
-  background: transparent;
-  box-shadow: none;
+  background: color-mix(in srgb, var(--page-surface-strong) 28%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--entry-accent) 10%, transparent);
   color: inherit;
   text-decoration: none;
   overflow: hidden;
@@ -230,9 +229,9 @@
 }
 
 a.entry-item:hover {
-  transform: translateX(3px) translateY(-1px);
+  transform: translateY(-2px);
   background: color-mix(in srgb, var(--entry-accent) 4%, transparent);
-  border-left-color: color-mix(in srgb, var(--entry-accent) 82%, white 18%);
+  border-color: color-mix(in srgb, var(--entry-accent) 40%, var(--page-border) 60%);
   box-shadow:
     inset 0 0 0 1px color-mix(in srgb, var(--entry-accent) 18%, transparent),
     0 10px 24px color-mix(in srgb, var(--color-background) 18%, transparent);

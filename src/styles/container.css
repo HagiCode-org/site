@@ -43,7 +43,6 @@ main.homepage section > .bgGlow {
   color: var(--color-success);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  animation: fadeInUp 0.6s ease-out backwards;
 }
 
 [data-theme='dark'] .hero-badge {
@@ -58,7 +57,6 @@ main.homepage section > .bgGlow {
   justify-content: center;
   flex-wrap: wrap;
   margin: 2rem 0;
-  animation: fadeInUp 0.8s ease-out 0.4s backwards;
 }
 
 .value-point {
@@ -103,7 +101,75 @@ main.homepage section > .bgGlow {
 
 /* Features Section - Hero 之后的第一段内容，上间距较小 */
 .features {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 2rem;
+  align-content: start;
   padding: 4rem 0 6rem;
+}
+
+.hero-content h1,
+.features h2 {
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: currentColor;
+  background-clip: initial;
+  color: var(--color-text);
+}
+
+.features > h2 {
+  justify-self: center;
+  width: min(1200px, calc(100% - 3rem));
+  max-width: none !important;
+  box-sizing: border-box;
+  margin: 0 !important;
+  padding: 0 1.5rem !important;
+  text-align: center;
+}
+
+.features-grid {
+  justify-self: center;
+  width: min(1200px, calc(100% - 3rem));
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 1.5rem !important;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.features-grid .feature-card {
+  cursor: default;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  min-height: 21rem;
+}
+
+@media (min-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .features-grid .feature-card:nth-child(3n + 1) {
+    background:
+      linear-gradient(180deg, rgba(34, 197, 94, 0.05) 0%, transparent 100%),
+      var(--color-surface-glass);
+  }
+
+  .features-grid .feature-card:nth-child(3n + 2) {
+    background:
+      linear-gradient(180deg, rgba(0, 204, 204, 0.05) 0%, transparent 100%),
+      var(--color-surface-glass);
+  }
+
+  .features-grid .feature-card:nth-child(3n) {
+    background:
+      linear-gradient(180deg, rgba(0, 128, 255, 0.05) 0%, transparent 100%),
+      var(--color-surface-glass);
+  }
 }
 
 /* FAQ Section - 最后一个主要内容区域，底部间距较大 */

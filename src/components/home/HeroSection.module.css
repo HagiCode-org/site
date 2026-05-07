@@ -246,23 +246,12 @@
   color: var(--color-text);
 }
 
-.titleGradient {
-  background: var(--gradient-primary);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 6s ease infinite;
-  position: relative;
+.titleAccent {
+  color: var(--color-primary);
 }
 
-@keyframes gradientShift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+[data-theme='dark'] .titleAccent {
+  color: var(--color-secondary);
 }
 
 /* ==========================================================================
@@ -614,7 +603,7 @@
   .techOrb,
   .techOrb2,
   .heroLogo,
-  .titleGradient,
+  .titleAccent,
   .cursor {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
