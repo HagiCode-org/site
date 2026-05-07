@@ -1,5 +1,7 @@
 # Hagicode 设计系统
 
+> Legacy note: canonical design guidance for future work now lives in `PRODUCT.md` and `DESIGN.md`. This file remains as historical reference for the earlier site styling direction.
+
 ## 设计原则
 
 基于 UI/UX Pro Max 设计指南，Hagicode 采用 **Glassmorphism + Tech Dark** 风格，结合现代渐变和流畅动画，打造专业的 AI 编码助手品牌形象。

@@ -29,7 +29,7 @@ Site 是 HagiCode 的官方文档和营销网站（hagicode.com 和 docs.hagicod
 
 ### Styling & UI
 - **CSS**: 原生 CSS（不使用 TailwindCSS）
-- **Design System**: Glassmorphism + Tech Dark 风格（详见 `design-system.md`）
+- **Design System**: 规范化上下文以 `PRODUCT.md` 和 `DESIGN.md` 为准，`design-system.md` 保留为旧版参考
 - **Framer Motion**: 12.29.2 流畅动画
 
 ### Integrations
@@ -91,7 +91,9 @@ repos/site/
 ├── astro.config.mjs        # Astro 配置
 ├── package.json            # 项目依赖
 ├── tsconfig.json           # TypeScript 配置
-├── design-system.md        # 设计系统文档
+├── PRODUCT.md              # impeccable 产品/品牌上下文
+├── DESIGN.md               # impeccable 视觉系统规范
+├── design-system.md        # 旧版设计说明（以 DESIGN.md 为准）
 └── AGENTS.md               # 本文件
 ```
 
@@ -104,7 +106,7 @@ repos/site/
 3. **静态生成**: 所有内容在构建时预渲染
 4. **i18n 意识**: 内容支持多语言（英文/中文）
 5. **SEO 重要**: 正确的 meta 标签和结构化数据
-6. **设计系统**: 遵循 Glassmorphism + Tech Dark 风格
+6. **设计系统**: 优先遵循 `PRODUCT.md` 与 `DESIGN.md` 中的品牌与视觉规范
 
 ### Development Workflow
 ```bash
@@ -164,7 +166,7 @@ CI=true
 
 ## Design System
 
-Site 采用 **Glassmorphism + Tech Dark** 风格，详见 `design-system.md`：
+Site 的规范化设计上下文以 `PRODUCT.md` 和 `DESIGN.md` 为准；`design-system.md` 仅保留为历史参考。
 
 ### 视觉风格
 - **主风格**: Glassmorphism（玻璃态）
