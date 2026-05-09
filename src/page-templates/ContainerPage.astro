@@ -9,9 +9,10 @@ import FeatureIcon from '@/components/desktop/FeatureIcon.astro';
 import FeatureTagIcon from '@/components/desktop/FeatureTagIcon.astro';
 import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
 import { getLinkWithLocale } from '@/lib/shared/links';
-import { getTranslation } from '@/i18n/ui';
+import { getServerTranslation } from '@/i18n/translation-resources';
 import type { SiteLocale } from '@/i18n/locale-metadata';
 import { getAbsoluteSiteUrl } from '@/lib/locale-routing';
+import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
 import { getContainerPageCopy } from '@/lib/site-page-copy';
 
 interface Props {
@@ -19,7 +20,8 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const { t } = getTranslation(locale);
+const { t } = getServerTranslation(locale);
+const interactiveCopy = getHomepageInteractiveCopy(locale);
 const pageCopy = getContainerPageCopy(locale);
 const siteBase = import.meta.env.VITE_SITE_BASE || '';
 const canonicalUrl = getAbsoluteSiteUrl('/container/', locale, siteBase);
@@ -68,7 +70,13 @@ const dockerComposeDocsUrl = getLinkWithLocale('dockerCompose', locale);
     </script>
   </head>
   <body class="homepage">
-    <Navbar client:load locale={locale} />
+    <Navbar
+      client:idle
+      locale={locale}
+      copy={interactiveCopy.navbar}
+      themeToggleCopy={interactiveCopy.themeToggle}
+      languageSwitcherCopy={interactiveCopy.languageSwitcher}
+    />
 
     <main class="homepage">
       <section class="hero">
@@ -113,7 +121,7 @@ const dockerComposeDocsUrl = getLinkWithLocale('dockerCompose', locale);
       </section>
     </main>
 
-    <Footer locale={locale} client:load />
+    <Footer locale={locale} />
     <AnalyticsScripts />
   </body>
 </html>

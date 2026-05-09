@@ -9,9 +9,13 @@ import Footer from '@/components/home/Footer';
 import DesktopHero from '@/components/desktop/DesktopHero';
 import FeatureIcon from '@/components/desktop/FeatureIcon.astro';
 import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
-import { getTranslation } from '@/i18n/ui';
+import {
+  getSerializedPageTranslationBootstrap,
+  getServerTranslation,
+} from '@/i18n/translation-resources';
 import type { SiteLocale } from '@/i18n/locale-metadata';
 import { getAbsoluteSiteUrl } from '@/lib/locale-routing';
+import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
 import { getDesktopPageCopy } from '@/lib/site-page-copy';
 
 interface Props {
@@ -20,10 +24,12 @@ interface Props {
 
 const { locale } = Astro.props;
 const pageCopy = getDesktopPageCopy(locale);
-const { t } = getTranslation(locale);
+const { t } = getServerTranslation(locale);
+const interactiveCopy = getHomepageInteractiveCopy(locale);
 const heroBadge = t('desktopHero.badge');
 const heroTitle = t('desktopHero.title');
 const heroTagline = t('desktopHero.tagline');
+const desktopI18nBootstrap = getSerializedPageTranslationBootstrap(locale, ['common', 'desktop']);
 const siteBase = import.meta.env.VITE_SITE_BASE || '';
 const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
 ---
@@ -44,6 +50,7 @@ const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
     <meta name="og:description" content={pageCopy.description} />
     <meta name="og:type" content="website" />
     <GoogleAnalytics />
+    <script is:inline set:html={desktopI18nBootstrap} />
     <script is:inline>
       (function() {
         function isLunarNewYearPeriod() {
@@ -70,7 +77,13 @@ const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
     </script>
   </head>
   <body class="homepage">
-    <Navbar client:load locale={locale} />
+    <Navbar
+      client:idle
+      locale={locale}
+      copy={interactiveCopy.navbar}
+      themeToggleCopy={interactiveCopy.themeToggle}
+      languageSwitcherCopy={interactiveCopy.languageSwitcher}
+    />
 
     <main class="homepage">
       <section class="hero">
@@ -138,7 +151,7 @@ const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
 
     </main>
 
-    <Footer locale={locale} client:load />
+    <Footer locale={locale} />
     <AnalyticsScripts />
   </body>
 </html>

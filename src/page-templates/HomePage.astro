@@ -17,6 +17,13 @@ import '@/styles/homepage.css';
 
 import type { SiteLocale } from '@/i18n/locale-metadata';
 import { getAbsoluteSiteUrl } from '@/lib/locale-routing';
+import {
+  getHomepageFeaturesCopy,
+  getHomepageShowcaseCopy,
+  getPricingContent,
+  getPricingSteamPreviewRecords,
+} from '@/lib/homepage-section-copy';
+import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
 import { getHomePageCopy } from '@/lib/site-page-copy';
 
 interface Props {
@@ -26,6 +33,11 @@ interface Props {
 const { locale } = Astro.props;
 const siteBase = import.meta.env.VITE_SITE_BASE || '';
 const pageCopy = getHomePageCopy(locale);
+const interactiveCopy = getHomepageInteractiveCopy(locale);
+const featuresCopy = getHomepageFeaturesCopy(locale);
+const showcaseCopy = getHomepageShowcaseCopy(locale);
+const pricingContent = getPricingContent(locale);
+const pricingSteamPreviewRecords = await getPricingSteamPreviewRecords(pricingContent);
 const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
 ---
 
@@ -75,34 +87,44 @@ const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
     </script>
   </head>
   <body class="homepage">
-    <LunarNewYearDecorations client:load />
-    <Navbar client:load locale={locale} />
+    <LunarNewYearDecorations client:idle />
+    <Navbar
+      client:idle
+      locale={locale}
+      copy={interactiveCopy.navbar}
+      themeToggleCopy={interactiveCopy.themeToggle}
+      languageSwitcherCopy={interactiveCopy.languageSwitcher}
+    />
 
     <main class="homepage" id="homepage-content" data-homepage-locale={locale}>
       <HeroSection
+        client:idle
         locale={locale}
+        copy={interactiveCopy.hero}
+        workflowBoardCopy={interactiveCopy.workflowBoard}
         productOverviewVideo={{
           copy: pageCopy.productOverviewVideoCopy,
           featuredVideos: pageCopy.featuredHomepageVideos,
         }}
-        client:load
       />
-      <FeaturesShowcase locale={locale} client:load />
-      <ShowcaseSection locale={locale} client:load />
+      <FeaturesShowcase copy={featuresCopy} client:visible />
+      <ShowcaseSection copy={showcaseCopy} client:visible />
       <VideoShowcase
         eyebrow={pageCopy.supportingSection.eyebrow}
         title={pageCopy.supportingSection.title}
         description={pageCopy.supportingSection.description}
         supportingLabel={pageCopy.supportingSection.supportingLabel}
         supportingVideos={pageCopy.supportingHomepageVideos}
-        client:load
       />
-      <PricingComparisonSection locale={locale} client:load />
+      <PricingComparisonSection
+        content={pricingContent}
+        steamPreviewRecords={pricingSteamPreviewRecords}
+      />
       <ProductHuntBadgeSection locale={locale} />
     </main>
 
-    <PromoteCard locale={locale} className={promoteCardStyles.promoteCard} client:load />
-    <Footer locale={locale} client:load />
+    <PromoteCard locale={locale} className={promoteCardStyles.promoteCard} client:idle />
+    <Footer locale={locale} />
     <AnalyticsScripts />
   </body>
 </html>
