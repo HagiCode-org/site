@@ -1,16 +1,23 @@
 import { useEffect, useState } from 'react';
-import { useTranslation } from '@/i18n/ui';
-import { useLocale } from '@/lib/useLocale';
 import { homeShowcaseImages } from '@/assets/siteAssetUrls';
+import type { HomepageShowcaseCopy } from '@/lib/homepage-section-copy';
 import styles from './ShowcaseSection.module.css';
 
 interface ScreenshotItem {
-  id: string;
+  id: HomepageShowcaseCopy['screenshots'][number]['id'];
   src: string;
   title: string;
   description: string;
   alt: string;
 }
+
+const screenshotSources: Record<HomepageShowcaseCopy['screenshots'][number]['id'], string> = {
+  proposalWorkflow: homeShowcaseImages.proposalWorkflow,
+  sessionBoard: homeShowcaseImages.sessionBoard,
+  tokenAnalytics: homeShowcaseImages.tokenAnalytics,
+  workspaceManagement: homeShowcaseImages.workspaceManagement,
+  achievementProgress: homeShowcaseImages.achievementProgress,
+};
 
 const handleImageError = (event: React.SyntheticEvent<HTMLImageElement>) => {
   const target = event.currentTarget;
@@ -29,70 +36,19 @@ function formatOrder(index: number) {
   return String(index + 1).padStart(2, '0');
 }
 
-export default function ShowcaseSection({ locale: propLocale }: { locale?: string }) {
-  const { locale: detectedLocale } = useLocale();
-  const locale = propLocale || detectedLocale;
-  const { t } = useTranslation(locale);
+interface Props {
+  copy: HomepageShowcaseCopy;
+}
+
+export default function ShowcaseSection({ copy }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
-  const featuredPanelId = `homepage-showcase-featured-${locale}`;
-
-  // Docs screenshot sources:
-  // classic-proposal-view, kanban-view, token-metrics, vault-view, achivement-view
-  const screenshots: ScreenshotItem[] = [
-    {
-      id: 'proposalWorkflow',
-      src: homeShowcaseImages.proposalWorkflow,
-      title: t('showcase.screenshots.proposalWorkflow.title'),
-      description: t('showcase.screenshots.proposalWorkflow.description'),
-      alt: t('showcase.screenshots.proposalWorkflow.alt')
-    },
-    {
-      id: 'sessionBoard',
-      src: homeShowcaseImages.sessionBoard,
-      title: t('showcase.screenshots.sessionBoard.title'),
-      description: t('showcase.screenshots.sessionBoard.description'),
-      alt: t('showcase.screenshots.sessionBoard.alt')
-    },
-    {
-      id: 'tokenAnalytics',
-      src: homeShowcaseImages.tokenAnalytics,
-      title: t('showcase.screenshots.tokenAnalytics.title'),
-      description: t('showcase.screenshots.tokenAnalytics.description'),
-      alt: t('showcase.screenshots.tokenAnalytics.alt')
-    },
-    {
-      id: 'workspaceManagement',
-      src: homeShowcaseImages.workspaceManagement,
-      title: t('showcase.screenshots.workspaceManagement.title'),
-      description: t('showcase.screenshots.workspaceManagement.description'),
-      alt: t('showcase.screenshots.workspaceManagement.alt')
-    },
-    {
-      id: 'achievementProgress',
-      src: homeShowcaseImages.achievementProgress,
-      title: t('showcase.screenshots.achievementProgress.title'),
-      description: t('showcase.screenshots.achievementProgress.description'),
-      alt: t('showcase.screenshots.achievementProgress.alt')
-    }
-  ];
-
+  const featuredPanelId = 'homepage-showcase-featured';
+  const screenshots: ScreenshotItem[] = copy.screenshots.map((screenshot) => ({
+    ...screenshot,
+    src: screenshotSources[screenshot.id],
+  }));
   const activeScreenshot = screenshots[activeIndex] ?? screenshots[0];
-  const totalScreenshots = String(screenshots.length).padStart(2, '0');
-  const previousDisabled = activeIndex === 0;
-  const nextDisabled = activeIndex === screenshots.length - 1;
-
-  const goToPrevious = () => {
-    if (!previousDisabled) {
-      setActiveIndex((currentIndex) => currentIndex - 1);
-    }
-  };
-
-  const goToNext = () => {
-    if (!nextDisabled) {
-      setActiveIndex((currentIndex) => currentIndex + 1);
-    }
-  };
 
   useEffect(() => {
     if (!isFullscreenOpen || typeof window === 'undefined') {
@@ -117,12 +73,32 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: strin
     };
   }, [isFullscreenOpen]);
 
+  if (!activeScreenshot) {
+    return null;
+  }
+
+  const totalScreenshots = String(screenshots.length).padStart(2, '0');
+  const previousDisabled = activeIndex === 0;
+  const nextDisabled = activeIndex === screenshots.length - 1;
+
+  const goToPrevious = () => {
+    if (!previousDisabled) {
+      setActiveIndex((currentIndex) => currentIndex - 1);
+    }
+  };
+
+  const goToNext = () => {
+    if (!nextDisabled) {
+      setActiveIndex((currentIndex) => currentIndex + 1);
+    }
+  };
+
   return (
     <section className={styles.showcaseSection}>
       <div className="container">
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>{t('showcase.title')}</h2>
-          <p className={styles.sectionDescription}>{t('showcase.description')}</p>
+          <h2 className={styles.sectionTitle}>{copy.title}</h2>
+          <p className={styles.sectionDescription}>{copy.description}</p>
         </div>
 
         <div className={styles.showcaseLayout}>
@@ -132,7 +108,7 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: strin
                 type="button"
                 className={styles.featuredPreviewButton}
                 onClick={() => setIsFullscreenOpen(true)}
-                aria-label={`${t('showcase.controls.openFullscreen')}${activeScreenshot.title}`}
+                aria-label={`${copy.controls.openFullscreen}${activeScreenshot.title}`}
               >
                 <img
                   key={activeScreenshot.id}
@@ -140,11 +116,11 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: strin
                   alt={activeScreenshot.alt}
                   className={styles.featuredImage}
                   onError={handleImageError}
-                  data-fallback-label={t('showcase.controls.imageUnavailable')}
+                  data-fallback-label={copy.controls.imageUnavailable}
                   loading="lazy"
                 />
                 <span className={styles.featuredPreviewHint}>
-                  {t('showcase.controls.openFullscreenHint')}
+                  {copy.controls.openFullscreenHint}
                 </span>
               </button>
             </div>
@@ -152,7 +128,7 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: strin
             <div className={styles.featuredContent} aria-live="polite" aria-atomic="true">
               <div className={styles.featuredCopy}>
                 <p className={styles.featuredEyebrow}>
-                  {t('showcase.controls.current')}
+                  {copy.controls.current}
                   <span className={styles.featuredCounter}>
                     {formatOrder(activeIndex)} / {totalScreenshots}
                   </span>
@@ -167,26 +143,26 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: strin
                   className={styles.navButton}
                   onClick={goToPrevious}
                   disabled={previousDisabled}
-                  aria-label={t('showcase.controls.previous')}
+                  aria-label={copy.controls.previous}
                   aria-controls={featuredPanelId}
                 >
-                  {t('showcase.controls.previous')}
+                  {copy.controls.previous}
                 </button>
                 <button
                   type="button"
                   className={styles.navButton}
                   onClick={goToNext}
                   disabled={nextDisabled}
-                  aria-label={t('showcase.controls.next')}
+                  aria-label={copy.controls.next}
                   aria-controls={featuredPanelId}
                 >
-                  {t('showcase.controls.next')}
+                  {copy.controls.next}
                 </button>
               </div>
             </div>
           </article>
 
-          <div className={styles.thumbnailRail} aria-label={t('showcase.controls.railLabel')}>
+          <div className={styles.thumbnailRail} aria-label={copy.controls.railLabel}>
             {screenshots.map((screenshot, index) => {
               const isActive = index === activeIndex;
 
@@ -198,7 +174,7 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: strin
                   onClick={() => setActiveIndex(index)}
                   aria-pressed={isActive}
                   aria-current={isActive ? 'true' : undefined}
-                  aria-label={`${t('showcase.controls.selectPrefix')}${screenshot.title}`}
+                  aria-label={`${copy.controls.selectPrefix}${screenshot.title}`}
                   aria-controls={featuredPanelId}
                 >
                   <span className={styles.thumbnailOrder}>{formatOrder(index)}</span>
@@ -209,7 +185,7 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: strin
                       alt=""
                       className={styles.thumbnailImage}
                       onError={handleImageError}
-                      data-fallback-label={t('showcase.controls.imageUnavailable')}
+                      data-fallback-label={copy.controls.imageUnavailable}
                       loading="lazy"
                     />
                   </span>
@@ -238,9 +214,9 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: strin
               type="button"
               className={styles.lightboxClose}
               onClick={() => setIsFullscreenOpen(false)}
-              aria-label={t('showcase.controls.closeFullscreen')}
+              aria-label={copy.controls.closeFullscreen}
             >
-              {t('showcase.controls.closeFullscreen')}
+              {copy.controls.closeFullscreen}
             </button>
 
             <figure className={styles.lightboxFigure}>
@@ -249,7 +225,7 @@ export default function ShowcaseSection({ locale: propLocale }: { locale?: strin
                 alt={activeScreenshot.alt}
                 className={styles.lightboxImage}
                 onError={handleImageError}
-                data-fallback-label={t('showcase.controls.imageUnavailable')}
+                data-fallback-label={copy.controls.imageUnavailable}
               />
               <figcaption className={styles.lightboxCaption}>
                 <h3 className={styles.lightboxTitle}>{activeScreenshot.title}</h3>

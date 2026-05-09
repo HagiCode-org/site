@@ -8,21 +8,18 @@
  * - HUD 元素: 角标装饰、扫描线、数据流动画
  * - 主题适配: 亮/暗模式对比度优化
  */
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useTranslation } from '@/i18n/ui';
-import { useLocale } from '@/lib/useLocale';
 import { getSiteAssetUrl } from '@/assets/siteAssetUrls';
+import type { HomepageFeaturesCopy } from '@/lib/homepage-section-copy';
 import styles from './FeaturesShowcase.module.css';
 
-// 定义 Variants 类型
 type Variants = {
   [key: string]: {
     [key: string]: any;
   };
 };
 
-// Icon props type
 interface IconProps {
   className?: string;
 }
@@ -31,21 +28,6 @@ interface CliIconProps {
   providerKey: string;
 }
 
-const SUPPORTED_PROVIDER_KEYS = [
-  'ClaudeCodeCli',
-  'CodexCli',
-  'GitHubCopilot',
-  'OpenCodeCli',
-  'HermesCli',
-  'QoderCli',
-  'KiroCli',
-  'KimiCli',
-  'GeminiCli',
-  'DeepAgentsCli',
-  'CodebuddyCli',
-] as const;
-
-// SVG Icons
 const BrainIcon = ({ className = '' }: IconProps) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z" />
@@ -91,7 +73,6 @@ const AwardIcon = ({ className = '' }: IconProps) => (
   </svg>
 );
 
-// Workflow stage icons
 const workflowIcons: Record<string, React.ReactElement> = {
   idea: <ZapIcon className={styles.workflowIcon} />,
   proposal: <TargetIcon className={styles.workflowIcon} />,
@@ -239,55 +220,29 @@ function SupportedCliIcon({ providerKey }: CliIconProps) {
   }
 }
 
-/**
- * 智能特性区域 - OpenSpec 工作流
- * 优化: 添加暂停交互、增强视觉反馈、数据流动画
- */
-function SmartFeature({ locale }: { locale: string }) {
-  const { t } = useTranslation(locale);
+const smartStageLabels = ['Idea', 'Proposal', 'Review', 'Tasks', 'Code', 'Test', 'Refactor', 'Docs', 'Archive'];
+
+function SmartFeature({ copy }: { copy: HomepageFeaturesCopy['smart'] }) {
   const [activeStage, setActiveStage] = useState(0);
-  const [efficiencyAnimating, setEfficiencyAnimating] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
 
-  const stages = [
-    { id: 'idea', label: 'Idea', desc: t('features.smart.workflow.idea.desc'), icon: '💡' },
-    { id: 'proposal', label: 'Proposal', desc: t('features.smart.workflow.proposal.desc'), icon: '📋' },
-    { id: 'review', label: 'Review', desc: t('features.smart.workflow.review.desc'), icon: '👁️' },
-    { id: 'tasks', label: 'Tasks', desc: t('features.smart.workflow.tasks.desc'), icon: '✂️' },
-    { id: 'code', label: 'Code', desc: t('features.smart.workflow.code.desc'), icon: '⌨️' },
-    { id: 'test', label: 'Test', desc: t('features.smart.workflow.test.desc'), icon: '🧪' },
-    { id: 'refactor', label: 'Refactor', desc: t('features.smart.workflow.refactor.desc'), icon: '🔄' },
-    { id: 'docs', label: 'Docs', desc: t('features.smart.workflow.docs.desc'), icon: '📚' },
-    { id: 'archive', label: 'Archive', desc: t('features.smart.workflow.archive.desc'), icon: '🏆' },
-  ];
+  const stages = smartStageLabels.map((label, index) => ({
+    id: label.toLowerCase(),
+    label,
+    desc: copy.workflowDescriptions[index] ?? '',
+  }));
 
   useEffect(() => {
-    if (!isPaused) {
-      const interval = setInterval(() => {
-        setActiveStage((prev) => (prev + 1) % stages.length);
-      }, 1500);
-      return () => clearInterval(interval);
+    if (isPaused) {
+      return undefined;
     }
-  }, [stages.length, isPaused]);
 
-  // 容器动画变体
-  const containerVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.4, 0, 0.2, 1],
-        staggerChildren: 0.1,
-      },
-    },
-  };
+    const interval = setInterval(() => {
+      setActiveStage((prev) => (prev + 1) % stages.length);
+    }, 1500);
 
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
+    return () => clearInterval(interval);
+  }, [isPaused, stages.length]);
 
   return (
     <motion.div
@@ -295,63 +250,55 @@ function SmartFeature({ locale }: { locale: string }) {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* HUD 角标装饰 */}
       <div className={styles.hudCorner} data-position="top-left" />
       <div className={styles.hudCorner} data-position="top-right" />
       <div className={styles.hudCorner} data-position="bottom-left" />
       <div className={styles.hudCorner} data-position="bottom-right" />
-
-      {/* 扫描线效果 */}
       <div className={styles.scanline} />
-
       <div className={styles.featurePattern} />
       <div className={styles.featureContent}>
         <div className={styles.featureText}>
           <div>
-            <span className={styles.featureBadge}>{t('features.smart.badge')}</span>
-            <h2 className={styles.featureTitle}>{t('features.smart.title')}</h2>
-            <p className={styles.featureSubtitle}>{t('features.smart.subtitle')}</p>
+            <span className={styles.featureBadge}>{copy.badge}</span>
+            <h2 className={styles.featureTitle}>{copy.title}</h2>
+            <p className={styles.featureSubtitle}>{copy.subtitle}</p>
           </div>
 
           <div className={styles.efficiencyHighlight}>
             <motion.div
               className={styles.efficiencyValue}
               initial={{ scale: 0.8, opacity: 0 }}
-              animate={efficiencyAnimating ? { scale: 1, opacity: 1 } : {}}
+              animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3, type: 'spring' }}
             >
               <span className={styles.efficiencyNumber}>300</span>
               <span className={styles.efficiencyPercent}>%</span>
             </motion.div>
-            <div className={styles.efficiencyLabel}>{t('features.smart.efficiency')}</div>
+            <div className={styles.efficiencyLabel}>{copy.efficiency}</div>
             <div className={styles.efficiencyChart}>
               <motion.div
                 className={`${styles.chartBar} ${styles.barShort}`}
                 initial={{ height: 0 }}
-                animate={efficiencyAnimating ? { height: '30%' } : {}}
+                animate={{ height: '30%' }}
                 transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
               >
-                <span className={styles.chartLabel}>{t('features.smart.traditional')}</span>
+                <span className={styles.chartLabel}>{copy.traditional}</span>
               </motion.div>
               <motion.div
                 className={`${styles.chartBar} ${styles.barFull}`}
                 initial={{ height: 0 }}
-                animate={efficiencyAnimating ? { height: '100%' } : {}}
+                animate={{ height: '100%' }}
                 transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
               >
-                <span className={styles.chartLabel}>{t('features.smart.hagicode')}</span>
+                <span className={styles.chartLabel}>{copy.hagicode}</span>
               </motion.div>
             </div>
           </div>
 
-          <p className={styles.featureDesc}>
-            {t('features.smart.description')}
-          </p>
+          <p className={styles.featureDesc}>{copy.description}</p>
         </div>
 
-        <div
-          className={styles.workflowAnimation}
-        >
+        <div className={styles.workflowAnimation}>
           <div className={styles.workflowGrid}>
             {stages.map((stage, index) => (
               <motion.div
@@ -368,20 +315,19 @@ function SmartFeature({ locale }: { locale: string }) {
               >
                 <div className={styles.workflowIconWrapper}>
                   {workflowIcons[stage.id] || <ZapIcon className={styles.workflowIcon} />}
-                  {activeStage === index && (
+                  {activeStage === index ? (
                     <motion.div
                       className={styles.iconGlow}
                       layoutId="activeGlow"
                       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                     />
-                  )}
+                  ) : null}
                 </div>
                 <span className={styles.workflowLabel}>{stage.label}</span>
                 <span className={styles.workflowDesc}>{stage.desc}</span>
-                {/* 连接线 */}
-                {index < stages.length - 1 && (
+                {index < stages.length - 1 ? (
                   <div className={styles.nodeConnector} data-active={activeStage >= index ? 'true' : 'false'} />
-                )}
+                ) : null}
               </motion.div>
             ))}
           </div>
@@ -392,38 +338,18 @@ function SmartFeature({ locale }: { locale: string }) {
               transition={{ duration: 0.5, ease: 'easeInOut' }}
             />
           </div>
-          {/* 暂停指示器 */}
-          {isPaused && (
-            <motion.div
-              className={styles.pausedIndicator}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <span>{t('features.smart.paused')}</span>
+          {isPaused ? (
+            <motion.div className={styles.pausedIndicator} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <span>{copy.paused}</span>
             </motion.div>
-          )}
+          ) : null}
         </div>
       </div>
     </motion.div>
   );
 }
 
-/**
- * 高效特性区域 - 多 Agent / 多实例并行
- * 优化: 让并行能力从抽象效率数字变成可读的 Agent x Instance 视图
- */
-function ConvenientFeature({ locale }: { locale: string }) {
-  const { t } = useTranslation(locale);
-  const [animateBars, setAnimateBars] = useState(true);
-  const supportedProvidersNote = locale.toLowerCase().startsWith('zh')
-    ? 'OpenCode 现在可以把共享的 OmniRoute 目录投影到 Hero 的模型默认项里，同时继续允许分支级自定义原始模型标识。'
-    : 'OpenCode can load the shared OmniRoute catalog into hero model defaults while keeping custom raw model identifiers editable for branch-specific workflows.';
-
-  useEffect(() => {
-    setAnimateBars(true);
-  }, []);
-
+function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] }) {
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
@@ -431,44 +357,18 @@ function ConvenientFeature({ locale }: { locale: string }) {
 
   const agentLanes = [
     {
-      key: 'claude',
+      ...copy.agentMatrix.agentLanes[0],
       icon: <BrainIcon className={styles.agentLaneIcon} />,
-      name: t('features.convenient.agentMatrix.agents.claude.name'),
-      role: t('features.convenient.agentMatrix.agents.claude.role'),
-      instances: [
-        t('features.convenient.agentMatrix.agents.claude.instances.0'),
-        t('features.convenient.agentMatrix.agents.claude.instances.1'),
-        t('features.convenient.agentMatrix.agents.claude.instances.2'),
-      ],
     },
     {
-      key: 'codex',
+      ...copy.agentMatrix.agentLanes[1],
       icon: <ZapIcon className={styles.agentLaneIcon} />,
-      name: t('features.convenient.agentMatrix.agents.codex.name'),
-      role: t('features.convenient.agentMatrix.agents.codex.role'),
-      instances: [
-        t('features.convenient.agentMatrix.agents.codex.instances.0'),
-        t('features.convenient.agentMatrix.agents.codex.instances.1'),
-        t('features.convenient.agentMatrix.agents.codex.instances.2'),
-      ],
     },
     {
-      key: 'router',
+      ...copy.agentMatrix.agentLanes[2],
       icon: <TargetIcon className={styles.agentLaneIcon} />,
-      name: t('features.convenient.agentMatrix.agents.router.name'),
-      role: t('features.convenient.agentMatrix.agents.router.role'),
-      instances: [
-        t('features.convenient.agentMatrix.agents.router.instances.0'),
-        t('features.convenient.agentMatrix.agents.router.instances.1'),
-        t('features.convenient.agentMatrix.agents.router.instances.2'),
-      ],
     },
-  ];
-
-  const supportedProviders = SUPPORTED_PROVIDER_KEYS.map((providerKey, index) => ({
-    key: providerKey,
-    name: t(`features.convenient.agentMatrix.supportedNames.names.${index}`),
-  }));
+  ].filter((lane) => lane.key);
 
   return (
     <motion.div className={`${styles.featureZone} ${styles.convenient}`}>
@@ -476,14 +376,13 @@ function ConvenientFeature({ locale }: { locale: string }) {
       <div className={styles.hudCorner} data-position="top-right" />
       <div className={styles.hudCorner} data-position="bottom-left" />
       <div className={styles.hudCorner} data-position="bottom-right" />
-
       <div className={styles.featurePattern} />
       <div className={styles.featureContent}>
         <div className={styles.featureText}>
           <div>
-            <span className={styles.featureBadge}>{t('features.convenient.badge')}</span>
-            <h2 className={styles.featureTitle}>{t('features.convenient.title')}</h2>
-            <p className={styles.featureSubtitle}>{t('features.convenient.subtitle')}</p>
+            <span className={styles.featureBadge}>{copy.badge}</span>
+            <h2 className={styles.featureTitle}>{copy.title}</h2>
+            <p className={styles.featureSubtitle}>{copy.subtitle}</p>
           </div>
 
           <div className={styles.quotaComparison}>
@@ -492,18 +391,15 @@ function ConvenientFeature({ locale }: { locale: string }) {
                 <motion.div
                   className={styles.quotaFill}
                   style={{ background: 'linear-gradient(135deg, #666, #999)' }}
-                  animate={{ width: animateBars ? '22%' : '0%' }}
+                  animate={{ width: '22%' }}
                   transition={{ duration: 1, delay: 0.3 }}
                 />
                 <div className={styles.quotaGlow} />
               </div>
-              <span className={styles.quotaLabel}>{t('features.convenient.traditional')}</span>
+              <span className={styles.quotaLabel}>{copy.traditional}</span>
             </div>
             <div className={styles.quotaArrow}>
-              <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1, repeat: Infinity, repeatDelay: 0.5 }}
-              >
+              <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1, repeat: Infinity, repeatDelay: 0.5 }}>
                 →
               </motion.span>
             </div>
@@ -512,40 +408,33 @@ function ConvenientFeature({ locale }: { locale: string }) {
                 <motion.div
                   className={styles.quotaFill}
                   style={{ background: 'var(--gradient-primary)' }}
-                  animate={{ width: animateBars ? '100%' : '0%' }}
+                  animate={{ width: '100%' }}
                   transition={{ duration: 1, delay: 0.5 }}
                 />
                 <div className={styles.quotaGlow} />
               </div>
-              <span className={styles.quotaLabel}>{t('features.convenient.multiThread')}</span>
+              <span className={styles.quotaLabel}>{copy.multiThread}</span>
             </div>
           </div>
 
-          <motion.div
-            className={styles.boostRange}
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={animateBars ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.7 }}
-          >
-            <span className={styles.boostLabel}>{t('features.convenient.boost')}</span>
-            <span className={styles.boostValue}>{t('features.convenient.boostValue')}</span>
+          <motion.div className={styles.boostRange} initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 0.7 }}>
+            <span className={styles.boostLabel}>{copy.boost}</span>
+            <span className={styles.boostValue}>{copy.boostValue}</span>
           </motion.div>
 
-          <p className={styles.featureDesc}>{t('features.convenient.description')}</p>
+          <p className={styles.featureDesc}>{copy.description}</p>
         </div>
 
         <div className={styles.parallelShowcase}>
           <div className={styles.parallelHeader}>
-            <span className={styles.parallelTitle}>{t('features.convenient.agentMatrix.title')}</span>
-            <span className={styles.parallelBadge}>{t('features.convenient.agentMatrix.badge')}</span>
+            <span className={styles.parallelTitle}>{copy.agentMatrix.title}</span>
+            <span className={styles.parallelBadge}>{copy.agentMatrix.badge}</span>
           </div>
 
           <div className={styles.supportedProvidersPanel}>
-            <div className={styles.supportedProvidersTitle}>
-              {t('features.convenient.agentMatrix.supportedNames.title')}
-            </div>
+            <div className={styles.supportedProvidersTitle}>{copy.agentMatrix.supportedProvidersTitle}</div>
             <div className={styles.supportedProvidersGrid}>
-              {supportedProviders.map((provider) => (
+              {copy.agentMatrix.supportedProviders.map((provider) => (
                 <span key={provider.key} className={styles.supportedProviderPill}>
                   <span className={styles.supportedProviderIcon} data-provider={provider.key} aria-hidden="true">
                     <SupportedCliIcon providerKey={provider.key} />
@@ -554,9 +443,7 @@ function ConvenientFeature({ locale }: { locale: string }) {
                 </span>
               ))}
             </div>
-            <p className={styles.supportedProvidersNote}>
-              {supportedProvidersNote}
-            </p>
+            <p className={styles.supportedProvidersNote}>{copy.agentMatrix.supportedProvidersNote}</p>
           </div>
 
           <div className={styles.agentMatrix}>
@@ -594,13 +481,9 @@ function ConvenientFeature({ locale }: { locale: string }) {
             ))}
           </div>
 
-          <motion.div
-            className={styles.agentStatus}
-            animate={{ opacity: [1, 0.72, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
+          <motion.div className={styles.agentStatus} animate={{ opacity: [1, 0.72, 1] }} transition={{ duration: 2, repeat: Infinity }}>
             <span className={styles.statusDot} />
-            {t('features.convenient.agentMatrix.status')}
+            {copy.agentMatrix.status}
           </motion.div>
         </div>
       </div>
@@ -608,11 +491,7 @@ function ConvenientFeature({ locale }: { locale: string }) {
   );
 }
 
-/**
- * 有趣特性区域 - Hero Dungeon 游戏化工作流
- */
-function InterestingFeature({ locale }: { locale: string }) {
-  const { t } = useTranslation(locale);
+function InterestingFeature({ copy }: { copy: HomepageFeaturesCopy['interesting'] }) {
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
@@ -621,67 +500,16 @@ function InterestingFeature({ locale }: { locale: string }) {
   const heroGalleryLoop = [...interestingHeroGallery, ...interestingHeroGallery];
 
   const dungeonCards = [
-    {
-      key: 'proposal',
-      icon: <TargetIcon className={styles.gameIcon} />,
-      title: t('features.interesting.dungeonCards.proposal.title'),
-      desc: t('features.interesting.dungeonCards.proposal.desc'),
-      status: t('features.interesting.dungeonCards.proposal.status'),
-    },
-    {
-      key: 'autotask',
-      icon: <ZapIcon className={styles.gameIcon} />,
-      title: t('features.interesting.dungeonCards.autotask.title'),
-      desc: t('features.interesting.dungeonCards.autotask.desc'),
-      status: t('features.interesting.dungeonCards.autotask.status'),
-    },
-    {
-      key: 'prompt',
-      icon: <FlameIcon className={styles.gameIcon} />,
-      title: t('features.interesting.dungeonCards.prompt.title'),
-      desc: t('features.interesting.dungeonCards.prompt.desc'),
-      status: t('features.interesting.dungeonCards.prompt.status'),
-    },
-  ];
+    { ...copy.dungeonCards[0], icon: <TargetIcon className={styles.gameIcon} /> },
+    { ...copy.dungeonCards[1], icon: <ZapIcon className={styles.gameIcon} /> },
+    { ...copy.dungeonCards[2], icon: <FlameIcon className={styles.gameIcon} /> },
+  ].filter((card) => card.key);
 
   const rosterHeroes = [
-    {
-      key: 'strategist',
-      icon: <BrainIcon className={styles.gameIcon} />,
-      name: t('features.interesting.roster.heroes.strategist.name'),
-      role: t('features.interesting.roster.heroes.strategist.role'),
-    },
-    {
-      key: 'runner',
-      icon: <ZapIcon className={styles.gameIcon} />,
-      name: t('features.interesting.roster.heroes.runner.name'),
-      role: t('features.interesting.roster.heroes.runner.role'),
-    },
-    {
-      key: 'artist',
-      icon: <AwardIcon className={styles.gameIcon} />,
-      name: t('features.interesting.roster.heroes.artist.name'),
-      role: t('features.interesting.roster.heroes.artist.role'),
-    },
-  ];
-
-  const battleMetrics = [
-    {
-      key: 'dungeons',
-      value: t('features.interesting.battleReport.metrics.dungeons.value'),
-      label: t('features.interesting.battleReport.metrics.dungeons.label'),
-    },
-    {
-      key: 'level',
-      value: t('features.interesting.battleReport.metrics.level.value'),
-      label: t('features.interesting.battleReport.metrics.level.label'),
-    },
-    {
-      key: 'xp',
-      value: t('features.interesting.battleReport.metrics.xp.value'),
-      label: t('features.interesting.battleReport.metrics.xp.label'),
-    },
-  ];
+    { ...copy.roster.heroes[0], icon: <BrainIcon className={styles.gameIcon} /> },
+    { ...copy.roster.heroes[1], icon: <ZapIcon className={styles.gameIcon} /> },
+    { ...copy.roster.heroes[2], icon: <AwardIcon className={styles.gameIcon} /> },
+  ].filter((hero) => hero.key);
 
   return (
     <motion.div className={`${styles.featureZone} ${styles.interesting}`}>
@@ -689,46 +517,44 @@ function InterestingFeature({ locale }: { locale: string }) {
       <div className={styles.hudCorner} data-position="top-right" />
       <div className={styles.hudCorner} data-position="bottom-left" />
       <div className={styles.hudCorner} data-position="bottom-right" />
-
       <div className={styles.particleDecoration} />
       <div className={styles.featurePattern} />
       <div className={styles.featureContent}>
         <div className={styles.featureText}>
           <div>
-            <span className={styles.featureBadge}>{t('features.interesting.badge')}</span>
-            <h2 className={styles.featureTitle}>{t('features.interesting.title')}</h2>
-            <p className={styles.featureSubtitle}>{t('features.interesting.subtitle')}</p>
+            <span className={styles.featureBadge}>{copy.badge}</span>
+            <h2 className={styles.featureTitle}>{copy.title}</h2>
+            <p className={styles.featureSubtitle}>{copy.subtitle}</p>
           </div>
 
           <div className={styles.gameFeatures}>
-            {[
-              { icon: <TrophyIcon className={styles.gameIcon} />, label: t('features.interesting.features.dungeons.label'), desc: t('features.interesting.features.dungeons.desc') },
-              { icon: <TargetIcon className={styles.gameIcon} />, label: t('features.interesting.features.captains.label'), desc: t('features.interesting.features.captains.desc') },
-              { icon: <FlameIcon className={styles.gameIcon} />, label: t('features.interesting.features.battle.label'), desc: t('features.interesting.features.battle.desc') },
-            ].map((feature) => (
-              <motion.div
-                key={feature.label}
-                className={styles.gameFeature}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                style={{ cursor: 'pointer' }}
-              >
-                {feature.icon}
-                <span className={styles.gameLabel}>{feature.label}</span>
-                <p className={styles.gameDesc}>{feature.desc}</p>
-              </motion.div>
-            ))}
+            {copy.features.map((feature) => {
+              const icon = feature.key === 'dungeons'
+                ? <TrophyIcon className={styles.gameIcon} />
+                : feature.key === 'captains'
+                  ? <TargetIcon className={styles.gameIcon} />
+                  : <FlameIcon className={styles.gameIcon} />;
+
+              return (
+                <motion.div key={feature.key} className={styles.gameFeature} whileHover={{ y: -4, transition: { duration: 0.2 } }} style={{ cursor: 'pointer' }}>
+                  {icon}
+                  <span className={styles.gameLabel}>{feature.label}</span>
+                  <p className={styles.gameDesc}>{feature.desc}</p>
+                </motion.div>
+              );
+            })}
           </div>
 
-          <p className={styles.featureDesc}>{t('features.interesting.description')}</p>
+          <p className={styles.featureDesc}>{copy.description}</p>
 
           <div className={styles.interestingLowerGrid}>
             <div className={styles.battlePanel}>
               <div className={styles.reportHeader}>
-                <span className={styles.reportTitle}>{t('features.interesting.battleReport.title')}</span>
-                <span className={styles.parallelBadge}>{t('features.interesting.battleReport.badge')}</span>
+                <span className={styles.reportTitle}>{copy.battleReport.title}</span>
+                <span className={styles.parallelBadge}>{copy.battleReport.badge}</span>
               </div>
               <div className={styles.battleMetrics}>
-                {battleMetrics.map((metric) => (
+                {copy.battleReport.metrics.map((metric) => (
                   <div key={metric.key} className={styles.battleMetric}>
                     <span className={styles.battleMetricValue}>{metric.value}</span>
                     <span className={styles.battleMetricLabel}>{metric.label}</span>
@@ -736,13 +562,9 @@ function InterestingFeature({ locale }: { locale: string }) {
                 ))}
               </div>
               <div className={styles.battleProgressTrack}>
-                <motion.div
-                  className={styles.battleProgressFill}
-                  animate={{ width: ['38%', '84%', '62%'] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-                />
+                <motion.div className={styles.battleProgressFill} animate={{ width: ['38%', '84%', '62%'] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }} />
               </div>
-              <p className={styles.battleNote}>{t('features.interesting.battleReport.note')}</p>
+              <p className={styles.battleNote}>{copy.battleReport.note}</p>
             </div>
           </div>
         </div>
@@ -775,20 +597,8 @@ function InterestingFeature({ locale }: { locale: string }) {
               <div className={styles.galleryViewport}>
                 <div className={styles.galleryTrack}>
                   {dungeonGalleryLoop.map((asset, index) => (
-                    <div
-                      key={`${asset.src}-${index}`}
-                      className={styles.galleryCard}
-                      data-kind="dungeon"
-                    >
-                      <img
-                        src={asset.src}
-                        alt={asset.label}
-                        className={styles.galleryImage}
-                        width={128}
-                        height={128}
-                        loading="lazy"
-                        decoding="async"
-                      />
+                    <div key={`${asset.src}-${index}`} className={styles.galleryCard} data-kind="dungeon">
+                      <img src={asset.src} alt={asset.label} className={styles.galleryImage} width={128} height={128} loading="lazy" decoding="async" />
                     </div>
                   ))}
                 </div>
@@ -799,20 +609,8 @@ function InterestingFeature({ locale }: { locale: string }) {
               <div className={styles.galleryViewport}>
                 <div className={`${styles.galleryTrack} ${styles.galleryTrackReverse}`}>
                   {heroGalleryLoop.map((asset, index) => (
-                    <div
-                      key={`${asset.src}-${index}`}
-                      className={styles.galleryCard}
-                      data-kind="hero"
-                    >
-                      <img
-                        src={asset.src}
-                        alt={asset.label}
-                        className={styles.galleryImage}
-                        width={128}
-                        height={128}
-                        loading="lazy"
-                        decoding="async"
-                      />
+                    <div key={`${asset.src}-${index}`} className={styles.galleryCard} data-kind="hero">
+                      <img src={asset.src} alt={asset.label} className={styles.galleryImage} width={128} height={128} loading="lazy" decoding="async" />
                     </div>
                   ))}
                 </div>
@@ -822,7 +620,7 @@ function InterestingFeature({ locale }: { locale: string }) {
 
           <div className={styles.rosterPanel}>
             <div className={styles.rosterHeader}>
-              <span className={styles.reportTitle}>{t('features.interesting.roster.title')}</span>
+              <span className={styles.reportTitle}>{copy.roster.title}</span>
             </div>
             <div className={styles.rosterList}>
               {rosterHeroes.map((hero) => (
@@ -842,31 +640,25 @@ function InterestingFeature({ locale }: { locale: string }) {
   );
 }
 
-/**
- * 主组件: 三大特性展示
- * 优化: 添加头部进入动画、增强视觉层次
- */
-export default function FeaturesShowcase({ locale: propLocale }: { locale?: string }) {
-  const { locale: detectedLocale } = useLocale();
-  const locale = propLocale || detectedLocale;
-  const { t } = useTranslation(locale);
+interface Props {
+  copy: HomepageFeaturesCopy;
+}
 
+export default function FeaturesShowcase({ copy }: Props) {
   return (
     <section className={styles.featuresShowcase}>
       <div className="container">
         <div className={styles.showcaseHeader}>
           <h2 className={styles.showcaseTitle}>
-            <span className={styles.titleAccent}>{t('features.showcase.title')}</span>
+            <span className={styles.titleAccent}>{copy.showcase.title}</span>
           </h2>
-          <p className={styles.showcaseSubtitle}>
-            {t('features.showcase.subtitle')}
-          </p>
+          <p className={styles.showcaseSubtitle}>{copy.showcase.subtitle}</p>
         </div>
 
         <div className={styles.zonesContainer}>
-          <SmartFeature locale={locale} />
-          <ConvenientFeature locale={locale} />
-          <InterestingFeature locale={locale} />
+          <SmartFeature copy={copy.smart} />
+          <ConvenientFeature copy={copy.convenient} />
+          <InterestingFeature copy={copy.interesting} />
         </div>
       </div>
     </section>

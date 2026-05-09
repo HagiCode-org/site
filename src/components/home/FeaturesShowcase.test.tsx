@@ -2,11 +2,13 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
+import { getHomepageFeaturesCopy } from '@/lib/homepage-section-copy';
+
 import FeaturesShowcase from './FeaturesShowcase';
 
 describe('FeaturesShowcase', () => {
   it('keeps the English Hero Dungeon marketing section free of Chinese dungeon copy', () => {
-    const markup = renderToStaticMarkup(<FeaturesShowcase locale="en" />);
+    const markup = renderToStaticMarkup(<FeaturesShowcase copy={getHomepageFeaturesCopy('en')} />);
 
     expect(markup).toContain('Proposal Dungeon');
     expect(markup).toContain('OpenSpec generate / apply / archive');
