@@ -65,9 +65,22 @@ describe('HeroSection', () => {
     );
 
     expect(markup.indexOf('<h1')).toBeLessThan(markup.indexOf('data-video-placement="hero"'));
-    expect(markup.indexOf('data-video-placement="hero"')).toBeLessThan(
-      markup.indexOf('aria-label="Primary homepage actions"'),
-    );
+    expect(markup.indexOf('data-video-placement="hero"')).toBeLessThan(markup.indexOf('hero-workflow-title'));
     expect(markup).toContain('YouTube player: Hagicode YouTube');
+    expect(markup).not.toContain('Open on YouTube');
+    expect(markup).not.toContain('Open on Bilibili');
+  });
+
+  it('renders the compact hero signal tags and stage summary', () => {
+    const copy = getHomepageInteractiveCopy('en-US');
+    const markup = renderToStaticMarkup(
+      <HeroSection locale="en-US" copy={copy.hero} workflowBoardCopy={copy.workflowBoard} />,
+    );
+
+    expect(markup).not.toContain('Smart');
+    expect(markup).toContain('AI Orchestrated');
+    expect(markup).toContain('OpenSpec workflow');
+    expect(markup).toContain('Multi-Agent');
+    expect(markup).toContain('Live Surface');
   });
 });
