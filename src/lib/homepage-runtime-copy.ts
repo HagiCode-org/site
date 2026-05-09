@@ -25,6 +25,35 @@ export interface HomepageLanguageSwitcherCopy {
 }
 
 export interface HomepageHeroCopy {
+  tagline: string;
+  description: string;
+  secondaryLine: string;
+  taglines: {
+    smart: string;
+    aiDriven: string;
+    openspec: string;
+    multiThread: string;
+  };
+  problem: string;
+  painPoint: string;
+  painPoints: string;
+  solution: string;
+  features: string[];
+  redefine: string;
+  valueCards: {
+    smart: {
+      title: string;
+      description: string;
+    };
+    efficient: {
+      title: string;
+      description: string;
+    };
+    interesting: {
+      title: string;
+      description: string;
+    };
+  };
   buttons: {
     desktopApp: string;
     containerApp: string;
@@ -102,6 +131,39 @@ export function getHomepageHeroCopy(locale: SiteLocale): HomepageHeroCopy {
   const resolvedLocale = resolveLocale(locale);
 
   return {
+    tagline: requireLocaleResourceString(resolvedLocale, 'home', 'hero.tagline'),
+    description: requireLocaleResourceString(resolvedLocale, 'home', 'hero.description'),
+    secondaryLine: requireLocaleResourceString(resolvedLocale, 'home', 'hero.secondaryLine'),
+    taglines: {
+      smart: requireLocaleResourceString(resolvedLocale, 'home', 'hero.taglines.smart'),
+      aiDriven: requireLocaleResourceString(resolvedLocale, 'home', 'hero.taglines.aiDriven'),
+      openspec: requireLocaleResourceString(resolvedLocale, 'home', 'hero.taglines.openspec'),
+      multiThread: requireLocaleResourceString(resolvedLocale, 'home', 'hero.taglines.multiThread'),
+    },
+    problem: requireLocaleResourceString(resolvedLocale, 'home', 'hero.problem'),
+    painPoint: requireLocaleResourceString(resolvedLocale, 'home', 'hero.painPoint'),
+    painPoints: requireLocaleResourceString(resolvedLocale, 'home', 'hero.painPoints'),
+    solution: requireLocaleResourceString(resolvedLocale, 'home', 'hero.solution'),
+    features: [
+      requireLocaleResourceString(resolvedLocale, 'home', 'hero.features.0'),
+      requireLocaleResourceString(resolvedLocale, 'home', 'hero.features.1'),
+      requireLocaleResourceString(resolvedLocale, 'home', 'hero.features.2'),
+    ],
+    redefine: requireLocaleResourceString(resolvedLocale, 'home', 'hero.redefine'),
+    valueCards: {
+      smart: {
+        title: requireLocaleResourceString(resolvedLocale, 'home', 'hero.valueCards.smart.title'),
+        description: requireLocaleResourceString(resolvedLocale, 'home', 'hero.valueCards.smart.description'),
+      },
+      efficient: {
+        title: requireLocaleResourceString(resolvedLocale, 'home', 'hero.valueCards.efficient.title'),
+        description: requireLocaleResourceString(resolvedLocale, 'home', 'hero.valueCards.efficient.description'),
+      },
+      interesting: {
+        title: requireLocaleResourceString(resolvedLocale, 'home', 'hero.valueCards.interesting.title'),
+        description: requireLocaleResourceString(resolvedLocale, 'home', 'hero.valueCards.interesting.description'),
+      },
+    },
     buttons: {
       desktopApp: requireLocaleResourceString(resolvedLocale, 'home', 'hero.buttons.desktopApp'),
       containerApp: requireLocaleResourceString(resolvedLocale, 'home', 'hero.buttons.containerApp'),

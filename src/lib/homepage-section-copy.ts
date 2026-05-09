@@ -59,6 +59,8 @@ export interface HomepageShowcaseCopy {
     imageUnavailable: string;
     openFullscreenHint: string;
     current: string;
+    activeState: string;
+    previewState: string;
     previous: string;
     next: string;
     railLabel: string;
@@ -160,6 +162,8 @@ export function getHomepageShowcaseCopy(locale: LocaleInput): HomepageShowcaseCo
       imageUnavailable: getCommonString(resolvedLocale, 'showcase.controls.imageUnavailable'),
       openFullscreenHint: getCommonString(resolvedLocale, 'showcase.controls.openFullscreenHint'),
       current: getCommonString(resolvedLocale, 'showcase.controls.current'),
+      activeState: getCommonString(resolvedLocale, 'showcase.controls.activeState'),
+      previewState: getCommonString(resolvedLocale, 'showcase.controls.previewState'),
       previous: getCommonString(resolvedLocale, 'showcase.controls.previous'),
       next: getCommonString(resolvedLocale, 'showcase.controls.next'),
       railLabel: getCommonString(resolvedLocale, 'showcase.controls.railLabel'),
