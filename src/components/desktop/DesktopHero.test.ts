@@ -1,7 +1,9 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
+import { clearRegisteredTranslationResources, registerTranslationResources } from '@/i18n/ui';
+import { getPageTranslationResources } from '@/i18n/translation-resources';
 import type { DesktopVersionData } from '@/lib/shared/version-manager';
 import {
   DesktopHeroActionBar,
@@ -49,6 +51,14 @@ const acceleratedOnlyVersion = {
     },
   ],
 };
+
+beforeEach(() => {
+  registerTranslationResources(getPageTranslationResources('en-US', ['common', 'desktop']));
+});
+
+afterEach(() => {
+  clearRegisteredTranslationResources();
+});
 
 describe('DesktopHero fallback contract', () => {
   it('returns the Index history redirect target for terminal failures', () => {

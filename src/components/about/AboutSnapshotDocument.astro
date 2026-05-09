@@ -5,6 +5,7 @@ import Footer from '@/components/home/Footer';
 import Navbar from '@/components/home/Navbar';
 import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
 import type { AboutPageModel } from '@/lib/about-page-model';
+import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
 import AboutSnapshotPage from './AboutSnapshotPage.astro';
 import '@/styles/homepage.css';
 
@@ -15,6 +16,7 @@ interface Props {
 const { model } = Astro.props;
 const siteBase = import.meta.env.VITE_SITE_BASE || '';
 const currentLocale = model.locale;
+const interactiveCopy = getHomepageInteractiveCopy(currentLocale);
 ---
 
 <!doctype html>
@@ -68,9 +70,15 @@ const currentLocale = model.locale;
     data-about-locale={model.locale}
     data-about-snapshot-version={model.snapshot.version}
   >
-    <Navbar client:load locale={model.locale} />
+    <Navbar
+      client:idle
+      locale={model.locale}
+      copy={interactiveCopy.navbar}
+      themeToggleCopy={interactiveCopy.themeToggle}
+      languageSwitcherCopy={interactiveCopy.languageSwitcher}
+    />
     <AboutSnapshotPage model={model} />
-    <Footer client:load locale={model.locale} />
+    <Footer locale={model.locale} />
     <AnalyticsScripts />
   </body>
 </html>

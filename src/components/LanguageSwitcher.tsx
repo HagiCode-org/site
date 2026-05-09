@@ -1,7 +1,6 @@
 import { useEffect, useId, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { createPortal } from 'react-dom';
 
-import { useTranslation } from '@/i18n/ui';
 import {
   getSiteLocaleDefinition,
   resolveSiteLocale,
@@ -9,17 +8,18 @@ import {
   type SiteLocale,
 } from '@/i18n/locale-metadata';
 import { useLocale } from '@/lib/useLocale';
+import type { HomepageLanguageSwitcherCopy } from '@/lib/homepage-runtime-copy';
 import styles from './LanguageSwitcher.module.css';
 
 interface LanguageSwitcherProps {
-  locale?: string;
+  locale: string;
+  copy: HomepageLanguageSwitcherCopy;
 }
 
-export function LanguageSwitcher({ locale: propLocale }: LanguageSwitcherProps = {}) {
+export function LanguageSwitcher({ locale: propLocale, copy }: LanguageSwitcherProps) {
   const { locale: detectedLocale, setLocale } = useLocale();
   const currentLocale = resolveSiteLocale(propLocale ?? detectedLocale);
   const currentLocaleDefinition = getSiteLocaleDefinition(currentLocale);
-  const { t } = useTranslation(currentLocale);
   const [isOpen, setIsOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const dialogRef = useRef<HTMLDivElement | null>(null);
@@ -134,7 +134,7 @@ export function LanguageSwitcher({ locale: propLocale }: LanguageSwitcherProps =
       <button
         type="button"
         className={styles.languageBackdrop}
-        aria-label={t('languageSwitcher.close')}
+        aria-label={copy.close}
         onClick={() => closeChooser(true)}
       />
 
@@ -149,10 +149,10 @@ export function LanguageSwitcher({ locale: propLocale }: LanguageSwitcherProps =
         <div className={styles.languageDialogHeader}>
           <div>
             <p id={titleId} className={styles.languageDialogTitle}>
-              {t('languageSwitcher.dialogTitle')}
+              {copy.dialogTitle}
             </p>
             <p className={styles.languageDialogCurrent}>
-              {t('languageSwitcher.currentLocaleLabel')}
+              {copy.currentLocaleLabel}
               {': '}
               <strong>{currentLocaleDefinition.nativeName}</strong>
             </p>
@@ -161,7 +161,7 @@ export function LanguageSwitcher({ locale: propLocale }: LanguageSwitcherProps =
           <button
             type="button"
             className={styles.languageDialogClose}
-            aria-label={t('languageSwitcher.close')}
+            aria-label={copy.close}
             onClick={() => closeChooser(true)}
           >
             ×
@@ -172,7 +172,7 @@ export function LanguageSwitcher({ locale: propLocale }: LanguageSwitcherProps =
           <div
             className={styles.languageGrid}
             role="listbox"
-            aria-label={t('languageSwitcher.label')}
+            aria-label={copy.label}
           >
             {SITE_LOCALES.map((locale) => {
               const isSelected = locale.code === currentLocale;
@@ -194,7 +194,7 @@ export function LanguageSwitcher({ locale: propLocale }: LanguageSwitcherProps =
                   <span className={styles.languageOptionLabel}>{locale.nativeName}</span>
                   {isSelected ? (
                     <span className={styles.languageOptionSelectedBadge}>
-                      {t('languageSwitcher.selectedState')}
+                      {copy.selectedState}
                     </span>
                   ) : null}
                 </button>
@@ -215,7 +215,7 @@ export function LanguageSwitcher({ locale: propLocale }: LanguageSwitcherProps =
         aria-haspopup="dialog"
         aria-expanded={isOpen}
         aria-controls={dialogId}
-        aria-label={`${t('languageSwitcher.label')}: ${currentLocaleDefinition.nativeName}`}
+        aria-label={`${copy.label}: ${currentLocaleDefinition.nativeName}`}
         title={currentLocaleDefinition.nativeName}
         onClick={() => setIsOpen((previousState) => !previousState)}
       >

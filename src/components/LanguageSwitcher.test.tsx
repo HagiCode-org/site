@@ -4,6 +4,7 @@ import { act } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
 import { SITE_LOCALES } from '@/i18n/locale-metadata';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
@@ -44,8 +45,9 @@ describe('LanguageSwitcher', () => {
   });
 
   function renderSwitcher(locale?: string) {
+    const copy = getHomepageInteractiveCopy(locale ?? mockedLocale).languageSwitcher;
     act(() => {
-      root.render(<LanguageSwitcher locale={locale} />);
+      root.render(<LanguageSwitcher locale={locale ?? mockedLocale} copy={copy} />);
     });
   }
 
