@@ -412,21 +412,19 @@
 
 .mobileMenu {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
+  inset: 0;
   z-index: 1001;
+  display: none;
+  justify-content: flex-end;
   visibility: hidden;
   pointer-events: none;
-  transform: translateX(100%);
-  transition: transform var(--duration-normal, 0.3s) var(--ease-out);
+  overflow: hidden;
 }
 
 .mobileMenu.open {
+  display: flex;
   visibility: visible;
   pointer-events: auto;
-  transform: translateX(0);
 }
 
 .mobileMenuBg {
@@ -447,8 +445,8 @@
   flex-direction: column;
   gap: 0.5rem;
   padding: 5.5rem 1.1rem 1.5rem;
-  max-width: min(22rem, 100%);
-  margin-left: auto;
+  width: min(22rem, 100%);
+  max-width: 100%;
   height: 100%;
   overflow-y: auto;
   background: var(--color-surface-glass);
@@ -456,6 +454,12 @@
   -webkit-backdrop-filter: blur(20px);
   border-left: 1px solid var(--color-border);
   box-shadow: -18px 0 48px rgba(15, 23, 42, 0.16);
+  transform: translateX(100%);
+  transition: transform var(--duration-normal, 0.3s) var(--ease-out);
+}
+
+.mobileMenu.open .mobileNav {
+  transform: translateX(0);
 }
 
 /* 移动端 CTA 按钮样式 */

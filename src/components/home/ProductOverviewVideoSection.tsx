@@ -47,16 +47,18 @@ export default function ProductOverviewVideoSection({
           <h2 id="product-overview-video-title" className={styles.srOnly}>
             {copy.title}
           </h2>
-          <a
-            className={styles.watchAction}
-            href={selectedVideo.watchUrl}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={`${selectedVideo.ctaLabel}: ${selectedVideo.title}`}
-          >
-            <span>{selectedVideo.ctaLabel}</span>
-            <ExternalLink size={18} aria-hidden="true" />
-          </a>
+          {placement !== 'hero' ? (
+            <a
+              className={styles.watchAction}
+              href={selectedVideo.watchUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`${selectedVideo.ctaLabel}: ${selectedVideo.title}`}
+            >
+              <span>{selectedVideo.ctaLabel}</span>
+              <ExternalLink size={18} aria-hidden="true" />
+            </a>
+          ) : null}
         </div>
       </div>
     </section>

@@ -88,4 +88,21 @@ describe('ProductOverviewVideoSection locale provider selection', () => {
     expect(markup).not.toContain('当前平台：');
     expect(markup).not.toContain('中文主介绍视频仍然保留清晰的 Bilibili CTA。');
   });
+
+  it('hides the outbound CTA button in hero placement', () => {
+    const markup = renderToStaticMarkup(
+      <ProductOverviewVideoSection
+        locale="en"
+        placement="hero"
+        copy={{
+          title: 'Understand Hagicode before the feature tour',
+        }}
+        featuredVideos={englishFeaturedVideos}
+      />,
+    );
+
+    expect(markup).toContain('data-video-placement="hero"');
+    expect(markup).not.toContain('Open on YouTube');
+    expect(markup).not.toContain('aria-label="Open on YouTube: Hagicode Product Overview on YouTube"');
+  });
 });
