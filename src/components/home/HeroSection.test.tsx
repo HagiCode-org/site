@@ -2,6 +2,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
+import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
 import HeroSection from './HeroSection';
 import type { FeaturedVideosByProvider } from './video-showcase-model';
 
@@ -26,7 +27,10 @@ const featuredVideos: FeaturedVideosByProvider = {
 
 describe('HeroSection', () => {
   it('renders the homepage Steam button with the canonical store target', () => {
-    const markup = renderToStaticMarkup(<HeroSection locale="en" />);
+    const copy = getHomepageInteractiveCopy('en-US');
+    const markup = renderToStaticMarkup(
+      <HeroSection locale="en-US" copy={copy.hero} workflowBoardCopy={copy.workflowBoard} />,
+    );
 
     expect(markup).toContain('data-steam-entry="site-home-hero"');
     expect(markup).toContain('href="https://store.steampowered.com/app/4625540/Hagicode/"');
@@ -37,16 +41,22 @@ describe('HeroSection', () => {
   });
 
   it('keeps the Chinese Steam aria label localized on the homepage CTA', () => {
-    const markup = renderToStaticMarkup(<HeroSection locale="zh-CN" />);
+    const copy = getHomepageInteractiveCopy('zh-CN');
+    const markup = renderToStaticMarkup(
+      <HeroSection locale="zh-CN" copy={copy.hero} workflowBoardCopy={copy.workflowBoard} />,
+    );
 
     expect(markup).toContain('aria-label="打开 Hagicode Steam 商店页"');
     expect(markup).toContain('data-steam-entry="site-home-hero"');
   });
 
   it('renders the product overview video directly after the Hagicode title when provided', () => {
+    const copy = getHomepageInteractiveCopy('en-US');
     const markup = renderToStaticMarkup(
       <HeroSection
-        locale="en"
+        locale="en-US"
+        copy={copy.hero}
+        workflowBoardCopy={copy.workflowBoard}
         productOverviewVideo={{
           copy: { title: 'Hagicode video' },
           featuredVideos,

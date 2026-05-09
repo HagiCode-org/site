@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import styles from './HeroWorkflowBoard.module.css';
 import { homeHeroImages } from '@/assets/siteAssetUrls';
-import { getTranslation } from '@/i18n/ui';
+import type { HomepageWorkflowBoardCopy } from '@/lib/homepage-runtime-copy';
 
 type Locale = string;
 
@@ -55,6 +55,7 @@ type BoardCopy = {
 
 interface HeroWorkflowBoardProps {
   locale?: Locale;
+  copy: HomepageWorkflowBoardCopy;
 }
 
 const AGENTS: AgentSpec[] = [
@@ -98,41 +99,6 @@ function combineSeed(...parts: number[]) {
 
 function seededUnit(seed: number) {
   return mixSeed(seed) / 0xffffffff;
-}
-
-export function getHeroWorkflowBoardCopy(locale: Locale): BoardCopy {
-  const { t } = getTranslation(locale);
-
-  return {
-    titleLines: [
-      t('workflowBoard.titleLines.0'),
-      t('workflowBoard.titleLines.1'),
-      t('workflowBoard.titleLines.2'),
-    ],
-    taskLabel: t('workflowBoard.taskLabel'),
-    headerSummary: t('workflowBoard.headerSummary'),
-    steps: [
-      t('workflowBoard.steps.0'),
-      t('workflowBoard.steps.1'),
-      t('workflowBoard.steps.2'),
-      t('workflowBoard.steps.3'),
-    ],
-    activeStates: [
-      t('workflowBoard.activeStates.0'),
-      t('workflowBoard.activeStates.1'),
-      t('workflowBoard.activeStates.2'),
-      t('workflowBoard.activeStates.3'),
-    ],
-    completedState: t('workflowBoard.completedState'),
-    metrics: {
-      completed: t('workflowBoard.metrics.completed'),
-      efficiency: t('workflowBoard.metrics.efficiency'),
-      serialTime: t('workflowBoard.metrics.serialTime'),
-      elapsedTime: t('workflowBoard.metrics.elapsedTime'),
-      formula: t('workflowBoard.metrics.formula'),
-      serialHint: t('workflowBoard.metrics.serialHint'),
-    },
-  };
 }
 
 function randomBetween(min: number, max: number, seed: number) {
@@ -334,8 +300,7 @@ function formatDuration(durationMs: number, locale: Locale) {
   return `${seconds}s`;
 }
 
-export default function HeroWorkflowBoard({ locale = 'zh-CN' }: HeroWorkflowBoardProps) {
-  const copy = useMemo(() => getHeroWorkflowBoardCopy(locale), [locale]);
+export default function HeroWorkflowBoard({ locale = 'zh-CN', copy }: HeroWorkflowBoardProps) {
   const shouldReduceMotion = Boolean(useReducedMotion());
   const [snapshot, setSnapshot] = useState<SimulationSnapshot>(() => createInitialSnapshot(0));
   const snapshotRef = useRef<SimulationSnapshot>(snapshot);

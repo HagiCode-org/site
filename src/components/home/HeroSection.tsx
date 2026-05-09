@@ -5,8 +5,6 @@
  * 支持农历新年主题
  */
 import { useMemo, useState, useEffect } from 'react';
-import { useTranslation } from '@/i18n/ui';
-import { useLocale } from '@/lib/useLocale';
 import styles from './HeroSection.module.css';
 import { WEBSITE_TRACKING_EVENTS } from '@/lib/analytics/events';
 import { trackEvent } from '@/lib/analytics/tracker';
@@ -15,6 +13,7 @@ import { getBundledSteamStoreLink, loadSteamStoreLink } from '@/lib/shared/steam
 import HeroWorkflowBoard from './HeroWorkflowBoard';
 import ProductOverviewVideoSection from './ProductOverviewVideoSection';
 import type { FeaturedVideosByProvider } from './video-showcase-model';
+import type { HomepageHeroCopy, HomepageWorkflowBoardCopy } from '@/lib/homepage-runtime-copy';
 
 // 定义主题类型
 type Theme = 'light' | 'dark' | 'lunar-new-year' | undefined;
@@ -32,7 +31,9 @@ interface HeroSectionProps {
   /** @deprecated 不再使用 InstallButton，保留这些 props 仅用于向后兼容 */
   [key: string]: any;
   /** Current locale from Astro context */
-  locale?: string;
+  locale: string;
+  copy: HomepageHeroCopy;
+  workflowBoardCopy: HomepageWorkflowBoardCopy;
   /** Optional main product video rendered directly below the Hagicode title */
   productOverviewVideo?: {
     copy: {
@@ -125,14 +126,11 @@ export default function HeroSection({
   desktopPlatforms = [],
   desktopVersionError = null,
   desktopChannels,
-  locale: propLocale,
+  locale,
+  copy,
+  workflowBoardCopy,
   productOverviewVideo,
 }: HeroSectionProps) {
-  const { locale: detectedLocale } = useLocale();
-  // Use prop locale if provided, otherwise use detected locale
-  const locale = propLocale || detectedLocale;
-  const { t } = useTranslation(locale);
-
   const [theme, setTheme] = useState<Theme>(undefined);
   const [steamStoreLink, setSteamStoreLink] = useState(() => getBundledSteamStoreLink());
 
@@ -142,8 +140,8 @@ export default function HeroSection({
   const docsUrl = useMemo(() => getLinkWithLocale('productOverview', locale), [locale]);
   const isChineseLocale = locale.toLowerCase().startsWith('zh');
   const steamLabel = 'Steam';
-  const steamAriaLabel = isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam';
-  const ctaGroupLabel = isChineseLocale ? '首页主要操作' : 'Primary homepage actions';
+  const steamAriaLabel = copy.steamAriaLabel || (isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam');
+  const ctaGroupLabel = copy.ctaGroupLabel || (isChineseLocale ? '首页主要操作' : 'Primary homepage actions');
 
   // 检测主题变化
   useEffect(() => {
@@ -271,7 +269,7 @@ export default function HeroSection({
                 strokeLinejoin="round"
               />
             </svg>
-            <span>{t('hero.buttons.desktopApp')}</span>
+            <span>{copy.buttons.desktopApp}</span>
           </a>
 
           {/* 容器应用安装按钮 - 次要按钮 */}
@@ -282,7 +280,7 @@ export default function HeroSection({
             <svg className={styles.dockerIcon} viewBox="0 0 24 24" fill="currentColor">
               <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186h-2.12a.186.186 0 00-.185.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z"/>
             </svg>
-            <span>{t('hero.buttons.containerApp')}</span>
+            <span>{copy.buttons.containerApp}</span>
           </a>
 
           {steamStoreLink.href && (
@@ -309,11 +307,11 @@ export default function HeroSection({
             className={styles.buttonSecondary}
             href={docsUrl}
           >
-            <span className={styles.buttonText}>{t('hero.buttons.learnMore')}</span>
+            <span className={styles.buttonText}>{copy.buttons.learnMore}</span>
           </a>
         </div>
 
-        <HeroWorkflowBoard locale={locale} />
+        <HeroWorkflowBoard locale={locale} copy={workflowBoardCopy} />
       </div>
     </section>
   );
