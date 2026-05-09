@@ -1,4 +1,4 @@
-import { getTranslation } from '@/i18n/ui';
+import { getServerTranslation } from '@/i18n/translation-resources';
 import styles from './ProductHuntBadgeSection.module.css';
 
 export const PRODUCT_HUNT_BADGE_WIDTH = 250;
@@ -15,7 +15,7 @@ interface ProductHuntBadgeSectionProps {
 }
 
 export default function ProductHuntBadgeSection({ locale }: ProductHuntBadgeSectionProps) {
-  const { t } = getTranslation(locale);
+  const { t } = getServerTranslation(locale);
 
   return (
     <section className={styles.section} aria-labelledby={`product-hunt-title-${locale}`}>

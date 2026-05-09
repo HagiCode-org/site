@@ -7,7 +7,7 @@ import {
   getPricingContent,
   HAGICODE_PLUS_BUNDLE_STEAM_URL,
   TURBO_ENGINE_STEAM_STORE_URL,
-} from './PricingComparisonSection';
+} from '@/lib/homepage-section-copy';
 
 describe('PricingComparisonSection', () => {
   for (const locale of ['en', 'zh-CN'] as const) {

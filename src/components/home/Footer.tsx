@@ -6,7 +6,7 @@
  */
 import { useMemo } from 'react';
 import { hagicodeCompliance } from '@/config/compliance';
-import { useTranslation } from '@/i18n/ui';
+import { getServerTranslation } from '@/i18n/translation-resources';
 import { useLocale } from '@/lib/useLocale';
 import styles from './Footer.module.css';
 import { getLinkWithLocale } from '@/lib/shared/links';
@@ -77,7 +77,7 @@ function HagicodeLogo({ className = '' }: { className?: string }) {
 export default function Footer({ className = '', locale: propLocale }: FooterProps) {
   const { locale: detectedLocale } = useLocale();
   const locale = propLocale || detectedLocale;
-  const { t } = useTranslation(locale);
+  const { t } = getServerTranslation(locale);
 
   const desktopLink = getLinkWithLocale('desktop', locale);
   const githubLink = getLinkWithLocale('github', locale);

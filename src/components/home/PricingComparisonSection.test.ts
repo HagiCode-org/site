@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { getPricingContent } from './PricingComparisonSection';
+import { getPricingContent } from '@/lib/homepage-section-copy';
 
 describe('PricingComparisonSection content', () => {
   it('uses localized pricing section and table copy for non-English locales', () => {
