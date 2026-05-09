@@ -4,15 +4,10 @@ import {
   type SiteLocale,
 } from './locale-metadata';
 import type { SiteI18nNamespace } from './namespaces';
-import { getTranslationResources } from './ui';
+import { getServerTranslationResources } from './translation-resources';
+import type { TranslationValue } from './ui';
 
-type LocaleResourceValue =
-  | string
-  | number
-  | boolean
-  | null
-  | LocaleResourceValue[]
-  | { [key: string]: LocaleResourceValue };
+type LocaleResourceValue = TranslationValue;
 
 function getNestedValue(
   input: LocaleResourceValue | undefined,
@@ -53,7 +48,7 @@ export function getLocaleResourceValue(
   key: string,
 ): LocaleResourceValue | undefined {
   const locale = resolveSiteLocale(localeInput);
-  const resources = getTranslationResources();
+  const resources = getServerTranslationResources();
   const segments = key.split('.');
 
   for (const candidate of getLookupLocales(locale)) {

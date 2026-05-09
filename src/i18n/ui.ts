@@ -9,44 +9,44 @@ import {
   type SiteI18nNamespace,
 } from './namespaces';
 
-type TranslationPrimitive = string | number | boolean | null;
-type TranslationValue =
+export type TranslationPrimitive = string | number | boolean | null;
+export type TranslationValue =
   | TranslationPrimitive
   | TranslationValue[]
   | { [key: string]: TranslationValue };
 
-type TranslationNamespace = Record<string, TranslationValue>;
-type TranslationResourceTree = Record<
-  SiteLocale,
-  Partial<Record<SiteI18nNamespace, TranslationNamespace>>
+export type TranslationNamespace = Record<string, TranslationValue>;
+export type TranslationResourceTree = Partial<
+  Record<SiteLocale, Partial<Record<SiteI18nNamespace, TranslationNamespace>>>
 >;
 
-const resourceModules = import.meta.glob('./generated-locales/*/*.json', {
-  eager: true,
-  import: 'default',
-}) as Record<string, TranslationNamespace>;
+export const SITE_I18N_PAYLOAD_GLOBAL = '__HAGICODE_SITE_I18N__' as const;
 
-function buildTranslationResources(): TranslationResourceTree {
-  const resources = {} as TranslationResourceTree;
+const EMPTY_TRANSLATION_RESOURCES: TranslationResourceTree = {};
 
-  for (const [modulePath, value] of Object.entries(resourceModules)) {
-    const match = modulePath.match(/generated-locales\/([^/]+)\/([^/]+)\.json$/u);
-    if (!match) {
-      continue;
-    }
+declare global {
+  var __HAGICODE_SITE_I18N__: TranslationResourceTree | undefined;
+}
 
-    const [, locale, namespace] = match;
-    const resolvedLocale = resolveSiteLocale(locale, DEFAULT_LOCALE);
-    const resolvedNamespace = namespace as SiteI18nNamespace;
+function getTranslationStore() {
+  return globalThis as typeof globalThis & {
+    __HAGICODE_SITE_I18N__?: TranslationResourceTree;
+  };
+}
 
-    resources[resolvedLocale] ??= {};
-    resources[resolvedLocale][resolvedNamespace] = value;
+function getRegisteredTranslationResources(): TranslationResourceTree | undefined {
+  const resources = getTranslationStore().__HAGICODE_SITE_I18N__;
+
+  if (!resources || typeof resources !== 'object') {
+    return undefined;
   }
 
   return resources;
 }
 
-const translationResources = buildTranslationResources();
+function getDefaultTranslationResources() {
+  return getRegisteredTranslationResources() ?? EMPTY_TRANSLATION_RESOURCES;
+}
 
 function getNestedValue(
   input: TranslationValue | undefined,
@@ -89,10 +89,19 @@ function getLookupLocales(locale: SiteLocale): readonly SiteLocale[] {
   return [locale, ...getSiteLocaleFallbackChain(locale).filter((candidate) => candidate !== locale)];
 }
 
+export function registerTranslationResources(resources: TranslationResourceTree) {
+  getTranslationStore().__HAGICODE_SITE_I18N__ = resources;
+  return resources;
+}
+
+export function clearRegisteredTranslationResources() {
+  delete getTranslationStore().__HAGICODE_SITE_I18N__;
+}
+
 export function resolveTranslationValue(
   localeInput: string | null | undefined,
   key: string,
-  resources: TranslationResourceTree = translationResources,
+  resources: TranslationResourceTree = getDefaultTranslationResources(),
 ): TranslationValue | undefined {
   const locale = resolveSiteLocale(localeInput);
   const segments = key.split('.');
@@ -116,8 +125,8 @@ export function createTranslator(
     resources?: TranslationResourceTree;
   } = {},
 ) {
-  const locale = resolveSiteLocale(localeInput);
-  const resources = options.resources ?? translationResources;
+  const locale = resolveSiteLocale(localeInput, DEFAULT_LOCALE);
+  const resources = options.resources ?? getDefaultTranslationResources();
 
   return {
     locale,
@@ -147,14 +156,24 @@ export function createTranslator(
   };
 }
 
-export function useTranslation(locale: string | null | undefined) {
-  return createTranslator(locale);
+export function useTranslation(
+  locale: string | null | undefined,
+  options: {
+    resources?: TranslationResourceTree;
+  } = {},
+) {
+  return createTranslator(locale, options);
 }
 
-export function getTranslation(locale: string | null | undefined) {
-  return createTranslator(locale);
+export function getTranslation(
+  locale: string | null | undefined,
+  options: {
+    resources?: TranslationResourceTree;
+  } = {},
+) {
+  return createTranslator(locale, options);
 }
 
 export function getTranslationResources() {
-  return translationResources;
+  return getDefaultTranslationResources();
 }
