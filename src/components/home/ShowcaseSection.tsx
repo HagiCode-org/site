@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { homeShowcaseImages } from '@/assets/siteAssetUrls';
 import type { HomepageShowcaseCopy } from '@/lib/homepage-section-copy';
 import styles from './ShowcaseSection.module.css';
@@ -43,12 +43,33 @@ interface Props {
 export default function ShowcaseSection({ copy }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
+  const railRef = useRef<HTMLOListElement | null>(null);
+  const stepRefs = useRef<Array<HTMLElement | null>>([]);
   const featuredPanelId = 'homepage-showcase-featured';
-  const screenshots: ScreenshotItem[] = copy.screenshots.map((screenshot) => ({
-    ...screenshot,
-    src: screenshotSources[screenshot.id],
-  }));
+
+  const screenshots: ScreenshotItem[] = useMemo(
+    () => copy.screenshots.map((screenshot) => ({
+      ...screenshot,
+      src: screenshotSources[screenshot.id],
+    })),
+    [copy.screenshots],
+  );
+
   const activeScreenshot = screenshots[activeIndex] ?? screenshots[0];
+
+  useEffect(() => {
+    const currentImage = screenshots[activeIndex];
+    const nextImage = screenshots[Math.min(activeIndex + 1, screenshots.length - 1)];
+
+    [currentImage, nextImage].forEach((item) => {
+      if (!item) {
+        return;
+      }
+
+      const image = new Image();
+      image.src = item.src;
+    });
+  }, [activeIndex, screenshots]);
 
   useEffect(() => {
     if (!isFullscreenOpen || typeof window === 'undefined') {
@@ -72,6 +93,66 @@ export default function ShowcaseSection({ copy }: Props) {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isFullscreenOpen]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    const steps = stepRefs.current.filter((step): step is HTMLElement => step instanceof HTMLElement);
+    if (steps.length === 0) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        const nextTarget = visibleEntries[0]?.target as HTMLElement | undefined;
+        if (!nextTarget) {
+          return;
+        }
+
+        const nextIndex = Number(nextTarget.dataset.index ?? '-1');
+        if (Number.isFinite(nextIndex) && nextIndex >= 0) {
+          setActiveIndex(nextIndex);
+        }
+      },
+      {
+        root: null,
+        rootMargin: '-20% 0px -35% 0px',
+        threshold: [0.35, 0.55, 0.75],
+      },
+    );
+
+    steps.forEach((step) => observer.observe(step));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [screenshots.length]);
+
+  useEffect(() => {
+    const railNode = railRef.current;
+    const activeNode = stepRefs.current[activeIndex];
+
+    if (!railNode || !activeNode) {
+      return;
+    }
+
+    const isCompact = window.matchMedia('(max-width: 1080px)').matches;
+    if (!isCompact) {
+      return;
+    }
+
+    activeNode.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'nearest',
+    });
+  }, [activeIndex]);
 
   if (!activeScreenshot) {
     return null;
@@ -97,45 +178,20 @@ export default function ShowcaseSection({ copy }: Props) {
     <section className={styles.showcaseSection}>
       <div className="container">
         <div className={styles.sectionHeader}>
+          <p className={styles.sectionKicker}>Guided Tour</p>
           <h2 className={styles.sectionTitle}>{copy.title}</h2>
           <p className={styles.sectionDescription}>{copy.description}</p>
         </div>
 
         <div className={styles.showcaseLayout}>
           <article className={styles.featuredPanel} id={featuredPanelId}>
-            <div className={styles.featuredMedia}>
-              <button
-                type="button"
-                className={styles.featuredPreviewButton}
-                onClick={() => setIsFullscreenOpen(true)}
-                aria-label={`${copy.controls.openFullscreen}${activeScreenshot.title}`}
-              >
-                <img
-                  key={activeScreenshot.id}
-                  src={activeScreenshot.src}
-                  alt={activeScreenshot.alt}
-                  className={styles.featuredImage}
-                  onError={handleImageError}
-                  data-fallback-label={copy.controls.imageUnavailable}
-                  loading="lazy"
-                />
-                <span className={styles.featuredPreviewHint}>
-                  {copy.controls.openFullscreenHint}
+            <div className={styles.featuredPanelTopline}>
+              <p className={styles.featuredEyebrow}>
+                <span>{copy.controls.current}</span>
+                <span className={styles.featuredCounter}>
+                  {formatOrder(activeIndex)} / {totalScreenshots}
                 </span>
-              </button>
-            </div>
-
-            <div className={styles.featuredContent} aria-live="polite" aria-atomic="true">
-              <div className={styles.featuredCopy}>
-                <p className={styles.featuredEyebrow}>
-                  {copy.controls.current}
-                  <span className={styles.featuredCounter}>
-                    {formatOrder(activeIndex)} / {totalScreenshots}
-                  </span>
-                </p>
-                <h3 className={styles.featuredTitle}>{activeScreenshot.title}</h3>
-                <p className={styles.featuredDescription}>{activeScreenshot.description}</p>
-              </div>
+              </p>
 
               <div className={styles.featuredControls}>
                 <button
@@ -160,44 +216,87 @@ export default function ShowcaseSection({ copy }: Props) {
                 </button>
               </div>
             </div>
+
+            <div className={styles.featuredMedia}>
+              <button
+                type="button"
+                className={styles.featuredPreviewButton}
+                onClick={() => setIsFullscreenOpen(true)}
+                aria-label={`${copy.controls.openFullscreen}${activeScreenshot.title}`}
+              >
+                <img
+                  key={activeScreenshot.id}
+                  src={activeScreenshot.src}
+                  alt={activeScreenshot.alt}
+                  className={styles.featuredImage}
+                  onError={handleImageError}
+                  data-fallback-label={copy.controls.imageUnavailable}
+                  fetchPriority="high"
+                />
+                <span className={styles.featuredPreviewHint}>
+                  {copy.controls.openFullscreenHint}
+                </span>
+              </button>
+            </div>
+
+            <div className={styles.featuredContent} aria-live="polite" aria-atomic="true">
+              <div className={styles.featuredCopy}>
+                <p className={styles.featuredState}>{copy.controls.activeState}</p>
+                <h3 className={styles.featuredTitle}>{activeScreenshot.title}</h3>
+                <p className={styles.featuredDescription}>{activeScreenshot.description}</p>
+              </div>
+            </div>
           </article>
 
-          <div className={styles.thumbnailRail} aria-label={copy.controls.railLabel}>
+          <ol className={styles.tourRail} aria-label={copy.controls.railLabel} ref={railRef}>
             {screenshots.map((screenshot, index) => {
               const isActive = index === activeIndex;
 
               return (
-                <button
+                <li
                   key={screenshot.id}
-                  type="button"
-                  className={`${styles.thumbnailButton} ${isActive ? styles.thumbnailButtonActive : ''}`}
-                  onClick={() => setActiveIndex(index)}
-                  aria-pressed={isActive}
-                  aria-current={isActive ? 'true' : undefined}
-                  aria-label={`${copy.controls.selectPrefix}${screenshot.title}`}
-                  aria-controls={featuredPanelId}
+                  className={`${styles.tourStep} ${isActive ? styles.tourStepActive : ''}`}
+                  ref={(node) => {
+                    stepRefs.current[index] = node;
+                  }}
+                  data-index={index}
                 >
-                  <span className={styles.thumbnailOrder}>{formatOrder(index)}</span>
+                  <button
+                    type="button"
+                    className={styles.thumbnailButton}
+                    onClick={() => setActiveIndex(index)}
+                    aria-pressed={isActive}
+                    aria-current={isActive ? 'true' : undefined}
+                    aria-label={`${copy.controls.selectPrefix}${screenshot.title}`}
+                    aria-controls={featuredPanelId}
+                  >
+                    <span className={styles.thumbnailMeta}>
+                      <span className={styles.thumbnailOrder}>{formatOrder(index)}</span>
+                      <span className={styles.thumbnailStatus}>
+                        {isActive ? copy.controls.activeState : copy.controls.previewState}
+                      </span>
+                    </span>
 
-                  <span className={styles.thumbnailPreview} aria-hidden="true">
-                    <img
-                      src={screenshot.src}
-                      alt=""
-                      className={styles.thumbnailImage}
-                      onError={handleImageError}
-                      data-fallback-label={copy.controls.imageUnavailable}
-                      loading="lazy"
-                    />
-                  </span>
+                    <span className={styles.thumbnailText}>
+                      <span className={styles.thumbnailTitle}>{screenshot.title}</span>
+                      <span className={styles.thumbnailDescription}>{screenshot.description}</span>
+                    </span>
 
-                  <span className={styles.thumbnailText}>
-                    <span className={styles.thumbnailTitle}>{screenshot.title}</span>
-                    <span className={styles.thumbnailDescription}>{screenshot.description}</span>
-                  </span>
-                </button>
+                    <span className={styles.thumbnailPreview} aria-hidden="true">
+                      <img
+                        src={screenshot.src}
+                        alt=""
+                        className={styles.thumbnailImage}
+                        onError={handleImageError}
+                        data-fallback-label={copy.controls.imageUnavailable}
+                        loading="lazy"
+                      />
+                    </span>
+                  </button>
+                </li>
               );
             })}
-          </div>
+          </ol>
         </div>
       </div>
 
