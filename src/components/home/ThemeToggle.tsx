@@ -3,24 +3,20 @@
  * 暗色/亮色主题切换按钮
  */
 import { useState, useEffect } from 'react';
-import { type SiteLocale } from '@/i18n/locale-metadata';
-import { useLocale } from '@/lib/useLocale';
-import { useTranslation } from '@/i18n/ui';
 import { Sun, Moon } from 'lucide-react';
 import styles from './ThemeToggle.module.css';
+import type { HomepageThemeToggleCopy } from '@/lib/homepage-runtime-copy';
 
 interface ThemeToggleProps {
   className?: string;
-  locale?: string;
+  locale: string;
+  copy: HomepageThemeToggleCopy;
 }
 
 type Theme = 'light' | 'dark' | 'lunar-new-year' | undefined;
 
-export default function ThemeToggle({ className = '', locale: propLocale }: ThemeToggleProps) {
+export default function ThemeToggle({ className = '', locale: _locale, copy }: ThemeToggleProps) {
   const [theme, setTheme] = useState<Theme>(undefined);
-  const { locale: detectedLocale } = useLocale();
-  const locale = propLocale || detectedLocale;
-  const { t } = useTranslation(locale);
 
   // 初始化主题 - 与 Starlight 同步
   useEffect(() => {
@@ -95,17 +91,17 @@ export default function ThemeToggle({ className = '', locale: propLocale }: Them
       onClick={toggleTheme}
       aria-label={
         theme === 'dark'
-            ? t('themeToggle.lightMode')
+            ? copy.lightMode
             : theme === 'lunar-new-year'
-              ? t('themeToggle.lunarNewYearMode')
-              : t('themeToggle.darkMode')
+              ? copy.lunarNewYearMode
+              : copy.darkMode
       }
       title={
         theme === 'dark'
-            ? t('themeToggle.lightMode')
+            ? copy.lightMode
             : theme === 'lunar-new-year'
-              ? t('themeToggle.lunarNewYearMode')
-              : t('themeToggle.darkMode')
+              ? copy.lunarNewYearMode
+              : copy.darkMode
       }
     >
       {theme === 'light' ? (

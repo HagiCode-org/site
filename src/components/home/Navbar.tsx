@@ -9,14 +9,20 @@ import InstallButton from "./InstallButton";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import logoImage from "@/assets/logo.png?url";
 import { resolveSiteLocale } from "@/i18n/locale-metadata";
-import { useLocale } from "@/lib/useLocale";
-import { useTranslation } from "@/i18n/ui";
 import styles from "./Navbar.module.css";
 import { getLinkWithLocale } from '@/lib/shared/links';
+import type {
+  HomepageLanguageSwitcherCopy,
+  HomepageNavbarCopy,
+  HomepageThemeToggleCopy,
+} from '@/lib/homepage-runtime-copy';
 
 interface NavbarProps {
   className?: string;
-  locale?: string;
+  locale: string;
+  copy: HomepageNavbarCopy;
+  themeToggleCopy: HomepageThemeToggleCopy;
+  languageSwitcherCopy: HomepageLanguageSwitcherCopy;
 }
 
 type NavLinkTone = 'default' | 'support' | 'github';
@@ -82,25 +88,26 @@ const NavIcon = ({ name }: { name: string }): ReactElement | null => {
 
 export default function Navbar({
   className = "",
-  locale: propLocale
+  locale: propLocale,
+  copy,
+  themeToggleCopy,
+  languageSwitcherCopy,
 }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { locale: detectedLocale } = useLocale();
-  const locale = useMemo(() => resolveSiteLocale(propLocale ?? detectedLocale), [detectedLocale, propLocale]);
-  const { t } = useTranslation(locale);
+  const locale = useMemo(() => resolveSiteLocale(propLocale), [propLocale]);
 
   // 构建导航链接 - 根据语言动态生成
   const navLinks = useMemo(() => [
     {
-      label: t('navbar.docs'),
+      label: copy.docs,
       href: getLinkWithLocale('docs', locale),
       external: false,
       icon: 'open-book',
       tone: 'default' as NavLinkTone,
     },
     {
-      label: t('navbar.support'),
+      label: copy.support,
       href: getLinkWithLocale('about', locale),
       external: false,
       icon: 'comment',
@@ -113,7 +120,7 @@ export default function Navbar({
       icon: 'github',
       tone: 'github' as NavLinkTone,
     },
-  ], [locale, t]);
+  ], [copy.docs, copy.support, locale]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -148,7 +155,7 @@ export default function Navbar({
 
       <div className={styles.container}>
         {/* Logo */}
-        <a href={homeUrl} className={styles.logo} aria-label={t('navbar.home')}>
+        <a href={homeUrl} className={styles.logo} aria-label={copy.home}>
           <div className={styles.logoIcon}>
             <img
               src={logoImage}
@@ -190,12 +197,12 @@ export default function Navbar({
 
         {/* Actions */}
         <div className={styles.actions}>
-          <ThemeToggle locale={locale} />
-          <LanguageSwitcher locale={locale} />
+          <ThemeToggle locale={locale} copy={themeToggleCopy} />
+          <LanguageSwitcher locale={locale} copy={languageSwitcherCopy} />
           <button
             className={styles.mobileMenuBtn}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? t('navbar.mobileCloseMenu') : t('navbar.mobileOpenMenu')}
+            aria-label={isMobileMenuOpen ? copy.mobileCloseMenu : copy.mobileOpenMenu}
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-site-nav"
           >
@@ -217,7 +224,7 @@ export default function Navbar({
         <nav
           className={styles.mobileNav}
           id="mobile-site-nav"
-          aria-label={t('navbar.mobileNav')}
+          aria-label={copy.mobileNav}
         >
           {/* CTA 按钮 - 移动端菜单顶部 */}
           <InstallButton

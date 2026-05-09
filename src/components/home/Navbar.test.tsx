@@ -1,11 +1,20 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
+import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
 import Navbar from './Navbar';
 
 describe('Navbar support link', () => {
   it('renders a single canonical support entry for the English header and mobile menu', () => {
-    const markup = renderToStaticMarkup(<Navbar locale="en" />);
+    const copy = getHomepageInteractiveCopy('en-US');
+    const markup = renderToStaticMarkup(
+      <Navbar
+        locale="en-US"
+        copy={copy.navbar}
+        themeToggleCopy={copy.themeToggle}
+        languageSwitcherCopy={copy.languageSwitcher}
+      />,
+    );
 
     expect(markup).toContain('/about/');
     expect((markup.match(/Get Support/g) ?? [])).toHaveLength(2);
@@ -18,7 +27,15 @@ describe('Navbar support link', () => {
   });
 
   it('renders a single canonical support entry for the Chinese header and mobile menu', () => {
-    const markup = renderToStaticMarkup(<Navbar locale="zh-CN" />);
+    const copy = getHomepageInteractiveCopy('zh-CN');
+    const markup = renderToStaticMarkup(
+      <Navbar
+        locale="zh-CN"
+        copy={copy.navbar}
+        themeToggleCopy={copy.themeToggle}
+        languageSwitcherCopy={copy.languageSwitcher}
+      />,
+    );
 
     expect(markup).toContain('/zh-CN/about/');
     expect((markup.match(/获取技术支持/g) ?? [])).toHaveLength(2);
