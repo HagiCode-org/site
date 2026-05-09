@@ -5,7 +5,7 @@ import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
-import { SITE_LOCALES } from '@/i18n/locale-metadata';
+import { SITE_LOCALES, resolveSiteLocale, type SiteLocale } from '@/i18n/locale-metadata';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
 declare global {
@@ -16,7 +16,7 @@ declare global {
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 
 const setLocaleMock = vi.fn();
-let mockedLocale = 'en-US';
+let mockedLocale: SiteLocale = 'en-US';
 
 vi.mock('@/lib/useLocale', () => ({
   useLocale: () => ({
@@ -45,7 +45,8 @@ describe('LanguageSwitcher', () => {
   });
 
   function renderSwitcher(locale?: string) {
-    const copy = getHomepageInteractiveCopy(locale ?? mockedLocale).languageSwitcher;
+    const canonicalLocale = resolveSiteLocale(locale ?? mockedLocale);
+    const copy = getHomepageInteractiveCopy(canonicalLocale).languageSwitcher;
     act(() => {
       root.render(<LanguageSwitcher locale={locale ?? mockedLocale} copy={copy} />);
     });
