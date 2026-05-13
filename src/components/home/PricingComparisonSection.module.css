@@ -248,6 +248,10 @@
   outline-offset: 2px;
 }
 
+.headerLabel {
+  cursor: default;
+}
+
 [data-theme='lunar-new-year'] .headerButton {
   background: rgba(255, 193, 7, 0.08);
   border-color: rgba(255, 193, 7, 0.34);

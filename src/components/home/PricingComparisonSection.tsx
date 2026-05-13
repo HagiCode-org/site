@@ -106,6 +106,14 @@ function renderCell(cell: FeatureCell, labels: { included: string; notIncluded: 
 }
 
 function renderEditionHeader(column: EditionColumn, className?: string) {
+  if (!column.action) {
+    return (
+      <div className={`${styles.columnHeading} ${className ?? ''}`.trim()}>
+        <span className={`${styles.headerButton} ${styles.headerLabel}`}>{column.title}</span>
+      </div>
+    );
+  }
+
   return (
     <div className={`${styles.columnHeading} ${className ?? ''}`.trim()}>
       <a
@@ -188,46 +196,48 @@ export default function PricingComparisonSection({ content, steamPreviewRecords 
           </p>
         </section>
 
-        <section className={styles.group} aria-labelledby="pricing-dlc-title">
-          <div className={styles.groupHeader}>
-            <span className={styles.groupLabel}>{content.dlcLabel}</span>
-            <h3 id="pricing-dlc-title" className={styles.groupTitle}>
-              {content.dlcTitle}
-            </h3>
-            {content.dlcDescription ? (
-              <p className={styles.groupDescription}>{content.dlcDescription}</p>
-            ) : null}
-          </div>
+        {content.dlcItems.length > 0 ? (
+          <section className={styles.group} aria-labelledby="pricing-dlc-title">
+            <div className={styles.groupHeader}>
+              <span className={styles.groupLabel}>{content.dlcLabel}</span>
+              <h3 id="pricing-dlc-title" className={styles.groupTitle}>
+                {content.dlcTitle}
+              </h3>
+              {content.dlcDescription ? (
+                <p className={styles.groupDescription}>{content.dlcDescription}</p>
+              ) : null}
+            </div>
 
-          <div className={styles.dlcList}>
-            {content.dlcItems.map((item) => (
-              <a
-                key={item.title}
-                href={item.action.href}
-                className={`${styles.dlcRow} ${item.featured === 'sponsor' ? styles.sponsorRow : ''}`}
-                target={item.action.external ? '_blank' : undefined}
-                rel={item.action.external ? 'noopener noreferrer' : undefined}
-              >
-                <div className={styles.dlcTop}>
-                  {renderSteamImagePreview(item, item.action.href, steamPreviewRecords, content.steamPreviewLabels)}
-                  <div className={styles.dlcMain}>
-                    <span className={styles.dlcCategory}>{item.category}</span>
-                    <h4 className={styles.dlcTitle}>{item.title}</h4>
-                    <p className={styles.dlcDescription}>{item.description}</p>
+            <div className={styles.dlcList}>
+              {content.dlcItems.map((item) => (
+                <a
+                  key={item.title}
+                  href={item.action.href}
+                  className={`${styles.dlcRow} ${item.featured === 'sponsor' ? styles.sponsorRow : ''}`}
+                  target={item.action.external ? '_blank' : undefined}
+                  rel={item.action.external ? 'noopener noreferrer' : undefined}
+                >
+                  <div className={styles.dlcTop}>
+                    {renderSteamImagePreview(item, item.action.href, steamPreviewRecords, content.steamPreviewLabels)}
+                    <div className={styles.dlcMain}>
+                      <span className={styles.dlcCategory}>{item.category}</span>
+                      <h4 className={styles.dlcTitle}>{item.title}</h4>
+                      <p className={styles.dlcDescription}>{item.description}</p>
+                    </div>
+                    <div className={styles.dlcAside}>
+                      <strong className={styles.dlcPrice}>{item.price}</strong>
+                    </div>
                   </div>
-                  <div className={styles.dlcAside}>
-                    <strong className={styles.dlcPrice}>{item.price}</strong>
-                  </div>
-                </div>
-                <ul className={styles.dlcBullets}>
-                  {item.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
-              </a>
-            ))}
-          </div>
-        </section>
+                  <ul className={styles.dlcBullets}>
+                    {item.bullets.map((bullet) => (
+                      <li key={bullet}>{bullet}</li>
+                    ))}
+                  </ul>
+                </a>
+              ))}
+            </div>
+          </section>
+        ) : null}
       </div>
     </section>
   );
