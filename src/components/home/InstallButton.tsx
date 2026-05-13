@@ -9,7 +9,7 @@ import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from 
 import { createPortal } from 'react-dom';
 
 import styles from './InstallButton.module.css';
-import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
+import { FEATURE_MAC_DOWNLOAD_ENABLED, FEATURE_SITE_STEAM_ENABLED } from '@/config/features';
 import { MAC_DOWNLOAD_DISABLED_NOTICE, MAC_DOWNLOAD_DISABLED_NOTICE_EN } from '@/constants/downloadMessages';
 import type {
   AssetType,
@@ -403,9 +403,13 @@ export default function InstallButton({
   const steamShortcutLabel = 'Steam';
   const steamShortcutAriaLabel =
     isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam';
-  const showSteamShortcut = variant === 'compact' && steamStoreLink.href.length > 0;
+  const showSteamShortcut = FEATURE_SITE_STEAM_ENABLED && variant === 'compact' && steamStoreLink.href.length > 0;
 
   useEffect(() => {
+    if (!FEATURE_SITE_STEAM_ENABLED) {
+      return;
+    }
+
     let mounted = true;
 
     void loadSteamStoreLink().then((nextLink) => {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './HeroSection.module.css';
+import { FEATURE_SITE_STEAM_ENABLED } from '@/config/features';
 import { WEBSITE_TRACKING_EVENTS } from '@/lib/analytics/events';
 import { trackEvent } from '@/lib/analytics/tracker';
 import { getLinkWithLocale } from '@/lib/shared/links';
@@ -95,8 +96,13 @@ export default function HeroSection({
   const steamLabel = 'Steam';
   const steamAriaLabel = copy.steamAriaLabel || (isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam');
   const ctaGroupLabel = copy.ctaGroupLabel || (isChineseLocale ? '首页主要操作' : 'Primary homepage actions');
+  const showSteamButton = FEATURE_SITE_STEAM_ENABLED && Boolean(steamStoreLink.href);
 
   useEffect(() => {
+    if (!FEATURE_SITE_STEAM_ENABLED) {
+      return;
+    }
+
     let mounted = true;
 
     void loadSteamStoreLink().then((nextLink) => {
@@ -138,7 +144,7 @@ export default function HeroSection({
               <span>{copy.buttons.containerApp}</span>
             </a>
 
-            {steamStoreLink.href && (
+            {showSteamButton && (
               <a
                 href={steamStoreLink.href}
                 className={`${styles.buttonSecondary} ${styles.buttonSteam}`}

@@ -26,28 +26,14 @@ const featuredVideos: FeaturedVideosByProvider = {
 };
 
 describe('HeroSection', () => {
-  it('renders the homepage Steam button with the canonical store target', () => {
+  it('hides the homepage Steam button while Steam support is pending', () => {
     const copy = getHomepageInteractiveCopy('en-US');
     const markup = renderToStaticMarkup(
       <HeroSection locale="en-US" copy={copy.hero} workflowBoardCopy={copy.workflowBoard} />,
     );
 
-    expect(markup).toContain('data-steam-entry="site-home-hero"');
-    expect(markup).toContain('href="https://store.steampowered.com/app/4625540/Hagicode/"');
-    expect(markup).toContain('target="_blank"');
-    expect(markup).toContain('rel="noopener noreferrer"');
-    expect(markup).toContain('aria-label="Open Hagicode on Steam"');
-    expect(markup).toContain('>Steam<');
-  });
-
-  it('keeps the Chinese Steam aria label localized on the homepage CTA', () => {
-    const copy = getHomepageInteractiveCopy('zh-CN');
-    const markup = renderToStaticMarkup(
-      <HeroSection locale="zh-CN" copy={copy.hero} workflowBoardCopy={copy.workflowBoard} />,
-    );
-
-    expect(markup).toContain('aria-label="打开 Hagicode Steam 商店页"');
-    expect(markup).toContain('data-steam-entry="site-home-hero"');
+    expect(markup).not.toContain('data-steam-entry="site-home-hero"');
+    expect(markup).not.toContain('>Steam<');
   });
 
   it('renders the product overview video directly after the Hagicode title when provided', () => {
@@ -71,16 +57,17 @@ describe('HeroSection', () => {
     expect(markup).not.toContain('Open on Bilibili');
   });
 
-  it('renders the compact hero signal tags and stage summary', () => {
+  it('renders the workflow board summary copy in the hero stage', () => {
     const copy = getHomepageInteractiveCopy('en-US');
     const markup = renderToStaticMarkup(
       <HeroSection locale="en-US" copy={copy.hero} workflowBoardCopy={copy.workflowBoard} />,
     );
 
     expect(markup).not.toContain('Smart');
-    expect(markup).toContain('AI Orchestrated');
-    expect(markup).toContain('OpenSpec workflow');
-    expect(markup).toContain('Multi-Agent');
-    expect(markup).toContain('Live Surface');
+    expect(markup).toContain('Mainstream Agents Supported');
+    expect(markup).toContain('10x Parallel Management Efficiency');
+    expect(markup).toContain('OpenSpec Reduces Hallucinations');
+    expect(markup).toContain('Completed Tasks');
+    expect(markup).toContain('Live Efficiency');
   });
 });
