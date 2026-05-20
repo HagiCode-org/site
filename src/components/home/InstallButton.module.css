@@ -95,6 +95,7 @@
 
 .splitButtonContainerSegmented .btnDownloadMain,
 .splitButtonContainerSegmented .primarySourceActionsGrouped .sourceActionButton,
+.splitButtonContainerSegmented .storeShortcut,
 .splitButtonContainerSegmented .steamShortcut,
 .splitButtonContainerSegmented .btnDropdownToggle {
   box-shadow: none;
@@ -143,6 +144,60 @@
 .sourceActionButton--accelerated:hover {
   background-position: 100% 50%;
   box-shadow: 0 12px 24px rgba(0, 128, 255, 0.28);
+}
+
+.storeShortcut {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  box-sizing: border-box;
+  min-height: 56px;
+  min-width: calc(6.5rem * var(--install-button-width-scale));
+  max-width: 100%;
+  padding: 0 calc(0.95rem * var(--install-button-width-scale));
+  border: 1px solid rgba(96, 165, 250, 0.32);
+  color: #eff6ff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  background:
+    radial-gradient(circle at top left, rgba(96, 165, 250, 0.22), transparent 58%),
+    linear-gradient(135deg, #0f172a 0%, #1d4ed8 55%, #2563eb 100%);
+  box-shadow: 0 8px 20px rgba(29, 78, 216, 0.2);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background-position 0.2s ease;
+}
+
+.installButtonWrapper--compact .storeShortcut {
+  min-height: 40px;
+  min-width: calc(5.75rem * var(--install-button-width-scale));
+  padding: 0 calc(0.75rem * var(--install-button-width-scale));
+  font-size: 0.9375rem;
+}
+
+.storeShortcut:hover {
+  transform: translateY(-1px);
+  border-color: rgba(147, 197, 253, 0.5);
+  box-shadow: 0 12px 24px rgba(29, 78, 216, 0.28);
+}
+
+.splitButtonContainerSegmented .storeShortcut {
+  border-radius: 0;
+  border-right: 0;
+}
+
+.storeShortcutWithDropdown {
+  border-radius: 0;
+}
+
+.storeShortcutLast {
+  border-top-right-radius: var(--radius-md);
+  border-bottom-right-radius: var(--radius-md);
 }
 
 .steamShortcut {
@@ -850,6 +905,13 @@
     font-size: 0.875rem;
   }
 
+  .installButtonWrapper--full .storeShortcut {
+    min-height: 48px;
+    min-width: 0;
+    padding: 0 0.85rem;
+    font-size: 0.9375rem;
+  }
+
   .installButtonWrapper--full .steamShortcut {
     min-height: 48px;
     min-width: 0;
@@ -864,11 +926,16 @@
 
   .installButtonWrapper--compact .btnDownloadMain,
   .installButtonWrapper--compact .sourceActionButton,
+  .installButtonWrapper--compact .storeShortcut,
   .installButtonWrapper--compact .steamShortcut {
     min-width: 0;
   }
 
   .installButtonWrapper--compact .sourceActionButton {
+    padding: 0 0.75rem;
+  }
+
+  .installButtonWrapper--compact .storeShortcut {
     padding: 0 0.75rem;
   }
 
@@ -900,6 +967,7 @@
   .btnDownloadMain,
   .btnDropdownToggle,
   .sourceActionButton,
+  .storeShortcut,
   .steamShortcut,
   .dropdownItem,
   .dropdownMenu {

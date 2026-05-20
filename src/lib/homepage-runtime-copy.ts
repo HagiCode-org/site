@@ -59,6 +59,8 @@ export interface HomepageHeroCopy {
     containerApp: string;
     learnMore: string;
   };
+  windowsStoreLabel: string;
+  windowsStoreAriaLabel: string;
   steamAriaLabel: string;
   ctaGroupLabel: string;
 }
@@ -169,6 +171,12 @@ export function getHomepageHeroCopy(locale: SiteLocale): HomepageHeroCopy {
       containerApp: requireLocaleResourceString(resolvedLocale, 'home', 'hero.buttons.containerApp'),
       learnMore: requireLocaleResourceString(resolvedLocale, 'home', 'hero.buttons.learnMore'),
     },
+    windowsStoreLabel: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.windowsStoreLabel'),
+    windowsStoreAriaLabel: requireLocaleResourceString(
+      resolvedLocale,
+      'home',
+      'homepageVideos.hero.windowsStoreAriaLabel',
+    ),
     steamAriaLabel: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.steamAriaLabel'),
     ctaGroupLabel: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.ctaGroupLabel'),
   };

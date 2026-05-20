@@ -32,6 +32,9 @@ describe('HeroSection', () => {
       <HeroSection locale="en-US" copy={copy.hero} workflowBoardCopy={copy.workflowBoard} />,
     );
 
+    expect(markup).toContain('data-windows-store-entry="site-home-hero"');
+    expect(markup).toContain('>Windows Store<');
+    expect(markup).toContain('https://apps.microsoft.com/detail/9N3PM0N3SVDW');
     expect(markup).not.toContain('data-steam-entry="site-home-hero"');
     expect(markup).not.toContain('>Steam<');
   });

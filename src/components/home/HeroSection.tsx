@@ -5,6 +5,7 @@ import { WEBSITE_TRACKING_EVENTS } from '@/lib/analytics/events';
 import { trackEvent } from '@/lib/analytics/tracker';
 import { getLinkWithLocale } from '@/lib/shared/links';
 import { getBundledSteamStoreLink, loadSteamStoreLink } from '@/lib/shared/steam-store-link';
+import { getBundledWindowsStoreLink, loadWindowsStoreLink } from '@/lib/shared/windows-store-link';
 import HeroWorkflowBoard from './HeroWorkflowBoard';
 import ProductOverviewVideoSection from './ProductOverviewVideoSection';
 import type { FeaturedVideosByProvider } from './video-showcase-model';
@@ -74,6 +75,17 @@ function SteamIcon({ className = '' }: IconProps) {
   );
 }
 
+function WindowsStoreIcon({ className = '' }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path
+        d="M3.75 4.75L10.8 3.75V10.5H3.75V4.75ZM12.3 3.55L20.25 2.4V10.5H12.3V3.55ZM3.75 12H10.8V18.75L3.75 17.75V12ZM12.3 12H20.25V20.1L12.3 18.95V12Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 export default function HeroSection({
   desktopVersion = null,
   desktopPlatforms = [],
@@ -85,6 +97,7 @@ export default function HeroSection({
   productOverviewVideo,
 }: HeroSectionProps) {
   const [steamStoreLink, setSteamStoreLink] = useState(() => getBundledSteamStoreLink());
+  const [windowsStoreLink, setWindowsStoreLink] = useState(() => getBundledWindowsStoreLink());
 
   const desktopUrl = getLinkWithLocale('desktop', locale);
   const containerUrl = getLinkWithLocale('container', locale);
@@ -95,8 +108,27 @@ export default function HeroSection({
     : 'Not globally unique, but exceptionally usable Agentic Coding software lives here.';
   const steamLabel = 'Steam';
   const steamAriaLabel = copy.steamAriaLabel || (isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam');
+  const windowsStoreLabel = copy.windowsStoreLabel || (isChineseLocale ? 'Windows 商店' : 'Windows Store');
+  const windowsStoreAriaLabel = copy.windowsStoreAriaLabel || (
+    isChineseLocale ? '打开 Hagicode Windows 商店页' : 'Open Hagicode on Windows Store'
+  );
   const ctaGroupLabel = copy.ctaGroupLabel || (isChineseLocale ? '首页主要操作' : 'Primary homepage actions');
   const showSteamButton = FEATURE_SITE_STEAM_ENABLED && Boolean(steamStoreLink.href);
+  const showWindowsStoreButton = Boolean(windowsStoreLink.href);
+
+  useEffect(() => {
+    let mounted = true;
+
+    void loadWindowsStoreLink().then((nextLink) => {
+      if (mounted) {
+        setWindowsStoreLink(nextLink);
+      }
+    });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (!FEATURE_SITE_STEAM_ENABLED) {
@@ -143,6 +175,20 @@ export default function HeroSection({
               <ContainerIcon className={styles.buttonIcon} />
               <span>{copy.buttons.containerApp}</span>
             </a>
+
+            {showWindowsStoreButton && (
+              <a
+                href={windowsStoreLink.href}
+                className={`${styles.buttonSecondary} ${styles.buttonWindowsStore}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={windowsStoreAriaLabel}
+                data-windows-store-entry="site-home-hero"
+              >
+                <WindowsStoreIcon className={styles.buttonIcon} />
+                <span>{windowsStoreLabel}</span>
+              </a>
+            )}
 
             {showSteamButton && (
               <a

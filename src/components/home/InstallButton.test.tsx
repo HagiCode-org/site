@@ -20,6 +20,7 @@ import InstallButton, {
 } from './InstallButton';
 
 const fallbackUrl = 'https://index.hagicode.com/desktop/history/';
+const windowsStoreUrl = 'https://apps.microsoft.com/detail/9N3PM0N3SVDW';
 
 const latestVersion = {
   version: 'v1.2.3',
@@ -239,6 +240,9 @@ describe('InstallButton markup', () => {
     expect(markup).toContain('data-segment-role="toggle"');
     expect(markup).toContain('>GitHub<');
     expect(markup).toContain('>China<');
+    expect(markup).toContain('data-windows-store-entry="site-header-install"');
+    expect(markup).toContain(`href="${windowsStoreUrl}"`);
+    expect(markup).toContain('>Store<');
   });
 
   it('keeps the compact install cluster free of the Steam shortcut while Steam support is pending', () => {

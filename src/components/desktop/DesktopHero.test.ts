@@ -7,7 +7,7 @@ import { getPageTranslationResources } from '@/i18n/translation-resources';
 import type { DesktopVersionData } from '@/lib/shared/version-manager';
 import {
   DesktopHeroActionBar,
-  DesktopHeroSteamRow,
+  DesktopHeroWindowsStoreRow,
   convertVersionToPlatformDownloads,
   resolveDesktopHeroCurrentVersion,
   resolveDesktopHeroFallbackState,
@@ -214,14 +214,14 @@ describe('DesktopHero fallback contract', () => {
     expect(markup).toContain('More versions');
   });
 
-  it('renders the Steam row ahead of the download table with the canonical store target', () => {
+  it('renders the Windows Store row ahead of the download table with the canonical store target', () => {
     const markup = renderToStaticMarkup(
       React.createElement(
         React.Fragment,
         null,
-        React.createElement(DesktopHeroSteamRow, {
+        React.createElement(DesktopHeroWindowsStoreRow, {
           locale: 'en',
-          href: 'https://store.steampowered.com/app/4625540/Hagicode/',
+          href: 'https://apps.microsoft.com/detail/9N3PM0N3SVDW',
         }),
         React.createElement(
           'table',
@@ -231,13 +231,14 @@ describe('DesktopHero fallback contract', () => {
       ),
     );
 
-    expect(markup).toContain('data-steam-row="desktop-downloads"');
-    expect(markup).toContain('site-desktop-hero');
-    expect(markup).toContain('https://store.steampowered.com/app/4625540/Hagicode/');
+    expect(markup).toContain('data-windows-store-row="desktop-downloads"');
+    expect(markup).toContain('data-store-entry="site-desktop-hero-windows-store"');
+    expect(markup).toContain('https://apps.microsoft.com/detail/9N3PM0N3SVDW');
+    expect(markup).toContain('Open Hagicode on Windows Store');
     expect(markup).toContain('target="_blank"');
     expect(markup).toContain('<a');
-    expect(markup).toContain('Click to open on Steam');
-    expect(markup.indexOf('data-steam-row="desktop-downloads"')).toBeLessThan(
+    expect(markup).toContain('Subscribe on Windows Store to stay on the latest version.');
+    expect(markup.indexOf('data-windows-store-row="desktop-downloads"')).toBeLessThan(
       markup.indexOf('data-platform-table="desktop-downloads"'),
     );
   });

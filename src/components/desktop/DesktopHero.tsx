@@ -23,7 +23,7 @@ import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
 import { getTranslation, useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import { getLinkWithLocale } from '@/lib/shared/links';
-import { getBundledSteamStoreLink, loadSteamStoreLink } from '@/lib/shared/steam-store-link';
+import { getBundledWindowsStoreLink, loadWindowsStoreLink } from '@/lib/shared/windows-store-link';
 import {
   AssetType,
   type DesktopVersion,
@@ -70,31 +70,68 @@ export interface DesktopHeroVisiblePrimaryAction {
   ariaLabel: string;
 }
 
-interface DesktopHeroSteamRowProps {
+interface DesktopHeroWindowsStoreRowProps {
   locale: string;
   href: string;
 }
 
-export function DesktopHeroSteamRow({ locale, href }: DesktopHeroSteamRowProps) {
-  const { t } = getTranslation(locale);
-  const description = t('desktopHero.steam.description');
-  const ariaLabel = t('desktopHero.steam.ariaLabel');
+interface DesktopHeroStoreRowProps {
+  href: string;
+  ariaLabel: string;
+  eyebrow: string;
+  description: string;
+  dataAttributeName: 'data-windows-store-row';
+  dataEntry: string;
+  rowClassName?: string;
+  eyebrowClassName?: string;
+}
+
+function DesktopHeroStoreRow({
+  href,
+  ariaLabel,
+  eyebrow,
+  description,
+  dataAttributeName,
+  dataEntry,
+  rowClassName,
+  eyebrowClassName,
+}: DesktopHeroStoreRowProps) {
+  const dataAttribute = { [dataAttributeName]: 'desktop-downloads' };
 
   return (
     <a
       href={href}
-      className={styles.steamRow}
+      className={rowClassName ? `${styles.steamRow} ${rowClassName}` : styles.steamRow}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={ariaLabel}
-      data-steam-row="desktop-downloads"
-      data-steam-entry="site-desktop-hero"
+      {...dataAttribute}
+      data-store-entry={dataEntry}
     >
       <div className={styles.steamRowCopy}>
-        <span className={styles.steamRowEyebrow}>Steam</span>
+        <span className={eyebrowClassName ? `${styles.steamRowEyebrow} ${eyebrowClassName}` : styles.steamRowEyebrow}>
+          {eyebrow}
+        </span>
         <p className={styles.steamRowDescription}>{description}</p>
       </div>
     </a>
+  );
+}
+
+export function DesktopHeroWindowsStoreRow({ locale, href }: DesktopHeroWindowsStoreRowProps) {
+  const { t } = getTranslation(locale);
+
+  return (
+    <DesktopHeroStoreRow
+      href={href}
+      ariaLabel={t('desktopHero.windowsStore.ariaLabel')}
+      eyebrow={t('desktopHero.windowsStore.eyebrow')}
+      description={t('desktopHero.windowsStore.description')}
+      dataAttributeName="data-windows-store-row"
+      dataEntry="site-desktop-hero-windows-store"
+      rowClassName={styles.windowsStoreRow}
+      eyebrowClassName={styles.windowsStoreRowEyebrow}
+    />
   );
 }
 
@@ -348,7 +385,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
   const userOS = useMemo(() => detectOS(), []);
   const [openDropdown, setOpenDropdown] = useState<DesktopPlatformKey | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState<DesktopDropdownPosition | null>(null);
-  const [steamStoreLink, setSteamStoreLink] = useState(() => getBundledSteamStoreLink());
+  const [windowsStoreLink, setWindowsStoreLink] = useState(() => getBundledWindowsStoreLink());
   const dropdownMenuRef = useRef<HTMLDivElement | null>(null);
   const dropdownTriggerRefs = useRef<Partial<Record<DesktopPlatformKey, HTMLButtonElement | null>>>({});
 
@@ -468,9 +505,9 @@ export default function DesktopHero(props: DesktopHeroProps) {
   useEffect(() => {
     let mounted = true;
 
-    void loadSteamStoreLink().then((nextLink) => {
+    void loadWindowsStoreLink().then((nextLink) => {
       if (mounted) {
-        setSteamStoreLink(nextLink);
+        setWindowsStoreLink(nextLink);
       }
     });
 
@@ -609,8 +646,8 @@ export default function DesktopHero(props: DesktopHeroProps) {
           <>
             {/* 统一下载按钮组 */}
             <div className={styles.downloadSection}>
-              {steamStoreLink.href && (
-                <DesktopHeroSteamRow locale={locale} href={steamStoreLink.href} />
+              {windowsStoreLink.href && (
+                <DesktopHeroWindowsStoreRow locale={locale} href={windowsStoreLink.href} />
               )}
               {visiblePlatformData.length > 0 && (
                 <div className={styles.buttonGroup}>

@@ -104,6 +104,22 @@
   box-shadow: 0 18px 32px rgba(12, 18, 28, 0.32);
 }
 
+.windowsStoreRow {
+  border-color: rgba(84, 186, 255, 0.28);
+  background:
+    radial-gradient(circle at top left, rgba(0, 120, 215, 0.2), transparent 48%),
+    linear-gradient(135deg, rgba(4, 28, 55, 0.96) 0%, rgba(0, 90, 158, 0.96) 58%, rgba(13, 148, 241, 0.94) 100%);
+}
+
+.windowsStoreRowEyebrow {
+  color: rgba(144, 214, 255, 0.96);
+}
+
+.windowsStoreRow:hover,
+.windowsStoreRow:focus-visible {
+  border-color: rgba(84, 186, 255, 0.56);
+}
+
 /* ==========================================================================
    按钮组布局
    ========================================================================== */
