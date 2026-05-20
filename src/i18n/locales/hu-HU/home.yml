@@ -222,6 +222,8 @@ homepageVideos:
       description: Egy fókuszált validációs futás, amely lehetővé teszi a leendő felhasználóknak, hogy megítéljék, hogyan viselkedik a GPT Codex a tényleges termékben a fő lokalizált bemutató megtekintése után.
       ctaLabel: Megnyitás a Bilibili-n
   hero:
+    windowsStoreLabel: Windows Store
+    windowsStoreAriaLabel: Hagicode megnyitása a Windows Store-ban
     steamAriaLabel: Hagicode megnyitása a Steamen
     ctaGroupLabel: Kezdőlap elsődleges műveletek
 pricing:

@@ -222,6 +222,8 @@ homepageVideos:
       description: Zaměřený validační test, který umožňuje potenciálním uživatelům posoudit, jak se GPT Codex chová uvnitř skutečného produktu poté, co viděli hlavní lokalizované představení.
       ctaLabel: Otevřít na Bilibili
   hero:
+    windowsStoreLabel: Windows Store
+    windowsStoreAriaLabel: Otevřít Hagicode ve Windows Store
     steamAriaLabel: Otevřít Hagicode na Steam
     ctaGroupLabel: Hlavní akce domovské stránky
 pricing:

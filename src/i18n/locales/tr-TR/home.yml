@@ -222,6 +222,8 @@ homepageVideos:
       description: Potansiyel kullanıcıların, ana yerelleştirilmiş tanıtımı gördükten sonra GPT Codex'in gerçek ürün içinde nasıl davrandığını değerlendirmesine olanak tanıyan odaklı bir doğrulama çalışması.
       ctaLabel: Bilibili'de Aç
   hero:
+    windowsStoreLabel: Windows Store
+    windowsStoreAriaLabel: Hagicode'u Windows Store'da ac
     steamAriaLabel: Hagicode'u Steam'de aç
     ctaGroupLabel: Birincil ana sayfa eylemleri
 pricing:

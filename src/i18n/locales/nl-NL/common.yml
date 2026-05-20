@@ -180,6 +180,10 @@ desktopHero:
   steam:
     description: De Steam-editie ondersteunt Steam-functies inclusief Cloud Saves en de Workshop. Klik om op Steam te openen.
     ariaLabel: Hagicode op Steam openen
+  windowsStore:
+    eyebrow: Windows Store
+    description: Abonneer via de Windows Store om altijd op de nieuwste versie te blijven.
+    ariaLabel: Hagicode openen in de Windows Store
   downloadActions:
     torrent: Torrent
   assetTypes:

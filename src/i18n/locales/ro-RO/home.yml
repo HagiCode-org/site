@@ -222,6 +222,8 @@ homepageVideos:
       description: O execuție de validare concentrată care permite utilizatorilor potențiali să evalueze cum se comportă GPT Codex în interiorul produsului real după ce au văzut introducerea localizată principală.
       ctaLabel: Deschide pe Bilibili
   hero:
+    windowsStoreLabel: Windows Store
+    windowsStoreAriaLabel: Deschide Hagicode în Windows Store
     steamAriaLabel: Deschide Hagicode pe Steam
     ctaGroupLabel: Acțiuni principale pagina de start
 pricing:

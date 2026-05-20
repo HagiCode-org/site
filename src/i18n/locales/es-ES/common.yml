@@ -180,6 +180,10 @@ desktopHero:
   steam:
     description: La edición de Steam admite funciones de Steam como guardado en la nube y Workshop. Haz clic para abrirla en Steam.
     ariaLabel: Abrir Hagicode en Steam
+  windowsStore:
+    eyebrow: Windows Store
+    description: Suscríbete desde Windows Store para mantenerte en la versión más reciente.
+    ariaLabel: Abrir Hagicode en Windows Store
   downloadActions:
     torrent: Torrent
   assetTypes:

@@ -222,6 +222,8 @@ homepageVideos:
       description: Depois da apresentação principal localizada, esta validação mais focada ajuda possíveis usuários a avaliar como o GPT Codex se comporta dentro do produto real.
       ctaLabel: Abrir no Bilibili
   hero:
+    windowsStoreLabel: Windows Store
+    windowsStoreAriaLabel: Abrir Hagicode na Windows Store
     steamAriaLabel: Abrir Hagicode no Steam
     ctaGroupLabel: Ações principais da página inicial
 pricing:

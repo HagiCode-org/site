@@ -222,6 +222,8 @@ homepageVideos:
       description: Jalankan validasi terfokus yang memungkinkan calon pengguna menilai bagaimana GPT Codex berperilaku di dalam produk yang sebenarnya setelah melihat pengenalan lokalisasi utama.
       ctaLabel: Buka di Bilibili
   hero:
+    windowsStoreLabel: Windows Store
+    windowsStoreAriaLabel: Buka Hagicode di Windows Store
     steamAriaLabel: Buka Hagicode di Steam
     ctaGroupLabel: Tindakan utama beranda
 pricing:

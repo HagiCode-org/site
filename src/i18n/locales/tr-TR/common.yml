@@ -180,6 +180,10 @@ desktopHero:
   steam:
     description: Steam sürümü, Bulut Kayıtları ve Atölye dahil Steam özelliklerini destekler. Steam'de açmak için tıklayın.
     ariaLabel: Hagicode'u Steam'de aç
+  windowsStore:
+    eyebrow: Windows Store
+    description: En guncel surumde kalmak icin Windows Store uzerinden abone olun.
+    ariaLabel: Hagicode'u Windows Store'da ac
   downloadActions:
     torrent: Torrent
   assetTypes:

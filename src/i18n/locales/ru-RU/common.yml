@@ -180,6 +180,10 @@ desktopHero:
   steam:
     description: Версия Steam поддерживает функции Steam, включая облачные сохранения и Workshop. Нажмите, чтобы открыть страницу в Steam.
     ariaLabel: Открыть Hagicode в Steam
+  windowsStore:
+    eyebrow: Windows Store
+    description: Подпишитесь через Windows Store, чтобы всегда оставаться на самой новой версии.
+    ariaLabel: Открыть Hagicode в Windows Store
   downloadActions:
     torrent: Торрент
   assetTypes:

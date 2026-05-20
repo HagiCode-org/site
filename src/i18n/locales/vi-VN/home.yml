@@ -222,6 +222,8 @@ homepageVideos:
       description: Một lần chạy xác thực tập trung cho phép người dùng tiềm năng đánh giá cách GPT Codex hoạt động bên trong sản phẩm thực tế sau khi đã xem phần giới thiệu địa phương hóa chính.
       ctaLabel: Mở trên Bilibili
   hero:
+    windowsStoreLabel: Windows Store
+    windowsStoreAriaLabel: Mo Hagicode tren Windows Store
     steamAriaLabel: Mở Hagicode trên Steam
     ctaGroupLabel: Hành động trang chủ chính
 pricing:

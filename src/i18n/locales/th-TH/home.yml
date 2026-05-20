@@ -222,6 +222,8 @@ homepageVideos:
       description: การทดสอบยืนยันที่เน้นให้ผู้ใช้ที่คาดหวังตัดสินว่า GPT Codex ทำงานอย่างไรในผลิตภัณฑ์จริงหลังจากดูการแนะนำหลักที่แปลแล้ว
       ctaLabel: เปิดบน Bilibili
   hero:
+    windowsStoreLabel: Windows Store
+    windowsStoreAriaLabel: เปิด Hagicode บน Windows Store
     steamAriaLabel: เปิด Hagicode บน Steam
     ctaGroupLabel: การดำเนินการหน้าแรกหลัก
 pricing:

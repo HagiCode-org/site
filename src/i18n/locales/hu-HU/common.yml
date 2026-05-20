@@ -180,6 +180,10 @@ desktopHero:
   steam:
     description: A Steam kiadás támogatja a Steam funkciókat, beleértve a Cloud Saves és a Workshop funkciókat. Kattints a megnyitáshoz a Steamen.
     ariaLabel: Hagicode megnyitása a Steamen
+  windowsStore:
+    eyebrow: Windows Store
+    description: Fizessen elő a Windows Store-on keresztül, hogy mindig a legújabb verziót használja.
+    ariaLabel: Hagicode megnyitása a Windows Store-ban
   downloadActions:
     torrent: Torrent
   assetTypes:

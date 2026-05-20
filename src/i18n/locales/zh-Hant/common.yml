@@ -180,6 +180,10 @@ desktopHero:
   steam:
     description: Steam 版本支援雲端存檔、Steam 工作坊等特性，點擊即可前往 Steam 查看。
     ariaLabel: 在 Steam 上開啟 Hagicode
+  windowsStore:
+    eyebrow: Windows Store
+    description: 從 Windows Store 可以訂閱最新版本，保持最新。
+    ariaLabel: 在 Windows Store 上開啟 Hagicode
   downloadActions:
     torrent: 種子下載
   assetTypes:

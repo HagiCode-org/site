@@ -180,6 +180,10 @@ desktopHero:
   steam:
     description: Phiên bản Steam hỗ trợ các tính năng Steam bao gồm Lưu đám mây và Workshop. Nhấn để mở trên Steam.
     ariaLabel: Mở Hagicode trên Steam
+  windowsStore:
+    eyebrow: Windows Store
+    description: Dang ky qua Windows Store de luon giu ban o phien ban moi nhat.
+    ariaLabel: Mo Hagicode tren Windows Store
   downloadActions:
     torrent: Torrent
   assetTypes:

@@ -222,6 +222,8 @@ homepageVideos:
       description: En fokuserad valideringskörning som låter potentiella användare bedöma hur GPT Codex beter sig inuti den faktiska produkten efter att ha sett den huvudsakliga lokaliserade introduktionen.
       ctaLabel: Öppna på Bilibili
   hero:
+    windowsStoreLabel: Windows Store
+    windowsStoreAriaLabel: Öppna Hagicode i Windows Store
     steamAriaLabel: Öppna Hagicode på Steam
     ctaGroupLabel: Primära hemsid-åtgärder
 pricing:

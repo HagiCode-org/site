@@ -222,6 +222,8 @@ homepageVideos:
       description: Μια εστιασμένη δοκιμή επικύρωσης που επιτρέπει σε υποψήφιους χρήστες να κρίνουν πώς συμπεριφέρεται το GPT Codex μέσα στο πραγματικό προϊόν αφού δουν την κύρια εντοπισμένη εισαγωγή.
       ctaLabel: Άνοιγμα στο Bilibili
   hero:
+    windowsStoreLabel: Windows Store
+    windowsStoreAriaLabel: Άνοιγμα του Hagicode στο Windows Store
     steamAriaLabel: Άνοιγμα Hagicode στο Steam
     ctaGroupLabel: Κύριες ενέργειες αρχικής σελίδας
 pricing:

@@ -222,6 +222,8 @@ homepageVideos:
       description: 聚焦 GPT Codex 在 Hagicode 中的实际表现，帮助你在主介绍之外继续判断模型接入后的真实效果。
       ctaLabel: 打开 Bilibili
   hero:
+    windowsStoreLabel: Windows 商店
+    windowsStoreAriaLabel: 打开 Hagicode Windows 商店页
     steamAriaLabel: 打开 Hagicode Steam 商店页
     ctaGroupLabel: 首页主要操作
 pricing:

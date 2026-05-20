@@ -180,6 +180,10 @@ desktopHero:
   steam:
     description: Steam 版ではクラウドセーブや Workshop などの Steam 機能を利用できます。クリックして Steam で確認してください。
     ariaLabel: Steam で Hagicode を開く
+  windowsStore:
+    eyebrow: Windows Store
+    description: Windows Store から購読して、常に最新バージョンを保てます。
+    ariaLabel: Windows Store で Hagicode を開く
   downloadActions:
     torrent: Torrent
   assetTypes:

@@ -222,6 +222,8 @@ homepageVideos:
       description: Keskittynyt validointiajo, joka antaa mahdollisille käyttäjille mahdollisuuden arvioida, miten GPT Codex käyttäytyy varsinaisessa tuotteessa päälokalisoidun esittelyn nähtyään.
       ctaLabel: Avaa Bilibilissä
   hero:
+    windowsStoreLabel: Windows Store
+    windowsStoreAriaLabel: Avaa Hagicode Windows Storessa
     steamAriaLabel: Avaa Hagicode Steamissa
     ctaGroupLabel: Etusivun ensisijaiset toiminnot
 pricing:

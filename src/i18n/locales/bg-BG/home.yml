@@ -222,6 +222,8 @@ homepageVideos:
       description: Фокусиран валидационен тест, който позволява на потенциалните потребители да преценят как GPT Codex се държи в реалния продукт, след като са видели основното локализирано представяне.
       ctaLabel: Отворете в Bilibili
   hero:
+    windowsStoreLabel: Windows Store
+    windowsStoreAriaLabel: Отворете Hagicode в Windows Store
     steamAriaLabel: Отворете Hagicode в Steam
     ctaGroupLabel: Основни действия на началната страница
 pricing:

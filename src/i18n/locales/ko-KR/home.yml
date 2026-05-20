@@ -222,6 +222,8 @@ homepageVideos:
       description: 주요 현지화 소개를 본 뒤, 이 집중 검증 영상은 GPT Codex가 실제 제품 안에서 어떻게 동작하는지 잠재 사용자 스스로 판단할 수 있게 도와줍니다.
       ctaLabel: Bilibili에서 열기
   hero:
+    windowsStoreLabel: Windows Store
+    windowsStoreAriaLabel: Windows Store에서 Hagicode 열기
     steamAriaLabel: Steam에서 Hagicode 열기
     ctaGroupLabel: 홈페이지 기본 동작
 pricing:

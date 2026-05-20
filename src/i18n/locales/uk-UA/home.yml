@@ -222,6 +222,8 @@ homepageVideos:
       description: Сфокусована перевірка, що дозволяє потенційним користувачам оцінити, як GPT Codex поводиться всередині реального продукту після перегляду основної локалізованої презентації.
       ctaLabel: Відкрити на Bilibili
   hero:
+    windowsStoreLabel: Windows Store
+    windowsStoreAriaLabel: Відкрити Hagicode у Windows Store
     steamAriaLabel: Відкрити Hagicode в Steam
     ctaGroupLabel: Основні дії на головній сторінці
 pricing:
