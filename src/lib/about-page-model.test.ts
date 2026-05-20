@@ -24,6 +24,7 @@ describe('about page model', () => {
     const contentEntries = model.sections[2]?.entries.map((entry) => entry.id);
     const youtubeEntry = model.sections[2]?.entries.find((entry) => entry.id === 'youtube');
     const productHuntEntry = model.sections[2]?.entries.find((entry) => entry.id === 'product-hunt');
+    const windowsStoreEntry = model.sections[0]?.entries.find((entry) => entry.id === 'windows-store');
     const steamEntry = model.sections[0]?.entries.find((entry) => entry.id === 'steam');
     const discordEntry = model.sections[1]?.entries.find((entry) => entry.id === 'discord');
 
@@ -34,7 +35,7 @@ describe('about page model', () => {
     expect(model.sections.map((section) => section.id)).toEqual(['store', 'community', 'content']);
     expect(model.sections[0]?.title).toBe('Store');
     expect(model.sections[1]?.title).toBe('Grow through exchange');
-    expect(storeEntries).toEqual(['steam']);
+    expect(storeEntries).toEqual(['windows-store', 'steam']);
     expect(communityEntries).toEqual(['discord', 'feishu-group', 'qq-group']);
     expect(contentEntries?.slice(0, 5)).toEqual([
       'youtube',
@@ -46,6 +47,15 @@ describe('about page model', () => {
     expect(contentEntries).toContain('bilibili');
     expect(contentEntries).toContain('product-hunt');
     expect(contentEntries).not.toContain('steam');
+    expect(contentEntries).not.toContain('windows-store');
+    expect(windowsStoreEntry).toMatchObject({
+      kind: 'link',
+      kindLabel: 'Store',
+      label: 'Windows Store',
+      detail: 'Official Microsoft Store listing',
+      linkText: 'Open listing',
+      href: 'https://apps.microsoft.com/detail/9N3PM0N3SVDW',
+    });
     expect(contentEntries).toContain('douyin-account');
     expect(contentEntries).toContain('douyin-qr');
     expect(steamEntry).toMatchObject({
@@ -97,6 +107,7 @@ describe('about page model', () => {
     const model = buildAboutPageModel('zh-CN');
     const storeIds = model.sections[0]?.entries.map((entry) => entry.id);
     const contentIds = model.sections[2]?.entries.map((entry) => entry.id);
+    const windowsStoreEntry = model.sections[0]?.entries.find((entry) => entry.id === 'windows-store');
     const douyinEntry = model.sections[2]?.entries.find((entry) => entry.id === 'douyin');
     const wechatEntry = model.sections[2]?.entries.find((entry) => entry.id === 'wechat-account');
 
@@ -108,7 +119,7 @@ describe('about page model', () => {
     expect(model.sections[0]?.title).toBe('商店');
     expect(model.sections[1]?.title).toBe('增进交流，共同成长');
     expect(model.sections[2]?.title).toBe('关注团队持续发布的内容');
-    expect(storeIds).toEqual(['steam']);
+    expect(storeIds).toEqual(['windows-store', 'steam']);
     expect(model.sections[1]?.entries.map((entry) => entry.id)).toEqual(['feishu-group', 'qq-group', 'discord']);
     expect(contentIds).toEqual([
       'bilibili',
@@ -149,6 +160,13 @@ describe('about page model', () => {
     expect(contentIds).not.toContain('douyin-qr');
     expect(contentIds).toContain('youtube');
     expect(contentIds).toContain('product-hunt');
+    expect(windowsStoreEntry).toMatchObject({
+      kindLabel: '商店',
+      label: 'Windows 商店',
+      detail: 'Windows 应用商店官方上架页',
+      linkText: '打开商店页',
+      href: 'https://apps.microsoft.com/detail/9N3PM0N3SVDW',
+    });
     expect(model.sections[0]?.entries.find((entry) => entry.id === 'steam')).toMatchObject({
       kindLabel: '商店',
       detail: '官方商店页',
@@ -176,6 +194,13 @@ describe('about page model', () => {
           label: 'YouTube',
           regionPriority: 'international-first',
           url: 'https://www.youtube.com/@hagicode',
+        },
+        {
+          id: 'windows-store',
+          type: 'link',
+          label: 'Windows Store',
+          regionPriority: 'international-first',
+          url: 'https://apps.microsoft.com/detail/9N3PM0N3SVDW',
         },
         {
           id: 'steam',
@@ -261,6 +286,10 @@ describe('about page model', () => {
       version: '1.0.0',
       updatedAt: '2026-04-05T00:00:00.000Z',
     });
+    expect(runtimeModel.sections[0]?.entries.find((entry) => entry.id === 'windows-store')).toMatchObject({
+      kindLabel: 'Store',
+      href: 'https://apps.microsoft.com/detail/9N3PM0N3SVDW',
+    });
     expect(runtimeModel.sections[0]?.entries.find((entry) => entry.id === 'steam')).toMatchObject({
       kindLabel: 'Store',
       href: 'https://store.steampowered.com/app/4625540/Hagicode/',
@@ -286,6 +315,13 @@ describe('about page model', () => {
           label: 'YouTube',
           regionPriority: 'international-first',
           url: 'https://www.youtube.com/@hagicode',
+        },
+        {
+          id: 'windows-store',
+          type: 'link',
+          label: 'Windows Store',
+          regionPriority: 'international-first',
+          url: 'https://apps.microsoft.com/detail/9N3PM0N3SVDW',
         },
         {
           id: 'steam',
@@ -379,7 +415,11 @@ describe('about page model', () => {
       imageUrl: 'https://index.hagicode.com/_astro/douyin.runtime-next.png',
       href: 'https://www.douyin.com/user/demo',
     });
-    expect(runtimeModel.sections[0]?.entries.map((entry) => entry.id)).toEqual(['steam']);
+    expect(runtimeModel.sections[0]?.entries.map((entry) => entry.id)).toEqual(['windows-store', 'steam']);
+    expect(runtimeModel.sections[0]?.entries.find((entry) => entry.id === 'windows-store')).toMatchObject({
+      kindLabel: '商店',
+      label: 'Windows 商店',
+    });
     expect(runtimeModel.sections[0]?.entries.find((entry) => entry.id === 'steam')).toMatchObject({
       kindLabel: '商店',
     });

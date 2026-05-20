@@ -41,6 +41,10 @@ const entryCopyOverrides = {
       detail: 'Product Hunt launch page',
       linkText: 'Open listing',
     },
+    'windows-store': {
+      detail: 'Official Microsoft Store listing',
+      linkText: 'Open listing',
+    },
     steam: {
       detail: 'Official store page',
       linkText: 'Open store',
@@ -71,6 +75,11 @@ const entryCopyOverrides = {
       detail: '扫码加入 HagiCode 飞书群',
       linkText: '打开群邀请',
       alt: 'HagiCode 飞书群二维码',
+    },
+    'windows-store': {
+      label: 'Windows 商店',
+      detail: 'Windows 应用商店官方上架页',
+      linkText: '打开商店页',
     },
     steam: {
       detail: '官方商店页',

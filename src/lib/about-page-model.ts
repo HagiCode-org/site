@@ -107,13 +107,14 @@ export interface AboutPageModel {
   readonly sections: readonly AboutPageSection[];
 }
 
-const STORE_ENTRY_IDS = new Set(['steam']);
+const STORE_ENTRY_IDS = new Set(['windows-store', 'steam']);
 const COMMUNITY_ENTRY_IDS = new Set(['qq-group', 'feishu-group', 'discord']);
 
 const ENTRY_ORDER = [
   'feishu-group',
   'qq-group',
   'discord',
+  'windows-store',
   'youtube',
   'product-hunt',
   'steam',
@@ -252,7 +253,7 @@ function isMediaEntry(entry: AboutSnapshotEntry | undefined): entry is AboutSnap
 
 function buildLinkCard(locale: SiteLocale, entry: AboutSnapshotLinkEntry): AboutPageLinkCard {
   const copy = getAboutLocaleCopy(locale);
-  const kindLabel = entry.id === 'steam' ? copy.kindLabels.store : copy.kindLabels.link;
+  const kindLabel = isStoreEntry(entry) ? copy.kindLabels.store : copy.kindLabels.link;
 
   return {
     id: entry.id,
