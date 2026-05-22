@@ -13,17 +13,17 @@ describe('PricingComparisonSection content', () => {
     expect(content.notIncludedLabel).toBe('Nicht enthalten');
     expect(rowLabels).toContain('Alle kostenlosen Funktionen enthalten');
     expect(rowLabels).toContain('Maximale gleichzeitige Vorschläge');
-    expect(rowLabels).toContain('Cloud-Speicher-Unterstützung');
     expect(content.rows[0]?.desktop.value).toBe('Kostenlos');
-    expect(content.rows[0]?.steam.value).toBe('Pending');
-    expect(content.steamEdition.title).toBe('Steam (Pending)');
-    expect(content.turboEdition.title).toBe('Hagicode Plus (Pending)');
-    expect(content.plusDescription).toBe('Pending');
+    expect(content.rows[0]?.steam.value).toBe('Kostenlos');
+    expect(content.rows[0]?.turbo.value).toBe('Pending');
+    expect(content.steamEdition.title).toBe('Windows Store');
+    expect(content.turboEdition.title).toBe('Hagicode Plus');
+    expect(content.rows.find((candidate) => candidate.feature === 'Maximale gleichzeitige Vorschläge')?.turbo.value).toBe('32');
     expect(content.steamPreviewLabels.bundlePending).toBe('Bundle-Bilder ausstehend');
-    expect(content.dlcItems).toHaveLength(0);
+    expect(content.dlcItems).toHaveLength(4);
     expect(rowLabels).not.toContain('All free features included');
     expect(rowLabels).not.toContain('Maximum concurrent proposals');
-    expect(rowLabels).not.toContain('Cloud save support');
+    expect(rowLabels).not.toContain('Cloud-Speicher-Unterstützung');
   });
 
   it('keeps the base locale pricing row label in English', () => {
@@ -31,9 +31,10 @@ describe('PricingComparisonSection content', () => {
     const row = content.rows.find((candidate) => candidate.feature === 'All free features included');
 
     expect(content.title).toBe('Editions & Pricing');
-    expect(content.steamEdition.title).toBe('Steam (Pending)');
-    expect(content.turboEdition.title).toBe('Hagicode Plus (Pending)');
-    expect(content.dlcItems).toHaveLength(0);
+    expect(content.steamEdition.title).toBe('Windows Store');
+    expect(content.turboEdition.title).toBe('Hagicode Plus');
+    expect(content.rows[0]?.turbo.value).toBe('Pending');
+    expect(content.dlcItems).toHaveLength(4);
     expect(row).toBeDefined();
   });
 });

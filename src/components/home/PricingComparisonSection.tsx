@@ -15,7 +15,6 @@ function getSteamVariantLabel(variant: string): string {
 
 function renderSteamImagePreview(
   item: DlcItem,
-  fallbackStoreUrl: string,
   records: SteamPreviewRecordMap,
   labels: SteamPreviewLabels,
 ) {
@@ -26,7 +25,6 @@ function renderSteamImagePreview(
   const record: SteamProductImageRecord | null = records[item.productKey] ?? null;
   const preview = record?.images[0];
   const displayName = record?.displayName ?? item.title;
-  const storeUrl = record?.storeUrl ?? fallbackStoreUrl;
 
   return (
     <div className={styles.steamPreview} aria-label={`${displayName} ${labels.previewLabel}`}>
@@ -47,8 +45,6 @@ function renderSteamImagePreview(
           <small>{record?.type === 'bundle' || item.productKey === 'hagicode-plus' ? labels.bundlePending : labels.productPending}</small>
         </div>
       )}
-      <span className={styles.steamPreviewLinkHint}>{labels.openSteam}</span>
-      <span className={styles.steamPreviewUrl}>{storeUrl}</span>
     </div>
   );
 }
@@ -210,15 +206,12 @@ export default function PricingComparisonSection({ content, steamPreviewRecords 
 
             <div className={styles.dlcList}>
               {content.dlcItems.map((item) => (
-                <a
+                <article
                   key={item.title}
-                  href={item.action.href}
                   className={`${styles.dlcRow} ${item.featured === 'sponsor' ? styles.sponsorRow : ''}`}
-                  target={item.action.external ? '_blank' : undefined}
-                  rel={item.action.external ? 'noopener noreferrer' : undefined}
                 >
                   <div className={styles.dlcTop}>
-                    {renderSteamImagePreview(item, item.action.href, steamPreviewRecords, content.steamPreviewLabels)}
+                    {renderSteamImagePreview(item, steamPreviewRecords, content.steamPreviewLabels)}
                     <div className={styles.dlcMain}>
                       <span className={styles.dlcCategory}>{item.category}</span>
                       <h4 className={styles.dlcTitle}>{item.title}</h4>
@@ -233,7 +226,7 @@ export default function PricingComparisonSection({ content, steamPreviewRecords 
                       <li key={bullet}>{bullet}</li>
                     ))}
                   </ul>
-                </a>
+                </article>
               ))}
             </div>
           </section>

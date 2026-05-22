@@ -584,11 +584,9 @@
   -webkit-backdrop-filter: blur(16px);
   text-decoration: none;
   transition:
-    transform var(--duration-fast) var(--ease-out),
     border-color var(--duration-fast) var(--ease-out),
     box-shadow var(--duration-fast) var(--ease-out),
     background var(--duration-fast) var(--ease-out);
-  cursor: pointer;
 }
 
 [data-theme='dark'] .dlcRow {
@@ -604,7 +602,6 @@
 }
 
 .dlcRow:hover {
-  transform: translateY(-3px);
   border-color: rgba(37, 194, 160, 0.38);
   box-shadow: 0 24px 52px rgba(15, 23, 42, 0.12);
 }
@@ -621,11 +618,6 @@
   box-shadow:
     0 24px 52px rgba(61, 18, 18, 0.42),
     0 0 28px rgba(255, 193, 7, 0.12);
-}
-
-.dlcRow:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
 }
 
 @keyframes sponsorPulse {
@@ -674,10 +666,6 @@
   background:
     linear-gradient(135deg, rgba(255, 193, 7, 0.14), rgba(82, 24, 24, 0) 48%),
     rgba(82, 24, 24, 0.9);
-}
-
-.sponsorRow:hover {
-  transform: translateY(-5px);
 }
 
 .dlcTop {
@@ -732,8 +720,7 @@
   line-height: 1.45;
 }
 
-.steamPreviewBadge,
-.steamPreviewLinkHint {
+.steamPreviewBadge {
   display: inline-flex;
   width: fit-content;
   border-radius: 999px;
@@ -744,23 +731,6 @@
   font-weight: 800;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-}
-
-.steamPreviewLinkHint {
-  position: absolute;
-  right: 0.7rem;
-  bottom: 0.7rem;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.steamPreviewUrl {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
 }
 
 .dlcMain {
