@@ -1,0 +1,139 @@
+{
+  "root": {
+    "id": "root",
+    "x": 1100,
+    "y": 780,
+    "accent": "core"
+  },
+  "hubs": [
+    {
+      "id": "foundation",
+      "x": 1100,
+      "y": 280,
+      "accent": "core"
+    },
+    {
+      "id": "surfaces",
+      "x": 470,
+      "y": 690,
+      "accent": "surface"
+    },
+    {
+      "id": "delivery",
+      "x": 1730,
+      "y": 690,
+      "accent": "delivery"
+    },
+    {
+      "id": "labs",
+      "x": 1100,
+      "y": 1310,
+      "accent": "labs"
+    }
+  ],
+  "products": [
+    {
+      "id": "core",
+      "hubId": "foundation",
+      "x": 840,
+      "y": 120,
+      "accent": "core"
+    },
+    {
+      "id": "opencode",
+      "hubId": "foundation",
+      "x": 1100,
+      "y": 80,
+      "accent": "core"
+    },
+    {
+      "id": "hagibuild",
+      "hubId": "foundation",
+      "x": 1360,
+      "y": 120,
+      "accent": "core"
+    },
+    {
+      "id": "hagi18n",
+      "hubId": "foundation",
+      "x": 1470,
+      "y": 320,
+      "accent": "core"
+    },
+    {
+      "id": "desktop",
+      "hubId": "surfaces",
+      "x": 230,
+      "y": 470,
+      "accent": "surface",
+      "linkKey": "desktop"
+    },
+    {
+      "id": "webWorkspace",
+      "hubId": "surfaces",
+      "x": 300,
+      "y": 930,
+      "accent": "surface",
+      "linkKey": "website"
+    },
+    {
+      "id": "docs",
+      "hubId": "surfaces",
+      "x": 630,
+      "y": 490,
+      "accent": "surface",
+      "linkKey": "docs"
+    },
+    {
+      "id": "site",
+      "hubId": "surfaces",
+      "x": 710,
+      "y": 930,
+      "accent": "surface",
+      "linkKey": "about"
+    },
+    {
+      "id": "dockerCompose",
+      "hubId": "delivery",
+      "x": 1530,
+      "y": 470,
+      "accent": "delivery",
+      "linkKey": "container"
+    },
+    {
+      "id": "release",
+      "hubId": "delivery",
+      "x": 1940,
+      "y": 560,
+      "accent": "delivery"
+    },
+    {
+      "id": "torrent",
+      "hubId": "delivery",
+      "x": 1870,
+      "y": 950,
+      "accent": "delivery"
+    },
+    {
+      "id": "mediaConsole",
+      "hubId": "labs",
+      "x": 840,
+      "y": 1480,
+      "accent": "labs"
+    },
+    {
+      "id": "soul",
+      "hubId": "labs",
+      "x": 1100,
+      "y": 1560,
+      "accent": "labs"
+    },
+    {
+      "id": "trait",
+      "hubId": "labs",
+      "x": 1360,
+      "y": 1480,
+      "accent": "labs"
+    }
+  ]
+}

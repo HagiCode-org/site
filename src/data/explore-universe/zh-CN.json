@@ -1,0 +1,209 @@
+{
+  "seo": {
+    "title": "探索 HagiCode 宇宙图",
+    "description": "以可拖拽、可缩放的宇宙图查看 HagiCode 的产品、基础设施、交付链路与实验前线。"
+  },
+  "ui": {
+    "canvasLabel": "交互式 HagiCode 宇宙图",
+    "controlsLabel": "地图控制",
+    "controls": {
+      "zoomIn": "放大",
+      "zoomOut": "缩小",
+      "reset": "重置视图"
+    }
+  },
+  "root": {
+    "title": "HagiCode 宇宙",
+    "summary": "把 HagiCode 的产品、基础设施和侧翼系统放进同一张图里，让你一眼看清整个生态不是单点工具，而是一整套协作体系。",
+    "highlights": [
+      "公开入口产品面",
+      "运行时与编排底座",
+      "交付与分发链路"
+    ],
+    "status": "系统总览"
+  },
+  "hubs": {
+    "foundation": {
+      "title": "运行时核心",
+      "summary": "把产品想法变成会话、构建和可复用基础设施的底层能力层，包含后端、构建与共享工具。",
+      "highlights": [
+        "OpenSpec 执行底座",
+        "Agent 编排",
+        "构建与国际化基础"
+      ],
+      "status": "共享引擎"
+    },
+    "surfaces": {
+      "title": "用户界面群",
+      "summary": "用户真正会接触到的入口面，包括发现、安装、学习和实际运行 HagiCode 的公共产品面。",
+      "highlights": [
+        "桌面端与 Web",
+        "文档与官网",
+        "多语言公开入口"
+      ],
+      "status": "面向用户"
+    },
+    "delivery": {
+      "title": "交付轨道",
+      "summary": "负责把构建产物送到真实安装环境的包装、发布、部署与分发层。",
+      "highlights": [
+        "容器交付",
+        "发布索引",
+        "大包分发韧性"
+      ],
+      "status": "可运维"
+    },
+    "labs": {
+      "title": "实验室与侧翼工具",
+      "summary": "向媒体工作流、Prompt 创作和结构化人格构建延展的探索型产品带。",
+      "highlights": [
+        "媒体工作流",
+        "角色构建",
+        "特质发现"
+      ],
+      "status": "实验前线"
+    }
+  },
+  "products": {
+    "core": {
+      "title": "HagiCode Core",
+      "summary": "承载会话、AI 集成、OpenSpec 工作流、持久化与实时更新的 Orleans + ASP.NET Core 运行时。",
+      "highlights": [
+        "Orleans Grain",
+        "SignalR 会话",
+        "Claude / OpenAI 适配"
+      ],
+      "status": "单仓模块"
+    },
+    "opencode": {
+      "title": "OpenCode",
+      "summary": "面向多模型工作流、Prompt 工具和 AI 驱动代码变更的 CLI 编辑层。",
+      "highlights": [
+        "CLI 优先编辑",
+        "多模型路由",
+        "自动化友好"
+      ],
+      "status": "单仓模块"
+    },
+    "hagibuild": {
+      "title": "HagiBuild",
+      "summary": "负责 .NET 产物跨环境编译、打包、保护和发布的 Nuke 构建系统。",
+      "highlights": [
+        "跨平台构建",
+        "Azure / GitHub 发布",
+        "打包与校验"
+      ],
+      "status": "单仓模块"
+    },
+    "hagi18n": {
+      "title": "Hagi18n",
+      "summary": "跨项目共享的国际化工具链，负责审计、同步、裁剪与生成多语言资源。",
+      "highlights": [
+        "审计与诊断",
+        "命名空间同步",
+        "生成式 locale 资源"
+      ],
+      "status": "单仓模块"
+    },
+    "desktop": {
+      "title": "HagiCode Desktop",
+      "summary": "负责启动服务、管理安装包、版本、引导流程、许可证与系统状态的 Electron 控制面。",
+      "highlights": [
+        "版本管理",
+        "系统托盘与引导",
+        "主题与语言切换"
+      ],
+      "status": "公开入口"
+    },
+    "webWorkspace": {
+      "title": "Web Workspace",
+      "summary": "浏览器侧工作台，用来管理项目、会话、代码评审、Token 统计与响应式运营视图。",
+      "highlights": [
+        "React 工作台",
+        "SignalR 实时更新",
+        "成就体系与移动端路由"
+      ],
+      "status": "公开入口"
+    },
+    "docs": {
+      "title": "Docs",
+      "summary": "承载安装、工作流、参考资料与版本更新的独立文档与博客面。",
+      "highlights": [
+        "Astro + Starlight",
+        "多语言指南",
+        "博客与 RSS"
+      ],
+      "status": "公开入口"
+    },
+    "site": {
+      "title": "Site",
+      "summary": "官网负责讲清楚生态叙事，展示产品视图，并把访客导向正确的起点。",
+      "highlights": [
+        "多语言落地页",
+        "SEO 与 OG 自动化",
+        "转化入口设计"
+      ],
+      "status": "公开入口"
+    },
+    "dockerCompose": {
+      "title": "Docker Compose Builder",
+      "summary": "用可视化方式生成可直接部署的容器编排配置，不必手写复杂 YAML。",
+      "highlights": [
+        "可视化配置",
+        "Compose 生成",
+        "部署交接"
+      ],
+      "status": "公开入口"
+    },
+    "release": {
+      "title": "Release Grid",
+      "summary": "负责桌面端和服务端安装包的版本协同、产物索引与发布历史组织。",
+      "highlights": [
+        "版本历史",
+        "发布元数据",
+        "产物协调"
+      ],
+      "status": "单仓模块"
+    },
+    "torrent": {
+      "title": "Torrent Grain",
+      "summary": "为大体积安装包提供韧性更强的分发路径，补足生态在重型产物交付上的能力。",
+      "highlights": [
+        "安装包传输",
+        "后台分发",
+        "下载韧性"
+      ],
+      "status": "单仓模块"
+    },
+    "mediaConsole": {
+      "title": "Media Console",
+      "summary": "围绕站点、API 与浏览器自动化构建的媒体运营单仓，用于相邻的内容工作流。",
+      "highlights": [
+        "Next.js 应用",
+        "Browser Service",
+        "共享包"
+      ],
+      "status": "单仓模块"
+    },
+    "soul": {
+      "title": "Soul Builder",
+      "summary": "专注角色 Prompt 组合、整理与导出的创作型产品面。",
+      "highlights": [
+        "Prompt 编排",
+        "视觉化组合",
+        "可导出草稿"
+      ],
+      "status": "单仓模块"
+    },
+    "trait": {
+      "title": "Trait Builder",
+      "summary": "用于结构化特质发现、自我描述与复用型人格输出的检索式构建器。",
+      "highlights": [
+        "特质检索",
+        "构建流程",
+        "可复用输出"
+      ],
+      "status": "单仓模块"
+    }
+  }
+}

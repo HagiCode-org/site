@@ -1,0 +1,209 @@
+{
+  "seo": {
+    "title": "Explore the HagiCode Universe",
+    "description": "Navigate the full HagiCode product universe as a pannable map of apps, services, delivery layers, and experimental fronts."
+  },
+  "ui": {
+    "canvasLabel": "Interactive HagiCode universe map",
+    "controlsLabel": "Map controls",
+    "controls": {
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "reset": "Reset view"
+    }
+  },
+  "root": {
+    "title": "HagiCode Universe",
+    "summary": "One map for the products, infrastructure, and side systems that make the HagiCode ecosystem feel broader than a single app.",
+    "highlights": [
+      "Public entry surfaces",
+      "Runtime and orchestration stack",
+      "Delivery and distribution rails"
+    ],
+    "status": "System map"
+  },
+  "hubs": {
+    "foundation": {
+      "title": "Runtime Core",
+      "summary": "The backend and shared tooling layer that turns product ideas into orchestrated sessions, builds, and reusable infrastructure.",
+      "highlights": [
+        "OpenSpec execution",
+        "Agent orchestration",
+        "Build and i18n foundations"
+      ],
+      "status": "Shared engine"
+    },
+    "surfaces": {
+      "title": "User Surfaces",
+      "summary": "The public and end-user fronts where people discover, install, learn, and run HagiCode across devices.",
+      "highlights": [
+        "Desktop and web",
+        "Docs and marketing",
+        "Localized public entry points"
+      ],
+      "status": "Public-facing"
+    },
+    "delivery": {
+      "title": "Delivery Rails",
+      "summary": "Packaging, deployment, and distribution layers that move HagiCode from build outputs into real installs.",
+      "highlights": [
+        "Container delivery",
+        "Release indexing",
+        "Resilient package transport"
+      ],
+      "status": "Ops-ready"
+    },
+    "labs": {
+      "title": "Labs and Adjacent Tools",
+      "summary": "Exploratory and adjacent products that extend the ecosystem into media workflows, prompt craft, and structured self-building.",
+      "highlights": [
+        "Media operations",
+        "Character composition",
+        "Trait discovery"
+      ],
+      "status": "Experimental front"
+    }
+  },
+  "products": {
+    "core": {
+      "title": "HagiCode Core",
+      "summary": "The Orleans and ASP.NET runtime behind sessions, AI integrations, OpenSpec workflows, persistence, and realtime updates.",
+      "highlights": [
+        "Orleans grains",
+        "SignalR sessions",
+        "Claude and OpenAI adapters"
+      ],
+      "status": "Monorepo module"
+    },
+    "opencode": {
+      "title": "OpenCode",
+      "summary": "A CLI editing layer for multi-LLM workflows, prompt tooling, and AI-driven code changes across repositories.",
+      "highlights": [
+        "CLI-first editing",
+        "Multi-model routing",
+        "Automation-friendly flows"
+      ],
+      "status": "Monorepo module"
+    },
+    "hagibuild": {
+      "title": "HagiBuild",
+      "summary": "The Nuke-based build system that compiles, packages, protects, and publishes .NET deliverables across environments.",
+      "highlights": [
+        "Cross-platform builds",
+        "Azure and GitHub release flow",
+        "Packaging and verification"
+      ],
+      "status": "Monorepo module"
+    },
+    "hagi18n": {
+      "title": "Hagi18n",
+      "summary": "Shared localization tooling for auditing, syncing, pruning, and generating translation resources across projects.",
+      "highlights": [
+        "Audit and doctor",
+        "Namespace sync",
+        "Generated locale bundles"
+      ],
+      "status": "Monorepo module"
+    },
+    "desktop": {
+      "title": "HagiCode Desktop",
+      "summary": "Electron control surface for launching services, managing packages, versions, onboarding, licenses, and system state.",
+      "highlights": [
+        "Version manager",
+        "System tray and onboarding",
+        "Theme and language switching"
+      ],
+      "status": "Public entry"
+    },
+    "webWorkspace": {
+      "title": "Web Workspace",
+      "summary": "The browser-side HagiCode client for projects, sessions, code review, token analytics, and responsive operational views.",
+      "highlights": [
+        "React workspace",
+        "SignalR live updates",
+        "Gamification and mobile route"
+      ],
+      "status": "Public entry"
+    },
+    "docs": {
+      "title": "Docs",
+      "summary": "Standalone documentation and blog surface for installation, workflows, reference material, and release notes.",
+      "highlights": [
+        "Astro + Starlight",
+        "Localized guides",
+        "Blog and RSS"
+      ],
+      "status": "Public entry"
+    },
+    "site": {
+      "title": "Site",
+      "summary": "The public narrative surface that explains the ecosystem, showcases product views, and routes visitors to the right starting point.",
+      "highlights": [
+        "Localized landing pages",
+        "SEO and OG automation",
+        "Conversion surfaces"
+      ],
+      "status": "Public entry"
+    },
+    "dockerCompose": {
+      "title": "Docker Compose Builder",
+      "summary": "A visual builder for composing ready-to-run container deployments without hand-writing complex YAML.",
+      "highlights": [
+        "Visual configuration",
+        "Compose generation",
+        "Deployment handoff"
+      ],
+      "status": "Public entry"
+    },
+    "release": {
+      "title": "Release Grid",
+      "summary": "Artifact and version coordination for the desktop and server packages that ship through the ecosystem.",
+      "highlights": [
+        "Release history",
+        "Version metadata",
+        "Artifact coordination"
+      ],
+      "status": "Monorepo module"
+    },
+    "torrent": {
+      "title": "Torrent Grain",
+      "summary": "Distribution support for large package delivery, giving the ecosystem a resilient path for heavyweight artifacts.",
+      "highlights": [
+        "Package transport",
+        "Background delivery",
+        "Download resilience"
+      ],
+      "status": "Monorepo module"
+    },
+    "mediaConsole": {
+      "title": "Media Console",
+      "summary": "A media operations monorepo with site, API, and browser automation surfaces for adjacent content workflows.",
+      "highlights": [
+        "Next.js app",
+        "Browser service",
+        "Shared packages"
+      ],
+      "status": "Monorepo module"
+    },
+    "soul": {
+      "title": "Soul Builder",
+      "summary": "A focused surface for composing character prompts and exporting polished drafts for downstream creative workflows.",
+      "highlights": [
+        "Prompt authoring",
+        "Visual composition",
+        "Exportable drafts"
+      ],
+      "status": "Monorepo module"
+    },
+    "trait": {
+      "title": "Trait Builder",
+      "summary": "A searchable builder for structured trait discovery, self-description, and reusable personality outputs.",
+      "highlights": [
+        "Trait search",
+        "Builder workflows",
+        "Reusable outputs"
+      ],
+      "status": "Monorepo module"
+    }
+  }
+}
