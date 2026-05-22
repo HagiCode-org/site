@@ -131,6 +131,11 @@ export const SITE_LINKS = {
     prod: '/',
     external: false,
   } as LinkConfig,
+  explore: {
+    dev: '/explore/',
+    prod: '/explore/',
+    external: false,
+  } as LinkConfig,
   github: {
     dev: 'https://github.com/HagiCode-org/site',
     prod: 'https://github.com/HagiCode-org/site',
