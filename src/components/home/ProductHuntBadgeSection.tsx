@@ -1,4 +1,5 @@
 import { getServerTranslation } from '@/i18n/translation-resources';
+import { ExternalLink } from 'lucide-react';
 import styles from './ProductHuntBadgeSection.module.css';
 
 export const PRODUCT_HUNT_BADGE_WIDTH = 250;
@@ -22,10 +23,14 @@ export default function ProductHuntBadgeSection({ locale }: ProductHuntBadgeSect
       <div className="container">
         <div className={styles.card}>
           <div className={styles.copyColumn}>
-            <p className={styles.eyebrow}>{t('productHuntBadge.eyebrow')}</p>
+            <div className={styles.eyebrowRow}>
+              <p className={styles.eyebrow}>{t('productHuntBadge.eyebrow')}</p>
+              <span className={styles.signalTag}>Product Hunt</span>
+            </div>
             <h2 id={`product-hunt-title-${locale}`} className={styles.title}>
               {t('productHuntBadge.title')}
             </h2>
+            <span className={styles.signalRule} aria-hidden="true" />
           </div>
 
           <a
@@ -36,6 +41,13 @@ export default function ProductHuntBadgeSection({ locale }: ProductHuntBadgeSect
             aria-label={t('productHuntBadge.linkLabel')}
             data-product-hunt-entry="homepage-badge"
           >
+            <span className={styles.badgeTopline}>
+              <span className={styles.badgeHint}>Product Hunt</span>
+              <span className={styles.iconShell} aria-hidden="true">
+                <ExternalLink className={styles.badgeIcon} />
+              </span>
+            </span>
+
             <span className={styles.badgeFrame}>
               <img
                 src={PRODUCT_HUNT_BADGE_IMAGE_URL}
@@ -50,7 +62,7 @@ export default function ProductHuntBadgeSection({ locale }: ProductHuntBadgeSect
 
             <span className={styles.badgeMeta}>
               <span className={styles.badgeCta}>{t('productHuntBadge.cta')}</span>
-              <span className={styles.badgeHint}>Product Hunt</span>
+              <span className={styles.badgeSupporting}>{t('productHuntBadge.linkLabel')}</span>
             </span>
           </a>
         </div>

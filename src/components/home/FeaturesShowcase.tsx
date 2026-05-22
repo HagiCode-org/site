@@ -9,7 +9,7 @@
  * - 主题适配: 亮/暗模式对比度优化
  */
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { getSiteAssetUrl } from '@/assets/siteAssetUrls';
 import type { HomepageFeaturesCopy } from '@/lib/homepage-section-copy';
 import styles from './FeaturesShowcase.module.css';
@@ -74,14 +74,13 @@ const AwardIcon = ({ className = '' }: IconProps) => (
 );
 
 const workflowIcons: Record<string, React.ReactElement> = {
-  idea: <ZapIcon className={styles.workflowIcon} />,
-  proposal: <TargetIcon className={styles.workflowIcon} />,
   review: <BrainIcon className={styles.workflowIcon} />,
-  tasks: <TargetIcon className={styles.workflowIcon} />,
-  code: <BrainIcon className={styles.workflowIcon} />,
-  test: <TargetIcon className={styles.workflowIcon} />,
-  refactor: <BrainIcon className={styles.workflowIcon} />,
-  docs: <TargetIcon className={styles.workflowIcon} />,
+  scaffold: <TargetIcon className={styles.workflowIcon} />,
+  spec: <TargetIcon className={styles.workflowIcon} />,
+  design: <BrainIcon className={styles.workflowIcon} />,
+  tasks: <ZapIcon className={styles.workflowIcon} />,
+  validate: <TargetIcon className={styles.workflowIcon} />,
+  apply: <ZapIcon className={styles.workflowIcon} />,
   archive: <AwardIcon className={styles.workflowIcon} />,
 };
 
@@ -220,29 +219,29 @@ function SupportedCliIcon({ providerKey }: CliIconProps) {
   }
 }
 
-const smartStageLabels = ['Idea', 'Proposal', 'Review', 'Tasks', 'Code', 'Test', 'Refactor', 'Docs', 'Archive'];
+const zeroPad = (value: number) => String(value).padStart(2, '0');
 
 function SmartFeature({ copy }: { copy: HomepageFeaturesCopy['smart'] }) {
+  const prefersReducedMotion = useReducedMotion();
   const [activeStage, setActiveStage] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  const stages = smartStageLabels.map((label, index) => ({
-    id: label.toLowerCase(),
-    label,
-    desc: copy.workflowDescriptions[index] ?? '',
-  }));
+  const stages = copy.workflowStages;
 
   useEffect(() => {
-    if (isPaused) {
+    if (isPaused || prefersReducedMotion) {
       return undefined;
     }
 
     const interval = setInterval(() => {
       setActiveStage((prev) => (prev + 1) % stages.length);
-    }, 1500);
+    }, 1700);
 
     return () => clearInterval(interval);
-  }, [isPaused, stages.length]);
+  }, [isPaused, prefersReducedMotion, stages.length]);
+
+  const currentStage = stages[activeStage];
+  const progressRatio = (activeStage + 1) / stages.length;
 
   return (
     <motion.div
@@ -264,79 +263,148 @@ function SmartFeature({ copy }: { copy: HomepageFeaturesCopy['smart'] }) {
             <p className={styles.featureSubtitle}>{copy.subtitle}</p>
           </div>
 
-          <div className={styles.efficiencyHighlight}>
-            <motion.div
-              className={styles.efficiencyValue}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3, type: 'spring' }}
-            >
-              <span className={styles.efficiencyNumber}>300</span>
-              <span className={styles.efficiencyPercent}>%</span>
-            </motion.div>
-            <div className={styles.efficiencyLabel}>{copy.efficiency}</div>
-            <div className={styles.efficiencyChart}>
+          <div className={styles.smartIntroGrid}>
+            <div className={styles.efficiencyHighlight}>
+              <div className={styles.efficiencySignal}>
+                <motion.span
+                  key={currentStage.key}
+                  className={styles.efficiencySignalStage}
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {zeroPad(activeStage + 1)} / {zeroPad(stages.length)} · {currentStage.label}
+                </motion.span>
+                <motion.span
+                  key={`${currentStage.key}-desc`}
+                  className={styles.efficiencySignalDesc}
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {currentStage.desc}
+                </motion.span>
+              </div>
+
               <motion.div
-                className={`${styles.chartBar} ${styles.barShort}`}
-                initial={{ height: 0 }}
-                animate={{ height: '30%' }}
-                transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
+                className={styles.efficiencyValue}
+                initial={prefersReducedMotion ? false : { scale: 0.92, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.55, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               >
-                <span className={styles.chartLabel}>{copy.traditional}</span>
+                <span className={styles.efficiencyNumber}>300</span>
+                <span className={styles.efficiencyPercent}>%</span>
               </motion.div>
-              <motion.div
-                className={`${styles.chartBar} ${styles.barFull}`}
-                initial={{ height: 0 }}
-                animate={{ height: '100%' }}
-                transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
-              >
-                <span className={styles.chartLabel}>{copy.hagicode}</span>
-              </motion.div>
+              <div className={styles.efficiencyLabel}>{copy.efficiency}</div>
+              <div className={styles.efficiencyChart}>
+                <div className={`${styles.chartBar} ${styles.barShort}`}>
+                  <motion.span
+                    className={`${styles.chartFill} ${styles.chartFillMuted}`}
+                    style={{ transformOrigin: 'center bottom' }}
+                    initial={prefersReducedMotion ? false : { scaleY: 0 }}
+                    animate={{ scaleY: 0.3 }}
+                    transition={{ duration: 0.65, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  />
+                  <span className={styles.chartLabel}>{copy.traditional}</span>
+                </div>
+                <div className={`${styles.chartBar} ${styles.barFull}`}>
+                  <motion.span
+                    className={`${styles.chartFill} ${styles.chartFillPrimary}`}
+                    style={{ transformOrigin: 'center bottom' }}
+                    initial={prefersReducedMotion ? false : { scaleY: 0 }}
+                    animate={{ scaleY: 1 }}
+                    transition={{ duration: 0.65, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  />
+                  <span className={styles.chartLabel}>{copy.hagicode}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.smartNarrative}>
+              <div className={styles.workflowSummary}>
+                <div className={styles.workflowSummaryTopline}>
+                  <span className={styles.workflowSummaryCount}>{zeroPad(activeStage + 1)} / {zeroPad(stages.length)}</span>
+                  <motion.span
+                    key={`${currentStage.key}-pill`}
+                    className={styles.workflowSummaryPill}
+                    initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    {currentStage.label}
+                  </motion.span>
+                </div>
+                <motion.p
+                  key={`${currentStage.key}-summary`}
+                  className={styles.workflowSummaryDesc}
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {currentStage.desc}
+                </motion.p>
+                <div className={styles.workflowProgress}>
+                  <motion.div
+                    className={styles.progressFill}
+                    style={{ transformOrigin: 'left center' }}
+                    animate={{ scaleX: progressRatio }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                </div>
+              </div>
+
+              <p className={styles.featureDesc}>{copy.description}</p>
             </div>
           </div>
-
-          <p className={styles.featureDesc}>{copy.description}</p>
         </div>
 
         <div className={styles.workflowAnimation}>
-          <div className={styles.workflowGrid}>
+          <div className={styles.workflowBoard}>
             {stages.map((stage, index) => (
-              <motion.div
-                key={stage.id}
-                className={`${styles.workflowNode} ${activeStage === index ? styles.active : ''}`}
-                animate={{
-                  opacity: activeStage === index ? 1 : 0.4,
-                  scale: activeStage === index ? 1.05 : 1,
+              <button
+                type="button"
+                key={stage.key}
+                className={styles.workflowCard}
+                data-state={index < activeStage ? 'done' : index === activeStage ? 'active' : 'idle'}
+                onClick={() => {
+                  setActiveStage(index);
+                  setIsPaused(true);
                 }}
-                transition={{ duration: 0.3 }}
-                whileHover={{ scale: 1.08 }}
-                onClick={() => setActiveStage(index)}
-                style={{ cursor: 'pointer' }}
               >
-                <div className={styles.workflowIconWrapper}>
-                  {workflowIcons[stage.id] || <ZapIcon className={styles.workflowIcon} />}
-                  {activeStage === index ? (
-                    <motion.div
-                      className={styles.iconGlow}
-                      layoutId="activeGlow"
-                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                <div className={styles.workflowStepMarker}>
+                  {workflowIcons[stage.key] || <ZapIcon className={styles.workflowIcon} />}
+                  <span className={styles.workflowStepIndex}>{zeroPad(index + 1)}</span>
+                  {index === activeStage && !prefersReducedMotion ? (
+                    <motion.span
+                      className={styles.workflowStepPulse}
+                      animate={{ scale: [1, 1.24, 1], opacity: [0.26, 0, 0.26] }}
+                      transition={{ duration: 1.4, repeat: Infinity, ease: 'easeOut' }}
                     />
                   ) : null}
                 </div>
-                <span className={styles.workflowLabel}>{stage.label}</span>
-                <span className={styles.workflowDesc}>{stage.desc}</span>
-                {index < stages.length - 1 ? (
-                  <div className={styles.nodeConnector} data-active={activeStage >= index ? 'true' : 'false'} />
+                <div className={styles.workflowCardContent}>
+                  <span className={styles.workflowLabel}>{stage.label}</span>
+                  <span className={styles.workflowDesc}>{stage.desc}</span>
+                </div>
+                <div className={styles.workflowStepMeter}>
+                  <motion.span
+                    className={styles.workflowStepMeterFill}
+                    style={{ transformOrigin: 'left center' }}
+                    animate={{
+                      scaleX: index < activeStage ? 1 : index === activeStage ? 0.72 : 0.18,
+                    }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                </div>
+                {index === activeStage && !prefersReducedMotion ? (
+                  <motion.span
+                    className={styles.workflowCardGlow}
+                    animate={{ opacity: [0.08, 0.18, 0.08] }}
+                    transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+                  />
                 ) : null}
-              </motion.div>
+              </button>
             ))}
-          </div>
-          <div className={styles.workflowProgress}>
-            <motion.div
-              className={styles.progressFill}
-              animate={{ width: `${((activeStage + 1) / stages.length) * 100}%` }}
-              transition={{ duration: 0.5, ease: 'easeInOut' }}
-            />
           </div>
           {isPaused ? (
             <motion.div className={styles.pausedIndicator} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -350,6 +418,10 @@ function SmartFeature({ copy }: { copy: HomepageFeaturesCopy['smart'] }) {
 }
 
 function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] }) {
+  const prefersReducedMotion = useReducedMotion();
+  const [activityTick, setActivityTick] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
@@ -370,8 +442,39 @@ function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] 
     },
   ].filter((lane) => lane.key);
 
+  useEffect(() => {
+    if (isPaused || prefersReducedMotion) {
+      return undefined;
+    }
+
+    const interval = setInterval(() => {
+      setActivityTick((prev) => prev + 1);
+    }, 1600);
+
+    return () => clearInterval(interval);
+  }, [isPaused, prefersReducedMotion]);
+
+  const activeLane = agentLanes.length > 0 ? activityTick % agentLanes.length : 0;
+  const throughputScales = [0, 1, 2].map((laneIndex) => {
+    const phase = (activityTick + laneIndex) % 3;
+
+    if (phase === 0) {
+      return 0.38;
+    }
+
+    if (phase === 1) {
+      return 0.74;
+    }
+
+    return 1;
+  });
+
   return (
-    <motion.div className={`${styles.featureZone} ${styles.convenient}`}>
+    <motion.div
+      className={`${styles.featureZone} ${styles.convenient}`}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       <div className={styles.hudCorner} data-position="top-left" />
       <div className={styles.hudCorner} data-position="top-right" />
       <div className={styles.hudCorner} data-position="bottom-left" />
@@ -385,42 +488,93 @@ function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] 
             <p className={styles.featureSubtitle}>{copy.subtitle}</p>
           </div>
 
-          <div className={styles.quotaComparison}>
-            <div className={styles.quotaItem}>
-              <div className={styles.quotaBar}>
-                <motion.div
-                  className={styles.quotaFill}
-                  style={{ background: 'linear-gradient(135deg, #666, #999)' }}
-                  animate={{ width: '22%' }}
-                  transition={{ duration: 1, delay: 0.3 }}
-                />
-                <div className={styles.quotaGlow} />
+          <div className={styles.convenientMetricsGrid}>
+            <div className={styles.quotaComparison}>
+              <div className={styles.quotaItem}>
+                <span className={styles.quotaLabel}>{copy.traditional}</span>
+                <div className={`${styles.quotaStack} ${styles.quotaStackSerial}`}>
+                  <div className={styles.quotaLane}>
+                    <motion.span
+                      className={`${styles.quotaLaneFill} ${styles.quotaLaneFillMuted}`}
+                      style={{ transformOrigin: 'left center' }}
+                      animate={{ scaleX: 0.22 }}
+                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                    {!prefersReducedMotion ? (
+                      <motion.span
+                        className={styles.quotaPacket}
+                        animate={{ x: ['-14%', '130%'] }}
+                        transition={{ duration: 2.4, repeat: Infinity, ease: 'linear' }}
+                      />
+                    ) : null}
+                  </div>
+                </div>
               </div>
-              <span className={styles.quotaLabel}>{copy.traditional}</span>
-            </div>
-            <div className={styles.quotaArrow}>
-              <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1, repeat: Infinity, repeatDelay: 0.5 }}>
-                →
-              </motion.span>
-            </div>
-            <div className={styles.quotaItem}>
-              <div className={styles.quotaBar}>
-                <motion.div
-                  className={styles.quotaFill}
-                  style={{ background: 'var(--gradient-primary)' }}
-                  animate={{ width: '100%' }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                />
-                <div className={styles.quotaGlow} />
+              <div className={styles.quotaArrow}>
+                <motion.span
+                  animate={prefersReducedMotion ? { opacity: 1 } : { opacity: [0.45, 1, 0.45], x: [0, 4, 0] }}
+                  transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  →
+                </motion.span>
               </div>
-              <span className={styles.quotaLabel}>{copy.multiThread}</span>
+              <div className={styles.quotaItem}>
+                <span className={styles.quotaLabel}>{copy.multiThread}</span>
+                <div className={`${styles.quotaStack} ${styles.quotaStackParallel}`}>
+                  {throughputScales.map((scale, laneIndex) => (
+                    <div key={laneIndex} className={styles.quotaLane}>
+                      <motion.span
+                        className={`${styles.quotaLaneFill} ${styles.quotaLaneFillPrimary}`}
+                        style={{ transformOrigin: 'left center' }}
+                        animate={{ scaleX: scale }}
+                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                      />
+                      {!prefersReducedMotion ? (
+                        <motion.span
+                          className={styles.quotaPacket}
+                          data-parallel="true"
+                          animate={{ x: ['-14%', '130%'] }}
+                          transition={{ duration: 1.35, repeat: Infinity, ease: 'linear', delay: laneIndex * 0.18 }}
+                        />
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <motion.div
+              className={styles.boostRange}
+              initial={prefersReducedMotion ? false : { scale: 0.97, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.45, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className={styles.boostSummary}>
+                <span className={styles.boostLabel}>{copy.boost}</span>
+                <span className={styles.boostValue}>{copy.boostValue}</span>
+              </div>
+              <div className={styles.boostLanes}>
+                {agentLanes.map((lane, index) => (
+                  <span key={lane.key} className={styles.boostLaneDot} data-active={activeLane === index ? 'true' : 'false'} />
+                ))}
+              </div>
+            </motion.div>
+
+            <div className={styles.supportedProvidersPanel}>
+              <div className={styles.supportedProvidersTitle}>{copy.agentMatrix.supportedProvidersTitle}</div>
+              <div className={styles.supportedProvidersGrid}>
+                {copy.agentMatrix.supportedProviders.map((provider) => (
+                  <span key={provider.key} className={styles.supportedProviderPill}>
+                    <span className={styles.supportedProviderIcon} data-provider={provider.key} aria-hidden="true">
+                      <SupportedCliIcon providerKey={provider.key} />
+                    </span>
+                    <span className={styles.supportedProviderName}>{provider.name}</span>
+                  </span>
+                ))}
+              </div>
+              <p className={styles.supportedProvidersNote}>{copy.agentMatrix.supportedProvidersNote}</p>
             </div>
           </div>
-
-          <motion.div className={styles.boostRange} initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 0.7 }}>
-            <span className={styles.boostLabel}>{copy.boost}</span>
-            <span className={styles.boostValue}>{copy.boostValue}</span>
-          </motion.div>
 
           <p className={styles.featureDesc}>{copy.description}</p>
         </div>
@@ -431,57 +585,76 @@ function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] 
             <span className={styles.parallelBadge}>{copy.agentMatrix.badge}</span>
           </div>
 
-          <div className={styles.supportedProvidersPanel}>
-            <div className={styles.supportedProvidersTitle}>{copy.agentMatrix.supportedProvidersTitle}</div>
-            <div className={styles.supportedProvidersGrid}>
-              {copy.agentMatrix.supportedProviders.map((provider) => (
-                <span key={provider.key} className={styles.supportedProviderPill}>
-                  <span className={styles.supportedProviderIcon} data-provider={provider.key} aria-hidden="true">
-                    <SupportedCliIcon providerKey={provider.key} />
-                  </span>
-                  <span className={styles.supportedProviderName}>{provider.name}</span>
-                </span>
-              ))}
-            </div>
-            <p className={styles.supportedProvidersNote}>{copy.agentMatrix.supportedProvidersNote}</p>
-          </div>
-
           <div className={styles.agentMatrix}>
             {agentLanes.map((lane, index) => (
               <motion.div
                 key={lane.key}
                 className={styles.agentLane}
                 data-agent={lane.key}
+                data-active={activeLane === index ? 'true' : 'false'}
                 initial="hidden"
                 animate="visible"
                 variants={itemVariants}
                 transition={{ delay: 0.15 * index }}
               >
                 <div className={styles.agentInfo}>
-                  <div className={styles.agentIconBadge}>{lane.icon}</div>
-                  <div>
-                    <div className={styles.agentName}>{lane.name}</div>
-                    <div className={styles.agentRole}>{lane.role}</div>
+                  <div className={styles.agentInfoMain}>
+                    <div className={styles.agentIconBadge}>{lane.icon}</div>
+                    <div>
+                      <div className={styles.agentName}>{lane.name}</div>
+                      <div className={styles.agentRole}>{lane.role}</div>
+                    </div>
+                  </div>
+                  <div className={styles.agentLaneMeter}>
+                    <motion.span
+                      className={styles.agentLaneMeterFill}
+                      style={{ transformOrigin: 'left center' }}
+                      animate={{ scaleX: activeLane === index ? 1 : 0.58, opacity: activeLane === index ? 1 : 0.72 }}
+                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    />
                   </div>
                 </div>
 
-                <div className={styles.instanceStrip}>
-                  {lane.instances.map((instance) => (
-                    <motion.span
-                      key={instance}
-                      className={styles.instancePill}
-                      animate={{ opacity: [0.82, 1, 0.82] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
-                    >
-                      {instance}
-                    </motion.span>
-                  ))}
+                <div className={styles.agentQueue}>
+                  {lane.instances.map((instance, instanceIndex) => {
+                    const phase = (activityTick + index + instanceIndex) % 4;
+
+                    return (
+                      <div key={instance} className={styles.agentJob} data-phase={String(phase)}>
+                        <div className={styles.agentJobTopline}>
+                          <span className={styles.agentJobName}>{instance}</span>
+                          <span className={styles.agentJobIndicator} data-active={phase >= 2 ? 'true' : 'false'} />
+                        </div>
+                        <div className={styles.agentJobTrack}>
+                          <motion.span
+                            className={styles.agentJobFill}
+                            style={{ transformOrigin: 'left center' }}
+                            animate={{
+                              scaleX: phase === 0 ? 0.16 : phase === 1 ? 0.48 : phase === 2 ? 0.82 : 1,
+                            }}
+                            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                          />
+                          {!prefersReducedMotion && phase !== 0 ? (
+                            <motion.span
+                              className={styles.agentJobPulse}
+                              animate={{ x: ['-8%', '108%'], opacity: [0, 0.78, 0] }}
+                              transition={{ duration: 1.15, repeat: Infinity, ease: 'easeInOut', delay: instanceIndex * 0.14 }}
+                            />
+                          ) : null}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <motion.div className={styles.agentStatus} animate={{ opacity: [1, 0.72, 1] }} transition={{ duration: 2, repeat: Infinity }}>
+          <motion.div
+            className={styles.agentStatus}
+            animate={prefersReducedMotion ? { opacity: 1 } : { opacity: [0.72, 1, 0.72] }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+          >
             <span className={styles.statusDot} />
             {copy.agentMatrix.status}
           </motion.div>
