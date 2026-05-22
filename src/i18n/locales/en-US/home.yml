@@ -54,35 +54,32 @@ features:
     efficiency: Efficiency Boost
     traditional: Traditional
     hagicode: Hagicode
-    description: A complete 9-stage proposal workflow from idea to archive, with AI assistance throughout. Boost your coding efficiency by 3x.
+    description: "OpenSpec turns change delivery into a reusable path: review context, scaffold the proposal, draft spec deltas, validate strictly, apply ordered tasks, then archive the change."
     workflow:
-      idea:
-        label: Idea
-        desc: Start from idea
-      proposal:
-        label: Proposal
-        desc: AI generates proposal
       review:
         label: Review
-        desc: Auto review
+        desc: Inspect the current project state, existing specs, and related code before drafting anything.
+      scaffold:
+        label: Scaffold
+        desc: Choose a change-id and create proposal.md, tasks.md, and design.md when needed.
+      spec:
+        label: Spec
+        desc: Translate the change into capability-level spec deltas with explicit requirements.
+      design:
+        label: Design
+        desc: Capture architecture and trade-offs in design.md when the change spans systems.
       tasks:
         label: Tasks
-        desc: Task breakdown
-      code:
-        label: Code
-        desc: Smart coding
-      test:
-        label: Test
-        desc: Auto testing
-      refactor:
-        label: Refactor
-        desc: Code refactor
-      docs:
-        label: Docs
-        desc: Docs generation
+        desc: Break the work into small, verifiable items with ordering and parallelism made clear.
+      validate:
+        label: Validate
+        desc: Run openspec validate in strict mode and clear every issue before execution.
+      apply:
+        label: Apply
+        desc: Read proposal, design, and tasks, then implement in order while checking items off.
       archive:
         label: Archive
-        desc: Knowledge archive
+        desc: Move the completed change into archive and feed the outcome back into the long-term spec history.
     paused: Paused - Click node to switch
   convenient:
     badge: EFFICIENT
@@ -230,7 +227,7 @@ pricing:
   docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
   title: Editions & Pricing
   limitTitle: Proposal concurrency rule
-  limitDescription: Free and Steam both include a 3-proposal cap. Proposals in generating, executing, and archiving all count toward the same limit. Turbo Engine DLC expands that limit to 32.
+  limitDescription: Every edition starts at a default cap of 3 concurrent proposals. You can overclock that limit to 6 for free, and proposals in generating, executing, and archiving all count toward the same budget.
   plusTitle: Hagicode Plus note
   plusDescription: Hagicode Plus is the official Steam bundle that combines the main Steam edition with Turbo Engine DLC.
   featureHeader: Feature
@@ -260,10 +257,6 @@ pricing:
     customLogo: Custom logo
     customTitle: Custom title
     customCoAuthoredByInfo: Custom Co-Authored-By info
-    steamCloudAchievements: Steam cloud achievements
-    freeDlcSupport: Free DLC support
-    steamWorkshopSupport: Steam Workshop support
-    cloudSaveSupport: Cloud save support
   values:
     free: Free
     viewOnSteam: View on Steam
@@ -280,15 +273,15 @@ pricing:
         category: Free DLC
         title: Hagicode - All Beauties Pack
         price: Free
-        description: An extra cosmetics pack for Steam users.
+        description: An extra cosmetics pack.
         bullets:
           - Adds 1,000 anime-girl-style avatars
           - Leaves room for more beauty-themed content in future updates
       turboEngine:
         category: Performance DLC
         title: 'Hagicode: Turbo Engine DLC'
-        price: Steam
-        description: You can buy this DLC on its own to expand the original proposal concurrency cap, unlock copy switching, add five avatar packs with 10 standalone avatars each, enable custom avatar uploads, customize the top-left logo and title, and align AI-generated commit trailers with your own Co-Authored-By naming rules. We will usually highlight a bundled purchase option called Hagicode Plus so the overall purchase price stays lower. Please check our store page for the latest changes.
+        price: Pending
+        description: Expands the proposal concurrency cap and unlocks copy switching, avatar packs, custom avatar uploads, a custom logo, a custom title, and custom Co-Authored-By information.
         bullets:
           - Supports custom top-left logos and titles
           - Includes five avatar packs with 10 selectable avatars in each pack
@@ -299,8 +292,8 @@ pricing:
       hagicodePlus:
         category: Bundle
         title: Hagicode Plus
-        price: Steam
-        description: The official Steam bundle that combines the Hagicode base edition with Turbo Engine DLC in one purchase path.
+        price: Pending
+        description: A simplified label for the base edition plus Turbo Engine DLC.
         bullets:
           - Bundles the main Steam edition and Turbo Engine DLC together
           - Keeps the higher 32-proposal concurrency upgrade attached to the bundle path
@@ -308,7 +301,7 @@ pricing:
       sponsor:
         category: Supporter DLC
         title: Hagicode - Sponsor Pack
-        price: Steam
+        price: Pending
         description: If you think Hagicode is genuinely excellent and want to provide direct financial support, buying Sponsor Pack gives the project more fuel and helps us keep it running for the long term.
         bullets:
           - One exclusive dark theme

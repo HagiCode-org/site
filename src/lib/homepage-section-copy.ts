@@ -1,9 +1,9 @@
 import { getSteamProductImageRecord, type SteamProductImageRecord } from '@/data/steamImageDescriptors';
-import { FEATURE_SITE_DLC_ENABLED } from '@/config/features';
 import { resolveSiteLocale } from '@/i18n/locale-metadata';
 import { getLocaleResourceValue } from '@/i18n/resource-lookup';
 import { getDocsAbsoluteUrl, getLinkWithLocale } from '@/lib/shared/links';
 import { DEFAULT_STEAM_STORE_URL } from '@/lib/shared/steam-store-link';
+import { DEFAULT_WINDOWS_STORE_URL } from '@/lib/shared/windows-store-link';
 
 type LocaleInput = string | null | undefined;
 
@@ -86,7 +86,11 @@ export interface HomepageFeaturesCopy {
     hagicode: string;
     description: string;
     paused: string;
-    workflowDescriptions: string[];
+    workflowStages: Array<{
+      key: string;
+      label: string;
+      desc: string;
+    }>;
   };
   convenient: {
     badge: string;
@@ -199,17 +203,20 @@ export function getHomepageFeaturesCopy(locale: LocaleInput): HomepageFeaturesCo
       hagicode: getHomeString(resolvedLocale, 'features.smart.hagicode'),
       description: getHomeString(resolvedLocale, 'features.smart.description'),
       paused: getHomeString(resolvedLocale, 'features.smart.paused'),
-      workflowDescriptions: [
-        getHomeString(resolvedLocale, 'features.smart.workflow.idea.desc'),
-        getHomeString(resolvedLocale, 'features.smart.workflow.proposal.desc'),
-        getHomeString(resolvedLocale, 'features.smart.workflow.review.desc'),
-        getHomeString(resolvedLocale, 'features.smart.workflow.tasks.desc'),
-        getHomeString(resolvedLocale, 'features.smart.workflow.code.desc'),
-        getHomeString(resolvedLocale, 'features.smart.workflow.test.desc'),
-        getHomeString(resolvedLocale, 'features.smart.workflow.refactor.desc'),
-        getHomeString(resolvedLocale, 'features.smart.workflow.docs.desc'),
-        getHomeString(resolvedLocale, 'features.smart.workflow.archive.desc'),
-      ],
+      workflowStages: [
+        'review',
+        'scaffold',
+        'spec',
+        'design',
+        'tasks',
+        'validate',
+        'apply',
+        'archive',
+      ].map((key) => ({
+        key,
+        label: getHomeString(resolvedLocale, 'features.smart.workflow.' + key + '.label'),
+        desc: getHomeString(resolvedLocale, 'features.smart.workflow.' + key + '.desc'),
+      })),
     },
     convenient: {
       badge: getHomeString(resolvedLocale, 'features.convenient.badge'),
@@ -226,8 +233,8 @@ export function getHomepageFeaturesCopy(locale: LocaleInput): HomepageFeaturesCo
         status: getHomeString(resolvedLocale, 'features.convenient.agentMatrix.status'),
         supportedProvidersTitle: getHomeString(resolvedLocale, 'features.convenient.agentMatrix.supportedNames.title'),
         supportedProvidersNote: isChineseLocale
-          ? 'OpenCode 现在可以把共享的 OmniRoute 目录投影到 Hero 的模型默认项里，同时继续允许分支级自定义原始模型标识。'
-          : 'OpenCode can load the shared OmniRoute catalog into hero model defaults while keeping custom raw model identifiers editable for branch-specific workflows.',
+          ? 'OpenCode 可继承共享的 OmniRoute 模型目录，同时保留分支级原始模型覆写。'
+          : 'OpenCode can inherit the shared OmniRoute catalog while keeping branch-level raw model overrides editable.',
         supportedProviders: [
           'ClaudeCodeCli',
           'CodexCli',
@@ -377,20 +384,6 @@ function getPendingLabel(locale: string): string {
   return locale.toLowerCase().startsWith('zh') ? '待定' : 'Pending';
 }
 
-function formatPendingTitle(title: string, locale: string): string {
-  const pendingLabel = getPendingLabel(locale);
-  return locale.toLowerCase().startsWith('zh')
-    ? `${title}（${pendingLabel}）`
-    : `${title} (${pendingLabel})`;
-}
-
-function createPendingCell(locale: string): FeatureCell {
-  return {
-    type: 'text',
-    value: getPendingLabel(locale),
-  };
-}
-
 export type ActionLink = {
   label: string;
   href: string;
@@ -462,7 +455,6 @@ export type SteamPreviewRecordMap = Record<string, SteamProductImageRecord | nul
 
 export function getPricingContent(locale: LocaleInput): PricingContent {
   const resolvedLocale = resolveSiteLocale(locale);
-  const pendingLabel = getPendingLabel(resolvedLocale);
   const pricingRows = {
     pricing: getHomeString(resolvedLocale, 'pricing.rows.pricing'),
     allFreeFeaturesIncluded: getHomeString(resolvedLocale, 'pricing.rows.allFreeFeaturesIncluded'),
@@ -482,14 +474,12 @@ export function getPricingContent(locale: LocaleInput): PricingContent {
     customLogo: getHomeString(resolvedLocale, 'pricing.rows.customLogo'),
     customTitle: getHomeString(resolvedLocale, 'pricing.rows.customTitle'),
     customCoAuthoredByInfo: getHomeString(resolvedLocale, 'pricing.rows.customCoAuthoredByInfo'),
-    steamCloudAchievements: getHomeString(resolvedLocale, 'pricing.rows.steamCloudAchievements'),
-    freeDlcSupport: getHomeString(resolvedLocale, 'pricing.rows.freeDlcSupport'),
-    steamWorkshopSupport: getHomeString(resolvedLocale, 'pricing.rows.steamWorkshopSupport'),
-    cloudSaveSupport: getHomeString(resolvedLocale, 'pricing.rows.cloudSaveSupport'),
   };
   const pricingValues = {
     free: getHomeString(resolvedLocale, 'pricing.values.free'),
+    viewOnSteam: getHomeString(resolvedLocale, 'pricing.values.viewOnSteam'),
   };
+  const pendingLabel = getPendingLabel(resolvedLocale);
   const dlcCopy = {
     label: getHomeString(resolvedLocale, 'pricing.dlc.label'),
     title: getHomeString(resolvedLocale, 'pricing.dlc.title'),
@@ -549,125 +539,85 @@ export function getPricingContent(locale: LocaleInput): PricingContent {
   };
   const desktopHref = getLinkWithLocale('desktop', resolvedLocale);
   const containerHref = getLinkWithLocale('container', resolvedLocale);
-  const pendingSteamCell = createPendingCell(resolvedLocale);
-  const pendingPlusCell = createPendingCell(resolvedLocale);
-  const rows: Array<Omit<FeatureRow, 'steam' | 'turbo'>> = [
+  const rows: FeatureRow[] = [
     {
       feature: pricingRows.pricing,
       desktop: { type: 'text', value: pricingValues.free },
       container: { type: 'text', value: pricingValues.free },
+      steam: { type: 'text', value: pricingValues.free },
+      turbo: {
+        type: 'text',
+        value: pendingLabel,
+      },
     },
-    { feature: pricingRows.allFreeFeaturesIncluded, desktop: { type: 'check' }, container: { type: 'check' } },
-    { feature: pricingRows.vault, desktop: { type: 'check' }, container: { type: 'check' } },
-    { feature: pricingRows.skills, desktop: { type: 'check' }, container: { type: 'check' } },
-    { feature: pricingRows.proposalWorkflow, desktop: { type: 'check' }, container: { type: 'check' } },
-    { feature: pricingRows.localAchievements, desktop: { type: 'check' }, container: { type: 'check' } },
-    { feature: pricingRows.allAgentCliIntegrations, desktop: { type: 'check' }, container: { type: 'check' } },
-    { feature: pricingRows.speechRecognition, desktop: { type: 'check' }, container: { type: 'check' } },
-    { feature: pricingRows.omniRouteIntegration, desktop: { type: 'check' }, container: { type: 'check' } },
-    { feature: pricingRows.githubIntegration, desktop: { type: 'check' }, container: { type: 'check' } },
-    { feature: pricingRows.gitManagement, desktop: { type: 'check' }, container: { type: 'check' } },
-    { feature: pricingRows.maximumConcurrentProposals, desktop: { type: 'text', value: '3' }, container: { type: 'text', value: '3' } },
-    { feature: pricingRows.copySwitchingSupport, desktop: { type: 'cross' }, container: { type: 'cross' } },
-    { feature: pricingRows.turboEngineAvatarPacks, desktop: { type: 'cross' }, container: { type: 'cross' } },
-    { feature: pricingRows.customAvatarUploads, desktop: { type: 'cross' }, container: { type: 'cross' } },
-    { feature: pricingRows.customLogo, desktop: { type: 'cross' }, container: { type: 'cross' } },
-    { feature: pricingRows.customTitle, desktop: { type: 'cross' }, container: { type: 'cross' } },
-    { feature: pricingRows.customCoAuthoredByInfo, desktop: { type: 'cross' }, container: { type: 'cross' } },
-    { feature: pricingRows.steamCloudAchievements, desktop: { type: 'cross' }, container: { type: 'cross' } },
-    { feature: pricingRows.freeDlcSupport, desktop: { type: 'cross' }, container: { type: 'cross' } },
-    { feature: pricingRows.steamWorkshopSupport, desktop: { type: 'cross' }, container: { type: 'cross' } },
-    { feature: pricingRows.cloudSaveSupport, desktop: { type: 'cross' }, container: { type: 'cross' } },
+    { feature: pricingRows.allFreeFeaturesIncluded, desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
+    { feature: pricingRows.vault, desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
+    { feature: pricingRows.skills, desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
+    { feature: pricingRows.proposalWorkflow, desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
+    { feature: pricingRows.localAchievements, desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
+    { feature: pricingRows.allAgentCliIntegrations, desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
+    { feature: pricingRows.speechRecognition, desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
+    { feature: pricingRows.omniRouteIntegration, desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
+    { feature: pricingRows.githubIntegration, desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
+    { feature: pricingRows.gitManagement, desktop: { type: 'check' }, container: { type: 'check' }, steam: { type: 'check' }, turbo: { type: 'check' } },
+    {
+      feature: pricingRows.maximumConcurrentProposals,
+      desktop: { type: 'text', value: '6' },
+      container: { type: 'text', value: '6' },
+      steam: { type: 'text', value: '6' },
+      turbo: { type: 'text', value: '32' },
+    },
+    { feature: pricingRows.copySwitchingSupport, desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
+    { feature: pricingRows.turboEngineAvatarPacks, desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
+    { feature: pricingRows.customAvatarUploads, desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
+    { feature: pricingRows.customLogo, desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
+    { feature: pricingRows.customTitle, desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
+    { feature: pricingRows.customCoAuthoredByInfo, desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
   ];
-  const rowsWithPendingColumns: FeatureRow[] = rows.map((row) => ({
-    ...row,
-    steam: pendingSteamCell,
-    turbo: pendingPlusCell,
-  }));
-  const dlcItems = FEATURE_SITE_DLC_ENABLED
-    ? [
-        {
-          category: dlcCopy.allBeauties.category,
-          title: dlcCopy.allBeauties.title,
-          price: dlcCopy.allBeauties.price,
-          description: dlcCopy.allBeauties.description,
-          bullets: dlcCopy.allBeauties.bullets,
-          action: { label: dlcCopy.openSteam, href: DEFAULT_STEAM_STORE_URL, external: true },
-        },
-        {
-          category: dlcCopy.turboEngine.category,
-          productKey: 'turbo-engine',
-          title: dlcCopy.turboEngine.title,
-          price: dlcCopy.turboEngine.price,
-          description: dlcCopy.turboEngine.description,
-          bullets: dlcCopy.turboEngine.bullets,
-          action: { label: dlcCopy.openSteam, href: TURBO_ENGINE_STEAM_STORE_URL, external: true },
-        },
-        {
-          category: dlcCopy.hagicodePlus.category,
-          productKey: 'hagicode-plus',
-          title: dlcCopy.hagicodePlus.title,
-          price: dlcCopy.hagicodePlus.price,
-          description: dlcCopy.hagicodePlus.description,
-          bullets: dlcCopy.hagicodePlus.bullets,
-          action: { label: dlcCopy.openSteam, href: HAGICODE_PLUS_BUNDLE_STEAM_URL, external: true },
-        },
-        {
-          category: dlcCopy.sponsor.category,
-          title: dlcCopy.sponsor.title,
-          price: dlcCopy.sponsor.price,
-          description: dlcCopy.sponsor.description,
-          bullets: dlcCopy.sponsor.bullets,
-          action: { label: dlcCopy.openSteam, href: DEFAULT_STEAM_STORE_URL, external: true },
-          featured: 'sponsor' as const,
-        },
-      ]
-    : [];
-
-  if (!resolvedLocale.toLowerCase().startsWith('zh')) {
-    return {
-      title: getHomeString(resolvedLocale, 'pricing.title'),
-      limitTitle: getHomeString(resolvedLocale, 'pricing.limitTitle'),
-      limitDescription: getHomeString(resolvedLocale, 'pricing.limitDescription'),
-      plusTitle: getHomeString(resolvedLocale, 'pricing.plusTitle'),
-      plusDescription: pendingLabel,
-      featureHeader: getHomeString(resolvedLocale, 'pricing.featureHeader'),
-      includedLabel: getHomeString(resolvedLocale, 'pricing.includedLabel'),
-      notIncludedLabel: getHomeString(resolvedLocale, 'pricing.notIncludedLabel'),
-      desktopEdition: {
-        title: getHomeString(resolvedLocale, 'pricing.editions.desktop.title'),
-        action: { label: 'Desktop', href: desktopHref },
-      },
-      containerEdition: {
-        title: getHomeString(resolvedLocale, 'pricing.editions.container.title'),
-        action: { label: 'Container', href: containerHref },
-      },
-      steamEdition: {
-        title: formatPendingTitle('Steam', resolvedLocale),
-      },
-      turboEdition: {
-        title: formatPendingTitle('Hagicode Plus', resolvedLocale),
-      },
-      rows: rowsWithPendingColumns,
-      dlcLabel: dlcCopy.label,
-      dlcTitle: dlcCopy.title,
-      steamPreviewLabels: {
-        openSteam: dlcCopy.openSteam,
-        bundlePending: dlcCopy.preview.bundlePending,
-        productPending: dlcCopy.preview.productPending,
-        previewLabel: dlcCopy.preview.previewLabel,
-        imageSuffix: dlcCopy.preview.imageSuffix,
-      },
-      dlcItems,
-    };
-  }
+  const dlcItems = [
+    {
+      category: dlcCopy.allBeauties.category,
+      title: dlcCopy.allBeauties.title,
+      price: dlcCopy.allBeauties.price,
+      description: dlcCopy.allBeauties.description,
+      bullets: dlcCopy.allBeauties.bullets,
+      action: { label: dlcCopy.openSteam, href: DEFAULT_STEAM_STORE_URL, external: true },
+    },
+    {
+      category: dlcCopy.turboEngine.category,
+      productKey: 'turbo-engine',
+      title: dlcCopy.turboEngine.title,
+      price: dlcCopy.turboEngine.price,
+      description: dlcCopy.turboEngine.description,
+      bullets: dlcCopy.turboEngine.bullets,
+      action: { label: dlcCopy.openSteam, href: TURBO_ENGINE_STEAM_STORE_URL, external: true },
+    },
+    {
+      category: dlcCopy.hagicodePlus.category,
+      productKey: 'hagicode-plus',
+      title: dlcCopy.hagicodePlus.title,
+      price: dlcCopy.hagicodePlus.price,
+      description: dlcCopy.hagicodePlus.description,
+      bullets: dlcCopy.hagicodePlus.bullets,
+      action: { label: dlcCopy.openSteam, href: HAGICODE_PLUS_BUNDLE_STEAM_URL, external: true },
+    },
+    {
+      category: dlcCopy.sponsor.category,
+      title: dlcCopy.sponsor.title,
+      price: dlcCopy.sponsor.price,
+      description: dlcCopy.sponsor.description,
+      bullets: dlcCopy.sponsor.bullets,
+      action: { label: dlcCopy.openSteam, href: DEFAULT_STEAM_STORE_URL, external: true },
+      featured: 'sponsor' as const,
+    },
+  ];
 
   return {
     title: getHomeString(resolvedLocale, 'pricing.title'),
     limitTitle: getHomeString(resolvedLocale, 'pricing.limitTitle'),
     limitDescription: getHomeString(resolvedLocale, 'pricing.limitDescription'),
     plusTitle: getHomeString(resolvedLocale, 'pricing.plusTitle'),
-    plusDescription: pendingLabel,
+    plusDescription: getHomeString(resolvedLocale, 'pricing.plusDescription'),
     featureHeader: getHomeString(resolvedLocale, 'pricing.featureHeader'),
     includedLabel: getHomeString(resolvedLocale, 'pricing.includedLabel'),
     notIncludedLabel: getHomeString(resolvedLocale, 'pricing.notIncludedLabel'),
@@ -680,12 +630,13 @@ export function getPricingContent(locale: LocaleInput): PricingContent {
       action: { label: 'Container', href: containerHref },
     },
     steamEdition: {
-      title: formatPendingTitle('Steam', resolvedLocale),
+      title: 'Windows Store',
+      action: { label: 'Windows Store', href: DEFAULT_WINDOWS_STORE_URL, external: true },
     },
     turboEdition: {
-      title: formatPendingTitle('Hagicode Plus', resolvedLocale),
+      title: 'Hagicode Plus',
     },
-    rows: rowsWithPendingColumns,
+    rows,
     dlcLabel: dlcCopy.label,
     dlcTitle: dlcCopy.title,
     steamPreviewLabels: {

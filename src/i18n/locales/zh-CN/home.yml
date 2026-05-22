@@ -54,35 +54,32 @@ features:
     efficiency: 效率提升
     traditional: 传统
     hagicode: Hagicode
-    description: 9 个阶段的完整提案流程，从想法到归档，AI 全流程辅助，让你的编码效率提升 3 倍。
+    description: 从审阅上下文、脚手架提案、编写 Spec Delta，到严格校验、按任务执行与最终归档，OpenSpec 把需求推进路径固定成可复用流程。
     workflow:
-      idea:
-        label: Idea
-        desc: 从想法开始
-      proposal:
-        label: Proposal
-        desc: AI 生成提案
       review:
-        label: Review
-        desc: 自动评审
+        label: 审阅
+        desc: 对照项目现状、现有 spec 与相关代码，先确认真实上下文。
+      scaffold:
+        label: 脚手架
+        desc: 选择 change-id，并生成 proposal.md、tasks.md、design.md 草稿。
+      spec:
+        label: Spec
+        desc: 把变更拆成 capability 与 spec delta，明确新增或修改的要求。
+      design:
+        label: 设计
+        desc: 跨系统或有取舍时补充 design.md，提前写清结构与权衡。
       tasks:
-        label: Tasks
-        desc: 任务分解
-      code:
-        label: Code
-        desc: 智能编码
-      test:
-        label: Test
-        desc: 自动测试
-      refactor:
-        label: Refactor
-        desc: 代码重构
-      docs:
-        label: Docs
-        desc: 文档生成
+        label: 任务
+        desc: 将实施切成有顺序、可验证、可并行的任务列表。
+      validate:
+        label: 校验
+        desc: 用 strict 模式运行 openspec validate，先把提案校验通过。
+      apply:
+        label: 执行
+        desc: 读取 proposal、design、tasks，按顺序实施并持续勾选完成项。
       archive:
-        label: Archive
-        desc: 知识归档
+        label: 归档
+        desc: 变更完成后归档 proposal 资产，把经验沉淀回长期规范。
     paused: 已暂停 - 点击节点切换
   convenient:
     badge: EFFICIENT
@@ -230,9 +227,9 @@ pricing:
   docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
   title: 版本与定价
   limitTitle: 提案并行计数规则
-  limitDescription: 免费版和 Steam 版默认都包含 3 个提案并行上限。正在生成、正在执行、正在归档三个状态会合并计数。Turbo Engine DLC 可将上限扩展到 32。
+  limitDescription: 所有版本默认都从 3 个提案并行上限起步，但现在可以免费超频到 6。正在生成、正在执行、正在归档三个状态会合并计数。
   plusTitle: Hagicode Plus 说明
-  plusDescription: Hagicode Plus 是 Steam 上的官方组合包，直接把 Steam 主体版本和 Turbo Engine DLC 一起打包。
+  plusDescription: Hagicode Plus 是主体版本加 Turbo Engine DLC 的一种简化的说明。
   featureHeader: 特性
   includedLabel: 已包含
   notIncludedLabel: 未包含
@@ -260,10 +257,6 @@ pricing:
     customLogo: 自定义 Logo
     customTitle: 自定义标题
     customCoAuthoredByInfo: 自定义 Co-Authored-By 信息
-    steamCloudAchievements: Steam 云成就
-    freeDlcSupport: 免费 DLC 支持
-    steamWorkshopSupport: 创意工坊支持
-    cloudSaveSupport: 云存档支持
   values:
     free: 免费
     viewOnSteam: 点击查看
@@ -280,15 +273,15 @@ pricing:
         category: 免费 DLC
         title: Hagicode - All Beauties Pack
         price: 免费
-        description: 面向 Steam 用户的额外美少女内容包。
+        description: 额外的美少女内容包。
         bullets:
           - 包含 1000 个额外的美少女风格头像
           - 为后续更多美少女主题内容预留扩展空间
       turboEngine:
         category: 性能 DLC
         title: 'Hagicode: Turbo Engine DLC'
-        price: 点击查看
-        description: 用户可以单独购买这个 DLC 来扩展原来的提案并行上限，同时解锁文案切换，附带 5 套每套 10 个的独立头像，支持上传自定义头像以及自定义左上角 Logo 和标题，并让 AI 提交里的 Co-Authored-By 署名更容易对齐团队自己的命名规范。通常情况下，我们会重点突出名为 Hagicode Plus 的组合购买方案，使总体购买价格更低。请以商店页面的最新变化为准。
+        price: 待定
+        description: 用于扩展提案并行上限，同时解锁文案切换、头像包、自定义头像上传、自定义 Logo、自定义标题和自定义 Co-Authored-By 信息。
         bullets:
           - 支持左上角 Logo 和标题自定义
           - 包含 5 套头像资源，每套提供 10 个可选头像
@@ -299,8 +292,8 @@ pricing:
       hagicodePlus:
         category: 组合包
         title: Hagicode Plus
-        price: 点击查看
-        description: Steam 官方组合包，一次打包 Hagicode Steam 主体版本和 Turbo Engine DLC，适合想直接进入完整 Steam 工作流的用户。
+        price: 待定
+        description: Hagicode Plus 是主体版本加 Turbo Engine DLC 的一种简化的说明。
         bullets:
           - 把 Steam 主体版本和 Turbo Engine DLC 一起打包
           - 保留 32 个提案并行上限这条升级路径
@@ -308,7 +301,7 @@ pricing:
       sponsor:
         category: 赞助者 DLC
         title: Hagicode - Sponsor Pack
-        price: 点击查看
+        price: 待定
         description: 如果你觉得 Hagicode 确实不错，并希望为项目提供直接的经济支持，购买 Sponsor Pack 可以为项目提供更多动力，帮助我们长期维护和运行。
         bullets:
           - 一套专属暗色主题
