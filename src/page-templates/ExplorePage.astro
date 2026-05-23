@@ -1,8 +1,9 @@
 ---
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
+import Footer from '@/components/home/Footer';
 import Navbar from '@/components/home/Navbar';
 import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
-import UniverseMap from '@/components/explore/UniverseMap';
+import ExploreTable from '@/components/explore/ExploreTable';
 import type { SiteLocale } from '@/i18n/locale-metadata';
 import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
 import { getAbsoluteSiteUrl } from '@/lib/locale-routing';
@@ -71,7 +72,8 @@ const canonicalUrl = getAbsoluteSiteUrl('/explore/', locale, siteBase);
       languageSwitcherCopy={interactiveCopy.languageSwitcher}
     />
     <main class="homepage">
-      <UniverseMap client:load model={pageModel} />
+      <ExploreTable model={pageModel} />
     </main>
+    <Footer locale={locale} />
   </body>
 </html>

@@ -1,0 +1,300 @@
+.page {
+  width: 100%;
+  min-height: 100dvh;
+  padding: clamp(4.9rem, 6vw, 6rem) clamp(0.9rem, 2.2vw, 1.6rem) clamp(1rem, 2vw, 1.4rem);
+  background:
+    radial-gradient(circle at 12% 16%, color-mix(in srgb, var(--color-secondary) 10%, transparent), transparent 26%),
+    radial-gradient(circle at 78% 14%, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent 24%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-surface) 76%, transparent), transparent 16%),
+    var(--color-background);
+}
+
+.sectionCard {
+  position: relative;
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+  border-radius: 1.1rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--color-surface-glass) 94%, transparent), color-mix(in srgb, var(--color-surface) 90%, transparent));
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.sectionCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 14% 16%, color-mix(in srgb, var(--color-secondary) 8%, transparent), transparent 30%),
+    radial-gradient(circle at 82% 14%, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent 28%);
+}
+
+.sectionBadge,
+.table th {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.sectionHeader,
+.tableWrap {
+  position: relative;
+  z-index: 1;
+}
+
+.sectionSummary,
+.itemCell span,
+.highlightsCell,
+.pathCell {
+  color: var(--color-text-secondary);
+}
+
+.sectionSummary {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.68;
+}
+
+.branchHighlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.branchHighlights li,
+.sectionBadge,
+.statusChip {
+  border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent);
+  border-radius: 999px;
+}
+
+.branchHighlights li {
+  padding: 0.5rem 0.78rem;
+  background: color-mix(in srgb, var(--color-surface-hover) 56%, transparent);
+  color: var(--color-text);
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.sectionStack {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.sectionCard {
+  display: grid;
+  gap: 0.9rem;
+  padding: clamp(0.9rem, 1.4vw, 1.15rem);
+}
+
+.sectionHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.sectionBadge,
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.42rem 0.7rem;
+  font-size: 0.72rem;
+  color: var(--color-text);
+}
+
+.sectionTitle {
+  margin: 0.62rem 0 0.4rem;
+  font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.tableWrap {
+  overflow: hidden;
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 68%, transparent);
+  padding-top: 0.2rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.pathColumn {
+  width: 15%;
+}
+
+.itemColumn {
+  width: 31%;
+}
+
+.statusColumn {
+  width: 12%;
+}
+
+.highlightsColumn {
+  width: 22%;
+}
+
+.sourceColumn {
+  width: 20%;
+}
+
+.table th,
+.table td {
+  padding: 0.8rem 0.9rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 72%, transparent);
+  vertical-align: top;
+  text-align: left;
+}
+
+.table th {
+  font-size: 0.74rem;
+  color: color-mix(in srgb, var(--color-text-secondary) 92%, transparent);
+  background: color-mix(in srgb, var(--color-surface-hover) 38%, transparent);
+  white-space: normal;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background: color-mix(in srgb, var(--color-surface-hover) 50%, transparent);
+}
+
+.pathCell,
+.highlightsCell {
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.itemCell {
+  min-width: 0;
+}
+
+.itemCell strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--color-text);
+  font-size: 0.97rem;
+  line-height: 1.45;
+}
+
+.itemCell span {
+  display: block;
+  font-size: 0.92rem;
+  line-height: 1.62;
+}
+
+.sourceCell {
+  color: var(--color-text);
+  font-family: 'SF Mono', Menlo, Cascadia Code, Consolas, Roboto Mono, JetBrains Mono, monospace;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  word-break: break-all;
+}
+
+.pathCell,
+.highlightsCell,
+.sourceCell,
+.itemCell span,
+.itemCell strong,
+.sectionSummary {
+  overflow-wrap: anywhere;
+}
+
+.accentCore {
+  border-color: color-mix(in srgb, var(--color-primary) 42%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 14%, transparent);
+}
+
+.accentSurface {
+  border-color: color-mix(in srgb, var(--color-secondary) 42%, transparent);
+  background: color-mix(in srgb, var(--color-secondary) 14%, transparent);
+}
+
+.accentDelivery {
+  border-color: color-mix(in srgb, var(--color-success) 42%, transparent);
+  background: color-mix(in srgb, var(--color-success) 14%, transparent);
+}
+
+.accentLabs {
+  border-color: color-mix(in srgb, var(--color-accent) 42%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+}
+
+@media (max-width: 900px) {
+  .page {
+    padding-inline: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .sectionHeader {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .table,
+  .table thead,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    width: 100%;
+  }
+
+  .table {
+    table-layout: auto;
+  }
+
+  .table thead {
+    display: none;
+  }
+
+  .table tbody {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .table tbody tr {
+    border: 1px solid color-mix(in srgb, var(--color-border) 68%, transparent);
+    border-radius: 0.95rem;
+    background: color-mix(in srgb, var(--color-surface-hover) 28%, transparent);
+    overflow: hidden;
+  }
+
+  .table td {
+    display: grid;
+    grid-template-columns: minmax(5.25rem, 6.5rem) minmax(0, 1fr);
+    gap: 0.7rem;
+    padding: 0.75rem 0.85rem;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    font-size: 0.72rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: color-mix(in srgb, var(--color-text-secondary) 88%, transparent);
+  }
+
+  .statusColumn {
+    width: 100%;
+  }
+
+  .statusColumn .statusChip {
+    justify-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .table tbody tr:hover {
+    background: transparent;
+  }
+}
