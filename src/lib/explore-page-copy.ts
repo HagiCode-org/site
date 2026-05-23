@@ -44,23 +44,16 @@ export interface ExplorePageModel {
     readonly description: string;
   };
   readonly ui: {
-    readonly canvasLabel: string;
-    readonly controlsLabel: string;
-    readonly controls: {
-      readonly zoomIn: string;
-      readonly zoomOut: string;
-      readonly reset: string;
-    };
     readonly overviewEyebrow: string;
     readonly overviewTitle: string;
     readonly overviewDescription: string;
-    readonly detail: {
+    readonly table: {
+      readonly rootPathLabel: string;
+      readonly pathTitle: string;
+      readonly itemTitle: string;
+      readonly statusTitle: string;
       readonly highlightsTitle: string;
-      readonly detailsTitle: string;
-      readonly relatedTitle: string;
-      readonly noRelated: string;
       readonly sourceTitle: string;
-      readonly relatedHubLabel: string;
     };
   };
   readonly root: ExploreRootNode;
@@ -3445,23 +3438,16 @@ const uiCopyCatalog: Partial<Record<SiteLocale, ExploreUiCopy>> = {
       "description": "This explore page now keeps a much broader copy of the root HagiCode feature map structure directly inside the site repository, including the major shared-value and product-surface branches."
     },
     "ui": {
-      "canvasLabel": "Interactive HagiCode explore tree",
-      "controlsLabel": "Explore tree controls",
-      "controls": {
-        "zoomIn": "Zoom in",
-        "zoomOut": "Zoom out",
-        "reset": "Reset map position"
-      },
-      "overviewEyebrow": "Explore tree",
-      "overviewTitle": "A copied structural map of the root feature inventory",
-      "overviewDescription": "The page no longer compresses the feature map into a handful of branches. It now preserves a much larger part of the original hierarchy inside the site-local explore dataset.",
-      "detail": {
+      "overviewEyebrow": "Explore inventory",
+      "overviewTitle": "A grouped table view of the copied root feature inventory",
+      "overviewDescription": "The explore page now presents the copied root structure as grouped tables, so the broader hierarchy stays readable without an interactive graph.",
+      "table": {
+        "rootPathLabel": "Root branch",
+        "pathTitle": "Group path",
+        "itemTitle": "Item",
+        "statusTitle": "Status",
         "highlightsTitle": "Highlights",
-        "detailsTitle": "Details",
-        "relatedTitle": "Related nodes",
-        "noRelated": "This node does not link to another branch in the current explore layout.",
-        "sourceTitle": "Source",
-        "relatedHubLabel": "Cluster"
+        "sourceTitle": "Source"
       }
     }
   },
@@ -3471,23 +3457,16 @@ const uiCopyCatalog: Partial<Record<SiteLocale, ExploreUiCopy>> = {
       "description": "这个 Explore 页面现在在站点仓库内保留了更完整的根级功能地图结构，不再只压缩成少量分支，而是把 shared_user_value 和 products 的大量层级一起展开。"
     },
     "ui": {
-      "canvasLabel": "交互式 HagiCode 探索树",
-      "controlsLabel": "探索树控制",
-      "controls": {
-        "zoomIn": "放大",
-        "zoomOut": "缩小",
-        "reset": "重置导图位置"
-      },
-      "overviewEyebrow": "Explore 树",
-      "overviewTitle": "站内复制的根级功能结构图",
-      "overviewDescription": "页面不再把功能地图压成少量分支，而是把 root 原始结构中的大量层级直接复制进 site 内置 explore 数据里。",
-      "detail": {
+      "overviewEyebrow": "Explore 清单",
+      "overviewTitle": "按分组表格展开的根级功能结构",
+      "overviewDescription": "Explore 页面现在把复制后的根级结构按分组表格展示，不再依赖交互式导图，也能把更大范围的层级关系讲清楚。",
+      "table": {
+        "rootPathLabel": "根分组",
+        "pathTitle": "分组路径",
+        "itemTitle": "条目",
+        "statusTitle": "状态",
         "highlightsTitle": "重点",
-        "detailsTitle": "细节",
-        "relatedTitle": "相关节点",
-        "noRelated": "当前导图结构里，这个节点没有继续连接到其他分支。",
-        "sourceTitle": "来源",
-        "relatedHubLabel": "所属分组"
+        "sourceTitle": "来源"
       }
     }
   }

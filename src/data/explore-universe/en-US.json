@@ -1,16 +1,10 @@
 {
   "seo": {
-    "title": "Explore the HagiCode Universe",
-    "description": "Navigate the full HagiCode product universe as a pannable map of apps, services, delivery layers, and experimental fronts."
+    "title": "Explore the HagiCode inventory",
+    "description": "Browse the HagiCode product inventory as grouped tables across apps, services, delivery layers, and experimental fronts."
   },
   "ui": {
-    "canvasLabel": "Interactive HagiCode universe map",
-    "controlsLabel": "Map controls",
-    "controls": {
-      "zoomIn": "Zoom in",
-      "zoomOut": "Zoom out",
-      "reset": "Reset view"
-    }
+    "presentation": "Grouped tables"
   },
   "root": {
     "title": "HagiCode Universe",

@@ -1,16 +1,10 @@
 {
   "seo": {
-    "title": "探索 HagiCode 宇宙图",
-    "description": "以可拖拽、可缩放的宇宙图查看 HagiCode 的产品、基础设施、交付链路与实验前线。"
+    "title": "探索 HagiCode 功能清单",
+    "description": "以分组表格查看 HagiCode 的产品、基础设施、交付链路与实验前线。"
   },
   "ui": {
-    "canvasLabel": "交互式 HagiCode 宇宙图",
-    "controlsLabel": "地图控制",
-    "controls": {
-      "zoomIn": "放大",
-      "zoomOut": "缩小",
-      "reset": "重置视图"
-    }
+    "presentation": "分组表格"
   },
   "root": {
     "title": "HagiCode 宇宙",
