@@ -5,7 +5,6 @@ import FeaturesShowcase from '@/components/home/FeaturesShowcase';
 import ShowcaseSection from '@/components/home/ShowcaseSection';
 import VideoShowcase from '@/components/home/VideoShowcase';
 import PricingComparisonSection from '@/components/home/PricingComparisonSection';
-import ProductHuntBadgeSection from '@/components/home/ProductHuntBadgeSection';
 import { PromoteCard } from '@/components/promote/PromoteCard';
 import promoteCardStyles from '@/components/promote/PromoteCard.module.css';
 import Footer from '@/components/home/Footer';
@@ -120,7 +119,6 @@ const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
         content={pricingContent}
         steamPreviewRecords={pricingSteamPreviewRecords}
       />
-      <ProductHuntBadgeSection locale={locale} />
     </main>
 
     <PromoteCard locale={locale} className={promoteCardStyles.promoteCard} client:idle />
