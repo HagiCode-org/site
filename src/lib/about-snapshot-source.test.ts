@@ -22,13 +22,6 @@ const fixture = {
       url: 'https://www.youtube.com/@hagicode',
     },
     {
-      id: 'product-hunt',
-      type: 'link',
-      label: 'Product Hunt',
-      regionPriority: 'international-first',
-      url: 'https://www.producthunt.com/products/hagicode',
-    },
-    {
       id: 'windows-store',
       type: 'link',
       label: 'Windows Store',

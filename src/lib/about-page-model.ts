@@ -116,7 +116,6 @@ const ENTRY_ORDER = [
   'discord',
   'windows-store',
   'youtube',
-  'product-hunt',
   'steam',
   'bilibili',
   'xiaohongshu',

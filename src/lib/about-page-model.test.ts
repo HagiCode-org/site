@@ -23,7 +23,6 @@ describe('about page model', () => {
     const communityEntries = model.sections[1]?.entries.map((entry) => entry.id);
     const contentEntries = model.sections[2]?.entries.map((entry) => entry.id);
     const youtubeEntry = model.sections[2]?.entries.find((entry) => entry.id === 'youtube');
-    const productHuntEntry = model.sections[2]?.entries.find((entry) => entry.id === 'product-hunt');
     const windowsStoreEntry = model.sections[0]?.entries.find((entry) => entry.id === 'windows-store');
     const steamEntry = model.sections[0]?.entries.find((entry) => entry.id === 'steam');
     const discordEntry = model.sections[1]?.entries.find((entry) => entry.id === 'discord');
@@ -37,15 +36,13 @@ describe('about page model', () => {
     expect(model.sections[1]?.title).toBe('Grow through exchange');
     expect(storeEntries).toEqual(['windows-store', 'steam']);
     expect(communityEntries).toEqual(['discord', 'feishu-group', 'qq-group']);
-    expect(contentEntries?.slice(0, 5)).toEqual([
+    expect(contentEntries?.slice(0, 4)).toEqual([
       'youtube',
-      'product-hunt',
       'devto',
       'x',
       'linkedin',
     ]);
     expect(contentEntries).toContain('bilibili');
-    expect(contentEntries).toContain('product-hunt');
     expect(contentEntries).not.toContain('steam');
     expect(contentEntries).not.toContain('windows-store');
     expect(windowsStoreEntry).toMatchObject({
@@ -88,13 +85,6 @@ describe('about page model', () => {
         badgeLabel: 'Official channel',
       },
     });
-    expect(productHuntEntry).toMatchObject({
-      kind: 'link',
-      label: 'Product Hunt',
-      detail: 'Product Hunt launch page',
-      linkText: 'Open listing',
-      href: 'https://www.producthunt.com/products/hagicode',
-    });
     expect(contentEntries).not.toContain('douyin');
     expect(
       contentEntries?.findIndex((entry) => entry === 'facebook'),
@@ -136,7 +126,6 @@ describe('about page model', () => {
       'segmentfault',
       'xiaoheihe',
       'youtube',
-      'product-hunt',
       'devto',
       'x',
       'linkedin',
@@ -159,7 +148,6 @@ describe('about page model', () => {
     expect(contentIds).not.toContain('douyin-account');
     expect(contentIds).not.toContain('douyin-qr');
     expect(contentIds).toContain('youtube');
-    expect(contentIds).toContain('product-hunt');
     expect(windowsStoreEntry).toMatchObject({
       kindLabel: '商店',
       label: 'Windows 商店',

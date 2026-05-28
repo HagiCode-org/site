@@ -10,13 +10,6 @@
       "url": "https://www.youtube.com/@hagicode"
     },
     {
-      "id": "product-hunt",
-      "type": "link",
-      "label": "Product Hunt",
-      "regionPriority": "international-first",
-      "url": "https://www.producthunt.com/products/hagicode"
-    },
-    {
       "id": "windows-store",
       "type": "link",
       "label": "Windows Store",
@@ -40,7 +33,7 @@
     {
       "id": "xiaoheihe",
       "type": "link",
-      "label": "小黑盒",
+      "label": "\u5c0f\u9ed1\u76d2",
       "regionPriority": "china-first",
       "url": "https://www.xiaoheihe.cn/app/user/profile/92527604"
     },
@@ -54,7 +47,7 @@
     {
       "id": "xiaohongshu",
       "type": "contact",
-      "label": "小红书",
+      "label": "\u5c0f\u7ea2\u4e66",
       "regionPriority": "china-first",
       "value": "11671904293",
       "url": "https://www.xiaohongshu.com/user/profile/665e764800000000030320b6"
@@ -62,7 +55,7 @@
     {
       "id": "segmentfault",
       "type": "link",
-      "label": "思否",
+      "label": "\u601d\u5426",
       "regionPriority": "china-first",
       "url": "https://segmentfault.com/u/newbe36524"
     },
@@ -76,7 +69,7 @@
     {
       "id": "tencent-cloud",
       "type": "link",
-      "label": "腾讯云",
+      "label": "\u817e\u8baf\u4e91",
       "regionPriority": "china-first",
       "url": "https://cloud.tencent.com/developer/user/1583778"
     },
@@ -90,61 +83,61 @@
     {
       "id": "juejin",
       "type": "link",
-      "label": "掘金",
+      "label": "\u6398\u91d1",
       "regionPriority": "china-first",
       "url": "https://juejin.cn/user/2682464104098654"
     },
     {
       "id": "cnblogs",
       "type": "link",
-      "label": "博客园",
+      "label": "\u535a\u5ba2\u56ed",
       "regionPriority": "china-first",
       "url": "https://www.cnblogs.com/newbe36524"
     },
     {
       "id": "zhihu",
       "type": "link",
-      "label": "知乎",
+      "label": "\u77e5\u4e4e",
       "regionPriority": "china-first",
       "url": "https://www.zhihu.com/people/newbe36524"
     },
     {
       "id": "douyin-account",
       "type": "contact",
-      "label": "抖音",
+      "label": "\u6296\u97f3",
       "regionPriority": "china-first",
       "value": "hagicode"
     },
     {
       "id": "douyin-qr",
       "type": "qr",
-      "label": "抖音二维码",
+      "label": "\u6296\u97f3\u4e8c\u7ef4\u7801",
       "regionPriority": "china-first",
-      "description": "扫码查看 Hagicode 抖音账号。",
+      "description": "\u626b\u7801\u67e5\u770b Hagicode \u6296\u97f3\u8d26\u53f7\u3002",
       "imageUrl": "/_astro/douyin.BFYNRf8b.png",
       "width": 1061,
       "height": 1059,
-      "alt": "HagiCode 抖音二维码"
+      "alt": "HagiCode \u6296\u97f3\u4e8c\u7ef4\u7801"
     },
     {
       "id": "qq-group",
       "type": "contact",
-      "label": "QQ群",
+      "label": "QQ\u7fa4",
       "regionPriority": "china-first",
-      "description": "点击链接加入群聊【HagiCode】。",
+      "description": "\u70b9\u51fb\u94fe\u63a5\u52a0\u5165\u7fa4\u804a\u3010HagiCode\u3011\u3002",
       "value": "610394020",
       "url": "https://qm.qq.com/q/ZWPYvrYRYQ"
     },
     {
       "id": "feishu-group",
       "type": "qr",
-      "label": "飞书群",
+      "label": "\u98de\u4e66\u7fa4",
       "regionPriority": "china-first",
-      "description": "newbe36524 邀请你加入飞书群。",
+      "description": "newbe36524 \u9080\u8bf7\u4f60\u52a0\u5165\u98de\u4e66\u7fa4\u3002",
       "imageUrl": "/_astro/feishu.BRtGBazg.png",
       "width": 778,
       "height": 724,
-      "alt": "HagiCode 飞书群二维码",
+      "alt": "HagiCode \u98de\u4e66\u7fa4\u4e8c\u7ef4\u7801",
       "url": "https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=238gb3f7-6820-43b8-9f1f-e0f2e704a000"
     },
     {
@@ -185,13 +178,13 @@
     {
       "id": "wechat-account",
       "type": "qr",
-      "label": "微信公众号",
+      "label": "\u5fae\u4fe1\u516c\u4f17\u53f7",
       "regionPriority": "china-first",
-      "description": "扫描二维码即可在微信中查看 NEWBE 账号。",
+      "description": "\u626b\u63cf\u4e8c\u7ef4\u7801\u5373\u53ef\u5728\u5fae\u4fe1\u4e2d\u67e5\u770b NEWBE \u8d26\u53f7\u3002",
       "imageUrl": "/_astro/wechat-account.CycfDBWa.jpg",
       "width": 430,
       "height": 430,
-      "alt": "HagiCode 微信公众号二维码"
+      "alt": "HagiCode \u5fae\u4fe1\u516c\u4f17\u53f7\u4e8c\u7ef4\u7801"
     }
   ]
 }

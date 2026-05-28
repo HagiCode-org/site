@@ -23,13 +23,6 @@ const fixture = {
       url: 'https://www.youtube.com/@hagicode',
     },
     {
-      id: 'product-hunt',
-      type: 'link',
-      label: 'Product Hunt',
-      regionPriority: 'international-first',
-      url: 'https://www.producthunt.com/products/hagicode',
-    },
-    {
       id: 'steam',
       type: 'link',
       label: 'Steam',
@@ -148,7 +141,7 @@ describe('about snapshot workflow', () => {
       kind: 'url',
       value: ABOUT_SNAPSHOT_URL,
     });
-    expect(result.payload.entries).toHaveLength(11);
+    expect(result.payload.entries).toHaveLength(10);
     expect(written.updatedAt).toBe('2026-04-20T00:00:00.000Z');
     expect(written.entries.find((entry) => entry.id === 'steam')?.url).toBe(
       'https://store.steampowered.com/app/4625540/Hagicode/',
@@ -184,9 +177,6 @@ describe('about snapshot workflow', () => {
       kind: 'file',
       value: localInputPath,
     });
-    expect(result.payload.entries.find((entry) => entry.id === 'product-hunt')?.url).toBe(
-      'https://www.producthunt.com/products/hagicode',
-    );
   });
 
   it('rejects invalid payloads before writing a new snapshot file', async () => {
