@@ -198,11 +198,6 @@ desktopHero:
     linuxArm64Tarball: Tarball (ARM64)
     source: Zdrojový kód
     other: Jiné
-productHuntBadge:
-  eyebrow: Důvěra prvních uživatelů
-  title: Zobrazit Hagicode na Product Hunt
-  linkLabel: Otevřít Hagicode na Product Hunt
-  cta: Zobrazit stránku na Product Hunt
 promote:
   badgeFallback: Propagováno
   closeLabel: Zavřít propagaci

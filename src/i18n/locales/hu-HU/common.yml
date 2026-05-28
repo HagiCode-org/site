@@ -198,11 +198,6 @@ desktopHero:
     linuxArm64Tarball: Tarball (ARM64)
     source: Forráskód
     other: Egyéb
-productHuntBadge:
-  eyebrow: A korai alkalmazók által megbízható
-  title: Tekintsd meg a Hagicode-ot a Product Hunt-on
-  linkLabel: Hagicode megnyitása a Product Hunt-on
-  cta: Product Hunt lista megtekintése
 promote:
   badgeFallback: Népszerűsített
   closeLabel: Népszerűsítés elvetése

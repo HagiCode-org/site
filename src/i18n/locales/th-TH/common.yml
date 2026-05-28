@@ -198,11 +198,6 @@ desktopHero:
     linuxArm64Tarball: Tarball (ARM64)
     source: ซอร์สโค้ด
     other: อื่นๆ
-productHuntBadge:
-  eyebrow: ไว้วางใจโดยผู้ใช้ยุคแรก
-  title: ดู Hagicode บน Product Hunt
-  linkLabel: เปิด Hagicode บน Product Hunt
-  cta: ดูรายการ Product Hunt
 promote:
   badgeFallback: สนับสนุน
   closeLabel: ปิดโปรโมชัน

@@ -199,11 +199,6 @@ desktopHero:
     linuxArm64Tarball: Tarball (ARM64)
     source: Source code
     other: Other
-productHuntBadge:
-  eyebrow: Trusted by early adopters
-  title: See Hagicode on Product Hunt
-  linkLabel: Open Hagicode on Product Hunt
-  cta: View the Product Hunt listing
 promote:
   badgeFallback: Promoted
   closeLabel: Dismiss promotion

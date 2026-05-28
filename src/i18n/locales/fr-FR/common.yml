@@ -198,11 +198,6 @@ desktopHero:
     linuxArm64Tarball: Archive compressée (ARM64)
     source: Code source
     other: Autre
-productHuntBadge:
-  eyebrow: Trusted by early adopters
-  title: See Hagicode on Product Hunt
-  linkLabel: Open Hagicode on Product Hunt
-  cta: View the Product Hunt listing
 promote:
   badgeFallback: Promoted
   closeLabel: Dismiss promotion

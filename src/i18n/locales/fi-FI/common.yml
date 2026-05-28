@@ -198,11 +198,6 @@ desktopHero:
     linuxArm64Tarball: Tarball (ARM64)
     source: Lähdekoodi
     other: Muu
-productHuntBadge:
-  eyebrow: Varhaisten käyttäjien luottama
-  title: Katso Hagicode Product Huntissa
-  linkLabel: Avaa Hagicode Product Huntissa
-  cta: Katso Product Hunt-listaus
 promote:
   badgeFallback: Mainostettu
   closeLabel: Hylkää mainos

@@ -198,11 +198,6 @@ desktopHero:
     linuxArm64Tarball: Tarball (ARM64)
     source: Mã nguồn
     other: Khác
-productHuntBadge:
-  eyebrow: Được tin dùng bởi những người dùng sớm
-  title: Xem Hagicode trên Product Hunt
-  linkLabel: Mở Hagicode trên Product Hunt
-  cta: Xem trang Product Hunt
 promote:
   badgeFallback: Được quảng bá
   closeLabel: Đóng quảng cáo

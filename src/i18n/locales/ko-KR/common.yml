@@ -198,11 +198,6 @@ desktopHero:
     linuxArm64Tarball: 압축 패키지 (ARM64)
     source: 소스 코드
     other: 기타
-productHuntBadge:
-  eyebrow: Trusted by early adopters
-  title: See Hagicode on Product Hunt
-  linkLabel: Open Hagicode on Product Hunt
-  cta: View the Product Hunt listing
 promote:
   badgeFallback: Promoted
   closeLabel: Dismiss promotion

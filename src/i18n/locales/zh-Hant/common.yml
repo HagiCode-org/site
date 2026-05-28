@@ -198,11 +198,6 @@ desktopHero:
     linuxArm64Tarball: 壓縮包 (ARM64)
     source: 原始碼
     other: 其他
-productHuntBadge:
-  eyebrow: Trusted by early adopters
-  title: See Hagicode on Product Hunt
-  linkLabel: Open Hagicode on Product Hunt
-  cta: View the Product Hunt listing
 promote:
   badgeFallback: Promoted
   closeLabel: Dismiss promotion

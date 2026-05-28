@@ -198,11 +198,6 @@ desktopHero:
     linuxArm64Tarball: Tarball (ARM64)
     source: Kode sumber
     other: Lainnya
-productHuntBadge:
-  eyebrow: Dipercaya oleh pengguna awal
-  title: Lihat Hagicode di Product Hunt
-  linkLabel: Buka Hagicode di Product Hunt
-  cta: Lihat daftar Product Hunt
 promote:
   badgeFallback: Dipromosikan
   closeLabel: Tutup promosi

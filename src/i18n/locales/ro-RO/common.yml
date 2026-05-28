@@ -198,11 +198,6 @@ desktopHero:
     linuxArm64Tarball: Tarball (ARM64)
     source: Cod sursă
     other: Altul
-productHuntBadge:
-  eyebrow: De încredere pentru primii adoptatori
-  title: Vezi Hagicode pe Product Hunt
-  linkLabel: Deschide Hagicode pe Product Hunt
-  cta: Vezi lista pe Product Hunt
 promote:
   badgeFallback: Promovat
   closeLabel: Respinge promoția

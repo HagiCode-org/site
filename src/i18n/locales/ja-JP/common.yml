@@ -198,11 +198,6 @@ desktopHero:
     linuxArm64Tarball: 圧縮パッケージ (ARM64)
     source: ソースコード
     other: その他
-productHuntBadge:
-  eyebrow: 早期導入ユーザーからの支持
-  title: Product Hunt で Hagicode を見る
-  linkLabel: Product Hunt で Hagicode を開く
-  cta: Product Hunt の掲載ページを見る
 promote:
   badgeFallback: Pick Up
   closeLabel: プロモーションを閉じる

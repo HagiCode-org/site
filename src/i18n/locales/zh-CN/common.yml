@@ -199,11 +199,6 @@ desktopHero:
     linuxArm64Tarball: 压缩包 (ARM64)
     source: 源代码
     other: 其他
-productHuntBadge:
-  eyebrow: 来自早期用户的信号
-  title: 在 Product Hunt 上查看 Hagicode
-  linkLabel: 打开 Hagicode 的 Product Hunt 页面
-  cta: 查看 Product Hunt 产品页
 promote:
   badgeFallback: 推荐
   closeLabel: 关闭推广信息

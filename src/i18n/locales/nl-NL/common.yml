@@ -198,11 +198,6 @@ desktopHero:
     linuxArm64Tarball: Tarball (ARM64)
     source: Broncode
     other: Overig
-productHuntBadge:
-  eyebrow: Vertrouwd door vroege adopters
-  title: Zie Hagicode op Product Hunt
-  linkLabel: Hagicode op Product Hunt openen
-  cta: De Product Hunt-vermelding bekijken
 promote:
   badgeFallback: Gepromoot
   closeLabel: Promotie sluiten

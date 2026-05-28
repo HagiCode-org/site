@@ -198,11 +198,6 @@ desktopHero:
     linuxArm64Tarball: Tarball (ARM64)
     source: Вихідний код
     other: Інше
-productHuntBadge:
-  eyebrow: Довіряють ранні користувачі
-  title: Побачте Hagicode на Product Hunt
-  linkLabel: Відкрити Hagicode на Product Hunt
-  cta: Переглянути сторінку на Product Hunt
 promote:
   badgeFallback: Промо
   closeLabel: Закрити рекламу

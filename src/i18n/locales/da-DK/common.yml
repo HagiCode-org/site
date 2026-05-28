@@ -198,11 +198,6 @@ desktopHero:
     linuxArm64Tarball: Tarball (ARM64)
     source: Kildekode
     other: Andet
-productHuntBadge:
-  eyebrow: Betroet af tidlige brugere
-  title: Se Hagicode på Product Hunt
-  linkLabel: Åbn Hagicode på Product Hunt
-  cta: Se Product Hunt-opskrivningen
 promote:
   badgeFallback: Promoveret
   closeLabel: Afvis promovering
