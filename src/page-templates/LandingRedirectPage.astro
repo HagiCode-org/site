@@ -1,0 +1,357 @@
+---
+/**
+ * 首页中转页面 - 品牌化加载页面
+ *
+ * 访问根路径 "/" 时显示，用于：
+ * 1. 检测用户语言偏好并中转到对应语言版本首页
+ * 2. 展示品牌化的加载/过渡动画，而非 "Page Not Found"
+ * 3. 提供良好的第一印象
+ */
+
+import { getAbsoluteSiteUrl, joinWithSiteBase } from '@/lib/locale-routing';
+import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
+import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
+
+const siteBase = import.meta.env.VITE_SITE_BASE || '';
+const canonicalUrl = getAbsoluteSiteUrl('/', 'en-US', siteBase);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Hagicode - Smart · Efficient · Fun AI Coding Assistant</title>
+    <meta name="description" content="Hagicode helps developers focus on code, not repetitive work. AI-powered coding with OpenSpec workflows and multi-agent execution." />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="og:title" content="Hagicode - AI Coding Assistant" />
+    <meta name="og:description" content="Redefine coding with AI. OpenSpec workflows, multi-agent execution, and Hero Dungeon gameplay." />
+    <meta name="og:type" content="website" />
+    <meta name="robots" content="noindex,follow" />
+    <meta name="hagicode-site-base" content={siteBase} />
+    <meta name="hagicode-site-landing-target" content="/" />
+    <GoogleAnalytics />
+    <script is:inline>
+      (function () {
+        var stored = null;
+        try { stored = localStorage.getItem('starlight-theme'); } catch (_) {}
+        var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', stored || system);
+      })();
+    </script>
+    <script>
+      import { applySiteEntryRouting } from '@/scripts/site-entry-routing';
+      applySiteEntryRouting();
+    </script>
+    <style>
+      :root {
+        --landing-bg: #07111d;
+        --landing-surface: rgba(15, 23, 42, 0.78);
+        --landing-border: rgba(148, 163, 184, 0.18);
+        --landing-primary: #22c55e;
+        --landing-secondary: #06b6d4;
+        --landing-text: #f8fafc;
+        --landing-text-muted: rgba(226, 232, 240, 0.65);
+        --landing-glow: rgba(34, 197, 94, 0.25);
+        --landing-glow-cyan: rgba(6, 182, 212, 0.2);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html, body {
+        min-height: 100%;
+        overflow: hidden;
+      }
+
+      body.landing-page {
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        background: var(--landing-bg);
+        color: var(--landing-text);
+        font-family: "DM Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* ── 背景网格 ── */
+      .landing-grid {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        background-image:
+          linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: radial-gradient(circle at center, black 0%, transparent 75%);
+        -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 75%);
+      }
+
+      /* ── 背景光效 ── */
+      .landing-bg-glow {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .landing-bg-glow::before {
+        content: '';
+        position: absolute;
+        top: -30%;
+        left: 50%;
+        width: 140vmax;
+        height: 140vmax;
+        transform: translateX(-50%);
+        background: radial-gradient(
+          circle,
+          rgba(34, 197, 94, 0.08) 0%,
+          rgba(6, 182, 212, 0.05) 30%,
+          transparent 65%
+        );
+        animation: bgPulse 6s ease-in-out infinite alternate;
+      }
+
+      @keyframes bgPulse {
+        0%   { opacity: 0.6; transform: translateX(-50%) scale(1); }
+        100% { opacity: 1;   transform: translateX(-50%) scale(1.08); }
+      }
+
+      /* ── 主卡片 ── */
+      .landing-card {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding: 3.5rem 3rem;
+        width: min(90vw, 28rem);
+        border: 1px solid var(--landing-border);
+        border-radius: 1.5rem;
+        background: var(--landing-surface);
+        box-shadow:
+          0 20px 60px rgba(15, 23, 42, 0.5),
+          0 0 80px var(--landing-glow),
+          0 0 120px var(--landing-glow-cyan);
+        backdrop-filter: blur(24px);
+        text-align: center;
+        animation: cardIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      @keyframes cardIn {
+        from {
+          opacity: 0;
+          transform: translateY(24px) scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      /* ── Logo ── */
+      .landing-logo {
+        position: relative;
+        width: 72px;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 1.25rem;
+        background: linear-gradient(135deg, var(--landing-primary), var(--landing-secondary));
+        box-shadow: 0 8px 32px var(--landing-glow);
+        animation: logoFloat 4s ease-in-out infinite;
+      }
+
+      .landing-logo svg {
+        width: 40px;
+        height: 40px;
+        fill: var(--landing-bg);
+      }
+
+      @keyframes logoFloat {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(-6px); }
+      }
+
+      /* ── Brand name ── */
+      .landing-brand {
+        font-family: "Space Grotesk", "DM Sans", system-ui, sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* ── Tagline ── */
+      .landing-tagline {
+        font-size: 0.95rem;
+        color: var(--landing-text-muted);
+        line-height: 1.6;
+        max-width: 20rem;
+      }
+
+      .landing-tagline strong {
+        color: var(--landing-secondary);
+        -webkit-text-fill-color: var(--landing-secondary);
+        font-weight: 600;
+      }
+
+      /* ── Loading indicator ── */
+      .landing-loader {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+        font-size: 0.8rem;
+        color: var(--landing-text-muted);
+        letter-spacing: 0.04em;
+      }
+
+      .landing-dots {
+        display: flex;
+        gap: 4px;
+      }
+
+      .landing-dots span {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--landing-secondary);
+        animation: dotPulse 1.4s ease-in-out infinite;
+      }
+
+      .landing-dots span:nth-child(2) { animation-delay: 0.2s; }
+      .landing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+      @keyframes dotPulse {
+        0%, 80%, 100% { opacity: 0.25; transform: scale(0.8); }
+        40%           { opacity: 1;    transform: scale(1.2); }
+      }
+
+      /* ── Fallback manual links (noscript) ── */
+      .landing-fallback {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        justify-content: center;
+        margin-top: 0.5rem;
+      }
+
+      .landing-fallback a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.6rem 1.25rem;
+        border-radius: 999px;
+        border: 1px solid var(--landing-border);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--landing-text);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.25s ease;
+      }
+
+      .landing-fallback a:hover,
+      .landing-fallback a:focus-visible {
+        border-color: var(--landing-secondary);
+        background: rgba(6, 182, 212, 0.1);
+        box-shadow: 0 4px 16px rgba(6, 182, 212, 0.15);
+        transform: translateY(-1px);
+      }
+
+      .landing-fallback a .flag {
+        font-size: 1.1em;
+      }
+
+      /* ── Separator ── */
+      .landing-separator {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          var(--landing-border) 50%,
+          transparent 100%
+        );
+      }
+
+      /* ── Bottom links ── */
+      .landing-links {
+        display: flex;
+        gap: 1.5rem;
+        font-size: 0.8rem;
+      }
+
+      .landing-links a {
+        color: var(--landing-text-muted);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .landing-links a:hover {
+        color: var(--landing-secondary);
+      }
+    </style>
+  </head>
+  <body class="landing-page">
+    <div class="landing-grid" aria-hidden="true"></div>
+    <div class="landing-bg-glow" aria-hidden="true"></div>
+
+    <main class="landing-card" role="main">
+      <div class="landing-logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13 3L4 14h7l-2 7 9-11h-7l2-7z" />
+        </svg>
+      </div>
+
+      <h1 class="landing-brand">Hagicode</h1>
+
+      <p class="landing-tagline">
+        <strong>Smart · Efficient · Fun</strong><br />
+        AI-powered coding assistant platform
+      </p>
+
+      <div class="landing-loader" id="landing-loader">
+        <div class="landing-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <span>Preparing your experience…</span>
+      </div>
+
+      <noscript>
+        <div class="landing-separator"></div>
+        <nav class="landing-fallback" aria-label="Language selection">
+          <a href="/en-US/"><span class="flag">🇺🇸</span> English</a>
+          <a href="/zh-CN/"><span class="flag">🇨🇳</span> 简体中文</a>
+        </nav>
+      </noscript>
+
+      <div class="landing-separator"></div>
+
+      <nav class="landing-links" aria-label="Quick links">
+        <a href="/en-US/docs/">Docs</a>
+        <a href="https://github.com/hagicode" target="_blank" rel="noopener">GitHub</a>
+        <a href="/en-US/about/">About</a>
+      </nav>
+    </main>
+
+    <AnalyticsScripts />
+  </body>
+</html>
