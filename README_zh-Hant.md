@@ -14,7 +14,7 @@
 ·
 <a href="https://hagicode.com/container/">Container</a>
 ·
-<a href="https://store.steampowered.com/app/4625540/Hagicode/">Steam</a>
+<a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Windows Store</a>
 ·
 <a href="https://docs.hagicode.com/blog/">Blog</a>
 
@@ -24,13 +24,13 @@
 
 ---
 
-## Steam 產品總覽
+## Windows Store And Add-ons
 
 | 預覽 | 產品 | 說明 | 開始位置 |
 | --- | --- | --- | --- |
-| <img src="./src/assets/img/readme-sync/steam/hagicode-wide-capsule.png" alt="HagiCode Steam 寬版宣傳圖" width="280" /> | **HagiCode** | Steam 上的基礎應用程式，提供 Cloud Saves、Workshop 支援，以及最清楚的桌面版公開安裝路徑。 | [在 Steam 上開啟](https://store.steampowered.com/app/4625540/Hagicode/) |
-| <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus Steam 套裝寬版宣傳圖" width="280" /> | **Hagicode Plus** | 面向完整配置的套裝導覽，包含 HagiCode 與 Turbo Engine DLC。 | [閱讀套裝指南](https://docs.hagicode.com/en/bundles/hagicode-plus/) · [在 Steam 上查看套裝](https://store.steampowered.com/bundle/73989/Hagicode_Plus/) |
-| <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC Steam 寬版宣傳圖" width="280" /> | **Turbo Engine DLC** | HagiCode 的 DLC，可解鎖最多 32 個並行線上工作階段以及更多自訂選項。 | [查看 DLC](https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/) |
+| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Windows Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
+| <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus bundle artwork" width="280" /> | **Hagicode Plus** | Bundle and upgrade guidance remains available through the docs site. | [Read Hagicode Plus docs](https://docs.hagicode.com/bundles/hagicode-plus/) |
+| <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC artwork" width="280" /> | **Turbo Engine DLC** | DLC guidance for higher concurrency and customization remains available through the docs site. | [Read Turbo Engine DLC docs](https://docs.hagicode.com/dlc/turbo-engine-dlc/) |
 
 ## HagiCode 是什麼
 
@@ -82,7 +82,8 @@ HagiCode 把成就、每日報告、效率倍率、Token 吞吐量和主題化�
 - [Product Overview](https://docs.hagicode.com/product-overview/) 查看官方公開產品介紹
 - [Desktop](https://hagicode.com/desktop/) 進入本地優先的安裝與服務管理入口
 - [Container](https://hagicode.com/container/) 查看自託管部署路徑
-- [Steam](https://store.steampowered.com/app/4625540/Hagicode/) 進入具備平台原生分發能力的 Steam 版本
+- [Windows Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
+- [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) 查看產品更新與長篇文章
 
 ## 開發此儲存庫
