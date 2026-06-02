@@ -177,6 +177,9 @@ describe('InstallButton markup', () => {
     expect(
       getFileExtension(AssetType.MacOSIntel, 'Hagicode.Desktop-1.2.3-mac.zip'),
     ).toBe('.zip');
+    expect(
+      getFileExtension(AssetType.WindowsMsix, 'Hagicode.Desktop.msix'),
+    ).toBe('.msix');
   });
 
   it('prioritizes macOS dmg packages ahead of zip packages for the recommended row', () => {

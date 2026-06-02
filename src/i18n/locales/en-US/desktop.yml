@@ -42,7 +42,7 @@ desktop:
     networkDesc: Network connection required for initial download (can be used offline afterwards)
   download:
     title: Download Packages
-    windowsDesc: Stable installers for Windows 10/11, including setup and portable builds.
+    windowsDesc: Stable installers for Windows 10/11, including setup, portable, and MSIX builds.
     macosDesc: Native builds for Apple Silicon and Intel Macs.
     linuxDesc: AppImage and tarball packages for mainstream x64 and ARM64 Linux distributions.
     note: If the package list here fails to load, use the version history link in the hero area to access the canonical index.

@@ -353,6 +353,8 @@ function getLocalizedAssetTypeLabel(assetType: AssetType, t: TranslateFn): strin
       return t('desktopHero.assetTypes.windowsSetup');
     case AssetType.WindowsPortable:
       return t('desktopHero.assetTypes.windowsPortable');
+    case AssetType.WindowsMsix:
+      return t('desktopHero.assetTypes.windowsMsix');
     case AssetType.WindowsStore:
       return t('desktopHero.assetTypes.windowsStore');
     case AssetType.MacOSApple:

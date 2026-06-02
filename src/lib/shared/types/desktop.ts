@@ -30,6 +30,7 @@ export type GithubReachabilityState = DownloadSourceProbeState;
 export enum AssetType {
   WindowsSetup = "windows-setup", // Windows 安装程序 (推荐)
   WindowsPortable = "windows-portable", // Windows 便携版
+  WindowsMsix = "windows-msix", // Windows MSIX 安装包
   WindowsStore = "windows-store", // Microsoft Store
   MacOSApple = "macos-apple", // macOS Apple Silicon (推荐)
   MacOSIntel = "macos-intel", // macOS Intel/通用

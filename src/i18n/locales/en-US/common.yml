@@ -190,6 +190,7 @@ desktopHero:
   assetTypes:
     windowsSetup: Installer
     windowsPortable: Portable
+    windowsMsix: MSIX
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
     macosIntel: Intel

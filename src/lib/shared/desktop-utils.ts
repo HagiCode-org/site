@@ -702,6 +702,9 @@ export function inferAssetType(filename: string): AssetType {
   if (name.includes('setup') && name.endsWith('.exe')) {
     return AssetType.WindowsSetup;
   }
+  if (name.endsWith('.msix')) {
+    return AssetType.WindowsMsix;
+  }
   if (name.endsWith('.exe')) {
     return AssetType.WindowsPortable;
   }
@@ -753,6 +756,7 @@ export function inferArchitecture(assetType: AssetType): CpuArchitecture {
       return CpuArchitecture.ARM64;
     case AssetType.WindowsSetup:
     case AssetType.WindowsPortable:
+    case AssetType.WindowsMsix:
     case AssetType.WindowsStore:
     case AssetType.MacOSIntel:
     case AssetType.LinuxAppImage:
@@ -788,6 +792,7 @@ export function getArchitectureLabel(assetType: AssetType): string {
     [AssetType.MacOSIntel]: 'x64',
     [AssetType.WindowsSetup]: 'x64',
     [AssetType.WindowsPortable]: 'x64',
+    [AssetType.WindowsMsix]: 'x64',
     [AssetType.WindowsStore]: '',
     [AssetType.LinuxAppImage]: 'x64',
     [AssetType.LinuxArm64AppImage]: 'ARM64',
@@ -813,6 +818,7 @@ export function getFileExtension(assetType: AssetType, filename?: string): strin
       ['.appimage', '.AppImage'],
       ['.dmg', '.dmg'],
       ['.zip', '.zip'],
+      ['.msix', '.msix'],
       ['.appx', '.appx'],
       ['.exe', '.exe'],
       ['.deb', '.deb'],
@@ -827,6 +833,7 @@ export function getFileExtension(assetType: AssetType, filename?: string): strin
   const extensions: Record<AssetType, string> = {
     [AssetType.WindowsSetup]: '.exe',
     [AssetType.WindowsPortable]: '.exe',
+    [AssetType.WindowsMsix]: '.msix',
     [AssetType.WindowsStore]: '.appx',
     [AssetType.MacOSApple]: '.dmg',
     [AssetType.MacOSIntel]: '.dmg',
@@ -862,6 +869,7 @@ export function getAssetTypeLabel(assetType: AssetType): string {
   const labels: Record<AssetType, string> = {
     [AssetType.WindowsSetup]: '安装程序',
     [AssetType.WindowsPortable]: '便携版',
+    [AssetType.WindowsMsix]: 'MSIX',
     [AssetType.WindowsStore]: 'Microsoft Store',
     [AssetType.MacOSApple]: 'Apple Silicon',
     [AssetType.MacOSIntel]: 'Intel 版',
@@ -1074,6 +1082,7 @@ export function groupAssetsByPlatform(
     switch (assetType) {
       case AssetType.WindowsSetup:
       case AssetType.WindowsPortable:
+      case AssetType.WindowsMsix:
       case AssetType.WindowsStore:
         platform = 'windows';
         break;

@@ -42,7 +42,7 @@ desktop:
     networkDesc: 初始下载需要网络连接（后续可离线使用）
   download:
     title: 安装包下载
-    windowsDesc: 提供适用于 Windows 10/11 的稳定安装包，包含标准安装版和便携版。
+    windowsDesc: 提供适用于 Windows 10/11 的稳定安装包，包含标准安装版、便携版和 MSIX 安装包。
     macosDesc: 提供面向 Apple Silicon 和 Intel Mac 的原生构建版本。
     linuxDesc: 提供适用于主流 x64 和 ARM64 Linux 发行版的 AppImage 与压缩包。
     note: 如果此处无法加载安装包列表，请使用页面上方的版本历史链接访问官方索引页。

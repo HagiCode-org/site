@@ -190,6 +190,7 @@ desktopHero:
   assetTypes:
     windowsSetup: 安装程序
     windowsPortable: 便携版
+    windowsMsix: MSIX
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
     macosIntel: Intel 版

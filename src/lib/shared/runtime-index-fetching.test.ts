@@ -39,11 +39,18 @@ const siteDesktopIndexFixture = {
           size: 1048576,
           lastModified: null,
         },
+        {
+          name: 'Hagicode.Desktop.msix',
+          path: 'v1.2.3/Hagicode.Desktop.msix',
+          size: 1048576,
+          lastModified: null,
+        },
       ],
       files: [
         'v1.2.3/Hagicode.Desktop.Setup.1.2.3.exe',
         'v1.2.3/Hagicode.Desktop-1.2.3-arm64.dmg',
         'v1.2.3/Hagicode.Desktop-1.2.3.AppImage',
+        'v1.2.3/Hagicode.Desktop.msix',
       ],
     },
   ],
@@ -74,6 +81,12 @@ const docsDesktopIndexFixture = {
         {
           name: 'Hagicode.Desktop-1.2.3.AppImage',
           path: 'v1.2.3/Hagicode.Desktop-1.2.3.AppImage',
+          size: 1048576,
+          lastModified: null,
+        },
+        {
+          name: 'Hagicode.Desktop.msix',
+          path: 'v1.2.3/Hagicode.Desktop.msix',
           size: 1048576,
           lastModified: null,
         },
@@ -156,6 +169,10 @@ describe.each(targets)('$label runtime index fetching', (target) => {
     expect(first.fallbackTarget).toBeNull();
     expect(first.latest?.version).toBe('v1.2.3');
     expect(first.platforms).toHaveLength(3);
+    expect(first.platforms.find((platform) => platform.platform === 'windows')?.downloads.map((download) => download.filename)).toEqual([
+      'Hagicode.Desktop.Setup.1.2.3.exe',
+      'Hagicode.Desktop.msix',
+    ]);
     expect(first.channels.stable.latest?.version).toBe('v1.2.3');
   });
 
