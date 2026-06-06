@@ -33,8 +33,9 @@ describe('HeroSection', () => {
     );
 
     expect(markup).toContain('data-windows-store-entry="site-home-hero"');
-    expect(markup).toContain('>Windows Store<');
-    expect(markup).toContain('https://apps.microsoft.com/detail/9N3PM0N3SVDW');
+    expect(markup).toContain('<ms-store-badge');
+    expect(markup).toContain('productid="9N3PM0N3SVDW"');
+    expect(markup).toContain('language="en-us"');
     expect(markup).not.toContain('data-steam-entry="site-home-hero"');
     expect(markup).not.toContain('>Steam<');
   });

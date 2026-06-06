@@ -302,14 +302,6 @@
   color: #edf8ff;
 }
 
-.buttonWindowsStore {
-  background:
-    radial-gradient(circle at top left, rgba(0, 120, 215, 0.18), transparent 46%),
-    linear-gradient(135deg, rgba(4, 28, 55, 0.94) 0%, rgba(0, 90, 158, 0.92) 54%, rgba(13, 148, 241, 0.88) 100%);
-  border-color: rgba(82, 179, 255, 0.34);
-  color: #edf8ff;
-}
-
 [data-theme='light'] .buttonSteam {
   background:
     radial-gradient(circle at top left, rgba(102, 192, 244, 0.18), transparent 46%),
@@ -317,11 +309,21 @@
   color: #12314f;
 }
 
-[data-theme='light'] .buttonWindowsStore {
-  background:
-    radial-gradient(circle at top left, rgba(0, 120, 215, 0.16), transparent 46%),
-    linear-gradient(135deg, rgba(236, 246, 255, 0.96) 0%, rgba(217, 235, 250, 0.98) 100%);
-  color: #0d3a66;
+.windowsStoreBadgeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.windowsStoreBadgeButton:focus-within {
+  outline: 3px solid color-mix(in srgb, var(--hero-title-accent) 34%, transparent);
+  outline-offset: 3px;
+  border-radius: 0.75rem;
+}
+
+.windowsStoreBadgeElement {
+  display: block;
 }
 
 .buttonPrimary:hover,

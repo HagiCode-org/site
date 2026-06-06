@@ -191,6 +191,22 @@
   border-right: 0;
 }
 
+.microsoftStoreBadgeSlot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  line-height: 0;
+}
+
+.microsoftStoreBadgeSlot--compact {
+  margin-left: 0.5rem;
+}
+
+.microsoftStoreBadgeElement {
+  display: block;
+}
+
 .storeShortcutWithDropdown {
   border-radius: 0;
 }

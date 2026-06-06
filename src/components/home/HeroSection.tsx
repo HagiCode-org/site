@@ -6,6 +6,7 @@ import { trackEvent } from '@/lib/analytics/tracker';
 import { getLinkWithLocale } from '@/lib/shared/links';
 import { getBundledSteamStoreLink, loadSteamStoreLink } from '@/lib/shared/steam-store-link';
 import { getBundledWindowsStoreLink, loadWindowsStoreLink } from '@/lib/shared/windows-store-link';
+import MicrosoftStoreBadge from '@/components/common/MicrosoftStoreBadge';
 import HeroWorkflowBoard from './HeroWorkflowBoard';
 import ProductOverviewVideoSection from './ProductOverviewVideoSection';
 import type { FeaturedVideosByProvider } from './video-showcase-model';
@@ -75,17 +76,6 @@ function SteamIcon({ className = '' }: IconProps) {
   );
 }
 
-function WindowsStoreIcon({ className = '' }: IconProps) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path
-        d="M3.75 4.75L10.8 3.75V10.5H3.75V4.75ZM12.3 3.55L20.25 2.4V10.5H12.3V3.55ZM3.75 12H10.8V18.75L3.75 17.75V12ZM12.3 12H20.25V20.1L12.3 18.95V12Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
 export default function HeroSection({
   desktopVersion = null,
   desktopPlatforms = [],
@@ -108,7 +98,6 @@ export default function HeroSection({
     : 'Not globally unique, but exceptionally usable Agentic Coding software lives here.';
   const steamLabel = 'Steam';
   const steamAriaLabel = copy.steamAriaLabel || (isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam');
-  const windowsStoreLabel = copy.windowsStoreLabel || (isChineseLocale ? 'Windows 商店' : 'Windows Store');
   const windowsStoreAriaLabel = copy.windowsStoreAriaLabel || (
     isChineseLocale ? '打开 Hagicode Windows 商店页' : 'Open Hagicode on Windows Store'
   );
@@ -177,17 +166,14 @@ export default function HeroSection({
             </a>
 
             {showWindowsStoreButton && (
-              <a
+              <MicrosoftStoreBadge
                 href={windowsStoreLink.href}
-                className={`${styles.buttonSecondary} ${styles.buttonWindowsStore}`}
-                target="_blank"
-                rel="noopener noreferrer"
+                locale={locale}
                 aria-label={windowsStoreAriaLabel}
-                data-windows-store-entry="site-home-hero"
-              >
-                <WindowsStoreIcon className={styles.buttonIcon} />
-                <span>{windowsStoreLabel}</span>
-              </a>
+                className={styles.windowsStoreBadgeButton}
+                badgeClassName={styles.windowsStoreBadgeElement}
+                badgeAttributes={{ 'data-windows-store-entry': 'site-home-hero' }}
+              />
             )}
 
             {showSteamButton && (

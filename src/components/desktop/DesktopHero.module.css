@@ -105,10 +105,23 @@
 }
 
 .windowsStoreRow {
+  justify-content: space-between;
   border-color: rgba(84, 186, 255, 0.28);
   background:
     radial-gradient(circle at top left, rgba(0, 120, 215, 0.2), transparent 48%),
     linear-gradient(135deg, rgba(4, 28, 55, 0.96) 0%, rgba(0, 90, 158, 0.96) 58%, rgba(13, 148, 241, 0.94) 100%);
+}
+
+.windowsStoreRowBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  line-height: 0;
+}
+
+.windowsStoreBadgeElement {
+  display: block;
 }
 
 .windowsStoreRowEyebrow {
@@ -1484,6 +1497,11 @@
     padding: 1rem;
   }
 
+  .windowsStoreRow {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .buttonGroup {
     max-width: 100%;
   }
@@ -1520,6 +1538,10 @@
   .steamRow {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .windowsStoreRowBadge {
+    width: 100%;
   }
 
   .steamButton {

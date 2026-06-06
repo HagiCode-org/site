@@ -48,6 +48,7 @@ import {
 } from '@/lib/shared/version-manager';
 import { getDesktopDownloadEventName, WEBSITE_TRACKING_EVENTS } from '@/lib/analytics/events';
 import { trackEvent } from '@/lib/analytics/tracker';
+import MicrosoftStoreBadge from '@/components/common/MicrosoftStoreBadge';
 
 export interface DownloadOption {
   label: string;
@@ -130,24 +131,6 @@ function SteamIcon({ className }: { className?: string }) {
         stroke="currentColor"
         strokeWidth="1.75"
         strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function WindowsStoreIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      data-windows-store-icon="true"
-    >
-      <path
-        d="M4 5.5L10.25 4v7.25H4V5.5Zm9.75-1.9L20 2v9.25h-6.25V3.6ZM4 12.75h6.25V20L4 18.5v-5.75Zm9.75 0H20V22l-6.25-1.5v-7.75Z"
-        fill="currentColor"
       />
     </svg>
   );
@@ -423,7 +406,6 @@ export default function InstallButton({
   const steamShortcutLabel = 'Steam';
   const steamShortcutAriaLabel =
     isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam';
-  const windowsStoreShortcutLabel = isChineseLocale ? '商店' : 'Store';
   const windowsStoreShortcutAriaLabel =
     isChineseLocale ? '打开 Hagicode Microsoft Store 页面' : 'Open Hagicode on Microsoft Store';
   const showWindowsStoreShortcut = variant === 'compact';
@@ -1005,17 +987,14 @@ export default function InstallButton({
         )}
 
         {showWindowsStoreShortcut && (
-          <a
+          <MicrosoftStoreBadge
             href={WINDOWS_STORE_URL}
-            className={`${styles.storeShortcut} ${showDropdown ? styles.storeShortcutWithDropdown : showSteamShortcut ? '' : styles.storeShortcutLast}`}
-            target="_blank"
-            rel="noopener noreferrer"
+            locale={locale}
             aria-label={windowsStoreShortcutAriaLabel}
-            data-windows-store-entry="site-header-install"
-          >
-            <WindowsStoreIcon className={styles.downloadIcon} />
-            <span className={styles.btnText}>{windowsStoreShortcutLabel}</span>
-          </a>
+            className={`${styles.microsoftStoreBadgeSlot} ${styles[`microsoftStoreBadgeSlot--${variant}`]}`}
+            badgeClassName={styles.microsoftStoreBadgeElement}
+            badgeAttributes={{ 'data-windows-store-entry': 'site-header-install' }}
+          />
         )}
 
         {showSteamShortcut && (

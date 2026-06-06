@@ -24,6 +24,7 @@ import { getTranslation, useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
 import { getLinkWithLocale } from '@/lib/shared/links';
 import { getBundledWindowsStoreLink, loadWindowsStoreLink } from '@/lib/shared/windows-store-link';
+import MicrosoftStoreBadge from '@/components/common/MicrosoftStoreBadge';
 import {
   AssetType,
   type DesktopVersion,
@@ -75,63 +76,26 @@ interface DesktopHeroWindowsStoreRowProps {
   href: string;
 }
 
-interface DesktopHeroStoreRowProps {
-  href: string;
-  ariaLabel: string;
-  eyebrow: string;
-  description: string;
-  dataAttributeName: 'data-windows-store-row';
-  dataEntry: string;
-  rowClassName?: string;
-  eyebrowClassName?: string;
-}
-
-function DesktopHeroStoreRow({
-  href,
-  ariaLabel,
-  eyebrow,
-  description,
-  dataAttributeName,
-  dataEntry,
-  rowClassName,
-  eyebrowClassName,
-}: DesktopHeroStoreRowProps) {
-  const dataAttribute = { [dataAttributeName]: 'desktop-downloads' };
-
-  return (
-    <a
-      href={href}
-      className={rowClassName ? `${styles.steamRow} ${rowClassName}` : styles.steamRow}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={ariaLabel}
-      {...dataAttribute}
-      data-store-entry={dataEntry}
-    >
-      <div className={styles.steamRowCopy}>
-        <span className={eyebrowClassName ? `${styles.steamRowEyebrow} ${eyebrowClassName}` : styles.steamRowEyebrow}>
-          {eyebrow}
-        </span>
-        <p className={styles.steamRowDescription}>{description}</p>
-      </div>
-    </a>
-  );
-}
-
 export function DesktopHeroWindowsStoreRow({ locale, href }: DesktopHeroWindowsStoreRowProps) {
   const { t } = getTranslation(locale);
 
   return (
-    <DesktopHeroStoreRow
-      href={href}
-      ariaLabel={t('desktopHero.windowsStore.ariaLabel')}
-      eyebrow={t('desktopHero.windowsStore.eyebrow')}
-      description={t('desktopHero.windowsStore.description')}
-      dataAttributeName="data-windows-store-row"
-      dataEntry="site-desktop-hero-windows-store"
-      rowClassName={styles.windowsStoreRow}
-      eyebrowClassName={styles.windowsStoreRowEyebrow}
-    />
+    <div className={`${styles.steamRow} ${styles.windowsStoreRow}`} data-windows-store-row="desktop-downloads">
+      <div className={styles.steamRowCopy}>
+        <span className={`${styles.steamRowEyebrow} ${styles.windowsStoreRowEyebrow}`}>
+          {t('desktopHero.windowsStore.eyebrow')}
+        </span>
+        <p className={styles.steamRowDescription}>{t('desktopHero.windowsStore.description')}</p>
+      </div>
+      <MicrosoftStoreBadge
+        href={href}
+        locale={locale}
+        ariaLabel={t('desktopHero.windowsStore.ariaLabel')}
+        className={styles.windowsStoreRowBadge}
+        badgeClassName={styles.windowsStoreBadgeElement}
+        badgeAttributes={{ 'data-store-entry': 'site-desktop-hero-windows-store' }}
+      />
+    </div>
   );
 }
 

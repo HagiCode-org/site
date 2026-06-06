@@ -243,9 +243,10 @@ describe('InstallButton markup', () => {
     expect(markup).toContain('data-segment-role="toggle"');
     expect(markup).toContain('>GitHub<');
     expect(markup).toContain('>China<');
+    expect(markup).toContain('<ms-store-badge');
     expect(markup).toContain('data-windows-store-entry="site-header-install"');
-    expect(markup).toContain(`href="${windowsStoreUrl}"`);
-    expect(markup).toContain('>Store<');
+    expect(markup).toContain('productid="9N3PM0N3SVDW"');
+    expect(markup).toContain('language="en-us"');
   });
 
   it('keeps the compact install cluster free of the Steam shortcut while Steam support is pending', () => {
