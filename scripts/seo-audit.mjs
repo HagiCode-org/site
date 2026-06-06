@@ -24,11 +24,17 @@ const managedLocalizedRoutes = [
   '/about/',
 ];
 
+const managedEntryRoutes = [
+  ...managedLocalizedRoutes,
+  '/explore/',
+];
+
 const legacyEnglishRoutes = [
   '/',
   '/desktop/',
   '/container/',
   '/about/',
+  '/explore/',
 ];
 
 function normalizeRoutePath(routePath) {
@@ -85,12 +91,10 @@ function buildHreflangPaths(routePath) {
   return hreflangPaths;
 }
 
-const rootRedirectRoutes = managedLocalizedRoutes.map((routePath) => ({
+const rootEntryPages = managedEntryRoutes.map((routePath) => ({
   route: routePath,
   file: routePath === '/' ? 'index.html' : `${routePath.replace(/^\/+/, '')}index.html`,
-  canonicalPath: getLocalizedPath(routePath, defaultLocale),
-  redirectTarget: getLocalizedPath(routePath, defaultLocale),
-  requiresRobotsNoindex: true,
+  canonicalPath: routePath,
 }));
 
 const managedPages = [
@@ -102,7 +106,7 @@ const managedPages = [
       hreflangPaths: buildHreflangPaths(routePath),
     })),
   ),
-  ...rootRedirectRoutes,
+  ...rootEntryPages,
   ...legacyEnglishRoutes.map((routePath) => ({
     route: getLegacyEnglishRoute(routePath),
     file: getLegacyEnglishFile(routePath),
