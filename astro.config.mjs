@@ -84,7 +84,7 @@ export default defineConfig({
         sitemap({
             filter: (page) => {
                 const pathname = new URL(page).pathname;
-                return !['/', '/about/', '/desktop/', '/container/'].includes(pathname) && !pathname.startsWith('/en/');
+                return !pathname.startsWith('/en/');
             },
         }),
         partytown(),
