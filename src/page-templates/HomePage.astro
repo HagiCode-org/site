@@ -11,6 +11,7 @@ import Footer from '@/components/home/Footer';
 import LunarNewYearDecorations from '@/components/home/LunarNewYearDecorations';
 import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
+import MicrosoftStoreBadgeScript from '@/components/MicrosoftStoreBadgeScript.astro';
 import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
 import '@/styles/homepage.css';
 
@@ -56,6 +57,7 @@ const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
     <meta name="og:description" content={pageCopy.description} />
     <meta name="og:type" content="website" />
     <GoogleAnalytics />
+    <MicrosoftStoreBadgeScript />
     <script is:inline>
       if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
