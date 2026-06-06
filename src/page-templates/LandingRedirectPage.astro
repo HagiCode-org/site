@@ -8,12 +8,12 @@
  * 3. 提供良好的第一印象
  */
 
-import { getAbsoluteSiteUrl, joinWithSiteBase } from '@/lib/locale-routing';
+import { SITE_ORIGIN, joinWithSiteBase } from '@/lib/locale-routing';
 import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 
 const siteBase = import.meta.env.VITE_SITE_BASE || '';
-const canonicalUrl = getAbsoluteSiteUrl('/', 'en-US', siteBase);
+const canonicalUrl = `${SITE_ORIGIN}${joinWithSiteBase(siteBase, '/')}`;
 ---
 
 <!doctype html>
@@ -29,7 +29,8 @@ const canonicalUrl = getAbsoluteSiteUrl('/', 'en-US', siteBase);
     <meta name="og:title" content="Hagicode - AI Coding Assistant" />
     <meta name="og:description" content="Redefine coding with AI. OpenSpec workflows, multi-agent execution, and Hero Dungeon gameplay." />
     <meta name="og:type" content="website" />
-    <meta name="robots" content="noindex,follow" />
+    <meta name="og:url" content={canonicalUrl} />
+    <meta name="robots" content="index,follow" />
     <meta name="hagicode-site-base" content={siteBase} />
     <meta name="hagicode-site-landing-target" content="/" />
     <GoogleAnalytics />

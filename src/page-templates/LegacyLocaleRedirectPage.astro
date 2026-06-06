@@ -6,6 +6,8 @@ interface Props {
   destinationName?: string;
   movedCopy?: string;
   entryTargetPath?: string;
+  robotsContent?: 'index,follow' | 'noindex,follow';
+  canonicalPath?: string;
 }
 
 const {
@@ -13,6 +15,8 @@ const {
   destinationName = 'the current page',
   movedCopy = 'This entry now points to the current route so older links can keep working.',
   entryTargetPath,
+  robotsContent,
+  canonicalPath,
 } = Astro.props;
 ---
 
@@ -21,4 +25,6 @@ const {
   destinationName={destinationName}
   movedCopy={movedCopy}
   entryTargetPath={entryTargetPath}
+  robotsContent={robotsContent}
+  canonicalPath={canonicalPath}
 />

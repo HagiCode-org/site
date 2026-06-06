@@ -1,17 +1,26 @@
 ---
-import { getAbsoluteSiteUrl, joinWithSiteBase } from '@/lib/locale-routing';
+import { SITE_ORIGIN, joinWithSiteBase } from '@/lib/locale-routing';
 
 interface Props {
   targetPath: string;
   destinationName: string;
   movedCopy: string;
   entryTargetPath?: string;
+  robotsContent?: 'index,follow' | 'noindex,follow';
+  canonicalPath?: string;
 }
 
-const { targetPath, destinationName, movedCopy, entryTargetPath } = Astro.props;
+const {
+  targetPath,
+  destinationName,
+  movedCopy,
+  entryTargetPath,
+  robotsContent = 'noindex,follow',
+  canonicalPath = targetPath,
+} = Astro.props;
 const siteBase = import.meta.env.VITE_SITE_BASE || '';
 const redirectPath = joinWithSiteBase(siteBase, targetPath);
-const canonicalUrl = getAbsoluteSiteUrl(targetPath, 'en-US', siteBase);
+const canonicalUrl = `${SITE_ORIGIN}${joinWithSiteBase(siteBase, canonicalPath)}`;
 const title = `${destinationName} has moved`;
 const description = `This page now points to ${destinationName} at ${redirectPath}. ${movedCopy}`;
 ---
@@ -21,7 +30,7 @@ const description = `This page now points to ${destinationName} at ${redirectPat
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex,follow" />
+    <meta name="robots" content={robotsContent} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
