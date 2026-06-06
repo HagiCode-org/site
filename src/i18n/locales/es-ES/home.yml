@@ -15,7 +15,7 @@ hero:
     efficiency: Doble eficiencia · Buena fortuna
   problem: Las herramientas tradicionales de coding con IA tienen
   painPoint: puntos débiles
-  painPoints: ": contexto limitado, sesiones desordenadas y poca colaboración."
+  painPoints: ': contexto limitado, sesiones desordenadas y poca colaboración.'
   solution: Hagicode redefine la experiencia de coding con IA con
   features:
     - flujo de trabajo OpenSpec
@@ -56,30 +56,27 @@ features:
     hagicode: Hagicode
     description: Un flujo completo de propuestas en 9 etapas, desde la idea hasta el archivo, con ayuda de IA durante todo el recorrido. Tu eficiencia de coding puede multiplicarse por tres.
     workflow:
-      idea:
-        label: Idea
-        desc: Empezar desde la idea
-      proposal:
-        label: Propuesta
-        desc: La IA genera la propuesta
       review:
         label: Revisión
         desc: Revisión automática
+      scaffold:
+        label: Scaffold
+        desc: Choose a change-id and create proposal.md, tasks.md, and design.md when needed.
+      spec:
+        label: Spec
+        desc: Translate the change into capability-level spec deltas with explicit requirements.
+      design:
+        label: Design
+        desc: Capture architecture and trade-offs in design.md when the change spans systems.
       tasks:
         label: Tareas
         desc: Desglose de tareas
-      code:
-        label: Código
-        desc: Coding inteligente
-      test:
-        label: Prueba
-        desc: Pruebas automáticas
-      refactor:
-        label: Refactor
-        desc: Refactor de código
-      docs:
-        label: Docs
-        desc: Generación de documentación
+      validate:
+        label: Validate
+        desc: Run openspec validate in strict mode and clear every issue before execution.
+      apply:
+        label: Apply
+        desc: Read proposal, design, and tasks, then implement in order while checking items off.
       archive:
         label: Archivo
         desc: Archivo de conocimiento
@@ -260,10 +257,6 @@ pricing:
     customLogo: Logo personalizado
     customTitle: Título personalizado
     customCoAuthoredByInfo: Información Co-Authored-By personalizada
-    steamCloudAchievements: Logros en la nube de Steam
-    freeDlcSupport: Compatibilidad con DLC gratuitos
-    steamWorkshopSupport: Compatibilidad con Steam Workshop
-    cloudSaveSupport: Guardado en la nube
   values:
     free: Gratis
     viewOnSteam: Ver en Steam

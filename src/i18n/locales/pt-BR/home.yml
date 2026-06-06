@@ -15,7 +15,7 @@ hero:
     efficiency: Eficiência em dobro · Boa fortuna
   problem: As ferramentas tradicionais de coding com IA têm
   painPoint: pontos fracos
-  painPoints: ": contexto limitado, sessões bagunçadas e pouca colaboração."
+  painPoints: ': contexto limitado, sessões bagunçadas e pouca colaboração.'
   solution: O HagiCode redefine a experiência de coding com IA com
   features:
     - workflow OpenSpec
@@ -56,30 +56,27 @@ features:
     hagicode: Hagicode
     description: Um workflow completo de propostas em 9 estágios, da ideia ao arquivo, com assistência de IA do começo ao fim. Sua eficiência de coding pode aumentar em 3x.
     workflow:
-      idea:
-        label: Ideia
-        desc: Comece pela ideia
-      proposal:
-        label: Proposta
-        desc: A IA gera a proposta
       review:
         label: Revisão
         desc: Revisão automática
+      scaffold:
+        label: Scaffold
+        desc: Choose a change-id and create proposal.md, tasks.md, and design.md when needed.
+      spec:
+        label: Spec
+        desc: Translate the change into capability-level spec deltas with explicit requirements.
+      design:
+        label: Design
+        desc: Capture architecture and trade-offs in design.md when the change spans systems.
       tasks:
         label: Tarefas
         desc: Quebra de tarefas
-      code:
-        label: Código
-        desc: Coding inteligente
-      test:
-        label: Teste
-        desc: Testes automáticos
-      refactor:
-        label: Refactor
-        desc: Refactor de código
-      docs:
-        label: Docs
-        desc: Geração de documentação
+      validate:
+        label: Validate
+        desc: Run openspec validate in strict mode and clear every issue before execution.
+      apply:
+        label: Apply
+        desc: Read proposal, design, and tasks, then implement in order while checking items off.
       archive:
         label: Arquivo
         desc: Arquivo de conhecimento
@@ -260,10 +257,6 @@ pricing:
     customLogo: Logo personalizado
     customTitle: Título personalizado
     customCoAuthoredByInfo: Informações Co-Authored-By personalizadas
-    steamCloudAchievements: Conquistas na nuvem da Steam
-    freeDlcSupport: Suporte a DLC gratuito
-    steamWorkshopSupport: Suporte ao Steam Workshop
-    cloudSaveSupport: Suporte a salvamento na nuvem
   values:
     free: Gratuito
     viewOnSteam: Ver na Steam

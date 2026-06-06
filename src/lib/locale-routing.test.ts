@@ -23,11 +23,8 @@ describe('locale routing', () => {
   it('resolves explicit locale prefixes across the full locale catalog', () => {
     expect(resolveLocaleFromPathname('/zh-CN/')).toBe('zh-CN');
     expect(resolveLocaleFromPathname('/zh-CN/desktop/')).toBe('zh-CN');
-    expect(resolveLocaleFromPathname('/it-IT/about/')).toBe('it-IT');
     expect(resolveLocaleFromPathname('/ja-JP/container/')).toBe('ja-JP');
-    expect(resolveLocaleFromPathname('/es-419/about/')).toBe('es-419');
-    expect(resolveLocaleFromPathname('/pt-PT/desktop/')).toBe('pt-PT');
-    expect(resolveLocaleFromPathname('/vi-VN/about/')).toBe('vi-VN');
+    expect(resolveLocaleFromPathname('/unsupported/about/')).toBe('en-US');
     expect(resolveLocaleFromPathname('/fr-FR/about/')).toBe('fr-FR');
     expect(resolveLocaleFromPathname('/zh-TW/about/')).toBe('zh-Hant');
     expect(resolveLocaleFromPathname('/zh-HK/about/')).toBe('zh-Hant');
@@ -72,12 +69,12 @@ describe('locale routing', () => {
     ).toBe('/en-US/container/?tab=faq#pricing');
 
     expect(
-      getLocaleSwitchPath('pt-PT', {
+      getLocaleSwitchPath('pt-BR', {
         pathname: '/zh-TW/container/',
         search: 'channel=stable',
         hash: 'faq',
       }),
-    ).toBe('/pt-PT/container/?channel=stable#faq');
+    ).toBe('/pt-BR/container/?channel=stable#faq');
   });
 
   it('builds canonical URLs with the canonical default root and localized alternates', () => {
@@ -93,12 +90,12 @@ describe('locale routing', () => {
     const alternates = getAlternateLocalePaths('/desktop/');
     expect(Object.keys(alternates)).toHaveLength(SUPPORTED_SITE_LOCALES.length);
     expect(alternates['en-US']).toBe('/en-US/desktop/');
-    expect(alternates['it-IT']).toBe('/it-IT/desktop/');
     expect(alternates['zh-CN']).toBe('/zh-CN/desktop/');
     expect(alternates['zh-Hant']).toBe('/zh-Hant/desktop/');
-    expect(alternates['es-419']).toBe('/es-419/desktop/');
+    expect(alternates['ja-JP']).toBe('/ja-JP/desktop/');
+    expect(alternates['es-ES']).toBe('/es-ES/desktop/');
+    expect(alternates['pt-BR']).toBe('/pt-BR/desktop/');
     expect(alternates['ru-RU']).toBe('/ru-RU/desktop/');
-    expect(alternates['vi-VN']).toBe('/vi-VN/desktop/');
   });
 
   it('respects an optional site base when building localized paths', () => {

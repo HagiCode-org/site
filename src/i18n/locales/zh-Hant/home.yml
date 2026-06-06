@@ -56,30 +56,27 @@ features:
     hagicode: Hagicode
     description: 從想法到歸檔共 9 個階段的完整提案流程，全程都有 AI 協助，讓你的程式設計效率提升 3 倍。
     workflow:
-      idea:
-        label: 構想
-        desc: 從想法開始
-      proposal:
-        label: 提案
-        desc: AI 產生提案
       review:
         label: 評審
         desc: 自動評審
+      scaffold:
+        label: Scaffold
+        desc: Choose a change-id and create proposal.md, tasks.md, and design.md when needed.
+      spec:
+        label: Spec
+        desc: Translate the change into capability-level spec deltas with explicit requirements.
+      design:
+        label: Design
+        desc: Capture architecture and trade-offs in design.md when the change spans systems.
       tasks:
         label: 任務
         desc: 任務拆解
-      code:
-        label: 程式碼
-        desc: 智慧編碼
-      test:
-        label: 測試
-        desc: 自動測試
-      refactor:
-        label: 重構
-        desc: 程式碼重構
-      docs:
-        label: 文件
-        desc: 文件產生
+      validate:
+        label: Validate
+        desc: Run openspec validate in strict mode and clear every issue before execution.
+      apply:
+        label: Apply
+        desc: Read proposal, design, and tasks, then implement in order while checking items off.
       archive:
         label: 歸檔
         desc: 知識歸檔
@@ -260,10 +257,6 @@ pricing:
     customLogo: 自訂 Logo
     customTitle: 自訂標題
     customCoAuthoredByInfo: 自訂 Co-Authored-By 資訊
-    steamCloudAchievements: Steam 雲端成就
-    freeDlcSupport: 免費 DLC 支援
-    steamWorkshopSupport: Steam 工作坊支援
-    cloudSaveSupport: 雲端存檔支援
   values:
     free: 免費
     viewOnSteam: 前往 Steam 查看

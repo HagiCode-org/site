@@ -56,30 +56,27 @@ features:
     hagicode: Hagicode
     description: アイデアからアーカイブまでの 9 段階提案ワークフローを AI が伴走します。コーディング効率を 3 倍に高めます。
     workflow:
-      idea:
-        label: アイデア
-        desc: 発想から開始
-      proposal:
-        label: 提案
-        desc: AI が提案を生成
       review:
         label: レビュー
         desc: 自動レビュー
+      scaffold:
+        label: Scaffold
+        desc: Choose a change-id and create proposal.md, tasks.md, and design.md when needed.
+      spec:
+        label: Spec
+        desc: Translate the change into capability-level spec deltas with explicit requirements.
+      design:
+        label: Design
+        desc: Capture architecture and trade-offs in design.md when the change spans systems.
       tasks:
         label: タスク
         desc: タスク分解
-      code:
-        label: コード
-        desc: スマート実装
-      test:
-        label: テスト
-        desc: 自動テスト
-      refactor:
-        label: リファクタ
-        desc: コード整理
-      docs:
-        label: ドキュメント
-        desc: ドキュメント生成
+      validate:
+        label: Validate
+        desc: Run openspec validate in strict mode and clear every issue before execution.
+      apply:
+        label: Apply
+        desc: Read proposal, design, and tasks, then implement in order while checking items off.
       archive:
         label: アーカイブ
         desc: 知識を保存
@@ -218,7 +215,7 @@ homepageVideos:
       description: 単なる無機質なコード生成ではなく、実際のセッションでも軽快で驚きのある体験を見せる補助クリップです。
       ctaLabel: Bilibili で開く
     second:
-      title: 'Hagicode で GPT Codex を実地検証'
+      title: Hagicode で GPT Codex を実地検証
       description: ローカライズ済みのメイン紹介を見たあとに、GPT Codex が実製品内でどう動くかを判断できる検証デモです。
       ctaLabel: Bilibili で開く
   hero:
@@ -260,10 +257,6 @@ pricing:
     customLogo: カスタム Logo
     customTitle: カスタムタイトル
     customCoAuthoredByInfo: カスタム Co-Authored-By 情報
-    steamCloudAchievements: Steam クラウド実績
-    freeDlcSupport: 無料 DLC サポート
-    steamWorkshopSupport: Steam Workshop サポート
-    cloudSaveSupport: クラウドセーブ対応
   values:
     free: 無料
     viewOnSteam: Steam で確認

@@ -15,7 +15,7 @@ hero:
     efficiency: Двойная эффективность · Удача рядом
   problem: У традиционных AI-инструментов для coding есть
   painPoint: слабые места
-  painPoints: ": ограниченный контекст, хаотичные сессии и слабая совместная работа."
+  painPoints: ': ограниченный контекст, хаотичные сессии и слабая совместная работа.'
   solution: Hagicode переопределяет опыт AI-coding с помощью
   features:
     - workflow OpenSpec
@@ -56,30 +56,27 @@ features:
     hagicode: Hagicode
     description: Полноценный workflow предложений из 9 этапов, от идеи до архива, с поддержкой ИИ на каждом шаге. Это помогает увеличить эффективность coding в 3 раза.
     workflow:
-      idea:
-        label: Идея
-        desc: Начать с идеи
-      proposal:
-        label: Предложение
-        desc: ИИ генерирует предложение
       review:
         label: Ревью
         desc: Автоматическое ревью
+      scaffold:
+        label: Scaffold
+        desc: Choose a change-id and create proposal.md, tasks.md, and design.md when needed.
+      spec:
+        label: Spec
+        desc: Translate the change into capability-level spec deltas with explicit requirements.
+      design:
+        label: Design
+        desc: Capture architecture and trade-offs in design.md when the change spans systems.
       tasks:
         label: Задачи
         desc: Разбиение задач
-      code:
-        label: Код
-        desc: Умный coding
-      test:
-        label: Тест
-        desc: Автоматические тесты
-      refactor:
-        label: Refactor
-        desc: Рефакторинг кода
-      docs:
-        label: Docs
-        desc: Генерация документации
+      validate:
+        label: Validate
+        desc: Run openspec validate in strict mode and clear every issue before execution.
+      apply:
+        label: Apply
+        desc: Read proposal, design, and tasks, then implement in order while checking items off.
       archive:
         label: Архив
         desc: Архивация знаний
@@ -260,10 +257,6 @@ pricing:
     customLogo: Собственный Logo
     customTitle: Собственный заголовок
     customCoAuthoredByInfo: Собственная информация Co-Authored-By
-    steamCloudAchievements: Облачные достижения Steam
-    freeDlcSupport: Поддержка бесплатных DLC
-    steamWorkshopSupport: Поддержка Steam Workshop
-    cloudSaveSupport: Поддержка облачных сохранений
   values:
     free: Бесплатно
     viewOnSteam: Посмотреть в Steam

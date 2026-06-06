@@ -1,5 +1,6 @@
 navbar:
   home: Home
+  explore: Explore
   docs: Docs
   blog: Blog
   about: About
@@ -165,8 +166,8 @@ desktopHero:
     openContainerPage: 前往 Container 頁面
     macNotice: 目前更推薦 macOS 使用者改用 Container 版本。
   selectOtherVersions: 選擇 {platform} 的其他版本
-  versionInfo: '目前版本：{version}'
-  testVersion: '（測試版）'
+  versionInfo: 目前版本：{version}
+  testVersion: （測試版）
   channels:
     stable: 穩定版
     beta: 測試版
@@ -189,6 +190,7 @@ desktopHero:
   assetTypes:
     windowsSetup: 安裝程式
     windowsPortable: 可攜版
+    windowsMsix: MSIX
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
     macosIntel: Intel 版

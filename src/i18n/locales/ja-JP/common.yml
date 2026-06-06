@@ -1,5 +1,6 @@
 navbar:
   home: ホーム
+  explore: Explore
   docs: ドキュメント
   blog: ブログ
   about: 概要
@@ -189,6 +190,7 @@ desktopHero:
   assetTypes:
     windowsSetup: インストーラー
     windowsPortable: ポータブル版
+    windowsMsix: MSIX
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
     macosIntel: Intel

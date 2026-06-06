@@ -1,45 +1,26 @@
 export const SITE_ORIGIN = 'https://hagicode.com';
 export const DEFAULT_LOCALE = 'en-US';
 export const LEGACY_ENGLISH_LOCALE = 'en';
-export const STEAMWORKS_LOCALE_SOURCE =
-  'repos/hagiclaw/shared/shared-types/src/steamworks-metadata.ts';
+export const DESKTOP_LOCALE_SOURCE =
+  'repos/hagicode-desktop/src/shared/desktop-languages.ts';
 
-export const STEAMWORKS_SUPPORTED_LOCALE_CODES = [
+export const DESKTOP_SUPPORTED_LOCALE_CODES = [
+  'zh-CN',
+  'zh-Hant',
   'en-US',
-  'fr-FR',
-  'it-IT',
-  'de-DE',
-  'es-ES',
-  'bg-BG',
-  'cs-CZ',
-  'da-DK',
-  'nl-NL',
-  'fi-FI',
-  'el-GR',
-  'hu-HU',
-  'id-ID',
   'ja-JP',
   'ko-KR',
-  'nb-NO',
-  'pl-PL',
+  'de-DE',
+  'fr-FR',
+  'es-ES',
   'pt-BR',
-  'pt-PT',
-  'ro-RO',
   'ru-RU',
-  'zh-CN',
-  'es-419',
-  'sv-SE',
-  'th-TH',
-  'zh-TW',
-  'tr-TR',
-  'uk-UA',
-  'vi-VN',
 ] as const;
 
 const SITE_LOCALE_DEFINITIONS = [
   {
     code: 'en-US',
-    steamCode: 'en-US',
+    desktopCode: 'en-US',
     name: 'English',
     nativeName: 'English',
     shortLabel: 'EN',
@@ -48,7 +29,7 @@ const SITE_LOCALE_DEFINITIONS = [
   },
   {
     code: 'zh-CN',
-    steamCode: 'zh-CN',
+    desktopCode: 'zh-CN',
     name: 'Simplified Chinese',
     nativeName: '简体中文',
     shortLabel: '简中',
@@ -57,7 +38,7 @@ const SITE_LOCALE_DEFINITIONS = [
   },
   {
     code: 'zh-Hant',
-    steamCode: 'zh-TW',
+    desktopCode: 'zh-Hant',
     name: 'Traditional Chinese',
     nativeName: '繁體中文',
     shortLabel: '繁中',
@@ -65,116 +46,8 @@ const SITE_LOCALE_DEFINITIONS = [
     aliases: ['zh-hant', 'zh-tw', 'zh-hk', 'zh-mo'],
   },
   {
-    code: 'fr-FR',
-    steamCode: 'fr-FR',
-    name: 'French',
-    nativeName: 'Français',
-    shortLabel: 'FR',
-    fallbackCodes: ['en-US'],
-    aliases: ['fr', 'fr-fr'],
-  },
-  {
-    code: 'it-IT',
-    steamCode: 'it-IT',
-    name: 'Italian',
-    nativeName: 'Italiano',
-    shortLabel: 'IT',
-    fallbackCodes: ['en-US'],
-    aliases: ['it', 'it-it'],
-  },
-  {
-    code: 'de-DE',
-    steamCode: 'de-DE',
-    name: 'German',
-    nativeName: 'Deutsch',
-    shortLabel: 'DE',
-    fallbackCodes: ['en-US'],
-    aliases: ['de', 'de-de'],
-  },
-  {
-    code: 'es-ES',
-    steamCode: 'es-ES',
-    name: 'Spanish (Spain)',
-    nativeName: 'Español (España)',
-    shortLabel: 'ES',
-    fallbackCodes: ['en-US'],
-    aliases: ['es', 'es-es'],
-  },
-  {
-    code: 'bg-BG',
-    steamCode: 'bg-BG',
-    name: 'Bulgarian',
-    nativeName: 'Български',
-    shortLabel: 'BG',
-    fallbackCodes: ['en-US'],
-    aliases: ['bg', 'bg-bg'],
-  },
-  {
-    code: 'cs-CZ',
-    steamCode: 'cs-CZ',
-    name: 'Czech',
-    nativeName: 'Čeština',
-    shortLabel: 'CS',
-    fallbackCodes: ['en-US'],
-    aliases: ['cs', 'cs-cz'],
-  },
-  {
-    code: 'da-DK',
-    steamCode: 'da-DK',
-    name: 'Danish',
-    nativeName: 'Dansk',
-    shortLabel: 'DA',
-    fallbackCodes: ['en-US'],
-    aliases: ['da', 'da-dk'],
-  },
-  {
-    code: 'nl-NL',
-    steamCode: 'nl-NL',
-    name: 'Dutch',
-    nativeName: 'Nederlands',
-    shortLabel: 'NL',
-    fallbackCodes: ['en-US'],
-    aliases: ['nl', 'nl-nl'],
-  },
-  {
-    code: 'fi-FI',
-    steamCode: 'fi-FI',
-    name: 'Finnish',
-    nativeName: 'Suomi',
-    shortLabel: 'FI',
-    fallbackCodes: ['en-US'],
-    aliases: ['fi', 'fi-fi'],
-  },
-  {
-    code: 'el-GR',
-    steamCode: 'el-GR',
-    name: 'Greek',
-    nativeName: 'Ελληνικά',
-    shortLabel: 'EL',
-    fallbackCodes: ['en-US'],
-    aliases: ['el', 'el-gr'],
-  },
-  {
-    code: 'hu-HU',
-    steamCode: 'hu-HU',
-    name: 'Hungarian',
-    nativeName: 'Magyar',
-    shortLabel: 'HU',
-    fallbackCodes: ['en-US'],
-    aliases: ['hu', 'hu-hu'],
-  },
-  {
-    code: 'id-ID',
-    steamCode: 'id-ID',
-    name: 'Indonesian',
-    nativeName: 'Bahasa Indonesia',
-    shortLabel: 'ID',
-    fallbackCodes: ['en-US'],
-    aliases: ['id', 'id-id'],
-  },
-  {
     code: 'ja-JP',
-    steamCode: 'ja-JP',
+    desktopCode: 'ja-JP',
     name: 'Japanese',
     nativeName: '日本語',
     shortLabel: '日本',
@@ -183,7 +56,7 @@ const SITE_LOCALE_DEFINITIONS = [
   },
   {
     code: 'ko-KR',
-    steamCode: 'ko-KR',
+    desktopCode: 'ko-KR',
     name: 'Korean',
     nativeName: '한국어',
     shortLabel: '한국',
@@ -191,121 +64,58 @@ const SITE_LOCALE_DEFINITIONS = [
     aliases: ['ko', 'ko-kr'],
   },
   {
-    code: 'nb-NO',
-    steamCode: 'nb-NO',
-    name: 'Norwegian',
-    nativeName: 'Norsk',
-    shortLabel: 'NO',
+    code: 'de-DE',
+    desktopCode: 'de-DE',
+    name: 'German',
+    nativeName: 'Deutsch',
+    shortLabel: 'DE',
     fallbackCodes: ['en-US'],
-    aliases: ['nb', 'nb-no', 'no', 'no-no'],
+    aliases: ['de', 'de-de'],
   },
   {
-    code: 'pl-PL',
-    steamCode: 'pl-PL',
-    name: 'Polish',
-    nativeName: 'Polski',
-    shortLabel: 'PL',
+    code: 'fr-FR',
+    desktopCode: 'fr-FR',
+    name: 'French',
+    nativeName: 'Français',
+    shortLabel: 'FR',
     fallbackCodes: ['en-US'],
-    aliases: ['pl', 'pl-pl'],
+    aliases: ['fr', 'fr-fr'],
+  },
+  {
+    code: 'es-ES',
+    desktopCode: 'es-ES',
+    name: 'Spanish',
+    nativeName: 'Español',
+    shortLabel: 'ES',
+    fallbackCodes: ['en-US'],
+    aliases: ['es', 'es-es'],
   },
   {
     code: 'pt-BR',
-    steamCode: 'pt-BR',
+    desktopCode: 'pt-BR',
     name: 'Portuguese (Brazil)',
     nativeName: 'Português (Brasil)',
-    shortLabel: 'PT-BR',
+    shortLabel: 'PT',
     fallbackCodes: ['en-US'],
     aliases: ['pt', 'pt-br'],
   },
   {
-    code: 'pt-PT',
-    steamCode: 'pt-PT',
-    name: 'Portuguese (Portugal)',
-    nativeName: 'Português (Portugal)',
-    shortLabel: 'PT-PT',
-    fallbackCodes: ['en-US'],
-    aliases: ['pt-pt'],
-  },
-  {
-    code: 'ro-RO',
-    steamCode: 'ro-RO',
-    name: 'Romanian',
-    nativeName: 'Română',
-    shortLabel: 'RO',
-    fallbackCodes: ['en-US'],
-    aliases: ['ro', 'ro-ro'],
-  },
-  {
     code: 'ru-RU',
-    steamCode: 'ru-RU',
+    desktopCode: 'ru-RU',
     name: 'Russian',
     nativeName: 'Русский',
     shortLabel: 'RU',
     fallbackCodes: ['en-US'],
     aliases: ['ru', 'ru-ru'],
   },
-  {
-    code: 'es-419',
-    steamCode: 'es-419',
-    name: 'Spanish (Latin America)',
-    nativeName: 'Español (Latinoamérica)',
-    shortLabel: 'ES-LA',
-    fallbackCodes: ['en-US'],
-    aliases: ['es-419', 'es-latam'],
-  },
-  {
-    code: 'sv-SE',
-    steamCode: 'sv-SE',
-    name: 'Swedish',
-    nativeName: 'Svenska',
-    shortLabel: 'SV',
-    fallbackCodes: ['en-US'],
-    aliases: ['sv', 'sv-se'],
-  },
-  {
-    code: 'th-TH',
-    steamCode: 'th-TH',
-    name: 'Thai',
-    nativeName: 'ไทย',
-    shortLabel: 'TH',
-    fallbackCodes: ['en-US'],
-    aliases: ['th', 'th-th'],
-  },
-  {
-    code: 'tr-TR',
-    steamCode: 'tr-TR',
-    name: 'Turkish',
-    nativeName: 'Türkçe',
-    shortLabel: 'TR',
-    fallbackCodes: ['en-US'],
-    aliases: ['tr', 'tr-tr'],
-  },
-  {
-    code: 'uk-UA',
-    steamCode: 'uk-UA',
-    name: 'Ukrainian',
-    nativeName: 'Українська',
-    shortLabel: 'UK',
-    fallbackCodes: ['en-US'],
-    aliases: ['uk', 'uk-ua'],
-  },
-  {
-    code: 'vi-VN',
-    steamCode: 'vi-VN',
-    name: 'Vietnamese',
-    nativeName: 'Tiếng Việt',
-    shortLabel: 'VI',
-    fallbackCodes: ['en-US'],
-    aliases: ['vi', 'vi-vn'],
-  },
 ] as const;
 
-export type SteamworksLocaleCode = (typeof STEAMWORKS_SUPPORTED_LOCALE_CODES)[number];
+export type DesktopLocaleCode = (typeof DESKTOP_SUPPORTED_LOCALE_CODES)[number];
 export type SiteLocale = (typeof SITE_LOCALE_DEFINITIONS)[number]['code'];
 
 export interface SiteLocaleDefinition {
   readonly code: SiteLocale;
-  readonly steamCode: SteamworksLocaleCode;
+  readonly desktopCode: DesktopLocaleCode;
   readonly name: string;
   readonly nativeName: string;
   readonly shortLabel: string;
@@ -338,7 +148,7 @@ function buildSiteLocaleAliasMap() {
 
   for (const locale of SITE_LOCALES) {
     aliases.set(locale.code.toLowerCase(), locale.code);
-    aliases.set(locale.steamCode.toLowerCase(), locale.code);
+    aliases.set(locale.desktopCode.toLowerCase(), locale.code);
 
     for (const alias of locale.aliases) {
       const canonicalAlias = canonicalizeLocale(alias).toLowerCase();

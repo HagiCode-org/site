@@ -1,5 +1,6 @@
 navbar:
   home: Home
+  explore: Explore
   docs: Docs
   blog: Blog
   about: About
@@ -189,6 +190,7 @@ desktopHero:
   assetTypes:
     windowsSetup: 설치 프로그램
     windowsPortable: 포터블 버전
+    windowsMsix: MSIX
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
     macosIntel: Intel 버전

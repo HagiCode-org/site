@@ -56,30 +56,27 @@ features:
     hagicode: Hagicode
     description: 아이디어에서 아카이브까지 이어지는 9단계 제안 워크플로를 AI가 전 과정에서 보조합니다. 코딩 효율을 3배까지 끌어올립니다.
     workflow:
-      idea:
-        label: 아이디어
-        desc: 아이디어에서 시작
-      proposal:
-        label: 제안
-        desc: AI가 제안 생성
       review:
         label: 검토
         desc: 자동 검토
+      scaffold:
+        label: Scaffold
+        desc: Choose a change-id and create proposal.md, tasks.md, and design.md when needed.
+      spec:
+        label: Spec
+        desc: Translate the change into capability-level spec deltas with explicit requirements.
+      design:
+        label: Design
+        desc: Capture architecture and trade-offs in design.md when the change spans systems.
       tasks:
         label: 작업
         desc: 작업 분해
-      code:
-        label: 코드
-        desc: 스마트 코딩
-      test:
-        label: 테스트
-        desc: 자동 테스트
-      refactor:
-        label: 리팩터링
-        desc: 코드 정리
-      docs:
-        label: 문서
-        desc: 문서 생성
+      validate:
+        label: Validate
+        desc: Run openspec validate in strict mode and clear every issue before execution.
+      apply:
+        label: Apply
+        desc: Read proposal, design, and tasks, then implement in order while checking items off.
       archive:
         label: 아카이브
         desc: 지식 보관
@@ -260,10 +257,6 @@ pricing:
     customLogo: 사용자 지정 Logo
     customTitle: 사용자 지정 제목
     customCoAuthoredByInfo: 사용자 지정 Co-Authored-By 정보
-    steamCloudAchievements: Steam 클라우드 업적
-    freeDlcSupport: 무료 DLC 지원
-    steamWorkshopSupport: Steam Workshop 지원
-    cloudSaveSupport: 클라우드 저장 지원
   values:
     free: 무료
     viewOnSteam: Steam에서 보기

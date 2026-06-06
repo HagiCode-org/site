@@ -56,30 +56,27 @@ features:
     hagicode: Hagicode
     description: Ein vollständiger 9-stufiger Proposal-Workflow von der Idee bis zum Archiv, durchgängig mit KI-Unterstützung. So wird Ihre Coding-Effizienz um das Dreifache gesteigert.
     workflow:
-      idea:
-        label: Idee
-        desc: Startet mit einer Idee
-      proposal:
-        label: Vorschlag
-        desc: KI erzeugt den Vorschlag
       review:
         label: Review
         desc: Automatisches Review
+      scaffold:
+        label: Scaffold
+        desc: Choose a change-id and create proposal.md, tasks.md, and design.md when needed.
+      spec:
+        label: Spec
+        desc: Translate the change into capability-level spec deltas with explicit requirements.
+      design:
+        label: Design
+        desc: Capture architecture and trade-offs in design.md when the change spans systems.
       tasks:
         label: Aufgaben
         desc: Aufgaben zerlegen
-      code:
-        label: Code
-        desc: Smartes Coding
-      test:
-        label: Test
-        desc: Automatisches Testen
-      refactor:
-        label: Refactor
-        desc: Code überarbeiten
-      docs:
-        label: Doku
-        desc: Dokumentation erzeugen
+      validate:
+        label: Validate
+        desc: Run openspec validate in strict mode and clear every issue before execution.
+      apply:
+        label: Apply
+        desc: Read proposal, design, and tasks, then implement in order while checking items off.
       archive:
         label: Archiv
         desc: Wissen archivieren
@@ -260,10 +257,6 @@ pricing:
     customLogo: Eigenes Logo
     customTitle: Eigener Titel
     customCoAuthoredByInfo: Eigene Co-Authored-By-Informationen
-    steamCloudAchievements: Steam-Cloud-Erfolge
-    freeDlcSupport: Unterstützung für kostenlose DLCs
-    steamWorkshopSupport: Steam-Workshop-Unterstützung
-    cloudSaveSupport: Cloud-Speicher-Unterstützung
   values:
     free: Kostenlos
     viewOnSteam: Auf Steam ansehen

@@ -1,5 +1,6 @@
 navbar:
   home: Home
+  explore: Explore
   docs: Docs
   blog: Blog
   about: About
@@ -189,6 +190,7 @@ desktopHero:
   assetTypes:
     windowsSetup: Instalador
     windowsPortable: Versión portable
+    windowsMsix: MSIX
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
     macosIntel: Versión Intel

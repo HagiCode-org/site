@@ -59,12 +59,13 @@ describe('site entry locale resolution', () => {
 
   it('reads both current and legacy storage keys', () => {
     expect(getStoredSiteLocale('pt-BR')).toBe('pt-BR');
+    expect(getStoredSiteLocale('unsupported-locale')).toBeNull();
     expect(getStoredSiteLocale(null, 'zh-TW')).toBe('zh-Hant');
   });
 
   it('normalizes browser language fallbacks by language family', () => {
     expect(resolveClientSiteLocale(['fr-CA'])).toBe('fr-FR');
-    expect(resolveClientSiteLocale(['es-MX'])).toBe('es-419');
+    expect(resolveClientSiteLocale(['es-MX'])).toBe('es-ES');
   });
 
   it('builds localized redirect URLs and strips the lang query parameter', () => {

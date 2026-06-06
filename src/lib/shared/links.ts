@@ -49,11 +49,6 @@ const DOCS_ROUTE_LOCALE_BY_SITE_LOCALE: Partial<Record<SiteLocale, DocsRouteLoca
   'ru-RU': 'ru-RU',
 };
 
-const RELATED_DOCS_ROUTE_LOCALE_BY_SITE_LOCALE: Partial<Record<SiteLocale, DocsRouteLocale>> = {
-  'es-419': 'es-ES',
-  'pt-PT': 'pt-BR',
-};
-
 function normalizeAbsolutePath(pathname: string): string {
   const normalized = pathname.startsWith('/') ? pathname : `/${pathname}`;
   const withoutTrailingSlash = normalized.replace(/\/+$/u, '');
@@ -89,11 +84,6 @@ function getDocsRouteLocale(locale?: string): DocsRouteLocale {
     const directRouteLocale = DOCS_ROUTE_LOCALE_BY_SITE_LOCALE[candidate];
     if (directRouteLocale) {
       return directRouteLocale;
-    }
-
-    const relatedRouteLocale = RELATED_DOCS_ROUTE_LOCALE_BY_SITE_LOCALE[candidate];
-    if (relatedRouteLocale) {
-      return relatedRouteLocale;
     }
   }
 
