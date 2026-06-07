@@ -98,7 +98,7 @@ desktop:
     q4:
       question: 支援哪些 AI Agent CLI？
       intro: Hagicode Desktop 目前活躍支援以下 Agent CLI：
-      active: <strong>目前活躍支援：</strong>Claude Code、Codex、GitHub Copilot、OpenCode、Hermes、QoderCLI、Kiro、Kimi、Gemini、DeepAgents、Codebuddy
+      active: <strong>目前活躍支援：</strong>Claude Code、Codex、GitHub Copilot、OpenCode、Hermes、QoderCLI、Kiro、Kimi、Gemini、Pi、Reasonix、DeepAgents、Codebuddy
       manual: <strong>需手動安裝或認證：</strong>Hermes、Gemini、DeepAgents 需要先完成本機安裝或認證；其餘 CLI 提供一鍵安裝入口或引導式安裝流程。
       legacy: <strong>僅保留歷史相容：</strong>IFlowCli 只為舊資料相容保留，不屬於目前活躍支援範圍。
       closing: 是否支援，與是否提供一鍵安裝，是兩件不同的事。某個 CLI 需要手動安裝，不代表它目前尚未支援。

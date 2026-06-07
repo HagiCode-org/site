@@ -1306,6 +1306,16 @@
   color: #a16207;
 }
 
+.supportedProviderIcon[data-provider='PiCli'] {
+  background: rgba(204, 251, 241, 0.96);
+  color: #0f766e;
+}
+
+.supportedProviderIcon[data-provider='ReasonixCli'] {
+  background: rgba(254, 226, 226, 0.96);
+  color: #b91c1c;
+}
+
 .supportedProviderName {
   color: var(--color-text);
   white-space: nowrap;
@@ -1360,6 +1370,16 @@
 [data-theme='dark'] .supportedProviderIcon[data-provider='OpenCodeCli'] {
   background: rgba(250, 204, 21, 0.14);
   color: #facc15;
+}
+
+[data-theme='dark'] .supportedProviderIcon[data-provider='PiCli'] {
+  background: rgba(45, 212, 191, 0.14);
+  color: #5eead4;
+}
+
+[data-theme='dark'] .supportedProviderIcon[data-provider='ReasonixCli'] {
+  background: rgba(248, 113, 113, 0.14);
+  color: #f87171;
 }
 
 [data-theme='lunar-new-year'] .supportedProvidersPanel {
@@ -1418,6 +1438,16 @@
 [data-theme='lunar-new-year'] .supportedProviderIcon[data-provider='OpenCodeCli'] {
   background: rgba(255, 213, 79, 0.2);
   color: #ffd54f;
+}
+
+[data-theme='lunar-new-year'] .supportedProviderIcon[data-provider='PiCli'] {
+  background: rgba(178, 245, 234, 0.16);
+  color: #99f6e4;
+}
+
+[data-theme='lunar-new-year'] .supportedProviderIcon[data-provider='ReasonixCli'] {
+  background: rgba(255, 205, 210, 0.18);
+  color: #fecaca;
 }
 
 .supportedProviderFallback {

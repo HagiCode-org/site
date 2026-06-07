@@ -117,7 +117,7 @@ features:
             - Affiner le copywriting
             - Capturer des enseignements
       supportedNames:
-        title: 11 Agent CLI actuellement pris en charge
+        title: 13 Agent CLI actuellement pris en charge
         names:
           - Claude Code
           - Codex
@@ -128,6 +128,8 @@ features:
           - Kiro
           - Kimi
           - Gemini
+          - Pi
+          - Reasonix
           - DeepAgents
           - Codebuddy
     supportedProvidersNote: OpenCode peut charger le catalogue OmniRoute partagé dans les valeurs par défaut du modèle hero tout en laissant les identifiants de modèles bruts modifiables pour les workflows spécifiques à une branche.

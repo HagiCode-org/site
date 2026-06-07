@@ -117,7 +117,7 @@ features:
             - 문구 다듬기
             - 인사이트 정리
       supportedNames:
-        title: 현재 활발히 지원하는 11개 Agent CLI
+        title: 현재 활발히 지원하는 13개 Agent CLI
         names:
           - Claude Code
           - Codex
@@ -128,6 +128,8 @@ features:
           - Kiro
           - Kimi
           - Gemini
+          - Pi
+          - Reasonix
           - DeepAgents
           - Codebuddy
     supportedProvidersNote: OpenCode는 공유 OmniRoute 카탈로그를 hero 모델 기본값으로 불러오면서도, 브랜치별 워크플로에 맞춰 원시 모델 식별자를 계속 수정할 수 있습니다.

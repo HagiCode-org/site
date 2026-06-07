@@ -117,7 +117,7 @@ features:
             - Copy überarbeiten
             - Erkenntnisse festhalten
       supportedNames:
-        title: 11 aktuell unterstützte Agent CLI
+        title: 13 aktuell unterstützte Agent CLI
         names:
           - Claude Code
           - Codex
@@ -128,6 +128,8 @@ features:
           - Kiro
           - Kimi
           - Gemini
+          - Pi
+          - Reasonix
           - DeepAgents
           - Codebuddy
     supportedProvidersNote: OpenCode kann den geteilten OmniRoute-Katalog in die Hero-Modelleinstellungen laden und dabei weiterhin bearbeitbare rohe Modellkennungen für branchenspezifische Workflows beibehalten.

@@ -245,6 +245,8 @@ export function getHomepageFeaturesCopy(locale: LocaleInput): HomepageFeaturesCo
           'KiroCli',
           'KimiCli',
           'GeminiCli',
+          'PiCli',
+          'ReasonixCli',
           'DeepAgentsCli',
           'CodebuddyCli',
         ].map((key, index) => ({

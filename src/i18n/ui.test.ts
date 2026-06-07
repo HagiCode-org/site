@@ -10,6 +10,8 @@ describe('site i18n translation lookup', () => {
     const { t } = getTranslation('en-US', { resources: serverResources });
 
     expect(t('features.convenient.agentMatrix.supportedNames.names.1')).toBe('Codex');
+    expect(t('features.convenient.agentMatrix.supportedNames.names.9')).toBe('Pi');
+    expect(t('features.convenient.agentMatrix.supportedNames.names.10')).toBe('Reasonix');
     expect(t('features.convenient.agentMatrix.agents.claude.instances.1')).toBe('Check design');
   });
 

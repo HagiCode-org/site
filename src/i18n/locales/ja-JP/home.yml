@@ -117,7 +117,7 @@ features:
             - 文言を整える
             - 知見を記録
       supportedNames:
-        title: 現在対応している 11 個の Agent CLI
+        title: 現在対応している 13 個の Agent CLI
         names:
           - Claude Code（クロード・コード）
           - Codex（コーデックス）
@@ -128,6 +128,8 @@ features:
           - Kiro（キロ）
           - Kimi（キミ）
           - Gemini（ジェミニ）
+          - Pi（パイ）
+          - Reasonix（リーズニクス）
           - DeepAgents（ディープエージェンツ）
           - Codebuddy（コードバディ）
     supportedProvidersNote: OpenCode は共有 OmniRoute カタログを Hero モデル既定値として読み込みつつ、ブランチ固有ワークフロー向けに生のモデル識別子を編集可能なまま維持できます。

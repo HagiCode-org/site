@@ -117,7 +117,7 @@ features:
             - 文案优化
             - 知识提炼
       supportedNames:
-        title: 当前活跃支持的 11 个 Agent CLI
+        title: 当前活跃支持的 13 个 Agent CLI
         names:
           - Claude Code
           - Codex
@@ -128,6 +128,8 @@ features:
           - Kiro
           - Kimi
           - Gemini
+          - Pi
+          - Reasonix
           - DeepAgents
           - Codebuddy
     supportedProvidersNote: OpenCode 现在可以把共享的 OmniRoute 目录投影到 Hero 的模型默认项里，同时继续允许分支级自定义原始模型标识。

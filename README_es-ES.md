@@ -48,7 +48,7 @@ Para el trabajo no trivial, HagiCode empieza con una propuesta en lugar de salta
 
 ### 2. CLI de agentes populares con OmniRoute
 
-HagiCode es compatible con Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents y Codebuddy. OmniRoute separa la elección del CLI de la capa de modelos y suscripciones, para que los equipos puedan enrutar modelos y endpoints sin atarlo todo a una única pila predeterminada.
+HagiCode es compatible con Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, Pi, Reasonix, DeepAgents y Codebuddy. OmniRoute separa la elección del CLI de la capa de modelos y suscripciones, para que los equipos puedan enrutar modelos y endpoints sin atarlo todo a una única pila predeterminada.
 
 ![Página de configuración de OmniRoute con enrutamiento, controles de endpoint y estado de ejecución.](./src/assets/img/readme-sync/omniroute-routing.png)
 

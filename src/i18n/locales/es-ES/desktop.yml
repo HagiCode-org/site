@@ -98,7 +98,7 @@ desktop:
     q4:
       question: ¿Qué AI Agent CLI son compatibles?
       intro: 'Hagicode Desktop ofrece soporte activo actualmente para los siguientes Agent CLI:'
-      active: '<strong>Compatibles actualmente:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents y Codebuddy'
+      active: '<strong>Compatibles actualmente:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, Pi, Reasonix, DeepAgents y Codebuddy'
       manual: '<strong>Instalación o autenticación manual:</strong> Hermes, Gemini y DeepAgents requieren primero una instalación local o un paso de autenticación; los demás CLI ofrecen acceso de instalación en un clic o flujos guiados.'
       legacy: '<strong>Solo compatibilidad heredada:</strong> IFlowCli se mantiene únicamente para compatibilidad con datos antiguos y ya no forma parte del alcance activo actual.'
       closing: El alcance del soporte y el modo de configuración son asuntos distintos. Que un CLI necesite instalación manual no significa que no esté soportado.

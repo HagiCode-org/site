@@ -98,7 +98,7 @@ desktop:
     q4:
       question: Welche AI Agent CLIs werden unterstützt?
       intro: 'Hagicode Desktop unterstützt derzeit aktiv die folgenden Agent CLIs:'
-      active: '<strong>Aktuell unterstützt:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents und Codebuddy'
+      active: '<strong>Aktuell unterstützt:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, Pi, Reasonix, DeepAgents und Codebuddy'
       manual: '<strong>Manuelle Installation oder Authentifizierung:</strong> Hermes, Gemini und DeepAgents benötigen zuerst eine lokale Installation oder Authentifizierung. Für die übrigen CLIs gibt es One-Click-Installationen oder geführte Installationsabläufe.'
       legacy: '<strong>Nur Legacy-Kompatibilität:</strong> IFlowCli bleibt nur aus Gründen der Kompatibilität mit historischen Daten erhalten und gehört nicht mehr zum aktuellen aktiven Supportumfang.'
       closing: Supportumfang und Einrichtungsmodus sind zwei verschiedene Dinge. Eine CLI, die manuell installiert werden muss, ist trotzdem aktuell unterstützt.

@@ -48,7 +48,7 @@ Pour les travaux non triviaux, HagiCode commence par une proposition au lieu de 
 
 ### 2. CLI d'agents grand public avec OmniRoute
 
-HagiCode prend en charge Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, DeepAgents et Codebuddy. OmniRoute sépare le choix du CLI de la couche modèle et abonnement, afin que les équipes puissent router les modèles et les endpoints sans tout lier rigidement à une pile par défaut unique.
+HagiCode prend en charge Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, Pi, Reasonix, DeepAgents et Codebuddy. OmniRoute sépare le choix du CLI de la couche modèle et abonnement, afin que les équipes puissent router les modèles et les endpoints sans tout lier rigidement à une pile par défaut unique.
 
 ![Page de paramètres OmniRoute montrant la configuration du routage, les contrôles d'endpoint et l'état d'exécution.](./src/assets/img/readme-sync/omniroute-routing.png)
 
