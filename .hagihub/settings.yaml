@@ -1,0 +1,13 @@
+action_recommendations:
+  - id: site-deploy-gh-pages
+    watch: true
+    include: true
+    reason: "主站发布链路，直接决定 hagicode.com 的上线结果。"
+
+  - id: link-check
+    watch: true
+    reason: "定时巡检站点外链可用性，能较早发现文档和营销页的失效链接。"
+
+  - id: compress-images
+    include: true
+    reason: "站点资源优化工作流，适合纳入常用维护流程。"
