@@ -86,6 +86,11 @@ export interface InstallButtonMenuState {
 }
 
 const EMPTY_PLATFORM_GROUPS: PlatformGroup[] = [];
+const PLATFORM_LABELS = {
+  windows: 'Windows',
+  macos: 'macOS',
+  linux: 'Linux',
+} as const;
 
 function areDownloadSourceProbeStatesEqual(
   left: DownloadSourceProbeStateMap,
@@ -194,11 +199,9 @@ interface DropdownPosition {
  * 将 PlatformGroup[] 转换为 PlatformDownloads[] 格式
  */
 export function convertPlatformGroups(platforms: PlatformGroup[]): PlatformDownloads[] {
-  const platformLabels = { windows: 'Windows', macos: 'macOS', linux: 'Linux' };
-
   return platforms.map((platform) => ({
     platform: platform.platform,
-    platformLabel: platformLabels[platform.platform],
+    platformLabel: PLATFORM_LABELS[platform.platform],
     options: platform.downloads.map((download) => ({
       label: download.filename,
       url: download.url,
@@ -225,6 +228,26 @@ export function filterSupportedPlatformGroups(platforms: PlatformGroup[]): Platf
       downloads: platform.downloads.filter((download) => !isUnsupportedPublicDownload(download)),
     }))
     .filter((platform) => platform.downloads.length > 0);
+}
+
+function prioritizeCurrentPlatform<T extends { platform: 'windows' | 'macos' | 'linux' }>(
+  platforms: T[],
+  currentOS: 'windows' | 'macos' | 'linux' | 'unknown',
+): T[] {
+  if (platforms.length <= 1 || currentOS === 'unknown') {
+    return platforms;
+  }
+
+  const currentIndex = platforms.findIndex((platform) => platform.platform === currentOS);
+  if (currentIndex <= 0) {
+    return platforms;
+  }
+
+  return [
+    platforms[currentIndex],
+    ...platforms.slice(0, currentIndex),
+    ...platforms.slice(currentIndex + 1),
+  ];
 }
 
 export function resolveInstallButtonPrimaryTarget(
@@ -376,7 +399,7 @@ export default function InstallButton({
   const [downloadSourceProbeStates, setDownloadSourceProbeStates] = useState<DownloadSourceProbeStateMap>({});
   const [steamStoreLink, setSteamStoreLink] = useState(() => getBundledSteamStoreLink());
   const buttonRef = useRef<HTMLDivElement>(null);
-  const menuRef = useRef<HTMLUListElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const buttonId = useId();
   const isChineseLocale = locale.toLowerCase().startsWith('zh');
@@ -403,6 +426,18 @@ export default function InstallButton({
   const unavailableMenuLabel = isChineseLocale ? '版本数据暂时不可用' : 'Version data is temporarily unavailable';
   const desktopFallbackMenuLabel = isChineseLocale ? '打开版本历史页' : 'Open version history';
   const loadingPrimaryLabel = isChineseLocale ? '获取中...' : 'Loading...';
+  const dropdownEyebrowLabel = isChineseLocale ? 'Desktop 安装包' : 'Desktop packages';
+  const dropdownTitleLabel = isChineseLocale ? '选择适合当前设备的安装包' : 'Choose the package for your device';
+  const dropdownDescriptionLabel = isChineseLocale
+    ? '当前设备对应的平台会优先展示，默认下载源会被明确标记。'
+    : 'Your current platform is listed first, and the default download source is clearly tagged.';
+  const dropdownVersionLabel = isChineseLocale ? '当前版本' : 'Version';
+  const currentDeviceLabel = isChineseLocale ? '当前设备' : 'Current device';
+  const defaultSourceTaggedLabel = isChineseLocale ? '默认源已标记' : 'Default source tagged';
+  const otherInstallPathsLabel = isChineseLocale ? '其他安装路径' : 'Other install paths';
+  const containerDescriptionLabel = isChineseLocale
+    ? '适合服务器、自托管部署，或桌面端安装包暂不可用时使用。'
+    : 'For servers, self-hosted deployments, or when desktop packages are unavailable.';
   const steamShortcutLabel = 'Steam';
   const steamShortcutAriaLabel =
     isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam';
@@ -480,6 +515,12 @@ export default function InstallButton({
 
     return allPlatformData.filter((platform) => platform.platform !== 'macos');
   }, [allPlatformData]);
+  const currentOS = useMemo(() => detectOS(), []);
+  const orderedPlatformData = useMemo(
+    () => prioritizeCurrentPlatform(platformData, currentOS),
+    [currentOS, platformData],
+  );
+  const currentDevicePlatformLabel = currentOS === 'unknown' ? null : PLATFORM_LABELS[currentOS];
 
   const macPlatform = useMemo(
     () => allPlatformData.find((platform) => platform.platform === 'macos') || null,
@@ -556,8 +597,7 @@ export default function InstallButton({
   const primarySourceOrder: PrimaryDownloadSourceKey[] = ['github', 'accelerated'];
 
   const primaryTarget = useMemo(() => {
-    const userOS = detectOS();
-    if (!FEATURE_MAC_DOWNLOAD_ENABLED && userOS === 'macos') {
+    if (!FEATURE_MAC_DOWNLOAD_ENABLED && currentOS === 'macos') {
       return {
         href: desktopPageUrl,
         option: null,
@@ -567,9 +607,9 @@ export default function InstallButton({
     }
 
     const resolved = resolveInstallButtonPrimaryTarget(
-      platformData,
+      orderedPlatformData,
       downloadSourceProbeStates,
-      userOS,
+      currentOS,
       desktopPageUrl,
     );
     const actionPair = resolved.option
@@ -577,7 +617,7 @@ export default function InstallButton({
       : null;
 
     return { ...resolved, actionPair };
-  }, [desktopPageUrl, downloadSourceProbeStates, platformData]);
+  }, [currentOS, desktopPageUrl, downloadSourceProbeStates, orderedPlatformData]);
 
   const primaryActions = useMemo(() => {
     if (!primaryTarget.actionPair) {
@@ -619,14 +659,14 @@ export default function InstallButton({
     const viewportPadding = 16;
     const gap = 4;
     const estimatedWidth = Math.min(
-      400,
-      Math.max(window.innerWidth * 0.4, 280),
+      704,
+      Math.max(window.innerWidth * 0.56, 480),
       window.innerWidth - viewportPadding * 2,
     );
     const actualWidth = menuRef.current
       ? Math.min(menuRef.current.offsetWidth, window.innerWidth - viewportPadding * 2)
       : estimatedWidth;
-    const preferredMaxHeight = Math.min(560, window.innerHeight - viewportPadding * 2);
+    const preferredMaxHeight = Math.max(280, window.innerHeight - viewportPadding * 2);
     const spaceBelow = window.innerHeight - rect.bottom - viewportPadding;
     const spaceAbove = rect.top - viewportPadding;
     const actualHeight = menuRef.current
@@ -749,16 +789,16 @@ export default function InstallButton({
     const message = statusMessage || errorFallbackLabel;
 
     return (
-      <li role="none">
-        <span
-          className={`${styles.dropdownItem} ${styles.dropdownItemDisabled}`}
-          role="presentation"
-          aria-disabled="true"
-        >
+      <div
+        className={`${styles.dropdownItem} ${styles.dropdownItemDisabled} ${styles.dropdownStatusBlock}`}
+        role="presentation"
+        aria-disabled="true"
+      >
+        <span className={styles.dropdownItemTextBlock}>
           <span className={styles.dropdownItemLabel}>{title}</span>
           <span className={styles.dropdownItemDisabledNotice}>{message}</span>
         </span>
-      </li>
+      </div>
     );
   };
 
@@ -766,7 +806,7 @@ export default function InstallButton({
     isDropdownOpen &&
     typeof document !== 'undefined'
       ? createPortal(
-          <ul
+          <div
             ref={menuRef}
             className={`${styles.dropdownMenu} ${styles.dropdownMenuOpen}`}
             id={`${buttonId}-menu`}
@@ -781,143 +821,208 @@ export default function InstallButton({
               pointerEvents: dropdownPosition ? undefined : 'none',
             }}
           >
-            {menuState.mode !== 'ready' && renderStatusBlock()}
-            {menuState.hasDownloads &&
-              platformData.map((platformGroup) => (
-                <React.Fragment key={platformGroup.platform}>
-                  <div
-                    className={`${styles.dropdownGroupLabel} ${styles[`platform--${platformGroup.platform}`]}`}
-                    role="presentation"
-                  >
-                    <span className={styles.platformIcon}>{PLATFORM_ICONS[platformGroup.platform]}</span>
-                    <span className={styles.platformName}>{platformGroup.platformLabel}</span>
-                    {currentVersion?.version && (
-                      <span className={styles.versionTag}>{currentVersion.version}</span>
-                    )}
-                  </div>
-                  {platformGroup.options.map((option, idx) => {
-                    const archLabel = getArchitectureLabel(option.assetType);
-                    const fileExt = getFileExtension(option.assetType, option.label);
-                    const isRecommended = idx === 0;
-                    const resolvedAction = resolvePrimaryDownloadAction(
-                      { sourceActions: option.sourceActions },
-                      downloadSourceProbeStates,
-                    );
-                    return (
-                      <li key={`${platformGroup.platform}-${option.url}`} role="none">
-                        <div
-                          className={`${styles.dropdownItem} ${styles.dropdownItemMultiSource} ${isRecommended ? styles.dropdownItemRecommended : ''}`}
-                        >
-                          <div className={styles.dropdownItemMeta}>
-                            <span className={styles.dropdownItemLabel}>
-                              {getAssetTypeLabel(option.assetType)}
-                              {archLabel && <span className={styles.archLabel}> ({archLabel})</span>}
-                              {fileExt && <span className={styles.fileExtBadge}>{fileExt}</span>}
-                              {isRecommended && (
-                                <span className={styles.recommendedBadge}>
-                                  ⭐{recommendedLabel}
-                                </span>
-                              )}
-                            </span>
-                            {option.size && (
-                              <span className={styles.dropdownItemSize}>{option.size}</span>
-                            )}
-                          </div>
-                          <div className={styles.dropdownSourceActions}>
-                            {option.sourceActions.map((action) => {
-                              const isSmartDefault = resolvedAction?.kind === action.kind;
-                              return (
-                                <a
-                                  key={`${option.url}-${action.kind}`}
-                                  href={action.url}
-                                  className={`${styles.dropdownSourceAction} ${isSmartDefault ? styles.dropdownSourceActionDefault : ''}`}
-                                  role="menuitem"
-                                  download
-                                  aria-label={`${getAssetTypeLabel(option.assetType)} ${getDownloadActionLabel(action.kind, legacyLocale)}`}
-                                  onClick={() => handlePlatformDownloadClick(option.assetType, action.kind)}
-                                >
-                                  <span>{getDownloadActionLabel(action.kind, legacyLocale)}</span>
-                                  {isSmartDefault && (
-                                    <span className={styles.dropdownSourceActionBadge}>
-                                      {isChineseLocale ? '默认' : 'Default'}
-                                    </span>
-                                  )}
-                                </a>
-                              );
-                            })}
+            <div className={styles.dropdownHeader} role="presentation">
+              <div className={styles.dropdownHeaderCopy}>
+                <span className={styles.dropdownEyebrow}>{dropdownEyebrowLabel}</span>
+                <span className={styles.dropdownTitle}>{dropdownTitleLabel}</span>
+                <span className={styles.dropdownDescription}>{dropdownDescriptionLabel}</span>
+              </div>
+              <div className={styles.dropdownHeaderMeta}>
+                {currentVersion?.version && (
+                  <span className={styles.dropdownHeaderBadge}>
+                    {dropdownVersionLabel} {currentVersion.version}
+                  </span>
+                )}
+                {currentDevicePlatformLabel && (
+                  <span className={styles.dropdownHeaderBadge}>
+                    {currentDeviceLabel}: {currentDevicePlatformLabel}
+                  </span>
+                )}
+                <span className={styles.dropdownHeaderBadge}>{defaultSourceTaggedLabel}</span>
+              </div>
+            </div>
+            <div className={styles.dropdownBody}>
+              {menuState.mode !== 'ready' && renderStatusBlock()}
+              {menuState.hasDownloads &&
+                orderedPlatformData.map((platformGroup) => {
+                  const isCurrentPlatform = platformGroup.platform === currentOS;
+                  const packageCountLabel = isChineseLocale
+                    ? `${platformGroup.options.length} 个安装包`
+                    : `${platformGroup.options.length} package${platformGroup.options.length === 1 ? '' : 's'}`;
+
+                  return (
+                    <section
+                      key={platformGroup.platform}
+                      className={`${styles.dropdownPlatformSection} ${styles[`dropdownPlatformSection--${platformGroup.platform}`]} ${isCurrentPlatform ? styles.dropdownPlatformSectionCurrent : ''}`}
+                      role="group"
+                      aria-label={platformGroup.platformLabel}
+                    >
+                      <div className={styles.dropdownGroupLabel} role="presentation">
+                        <div className={styles.dropdownGroupLead}>
+                          <span className={styles.platformIcon}>{PLATFORM_ICONS[platformGroup.platform]}</span>
+                          <div className={styles.dropdownGroupText}>
+                            <span className={styles.platformName}>{platformGroup.platformLabel}</span>
+                            <span className={styles.dropdownGroupMeta}>{packageCountLabel}</span>
                           </div>
                         </div>
-                      </li>
-                    );
-                  })}
-                </React.Fragment>
-              ))}
-            {!FEATURE_MAC_DOWNLOAD_ENABLED && macPlatform && (
-              <>
-                <div
-                  className={`${styles.dropdownGroupLabel} ${styles['platform--macos']}`}
-                  role="presentation"
+                        <div className={styles.dropdownGroupBadges}>
+                          {isCurrentPlatform && (
+                            <span className={styles.platformStateBadge}>{currentDeviceLabel}</span>
+                          )}
+                          {currentVersion?.version && (
+                            <span className={styles.versionTag}>{currentVersion.version}</span>
+                          )}
+                        </div>
+                      </div>
+                      <div className={styles.dropdownItemStack}>
+                        {platformGroup.options.map((option, idx) => {
+                          const archLabel = getArchitectureLabel(option.assetType);
+                          const fileExt = getFileExtension(option.assetType, option.label);
+                          const isRecommended = idx === 0;
+                          const resolvedAction = resolvePrimaryDownloadAction(
+                            { sourceActions: option.sourceActions },
+                            downloadSourceProbeStates,
+                          );
+
+                          return (
+                            <div
+                              key={`${platformGroup.platform}-${option.url}`}
+                              className={`${styles.dropdownItem} ${styles.dropdownItemMultiSource} ${isRecommended ? styles.dropdownItemRecommended : ''}`}
+                            >
+                              <div className={styles.dropdownItemMeta}>
+                                <span className={styles.dropdownItemLabel}>
+                                  {getAssetTypeLabel(option.assetType)}
+                                  {archLabel && <span className={styles.archLabel}> ({archLabel})</span>}
+                                  {fileExt && <span className={styles.fileExtBadge}>{fileExt}</span>}
+                                  {isRecommended && (
+                                    <span className={styles.recommendedBadge}>{recommendedLabel}</span>
+                                  )}
+                                </span>
+                                {option.size && (
+                                  <span className={styles.dropdownItemSize}>{option.size}</span>
+                                )}
+                              </div>
+                              <div className={styles.dropdownSourceActions}>
+                                {option.sourceActions.map((action) => {
+                                  const isSmartDefault = resolvedAction?.kind === action.kind;
+
+                                  return (
+                                    <a
+                                      key={`${option.url}-${action.kind}`}
+                                      href={action.url}
+                                      className={`${styles.dropdownSourceAction} ${isSmartDefault ? styles.dropdownSourceActionDefault : ''}`}
+                                      role="menuitem"
+                                      download
+                                      aria-label={`${getAssetTypeLabel(option.assetType)} ${getDownloadActionLabel(action.kind, legacyLocale)}`}
+                                      onClick={() => handlePlatformDownloadClick(option.assetType, action.kind)}
+                                    >
+                                      <span>{getDownloadActionLabel(action.kind, legacyLocale)}</span>
+                                      {isSmartDefault && (
+                                        <span className={styles.dropdownSourceActionBadge}>
+                                          {isChineseLocale ? '默认' : 'Default'}
+                                        </span>
+                                      )}
+                                    </a>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </section>
+                  );
+                })}
+              {!FEATURE_MAC_DOWNLOAD_ENABLED && macPlatform && (
+                <section
+                  className={`${styles.dropdownPlatformSection} ${styles['dropdownPlatformSection--macos']} ${currentOS === 'macos' ? styles.dropdownPlatformSectionCurrent : ''}`}
+                  role="group"
+                  aria-label={macPlatform.platformLabel}
                 >
-                  <span className={styles.platformIcon}>{PLATFORM_ICONS.macos}</span>
-                  <span className={styles.platformName}>{macPlatform.platformLabel}</span>
-                  {currentVersion?.version && (
-                    <span className={styles.versionTag}>{currentVersion.version}</span>
-                  )}
+                  <div className={styles.dropdownGroupLabel} role="presentation">
+                    <div className={styles.dropdownGroupLead}>
+                      <span className={styles.platformIcon}>{PLATFORM_ICONS.macos}</span>
+                      <div className={styles.dropdownGroupText}>
+                        <span className={styles.platformName}>{macPlatform.platformLabel}</span>
+                        <span className={styles.dropdownGroupMeta}>{macDisabledNotice}</span>
+                      </div>
+                    </div>
+                    <div className={styles.dropdownGroupBadges}>
+                      {currentOS === 'macos' && (
+                        <span className={styles.platformStateBadge}>{currentDeviceLabel}</span>
+                      )}
+                      {currentVersion?.version && (
+                        <span className={styles.versionTag}>{currentVersion.version}</span>
+                      )}
+                    </div>
+                  </div>
+                  <div className={styles.dropdownItemStack}>
+                    <div
+                      className={`${styles.dropdownItem} ${styles.dropdownItemDisabled}`}
+                      role="presentation"
+                      aria-disabled="true"
+                    >
+                      <span className={styles.dropdownItemTextBlock}>
+                        <span className={styles.dropdownItemLabel}>macOS</span>
+                        <span className={styles.dropdownItemDisabledNotice}>{macDisabledNotice}</span>
+                      </span>
+                    </div>
+                    <a
+                      href={containerUrl}
+                      className={styles.dropdownItem}
+                      role="menuitem"
+                      onClick={() => handleContainerNavigationClick('install-button-macos-fallback')}
+                    >
+                      <span className={styles.dropdownItemTextBlock}>
+                        <span className={styles.dropdownItemLabel}>{goToContainerLabel}</span>
+                        <span className={styles.dropdownItemDescription}>{containerDescriptionLabel}</span>
+                      </span>
+                    </a>
+                  </div>
+                </section>
+              )}
+              <section className={styles.dropdownUtilitySection} role="group" aria-label={otherInstallPathsLabel}>
+                <div className={styles.dropdownUtilityHeader} role="presentation">
+                  <span className={styles.dropdownUtilityTitle}>{otherInstallPathsLabel}</span>
+                  <span className={styles.dropdownUtilityDescription}>{containerDescriptionLabel}</span>
                 </div>
-                <li role="none">
-                  <span
-                    className={`${styles.dropdownItem} ${styles.dropdownItemDisabled}`}
-                    role="presentation"
-                    aria-disabled="true"
-                  >
-                    <span className={styles.dropdownItemLabel}>macOS</span>
-                    <span className={styles.dropdownItemDisabledNotice}>{macDisabledNotice}</span>
-                  </span>
-                </li>
-                <li role="none">
+                <div className={styles.dropdownItemStack}>
+                  {!menuState.hasDownloads && (
+                    <a
+                      href={historyFallbackTarget}
+                      className={styles.dropdownItem}
+                      role="menuitem"
+                      onClick={handleLinkClick}
+                    >
+                      <span className={styles.dropdownItemTextBlock}>
+                        <span className={styles.dropdownItemLabel}>{desktopFallbackMenuLabel}</span>
+                        <span className={styles.dropdownItemDescription}>{errorFallbackLabel}</span>
+                      </span>
+                    </a>
+                  )}
                   <a
                     href={containerUrl}
-                    className={styles.dropdownItem}
+                    className={`${styles.dropdownItem} ${styles.dropdownItemDocker}`}
                     role="menuitem"
-                    onClick={() => handleContainerNavigationClick('install-button-macos-fallback')}
+                    onClick={() => handleContainerNavigationClick('install-button-container-link')}
                   >
-                    <span className={styles.dropdownItemLabel}>{goToContainerLabel}</span>
+                    <svg className={styles.dockerIcon} viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186h-2.12a.186.186 0 00-.185.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z" />
+                    </svg>
+                    <span className={styles.dropdownItemTextBlock}>
+                      <span className={styles.dropdownItemLabel}>{containerDeploymentLabel}</span>
+                      <span className={styles.dropdownItemDescription}>{containerDescriptionLabel}</span>
+                    </span>
+                    <svg className={styles.externalIcon} viewBox="0 0 24 24" fill="none">
+                      <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M15 3H21V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                   </a>
-                </li>
-              </>
-            )}
-            <li role="separator" className={styles.dropdownSeparator} />
-            {!menuState.hasDownloads && (
-              <li role="none">
-                <a
-                  href={historyFallbackTarget}
-                  className={styles.dropdownItem}
-                  role="menuitem"
-                  onClick={handleLinkClick}
-                >
-                  <span className={styles.dropdownItemLabel}>{desktopFallbackMenuLabel}</span>
-                </a>
-              </li>
-            )}
-            <li role="none">
-              <a
-                href={containerUrl}
-                className={`${styles.dropdownItem} ${styles.dropdownItemDocker}`}
-                role="menuitem"
-                onClick={() => handleContainerNavigationClick('install-button-container-link')}
-              >
-                <svg className={styles.dockerIcon} viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186h-2.12a.186.186 0 00-.185.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z" />
-                </svg>
-                <span className={styles.dropdownItemLabel}>{containerDeploymentLabel}</span>
-                <svg className={styles.externalIcon} viewBox="0 0 24 24" fill="none">
-                  <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M15 3H21V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-            </li>
-          </ul>,
+                </div>
+              </section>
+            </div>
+          </div>,
           document.body,
         )
       : null;

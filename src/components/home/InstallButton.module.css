@@ -11,6 +11,14 @@
 .installButtonWrapper {
   display: inline-block;
   --install-button-width-scale: 1.2;
+  --install-segment-gap: 0.375rem;
+  --install-segment-radius: 0.95rem;
+  --install-segment-shell-bg: rgba(255, 255, 255, 0.16);
+  --install-segment-shell-border: rgba(148, 163, 184, 0.2);
+  --install-segment-shell-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
+  --install-segment-surface-shadow: 0 8px 20px rgba(15, 23, 42, 0.18);
+  --install-segment-surface-shadow-hover: 0 12px 24px rgba(15, 23, 42, 0.24);
+  --install-segment-focus-ring: rgba(125, 211, 252, 0.6);
 }
 
 .installButtonWrapper--full {
@@ -32,10 +40,15 @@
 }
 
 .splitButtonContainerSegmented {
-  gap: 0;
-  overflow: hidden;
-  border-radius: var(--radius-md);
-  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.16);
+  gap: var(--install-segment-gap);
+  overflow: visible;
+  padding: 0.25rem;
+  border-radius: calc(var(--install-segment-radius) + 0.3rem);
+  border: 1px solid var(--install-segment-shell-border);
+  background: var(--install-segment-shell-bg);
+  box-shadow: var(--install-segment-shell-shadow);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 /* 完整模式 - Hero 区域使用 */
@@ -61,7 +74,7 @@
 }
 
 .primarySourceActionsGrouped {
-  gap: 0;
+  gap: var(--install-segment-gap);
 }
 
 .sourceActionButton {
@@ -90,7 +103,7 @@
   min-width: calc(6.5rem * var(--install-button-width-scale));
   padding: 0 calc(0.75rem * var(--install-button-width-scale));
   font-size: 0.9375rem;
-  border-radius: var(--radius-md);
+  border-radius: var(--install-segment-radius);
 }
 
 .splitButtonContainerSegmented .btnDownloadMain,
@@ -102,17 +115,20 @@
 }
 
 .splitButtonContainerSegmented .primarySourceActionsGrouped .sourceActionButton {
-  border-radius: 0;
-  border-right: 0;
+  border-radius: var(--install-segment-radius);
+  border-right: 1px solid transparent;
+  box-shadow: var(--install-segment-surface-shadow);
 }
 
 .splitButtonContainerSegmented .primarySourceActionsGrouped .sourceActionButton:first-child {
-  border-top-left-radius: var(--radius-md);
-  border-bottom-left-radius: var(--radius-md);
+  border-top-left-radius: var(--install-segment-radius);
+  border-bottom-left-radius: var(--install-segment-radius);
 }
 
 .splitButtonContainerSegmented .btnDownloadMain {
-  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  border-radius: var(--install-segment-radius);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  box-shadow: var(--install-segment-surface-shadow);
 }
 
 .sourceActionButton:hover {
@@ -193,18 +209,29 @@
 
 .microsoftStoreBadgeSlot {
   display: inline-flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   flex: 0 0 auto;
   line-height: 0;
+  min-height: 40px;
+  border-radius: var(--install-segment-radius);
+  overflow: hidden;
+  box-shadow: var(--install-segment-surface-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .microsoftStoreBadgeSlot--compact {
-  margin-left: 0.5rem;
+  margin-left: 0;
+}
+
+.microsoftStoreBadgeSlot:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--install-segment-surface-shadow-hover);
 }
 
 .microsoftStoreBadgeElement {
   display: block;
+  height: 100%;
 }
 
 .storeShortcutWithDropdown {
@@ -257,17 +284,18 @@
 }
 
 .splitButtonContainerSegmented .steamShortcut {
-  border-radius: 0;
-  border-right: 0;
+  border-radius: var(--install-segment-radius);
+  border-right: 1px solid rgba(102, 192, 244, 0.35);
+  box-shadow: var(--install-segment-surface-shadow);
 }
 
 .steamShortcutWithDropdown {
-  border-radius: 0;
+  border-radius: var(--install-segment-radius);
 }
 
 .steamShortcutLast {
-  border-top-right-radius: var(--radius-md);
-  border-bottom-right-radius: var(--radius-md);
+  border-top-right-radius: var(--install-segment-radius);
+  border-bottom-right-radius: var(--install-segment-radius);
 }
 
 .btnDownloadMain {
@@ -378,23 +406,35 @@
 .installButtonWrapper--compact .btnDropdownToggle {
   width: calc(36px * var(--install-button-width-scale));
   min-width: calc(36px * var(--install-button-width-scale));
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-radius: var(--install-segment-radius);
 }
 
 .splitButtonContainerSegmented .btnDropdownToggle {
   align-self: stretch;
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: var(--install-segment-radius);
+  box-shadow: var(--install-segment-surface-shadow);
 }
 
 .splitButtonContainerSegmented .sourceActionButton:hover,
 .splitButtonContainerSegmented .btnDownloadMain:hover,
+.splitButtonContainerSegmented .steamShortcut:hover,
 .splitButtonContainerSegmented .btnDropdownToggle:hover {
-  transform: none;
-  box-shadow: none;
+  transform: translateY(-1px);
+  box-shadow: var(--install-segment-surface-shadow-hover);
 }
 
 .btnDropdownToggle:hover {
   background-position: 100% 50%;
+}
+
+.sourceActionButton:focus-visible,
+.btnDownloadMain:focus-visible,
+.steamShortcut:focus-visible,
+.btnDropdownToggle:focus-visible,
+.microsoftStoreBadgeSlot:focus-within {
+  outline: 2px solid var(--install-segment-focus-ring);
+  outline-offset: 2px;
 }
 
 /* ==========================================================================
@@ -409,6 +449,10 @@
   --dropdown-surface: #ffffff;
   --dropdown-surface-strong: #f8fafc;
   --dropdown-border: rgba(148, 163, 184, 0.34);
+  --dropdown-header-divider: rgba(148, 163, 184, 0.2);
+  --dropdown-header-badge-surface: rgba(248, 250, 252, 0.94);
+  --dropdown-header-badge-border: rgba(148, 163, 184, 0.28);
+  --dropdown-header-badge-text: #0f172a;
   --dropdown-shadow: none;
   --dropdown-header-surface: #f8fafc;
   --dropdown-header-text: #475569;
@@ -434,19 +478,21 @@
   --dropdown-disabled-border: rgba(148, 163, 184, 0.35);
   --dropdown-disabled-text: #94a3b8;
   --dropdown-disabled-accent: #f59e0b;
-  --dropdown-separator: rgba(148, 163, 184, 0.24);
-  width: min(600px, max(420px, 60vw));
-  max-width: calc(100vw - 32px);
-  max-height: calc(100vh - 32px);
+  --dropdown-utility-surface: rgba(239, 246, 255, 0.72);
+  --dropdown-utility-border: rgba(59, 130, 246, 0.18);
+  width: min(44rem, max(32rem, 72vw));
+  max-width: calc(100vw - 24px);
+  max-height: calc(100vh - 24px);
   background: var(--dropdown-surface);
   border: 1px solid var(--dropdown-border);
-  border-radius: 1rem;
+  border-radius: 1.1rem;
   box-shadow: var(--dropdown-shadow);
-  list-style: none;
   margin: 0;
-  padding: 1rem;
+  padding: 0;
   box-sizing: border-box;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   overscroll-behavior: contain;
   /* 超高 z-index 确保在所有内容之上 */
   z-index: 999999;
@@ -461,64 +507,166 @@
    平台分组标签
    ========================================================================== */
 
-.dropdownGroupLabel {
-  position: relative;
+.dropdownHeader {
+  position: sticky;
+  top: 0;
+  z-index: 2;
   display: flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.75rem 0.9rem 0.75rem 1rem;
-  margin: 0.125rem 0 0.75rem;
-  font-size: 0.9375rem;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1rem 0.95rem;
+  background: linear-gradient(180deg, var(--dropdown-surface-strong) 0%, var(--dropdown-surface) 100%);
+  border-bottom: 1px solid var(--dropdown-header-divider);
+}
+
+.dropdownHeaderCopy {
+  display: grid;
+  gap: 0.28rem;
+  max-width: 32rem;
+}
+
+.dropdownEyebrow {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   font-weight: 700;
   color: var(--dropdown-header-text);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  background: var(--dropdown-header-surface);
-  border: 1px solid var(--dropdown-card-border);
-  border-radius: 0.9rem;
-  box-shadow: none;
 }
 
-.dropdownGroupLabel::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  border-radius: 0 2px 2px 0;
+.dropdownTitle {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--dropdown-text);
 }
 
-/* Windows - 蓝色 */
-.platform--windows::before {
-  background: #2563eb;
+.dropdownDescription {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--dropdown-muted);
 }
 
-/* macOS - 紫色 */
-.platform--macos::before {
-  background: #9333ea;
+.dropdownHeaderMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-content: flex-start;
+  gap: 0.5rem;
 }
 
-/* Linux - 橙色 */
-.platform--linux::before {
-  background: #ea580c;
+.dropdownHeaderBadge,
+.versionTag,
+.platformStateBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--dropdown-header-badge-border);
+  background: var(--dropdown-header-badge-surface);
+  color: var(--dropdown-header-badge-text);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dropdownBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 1rem;
+  overflow-y: auto;
+  display: grid;
+  gap: 1rem;
+  scrollbar-gutter: stable;
+}
+
+.dropdownPlatformSection {
+  --dropdown-platform-accent: #2563eb;
+  --dropdown-platform-surface: rgba(37, 99, 235, 0.07);
+  --dropdown-platform-border: rgba(37, 99, 235, 0.2);
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.9rem;
+  border-radius: 1rem;
+  border: 1px solid var(--dropdown-platform-border);
+  background: linear-gradient(180deg, var(--dropdown-platform-surface) 0%, var(--dropdown-surface) 100%);
+}
+
+.dropdownPlatformSection--windows {
+  --dropdown-platform-accent: #2563eb;
+  --dropdown-platform-surface: rgba(37, 99, 235, 0.07);
+  --dropdown-platform-border: rgba(37, 99, 235, 0.2);
+}
+
+.dropdownPlatformSection--macos {
+  --dropdown-platform-accent: #9333ea;
+  --dropdown-platform-surface: rgba(147, 51, 234, 0.07);
+  --dropdown-platform-border: rgba(147, 51, 234, 0.18);
+}
+
+.dropdownPlatformSection--linux {
+  --dropdown-platform-accent: #ea580c;
+  --dropdown-platform-surface: rgba(234, 88, 12, 0.08);
+  --dropdown-platform-border: rgba(234, 88, 12, 0.18);
+}
+
+.dropdownPlatformSectionCurrent {
+  box-shadow: inset 0 0 0 1px var(--dropdown-platform-accent);
+}
+
+.dropdownGroupLabel {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.dropdownGroupLead {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.dropdownGroupText {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.dropdownGroupMeta {
+  font-size: 0.8125rem;
+  color: var(--dropdown-muted);
+}
+
+.dropdownGroupBadges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.dropdownItemStack {
+  display: grid;
+  gap: 0.625rem;
 }
 
 .platformIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
   font-size: 1rem;
   line-height: 1;
+  border-radius: 0.7rem;
+  background: var(--dropdown-chip-surface);
+  border: 1px solid var(--dropdown-chip-border);
 }
 
 .platformName {
   display: block;
-  padding-left: 0.125rem;
-}
-
-.versionTag {
-  margin-left: auto;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--dropdown-muted);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--dropdown-text);
 }
 
 /* ==========================================================================
@@ -527,10 +675,10 @@
 
 .dropdownItem {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.75rem;
-  min-height: 40px;
+  min-height: 0;
   padding: 0.95rem 1rem;
   color: var(--dropdown-text);
   text-decoration: none;
@@ -566,16 +714,30 @@
 
 .dropdownItemDisabledNotice {
   font-size: 0.875rem;
+  line-height: 1.45;
   color: var(--dropdown-disabled-accent);
   font-weight: 600;
 }
 
 .dropdownItemLabel {
-  flex: 1;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.25rem;
+  font-weight: 650;
+}
+
+.dropdownItemTextBlock {
+  flex: 1;
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.dropdownItemDescription {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--dropdown-muted);
 }
 
 .archLabel {
@@ -601,10 +763,14 @@
 .recommendedBadge {
   display: inline-flex;
   align-items: center;
-  font-size: 0.875rem;
-  color: var(--dropdown-muted);
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--dropdown-chip-default-border);
+  background: var(--dropdown-chip-default-surface);
+  color: var(--dropdown-chip-default-text);
+  font-size: 0.8125rem;
   font-weight: 700;
-  margin-left: 0.25rem;
+  margin-left: 0.35rem;
 }
 
 .dropdownItemSize {
@@ -616,7 +782,7 @@
 .dropdownItemMultiSource {
   flex-direction: column;
   align-items: stretch;
-  gap: 0.75rem;
+  gap: 0.8rem;
 }
 
 .dropdownItemMeta {
@@ -625,11 +791,12 @@
   justify-content: space-between;
   gap: 0.75rem;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .dropdownSourceActions {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
   gap: 0.625rem;
 }
 
@@ -678,9 +845,32 @@
    分隔线
    ========================================================================== */
 
-.dropdownSeparator {
-  margin: 0.75rem 0;
-  border-top: 1px solid var(--dropdown-separator);
+.dropdownUtilitySection {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.9rem;
+  border-radius: 1rem;
+  border: 1px solid var(--dropdown-utility-border);
+  background: linear-gradient(180deg, var(--dropdown-utility-surface) 0%, var(--dropdown-surface) 100%);
+}
+
+.dropdownUtilityHeader {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.dropdownUtilityTitle {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dropdown-header-text);
+}
+
+.dropdownUtilityDescription {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--dropdown-muted);
 }
 
 /* ==========================================================================
@@ -688,14 +878,14 @@
    ========================================================================== */
 
 .dropdownItemDocker {
-  color: var(--color-primary);
-  font-weight: 500;
+  color: var(--dropdown-text);
+  font-weight: 600;
   gap: 0.75rem;
 }
 
 .dropdownItemDocker:hover {
-  background: #f0f7ff;
-  border-color: rgba(59, 130, 246, 0.3);
+  background: var(--dropdown-card-hover-surface);
+  border-color: var(--dropdown-card-hover-border);
 }
 
 .dockerIcon {
@@ -709,17 +899,26 @@
   width: 0.875rem;
   height: 0.875rem;
   flex-shrink: 0;
-  color: var(--color-text-muted);
+  color: var(--dropdown-muted);
   opacity: 0.6;
 }
 
-.dropdownItemDocker:hover .externalIcon {
+.dropdownItem:hover .externalIcon {
   opacity: 1;
 }
 
 /* ==========================================================================
    暗色主题
    ========================================================================== */
+
+[data-theme='dark'] .installButtonWrapper {
+  --install-segment-shell-bg: rgba(7, 12, 24, 0.74);
+  --install-segment-shell-border: rgba(96, 165, 250, 0.2);
+  --install-segment-shell-shadow: 0 16px 34px rgba(2, 6, 23, 0.4);
+  --install-segment-surface-shadow: 0 10px 22px rgba(2, 6, 23, 0.32);
+  --install-segment-surface-shadow-hover: 0 14px 28px rgba(2, 6, 23, 0.38);
+  --install-segment-focus-ring: rgba(147, 197, 253, 0.72);
+}
 
 [data-theme='dark'] .btnDownloadMain {
   background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
@@ -743,6 +942,10 @@
   --dropdown-surface: #0f172a;
   --dropdown-surface-strong: #162033;
   --dropdown-border: rgba(96, 165, 250, 0.28);
+  --dropdown-header-divider: rgba(71, 85, 105, 0.6);
+  --dropdown-header-badge-surface: rgba(19, 32, 51, 0.94);
+  --dropdown-header-badge-border: rgba(96, 165, 250, 0.24);
+  --dropdown-header-badge-text: #e2e8f0;
   --dropdown-shadow: none;
   --dropdown-header-surface: #162033;
   --dropdown-header-text: #bfdbfe;
@@ -767,7 +970,8 @@
   --dropdown-disabled-border: rgba(148, 163, 184, 0.3);
   --dropdown-disabled-text: #94A3B8;
   --dropdown-disabled-accent: #fbbf24;
-  --dropdown-separator: rgba(71, 85, 105, 0.68);
+  --dropdown-utility-surface: rgba(19, 48, 71, 0.48);
+  --dropdown-utility-border: rgba(34, 211, 238, 0.18);
 }
 
 [data-theme='dark'] .dropdownItemDisabled {
@@ -776,22 +980,18 @@
   color: var(--dropdown-disabled-text);
 }
 
-/* 暗色主题下的平台色栏 - 更柔和 */
-[data-theme='dark'] .platform--windows::before {
-  background: #3b82f6;
-}
-
-[data-theme='dark'] .platform--macos::before {
-  background: #a855f7;
-}
-
-[data-theme='dark'] .platform--linux::before {
-  background: #f97316;
-}
-
 /* ==========================================================================
    新年主题
    ========================================================================== */
+
+[data-theme='lunar-new-year'] .installButtonWrapper {
+  --install-segment-shell-bg: rgba(127, 29, 29, 0.22);
+  --install-segment-shell-border: rgba(251, 191, 36, 0.28);
+  --install-segment-shell-shadow: 0 16px 32px rgba(127, 29, 29, 0.22);
+  --install-segment-surface-shadow: 0 8px 20px rgba(255, 145, 0, 0.24);
+  --install-segment-surface-shadow-hover: 0 12px 24px rgba(255, 145, 0, 0.32);
+  --install-segment-focus-ring: rgba(254, 240, 138, 0.78);
+}
 
 [data-theme='lunar-new-year'] .btnDownloadMain,
 [data-theme='lunar-new-year'] .sourceActionButton--accelerated {
@@ -836,6 +1036,10 @@
   --dropdown-surface: #521818;
   --dropdown-surface-strong: #681c1c;
   --dropdown-border: rgba(251, 191, 36, 0.32);
+  --dropdown-header-divider: rgba(251, 191, 36, 0.24);
+  --dropdown-header-badge-surface: rgba(127, 29, 29, 0.92);
+  --dropdown-header-badge-border: rgba(252, 211, 77, 0.26);
+  --dropdown-header-badge-text: #fff7ed;
   --dropdown-shadow: none;
   --dropdown-header-surface: #7f1d1d;
   --dropdown-header-text: #fde68a;
@@ -860,26 +1064,14 @@
   --dropdown-disabled-border: rgba(251, 191, 36, 0.35);
   --dropdown-disabled-text: #FCD34D;
   --dropdown-disabled-accent: #fde68a;
-  --dropdown-separator: rgba(251, 191, 36, 0.24);
+  --dropdown-utility-surface: rgba(146, 64, 14, 0.32);
+  --dropdown-utility-border: rgba(252, 211, 77, 0.24);
 }
 
 [data-theme='lunar-new-year'] .dropdownItemDisabled {
   background: var(--dropdown-disabled-surface);
   border-color: var(--dropdown-disabled-border);
   color: var(--dropdown-disabled-text);
-}
-
-/* 新年主题下的平台色栏 - 金色系 */
-[data-theme='lunar-new-year'] .platform--windows::before {
-  background: #ffd54f;
-}
-
-[data-theme='lunar-new-year'] .platform--macos::before {
-  background: #ffecb3;
-}
-
-[data-theme='lunar-new-year'] .platform--linux::before {
-  background: #fff9c4;
 }
 
 [data-theme='lunar-new-year'] .dropdownItemDocker {
@@ -966,12 +1158,21 @@
   }
 
   .dropdownMenu {
-    width: min(92vw, 34rem);
-    padding: 0.875rem;
+    width: min(92vw, 36rem);
   }
 
   .dropdownSourceActions {
     grid-template-columns: 1fr;
+  }
+
+  .dropdownHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dropdownHeaderMeta,
+  .dropdownGroupBadges {
+    justify-content: flex-start;
   }
 }
 
