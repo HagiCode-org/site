@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import VideoShowcase from './VideoShowcase';
 import {
   getHomepageFallbackProvider,
+  getVideoEmbedUrl,
   type VideoShowcaseItem,
 } from './video-showcase-model';
 
@@ -31,6 +32,22 @@ describe('homepage video provider resolution', () => {
   it('selects video provider from the current site language only', () => {
     expect(getHomepageFallbackProvider('en')).toBe('youtube');
     expect(getHomepageFallbackProvider('zh-CN')).toBe('bilibili');
+  });
+
+  it('builds a muted autoplay YouTube embed url', () => {
+    const embedUrl = getVideoEmbedUrl({ provider: 'youtube', embedId: 'AQ8oSTW6wNQ' });
+
+    expect(embedUrl).toContain('autoplay=1');
+    expect(embedUrl).toContain('mute=1');
+    expect(embedUrl).toContain('playsinline=1');
+  });
+
+  it('builds a muted autoplay Bilibili embed url', () => {
+    const embedUrl = getVideoEmbedUrl({ provider: 'bilibili', embedId: 'BV1KxwMzxEVK' });
+
+    expect(embedUrl).toContain('autoplay=1');
+    expect(embedUrl).toContain('muted=1');
+    expect(embedUrl).toContain('mute=1');
   });
 });
 
