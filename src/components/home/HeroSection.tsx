@@ -96,6 +96,7 @@ export default function HeroSection({
   const heroStatement = isChineseLocale
     ? '全球不唯一，但是超级好用的 Agentic Coding 软件就在这里'
     : 'Not globally unique, but exceptionally usable Agentic Coding software lives here.';
+  const primaryButtonHint = 'Windows · macOS · Linux';
   const steamLabel = 'Steam';
   const steamAriaLabel = copy.steamAriaLabel || (isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam');
   const windowsStoreAriaLabel = copy.windowsStoreAriaLabel || (
@@ -155,49 +156,59 @@ export default function HeroSection({
           </div>
 
           <div className={styles.heroActions} role="group" aria-label={ctaGroupLabel}>
-            <a href={desktopUrl} className={styles.buttonPrimary}>
-              <DownloadIcon className={styles.buttonIcon} />
-              <span>{copy.buttons.desktopApp}</span>
-            </a>
-
-            <a href={containerUrl} className={styles.buttonSecondary}>
-              <ContainerIcon className={styles.buttonIcon} />
-              <span>{copy.buttons.containerApp}</span>
-            </a>
-
-            {showWindowsStoreButton && (
-              <MicrosoftStoreBadge
-                href={windowsStoreLink.href}
-                locale={locale}
-                aria-label={windowsStoreAriaLabel}
-                className={styles.windowsStoreBadgeButton}
-                badgeClassName={styles.windowsStoreBadgeElement}
-                badgeAttributes={{ 'data-windows-store-entry': 'site-home-hero' }}
-              />
-            )}
-
-            {showSteamButton && (
-              <a
-                href={steamStoreLink.href}
-                className={`${styles.buttonSecondary} ${styles.buttonSteam}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={steamAriaLabel}
-                data-steam-entry="site-home-hero"
-                onClick={() =>
-                  trackEvent(WEBSITE_TRACKING_EVENTS.openSteamStore, {
-                    source: 'hero-section-steam',
-                  })
-                }
-              >
-                <SteamIcon className={styles.buttonIcon} />
-                <span>{steamLabel}</span>
+            <div className={styles.heroPrimaryActions}>
+              <a href={desktopUrl} className={styles.buttonPrimary}>
+                <span className={styles.buttonPrimaryContent}>
+                  <DownloadIcon className={styles.buttonIcon} />
+                  <span className={styles.buttonTextStack}>
+                    <span className={styles.buttonPrimaryLabel}>{copy.buttons.desktopApp}</span>
+                    <span className={styles.buttonPrimaryMeta}>{primaryButtonHint}</span>
+                  </span>
+                </span>
               </a>
-            )}
 
-            <a className={styles.buttonSecondary} href={docsUrl}>
-              <span>{copy.buttons.learnMore}</span>
-            </a>
+              {showWindowsStoreButton && (
+                <MicrosoftStoreBadge
+                  href={windowsStoreLink.href}
+                  locale={locale}
+                  size="large"
+                  aria-label={windowsStoreAriaLabel}
+                  className={`${styles.windowsStoreBadgeButton} ${styles.windowsStoreBadgePrimary}`}
+                  badgeClassName={styles.windowsStoreBadgeElement}
+                  badgeAttributes={{ 'data-windows-store-entry': 'site-home-hero' }}
+                />
+              )}
+            </div>
+
+            <div className={styles.heroSecondaryActions}>
+              <a href={containerUrl} className={styles.buttonSecondary}>
+                <ContainerIcon className={styles.buttonIcon} />
+                <span>{copy.buttons.containerApp}</span>
+              </a>
+
+              {showSteamButton && (
+                <a
+                  href={steamStoreLink.href}
+                  className={`${styles.buttonSecondary} ${styles.buttonSteam}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={steamAriaLabel}
+                  data-steam-entry="site-home-hero"
+                  onClick={() =>
+                    trackEvent(WEBSITE_TRACKING_EVENTS.openSteamStore, {
+                      source: 'hero-section-steam',
+                    })
+                  }
+                >
+                  <SteamIcon className={styles.buttonIcon} />
+                  <span>{steamLabel}</span>
+                </a>
+              )}
+
+              <a className={styles.buttonSecondary} href={docsUrl}>
+                <span>{copy.buttons.learnMore}</span>
+              </a>
+            </div>
           </div>
         </div>
 

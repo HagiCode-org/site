@@ -36,6 +36,7 @@ describe('HeroSection', () => {
     expect(markup).toContain('<ms-store-badge');
     expect(markup).toContain('productid="9N3PM0N3SVDW"');
     expect(markup).toContain('language="en-us"');
+    expect(markup).toContain('size="large"');
     expect(markup).not.toContain('data-steam-entry="site-home-hero"');
     expect(markup).not.toContain('>Steam<');
   });

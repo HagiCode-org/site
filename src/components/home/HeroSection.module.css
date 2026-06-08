@@ -252,17 +252,32 @@
 }
 
 .heroActions {
+  display: grid;
+  gap: 0.95rem;
+  justify-items: stretch;
+  max-width: min(100%, 60rem);
+  width: 100%;
+}
+
+.heroPrimaryActions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17.5rem), 1fr));
+  gap: 0.9rem;
+  width: 100%;
+}
+
+.heroSecondaryActions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.8rem;
-  align-items: center;
-  max-width: 100%;
+  width: 100%;
 }
 
 .buttonPrimary,
 .buttonSecondary {
   box-sizing: border-box;
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -282,9 +297,28 @@
 }
 
 .buttonPrimary {
+  isolation: isolate;
+  width: 100%;
+  min-height: 4.6rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 42%, transparent);
+  border-radius: 1.2rem;
   color: #f8fcff;
   background: var(--gradient-primary);
-  box-shadow: 0 22px 48px color-mix(in srgb, var(--color-primary) 28%, transparent);
+  box-shadow:
+    0 24px 52px color-mix(in srgb, var(--color-primary) 26%, transparent),
+    0 0 0 1px color-mix(in srgb, rgba(255, 255, 255, 0.18) 100%, transparent) inset;
+}
+
+.buttonPrimary::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: calc(1.2rem - 1px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.24), transparent 48%);
+  opacity: 0.7;
+  pointer-events: none;
 }
 
 .buttonSecondary {
@@ -316,6 +350,23 @@
   line-height: 0;
 }
 
+.windowsStoreBadgePrimary {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 4.6rem;
+  padding: 0.9rem 1.25rem;
+  border-radius: 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--hero-title-accent) 22%, var(--hero-panel-border));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--hero-panel-strong) 97%, transparent), color-mix(in srgb, var(--hero-panel) 99%, transparent));
+  box-shadow: var(--hero-shadow);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
 .windowsStoreBadgeButton:focus-within {
   outline: 3px solid color-mix(in srgb, var(--hero-title-accent) 34%, transparent);
   outline-offset: 3px;
@@ -326,13 +377,21 @@
   display: block;
 }
 
+.windowsStoreBadgePrimary:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--hero-title-accent) 38%, var(--hero-panel-border));
+  box-shadow: 0 26px 52px color-mix(in srgb, var(--hero-title-accent) 14%, transparent);
+}
+
 .buttonPrimary:hover,
 .buttonSecondary:hover {
   transform: translateY(-2px);
 }
 
 .buttonPrimary:hover {
-  box-shadow: 0 26px 54px color-mix(in srgb, var(--color-primary) 34%, transparent);
+  box-shadow:
+    0 30px 62px color-mix(in srgb, var(--color-primary) 34%, transparent),
+    0 0 0 1px color-mix(in srgb, rgba(255, 255, 255, 0.22) 100%, transparent) inset;
 }
 
 .buttonSecondary:hover {
@@ -349,6 +408,37 @@
   width: 1.1rem;
   height: 1.1rem;
   flex-shrink: 0;
+}
+
+.buttonPrimary .buttonIcon {
+  width: 1.32rem;
+  height: 1.32rem;
+}
+
+.buttonPrimaryContent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.92rem;
+}
+
+.buttonTextStack {
+  display: grid;
+  gap: 0.28rem;
+  text-align: left;
+}
+
+.buttonPrimaryLabel {
+  font-size: 1.08rem;
+  line-height: 1;
+}
+
+.buttonPrimaryMeta {
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(248, 252, 255, 0.84);
 }
 
 .heroStage {
@@ -449,7 +539,7 @@
 
   .eyebrowRow,
   .signalTags,
-  .heroActions {
+  .heroSecondaryActions {
     justify-content: center;
   }
 
@@ -467,14 +557,37 @@
   }
 
   .heroActions {
+    width: 100%;
+  }
+
+  .heroPrimaryActions {
+    grid-template-columns: 1fr;
+  }
+
+  .heroSecondaryActions {
     display: grid;
     grid-template-columns: 1fr;
-    width: 100%;
   }
 
   .buttonPrimary,
   .buttonSecondary {
     width: 100%;
+  }
+
+  .buttonPrimary {
+    min-height: 4.2rem;
+  }
+
+  .windowsStoreBadgePrimary {
+    min-height: 4.2rem;
+  }
+
+  .buttonPrimaryContent {
+    justify-content: center;
+  }
+
+  .buttonTextStack {
+    text-align: center;
   }
 
   .posterFrame {
