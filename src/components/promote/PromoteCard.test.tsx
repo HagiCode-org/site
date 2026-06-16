@@ -42,6 +42,7 @@ describe('PromoteCard', () => {
     expect(markup).toContain('alt="HagiCode artwork"');
     expect(markup).toContain('aria-label="关闭推广信息"');
     expect(markup).toContain('aria-label="加入愿望单: 立即添加到愿望单"');
+    expect(markup).not.toContain('promote-card__badge');
   });
 
   it('renders nothing when no active promotion exists', () => {

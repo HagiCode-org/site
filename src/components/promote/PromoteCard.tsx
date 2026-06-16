@@ -13,11 +13,6 @@ type PromoteCardProps = {
 const DEFAULT_FOOTER_SELECTOR = 'footer, [data-footer-root], .footer';
 const DISMISSED_PROMOTIONS_STORAGE_KEY = 'hagicode:promote-card:dismissed-signature';
 
-function platformLabel(platform: string | null, locale: string | undefined) {
-  if (platform) return platform;
-  return locale?.toLowerCase().startsWith('zh') ? '推荐' : 'Promoted';
-}
-
 function closeLabel(locale: string | undefined) {
   return locale?.toLowerCase().startsWith('zh') ? '关闭推广信息' : 'Dismiss promotion';
 }
@@ -119,7 +114,6 @@ export function PromoteCard({
           aria-label={`${promotion.ctaLabel}: ${promotion.title}`}
         >
           <span className="promote-card__body">
-            <span className="promote-card__badge">{platformLabel(promotion.platform, locale)}</span>
             <span className="promote-card__title">{promotion.title}</span>
             <span className="promote-card__description">{promotion.description}</span>
           </span>
