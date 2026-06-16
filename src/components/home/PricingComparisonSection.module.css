@@ -169,7 +169,7 @@
 }
 
 .featureHeading {
-  width: 22%;
+  width: 28%;
   text-align: left;
   font-size: 0.88rem;
   font-weight: 800;
@@ -183,19 +183,15 @@
   justify-content: center;
 }
 
-.steamColumnHeading {
-  position: relative;
-}
-
-.turboColumnHeading {
-  position: relative;
-}
-
 .desktopColumnHeading {
   position: relative;
 }
 
 .containerColumnHeading {
+  position: relative;
+}
+
+.microsoftStoreColumnHeading {
   position: relative;
 }
 
@@ -264,44 +260,24 @@
   border-color: rgba(255, 213, 79, 0.5);
 }
 
-.steamColumnHeading .headerButton {
+.microsoftStoreColumnHeading .headerButton {
   border-color: rgba(27, 127, 204, 0.28);
   background: rgba(27, 127, 204, 0.08);
 }
 
-.steamColumnHeading .headerButton:hover {
+.microsoftStoreColumnHeading .headerButton:hover {
   background: rgba(27, 127, 204, 0.16);
   border-color: rgba(27, 127, 204, 0.45);
 }
 
-.turboColumnHeading .headerButton {
-  border-color: rgba(255, 138, 0, 0.28);
-  background: rgba(255, 138, 0, 0.08);
-}
-
-.turboColumnHeading .headerButton:hover {
-  background: rgba(255, 138, 0, 0.16);
-  border-color: rgba(255, 138, 0, 0.45);
-}
-
-[data-theme='lunar-new-year'] .steamColumnHeading .headerButton {
+[data-theme='lunar-new-year'] .microsoftStoreColumnHeading .headerButton {
   border-color: rgba(255, 160, 0, 0.36);
   background: rgba(229, 57, 53, 0.16);
 }
 
-[data-theme='lunar-new-year'] .steamColumnHeading .headerButton:hover {
+[data-theme='lunar-new-year'] .microsoftStoreColumnHeading .headerButton:hover {
   background: rgba(229, 57, 53, 0.24);
   border-color: rgba(255, 213, 79, 0.52);
-}
-
-[data-theme='lunar-new-year'] .turboColumnHeading .headerButton {
-  border-color: rgba(255, 213, 79, 0.44);
-  background: rgba(255, 160, 0, 0.18);
-}
-
-[data-theme='lunar-new-year'] .turboColumnHeading .headerButton:hover {
-  background: rgba(255, 160, 0, 0.26);
-  border-color: rgba(255, 236, 179, 0.6);
 }
 
 .rowHeading {
@@ -315,18 +291,13 @@
   text-align: center;
 }
 
-.turboColumnCell,
-.steamColumnCell,
 .desktopColumnCell,
-.containerColumnCell {
+.containerColumnCell,
+.microsoftStoreColumnCell {
   position: relative;
 }
 
-.turboColumnCell {
-  background: rgba(255, 138, 0, 0.05);
-}
-
-.steamColumnCell {
+.microsoftStoreColumnCell {
   background: rgba(27, 127, 204, 0.05);
 }
 
@@ -335,11 +306,7 @@
   background: rgba(148, 163, 184, 0.04);
 }
 
-[data-theme='dark'] .turboColumnCell {
-  background: rgba(255, 138, 0, 0.08);
-}
-
-[data-theme='dark'] .steamColumnCell {
+[data-theme='dark'] .microsoftStoreColumnCell {
   background: rgba(0, 163, 255, 0.08);
 }
 
@@ -348,11 +315,7 @@
   background: rgba(148, 163, 184, 0.05);
 }
 
-[data-theme='lunar-new-year'] .turboColumnCell {
-  background: rgba(255, 193, 7, 0.1);
-}
-
-[data-theme='lunar-new-year'] .steamColumnCell {
+[data-theme='lunar-new-year'] .microsoftStoreColumnCell {
   background: rgba(229, 57, 53, 0.12);
 }
 
@@ -361,65 +324,28 @@
   background: rgba(255, 236, 179, 0.04);
 }
 
-.steamExclusiveRow th,
-.steamExclusiveRow td {
+.microsoftStoreExclusiveRow th,
+.microsoftStoreExclusiveRow td {
   background: rgba(27, 127, 204, 0.08);
 }
 
-[data-theme='dark'] .steamExclusiveRow th,
-[data-theme='dark'] .steamExclusiveRow td {
+[data-theme='dark'] .microsoftStoreExclusiveRow th,
+[data-theme='dark'] .microsoftStoreExclusiveRow td {
   background: rgba(86, 194, 255, 0.12);
 }
 
-[data-theme='lunar-new-year'] .steamExclusiveRow th,
-[data-theme='lunar-new-year'] .steamExclusiveRow td {
+[data-theme='lunar-new-year'] .microsoftStoreExclusiveRow th,
+[data-theme='lunar-new-year'] .microsoftStoreExclusiveRow td {
   background: rgba(255, 193, 7, 0.12);
 }
 
-@keyframes steamPlusPulse {
-  0%, 100% {
-    box-shadow:
-      0 18px 40px rgba(255, 138, 0, 0.2),
-      0 0 24px rgba(255, 138, 0, 0.12);
-    filter: saturate(1);
-  }
-  50% {
-    box-shadow:
-      0 22px 50px rgba(255, 138, 0, 0.28),
-      0 0 34px rgba(255, 138, 0, 0.18);
-    filter: saturate(1.06);
-  }
-}
-
-@keyframes steamPlusColumnGlow {
-  0%, 100% {
-    box-shadow: inset 0 0 0 9999px rgba(255, 138, 0, 0.03);
-  }
-  50% {
-    box-shadow: inset 0 0 0 9999px rgba(255, 138, 0, 0.07);
-  }
-}
-
 @media (min-width: 901px) {
-  .turboColumnHeading .headerButton {
-    transform: translateY(-10px) scale(1.03);
-    min-height: 3.4rem;
-    box-shadow:
-      0 18px 40px rgba(255, 138, 0, 0.2),
-      0 0 24px rgba(255, 138, 0, 0.12);
-    animation: steamPlusPulse 2.8s ease-in-out infinite;
-  }
-
-  .turboColumnHeading .headerButton:hover {
-    transform: translateY(-12px) scale(1.04);
-  }
-
-  .steamColumnHeading .headerButton {
+  .microsoftStoreColumnHeading .headerButton {
     transform: translateY(-4px);
     box-shadow: 0 14px 28px rgba(27, 127, 204, 0.14);
   }
 
-  .steamColumnHeading .headerButton:hover {
+  .microsoftStoreColumnHeading .headerButton:hover {
     transform: translateY(-6px);
   }
 
@@ -434,46 +360,20 @@
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
   }
 
-  [data-theme='lunar-new-year'] .turboColumnHeading .headerButton {
-    box-shadow:
-      0 18px 40px rgba(229, 57, 53, 0.28),
-      0 0 26px rgba(255, 193, 7, 0.16);
-  }
-
-  [data-theme='lunar-new-year'] .steamColumnHeading .headerButton {
+  [data-theme='lunar-new-year'] .microsoftStoreColumnHeading .headerButton {
     box-shadow: 0 14px 28px rgba(229, 57, 53, 0.2);
   }
 
-  .turboColumnCell {
-    box-shadow: inset 0 0 0 9999px rgba(255, 138, 0, 0.03);
-    animation: steamPlusColumnGlow 2.8s ease-in-out infinite;
-  }
-
-  .steamColumnCell {
+  .microsoftStoreColumnCell {
     box-shadow: inset 0 0 0 9999px rgba(27, 127, 204, 0.025);
   }
 
-  [data-theme='dark'] .turboColumnCell {
-    box-shadow: inset 0 0 0 9999px rgba(255, 138, 0, 0.05);
-  }
-
-  [data-theme='dark'] .steamColumnCell {
+  [data-theme='dark'] .microsoftStoreColumnCell {
     box-shadow: inset 0 0 0 9999px rgba(0, 163, 255, 0.04);
   }
 
-  [data-theme='lunar-new-year'] .turboColumnCell {
-    box-shadow: inset 0 0 0 9999px rgba(255, 193, 7, 0.05);
-  }
-
-  [data-theme='lunar-new-year'] .steamColumnCell {
+  [data-theme='lunar-new-year'] .microsoftStoreColumnCell {
     box-shadow: inset 0 0 0 9999px rgba(229, 57, 53, 0.04);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .turboColumnHeading .headerButton,
-  .turboColumnCell {
-    animation: none !important;
   }
 }
 
@@ -503,8 +403,24 @@
 
 .cellText {
   display: inline-block;
+  align-items: center;
   font-weight: 700;
   color: var(--color-text);
+}
+
+.cellValue,
+.cellText,
+.cellLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.footnoteMarker {
+  font-size: 0.72em;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--color-text-secondary);
 }
 
 .cellLink {
@@ -979,7 +895,7 @@
     border-color: rgba(255, 193, 7, 0.28);
   }
 
-  .steamExclusiveRow {
+  .microsoftStoreExclusiveRow {
     border-color: rgba(27, 127, 204, 0.26) !important;
   }
 

@@ -45,8 +45,8 @@ describe('site i18n translation lookup', () => {
     const englishLabel = 'All free features included';
 
     expect(getTranslation('zh-CN', { resources: serverResources }).t('pricing.title')).toBe('版本与定价');
-    expect(getTranslation('zh-CN', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).toBe('全部免费特性已包含');
-    expect(getTranslation('zh-Hant', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).toBe('已包含全部免費功能');
+    expect(getTranslation('zh-CN', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).toBe('全部免费特性');
+    expect(getTranslation('zh-Hant', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).toBe('包含所有免費功能');
     expect(getTranslation('ja-JP', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).not.toBe(englishLabel);
     expect(getTranslation('ko-KR', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).not.toBe(englishLabel);
     expect(getTranslation('de-DE', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).not.toBe(englishLabel);
@@ -55,9 +55,9 @@ describe('site i18n translation lookup', () => {
     expect(getTranslation('pt-BR', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).not.toBe(englishLabel);
     expect(getTranslation('ru-RU', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).not.toBe(englishLabel);
     expect(getTranslation('de-DE', { resources: serverResources }).t('pricing.rows.maximumConcurrentProposals')).toBe(
-      'Maximale gleichzeitige Vorschläge',
+      'Maximale Anzahl gleichzeitiger Vorschläge',
     );
-    expect(getTranslation('fr-FR', { resources: serverResources }).t('pricing.values.viewOnSteam')).toBe('Voir sur Steam');
+    expect(getTranslation('fr-FR', { resources: serverResources }).t('pricing.rows.documentThemes')).toBe('Thèmes de documents');
   });
 
   it('localizes workflow board title lines outside the base locale', () => {

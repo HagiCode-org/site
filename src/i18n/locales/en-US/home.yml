@@ -226,13 +226,11 @@ homepageVideos:
     steamAriaLabel: Open Hagicode on Steam
     ctaGroupLabel: Primary homepage actions
 pricing:
-  docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
   title: Editions & Pricing
-  limitTitle: Proposal concurrency rule
-  limitDescription: Every edition starts at a default cap of 3 concurrent proposals. You can overclock that limit to 6 for free, and proposals in generating, executing, and archiving all count toward the same budget.
-  plusTitle: Hagicode Plus note
-  plusDescription: Hagicode Plus is the official Steam bundle that combines the main Steam edition with Turbo Engine DLC.
-  featureHeader: Feature
+  limitTitle: Proposal concurrency counting
+  limitDescription: Generating, executing, and archiving proposals all count toward the same concurrent proposal limit.
+  unlockFootnote: "Purchase TurboEngine to unlock these Microsoft Store-only capabilities permanently. TurboEngine is a one-time perpetual license in Microsoft Store (Store ID: 9NSD809W18Z6)."
+  featureHeader: Item
   includedLabel: Included
   notIncludedLabel: Not included
   editions:
@@ -240,7 +238,10 @@ pricing:
       title: Desktop
     container:
       title: Container
+    microsoftStore:
+      title: Microsoft Store
   rows:
+    entryPoint: Entry point
     pricing: Pricing
     allFreeFeaturesIncluded: All free features included
     vault: Vault
@@ -253,15 +254,16 @@ pricing:
     githubIntegration: GitHub integration
     gitManagement: Git management
     maximumConcurrentProposals: Maximum concurrent proposals
-    copySwitchingSupport: Copy switching support
-    turboEngineAvatarPacks: Turbo Engine avatar packs
+    documentThemes: Document themes
+    customCommitSignature: Custom commit signature
+    brandCustomization: Brand customization
     customAvatarUploads: Custom avatar uploads
-    customLogo: Custom logo
-    customTitle: Custom title
-    customCoAuthoredByInfo: Custom Co-Authored-By info
+    avatarPacks: Avatar packs
   values:
     free: Free
-    viewOnSteam: View on Steam
+    desktopInstall: Desktop install
+    containerDeployment: Container deployment
+    microsoftStoreInstall: Microsoft Store install
 workflowBoard:
   titleLines:
     - Mainstream Agents Supported

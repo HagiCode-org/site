@@ -226,13 +226,11 @@ homepageVideos:
     steamAriaLabel: Abrir Hagicode no Steam
     ctaGroupLabel: Ações principais da página inicial
 pricing:
-  docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
   title: Edições e preços
-  limitTitle: Regra de concorrência de propostas
-  limitDescription: As edições Free e Steam incluem um limite de 3 propostas simultâneas. Propostas em geração, execução e arquivamento contam para o mesmo limite. O DLC Turbo Engine expande esse limite para 32.
-  plusTitle: Observação sobre Hagicode Plus
-  plusDescription: Hagicode Plus é o bundle oficial da Steam que combina a edição principal da Steam com o DLC Turbo Engine.
-  featureHeader: Recurso
+  limitTitle: Regra de contagem de propostas paralelas
+  limitDescription: Propostas em geração, execução e arquivamento contam para o mesmo limite de propostas simultâneas.
+  unlockFootnote: "Requer a compra do TurboEngine para desbloquear. O TurboEngine é uma licença perpétua de compra única na Microsoft Store (Store ID: 9NSD809W18Z6). Uma compra desbloqueia permanentemente os recursos acima."
+  featureHeader: Artigo
   includedLabel: Incluído
   notIncludedLabel: Não incluído
   editions:
@@ -240,28 +238,32 @@ pricing:
       title: Desktop
     container:
       title: Container
+    microsoftStore:
+      title: Microsoft Store
   rows:
+    entryPoint: Ponto de entrada
     pricing: Preço
     allFreeFeaturesIncluded: Todos os recursos gratuitos incluídos
     vault: Cofre
     skills: Habilidades
-    proposalWorkflow: Fluxo de propostas
+    proposalWorkflow: Fluxo de trabalho da proposta
     localAchievements: Conquistas locais
-    allAgentCliIntegrations: Todas as integrações de Agent CLI
+    allAgentCliIntegrations: Todas as integrações do Agent CLI
     speechRecognition: Reconhecimento de voz
     omniRouteIntegration: Integração com OmniRoute
     githubIntegration: Integração com GitHub
     gitManagement: Gerenciamento de Git
     maximumConcurrentProposals: Máximo de propostas simultâneas
-    copySwitchingSupport: Troca de textos
-    turboEngineAvatarPacks: Pacotes de avatar Turbo Engine
+    documentThemes: Temas de documentos
+    customCommitSignature: Autoria de commit personalizada
+    brandCustomization: Personalização de marca
     customAvatarUploads: Upload de avatares personalizados
-    customLogo: Logo personalizado
-    customTitle: Título personalizado
-    customCoAuthoredByInfo: Informações Co-Authored-By personalizadas
+    avatarPacks: Pacotes de avatares
   values:
     free: Gratuito
-    viewOnSteam: Ver na Steam
+    desktopInstall: Instalação na área de trabalho
+    containerDeployment: Implantação de contêiner
+    microsoftStoreInstall: Instalação pela Microsoft Store
 workflowBoard:
   titleLines:
     - Agents principais suportados

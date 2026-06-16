@@ -226,13 +226,11 @@ homepageVideos:
     steamAriaLabel: Открыть Hagicode в Steam
     ctaGroupLabel: Основные действия на главной странице
 pricing:
-  docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
   title: Редакции и цены
-  limitTitle: Правило параллельных предложений
-  limitDescription: Free и Steam включают лимит в 3 параллельных предложения. Предложения на этапах генерации, выполнения и архивации учитываются в одном лимите. Turbo Engine DLC расширяет этот лимит до 32.
-  plusTitle: Примечание о Hagicode Plus
-  plusDescription: Hagicode Plus — официальный набор Steam, объединяющий основную Steam-редакцию и Turbo Engine DLC.
-  featureHeader: Функция
+  limitTitle: Правило подсчёта параллельных предложений
+  limitDescription: Предложения на этапах генерации, выполнения и архивации учитываются в одном лимите одновременных предложений.
+  unlockFootnote: "Требуется покупка TurboEngine для разблокировки. TurboEngine — это бессрочная лицензия с единоразовой покупкой в Microsoft Store (Store ID: 9NSD809W18Z6). Одна покупка навсегда разблокирует указанные выше функции."
+  featureHeader: Товар
   includedLabel: Включено
   notIncludedLabel: Не включено
   editions:
@@ -240,28 +238,32 @@ pricing:
       title: Desktop
     container:
       title: Container
+    microsoftStore:
+      title: Microsoft Store
   rows:
+    entryPoint: Точка входа
     pricing: Цена
     allFreeFeaturesIncluded: Все бесплатные функции включены
     vault: Хранилище
     skills: Навыки
-    proposalWorkflow: Рабочий процесс предложений
+    proposalWorkflow: Рабочий процесс предложения
     localAchievements: Локальные достижения
     allAgentCliIntegrations: Все интеграции Agent CLI
     speechRecognition: Распознавание речи
     omniRouteIntegration: Интеграция OmniRoute
     githubIntegration: Интеграция GitHub
     gitManagement: Управление Git
-    maximumConcurrentProposals: Максимум параллельных предложений
-    copySwitchingSupport: Переключение текстов
-    turboEngineAvatarPacks: Наборы аватаров Turbo Engine
+    maximumConcurrentProposals: Максимальное количество одновременных предложений
+    documentThemes: Темы документов
+    customCommitSignature: Настраиваемое авторство коммитов
+    brandCustomization: Настройка брендинга
     customAvatarUploads: Загрузка собственных аватаров
-    customLogo: Собственный Logo
-    customTitle: Собственный заголовок
-    customCoAuthoredByInfo: Собственная информация Co-Authored-By
+    avatarPacks: Наборы аватаров
   values:
     free: Бесплатно
-    viewOnSteam: Посмотреть в Steam
+    desktopInstall: Установка на рабочем столе
+    containerDeployment: Развертывание контейнера
+    microsoftStoreInstall: Установка из Microsoft Store
 workflowBoard:
   titleLines:
     - Поддержка основных Agent

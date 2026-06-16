@@ -226,13 +226,11 @@ homepageVideos:
     steamAriaLabel: Steam에서 Hagicode 열기
     ctaGroupLabel: 홈페이지 기본 동작
 pricing:
-  docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
   title: 에디션 및 가격
-  limitTitle: 제안 병렬 처리 규칙
-  limitDescription: 무료 버전과 Steam 버전은 모두 제안 3개 동시 처리 한도를 포함합니다. 생성 중, 실행 중, 보관 중인 제안은 모두 같은 한도에 계산됩니다. Turbo Engine DLC는 이 한도를 32개로 확장합니다.
-  plusTitle: Hagicode Plus 안내
-  plusDescription: Hagicode Plus는 Steam 기본 에디션과 Turbo Engine DLC를 함께 묶은 공식 Steam 번들입니다.
-  featureHeader: 기능
+  limitTitle: 제안 병렬 집계 규칙
+  limitDescription: 생성 중, 실행 중, 보관 중인 제안은 모두 같은 동시 제안 한도에 합산됩니다.
+  unlockFootnote: "TurboEngine 구매가 필요합니다. TurboEngine은 Microsoft Store의 1회 구매 영구 라이선스(Store ID: 9NSD809W18Z6)로, 한 번 구매하면 위 기능이 영구적으로 잠금 해제됩니다."
+  featureHeader: 품목
   includedLabel: 포함됨
   notIncludedLabel: 포함되지 않음
   editions:
@@ -240,28 +238,32 @@ pricing:
       title: Desktop
     container:
       title: Container
+    microsoftStore:
+      title: Microsoft Store
   rows:
+    entryPoint: 진입점
     pricing: 가격
     allFreeFeaturesIncluded: 모든 무료 기능 포함
-    vault: 볼트
-    skills: 스킬
+    vault: 금고
+    skills: 기술
     proposalWorkflow: 제안 워크플로
-    localAchievements: 로컬 업적
+    localAchievements: 지역 성과
     allAgentCliIntegrations: 모든 Agent CLI 연동
     speechRecognition: 음성 인식
     omniRouteIntegration: OmniRoute 연동
     githubIntegration: GitHub 연동
     gitManagement: Git 관리
     maximumConcurrentProposals: 최대 동시 제안 수
-    copySwitchingSupport: 문구 전환 지원
-    turboEngineAvatarPacks: Turbo Engine 아바타 팩
+    documentThemes: 문서 테마
+    customCommitSignature: 커스텀 커밋 저작자
+    brandCustomization: 브랜딩 사용자 지정
     customAvatarUploads: 사용자 지정 아바타 업로드
-    customLogo: 사용자 지정 Logo
-    customTitle: 사용자 지정 제목
-    customCoAuthoredByInfo: 사용자 지정 Co-Authored-By 정보
+    avatarPacks: 아바타 팩
   values:
     free: 무료
-    viewOnSteam: Steam에서 보기
+    desktopInstall: 데스크탑 설치
+    containerDeployment: 컨테이너 배포
+    microsoftStoreInstall: Microsoft Store 설치
 workflowBoard:
   titleLines:
     - 주요 Agent 지원

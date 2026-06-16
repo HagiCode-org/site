@@ -5,6 +5,10 @@ import type {
 } from '@/lib/homepage-section-copy';
 import styles from './PricingComparisonSection.module.css';
 
+function FootnoteMarker({ marker }: { marker: string }) {
+  return <sup className={styles.footnoteMarker}>[{marker}]</sup>;
+}
+
 function CheckIcon() {
   return (
     <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -25,18 +29,26 @@ function CrossIcon() {
 }
 
 function renderCell(cell: FeatureCell, labels: { included: string; notIncluded: string }) {
+  const footnoteSuffix = cell.footnote ? ` [${cell.footnote}]` : '';
+
   if (cell.type === 'check') {
     return (
-      <span className={`${styles.cellBadge} ${styles.cellCheck}`} aria-label={labels.included}>
-        <CheckIcon />
+      <span className={styles.cellValue}>
+        <span className={`${styles.cellBadge} ${styles.cellCheck}`} aria-label={`${labels.included}${footnoteSuffix}`}>
+          <CheckIcon />
+        </span>
+        {cell.footnote ? <FootnoteMarker marker={cell.footnote} /> : null}
       </span>
     );
   }
 
   if (cell.type === 'cross') {
     return (
-      <span className={`${styles.cellBadge} ${styles.cellCross}`} aria-label={labels.notIncluded}>
-        <CrossIcon />
+      <span className={styles.cellValue}>
+        <span className={`${styles.cellBadge} ${styles.cellCross}`} aria-label={`${labels.notIncluded}${footnoteSuffix}`}>
+          <CrossIcon />
+        </span>
+        {cell.footnote ? <FootnoteMarker marker={cell.footnote} /> : null}
       </span>
     );
   }
@@ -50,11 +62,17 @@ function renderCell(cell: FeatureCell, labels: { included: string; notIncluded: 
         rel={cell.external ? 'noopener noreferrer' : undefined}
       >
         {cell.value}
+        {cell.footnote ? <FootnoteMarker marker={cell.footnote} /> : null}
       </a>
     );
   }
 
-  return <span className={styles.cellText}>{cell.value}</span>;
+  return (
+    <span className={styles.cellText}>
+      {cell.value}
+      {cell.footnote ? <FootnoteMarker marker={cell.footnote} /> : null}
+    </span>
+  );
 }
 
 function renderEditionHeader(column: EditionColumn, className?: string) {
@@ -109,27 +127,23 @@ export default function PricingComparisonSection({ content }: Props) {
                 <tr>
                   <th scope="col" className={styles.featureHeading}>{content.featureHeader}</th>
                   <th scope="col">
-                    {renderEditionHeader(content.turboEdition, styles.turboColumnHeading)}
-                  </th>
-                  <th scope="col">
-                    {renderEditionHeader(content.steamEdition, styles.steamColumnHeading)}
-                  </th>
-                  <th scope="col">
                     {renderEditionHeader(content.desktopEdition, styles.desktopColumnHeading)}
                   </th>
                   <th scope="col">
                     {renderEditionHeader(content.containerEdition, styles.containerColumnHeading)}
                   </th>
+                  <th scope="col">
+                    {renderEditionHeader(content.microsoftStoreEdition, styles.microsoftStoreColumnHeading)}
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {content.rows.map((row) => (
-                  <tr key={row.feature} className={row.steamExclusive ? styles.steamExclusiveRow : undefined}>
+                  <tr key={row.feature} className={row.microsoftStoreExclusive ? styles.microsoftStoreExclusiveRow : undefined}>
                     <th scope="row" className={styles.rowHeading}>{row.feature}</th>
-                    <td className={styles.turboColumnCell} data-column={content.turboEdition.title}>{renderCell(row.turbo, cellLabels)}</td>
-                    <td className={styles.steamColumnCell} data-column={content.steamEdition.title}>{renderCell(row.steam, cellLabels)}</td>
                     <td className={styles.desktopColumnCell} data-column={content.desktopEdition.title}>{renderCell(row.desktop, cellLabels)}</td>
                     <td className={styles.containerColumnCell} data-column={content.containerEdition.title}>{renderCell(row.container, cellLabels)}</td>
+                    <td className={styles.microsoftStoreColumnCell} data-column={content.microsoftStoreEdition.title}>{renderCell(row.microsoftStore, cellLabels)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -141,9 +155,9 @@ export default function PricingComparisonSection({ content }: Props) {
             {content.limitDescription}
           </p>
           <p className={styles.matrixNote}>
-            <span>{content.plusTitle}:</span>
+            <FootnoteMarker marker={content.unlockFootnoteMarker} />
             {' '}
-            {content.plusDescription}
+            {content.unlockFootnote}
           </p>
         </section>
       </div>

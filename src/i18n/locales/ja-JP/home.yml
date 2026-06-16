@@ -226,13 +226,11 @@ homepageVideos:
     steamAriaLabel: Steam で Hagicode を開く
     ctaGroupLabel: ホームページの主要アクション
 pricing:
-  docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
   title: エディションと価格
-  limitTitle: 提案並行数のルール
-  limitDescription: 無料版と Steam 版はいずれも提案の同時実行上限が 3 件です。生成中、実行中、保存中の提案は同じ上限にまとめて計上されます。Turbo Engine DLC ではこの上限を 32 件まで拡張できます。
-  plusTitle: Hagicode Plus について
-  plusDescription: Hagicode Plus は Steam 本体版と Turbo Engine DLC をまとめた公式 Steam バンドルです。
-  featureHeader: 機能
+  limitTitle: 提案並行数のカウントルール
+  limitDescription: 生成中、実行中、保存中の提案は同じ同時提案上限にまとめて計上されます。
+  unlockFootnote: "TurboEngine の購入が必要です。TurboEngine は Microsoft Store の買い切り型永久ライセンス（Store ID: 9NSD809W18Z6）で、一度購入すれば上記の機能が永続的にロック解除されます。"
+  featureHeader: アイテム
   includedLabel: 含まれます
   notIncludedLabel: 含まれません
   editions:
@@ -240,9 +238,12 @@ pricing:
       title: Desktop
     container:
       title: Container
+    microsoftStore:
+      title: Microsoft Store
   rows:
+    entryPoint: エントリーポイント
     pricing: 価格
-    allFreeFeaturesIncluded: 無料機能をすべて含む
+    allFreeFeaturesIncluded: すべての無料機能が含まれています
     vault: Vault
     skills: Skills
     proposalWorkflow: 提案ワークフロー
@@ -252,16 +253,17 @@ pricing:
     omniRouteIntegration: OmniRoute 連携
     githubIntegration: GitHub 連携
     gitManagement: Git 管理
-    maximumConcurrentProposals: 最大同時提案数
-    copySwitchingSupport: 文言切り替えサポート
-    turboEngineAvatarPacks: Turbo Engine アバターパック
+    maximumConcurrentProposals: 同時プロポーザルの最大数
+    documentThemes: ドキュメントテーマ
+    customCommitSignature: カスタムコミット著者名
+    brandCustomization: ブランディングカスタマイズ
     customAvatarUploads: カスタムアバターアップロード
-    customLogo: カスタム Logo
-    customTitle: カスタムタイトル
-    customCoAuthoredByInfo: カスタム Co-Authored-By 情報
+    avatarPacks: アバターパック
   values:
     free: 無料
-    viewOnSteam: Steam で確認
+    desktopInstall: デスクトップへのインストール
+    containerDeployment: コンテナのデプロイメント
+    microsoftStoreInstall: Microsoft Store からのインストール
 workflowBoard:
   titleLines:
     - 主要 Agent に対応

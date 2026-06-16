@@ -226,13 +226,11 @@ homepageVideos:
     steamAriaLabel: Abrir Hagicode en Steam
     ctaGroupLabel: Acciones principales de la página de inicio
 pricing:
-  docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
   title: Ediciones y precios
-  limitTitle: Regla de concurrencia de propuestas
-  limitDescription: Las ediciones Free y Steam incluyen un límite de 3 propuestas simultáneas. Las propuestas en generación, ejecución y archivado cuentan dentro del mismo límite. El DLC Turbo Engine amplía ese límite a 32.
-  plusTitle: Nota sobre Hagicode Plus
-  plusDescription: Hagicode Plus es el paquete oficial de Steam que combina la edición principal de Steam con el DLC Turbo Engine.
-  featureHeader: Función
+  limitTitle: Regla de conteo de propuestas paralelas
+  limitDescription: Las propuestas en generación, ejecución y archivado cuentan dentro del mismo límite de propuestas simultáneas.
+  unlockFootnote: "Requiere comprar TurboEngine para desbloquear. TurboEngine es una licencia perpetua de compra única en Microsoft Store (Store ID: 9NSD809W18Z6). Una compra desbloquea permanentemente las funciones anteriores."
+  featureHeader: Artículo
   includedLabel: Incluido
   notIncludedLabel: No incluido
   editions:
@@ -240,28 +238,32 @@ pricing:
       title: Desktop
     container:
       title: Container
+    microsoftStore:
+      title: Microsoft Store
   rows:
+    entryPoint: Punto de entrada
     pricing: Precio
     allFreeFeaturesIncluded: Todas las funciones gratuitas incluidas
     vault: Bóveda
     skills: Habilidades
-    proposalWorkflow: Flujo de propuestas
+    proposalWorkflow: Flujo de trabajo de propuesta
     localAchievements: Logros locales
-    allAgentCliIntegrations: Todas las integraciones de Agent CLI
+    allAgentCliIntegrations: Todas las integraciones de CLI del agente
     speechRecognition: Reconocimiento de voz
-    omniRouteIntegration: Integración con OmniRoute
-    githubIntegration: Integración con GitHub
+    omniRouteIntegration: Integración OmniRoute
+    githubIntegration: Integración de GitHub
     gitManagement: Gestión de Git
-    maximumConcurrentProposals: Máximo de propuestas simultáneas
-    copySwitchingSupport: Cambio de textos
-    turboEngineAvatarPacks: Paquetes de avatares Turbo Engine
+    maximumConcurrentProposals: Propuestas concurrentes máximas
+    documentThemes: Temas de documentos
+    customCommitSignature: Autoría de commits personalizada
+    brandCustomization: Personalización de marca
     customAvatarUploads: Carga de avatares personalizados
-    customLogo: Logo personalizado
-    customTitle: Título personalizado
-    customCoAuthoredByInfo: Información Co-Authored-By personalizada
+    avatarPacks: Paquetes de avatares
   values:
     free: Gratis
-    viewOnSteam: Ver en Steam
+    desktopInstall: Instalación de escritorio
+    containerDeployment: Implementación de contenedores
+    microsoftStoreInstall: Instalación desde Microsoft Store
 workflowBoard:
   titleLines:
     - Agents principales compatibles

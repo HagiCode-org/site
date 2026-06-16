@@ -226,13 +226,11 @@ homepageVideos:
     steamAriaLabel: 在 Steam 上開啟 Hagicode
     ctaGroupLabel: 首頁主要操作
 pricing:
-  docsBundleUrl: https://docs.hagicode.com/bundles/hagicode-plus/
   title: 版本與定價
   limitTitle: 提案並行計數規則
-  limitDescription: 免費版和 Steam 版預設都包含 3 個提案並行上限。正在生成、執行與歸檔的提案都會計入同一限制。Turbo Engine DLC 可將上限擴展到 32。
-  plusTitle: Hagicode Plus 說明
-  plusDescription: Hagicode Plus 是 Steam 上的官方組合包，將 Steam 主體版本與 Turbo Engine DLC 一起打包。
-  featureHeader: 功能
+  limitDescription: 正在生成、執行與歸檔的提案都會計入同一個並行提案上限。
+  unlockFootnote: "需要購買 TurboEngine 進行解鎖。TurboEngine 是 Microsoft Store 中的一次買斷制永久授權（Store ID: 9NSD809W18Z6），購買後即可永久解鎖上述功能。"
+  featureHeader: 專案
   includedLabel: 已包含
   notIncludedLabel: 未包含
   editions:
@@ -240,9 +238,12 @@ pricing:
       title: Desktop
     container:
       title: Container
+    microsoftStore:
+      title: Microsoft Store
   rows:
+    entryPoint: 切入點
     pricing: 定價
-    allFreeFeaturesIncluded: 已包含全部免費功能
+    allFreeFeaturesIncluded: 包含所有免費功能
     vault: 資料庫
     skills: 技能
     proposalWorkflow: 提案流程
@@ -253,15 +254,16 @@ pricing:
     githubIntegration: GitHub 整合
     gitManagement: Git 管理
     maximumConcurrentProposals: 最大提案並行數
-    copySwitchingSupport: 文案切換支援
-    turboEngineAvatarPacks: Turbo Engine 頭像包
+    documentThemes: 文件主題
+    customCommitSignature: 自訂提交署名
+    brandCustomization: 品牌自訂
     customAvatarUploads: 自訂頭像上傳
-    customLogo: 自訂 Logo
-    customTitle: 自訂標題
-    customCoAuthoredByInfo: 自訂 Co-Authored-By 資訊
+    avatarPacks: 頭像包
   values:
     free: 免費
-    viewOnSteam: 前往 Steam 查看
+    desktopInstall: 桌面安裝
+    containerDeployment: 容器部署
+    microsoftStoreInstall: Microsoft Store 安裝
 workflowBoard:
   titleLines:
     - 主流 Agent 全面支援

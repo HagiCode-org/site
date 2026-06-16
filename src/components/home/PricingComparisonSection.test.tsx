@@ -6,38 +6,37 @@ import { getPricingContent } from '@/lib/homepage-section-copy';
 
 describe('PricingComparisonSection', () => {
   for (const locale of ['en', 'zh-CN'] as const) {
-    it(`shows Windows Store and Hagicode Plus with the requested capability split for ${locale}`, () => {
+    it(`shows Microsoft Store footnotes with the docs-aligned capability split for ${locale}`, () => {
       const content = getPricingContent(locale);
       const maxConcurrentRow = content.rows.find((row) =>
         row.feature === (locale === 'zh-CN' ? '最大提案并行数' : 'Maximum concurrent proposals')
       );
-      const copySwitchingRow = content.rows.find((row) =>
-        row.feature === (locale === 'zh-CN' ? '文案切换支持' : 'Copy switching support')
+      const documentThemesRow = content.rows.find((row) =>
+        row.feature === (locale === 'zh-CN' ? '文档主题' : 'Document themes')
       );
 
-      expect(content.steamEdition.title).toBe('Windows Store');
-      expect(content.turboEdition.title).toBe('Hagicode Plus');
-      expect(content.steamEdition.action?.href).toBe('https://apps.microsoft.com/detail/9N3PM0N3SVDW');
-      expect(content.turboEdition.action).toBeUndefined();
-      expect(content.rows[0]?.steam.value).toBe(locale === 'zh-CN' ? '免费' : 'Free');
-      expect(content.rows[0]?.turbo.value).toBe(locale === 'zh-CN' ? '待定' : 'Pending');
-      expect(maxConcurrentRow?.desktop.value).toBe('6');
-      expect(maxConcurrentRow?.container.value).toBe('6');
-      expect(maxConcurrentRow?.steam.value).toBe('6');
-      expect(maxConcurrentRow?.turbo.value).toBe('32');
-      expect(copySwitchingRow?.steam.type).toBe('cross');
-      expect(copySwitchingRow?.turbo.type).toBe('check');
+      expect(content.microsoftStoreEdition.title).toBe('Microsoft Store');
+      expect(content.microsoftStoreEdition.action?.href).toBe('https://apps.microsoft.com/detail/9N3PM0N3SVDW');
+      expect(content.rows.map((row) => row.feature)).not.toContain(locale === 'zh-CN' ? '定价' : 'Pricing');
+      expect(maxConcurrentRow?.desktop.value).toBe('3');
+      expect(maxConcurrentRow?.container.value).toBe('3');
+      expect(maxConcurrentRow?.microsoftStore.value).toBe('32');
+      expect(maxConcurrentRow?.microsoftStore.footnote).toBe('1');
+      expect(documentThemesRow?.desktop.type).toBe('cross');
+      expect(documentThemesRow?.microsoftStore.type).toBe('check');
+      expect(documentThemesRow?.microsoftStore.footnote).toBe('1');
+      expect(content.unlockFootnoteMarker).toBe('1');
     });
   }
 
-  it('renders the pricing comparison without the DLC section or store jump links', () => {
+  it('renders the pricing comparison without Hagicode Plus or Windows Store labels', () => {
     const content = getPricingContent('zh-CN');
     const markup = renderToStaticMarkup(<PricingComparisonSection content={content} />);
 
     expect(markup).not.toContain('href="https://store.steampowered.com');
-    expect(markup).not.toContain('打开 Steam');
-    expect(markup).not.toContain('点击查看');
-    expect(markup).not.toContain('DLC 与组合包');
-    expect(markup).not.toContain('扩展包列表');
+    expect(markup).not.toContain('Windows Store');
+    expect(markup).not.toContain('Hagicode Plus');
+    expect(markup).toContain('Microsoft Store');
+    expect(markup).toContain('[1]');
   });
 });
