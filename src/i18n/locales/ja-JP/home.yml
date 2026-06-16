@@ -262,53 +262,6 @@ pricing:
   values:
     free: 無料
     viewOnSteam: Steam で確認
-  dlc:
-    label: DLC とバンドル
-    title: 追加パック
-    actions:
-      openSteam: Steam で開く
-    preview:
-      bundlePending: バンドル画像は準備中
-      productPending: 製品画像は準備中
-    items:
-      allBeauties:
-        category: 無料 DLC
-        title: Hagicode - All Beauties Pack
-        price: 無料
-        description: Steam ユーザー向けの追加コスメティックパックです。
-        bullets:
-          - アニメ少女風アバターを 1,000 点追加
-          - 今後の美少女テーマコンテンツ拡張にも対応しやすい構成
-      turboEngine:
-        category: パフォーマンス DLC
-        title: 'Hagicode: Turbo Engine DLC'
-        price: Steam
-        description: この DLC を単体購入すると、元の提案同時実行上限を拡張し、文言切り替えを解放し、各 10 個の独立アバターを含む 5 つのアバターパックを追加できます。さらにカスタムアバターのアップロード、左上 Logo とタイトルのカスタマイズ、AI 生成コミットの Co-Authored-By 表記をチームの命名ルールに合わせる機能も利用できます。通常は総額を抑えやすい Hagicode Plus バンドル購入も案内します。最新情報はストアページをご確認ください。
-        bullets:
-          - 左上 Logo とタイトルのカスタマイズに対応
-          - 各パック 10 個の選択可能アバターを含む 5 つのアバターパック
-          - カスタムアバターのアップロードに対応
-          - AI コミットワークフロー向けの Co-Authored-By 署名をチームで調整可能
-          - 文言と表現の切り替えを解放
-          - 最大同時提案数を 32 まで拡張
-      hagicodePlus:
-        category: バンドル
-        title: Hagicode Plus
-        price: Steam
-        description: Hagicode の Steam 本体版と Turbo Engine DLC を 1 つの購入経路にまとめた公式 Steam バンドルです。
-        bullets:
-          - Steam 本体版と Turbo Engine DLC をまとめて提供
-          - 32 件の提案同時実行アップグレードをバンドル経路に付与
-          - Steam 版を一度に揃えたい場合の最も分かりやすい購入入口
-      sponsor:
-        category: サポーター DLC
-        title: Hagicode - Sponsor Pack
-        price: Steam
-        description: Hagicode を本当に優れたプロジェクトだと感じ、直接支援したい場合は、Sponsor Pack の購入が開発継続の力になります。
-        bullets:
-          - 限定ダークテーマ 1 つ
-          - 限定ライトテーマ 1 つ
-          - 限定 Steam 実績 1 つ
 workflowBoard:
   titleLines:
     - 主要 Agent に対応

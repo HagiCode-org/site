@@ -262,53 +262,6 @@ pricing:
   values:
     free: 免费
     viewOnSteam: 点击查看
-  dlc:
-    label: DLC 与组合包
-    title: 扩展包列表
-    actions:
-      openSteam: 打开 Steam
-    preview:
-      bundlePending: 组合包图片待补充
-      productPending: 产品图片待补充
-    items:
-      allBeauties:
-        category: 免费 DLC
-        title: Hagicode - All Beauties Pack
-        price: 免费
-        description: 额外的美少女内容包。
-        bullets:
-          - 包含 1000 个额外的美少女风格头像
-          - 为后续更多美少女主题内容预留扩展空间
-      turboEngine:
-        category: 性能 DLC
-        title: 'Hagicode: Turbo Engine DLC'
-        price: 待定
-        description: 用于扩展提案并行上限，同时解锁文案切换、头像包、自定义头像上传、自定义 Logo、自定义标题和自定义 Co-Authored-By 信息。
-        bullets:
-          - 支持左上角 Logo 和标题自定义
-          - 包含 5 套头像资源，每套提供 10 个可选头像
-          - 支持上传自定义头像
-          - 支持为 AI 提交流程自定义 Co-Authored-By 署名
-          - 解锁文案与措辞切换支持
-          - 最大提案并行数扩展到 32
-      hagicodePlus:
-        category: 组合包
-        title: Hagicode Plus
-        price: 待定
-        description: Hagicode Plus 是主体版本加 Turbo Engine DLC 的一种简化的说明。
-        bullets:
-          - 把 Steam 主体版本和 Turbo Engine DLC 一起打包
-          - 保留 32 个提案并行上限这条升级路径
-          - 适合希望一次买齐 Steam 完整能力的购买入口
-      sponsor:
-        category: 赞助者 DLC
-        title: Hagicode - Sponsor Pack
-        price: 待定
-        description: 如果你觉得 Hagicode 确实不错，并希望为项目提供直接的经济支持，购买 Sponsor Pack 可以为项目提供更多动力，帮助我们长期维护和运行。
-        bullets:
-          - 一套专属暗色主题
-          - 一套专属亮色主题
-          - 一个专属 Steam 成就
 workflowBoard:
   titleLines:
     - 主流 Agent 全面支持

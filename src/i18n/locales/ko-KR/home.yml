@@ -262,53 +262,6 @@ pricing:
   values:
     free: 무료
     viewOnSteam: Steam에서 보기
-  dlc:
-    label: DLC 및 번들
-    title: 선택형 팩
-    actions:
-      openSteam: Steam 열기
-    preview:
-      bundlePending: 번들 이미지 준비 중
-      productPending: 제품 이미지 준비 중
-    items:
-      allBeauties:
-        category: 무료 DLC
-        title: Hagicode - All Beauties Pack
-        price: 무료
-        description: Steam 사용자를 위한 추가 꾸미기 팩입니다.
-        bullets:
-          - 애니메이션 소녀 스타일 아바타 1,000개 추가
-          - 향후 더 많은 미소녀 테마 콘텐츠를 확장할 수 있는 여지 제공
-      turboEngine:
-        category: 성능 DLC
-        title: 'Hagicode: Turbo Engine DLC'
-        price: Steam
-        description: 이 DLC를 단독으로 구매하면 기존 제안 동시 처리 한도를 확장하고, 문구 전환을 잠금 해제하며, 각 10개의 독립 아바타가 포함된 5개의 아바타 팩을 추가할 수 있습니다. 또한 사용자 지정 아바타 업로드, 왼쪽 상단 Logo와 제목 사용자 지정, AI 생성 커밋의 Co-Authored-By 서명을 팀 규칙에 맞추는 기능도 제공합니다. 일반적으로 전체 구매 가격을 낮출 수 있도록 Hagicode Plus 번들 구매 옵션을 함께 안내합니다. 최신 변경 사항은 스토어 페이지를 확인하세요.
-        bullets:
-          - 왼쪽 상단 Logo와 제목 사용자 지정 지원
-          - 각 팩마다 선택 가능한 아바타 10개가 포함된 5개 아바타 팩 제공
-          - 사용자 지정 아바타 업로드 지원
-          - 팀이 커밋 워크플로의 AI Co-Authored-By 서명을 사용자 지정 가능
-          - 문구와 표현 전환 지원 잠금 해제
-          - 최대 동시 제안 한도를 32개로 확장
-      hagicodePlus:
-        category: 번들
-        title: Hagicode Plus
-        price: Steam
-        description: Hagicode Steam 기본 에디션과 Turbo Engine DLC를 하나의 구매 경로로 묶은 공식 Steam 번들입니다.
-        bullets:
-          - Steam 기본 에디션과 Turbo Engine DLC를 함께 번들로 제공
-          - 더 높은 32개 제안 동시 처리 업그레이드를 번들 경로에 연결
-          - 전체 Steam 구성을 한 번에 원할 때 가장 명확한 구매 입구
-      sponsor:
-        category: 후원자 DLC
-        title: Hagicode - Sponsor Pack
-        price: Steam
-        description: Hagicode가 정말 훌륭하다고 생각하고 직접 재정적으로 지원하고 싶다면, Sponsor Pack 구매가 프로젝트에 더 많은 동력을 제공하고 장기 운영에 도움이 됩니다.
-        bullets:
-          - 전용 다크 테마 1개
-          - 전용 라이트 테마 1개
-          - 전용 Steam 업적 1개
 workflowBoard:
   titleLines:
     - 주요 Agent 지원

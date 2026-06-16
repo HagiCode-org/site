@@ -262,53 +262,6 @@ pricing:
   values:
     free: Free
     viewOnSteam: View on Steam
-  dlc:
-    label: DLC & Bundles
-    title: Optional packs
-    actions:
-      openSteam: Open Steam
-    preview:
-      bundlePending: Bundle visuals pending
-      productPending: Product visuals pending
-    items:
-      allBeauties:
-        category: Free DLC
-        title: Hagicode - All Beauties Pack
-        price: Free
-        description: An extra cosmetics pack.
-        bullets:
-          - Adds 1,000 anime-girl-style avatars
-          - Leaves room for more beauty-themed content in future updates
-      turboEngine:
-        category: Performance DLC
-        title: 'Hagicode: Turbo Engine DLC'
-        price: Pending
-        description: Expands the proposal concurrency cap and unlocks copy switching, avatar packs, custom avatar uploads, a custom logo, a custom title, and custom Co-Authored-By information.
-        bullets:
-          - Supports custom top-left logos and titles
-          - Includes five avatar packs with 10 selectable avatars in each pack
-          - Supports custom avatar uploads
-          - Lets teams customize the AI Co-Authored-By signature for commit workflows
-          - Unlocks copy and wording switching support
-          - Expands the maximum concurrent proposal limit to 32
-      hagicodePlus:
-        category: Bundle
-        title: Hagicode Plus
-        price: Pending
-        description: A simplified label for the base edition plus Turbo Engine DLC.
-        bullets:
-          - Bundles the main Steam edition and Turbo Engine DLC together
-          - Keeps the higher 32-proposal concurrency upgrade attached to the bundle path
-          - Works as the clearest purchase entry when you want the full Steam setup at once
-      sponsor:
-        category: Supporter DLC
-        title: Hagicode - Sponsor Pack
-        price: Pending
-        description: If you think Hagicode is genuinely excellent and want to provide direct financial support, buying Sponsor Pack gives the project more fuel and helps us keep it running for the long term.
-        bullets:
-          - One exclusive dark theme
-          - One exclusive light theme
-          - One exclusive Steam achievement
 workflowBoard:
   titleLines:
     - Mainstream Agents Supported

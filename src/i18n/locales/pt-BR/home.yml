@@ -262,53 +262,6 @@ pricing:
   values:
     free: Gratuito
     viewOnSteam: Ver na Steam
-  dlc:
-    label: DLCs e bundles
-    title: Pacotes opcionais
-    actions:
-      openSteam: Abrir Steam
-    preview:
-      bundlePending: Imagens do bundle pendentes
-      productPending: Imagens do produto pendentes
-    items:
-      allBeauties:
-        category: DLC gratuito
-        title: Hagicode - All Beauties Pack
-        price: Gratuito
-        description: Um pacote cosmético extra para usuários da Steam.
-        bullets:
-          - Adiciona 1.000 avatares em estilo anime girl
-          - Abre espaço para mais conteúdos com tema beauty em futuras atualizações
-      turboEngine:
-        category: DLC de desempenho
-        title: 'Hagicode: Turbo Engine DLC'
-        price: Steam
-        description: Você pode comprar este DLC separadamente para expandir o limite original de propostas simultâneas, desbloquear troca de textos, adicionar cinco pacotes de avatares com 10 avatares independentes cada, habilitar uploads de avatares personalizados, personalizar o Logo e o título no canto superior esquerdo e alinhar trailers de commits gerados por AI às suas próprias regras Co-Authored-By. Normalmente destacaremos a opção de compra em bundle chamada Hagicode Plus para manter o preço total mais baixo. Consulte a página da loja para ver as mudanças mais recentes.
-        bullets:
-          - Suporta Logos e títulos personalizados no canto superior esquerdo
-          - Inclui cinco pacotes de avatares com 10 avatares selecionáveis em cada pacote
-          - Suporta uploads de avatares personalizados
-          - Permite que equipes personalizem a assinatura AI Co-Authored-By para fluxos de commit
-          - Desbloqueia suporte para troca de texto e redação
-          - Expande o limite máximo de propostas simultâneas para 32
-      hagicodePlus:
-        category: Pacote
-        title: Hagicode Plus
-        price: Steam
-        description: O bundle oficial da Steam que combina a edição base do Hagicode com o DLC Turbo Engine em um único caminho de compra.
-        bullets:
-          - Agrupa a edição principal da Steam e o DLC Turbo Engine
-          - Mantém o upgrade de 32 propostas simultâneas vinculado ao caminho do bundle
-          - Funciona como a entrada de compra mais clara para obter toda a configuração Steam de uma vez
-      sponsor:
-        category: DLC de apoiador
-        title: Hagicode - Sponsor Pack
-        price: Steam
-        description: Se você acha que o Hagicode é realmente excelente e quer dar apoio financeiro direto, comprar o Sponsor Pack dá mais fôlego ao projeto e nos ajuda a mantê-lo por mais tempo.
-        bullets:
-          - Um tema escuro exclusivo
-          - Um tema claro exclusivo
-          - Uma conquista exclusiva da Steam
 workflowBoard:
   titleLines:
     - Agents principais suportados
