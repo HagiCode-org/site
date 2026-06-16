@@ -2,10 +2,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
 import PricingComparisonSection from '@/components/home/PricingComparisonSection';
-import {
-  getHagicodePlusDocsIntroductionUrl,
-  getPricingContent,
-} from '@/lib/homepage-section-copy';
+import { getPricingContent } from '@/lib/homepage-section-copy';
 
 describe('PricingComparisonSection', () => {
   for (const locale of ['en', 'zh-CN'] as const) {
@@ -30,25 +27,17 @@ describe('PricingComparisonSection', () => {
       expect(maxConcurrentRow?.turbo.value).toBe('32');
       expect(copySwitchingRow?.steam.type).toBe('cross');
       expect(copySwitchingRow?.turbo.type).toBe('check');
-      expect(content.dlcItems).toHaveLength(4);
     });
   }
 
-  it('maps additional locales to the matching localized docs route', () => {
-    expect(getHagicodePlusDocsIntroductionUrl('ja-JP')).toBe(
-      'https://docs.hagicode.com/ja-JP/bundles/hagicode-plus/',
-    );
-    expect(getHagicodePlusDocsIntroductionUrl('zh-Hant')).toBe(
-      'https://docs.hagicode.com/zh-Hant/bundles/hagicode-plus/',
-    );
-  });
-
-  it('renders the DLC section without store jump links or click CTA copy', () => {
+  it('renders the pricing comparison without the DLC section or store jump links', () => {
     const content = getPricingContent('zh-CN');
     const markup = renderToStaticMarkup(<PricingComparisonSection content={content} />);
 
     expect(markup).not.toContain('href="https://store.steampowered.com');
     expect(markup).not.toContain('打开 Steam');
     expect(markup).not.toContain('点击查看');
+    expect(markup).not.toContain('DLC 与组合包');
+    expect(markup).not.toContain('扩展包列表');
   });
 });

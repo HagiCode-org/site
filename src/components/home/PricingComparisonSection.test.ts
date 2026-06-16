@@ -19,8 +19,6 @@ describe('PricingComparisonSection content', () => {
     expect(content.steamEdition.title).toBe('Windows Store');
     expect(content.turboEdition.title).toBe('Hagicode Plus');
     expect(content.rows.find((candidate) => candidate.feature === 'Maximale gleichzeitige Vorschläge')?.turbo.value).toBe('32');
-    expect(content.steamPreviewLabels.bundlePending).toBe('Bundle-Bilder ausstehend');
-    expect(content.dlcItems).toHaveLength(4);
     expect(rowLabels).not.toContain('All free features included');
     expect(rowLabels).not.toContain('Maximum concurrent proposals');
     expect(rowLabels).not.toContain('Cloud-Speicher-Unterstützung');
@@ -34,7 +32,6 @@ describe('PricingComparisonSection content', () => {
     expect(content.steamEdition.title).toBe('Windows Store');
     expect(content.turboEdition.title).toBe('Hagicode Plus');
     expect(content.rows[0]?.turbo.value).toBe('Pending');
-    expect(content.dlcItems).toHaveLength(4);
     expect(row).toBeDefined();
   });
 });

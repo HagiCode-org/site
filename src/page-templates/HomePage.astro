@@ -21,7 +21,6 @@ import {
   getHomepageFeaturesCopy,
   getHomepageShowcaseCopy,
   getPricingContent,
-  getPricingSteamPreviewRecords,
 } from '@/lib/homepage-section-copy';
 import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
 import { getHomePageCopy } from '@/lib/site-page-copy';
@@ -37,7 +36,6 @@ const interactiveCopy = getHomepageInteractiveCopy(locale);
 const featuresCopy = getHomepageFeaturesCopy(locale);
 const showcaseCopy = getHomepageShowcaseCopy(locale);
 const pricingContent = getPricingContent(locale);
-const pricingSteamPreviewRecords = await getPricingSteamPreviewRecords(pricingContent);
 const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
 ---
 
@@ -119,7 +117,6 @@ const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
       />
       <PricingComparisonSection
         content={pricingContent}
-        steamPreviewRecords={pricingSteamPreviewRecords}
       />
     </main>
 

@@ -1,53 +1,9 @@
-import type { SteamProductImageRecord } from '@/data/steamImageDescriptors';
 import type {
-  DlcItem,
   EditionColumn,
   FeatureCell,
   PricingContent,
-  SteamPreviewLabels,
-  SteamPreviewRecordMap,
 } from '@/lib/homepage-section-copy';
 import styles from './PricingComparisonSection.module.css';
-
-function getSteamVariantLabel(variant: string): string {
-  return variant.replace(/[-_]+/g, ' ');
-}
-
-function renderSteamImagePreview(
-  item: DlcItem,
-  records: SteamPreviewRecordMap,
-  labels: SteamPreviewLabels,
-) {
-  if (!item.productKey) {
-    return null;
-  }
-
-  const record: SteamProductImageRecord | null = records[item.productKey] ?? null;
-  const preview = record?.images[0];
-  const displayName = record?.displayName ?? item.title;
-
-  return (
-    <div className={styles.steamPreview} aria-label={`${displayName} ${labels.previewLabel}`}>
-      {preview ? (
-        <img
-          src={preview.src}
-          alt={preview.alt || `${displayName} ${getSteamVariantLabel(preview.variant)} ${labels.imageSuffix}`}
-          width={preview.width}
-          height={preview.height}
-          className={styles.steamPreviewImage}
-          loading="lazy"
-          decoding="async"
-        />
-      ) : (
-        <div className={styles.steamPreviewFallback}>
-          <span className={styles.steamPreviewBadge}>Steam</span>
-          <strong>{displayName}</strong>
-          <small>{record?.type === 'bundle' || item.productKey === 'hagicode-plus' ? labels.bundlePending : labels.productPending}</small>
-        </div>
-      )}
-    </div>
-  );
-}
 
 function CheckIcon() {
   return (
@@ -126,10 +82,9 @@ function renderEditionHeader(column: EditionColumn, className?: string) {
 
 interface Props {
   content: PricingContent;
-  steamPreviewRecords?: SteamPreviewRecordMap;
 }
 
-export default function PricingComparisonSection({ content, steamPreviewRecords = {} }: Props) {
+export default function PricingComparisonSection({ content }: Props) {
   const cellLabels = {
     included: content.includedLabel,
     notIncluded: content.notIncludedLabel,
@@ -191,46 +146,6 @@ export default function PricingComparisonSection({ content, steamPreviewRecords 
             {content.plusDescription}
           </p>
         </section>
-
-        {content.dlcItems.length > 0 ? (
-          <section className={styles.group} aria-labelledby="pricing-dlc-title">
-            <div className={styles.groupHeader}>
-              <span className={styles.groupLabel}>{content.dlcLabel}</span>
-              <h3 id="pricing-dlc-title" className={styles.groupTitle}>
-                {content.dlcTitle}
-              </h3>
-              {content.dlcDescription ? (
-                <p className={styles.groupDescription}>{content.dlcDescription}</p>
-              ) : null}
-            </div>
-
-            <div className={styles.dlcList}>
-              {content.dlcItems.map((item) => (
-                <article
-                  key={item.title}
-                  className={`${styles.dlcRow} ${item.featured === 'sponsor' ? styles.sponsorRow : ''}`}
-                >
-                  <div className={styles.dlcTop}>
-                    {renderSteamImagePreview(item, steamPreviewRecords, content.steamPreviewLabels)}
-                    <div className={styles.dlcMain}>
-                      <span className={styles.dlcCategory}>{item.category}</span>
-                      <h4 className={styles.dlcTitle}>{item.title}</h4>
-                      <p className={styles.dlcDescription}>{item.description}</p>
-                    </div>
-                    <div className={styles.dlcAside}>
-                      <strong className={styles.dlcPrice}>{item.price}</strong>
-                    </div>
-                  </div>
-                  <ul className={styles.dlcBullets}>
-                    {item.bullets.map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </section>
-        ) : null}
       </div>
     </section>
   );

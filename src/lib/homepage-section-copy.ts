@@ -1,8 +1,6 @@
-import { getSteamProductImageRecord, type SteamProductImageRecord } from '@/data/steamImageDescriptors';
 import { resolveSiteLocale } from '@/i18n/locale-metadata';
 import { getLocaleResourceValue } from '@/i18n/resource-lookup';
-import { getDocsAbsoluteUrl, getLinkWithLocale } from '@/lib/shared/links';
-import { DEFAULT_STEAM_STORE_URL } from '@/lib/shared/steam-store-link';
+import { getLinkWithLocale } from '@/lib/shared/links';
 import { DEFAULT_WINDOWS_STORE_URL } from '@/lib/shared/windows-store-link';
 
 type LocaleInput = string | null | undefined;
@@ -375,13 +373,6 @@ export function getHomepageFeaturesCopy(locale: LocaleInput): HomepageFeaturesCo
   };
 }
 
-export const TURBO_ENGINE_STEAM_STORE_URL = 'https://store.steampowered.com/app/4635480/Hagicode__Turbo_Engine/';
-export const HAGICODE_PLUS_BUNDLE_STEAM_URL = 'https://store.steampowered.com/bundle/73989/Hagicode_Plus/';
-
-export function getHagicodePlusDocsIntroductionUrl(locale: LocaleInput): string {
-  return getDocsAbsoluteUrl('/bundles/hagicode-plus/', resolveSiteLocale(locale));
-}
-
 function getPendingLabel(locale: string): string {
   return locale.toLowerCase().startsWith('zh') ? '待定' : 'Pending';
 }
@@ -413,25 +404,6 @@ export type FeatureRow = {
   steamExclusive?: boolean;
 };
 
-export type DlcItem = {
-  productKey?: string;
-  category: string;
-  title: string;
-  price: string;
-  description: string;
-  bullets: string[];
-  action: ActionLink;
-  featured?: 'sponsor';
-};
-
-export type SteamPreviewLabels = {
-  openSteam: string;
-  bundlePending: string;
-  productPending: string;
-  previewLabel: string;
-  imageSuffix: string;
-};
-
 export type PricingContent = {
   title: string;
   limitTitle: string;
@@ -446,14 +418,7 @@ export type PricingContent = {
   steamEdition: EditionColumn;
   turboEdition: EditionColumn;
   rows: FeatureRow[];
-  dlcLabel: string;
-  dlcTitle: string;
-  dlcDescription?: string;
-  steamPreviewLabels: SteamPreviewLabels;
-  dlcItems: DlcItem[];
 };
-
-export type SteamPreviewRecordMap = Record<string, SteamProductImageRecord | null>;
 
 export function getPricingContent(locale: LocaleInput): PricingContent {
   const resolvedLocale = resolveSiteLocale(locale);
@@ -482,63 +447,6 @@ export function getPricingContent(locale: LocaleInput): PricingContent {
     viewOnSteam: getHomeString(resolvedLocale, 'pricing.values.viewOnSteam'),
   };
   const pendingLabel = getPendingLabel(resolvedLocale);
-  const dlcCopy = {
-    label: getHomeString(resolvedLocale, 'pricing.dlc.label'),
-    title: getHomeString(resolvedLocale, 'pricing.dlc.title'),
-    openSteam: getHomeString(resolvedLocale, 'pricing.dlc.actions.openSteam'),
-    preview: {
-      bundlePending: getHomeString(resolvedLocale, 'pricing.dlc.preview.bundlePending'),
-      productPending: getHomeString(resolvedLocale, 'pricing.dlc.preview.productPending'),
-      previewLabel: getHomeString(resolvedLocale, 'pricing.dlc.preview.previewLabel'),
-      imageSuffix: getHomeString(resolvedLocale, 'pricing.dlc.preview.imageSuffix'),
-    },
-    allBeauties: {
-      category: getHomeString(resolvedLocale, 'pricing.dlc.items.allBeauties.category'),
-      title: getHomeString(resolvedLocale, 'pricing.dlc.items.allBeauties.title'),
-      price: getHomeString(resolvedLocale, 'pricing.dlc.items.allBeauties.price'),
-      description: getHomeString(resolvedLocale, 'pricing.dlc.items.allBeauties.description'),
-      bullets: [
-        getHomeString(resolvedLocale, 'pricing.dlc.items.allBeauties.bullets.0'),
-        getHomeString(resolvedLocale, 'pricing.dlc.items.allBeauties.bullets.1'),
-      ],
-    },
-    turboEngine: {
-      category: getHomeString(resolvedLocale, 'pricing.dlc.items.turboEngine.category'),
-      title: getHomeString(resolvedLocale, 'pricing.dlc.items.turboEngine.title'),
-      price: getHomeString(resolvedLocale, 'pricing.dlc.items.turboEngine.price'),
-      description: getHomeString(resolvedLocale, 'pricing.dlc.items.turboEngine.description'),
-      bullets: [
-        getHomeString(resolvedLocale, 'pricing.dlc.items.turboEngine.bullets.0'),
-        getHomeString(resolvedLocale, 'pricing.dlc.items.turboEngine.bullets.1'),
-        getHomeString(resolvedLocale, 'pricing.dlc.items.turboEngine.bullets.2'),
-        getHomeString(resolvedLocale, 'pricing.dlc.items.turboEngine.bullets.3'),
-        getHomeString(resolvedLocale, 'pricing.dlc.items.turboEngine.bullets.4'),
-        getHomeString(resolvedLocale, 'pricing.dlc.items.turboEngine.bullets.5'),
-      ],
-    },
-    hagicodePlus: {
-      category: getHomeString(resolvedLocale, 'pricing.dlc.items.hagicodePlus.category'),
-      title: getHomeString(resolvedLocale, 'pricing.dlc.items.hagicodePlus.title'),
-      price: getHomeString(resolvedLocale, 'pricing.dlc.items.hagicodePlus.price'),
-      description: getHomeString(resolvedLocale, 'pricing.dlc.items.hagicodePlus.description'),
-      bullets: [
-        getHomeString(resolvedLocale, 'pricing.dlc.items.hagicodePlus.bullets.0'),
-        getHomeString(resolvedLocale, 'pricing.dlc.items.hagicodePlus.bullets.1'),
-        getHomeString(resolvedLocale, 'pricing.dlc.items.hagicodePlus.bullets.2'),
-      ],
-    },
-    sponsor: {
-      category: getHomeString(resolvedLocale, 'pricing.dlc.items.sponsor.category'),
-      title: getHomeString(resolvedLocale, 'pricing.dlc.items.sponsor.title'),
-      price: getHomeString(resolvedLocale, 'pricing.dlc.items.sponsor.price'),
-      description: getHomeString(resolvedLocale, 'pricing.dlc.items.sponsor.description'),
-      bullets: [
-        getHomeString(resolvedLocale, 'pricing.dlc.items.sponsor.bullets.0'),
-        getHomeString(resolvedLocale, 'pricing.dlc.items.sponsor.bullets.1'),
-        getHomeString(resolvedLocale, 'pricing.dlc.items.sponsor.bullets.2'),
-      ],
-    },
-  };
   const desktopHref = getLinkWithLocale('desktop', resolvedLocale);
   const containerHref = getLinkWithLocale('container', resolvedLocale);
   const rows: FeatureRow[] = [
@@ -576,43 +484,6 @@ export function getPricingContent(locale: LocaleInput): PricingContent {
     { feature: pricingRows.customTitle, desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
     { feature: pricingRows.customCoAuthoredByInfo, desktop: { type: 'cross' }, container: { type: 'cross' }, steam: { type: 'cross' }, turbo: { type: 'check' } },
   ];
-  const dlcItems = [
-    {
-      category: dlcCopy.allBeauties.category,
-      title: dlcCopy.allBeauties.title,
-      price: dlcCopy.allBeauties.price,
-      description: dlcCopy.allBeauties.description,
-      bullets: dlcCopy.allBeauties.bullets,
-      action: { label: dlcCopy.openSteam, href: DEFAULT_STEAM_STORE_URL, external: true },
-    },
-    {
-      category: dlcCopy.turboEngine.category,
-      productKey: 'turbo-engine',
-      title: dlcCopy.turboEngine.title,
-      price: dlcCopy.turboEngine.price,
-      description: dlcCopy.turboEngine.description,
-      bullets: dlcCopy.turboEngine.bullets,
-      action: { label: dlcCopy.openSteam, href: TURBO_ENGINE_STEAM_STORE_URL, external: true },
-    },
-    {
-      category: dlcCopy.hagicodePlus.category,
-      productKey: 'hagicode-plus',
-      title: dlcCopy.hagicodePlus.title,
-      price: dlcCopy.hagicodePlus.price,
-      description: dlcCopy.hagicodePlus.description,
-      bullets: dlcCopy.hagicodePlus.bullets,
-      action: { label: dlcCopy.openSteam, href: HAGICODE_PLUS_BUNDLE_STEAM_URL, external: true },
-    },
-    {
-      category: dlcCopy.sponsor.category,
-      title: dlcCopy.sponsor.title,
-      price: dlcCopy.sponsor.price,
-      description: dlcCopy.sponsor.description,
-      bullets: dlcCopy.sponsor.bullets,
-      action: { label: dlcCopy.openSteam, href: DEFAULT_STEAM_STORE_URL, external: true },
-      featured: 'sponsor' as const,
-    },
-  ];
 
   return {
     title: getHomeString(resolvedLocale, 'pricing.title'),
@@ -639,36 +510,7 @@ export function getPricingContent(locale: LocaleInput): PricingContent {
       title: 'Hagicode Plus',
     },
     rows,
-    dlcLabel: dlcCopy.label,
-    dlcTitle: dlcCopy.title,
-    steamPreviewLabels: {
-      openSteam: dlcCopy.openSteam,
-      bundlePending: dlcCopy.preview.bundlePending,
-      productPending: dlcCopy.preview.productPending,
-      previewLabel: dlcCopy.preview.previewLabel,
-      imageSuffix: dlcCopy.preview.imageSuffix,
-    },
-    dlcItems,
   };
 }
 
-export async function getPricingSteamPreviewRecords(content: PricingContent): Promise<SteamPreviewRecordMap> {
-  const productKeys = Array.from(new Set(content.dlcItems.flatMap((item) => (item.productKey ? [item.productKey] : []))));
 
-  if (!productKeys.length) {
-    return {};
-  }
-
-  const entries = await Promise.allSettled(
-    productKeys.map(async (productKey) => [productKey, await getSteamProductImageRecord(productKey)] as const),
-  );
-
-  return Object.fromEntries(
-    entries.map((entry, index) => {
-      const productKey = productKeys[index] ?? '';
-      return entry.status === 'fulfilled'
-        ? entry.value
-        : [productKey, null];
-    }).filter(([productKey]) => Boolean(productKey)),
-  );
-}
