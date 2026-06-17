@@ -26,7 +26,6 @@ const managedLocalizedRoutes = [
 
 const managedEntryRoutes = [
   ...managedLocalizedRoutes,
-  '/explore/',
 ];
 
 const legacyEnglishRoutes = [
@@ -34,7 +33,6 @@ const legacyEnglishRoutes = [
   '/desktop/',
   '/container/',
   '/about/',
-  '/explore/',
 ];
 
 function normalizeRoutePath(routePath) {
