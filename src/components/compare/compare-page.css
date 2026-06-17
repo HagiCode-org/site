@@ -1,0 +1,459 @@
+/* ------------------------------------------------------------------ */
+/*  Claude Vs HagiCode comparison page                                */
+/* ------------------------------------------------------------------ */
+
+.compare-page {
+  --compare-max-width: 820px;
+  --compare-section-gap: var(--spacing-xxl, 64px);
+  --compare-card-gap: var(--spacing-lg, 32px);
+  --compare-text-gap: var(--spacing-md, 24px);
+
+  background: var(--color-bg, #030712);
+  color: var(--color-text-strong, #F8FAFC);
+  min-height: 100vh;
+}
+
+.compare-page__hero {
+  padding: 120px var(--spacing-md, 24px) 80px;
+  max-width: var(--compare-max-width);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.compare-page__badge {
+  display: inline-block;
+  font-family: "SF Mono, Menlo, Cascadia Code, Consolas, Roboto Mono, JetBrains Mono, monospace";
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary-cyan, #00CCCC);
+  border: 1px solid rgba(0, 204, 204, 0.3);
+  border-radius: 9999px;
+  padding: 6px 16px;
+  margin-bottom: var(--spacing-md, 24px);
+}
+
+.compare-page__title {
+  font-family: var(--font-display, "PingFang SC, sans-serif");
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--spacing-sm, 16px);
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.compare-page__subtitle {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text-muted, #E2E8F0);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.compare-page__body {
+  max-width: var(--compare-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md, 24px) var(--compare-section-gap);
+}
+
+/* Back link */
+.compare-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text-muted, #E2E8F0);
+  text-decoration: none;
+  margin-bottom: var(--spacing-xl, 48px);
+  transition: color 0.2s;
+}
+
+.compare-page__back:hover {
+  color: var(--color-primary-cyan, #00CCCC);
+}
+
+/* Sections */
+.compare-section {
+  margin-bottom: var(--compare-section-gap);
+}
+
+.compare-section__title {
+  font-family: var(--font-headline, "PingFang SC, sans-serif");
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-text-strong, #F8FAFC);
+  margin: 0 0 var(--spacing-md, 24px);
+  padding-bottom: var(--spacing-sm, 16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.compare-section__lead {
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-text-strong, #F8FAFC);
+  margin: 0 0 var(--spacing-lg, 32px);
+}
+
+/* Feature cards (Claude capabilities) */
+.compare-feature-card {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--rounded-lg, 12px);
+  padding: var(--spacing-lg, 32px);
+  margin-bottom: var(--spacing-md, 24px);
+}
+
+.compare-feature-card__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-primary-blue, #0080FF);
+  margin: 0 0 var(--spacing-sm, 16px);
+}
+
+.compare-feature-card__text {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-text-muted, #E2E8F0);
+  margin: 0;
+}
+
+.compare-feature-card__text + .compare-feature-card__text {
+  margin-top: var(--spacing-xs, 8px);
+}
+
+/* Sub-section titles */
+.compare-subsection {
+  margin-top: var(--spacing-xl, 48px);
+}
+
+.compare-subsection__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-primary-cyan, #00CCCC);
+  margin: 0 0 var(--spacing-sm, 16px);
+}
+
+.compare-subsection__text {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-text-muted, #E2E8F0);
+  margin: 0 0 var(--spacing-sm, 16px);
+}
+
+/* Advantage cards (HagiCode features) */
+.compare-advantage-card {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(0, 128, 255, 0.15);
+  border-left: 3px solid var(--color-primary-blue, #0080FF);
+  border-radius: var(--rounded-md, 8px);
+  padding: var(--spacing-lg, 32px);
+  margin-bottom: var(--spacing-md, 24px);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.compare-advantage-card:hover {
+  border-color: rgba(0, 128, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.compare-advantage-card__header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-sm, 16px);
+  margin-bottom: var(--spacing-sm, 16px);
+}
+
+.compare-advantage-card__number {
+  font-family: "SF Mono, Menlo, Cascadia Code, Consolas, Roboto Mono, JetBrains Mono, monospace";
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-primary-blue, #0080FF);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.compare-advantage-card__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-text-strong, #F8FAFC);
+  margin: 0;
+}
+
+.compare-advantage-card__summary {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--color-primary-cyan, #00CCCC);
+  margin: 0 0 var(--spacing-sm, 16px);
+  padding-left: calc(24px + var(--spacing-sm, 16px));
+}
+
+.compare-advantage-card__details {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 calc(24px + var(--spacing-sm, 16px));
+}
+
+.compare-advantage-card__detail {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--color-text-muted, #E2E8F0);
+  position: relative;
+  padding-left: var(--spacing-sm, 16px);
+}
+
+.compare-advantage-card__detail::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-primary-blue, #0080FF);
+  opacity: 0.4;
+}
+
+.compare-advantage-card__detail + .compare-advantage-card__detail {
+  margin-top: var(--spacing-xs, 8px);
+}
+
+/* Summary section */
+.compare-summary {
+  background: linear-gradient(135deg, rgba(0, 128, 255, 0.08) 0%, rgba(0, 204, 204, 0.06) 100%);
+  border: 1px solid rgba(0, 128, 255, 0.15);
+  border-radius: var(--rounded-lg, 12px);
+  padding: var(--spacing-xl, 48px);
+  margin-bottom: var(--spacing-xl, 48px);
+}
+
+.compare-summary__text {
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-text-strong, #F8FAFC);
+  margin: 0 0 var(--spacing-md, 24px);
+}
+
+.compare-summary__bullets {
+  list-style: none;
+  margin: 0 0 var(--spacing-md, 24px);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm, 16px);
+}
+
+.compare-summary__bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm, 16px);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text-muted, #E2E8F0);
+  padding: var(--spacing-sm, 16px);
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: var(--rounded-md, 8px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.compare-summary__bullet-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+}
+
+.compare-summary__closing {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--color-text-strong, #F8FAFC);
+  margin: 0;
+}
+
+/* CTA section */
+.compare-cta {
+  text-align: center;
+  padding: var(--spacing-xl, 48px) 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: var(--spacing-xl, 48px);
+}
+
+.compare-cta__text {
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text-muted, #E2E8F0);
+  margin: 0 0 var(--spacing-md, 24px);
+}
+
+.compare-cta__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 100%);
+  color: #FFFFFF;
+  font-family: var(--font-label, "PingFang SC, sans-serif");
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  padding: 14px 32px;
+  border: none;
+  border-radius: var(--rounded-lg, 12px);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.compare-cta__button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(0, 128, 255, 0.3);
+}
+
+.compare-cta__button:focus-visible {
+  outline: 2px solid var(--color-primary-blue, #0080FF);
+  outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .compare-page__hero {
+    padding: 96px var(--spacing-sm, 16px) 56px;
+  }
+
+  .compare-page__body {
+    padding: 0 var(--spacing-sm, 16px) var(--compare-section-gap);
+  }
+
+  .compare-feature-card,
+  .compare-advantage-card {
+    padding: var(--spacing-md, 24px);
+  }
+
+  .compare-summary {
+    padding: var(--spacing-md, 24px);
+  }
+
+  .compare-advantage-card__header {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .compare-advantage-card__summary,
+  .compare-advantage-card__details {
+    padding-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .compare-advantage-card,
+  .compare-cta__button {
+    transition: none;
+  }
+
+  .compare-advantage-card:hover {
+    transform: none;
+  }
+
+  .compare-cta__button:hover {
+    transform: none;
+  }
+}
+
+/* Light theme overrides */
+[data-theme="light"] .compare-page {
+  background: var(--color-bg-light, #F5F5F7);
+  color: var(--color-text-strong-light, #0F172A);
+}
+
+[data-theme="light"] .compare-page__subtitle {
+  color: var(--color-text-muted-light, #475569);
+}
+
+[data-theme="light"] .compare-section__title {
+  color: var(--color-text-strong-light, #0F172A);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .compare-section__lead {
+  color: var(--color-text-strong-light, #0F172A);
+}
+
+[data-theme="light"] .compare-feature-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .compare-feature-card__text {
+  color: var(--color-text-muted-light, #475569);
+}
+
+[data-theme="light"] .compare-subsection__text {
+  color: var(--color-text-muted-light, #475569);
+}
+
+[data-theme="light"] .compare-advantage-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(0, 128, 255, 0.15);
+}
+
+[data-theme="light"] .compare-advantage-card__title {
+  color: var(--color-text-strong-light, #0F172A);
+}
+
+[data-theme="light"] .compare-advantage-card__detail {
+  color: var(--color-text-muted-light, #475569);
+}
+
+[data-theme="light"] .compare-summary {
+  background: linear-gradient(135deg, rgba(0, 128, 255, 0.04) 0%, rgba(0, 204, 204, 0.03) 100%);
+  border-color: rgba(0, 128, 255, 0.1);
+}
+
+[data-theme="light"] .compare-summary__text {
+  color: var(--color-text-strong-light, #0F172A);
+}
+
+[data-theme="light"] .compare-summary__bullet {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(0, 0, 0, 0.06);
+  color: var(--color-text-muted-light, #475569);
+}
+
+[data-theme="light"] .compare-summary__closing {
+  color: var(--color-text-strong-light, #0F172A);
+}
+
+[data-theme="light"] .compare-page__back {
+  color: var(--color-text-muted-light, #475569);
+}
+
+[data-theme="light"] .compare-page__back:hover {
+  color: var(--color-primary-blue, #0080FF);
+}
+
+[data-theme="light"] .compare-cta {
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .compare-cta__text {
+  color: var(--color-text-muted-light, #475569);
+}
