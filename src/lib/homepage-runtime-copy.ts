@@ -3,7 +3,6 @@ import { resolveSiteLocale, type SiteLocale } from '@/i18n/locale-metadata';
 
 export interface HomepageNavbarCopy {
   home: string;
-  explore: string;
   docs: string;
   support: string;
   mobileOpenMenu: string;
@@ -100,7 +99,6 @@ export function getHomepageNavbarCopy(locale: SiteLocale): HomepageNavbarCopy {
 
   return {
     home: requireLocaleResourceString(resolvedLocale, 'common', 'navbar.home'),
-    explore: requireLocaleResourceString(resolvedLocale, 'common', 'navbar.explore'),
     docs: requireLocaleResourceString(resolvedLocale, 'common', 'navbar.docs'),
     support: requireLocaleResourceString(resolvedLocale, 'common', 'navbar.support'),
     mobileOpenMenu: requireLocaleResourceString(resolvedLocale, 'common', 'navbar.mobileOpenMenu'),

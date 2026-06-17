@@ -25,7 +25,7 @@ interface NavbarProps {
   languageSwitcherCopy: HomepageLanguageSwitcherCopy;
 }
 
-type NavLinkTone = 'default' | 'explore' | 'support' | 'github';
+type NavLinkTone = 'default' | 'support' | 'github';
 
 /**
  * SVG 图标组件
@@ -120,13 +120,6 @@ export default function Navbar({
   // 构建导航链接 - 根据语言动态生成
   const navLinks = useMemo(() => [
     {
-      label: copy.explore,
-      href: getLinkWithLocale('explore', locale),
-      external: false,
-      icon: 'orbit',
-      tone: 'explore' as NavLinkTone,
-    },
-    {
       label: copy.docs,
       href: getLinkWithLocale('docs', locale),
       external: false,
@@ -147,7 +140,7 @@ export default function Navbar({
       icon: 'github',
       tone: 'github' as NavLinkTone,
     },
-  ], [copy.docs, copy.explore, copy.support, locale]);
+  ], [copy.docs, copy.support, locale]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -205,7 +198,6 @@ export default function Navbar({
               href={item.href}
               className={[
                 styles.navLink,
-                item.tone === 'explore' ? styles.navLinkExplore : '',
                 item.tone === 'support' ? styles.navLinkSupport : '',
                 item.tone === 'github' ? styles.navLinkGithub : '',
               ].filter(Boolean).join(' ')}
@@ -267,7 +259,6 @@ export default function Navbar({
               href={item.href}
               className={[
                 styles.mobileNavLink,
-                item.tone === 'explore' ? styles.mobileNavLinkExplore : '',
                 item.tone === 'support' ? styles.mobileNavLinkSupport : '',
                 item.tone === 'github' ? styles.mobileNavLinkGithub : '',
               ].filter(Boolean).join(' ')}

@@ -17,7 +17,6 @@ describe('Navbar support link', () => {
     );
 
     expect(markup).toContain('/about/');
-    expect((markup.match(/href="\/en-US\/explore\/"/g) ?? [])).toHaveLength(2);
     expect((markup.match(/Get Support/g) ?? [])).toHaveLength(2);
     expect(markup).not.toContain('qm.qq.com');
     expect(markup).not.toContain('discord.gg/qY662sJK');
@@ -39,7 +38,6 @@ describe('Navbar support link', () => {
     );
 
     expect(markup).toContain('/zh-CN/about/');
-    expect((markup.match(/href="\/zh-CN\/explore\/"/g) ?? [])).toHaveLength(2);
     expect((markup.match(/获取技术支持/g) ?? [])).toHaveLength(2);
     expect(markup).not.toContain('qm.qq.com');
     expect(markup).not.toContain('discord.gg/qY662sJK');
