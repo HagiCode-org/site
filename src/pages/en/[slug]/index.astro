@@ -1,0 +1,15 @@
+---
+import LegacyLocaleRedirectPage from '@/page-templates/LegacyLocaleRedirectPage.astro';
+import { getStructuredArticleEntriesByCategory } from '@/lib/structured-articles.mjs';
+
+export function getStaticPaths() {
+  return getStructuredArticleEntriesByCategory('vs-hagicode').map((article) => ({
+    params: { slug: article.slug },
+  }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const target = `/en-US/${slug}/`;
+---
+
+<LegacyLocaleRedirectPage target={target} destinationName="the English compare page" />

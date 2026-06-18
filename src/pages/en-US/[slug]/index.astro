@@ -1,0 +1,14 @@
+---
+import StructuredArticlePage from '@/components/structured-article/StructuredArticlePage.astro';
+import { getStructuredArticleEntriesByCategory } from '@/lib/structured-articles.mjs';
+
+export function getStaticPaths() {
+  return getStructuredArticleEntriesByCategory('vs-hagicode').map((article) => ({
+    params: { slug: article.slug },
+  }));
+}
+
+const { slug } = Astro.params as { slug: string };
+---
+
+<StructuredArticlePage slug={slug} locale="en-US" />
