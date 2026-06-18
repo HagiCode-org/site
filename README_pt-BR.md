@@ -14,7 +14,7 @@
 ·
 <a href="https://hagicode.com/container/">Container</a>
 ·
-<a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Windows Store</a>
+<a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Microsoft Store</a>
 ·
 <a href="https://docs.hagicode.com/blog/">Blog</a>
 
@@ -24,11 +24,11 @@
 
 ---
 
-## Windows Store And Add-ons
+## Microsoft Store And Add-ons
 
 | Prévia | Produto | O que é | Comece aqui |
 | --- | --- | --- | --- |
-| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Windows Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
+| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
 | <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus bundle artwork" width="280" /> | **Hagicode Plus** | Bundle and upgrade guidance remains available through the docs site. | [Read Hagicode Plus docs](https://docs.hagicode.com/bundles/hagicode-plus/) |
 | <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC artwork" width="280" /> | **Turbo Engine DLC** | DLC guidance for higher concurrency and customization remains available through the docs site. | [Read Turbo Engine DLC docs](https://docs.hagicode.com/dlc/turbo-engine-dlc/) |
 
@@ -82,7 +82,7 @@ HagiCode trata conquistas, relatórios diários, multiplicadores de eficiência,
 - [Product Overview](https://docs.hagicode.com/product-overview/) para a introdução pública oficial do produto
 - [Desktop](https://hagicode.com/desktop/) para instalação local e gerenciamento de serviços
 - [Container](https://hagicode.com/container/) para o caminho de implantação self-hosted
-- [Windows Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
+- [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) para atualizações do produto e textos longos
 

@@ -14,7 +14,7 @@
 ·
 <a href="https://hagicode.com/container/">Container</a>
 ·
-<a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Windows Store</a>
+<a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Microsoft Store</a>
 ·
 <a href="https://docs.hagicode.com/blog/">Blog</a>
 
@@ -24,11 +24,11 @@
 
 ---
 
-## Windows Store And Add-ons
+## Microsoft Store And Add-ons
 
 | 預覽 | 產品 | 說明 | 開始位置 |
 | --- | --- | --- | --- |
-| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Windows Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
+| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
 | <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus bundle artwork" width="280" /> | **Hagicode Plus** | Bundle and upgrade guidance remains available through the docs site. | [Read Hagicode Plus docs](https://docs.hagicode.com/bundles/hagicode-plus/) |
 | <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC artwork" width="280" /> | **Turbo Engine DLC** | DLC guidance for higher concurrency and customization remains available through the docs site. | [Read Turbo Engine DLC docs](https://docs.hagicode.com/dlc/turbo-engine-dlc/) |
 
@@ -82,7 +82,7 @@ HagiCode 把成就、每日報告、效率倍率、Token 吞吐量和主題化�
 - [Product Overview](https://docs.hagicode.com/product-overview/) 查看官方公開產品介紹
 - [Desktop](https://hagicode.com/desktop/) 進入本地優先的安裝與服務管理入口
 - [Container](https://hagicode.com/container/) 查看自託管部署路徑
-- [Windows Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
+- [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) 查看產品更新與長篇文章
 
