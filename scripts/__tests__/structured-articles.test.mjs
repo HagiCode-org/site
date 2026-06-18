@@ -4,6 +4,9 @@ import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import {
   buildArticleLocaleFallbacks,
+  getHomepageAgentChooserItems,
+  getStructuredArticleEntriesByCategory,
+  getStructuredArticleSlugsByCategory,
   getStructuredArticleViewModel,
   resolveArticleLocale,
   resolveStructuredArticle,
@@ -24,7 +27,12 @@ async function writeSnapshot(snapshotRoot, locale, slug, payload) {
   return targetPath;
 }
 
-function buildDetail({ slug = 'claude-vs-hagicode', locale = 'zh-CN', updatedAt = '2026-06-17T00:00:00.000Z' } = {}) {
+function buildDetail({
+  slug = 'claude-vs-hagicode',
+  locale = 'zh-CN',
+  updatedAt = '2026-06-17T00:00:00.000Z',
+  title,
+} = {}) {
   return {
     schemaVersion: '1.0.0',
     slug,
@@ -32,7 +40,7 @@ function buildDetail({ slug = 'claude-vs-hagicode', locale = 'zh-CN', updatedAt 
     locale,
     updatedAt,
     seo: {
-      title: `Title ${locale}`,
+      title: title ?? `${slug.replace(/-vs-hagicode$/u, '')} Vs HagiCode`,
       description: `Description ${locale}`,
     },
     summary: `Summary ${locale}`,
@@ -95,7 +103,7 @@ describe('getStructuredArticleViewModel', () => {
     expect(vm.slug).toBe('claude-vs-hagicode');
     expect(vm.resolvedLocale).toBe('zh-CN');
     expect(vm.usedFallback).toBe(false);
-    expect(vm.title).toBe('Title zh-CN');
+    expect(vm.title).toBe('claude Vs HagiCode');
     expect(vm.toc).toHaveLength(1);
     expect(vm.cta.primary?.href).toBe('/primary/');
   });
@@ -126,6 +134,69 @@ describe('getStructuredArticleViewModel', () => {
     expect(() =>
       getStructuredArticleViewModel('nonexistent-slug', 'zh-CN', { snapshotRoot }),
     ).toThrowError(/nonexistent-slug/);
+  });
+});
+
+describe('snapshot-backed article indexes', () => {
+  it('builds article entries and slugs from local snapshots without sibling repos', async () => {
+    const snapshotRoot = await createTempDir('site-articles-');
+    await writeSnapshot(snapshotRoot, 'en-US', 'claude-vs-hagicode', buildDetail({ locale: 'en-US', title: 'Claude Vs HagiCode' }));
+    await writeSnapshot(snapshotRoot, 'zh-CN', 'claude-vs-hagicode', buildDetail({ locale: 'zh-CN', title: 'Claude Vs HagiCode' }));
+    await writeSnapshot(snapshotRoot, 'zh-CN', 'kimi-vs-hagicode', buildDetail({ slug: 'kimi-vs-hagicode', locale: 'zh-CN', title: 'Kimi Vs HagiCode' }));
+    await writeSnapshot(
+      snapshotRoot,
+      'zh-CN',
+      'weekly-update',
+      { ...buildDetail({ slug: 'weekly-update', locale: 'zh-CN' }), category: 'news' },
+    );
+
+    const entries = getStructuredArticleEntriesByCategory('vs-hagicode', { snapshotRoot });
+    expect(entries).toEqual([
+      {
+        slug: 'claude-vs-hagicode',
+        supportedLocales: ['en-US', 'zh-CN'],
+        agentName: 'Claude',
+      },
+      {
+        slug: 'kimi-vs-hagicode',
+        supportedLocales: ['zh-CN'],
+        agentName: 'Kimi',
+      },
+    ]);
+
+    expect(getStructuredArticleSlugsByCategory('vs-hagicode', { snapshotRoot })).toEqual([
+      'claude-vs-hagicode',
+      'kimi-vs-hagicode',
+    ]);
+  });
+
+  it('builds homepage chooser items from snapshots and only keeps extras as fallback', async () => {
+    const snapshotRoot = await createTempDir('site-articles-');
+    await writeSnapshot(snapshotRoot, 'en-US', 'claude-vs-hagicode', buildDetail({ locale: 'en-US', title: 'Claude Vs HagiCode' }));
+    await writeSnapshot(snapshotRoot, 'zh-CN', 'claude-vs-hagicode', buildDetail({ locale: 'zh-CN', title: 'Claude Vs HagiCode' }));
+    await writeSnapshot(snapshotRoot, 'zh-CN', 'pi-vs-hagicode', buildDetail({ slug: 'pi-vs-hagicode', locale: 'zh-CN', title: 'Pi Vs HagiCode' }));
+
+    const items = getHomepageAgentChooserItems('zh-CN', 'vs-hagicode', { snapshotRoot });
+    expect(items).toEqual([
+      {
+        slug: 'claude-vs-hagicode',
+        agentName: 'Claude',
+        href: '/zh-CN/claude-vs-hagicode/',
+        localizedLocale: 'zh-CN',
+      },
+      {
+        slug: 'pi-vs-hagicode',
+        agentName: 'Pi',
+        href: '/zh-CN/pi-vs-hagicode/',
+        localizedLocale: 'zh-CN',
+      },
+      {
+        slug: 'reasonix-vs-hagicode',
+        agentName: 'Reasonix',
+        href: '/zh-CN/faq/',
+        localizedLocale: 'zh-CN',
+      },
+    ]);
   });
 });
 

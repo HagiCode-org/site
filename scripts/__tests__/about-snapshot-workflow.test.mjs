@@ -150,6 +150,24 @@ describe('about snapshot workflow', () => {
     expect(written.entries[0].regionPriority).toBe('international-first');
   });
 
+  it('defaults to the canonical endpoint even when the monorepo sibling payload exists', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(createJsonResponse(structuredClone(fixture)));
+
+    const selected = await loadPreferredAboutSnapshot({
+      fetchImpl: fetchMock,
+    });
+
+    expect(fetchMock).toHaveBeenCalledWith(ABOUT_SNAPSHOT_URL, {
+      headers: {
+        accept: 'application/json',
+      },
+    });
+    expect(selected.source).toEqual({
+      kind: 'url',
+      value: ABOUT_SNAPSHOT_URL,
+    });
+  });
+
   it('prefers the local repos/index about payload when it is available', async () => {
     const outputDir = await createTempDir('site-about-snapshot-local-');
     const outputPath = path.join(outputDir, 'about.snapshot.json');

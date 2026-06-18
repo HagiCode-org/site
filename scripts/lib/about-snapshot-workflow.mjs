@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 export const ABOUT_SNAPSHOT_URL = 'https://index.hagicode.com/about.json';
 export const ABOUT_SNAPSHOT_VERSION = '1.0.0';
 export const ABOUT_SNAPSHOT_OUTPUT_PATH = 'src/data/about.snapshot.json';
+// Optional explicit override for local development; sync defaults to the
+// published index payload so the site repo remains standalone by default.
 export const ABOUT_SNAPSHOT_LOCAL_INPUT_PATH = '../index/dist/about.json';
 export const ABOUT_SNAPSHOT_REGION_PRIORITIES = ['china-first', 'international-first'];
 export const REQUIRED_ABOUT_ENTRY_IDS = [
@@ -197,7 +199,7 @@ export async function readLocalAboutSnapshot(inputPath = resolveLocalAboutSnapsh
 
 export async function loadPreferredAboutSnapshot({
   fetchImpl = globalThis.fetch,
-  localInputPath = resolveLocalAboutSnapshotInputPath(),
+  localInputPath,
 } = {}) {
   if (localInputPath && (await canReadFile(localInputPath))) {
     return {
@@ -232,7 +234,7 @@ export async function writeAboutSnapshotFile(payload, { outputPath = resolveAbou
 export async function updateAboutSnapshot({
   fetchImpl = globalThis.fetch,
   outputPath = resolveAboutSnapshotOutputPath(),
-  localInputPath = resolveLocalAboutSnapshotInputPath(),
+  localInputPath,
 } = {}) {
   const { payload, source } = await loadPreferredAboutSnapshot({
     fetchImpl,

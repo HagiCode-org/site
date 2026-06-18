@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 export const ARTICLES_INDEX_ORIGIN = 'https://index.hagicode.com';
 export const ARTICLES_SCHEMA_VERSION = '1.0.0';
 export const ARTICLES_SNAPSHOT_OUTPUT_PATH = 'src/data/articles.snapshot';
+// Optional explicit override for local development; snapshot sync defaults to the
+// published index origin so the site repo stays standalone by default.
 export const ARTICLES_SNAPSHOT_LOCAL_INPUT_PATH = '../index/dist';
 
 function assert(condition, message) {
@@ -288,14 +290,6 @@ async function resolveEffectiveLocalInputDir(repoRoot, localInputDir) {
     }
   }
 
-  // Default: prefer the monorepo-local index build output when available so
-  // builds inside the monorepo reflect committed index content even before
-  // the published remote is updated.
-  const monorepoCandidate = path.resolve(repoRoot, '..', 'index', 'dist');
-  if (await canReadFile(path.join(monorepoCandidate, 'articles', 'index.json'))) {
-    return monorepoCandidate;
-  }
-
   return null;
 }
 
@@ -309,7 +303,8 @@ export async function writeArticleSnapshot({ locale, slug, detail, outputDir }) 
 
 /**
  * Fetch, validate, and write the requested locale/slug article pairs into the
- * snapshot directory. Falls back to the local index build output when available.
+ * snapshot directory. Defaults to the published index origin unless a local
+ * override is explicitly provided.
  *
  * @param {object} options
  * @param {Array<{locale: string, slug: string}>} options.articles Locale/slug pairs to snapshot.

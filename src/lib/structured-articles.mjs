@@ -11,7 +11,7 @@ import {
 const LIB_DIR = path.dirname(fileURLToPath(import.meta.url));
 const ARTICLES_SNAPSHOT_ROOT = path.resolve(process.cwd(), 'src', 'data', 'articles.snapshot');
 const SOURCE_ARTICLES_SNAPSHOT_ROOT = path.resolve(LIB_DIR, '..', 'data', 'articles.snapshot');
-const INDEX_DIST_ROOT = path.resolve(LIB_DIR, '..', '..', '..', 'index', 'dist', 'articles');
+const ARTICLE_LOCALE_MAP_CACHE = new Map();
 
 function assert(condition, message) {
   if (!condition) {
@@ -177,46 +177,44 @@ function getSiteLocaleDefinitionSafe(locale) {
   return SITE_LOCALES.find((entry) => entry.code === locale) ?? null;
 }
 
-function readArticleIndex(locale) {
-  const manifestPath = path.join(INDEX_DIST_ROOT, locale, 'index.json');
-  const payload = readJsonFile(manifestPath);
-  if (!payload) {
+function readArticleSnapshotIndex(snapshotRoot, locale) {
+  const localeRoot = path.join(snapshotRoot, locale);
+  if (!fs.existsSync(localeRoot) || !fs.statSync(localeRoot).isDirectory()) {
     return [];
   }
 
-  assert(Array.isArray(payload.articles), `${manifestPath}: articles must be an array`);
-  return payload.articles.map((article, index) => {
-    const sourceLabel = `${manifestPath}: articles[${index}]`;
-    assert(isRecord(article), `${sourceLabel} must be an object`);
-    return {
-      slug: assertNonEmptyString(article.slug, 'slug', sourceLabel),
-      category: assertNonEmptyString(article.category, 'category', sourceLabel),
-      updatedAt: assertNonEmptyString(article.updatedAt, 'updatedAt', sourceLabel),
-      title: assertNonEmptyString(article.title, 'title', sourceLabel),
-      summary: assertNonEmptyString(article.summary, 'summary', sourceLabel),
-      locale,
-    };
-  });
+  return fs.readdirSync(localeRoot, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.json'))
+    .map((entry) => {
+      const filePath = path.join(localeRoot, entry.name);
+      const payload = readJsonFile(filePath);
+      assert(isRecord(payload), `${filePath}: root must be an object`);
+
+      const slug = assertNonEmptyString(payload.slug, 'slug', filePath);
+      const category = assertNonEmptyString(payload.category, 'category', filePath);
+      const title = assertNonEmptyString(payload.seo?.title, 'seo.title', filePath);
+
+      return {
+        slug,
+        category,
+        title,
+        locale,
+      };
+    });
 }
 
-function titleToAgentName(title, slug) {
-  const normalized = title
-    .replace(/\s*[-—–]+\s*.*/u, '')
-    .replace(/\s+Vs\s+HagiCode.*$/iu, '')
-    .trim();
-
-  if (normalized) {
-    return normalized;
+function buildArticleLocaleMap(category, { snapshotRoot } = {}) {
+  const resolvedSnapshotRoot = resolveArticlesSnapshotRoot(snapshotRoot);
+  const cacheKey = `${resolvedSnapshotRoot}::${category}`;
+  const cached = ARTICLE_LOCALE_MAP_CACHE.get(cacheKey);
+  if (cached) {
+    return cached;
   }
 
-  return slug.replace(/-vs-hagicode$/u, '').replace(/-/g, ' ');
-}
-
-function buildArticleLocaleMap(category) {
   const bySlug = new Map();
 
   for (const locale of SUPPORTED_SITE_LOCALES) {
-    for (const article of readArticleIndex(locale)) {
+    for (const article of readArticleSnapshotIndex(resolvedSnapshotRoot, locale)) {
       if (article.category !== category) {
         continue;
       }
@@ -242,18 +240,21 @@ function buildArticleLocaleMap(category) {
     }
   }
 
-  return [...bySlug.values()]
+  const entries = [...bySlug.values()]
     .sort((left, right) => left.slug.localeCompare(right.slug, 'en'))
     .map((entry) => ({
       slug: entry.slug,
       supportedLocales: [...entry.locales].sort((left, right) => left.localeCompare(right, 'en')),
       agentName: titleToAgentName(entry.englishTitle ?? entry.primaryTitle ?? entry.slug, entry.slug),
     }));
+
+  ARTICLE_LOCALE_MAP_CACHE.set(cacheKey, entries);
+  return entries;
 }
 
-function getSupportedArticleLocale(slug, locale, category) {
+function getSupportedArticleLocale(slug, locale, category, options = {}) {
   const requested = resolveArticleLocale(locale);
-  const allArticles = buildArticleLocaleMap(category);
+  const allArticles = buildArticleLocaleMap(category, options);
   const target = allArticles.find((article) => article.slug === slug);
   if (!target) {
     return requested;
@@ -295,12 +296,12 @@ export function buildArticleLocaleFallbacks(locale) {
   return [...fallbacks].filter((code) => SUPPORTED_SITE_LOCALES.includes(code));
 }
 
-export function getStructuredArticleSlugsByCategory(category = 'vs-hagicode') {
-  return buildArticleLocaleMap(category).map((article) => article.slug);
+export function getStructuredArticleSlugsByCategory(category = 'vs-hagicode', options = {}) {
+  return buildArticleLocaleMap(category, options).map((article) => article.slug);
 }
 
-export function getStructuredArticleEntriesByCategory(category = 'vs-hagicode') {
-  return buildArticleLocaleMap(category);
+export function getStructuredArticleEntriesByCategory(category = 'vs-hagicode', options = {}) {
+  return buildArticleLocaleMap(category, options);
 }
 
 const EXTRA_AGENT_CHOICES = [
@@ -308,14 +309,13 @@ const EXTRA_AGENT_CHOICES = [
   { slug: 'reasonix-vs-hagicode', agentName: 'Reasonix' },
 ];
 
-export function getHomepageAgentChooserItems(locale, category = 'vs-hagicode') {
+export function getHomepageAgentChooserItems(locale, category = 'vs-hagicode', options = {}) {
   const requestedLocale = resolveArticleLocale(locale);
-  const articleSlugs = new Set(
-    getStructuredArticleEntriesByCategory(category).map((article) => article.slug),
-  );
+  const structuredArticles = getStructuredArticleEntriesByCategory(category, options);
+  const articleSlugs = new Set(structuredArticles.map((article) => article.slug));
 
-  const items = getStructuredArticleEntriesByCategory(category).map((article) => {
-    const localizedLocale = getSupportedArticleLocale(article.slug, requestedLocale, category);
+  const items = structuredArticles.map((article) => {
+    const localizedLocale = getSupportedArticleLocale(article.slug, requestedLocale, category, options);
     return {
       slug: article.slug,
       agentName: article.agentName,
@@ -336,6 +336,19 @@ export function getHomepageAgentChooserItems(locale, category = 'vs-hagicode') {
   }
 
   return items;
+}
+
+function titleToAgentName(title, slug) {
+  const normalized = title
+    .replace(/\s*[-—–]+\s*.*/u, '')
+    .replace(/\s+Vs\s+HagiCode.*$/iu, '')
+    .trim();
+
+  if (normalized) {
+    return normalized;
+  }
+
+  return slug.replace(/-vs-hagicode$/u, '').replace(/-/g, ' ');
 }
 
 export function resolveStructuredArticle(slug, locale = DEFAULT_LOCALE, { snapshotRoot } = {}) {
