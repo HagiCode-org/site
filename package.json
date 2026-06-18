@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "npm run prepare:i18n && astro dev --host 0.0.0.0 --port ${PORT_WEBSITE:-31264}",
     "start": "npm run prepare:i18n && astro dev --host 0.0.0.0",
-    "build": "export NODE_ENV=\"${NODE_ENV:-production}\"; npm run prepare:i18n && npm run sync:footer-sites && npm run sync:about-snapshot && astro build && npm run seo:audit",
+    "build": "export NODE_ENV=\"${NODE_ENV:-production}\"; npm run prepare:i18n && npm run sync:footer-sites && npm run sync:about-snapshot && npm run sync:articles-snapshot && astro build && npm run seo:audit",
     "preview": "astro preview --port ${PORT_WEBSITE:-31264}",
     "astro": "astro",
     "i18n:audit": "hagi18n audit --config hagi18n.yaml",
@@ -22,6 +22,8 @@
     "i18n:check": "npm run i18n:audit && npm run i18n:doctor && npm run prepare:i18n && node scripts/generate-i18n-resources.mjs --check",
     "sync:footer-sites": "node ./scripts/fetch-sites-snapshot.mjs",
     "sync:about-snapshot": "node ./scripts/fetch-about-snapshot.mjs",
+    "fetch:articles-snapshot": "node ./scripts/fetch-articles-snapshot.mjs",
+    "sync:articles-snapshot": "node ./scripts/fetch-articles-snapshot.mjs",
     "seo:audit": "node scripts/seo-audit.mjs",
     "typecheck": "npm run prepare:i18n && tsc --noEmit",
     "clean": "rm -rf .astro dist",
