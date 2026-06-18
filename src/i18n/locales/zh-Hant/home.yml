@@ -221,8 +221,8 @@ homepageVideos:
       description: 在看完主要的本地化介紹之後，這段更聚焦的驗證流程能幫助潛在使用者判斷 GPT Codex 在實際產品中的表現。
       ctaLabel: 在 Bilibili 開啟
   hero:
-    windowsStoreLabel: Windows Store
-    windowsStoreAriaLabel: 在 Windows Store 上開啟 Hagicode
+    windowsStoreLabel: Microsoft Store
+    windowsStoreAriaLabel: 在 Microsoft Store 上開啟 Hagicode
     steamAriaLabel: 在 Steam 上開啟 Hagicode
     ctaGroupLabel: 首頁主要操作
 pricing:

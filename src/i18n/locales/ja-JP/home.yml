@@ -221,8 +221,8 @@ homepageVideos:
       description: ローカライズ済みのメイン紹介を見たあとに、GPT Codex が実製品内でどう動くかを判断できる検証デモです。
       ctaLabel: Bilibili で開く
   hero:
-    windowsStoreLabel: Windows Store
-    windowsStoreAriaLabel: Windows Store で Hagicode を開く
+    windowsStoreLabel: Microsoft Store
+    windowsStoreAriaLabel: Microsoft Store で Hagicode を開く
     steamAriaLabel: Steam で Hagicode を開く
     ctaGroupLabel: ホームページの主要アクション
 pricing:

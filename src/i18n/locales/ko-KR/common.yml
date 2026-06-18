@@ -182,9 +182,9 @@ desktopHero:
     description: Steam 버전은 클라우드 저장과 Workshop 같은 Steam 기능을 지원합니다. 클릭해 Steam에서 확인하세요.
     ariaLabel: Steam에서 Hagicode 열기
   windowsStore:
-    eyebrow: Windows Store
-    description: Windows Store에서 구독하면 항상 최신 버전을 유지할 수 있습니다.
-    ariaLabel: Windows Store에서 Hagicode 열기
+    eyebrow: Microsoft Store
+    description: Microsoft Store에서 구독하면 항상 최신 버전을 유지할 수 있습니다.
+    ariaLabel: Microsoft Store에서 Hagicode 열기
   downloadActions:
     torrent: 토렌트 다운로드
   assetTypes:
