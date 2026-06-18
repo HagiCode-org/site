@@ -24,6 +24,7 @@ import {
 } from '@/lib/homepage-section-copy';
 import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
 import { getHomePageCopy } from '@/lib/site-page-copy';
+import { getHomepageAgentChooserItems } from '@/lib/structured-articles.mjs';
 
 interface Props {
   locale: SiteLocale;
@@ -36,6 +37,7 @@ const interactiveCopy = getHomepageInteractiveCopy(locale);
 const featuresCopy = getHomepageFeaturesCopy(locale);
 const showcaseCopy = getHomepageShowcaseCopy(locale);
 const pricingContent = getPricingContent(locale);
+const heroAgentChoices = getHomepageAgentChooserItems(locale);
 const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
 ---
 
@@ -101,6 +103,7 @@ const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
         locale={locale}
         copy={interactiveCopy.hero}
         workflowBoardCopy={interactiveCopy.workflowBoard}
+        agentChoices={heroAgentChoices}
         productOverviewVideo={{
           copy: pageCopy.productOverviewVideoCopy,
           featuredVideos: pageCopy.featuredHomepageVideos,

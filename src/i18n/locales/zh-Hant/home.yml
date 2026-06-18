@@ -270,6 +270,13 @@ workflowBoard:
     - 並行管理效率 10X
     - OpenSpec 減少幻覺
   taskLabel: 任務
+  presetTasks:
+    label: 預設任務
+    items:
+      - 新增 CRUD 模組
+      - 全面程式碼審查
+      - API 文件生成
+      - 測試案例編排
   headerSummary: 任務 / Agent
   steps:
     - 構思

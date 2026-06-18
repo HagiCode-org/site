@@ -24,6 +24,12 @@ export interface HomepageLanguageSwitcherCopy {
   selectedState: string;
 }
 
+export interface HomepageAgentChooserCopy {
+  title: string;
+  description: string;
+  badge: string;
+}
+
 export interface HomepageHeroCopy {
   tagline: string;
   description: string;
@@ -63,12 +69,17 @@ export interface HomepageHeroCopy {
   windowsStoreAriaLabel: string;
   steamAriaLabel: string;
   ctaGroupLabel: string;
+  agentChooser: HomepageAgentChooserCopy;
 }
 
 export interface HomepageWorkflowBoardCopy {
   titleLines: string[];
   taskLabel: string;
   headerSummary: string;
+  presetTasks: {
+    label: string;
+    items: string[];
+  };
   steps: string[];
   activeStates: string[];
   completedState: string;
@@ -179,6 +190,11 @@ export function getHomepageHeroCopy(locale: SiteLocale): HomepageHeroCopy {
     ),
     steamAriaLabel: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.steamAriaLabel'),
     ctaGroupLabel: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.ctaGroupLabel'),
+    agentChooser: {
+      title: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.agentChooser.title'),
+      description: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.agentChooser.description'),
+      badge: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.agentChooser.badge'),
+    },
   };
 }
 
@@ -193,6 +209,15 @@ export function getHeroWorkflowBoardCopy(locale: SiteLocale): HomepageWorkflowBo
     ],
     taskLabel: requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.taskLabel'),
     headerSummary: requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.headerSummary'),
+    presetTasks: {
+      label: requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.presetTasks.label'),
+      items: [
+        requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.presetTasks.items.0'),
+        requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.presetTasks.items.1'),
+        requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.presetTasks.items.2'),
+        requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.presetTasks.items.3'),
+      ],
+    },
     steps: [
       requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.steps.0'),
       requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.steps.1'),

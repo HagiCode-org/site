@@ -270,6 +270,13 @@ workflowBoard:
     - Эффективность параллельного управления 10x
     - OpenSpec снижает галлюцинации
   taskLabel: Задача
+  presetTasks:
+    label: Предустановленные задачи
+    items:
+      - Новый CRUD-модуль
+      - Полный код-ревью
+      - Документация API
+      - Набор тест-кейсов
   headerSummary: Задача / Agent
   steps:
     - Идея

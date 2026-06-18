@@ -145,9 +145,81 @@
   gap: 0.45rem;
 }
 
-.stepHeaderCell {
-  padding: 0 0.2rem;
-  text-align: center;
+.stepHeaderButton {
+  appearance: none;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 999px;
+  padding: 0.45rem 0.7rem;
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: default;
+}
+
+.stepHeaderButton[aria-pressed='true'] {
+  border-color: color-mix(in srgb, var(--color-primary) 30%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 14%, white 86%);
+}
+
+[data-theme='dark'] .stepHeaderButton {
+  background: rgba(8, 15, 33, 0.8);
+  border-color: rgba(148, 163, 184, 0.12);
+  color: var(--color-text);
+}
+
+[data-theme='lunar-new-year'] .stepHeaderButton {
+  background: rgba(63, 15, 15, 0.82);
+  border-color: rgba(255, 213, 79, 0.16);
+  color: #fff3bf;
+}
+
+.stepHeaderButton:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 28%, transparent);
+}
+
+.presetTaskGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.78rem 0 0.9rem;
+}
+
+.presetTaskButton {
+  appearance: none;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 999px;
+  padding: 0.5rem 0.82rem;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: default;
+}
+
+.presetTaskButton[data-preset-task-index='0'] {
+  border-color: color-mix(in srgb, var(--color-primary) 26%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 12%, white 88%);
+}
+
+[data-theme='dark'] .presetTaskButton {
+  background: rgba(8, 15, 33, 0.84);
+  border-color: rgba(148, 163, 184, 0.12);
+  color: var(--color-text);
+}
+
+[data-theme='lunar-new-year'] .presetTaskButton {
+  background: rgba(63, 15, 15, 0.88);
+  border-color: rgba(255, 213, 79, 0.16);
+  color: #fff3bf;
+}
+
+.presetTaskButton:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 28%, transparent);
 }
 
 .laneStack {

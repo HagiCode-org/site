@@ -270,6 +270,13 @@ workflowBoard:
     - Efficacité de gestion parallèle x10
     - OpenSpec réduit les hallucinations
   taskLabel: Tâche
+  presetTasks:
+    label: Tâches prédéfinies
+    items:
+      - Nouveau module CRUD
+      - Revue de code complète
+      - Documentation API
+      - Pack de cas de test
   headerSummary: Tâche / Agent
   steps:
     - Imaginer

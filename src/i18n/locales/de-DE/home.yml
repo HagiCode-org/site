@@ -270,6 +270,13 @@ workflowBoard:
     - 10-fache Effizienz bei paralleler Verwaltung
     - OpenSpec reduziert Halluzinationen
   taskLabel: Aufgabe
+  presetTasks:
+    label: Preset-Aufgaben
+    items:
+      - Neues CRUD-Modul
+      - Umfassender Code-Review
+      - API-Dokumentation
+      - Testfall-Paket
   headerSummary: Aufgabe / Agent
   steps:
     - Idee entwickeln

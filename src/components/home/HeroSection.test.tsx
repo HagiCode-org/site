@@ -25,6 +25,11 @@ const featuredVideos: FeaturedVideosByProvider = {
   },
 };
 
+const agentChoices = [
+  { slug: 'claude-vs-hagicode', agentName: 'Claude Code', href: '/en-US/claude-vs-hagicode/', localizedLocale: 'en-US' },
+  { slug: 'codex-vs-hagicode', agentName: 'Codex', href: '/zh-CN/codex-vs-hagicode/', localizedLocale: 'zh-CN' },
+];
+
 describe('HeroSection', () => {
   it('hides the homepage Steam button while Steam support is pending', () => {
     const copy = getHomepageInteractiveCopy('en-US');
@@ -41,13 +46,14 @@ describe('HeroSection', () => {
     expect(markup).not.toContain('>Steam<');
   });
 
-  it('renders the product overview video directly after the Hagicode title when provided', () => {
+  it('renders the chooser between the product overview video and the workflow board', () => {
     const copy = getHomepageInteractiveCopy('en-US');
     const markup = renderToStaticMarkup(
       <HeroSection
         locale="en-US"
         copy={copy.hero}
         workflowBoardCopy={copy.workflowBoard}
+        agentChoices={agentChoices}
         productOverviewVideo={{
           copy: { title: 'Hagicode video' },
           featuredVideos,
@@ -55,8 +61,11 @@ describe('HeroSection', () => {
       />,
     );
 
-    expect(markup.indexOf('<h1')).toBeLessThan(markup.indexOf('data-video-placement="hero"'));
-    expect(markup.indexOf('data-video-placement="hero"')).toBeLessThan(markup.indexOf('hero-workflow-title'));
+    expect(markup.indexOf('data-video-placement="hero"')).toBeLessThan(markup.indexOf('hero-agent-chooser-title'));
+    expect(markup.indexOf('hero-agent-chooser-title')).toBeLessThan(markup.indexOf('hero-workflow-title'));
+    expect(markup).toContain('Choose an agent you know');
+    expect(markup).toContain('Claude Code');
+    expect(markup).toContain('/zh-CN/codex-vs-hagicode/');
     expect(markup).toContain('YouTube player: Hagicode YouTube');
     expect(markup).not.toContain('Open on YouTube');
     expect(markup).not.toContain('Open on Bilibili');

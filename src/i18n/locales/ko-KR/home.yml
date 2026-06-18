@@ -270,6 +270,13 @@ workflowBoard:
     - 병렬 관리 효율 10배
     - OpenSpec이 환각을 줄입니다
   taskLabel: 작업
+  presetTasks:
+    label: 프리셋 작업
+    items:
+      - 신규 CRUD 모듈
+      - 전체 코드 리뷰
+      - API 문서 생성
+      - 테스트 케이스 구성
   headerSummary: 작업 / Agent
   steps:
     - 구상

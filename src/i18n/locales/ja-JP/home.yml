@@ -270,6 +270,13 @@ workflowBoard:
     - 並列管理効率 10 倍
     - OpenSpec が幻覚を低減
   taskLabel: タスク
+  presetTasks:
+    label: プリセットタスク
+    items:
+      - 新規 CRUD モジュール
+      - 包括的コードレビュー
+      - API ドキュメント生成
+      - テストケース作成
   headerSummary: タスク / Agent
   steps:
     - 発想

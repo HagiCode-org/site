@@ -225,6 +225,10 @@ homepageVideos:
     windowsStoreAriaLabel: Open Hagicode on Windows Store
     steamAriaLabel: Open Hagicode on Steam
     ctaGroupLabel: Primary homepage actions
+    agentChooser:
+      badge: Choose your agent
+      title: Choose an agent you know
+      description: Jump straight into the comparison page for the agent you already use.
 pricing:
   title: Editions & Pricing
   limitTitle: Proposal concurrency counting
@@ -270,6 +274,13 @@ workflowBoard:
     - 10x Parallel Management Efficiency
     - OpenSpec Reduces Hallucinations
   taskLabel: Task
+  presetTasks:
+    label: Preset Tasks
+    items:
+      - New CRUD Module
+      - Comprehensive Code Review
+      - API Documentation
+      - Test Case Pack
   headerSummary: Task / Agent
   steps:
     - Ideate

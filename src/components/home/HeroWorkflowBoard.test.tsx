@@ -22,6 +22,21 @@ describe('HeroWorkflowBoard localization', () => {
     expect(html).not.toContain('Mainstream Agents Supported');
   });
 
+
+  it('renders preset tasks as an expanded button group', () => {
+    const html = renderToStaticMarkup(
+      <HeroWorkflowBoard locale="en-US" copy={getHeroWorkflowBoardCopy('en-US')} />,
+    );
+
+    expect(html).toContain('Preset Tasks');
+    expect(html).toContain('New CRUD Module');
+    expect(html).toContain('Comprehensive Code Review');
+    expect(html).toContain('API Documentation');
+    expect(html).toContain('Test Case Pack');
+    expect(html).toContain('stepHeaderButton');
+    expect(html).toContain('presetTaskButton');
+  });
+
   it('renders deterministic SSR markup for the initial board snapshot', () => {
     const copy = getHeroWorkflowBoardCopy('en-US');
     const firstHtml = renderToStaticMarkup(<HeroWorkflowBoard locale="en-US" copy={copy} />);

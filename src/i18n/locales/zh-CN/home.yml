@@ -225,6 +225,10 @@ homepageVideos:
     windowsStoreAriaLabel: 打开 Hagicode Windows 商店页
     steamAriaLabel: 打开 Hagicode Steam 商店页
     ctaGroupLabel: 首页主要操作
+    agentChooser:
+      badge: 选择 Agent
+      title: 选择一个你熟悉的 agent
+      description: 直接跳转到你正在使用的 Agent 对应对比页面。
 pricing:
   title: 版本与定价
   limitTitle: 提案并行计数规则
@@ -270,6 +274,13 @@ workflowBoard:
     - 并行管理效率10X
     - OpenSpec 减少幻觉
   taskLabel: 任务
+  presetTasks:
+    label: 预设任务
+    items:
+      - 新增 CRUD 模块
+      - 全面代码审查
+      - API 文档生成
+      - 测试用例编排
   headerSummary: 任务 / Agent
   steps:
     - 新建主意

@@ -40,6 +40,10 @@ type BoardCopy = {
   titleLines: string[];
   taskLabel: string;
   headerSummary: string;
+  presetTasks: {
+    label: string;
+    items: string[];
+  };
   steps: string[];
   activeStates: string[];
   completedState: string;
@@ -64,8 +68,10 @@ const AGENTS: AgentSpec[] = [
   { name: 'GitHub Copilot', accent: '#a78bfa', glow: 'rgba(167, 139, 250, 0.34)' },
   { name: 'OpenCode', accent: '#fb7185', glow: 'rgba(251, 113, 133, 0.34)' },
   { name: 'Hermes', accent: '#f59e0b', glow: 'rgba(245, 158, 11, 0.34)' },
+  { name: 'Pi', accent: '#c084fc', glow: 'rgba(192, 132, 252, 0.34)' },
   { name: 'Kiro', accent: '#22d3ee', glow: 'rgba(34, 211, 238, 0.34)' },
   { name: 'QoderCLI', accent: '#f97316', glow: 'rgba(249, 115, 22, 0.34)' },
+  { name: 'Reasonix', accent: '#e879f9', glow: 'rgba(232, 121, 249, 0.34)' },
   { name: 'Kimi', accent: '#f472b6', glow: 'rgba(244, 114, 182, 0.34)' },
   { name: 'Gemini CLI', accent: '#38bdf8', glow: 'rgba(56, 189, 248, 0.34)' },
   { name: 'DeepAgents', accent: '#4ade80', glow: 'rgba(74, 222, 128, 0.34)' },
@@ -324,6 +330,7 @@ export default function HeroWorkflowBoard({ locale = 'zh-CN', copy }: HeroWorkfl
     };
   }, [shouldReduceMotion]);
 
+  const presetTaskLayout = copy.presetTasks.items.slice(0, copy.steps.length);
   const metrics = useMemo(() => {
     const elapsedMs = Math.max(snapshot.now - snapshot.startedAt, 1000);
     const inFlightWorkMs = snapshot.lanes.reduce((sum, lane) => {
@@ -366,9 +373,19 @@ export default function HeroWorkflowBoard({ locale = 'zh-CN', copy }: HeroWorkfl
           <span className={styles.summaryHeader}>{copy.headerSummary}</span>
           <div className={styles.stepHeaderGrid}>
             {copy.steps.map((step) => (
-              <span key={step} className={styles.stepHeaderCell}>{step}</span>
+              <button key={step} type="button" className={styles.stepHeaderButton} aria-pressed="false">
+                {step}
+              </button>
             ))}
           </div>
+        </div>
+
+        <div className={styles.presetTaskGroup} aria-label={copy.presetTasks.label}>
+          {presetTaskLayout.map((task, index) => (
+            <button key={task} type="button" className={styles.presetTaskButton} data-preset-task-index={index}>
+              {task}
+            </button>
+          ))}
         </div>
 
         <div className={styles.laneStack}>
@@ -398,7 +415,7 @@ export default function HeroWorkflowBoard({ locale = 'zh-CN', copy }: HeroWorkfl
                       />
                     </span>
                     <span className={styles.agentBadge}>{lane.agent.name}</span>
-                    <span className={styles.taskBadge}>{copy.taskLabel} #{lane.taskId}</span>
+                    <span className={styles.taskBadge}>{presetTaskLayout[(lane.taskId - 1) % presetTaskLayout.length] ?? copy.taskLabel}</span>
                   </div>
                 </div>
 
