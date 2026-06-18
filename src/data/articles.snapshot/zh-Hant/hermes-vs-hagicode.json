@@ -1,0 +1,238 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "hermes-vs-hagicode",
+  "category": "vs-hagicode",
+  "locale": "zh-Hant",
+  "updatedAt": "2026-06-17T00:00:00.000Z",
+  "seo": {
+    "title": "Hermes Vs HagiCode",
+    "description": "了解 Hermes Agent 的主要功能、推理特點和研究背景，并從多線程并行、OpenSpec 提案、AI 提交、Preset Task、游戏化界麵、Agents 管理、Monospecs、Vault 和 OmniRoute 等角度，看 HagiCode 如何讓 Hermes 的深度推理能力落地為日常開發生产力。"
+  },
+  "summary": "Hermes 是 Nous Research 推出的 AI Agent CLI 工具，以\"讓 AI 具備真正的自主代理能力\"為核心理念。Hermes 在推理深度、自主規划和多步执行方麵表現突出，特别适合需要深度思考的複杂编程任務。不過 Hermes 是一個研究驅動的 Agent 工具，而 HagiCode 是一個麵向工程實践的 AI 编程工作台——两者配合，才能把 Hermes 的研究级能力转化為可複用的生产级工作流。",
+  "sections": [
+    {
+      "id": "hermes-vs-hagicode-section-1",
+      "title": "Hermes 的核心能力",
+      "blocks": [
+        {
+          "id": "hermes-vs-hagicode-section-1-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "hermes-vs-hagicode-section-1-item-1",
+              "title": "主要功能",
+              "content": [
+                "Hermes 的功能以\"自主代理\"為核心設計理念：",
+                "自主任務規划：Hermes 不只是根据指令生成代碼，而是能够理解模糊的高级目标，自主拆解為具體的實施步驟。從\"我要一個用户認證繫统\"到具體的文件列表、模块划分和接口定义——Hermes 會自己規划出来。",
+                "多步驟自主执行：規划完成後，Hermes 可以按步驟自動执行——寫代碼、運行测試、修複错誤、继续下一步——全部自主完成。這种\"Agent 替你幹活\"的體驗是 Hermes 最核心的差异化能力。",
+                "深度推理與反思：Hermes 在执行過程中會持续評估自己的产出。如果發現测試失败或逻辑矛盾，它會自主回溯、分析原因并調整方案，而不是简单地把错誤抛回给用户。"
+              ]
+            },
+            {
+              "id": "hermes-vs-hagicode-section-1-item-2",
+              "title": "推理特點",
+              "content": [
+                "Hermes 在推理层麵有几個顯著的特點：",
+                "長链推理能力：Hermes 擅長處理需要多步推理的複杂逻辑問題。不是直接跳到答案，而是展示完整的思考路径——每一步都基于前一步的结論推進，讓推理過程可理解、可驗證。",
+                "自我纠错機制：执行過程中如果出現错誤，Hermes 會主動分析错誤原因、調整方案并重新执行。這种自主纠错能力讓它在處理複杂任務時比普通代碼生成工具更加可靠。",
+                "上下文一致性保持：在長任務执行過程中，Hermes 能够保持對整體目标和中間步驟的一致理解，不會出現\"改着改着就忘了最初要做什麼\"的情况。"
+              ]
+            },
+            {
+              "id": "hermes-vs-hagicode-section-1-item-3",
+              "title": "研究背景與生态",
+              "content": [
+                "Hermes 的生态以 Nous Research 的研究社区為核心：",
+                "研究驅動的發展路線：Hermes 由 Nous Research 開發，這是一家在 AI Agent 研究領域有深厚积累的機构。Hermes 的功能設計反映的是前沿研究成果，而非市场需求驅動的快速迭代。",
+                "開源與社区参與：Hermes 是開源項目，研究者和開發者都可以参與改進。對于關注 AI Agent 技术前沿的開發者来說，Hermes 是一個可以深入理解 Agent 技术原理的窗口。",
+                "ACP 协議支持：Hermes 支持 ACP 协議，可以與其他兼容 ACP 的 AI 工具進行标准化通信。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hermes-vs-hagicode-section-2",
+      "title": "為什麼 Hermes 需要 HagiCode",
+      "blocks": [
+        {
+          "id": "hermes-vs-hagicode-section-2-intro",
+          "type": "rich-text",
+          "content": [
+            "Hermes 的自主代理能力令人印象深刻，但一個纯 CLI Agent 工具在真實項目中麵临几個核心問題：如何管理多個并行的 Agent 任務？如何讓 Agent 的决策過程可追溯和可审查？如何把 Agent 的自主能力约束在安全的工程框架内？"
+          ]
+        },
+        {
+          "id": "hermes-vs-hagicode-section-2-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "hermes-vs-hagicode-section-2-item-1",
+              "title": "多線程并行：讓多個 Hermes Agent 同時為你工作",
+              "content": [
+                "Hermes 在單個會話裡已經能做很多事，但真實開發幾乎從來不是一次只推進一個任務。",
+                "HagiCode 允許你把多個 Hermes 會話並行跑起來，每個會話都有獨立上下文、明確職責和各自的推進節奏。",
+                "這樣 AI 協作就不再是一條串行對話，而是一個真正貼近工程團隊工作方式的並行工作台。"
+              ],
+              "bullets": [
+                "執行緒 A 在完善後端 API 介面；",
+                "執行緒 B 在重構前端元件；",
+                "執行緒 C 在編寫單元測試；",
+                "執行緒 D 在審查程式碼安全漏洞。"
+              ]
+            },
+            {
+              "id": "hermes-vs-hagicode-section-2-item-2",
+              "title": "OpenSpec 提案會話：為 Hermes 的自主能力配備约束框架",
+              "content": [
+                "在日常開發中，最容易出現的混亂不是程式碼寫不出來，而是改了一堆東西之後，忘了為什麼這麼改、改了哪些、以及這些改動之間有什麼關係。",
+                "HagiCode 內建的 OpenSpec 提案工作流從根本上解決了這個問題。每次開發任務都會以「提案」的形式啟動：",
+                "這種「先想清楚再動手」的工作方式，讓 Hermes 的推理能力發揮得更充分，也讓你在幾個月後回頭看程式碼時，依然能快速理解當時的決策背景。"
+              ],
+              "bullets": [
+                "先寫清楚這次要解決什麼問題，為什麼這樣做是合理的；",
+                "在提案框架下與 Hermes 深入討論技術方案，所有對話和決策都記錄在提案上下文裡；",
+                "方案確定後，Hermes 在提案的約束範圍內進行程式碼實現；",
+                "最終提案文件、討論記錄和程式碼變更形成一條完整的追溯鏈。"
+              ]
+            },
+            {
+              "id": "hermes-vs-hagicode-section-2-item-3",
+              "title": "AI 提交：讓 Hermes 的多步驟产出規范化",
+              "content": [
+                "寫完程式碼之後還要寫 commit message，這件事對很多開發者來說是一種精神內耗。寫得太隨意回頭找不到關鍵提交，寫得太正式又覺得浪費時間。",
+                "HagiCode 的 AI 提交功能把這件事整個人交給了 Hermes：它會分析你的程式碼變更、理解改動的意圖和影響範圍，然後自動生成結構清晰、語義準確的 commit message。更關鍵的是，在 AI 提交的過程中，HagiCode 會自動鎖定倉庫，防止並發操作導致的狀態衝突，確保提交安全可靠。",
+                "你把注意力留給創造，commit message 這種流水帳交給 Hermes 就好。"
+              ]
+            },
+            {
+              "id": "hermes-vs-hagicode-section-2-item-4",
+              "title": "Code Server 浏覽器编辑：讓 Hermes 的自主規划對開發者透明",
+              "content": [
+                "Hermes 分析完程式碼、定位到問題檔案和具體行號之後，常見的尷尬發生了：你需要離開 AI 對話視窗，回到自己的 IDE 裡重新找到那個檔案，再手動跳到對應的位置。這個「分析→編輯」的上下文斷點，不僅打斷思路，也讓 AI 的價值只停留在「告訴你問題在哪」，走不到「直接幫你進入修改狀態」。",
+                "HagiCode 內建了基於 code-server 的瀏覽器編輯器，專門解決這個斷點：",
+                "Code Server 整合讓 HagiCode 不是一個「會分析程式碼的前台頁面」，而是一個真正能讓 Hermes 的分析結論直接落地為編輯動作的完整工作站。它把「AI 分析」和「動手修改」這兩個步驟之間的工具切換成本降到了最低。"
+              ],
+              "bullets": [
+                "一鍵從分析進入編輯：Hermes 在提案中定位到需要修改的檔案後，HagiCode 可以直接在工作台內開啟該檔案進入編輯狀態。你不需要切換工具、不需要重新定位檔案——從分析結果到動手修改之間的距離是零。",
+                "本地、容器、遠端全覆蓋：無論你的專案跑在本地機器、Docker 容器還是遠端伺服器上，HagiCode 的 Code Server 都能透過瀏覽器開啟專案目錄並進入編輯。你不再受限於「這個專案只在某個環境裡能編輯」的約束。",
+                "Vault 直連編輯：你註冊到 Vault 中的程式碼參考庫和學習專案，同樣可以透過 Code Server 直接開啟瀏覽和編輯。Hermes 引用到的參考程式碼，你隨時可以跳進去深入檢視或臨摹修改。"
+              ]
+            },
+            {
+              "id": "hermes-vs-hagicode-section-2-item-5",
+              "title": "Preset Task：讓 Hermes 的自主能力模板化",
+              "content": [
+                "Hermes 的能力很強，但每次都要手動打字描述需求確實不夠高效。更關鍵的是，市面上已經湧現了大量社群貢獻的優質 Skills——從程式碼審查模板到全棧 CRUD 生成器，從文件自動生成到測試用例編排，這些經過驗證的實踐方案散落在各處，沒有一個統一的地方來承載和調用。",
+                "HagiCode 的 Preset Task 機制就是為解決這個問題而設計的。它做的不只是「快捷指令」，更是一個可擴展的 Skills 整合平台：",
+                "Preset Task 讓你和 Hermes 之間的協作從「每次都要從頭溝通」升級為「站在社群的肩膀上，一鍵調用成熟流程」。你選好模板，Hermes 負責執行——這是真正的工作流自動化，而且整個過程賞心悅目。"
+              ],
+              "bullets": [
+                "社群 Skills 即裝即用：HagiCode 支援將市面上流行的 Skills 匯入為 Preset Task。你不需要從頭編寫複雜的 prompt，社群已經沉澱了大量高品質的任務模板，直接匯入就能用——新增 CRUD 模組、全面程式碼審查、API 文件生成，都有現成的方案。",
+                "可擴展的 Skills 體系：如果你有獨特的專案需求或團隊規範，HagiCode 允許你在社群 Skills 的基礎上進行定製和組合。你可以調整檢查清單、加入團隊編碼規範、甚至把多個 Skills 串聯成一條完整的開發流水線，打造屬於自己團隊的任務模板庫。",
+                "視覺化操作，告別純文字的枯燥：這是 HagiCode 與其他純命令列工具最根本的區別。選擇 Preset Task 不再需要在終端裡敲命令、拼參數，而是透過精心設計的視覺化介面完成——滑鼠點選選擇任務、下拉選單切換參數、拖曳調整任務順序，每一步都有清晰的視覺回饋和狀態提示。把人機互動從「寫程式碼來調用 AI」變成了「用 UI 來指揮 AI」。"
+              ]
+            },
+            {
+              "id": "hermes-vs-hagicode-section-2-item-6",
+              "title": "游戏化界麵：讓 Hermes 的自主行為可視化、有反馈",
+              "content": [
+                "程式設計本身可以是枯燥的，但也可以是好玩的。HagiCode 的遊戲化界面設計，打破了命令列工具冷冰冰的體驗：",
+                "Hermes 提供智力，HagiCode 提供體驗——兩者配合，才能讓 AI 程式設計從「生產力工具」變成「讓人願意開啟的開發環境」。"
+              ],
+              "bullets": [
+                "視覺回饋清晰：每個會話的執行狀態、進度和結果都透過直覺的介面元素呈現，不需要在終端裡使勁翻找。",
+                "成就與進度視覺化：任務完成、程式碼入庫、提案通過——這些節點都被包裝成可見的里程碑，讓開發過程有節奏感和成就感。",
+                "操作門檻低：滑鼠點選、拖曳操作和快捷鍵結合的設計，讓不習慣純終端工作流的開發者也能輕鬆駕馭 Hermes 的全部能力。"
+              ]
+            },
+            {
+              "id": "hermes-vs-hagicode-section-2-item-7",
+              "title": "Agents 多代理管理：把 Hermes Agent 编入可管理的 Agent 编隊",
+              "content": [
+                "並行會話本身很有價值，但當你同時開著多個會話時，真正的新瓶頸會變成「怎麼調度和管理它們」。",
+                "HagiCode 的 Agents 管理層會把每個 Hermes 工作單元抽象成一個有名字、可調度、狀態可見的 Agent。",
+                "你面對的不再是一堆打開的終端視窗，而是一支可以被統一編排的小型 AI 開發隊伍。"
+              ],
+              "bullets": [
+                "Agent 身份與狀態可視化：誰在執行、誰在等待、誰卡住、誰可歸檔，一眼就能看清。",
+                "任務與 Agent 綁定：提案、審查、重構、測試等任務都可以分配給專屬 Agent。",
+                "Agent 配置獨立可控：不同 Agent 可以掛不同的模型路由、Skills 和上下文範圍，彼此互不干擾。"
+              ]
+            },
+            {
+              "id": "hermes-vs-hagicode-section-2-item-8",
+              "title": "Monospecs 多仓库管理：為 Hermes 的自主規划提供完整的地图",
+              "content": [
+                "實際專案中，程式碼往往不在一個倉庫裡。前端、後端、文件、共享庫分散在不同倉庫，而一個功能變更可能要同時修改好幾個倉庫。對 Hermes 來說，單倉庫模式夠用，但它無法天然理解跨倉庫的關係——你得在每一次對話裡手動告訴它「這個改動還要同步到另外兩個倉庫」，這顯然是低效的。",
+                "HagiCode 的 Monospecs 機制就是為多倉庫場景而設計的結構化方案。它透過 .hagicode/monospecs.yaml 配置檔案宣告專案群中所有子倉庫的位址、名稱和關係，讓 Hermes 在啟動提案時就能自動獲得完整的跨倉庫地圖：",
+                "Monospecs 本質上是在幫 Hermes 消除跨倉庫協作的認知盲區。Hermes 的推理能力再強，也需要一份準確的「地圖」來定位變化範圍——而 Monospecs 就是這張被體系化管理的專案地圖。"
+              ],
+              "bullets": [
+                "自動感知倉庫關係：建立開發提案時，Hermes 可以直接從 Monospecs 配置中讀取子倉庫列表，知道「這次變更的前端程式碼在 repos/frontend、API 定義在 repos/backend、文件在 repos/docs」——你不再需要每次手動列出涉及哪些倉庫。",
+                "跨倉庫變更追蹤：當一個提案同時涉及多個子倉庫時，OpenSpec 提案目錄保留在主倉庫中，子倉庫僅僅承載程式碼修改。這樣 specs 與程式碼分離，子倉庫保持純淨，但整個變更的決策鏈條和討論記錄都集中在一個地方。歸檔時 commit_when_archive 還可以自動提交 specs 到主倉庫，省去手動管理版本控制的麻煩。",
+                "AI 提交精準識庫：在做 AI 提交時，HagiCode 會根據 Monospecs 配置分析你的變更內容，自動建議應該提交到哪個目標倉庫。你不用在終端裡挨個切目錄，HagiCode 幫你接管了「這段程式碼屬於哪個倉庫」的判斷。",
+                "每庫可配 AGENTS.md：每個子倉庫可以有自己專屬的 AGENTS.md，告訴 Hermes 這個倉庫的技術棧、程式碼規範和開發約定。Hermes 在操作不同倉庫時自動讀取對應的指導，行為始終符合你團隊的標準。"
+              ]
+            },
+            {
+              "id": "hermes-vs-hagicode-section-2-item-9",
+              "title": "Vault 跨項目知識库：讓 Hermes 的推理参考更加丰富",
+              "content": [
+                "Hermes 的上下文視窗雖然很大，但每次新會話都是從零開始——上一輪提案中積累的經驗、分析過的專案結構、討論出的最佳實踐，全都會隨著會話結束而「失憶」。這在純對話工具中只能默默接受，但在 HagiCode 裡，Vault 系統改變了遊戲規則。",
+                "Vault 是 HagiCode 提供的跨專案持久化知識儲存層，它的核心設計理念是「一次註冊，處處複用」：",
+                "如果說 Monospecs 是讓 Hermes 看懂「專案在哪裡」，那 Vault 就是讓 Hermes 記住「我們之前學會了什麼」。前者拓展了 Hermes 的空間視野，後者延續了 Hermes 的時間記憶——兩者疊加，Hermes 不再是每一次都要重新打招呼的陌生人，而是一個真正了解你專案全景和知識積累的長期搭檔。"
+              ],
+              "bullets": [
+                "多類型知識容器：Vault 支援四種類型——folder（通用檔案目錄）、coderef（專門用於臨摹開源專案，自動初始化標準化目錄結構）、obsidian（直接接入你已有的 Obsidian 筆記庫）和 system-managed（系統自動管理專案配置和 prompt 模板庫）。你可以把分散在不同地方的程式碼倉庫、學習筆記、設計文件全部註冊到 Vault 中，Hermes 在任何一個提案裡都能自動感知到這些知識資源的存在。",
+                "AI 上下文自動注入：每次啟動新提案時，HagiCode 會自動將你註冊的 Vault 資訊注入到 Hermes 的上下文裡。你不用手動複製程式碼片段、不用重新解釋專案背景——Hermes 拿到提案的同時就已經「知道」你有哪些可用的學習資源和參考專案，可以直接基於既有知識開展工作。",
+                "訪問許可權精細化控制：每個 Vault 可以標記為 reference（唯讀）或 editable（可編輯）。開源專案的參考程式碼庫設定為唯讀，Hermes 可以閱讀和分析但不能修改，防止誤操作。你自己的專案 Vault 設為可編輯，Hermes 就能幫你直接寫程式碼。這種邊界讓 AI 的「自由度」始終可控。",
+                "跨專案知識複用：在分析專案 A 時註冊了一個「設計模式參考」Vault，之後在任何提案中 Hermes 都能訪問它。你不用重複積累知識庫，Vault 讓你的學習成果和參考資源變成了可繼承的長期資產。"
+              ]
+            },
+            {
+              "id": "hermes-vs-hagicode-section-2-item-10",
+              "title": "OmniRoute 模型路由：讓 Hermes 的推理能力有最优的模型支撑",
+              "content": [
+                "團隊應該能保留自己喜歡的工作流，而不是被某一個模型供應商或訂閱路徑反向綁死。",
+                "OmniRoute 把互動層和模型路由層拆開，讓 HagiCode 可以繼續把 Hermes 放在工作流裡，同時在底層靈活切換模型來源。",
+                "這樣你就能同時獲得更好的成本控制、更合適的任務匹配，以及模型供應變化時更低的遷移摩擦。"
+              ],
+              "bullets": [
+                "保留你已經習慣的 CLI 或互動方式，只替換底層模型路由。",
+                "一套路由策略可以被多個 Agent 和多個接入 HagiCode 的 AI 工具共享。",
+                "針對快速編碼、深度審查、架構規劃等不同任務配置不同模型路線。",
+                "在路由層一次調整成本與能力配置，而不是逐個工作流重複折騰。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hermes-vs-hagicode-section-3",
+      "title": "总结",
+      "blocks": [
+        {
+          "id": "hermes-vs-hagicode-section-3-intro",
+          "type": "rich-text",
+          "content": [
+            "Hermes 是一個研究级 AI Agent CLI 工具，以深度自主代理能力為核心优勢；HagiCode 是一個麵向工程實践的 AI 编程工作台。它們的關繫是互补：",
+            "如果你已经在用 Hermes，不妨試試把它接入 HagiCode——你會發現 Hermes 的自主能力不再只是\"有意思的研究 Demo\"，而是一個被完整工程框架保护的生产级 AI 编程搭档。"
+          ]
+        },
+        {
+          "id": "hermes-vs-hagicode-section-3-bullets",
+          "type": "bullet-list",
+          "items": [
+            "Hermes 提供自主：自主規划、多步执行、深度推理、自我纠错；",
+            "HagiCode 提供效率：多線程並行、Agents 編隊管理、OpenSpec 提案、AI 提交、Code Server 編輯器、Preset Task；",
+            "HagiCode 拓展邊界：Monospecs 讓 Hermes 理解跨倉庫專案關係，Vault 讓 Hermes 擁有跨會話長期記憶，OmniRoute 讓 Hermes 突破模型訂閱的鎖死；",
+            "兩者結合提供體驗：可追溯的決策鏈、自動化的日常事務、讓人愉悅的操作介面，以及一個真正了解你專案全景、可自由配置模型來源的長期 AI 搭檔。"
+          ]
+        }
+      ]
+    }
+  ]
+}

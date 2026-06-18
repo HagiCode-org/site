@@ -1,0 +1,18 @@
+---
+import StructuredArticlePage from '@/components/structured-article/StructuredArticlePage.astro';
+import { getStructuredArticleEntriesByCategory } from '@/lib/structured-articles.mjs';
+import { getNonDefaultSiteLocales } from '@/i18n/locale-metadata';
+
+export function getStaticPaths() {
+  const articles = getStructuredArticleEntriesByCategory('vs-hagicode');
+  const locales = getNonDefaultSiteLocales();
+
+  return articles.flatMap((article) =>
+    locales.map((locale) => ({ params: { locale, slug: article.slug } })),
+  );
+}
+
+const { locale, slug } = Astro.params as { locale: string; slug: string };
+---
+
+<StructuredArticlePage slug={slug} locale={locale as never} />

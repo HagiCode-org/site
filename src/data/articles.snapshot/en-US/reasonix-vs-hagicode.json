@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "reasonix-vs-hagicode",
+  "category": "vs-hagicode",
+  "locale": "en-US",
+  "updatedAt": "2026-06-18T00:00:00.000Z",
+  "seo": {
+    "title": "Reasonix Vs HagiCode",
+    "description": "Understand Reasonix CLI's reasoning controls, budget guardrails, and transcript-friendly workflow, and see how HagiCode turns Reasonix into a production-grade AI programming platform through multi-threaded parallelism, OpenSpec proposals, AI commits, Preset Tasks, gamified UI, Agents management, Monospecs, Vault, and OmniRoute."
+  },
+  "summary": "Reasonix CLI is a reasoning-first AI coding interface built for developers who want to tune effort, budget, transcript capture, and execution aggressiveness directly from the command line. With ACP-based tool orchestration and configurable runtime behavior, it is well-suited for deliberate, inspectable engineering work. However, Reasonix remains a terminal tool, while HagiCode adds the orchestration, workflow memory, and multi-agent surface needed for daily production use.",
+  "sections": [
+    {
+      "id": "reasonix-vs-hagicode-section-1",
+      "title": "Reasonix CLI's Core Strengths",
+      "blocks": [
+        {
+          "id": "reasonix-vs-hagicode-section-1-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "reasonix-vs-hagicode-section-1-item-1",
+              "title": "Key Features",
+              "content": [
+                "Reasonix CLI's strengths revolve around controllable reasoning and inspectable execution:",
+                "Reasoning effort control: Reasonix exposes an effort setting so you can decide how much reasoning depth a task deserves. That is valuable when you want to distinguish between quick implementation work and slower, more deliberate technical analysis.",
+                "Budget and aggressiveness guardrails: Reasonix includes controls such as budgetUsd and enableYolo, letting you balance cost awareness against execution boldness depending on how exploratory or constrained the task should be.",
+                "Transcript-friendly workflow: Reasonix can write transcript output to a designated path, making it easier to preserve, audit, and review how a coding turn unfolded after the fact."
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-1-item-2",
+              "title": "Technical Architecture",
+              "content": [
+                "Reasonix has several notable architectural characteristics:",
+                "ACP-backed transport: In HagiCode Core, Reasonix is integrated through a shared ACP-based runtime, giving it streaming output, tool calls, and system message support inside a standardized agent transport model.",
+                "Session rebinding across requests: Reasonix can bind follow-up turns back to an existing provider session when the routing context matches, preserving continuity for longer-running tasks instead of forcing every request to start cold.",
+                "Runtime tuning surface: startupTimeoutMs and extra arguments provide a practical tuning layer for teams that need to adapt the provider to different environments, execution speeds, or wrapper conventions."
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-1-item-3",
+              "title": "Workflow and Integration Model",
+              "content": [
+                "Reasonix's ecosystem value comes from disciplined CLI operation rather than flashy packaging:",
+                "Reasoning-first workflow fit: Reasonix is well-suited to teams that care about deliberate planning, reviewable decisions, and explicit operating constraints instead of maximizing raw speed at all times.",
+                "Transcript and audit support: because transcript capture is part of the runtime surface, Reasonix fits workflows where explainability and later review matter as much as the immediate answer.",
+                "Model and route flexibility: Reasonix keeps model choice configurable rather than locking the workflow to one provider path, which makes it easier to adapt when cost, quality, or policy requirements change."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reasonix-vs-hagicode-section-2",
+      "title": "Why Reasonix CLI Needs HagiCode",
+      "blocks": [
+        {
+          "id": "reasonix-vs-hagicode-section-2-intro",
+          "type": "rich-text",
+          "content": [
+            "Reasonix is built for thoughtful, inspectable CLI work, but the moment work spans several tasks, repositories, or long-lived discussions, the terminal alone stops being enough.",
+            "HagiCode adds the coordination and memory layers that turn controlled reasoning into a sustainable development workflow instead of a collection of isolated command runs."
+          ]
+        },
+        {
+          "id": "reasonix-vs-hagicode-section-2-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-1",
+              "title": "Multi-threaded parallelism: Run several Reasonix reasoning tracks side by side",
+              "content": [
+                "Reasonix can do a lot inside one session, but real delivery rarely happens one task at a time.",
+                "HagiCode lets you run multiple Reasonix sessions in parallel, each with isolated context, a clear responsibility boundary, and independent progress.",
+                "That turns Reasonix from a deliberate single-lane CLI into a coordinated engineering surface where several reasoning threads can move forward together."
+              ],
+              "bullets": [
+                "Thread A is refining backend API endpoints;",
+                "Thread B is refactoring frontend components;",
+                "Thread C is writing unit tests;",
+                "Thread D is auditing code for security vulnerabilities."
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-2",
+              "title": "OpenSpec proposal sessions: Bind effort and budget choices to documented proposals",
+              "content": [
+                "In daily development, the most common chaos isn't being unable to write code — it's making a bunch of changes and then forgetting why you made them, what you changed, and how those changes relate to each other.",
+                "HagiCode's built-in OpenSpec proposal workflow fundamentally solves this problem. Every development task launches as a proposal:",
+                "This structure gives Reasonix a place to record not only implementation decisions but also why a certain effort level, budget ceiling, or execution style was selected for the task."
+              ],
+              "bullets": [
+                "First, write down what problem this task solves and why this approach makes sense;",
+                "Discuss the technical approach in depth with Reasonix within the proposal framework — all conversations and decisions are recorded in the proposal context;",
+                "Once the approach is confirmed, Reasonix implements the code within the proposal's constraints;",
+                "The final proposal document, discussion records, and code changes form a complete trace chain."
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-3",
+              "title": "AI commits: Turn Reasonix output into clean commit history",
+              "content": [
+                "Writing commit messages after finishing code is a form of mental friction for many developers. Too casual and you can't find key commits later; too formal and it feels like wasted time.",
+                "HagiCode's AI commit feature hands this entirely to Reasonix: it analyzes your code changes, understands the intent and scope of impact, then automatically generates clearly structured, semantically accurate commit messages. More importantly, during the AI commit process, HagiCode automatically locks the repository to prevent state conflicts from concurrent operations, ensuring safe and reliable commits.",
+                "Save your attention for creation — let Reasonix handle the commit paperwork."
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-4",
+              "title": "Code Server browser editor: Go from reasoning transcript to exact file edits",
+              "content": [
+                "After Reasonix analyzes code, identifies the problematic file, and pinpoints the exact line number, the familiar awkward moment occurs: you need to leave the AI conversation window, return to your IDE, find the file again, and manually jump to the right location. This analysis-to-editing context break not only interrupts your flow but keeps AI's value at 'telling you where the problem is' rather than 'helping you directly enter editing mode.'",
+                "HagiCode's built-in Code Server-based browser editor is designed specifically to solve this break:",
+                "The Code Server integration makes HagiCode not just a frontend page that can analyze code, but a complete workstation where Reasonix's analysis can directly land as editing actions. It minimizes the tool-switching cost between AI analysis and hands-on modification."
+              ],
+              "bullets": [
+                "One-click from analysis to editing: once Reasonix identifies the file needing changes in a proposal, HagiCode can directly open that file in the workbench for editing.",
+                "Local, container, remote — full coverage: whether your project runs locally, in containers, or on remote machines, HagiCode's editor surface keeps the reasoning flow close to the actual code.",
+                "Vault direct editing: supporting references and archived project knowledge can be opened directly when Reasonix points to them during review or planning work."
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-5",
+              "title": "Preset Task: Template recurring Reasonix review and planning workflows",
+              "content": [
+                "Reasonix is especially useful for recurring review, planning, and audit-style tasks, but reassembling the same effort settings, guardrails, and instructions by hand each time is wasteful.",
+                "HagiCode's Preset Task mechanism turns those repeated workflows into reusable templates. It is more than shortcut commands — it is an extensible Skills integration platform:",
+                "Preset Task upgrades your collaboration with Reasonix from 're-describe the process every time' to 'launch the prepared process and focus on the outcome.'"
+              ],
+              "bullets": [
+                "Community Skills ready to use: start from existing review, documentation, refactor, and delivery templates instead of designing every workflow from scratch.",
+                "Extensible Skills system: add team-specific checklists, audit expectations, and reasoning defaults on top of shared templates.",
+                "Visual operations, not terminal repetition: choose the workflow, tune parameters, and launch it from a purpose-built interface instead of encoding the whole process into repeated CLI muscle memory."
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-6",
+              "title": "Gamified interface: Make effort, budget, and progress legible",
+              "content": [
+                "Programming itself can be tedious, but it can also be fun. HagiCode's gamified interface design breaks away from the cold experience of command-line tools:",
+                "Reasonix provides disciplined reasoning, HagiCode provides experience — together, they turn a strict terminal workflow into a workspace where progress, milestones, and operating state stay visible."
+              ],
+              "bullets": [
+                "Clear visual feedback: see what is running, waiting, blocked, or completed without combing through raw terminal text.",
+                "Achievement and progress visualization: proposals, commits, and delivery checkpoints become visible milestones instead of hidden background state.",
+                "Lower cognitive load: effort settings and long-running reasoning work feel more manageable when the surrounding workspace helps you orient yourself."
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-7",
+              "title": "Agents management: Coordinate multiple Reasonix workers as an Agent fleet",
+              "content": [
+                "Parallel sessions are useful, but once you have several of them running, coordination becomes the next bottleneck.",
+                "HagiCode's Agents management layer turns each Reasonix worker into a named, schedulable Agent with visible status, assigned scope, and independent configuration.",
+                "You move from 'a lot of terminals are open' to 'a small AI team is being coordinated in one place.'"
+              ],
+              "bullets": [
+                "Agent identity and status visualization: see which Agent is running, waiting, blocked, or ready for archive at a glance.",
+                "Task-to-Agent binding: proposals, reviews, refactors, and test work can each be assigned to a dedicated Agent.",
+                "Independent Agent configuration: different Agents can use different effort levels, model routes, Skills, and context scopes without interfering with each other."
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-8",
+              "title": "Monospecs multi-repo management: Let Reasonix reason across repo boundaries",
+              "content": [
+                "In real projects, code rarely lives in a single repository. Frontend, backend, documentation, shared libraries are spread across different repos, and a single feature change may need to touch several repos simultaneously. For Reasonix, single-repo mode works, but it has no native understanding of cross-repo relationships — you have to manually tell it in every conversation that 'this change also needs to sync to two other repos,' which is clearly inefficient.",
+                "HagiCode's Monospecs mechanism is the structured solution designed for multi-repo scenarios. Through the .hagicode/monospecs.yaml configuration file, it declares all sub-repo addresses, names, and relationships in the project group, giving Reasonix an automatic cross-repo map when launching proposals:",
+                "Monospecs makes Reasonix more useful precisely because careful reasoning gets far more valuable once it can see the whole change surface instead of just one repository at a time."
+              ],
+              "bullets": [
+                "Automatic repo relationship awareness: Reasonix can read the repo graph directly from Monospecs instead of depending on repeated manual briefings.",
+                "Cross-repo change tracking: specs remain centralized while implementation stays in the right repos, preserving a clean decision chain.",
+                "AI commit smart repo targeting: HagiCode suggests where each change should be committed based on the repo map.",
+                "Per-repo AGENTS.md: Reasonix automatically picks up repo-specific guidance as it moves across different codebases."
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-9",
+              "title": "Vault cross-project knowledge base: Persist the context Reasonix should not relearn",
+              "content": [
+                "Reasonix can reason deeply, but it still should not have to rediscover your project history, references, and prior conclusions every time a new task starts.",
+                "Vault is HagiCode's cross-project persistent knowledge storage layer. Its core design philosophy is 'register once, reuse everywhere':",
+                "If Monospecs tells Reasonix where things are, Vault tells Reasonix what your team already knows. That is what turns deliberate reasoning into cumulative engineering leverage."
+              ],
+              "bullets": [
+                "Multi-type knowledge containers: register folders, code references, Obsidian notes, and system-managed assets in one shared memory layer.",
+                "Automatic AI context injection: new proposals start with the right background material already available to Reasonix.",
+                "Fine-grained access control: separate read-only references from editable working spaces so the AI can inspect broadly while editing safely.",
+                "Cross-project knowledge reuse: conclusions and references captured once can support every later proposal instead of being reassembled repeatedly."
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-10",
+              "title": "OmniRoute model routing: Keep Reasonix workflow stable while model routes change",
+              "content": [
+                "Teams should be able to preserve the reasoning workflow they trust without binding that workflow permanently to one provider path or subscription choice.",
+                "OmniRoute separates the interaction layer from the model-routing layer, so HagiCode can keep Reasonix in the workflow while switching model sources underneath.",
+                "That gives you better cost control, better task-to-model fit, and less workflow churn when model pricing or availability changes."
+              ],
+              "bullets": [
+                "Keep the CLI or interaction style you already prefer while changing only the model route underneath.",
+                "Share one routing strategy across multiple Agents and multiple AI tools connected to HagiCode.",
+                "Tune different model routes for different workloads, such as quick implementation, deep review, or architecture planning.",
+                "Adjust cost and capability once at the routing layer instead of reworking each individual workflow."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reasonix-vs-hagicode-section-3",
+      "title": "Summary",
+      "blocks": [
+        {
+          "id": "reasonix-vs-hagicode-section-3-intro",
+          "type": "rich-text",
+          "content": [
+            "Reasonix CLI is a reasoning-first AI coding interface, and HagiCode is a complete AI programming workbench. Their relationship is complementary:",
+            "If you're already using Reasonix, try connecting it to HagiCode — you'll find Reasonix is no longer just a disciplined terminal reasoning loop, but a full-workflow AI partner inside a structured development environment."
+          ]
+        },
+        {
+          "id": "reasonix-vs-hagicode-section-3-bullets",
+          "type": "bullet-list",
+          "items": [
+            "Reasonix provides discipline: reasoning effort control, budget guardrails, transcript-friendly execution, and tool-capable CLI workflows;",
+            "HagiCode provides efficiency: multi-threaded parallelism, Agents fleet management, OpenSpec proposals, AI commits, Code Server editor, Preset Tasks;",
+            "HagiCode expands boundaries: Monospecs lets Reasonix understand cross-repo project relationships, Vault gives Reasonix cross-session long-term memory, OmniRoute keeps model routing flexible underneath a stable workflow;",
+            "Together they provide an experience: traceable decision chains, automated daily tasks, a genuinely enjoyable interface, and a long-term AI partner that truly understands your project landscape and can be freely configured with any model source."
+          ]
+        }
+      ]
+    }
+  ]
+}

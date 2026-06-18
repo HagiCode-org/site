@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "pi-vs-hagicode",
+  "category": "vs-hagicode",
+  "locale": "fr-FR",
+  "updatedAt": "2026-06-18T00:00:00.000Z",
+  "seo": {
+    "title": "Pi Vs HagiCode",
+    "description": "Comprenez le workflow provider-first de Pi CLI, ses contrôles de session et sa gouvernance d'outils, et voyez comment HagiCode transforme Pi en un atelier de programmation IA de grade production via le multithreading, les propositions OpenSpec, les commits IA, les Preset Tasks, l'UI gamifiée, la gestion des Agents, les Monospecs, le Vault et OmniRoute."
+  },
+  "summary": "Pi CLI est une interface de codage IA flexible bâtie pour l'accès au modèle agnostique au provider. Avec des modes de pensée configurables, des contrôles de persistance de session et un gating d'outil explicite, il donne aux développeurs un contrôle fin sur la façon dont un assistant de codage IA se comporte. Cependant, Pi CLI est encore fondamentalement un point d'entrée terminal, tandis que HagiCode est un atelier de programmation IA complet. Ensemble, ils transforment Pi d'une CLI configurable en un environnement de développement quotidien complet.",
+  "sections": [
+    {
+      "id": "pi-vs-hagicode-section-1",
+      "title": "Les forces principales de Pi CLI",
+      "blocks": [
+        {
+          "id": "pi-vs-hagicode-section-1-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "pi-vs-hagicode-section-1-item-1",
+              "title": "Fonctions clés",
+              "content": [
+                "Les capacités de Pi CLI se focalisent sur l'exécution IA contrôlable plutôt qu'une expérience mono-provider câblée en dur :",
+                "Accès au modèle provider-first : Pi peut être pointé vers différents backends de modèle au lieu de forcer un seul chemin fournisseur fixe. Cela le rend attrayant pour les équipes qui veulent préserver un workflow CLI tout en changeant le provider ou la stratégie de modèle sous-jacente au fil du temps.",
+                "Pensée et comportement de session configurables : Pi expose des commutateurs comme le mode de pensée, le répertoire de session et l'exécution sans session. Vous pouvez choisir de préserver l'état de conversation à travers les exécutions ou de garder chaque tour complètement sans état selon la tâche.",
+                "Gouvernance d'outils explicite : Pi vous laisse décider combien d'accès aux outils un tour IA reçoit. Les outils intégrés et l'utilisation plus large des outils peuvent être désactivés quand vous voulez des frontières de sécurité plus serrées ou un comportement d'exécution plus prévisible."
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-1-item-2",
+              "title": "Architecture technique",
+              "content": [
+                "Pi a plusieurs caractéristiques architecturales notables :",
+                "Runtime CLI structuré : dans HagiCode Core, Pi est intégré comme un adaptateur mince sur le runtime libs partagé, préservant un contrat orienté produit stable tout en déléguant la gestion du processus CLI sous-jacent à une couche de provider commune.",
+                "Exécution sensible à la session : Pi peut soit réutiliser l'état de session persisté soit tourner en mode complètement sans état. Cela le rend adapté à la fois aux threads de développement de longue durée et aux tâches one-shot propres où l'état reporté serait indésirable.",
+                "Réponses en streaming et capables d'outils : Pi prend en charge la sortie en streaming, les appels d'outils et les messages système. Ce n'est pas juste un wrapper de prompt fire-and-forget ; il peut participer à des workflows de programmation IA plus riches qui nécessitent une exécution interactive."
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-1-item-3",
+              "title": "Écosystème de provider et de workflow",
+              "content": [
+                "La valeur écosystémique de Pi vient de la flexibilité et de la composabilité :",
+                "Conception amicale au routage de provider : Pi s'intègre naturellement dans les environnements où le routage de modèle est géré comme une couche indépendante. Particulièrement utile quand les équipes veulent garder une surface d'interaction tout en expérimentant différents providers de modèle en amont.",
+                "Support de sélection de modèle secondaire : dans HagiCode Core, Pi garde le runtime de provider dans la profession primaire tandis que la sélection de modèle reste configurable dans le slot de modèle. Cette séparation reflète un workflow où le comportement CLI et le choix de modèle sont intentionnellement découplés.",
+                "Monitoring et découverte unifiés : Pi est présenté comme un CLI surveillé de première classe avec son propre chemin de découverte d'exécutable et ses contrôles de santé, le rendant plus facile à opérer comme partie d'une workstation multi-agent plus large au lieu d'une commande terminal isolée."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pi-vs-hagicode-section-2",
+      "title": "Pourquoi Pi a besoin de HagiCode",
+      "blocks": [
+        {
+          "id": "pi-vs-hagicode-section-2-intro",
+          "type": "rich-text",
+          "content": [
+            "Pi vous donne un contrôle exceptionnellement fin sur le routage de provider, le mode de pensée, la réutilisation de session et l'exposition d'outils, mais un workflow purement terminal laisse encore la gestion de projet, l'orchestration et la persistance des connaissances à long terme à l'utilisateur.",
+            "Dans le travail de livraison réel, ces couches manquantes comptent plus qu'une seule commande intelligente. HagiCode fournit la structure de workflow que Pi lui-même n'essaie pas de posséder."
+          ]
+        },
+        {
+          "id": "pi-vs-hagicode-section-2-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "pi-vs-hagicode-section-2-item-1",
+              "title": "Multithreading : laisser Pi faire tourner plusieurs voies de codage contrôlées à la fois",
+              "content": [
+                "Pi peut faire beaucoup au sein d'une session, mais la vraie livraison arrive rarement une tâche à la fois.",
+                "HagiCode vous permet de faire tourner plusieurs sessions Pi en parallèle, chacune avec un contexte isolé, une frontière de responsabilité claire et une progression indépendante.",
+                "Cela transforme Pi d'une CLI à thread unique configurable en un atelier d'ingénierie parallèle qui correspond à la façon dont les équipes construisent réellement des logiciels."
+              ],
+              "bullets": [
+                "Le thread A peaufine les endpoints API backend;",
+                "Le thread B refactore des composants frontend;",
+                "Le thread C écrit des tests unitaires;",
+                "Le thread D audite le code pour les vulnérabilités de sécurité."
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-2",
+              "title": "Sessions de proposition OpenSpec : lier les choix de provider et de modèle de Pi à des décisions traçables",
+              "content": [
+                "Dans le développement quotidien, le chaos le plus courant n'est pas l'incapacité d'écrire du code — c'est de faire un tas de changements puis d'oublier pourquoi vous les avez faits, ce que vous avez changé et comment ces changements sont reliés.",
+                "Le workflow de proposition OpenSpec intégré à HagiCode résout fondamentalement ce problème. Chaque tâche de développement démarre comme une proposition :",
+                "Cette approche 'réfléchir d'abord puis agir' donne au modèle de routage flexible de Pi une place pour être documenté. Des mois plus tard, vous pouvez voir non seulement ce qui a changé, mais aussi pourquoi un certain provider, une route de modèle ou une frontière d'outil a été choisi."
+              ],
+              "bullets": [
+                "D'abord, notez quel problème cette tâche résout et pourquoi cette approche a du sens;",
+                "Discutez en profondeur de l'approche technique avec Pi dans le cadre de la proposition — toutes les conversations et décisions sont enregistrées dans le contexte de la proposition;",
+                "Une fois l'approche confirmée, Pi implémente le code dans les contraintes de la proposition;",
+                "Le document de proposition final, les enregistrements de discussion et les changements de code forment une chaîne de traçabilité complète."
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-3",
+              "title": "Commits IA : transformer la sortie de Pi en un historique de commit propre",
+              "content": [
+                "Écrire des messages de commit après avoir fini le code est une forme de friction mentale pour beaucoup de développeurs. Trop décontracté et vous ne retrouvez pas les commits clés plus tard ; trop formel et cela ressemble à du temps perdu.",
+                "La fonctionnalité de commit IA de HagiCode confie cela entièrement à Pi : elle analyse vos changements de code, comprend l'intention et la portée de l'impact, puis génère automatiquement des messages de commit clairement structurés, sémantiquement exacts. Plus important encore, durant le commit IA, HagiCode verrouille automatiquement le dépôt pour empêcher les conflits d'état des opérations concurrentes, garantissant des commits sûrs et fiables.",
+                "Économisez votre attention pour la création — laissez Pi gérer la paperasse du commit."
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-4",
+              "title": "Éditeur de navigateur Code Server : sauter de l'analyse Pi directement à l'édition",
+              "content": [
+                "Après que Pi analyse le code, identifie le fichier problématique et localise le numéro de ligne exact, le moment gênant familier se produit : vous devez quitter la fenêtre de conversation IA, retourner dans votre IDE, retrouver le fichier et sauter manuellement au bon endroit. Cette rupture de contexte de l'analyse à l'édition n'interrompt pas seulement votre flux mais maintient la valeur de l'IA à 'vous dire où est le problème' plutôt que 'vous aider à entrer directement en mode édition'.",
+                "L'éditeur de navigateur basé sur Code Server intégré à HagiCode est conçu spécifiquement pour résoudre cette rupture :",
+                "L'intégration Code Server fait de HagiCode non pas seulement une page frontend qui peut analyser le code, mais une workstation complète où l'analyse de Pi peut atterrir directement comme actions d'édition. Elle minimise le coût de changement d'outil entre l'analyse IA et la modification hands-on."
+              ],
+              "bullets": [
+                "En un clic de l'analyse à l'édition : une fois que Pi identifie dans une proposition le fichier nécessitant des changements, HagiCode peut ouvrir directement ce fichier dans l'atelier pour l'éditer. Vous n'avez pas besoin de changer d'outil ni de retrouver le fichier.",
+                "Local, conteneur, distant — couverture totale : que votre projet tourne localement, dans un conteneur Docker ou sur un serveur distant, le Code Server de HagiCode peut ouvrir le répertoire du projet via le navigateur pour l'édition.",
+                "Édition directe du Vault : les bibliothèques de référence de code et les projets d'apprentissage enregistrés dans votre Vault peuvent aussi être ouverts et parcourus directement via le Code Server quand Pi vous pointe vers des exemples pertinents."
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-5",
+              "title": "Preset Task : empaqueter les workflows Pi en plans de commande réutilisables",
+              "content": [
+                "La flexibilité de Pi est puissante, mais répéter les mêmes choix de provider, frontières d'outils et cadrages de tâche encore et encore est gaspilleur.",
+                "Le mécanisme Preset Task de HagiCode transforme ces patterns répétés en modèles réutilisables. C'est plus que des commandes raccourcies — c'est une plateforme d'intégration Skills extensible :",
+                "Preset Task met à niveau votre collaboration avec Pi de 'reconstruire le workflow à chaque fois' à 'choisir le workflow préparé et l'exécuter'. C'est là que la configurabilité devient un véritable levier opérationnel."
+              ],
+              "bullets": [
+                "Compétences communautaires prêtes à l'emploi : importez des workflows de revue, refactor, CRUD et documentation éprouvés au lieu de les reconstruire à partir de zéro à chaque fois.",
+                "Système de Skills extensible : adaptez les modèles partagés à vos conventions d'équipe, aux valeurs par défaut de routage et aux standards de codage.",
+                "Opérations visuelles, pas de comptabilité terminal : choisissez des tâches, changez des paramètres et réordonnez l'exécution dans une interface dédiée au lieu d'encoder tout dans des habitudes CLI répétées."
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-6",
+              "title": "Interface gamifiée : rendre les boutons de provider de Pi visibles et accessibles",
+              "content": [
+                "La programmation elle-même peut être tedious, mais elle peut aussi être amusante. La conception d'interface gamifiée de HagiCode rompt avec l'expérience froide des outils en ligne de commande :",
+                "Pi fournit le contrôle, HagiCode fournit l'expérience — ensemble, ils transforment une CLI hautement configurable en un espace de travail que les gens peuvent réellement apprécier utiliser quotidiennement."
+              ],
+              "bullets": [
+                "Retour visuel clair : l'état de session, la progression et les résultats sont visibles sans fouiller dans la sortie terminal.",
+                "Visualisation des accomplissements et de la progression : les commits, les jalons de proposition et les points de contrôle de livraison deviennent des marqueurs de rythme visibles au lieu d'un état d'arrière-plan invisible.",
+                "Moins de friction d'utilisation : les développeurs qui ne sont pas des puristes du terminal peuvent aussi bénéficier du modèle de contrôle de Pi à travers une couche d'interface bien plus amicale."
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-7",
+              "title": "Gestion des Agents : transformer plusieurs sessions Pi en une flotte d'Agents gérable",
+              "content": [
+                "Les sessions parallèles sont utiles, mais une fois que vous en avez plusieurs qui tournent, la coordination devient le prochain goulot d'étranglement.",
+                "La couche de gestion des Agents de HagiCode transforme chaque worker Pi en un Agent nommé, planifiable, avec un statut visible, une portée assignée et une configuration indépendante.",
+                "Vous passez de 'beaucoup de terminaux sont ouverts' à 'une petite équipe IA est coordonnée en un seul endroit'."
+              ],
+              "bullets": [
+                "Visualisation de l'identité et du statut de l'Agent : voyez d'un coup d'œil quel Agent est en cours d'exécution, en attente, bloqué ou prêt à être archivé.",
+                "Liaison tâche-à-Agent : propositions, revues, refactors et travaux de test peuvent chacun être assignés à un Agent dédié.",
+                "Configuration d'Agent indépendante : différents Agents peuvent utiliser différentes routes de modèle, Skills, règles d'exposition d'outils et portées de contexte sans s'interférer."
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-8",
+              "title": "Gestion multi-repo Monospecs : donner à Pi la carte de repo dont il a besoin",
+              "content": [
+                "Dans les projets réels, le code vit rarement dans un seul dépôt. Frontend, backend, documentation, bibliothèques partagées sont dispersés à travers différents repos, et un seul changement de fonctionnalité peut nécessiter de toucher plusieurs repos simultanément. Pour Pi, le mode mono-repo fonctionne, mais il n'a pas de compréhension native des relations cross-repo — vous devez lui dire manuellement dans chaque conversation que 'ce changement doit aussi se synchroniser à deux autres repos', ce qui est clairement inefficace.",
+                "Le mécanisme Monospecs de HagiCode est la solution structurée conçue pour les scénarios multi-repo. Via le fichier de configuration .hagicode/monospecs.yaml, il déclare toutes les adresses, noms et relations des sous-repos dans le groupe de projets, donnant à Pi une carte cross-repo automatique au lancement des propositions :",
+                "Monospecs élimine essentiellement les angles morts cognitifs de Pi dans la collaboration cross-repo. La flexibilité de routage de Pi compte davantage une fois qu'il peut aussi voir la surface de changement complète."
+              ],
+              "bullets": [
+                "Prise de conscience automatique des relations de repo : lors de la création d'une proposition de développement, Pi peut lire directement la liste des sous-repos depuis la configuration Monospecs au lieu de s'appuyer sur une explication manuelle répétée.",
+                "Suivi des changements cross-repo : les specs restent centralisées tandis que les changements de code restent dans les repos pertinents, gardant l'historique de décision et l'implémentation proprement séparés.",
+                "Ciblage intelligent de repo lors des commits IA : HagiCode analyse vos changements par rapport à la configuration Monospecs et suggère où chaque commit appartient.",
+                "AGENTS.md par repo : Pi reprend automatiquement les conventions spécifiques au repo en opérant à travers différentes codebases."
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-9",
+              "title": "Base de connaissance cross-projet Vault : faire se souvenir Pi de plus qu'un tour terminal",
+              "content": [
+                "Les contrôles de session de Pi sont utiles, mais même les sessions persistantes ne sont pas la même chose qu'une couche de mémoire cross-projet durable. Sans cela, un contexte important doit encore être réintroduit trop souvent.",
+                "Vault est la couche de stockage de connaissance persistante cross-projet de HagiCode. Sa philosophie de conception fondamentale est 'enregistrer une fois, réutiliser partout' :",
+                "Si Monospecs laisse Pi comprendre où sont les projets, Vault laisse Pi se souvenir de ce que vous avez déjà accumulé. Cela transforme une CLI configurable en un partenaire d'ingénierie à plus long terme."
+              ],
+              "bullets": [
+                "Conteneurs de connaissance multi-types : enregistrez des dossiers, des projets de référence de code, des notes Obsidian et des actifs de prompt gérés par le système en un seul endroit.",
+                "Injection automatique de contexte IA : les nouvelles propositions démarrent avec le bon matériel de référence déjà disponible pour Pi.",
+                "Contrôle d'accès fin : séparez les références en lecture seule des espaces de projet éditables pour que Pi puisse apprendre largement sans modifier la mauvaise chose.",
+                "Réutilisation des connaissances cross-projet : les patterns capturés une fois peuvent soutenir chaque proposition ultérieure au lieu d'être reconstruits à partir de zéro."
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-10",
+              "title": "Routage de modèle OmniRoute : rendre la conception provider-first de Pi utilisable à grande échelle",
+              "content": [
+                "Les équipes devraient pouvoir conserver le workflow qu'elles aiment sans verrouiller l'accès au modèle à un seul fournisseur ou un seul chemin d'abonnement.",
+                "OmniRoute sépare la couche d'interaction de la couche de routage de modèle, de sorte que HagiCode peut garder Pi dans le workflow tout en changeant les sources de modèle en dessous.",
+                "Cela vous donne un meilleur contrôle des coûts, un meilleur appariement tâche-à-modèle et moins de remous de workflow quand les prix ou la disponibilité des modèles changent."
+              ],
+              "bullets": [
+                "Conservez la CLI ou le style d'interaction que vous préférez déjà tout en ne changeant que la route de modèle en dessous.",
+                "Partagez une stratégie de routage entre plusieurs Agents et plusieurs outils IA connectés à HagiCode.",
+                "Ajustez différentes routes de modèle pour différentes charges de travail, comme le codage rapide, la revue approfondie ou la planification d'architecture.",
+                "Ajustez les coûts et capacités une fois sur la couche de routage au lieu de retravailler chaque workflow individuel."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pi-vs-hagicode-section-3",
+      "title": "Summary",
+      "blocks": [
+        {
+          "id": "pi-vs-hagicode-section-3-intro",
+          "type": "rich-text",
+          "content": [
+            "Pi CLI est une interface de codage IA flexible et sensible au provider, et HagiCode est un atelier de programmation IA complet. Leur relation est complémentaire :",
+            "Si vous utilisez déjà Pi, essayez de le connecter à HagiCode — vous découvrirez que Pi n'est plus seulement une commande terminal configurable, mais un partenaire IA à workflow complet opérant au sein d'un environnement d'ingénierie structuré."
+          ]
+        },
+        {
+          "id": "pi-vs-hagicode-section-3-bullets",
+          "type": "bullet-list",
+          "items": [
+            "Pi fournit le contrôle : routage de provider, configuration de pensée, comportement de session et gouvernance d'outils ;",
+            "HagiCode fournit l'efficacité : multithreading, gestion de flotte d'Agents, propositions OpenSpec, commits IA, éditeur Code Server, Preset Tasks ;",
+            "HagiCode étend les frontières : Monospecs laisse Pi comprendre les relations de projet cross-repo, Vault donne à Pi une mémoire à long terme cross-session, OmniRoute fait évoluer proprement le workflow provider-first de Pi ;",
+            "Ensemble ils fournissent une expérience : chaînes de décision traçables, tâches quotidiennes automatisées, une interface agréable, et un partenaire IA à long terme qui comprend vraiment votre paysage de projet et peut être librement configuré avec n'importe quelle source de modèle."
+          ]
+        }
+      ]
+    }
+  ]
+}

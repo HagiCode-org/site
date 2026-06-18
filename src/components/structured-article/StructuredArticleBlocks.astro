@@ -1,0 +1,119 @@
+---
+/**
+ * Renders a list of structured article blocks by `type`.
+ *
+ * Supported block types (mirrors the index structured article schema):
+ * - rich-text        → paragraphs in a `.structured-rich-text` container
+ * - bullet-list      → ul/li with `.structured-bullet-list`
+ * - capability-list  → responsive grid of cards
+ * - comparison-grid  → responsive grid of `<dl>` cards
+ * - callout          → `<aside>` with a tone class
+ * - cta-group        → anchor buttons with a variant
+ */
+import type { StructuredArticleBlock } from '@/components/structured-article/types';
+
+interface Props {
+  blocks: StructuredArticleBlock[];
+}
+
+const { blocks } = Astro.props;
+---
+
+{blocks.map((block) => {
+  switch (block.type) {
+    case 'rich-text':
+      return (
+        <div class="structured-rich-text" data-block-id={block.id}>
+          {block.content.map((paragraph) => (
+            <p class="structured-rich-text__p">{paragraph}</p>
+          ))}
+        </div>
+      );
+
+    case 'bullet-list':
+      return (
+        <ul class="structured-bullet-list" data-block-id={block.id}>
+          {block.items.map((item) => (
+            <li class="structured-bullet-list__item">{item}</li>
+          ))}
+        </ul>
+      );
+
+    case 'capability-list':
+      return (
+        <div class="structured-capability-grid" data-block-id={block.id}>
+          {block.items.map((item) => (
+            <article class="structured-capability-card">
+              <h3 class="structured-capability-card__title">{item.title}</h3>
+              {item.content.map((paragraph) => (
+                <p class="structured-capability-card__text">{paragraph}</p>
+              ))}
+              {item.bullets === undefined ? null : (
+                <ul class="structured-capability-card__bullets">
+                  {item.bullets.map((bullet) => (
+                    <li class="structured-capability-card__bullet">{bullet}</li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          ))}
+        </div>
+      );
+
+    case 'comparison-grid':
+      return (
+        <div class="structured-comparison-grid" data-block-id={block.id}>
+          {block.items.map((item) => (
+            <article class="structured-comparison-card">
+              <h3 class="structured-comparison-card__title">{item.label}</h3>
+              <dl class="structured-comparison-card__dl">
+                <div class="structured-comparison-card__row">
+                  <dt class="structured-comparison-card__dt">Agent</dt>
+                  <dd class="structured-comparison-card__dd">{item.agent}</dd>
+                </div>
+                <div class="structured-comparison-card__row">
+                  <dt class="structured-comparison-card__dt">HagiCode</dt>
+                  <dd class="structured-comparison-card__dd">{item.hagicode}</dd>
+                </div>
+                {item.combinedValue === undefined ? null : (
+                  <div class="structured-comparison-card__row structured-comparison-card__row--combined">
+                    <dt class="structured-comparison-card__dt">Combined</dt>
+                    <dd class="structured-comparison-card__dd">{item.combinedValue}</dd>
+                  </div>
+                )}
+              </dl>
+            </article>
+          ))}
+        </div>
+      );
+
+    case 'callout':
+      return (
+        <aside class={`structured-callout tone-${block.tone}`} data-block-id={block.id}>
+          {block.title === undefined ? null : (
+            <h3 class="structured-callout__title">{block.title}</h3>
+          )}
+          {block.content.map((paragraph) => (
+            <p class="structured-callout__text">{paragraph}</p>
+          ))}
+        </aside>
+      );
+
+    case 'cta-group':
+      return (
+        <div class="structured-cta-group" data-block-id={block.id}>
+          {block.items.map((item) => (
+            <a
+              class={`structured-cta-button variant-${item.variant ?? 'primary'}`}
+              href={item.href}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      );
+
+    default:
+      return null;
+  }
+})}

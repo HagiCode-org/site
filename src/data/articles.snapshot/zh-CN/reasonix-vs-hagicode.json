@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "reasonix-vs-hagicode",
+  "category": "vs-hagicode",
+  "locale": "zh-CN",
+  "updatedAt": "2026-06-18T00:00:00.000Z",
+  "seo": {
+    "title": "Reasonix Vs HagiCode",
+    "description": "了解 Reasonix CLI 的推理控制、预算护栏和 transcript 友好工作方式，并从多线程并行、OpenSpec 提案、AI 提交、Preset Task、游戏化界面、Agents 管理、Monospecs、Vault 和 OmniRoute 等角度，看 HagiCode 如何把 Reasonix 变成生产级 AI 编程平台。"
+  },
+  "summary": "Reasonix CLI 是一个强调推理控制的 AI 编程入口，适合那些希望直接在命令行里调节 effort、预算、transcript 记录和执行激进程度的开发者。它通过 ACP 形式接入工具调用，并保留可配置的运行时行为，因此特别适合讲究“过程可检查、决策可解释”的工程工作。不过 Reasonix 仍然只是一个终端工具，而 HagiCode 则补上了编排、记忆和多代理协作这一层。",
+  "sections": [
+    {
+      "id": "reasonix-vs-hagicode-section-1",
+      "title": "Reasonix CLI 的核心能力",
+      "blocks": [
+        {
+          "id": "reasonix-vs-hagicode-section-1-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "reasonix-vs-hagicode-section-1-item-1",
+              "title": "主要功能",
+              "content": [
+                "Reasonix CLI 的优势，集中在“可控推理”和“可检查执行”上：",
+                "推理 effort 可调：Reasonix 暴露了 effort 设置，你可以根据任务类型决定要不要给它更多推理深度。快速实现和复杂架构分析，显然不该用同一档思考强度。",
+                "预算与执行激进度护栏：Reasonix 支持 budgetUsd 和 enableYolo 之类的运行控制项，让你可以根据任务场景在成本约束、执行保守度和探索性之间做明确权衡。",
+                "transcript 友好：Reasonix 可以把 transcript 输出到指定路径。这意味着一次编程任务不只是得到结果，还能保留过程，方便后续复盘、审查和审计。"
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-1-item-2",
+              "title": "技术架构",
+              "content": [
+                "Reasonix 在架构层面有几个值得注意的特点：",
+                "基于 ACP 的传输方式：在 HagiCode Core 中，Reasonix 通过共享 ACP runtime 接入，因此天然具备流式输出、工具调用和 system messages 支持，能更稳定地融入标准化 agent 生态。",
+                "跨请求会话绑定：当路由上下文匹配时，Reasonix 可以把后续请求绑定回已有 provider session。对长周期任务来说，这比每轮都从零开始要高效得多。",
+                "运行时调优表面清晰：startupTimeoutMs 和额外 arguments 提供了直接、明确的调优入口，方便团队在不同运行环境里做稳定性和启动行为控制。"
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-1-item-3",
+              "title": "工作流与集成模型",
+              "content": [
+                "Reasonix 的生态价值，不在于花哨功能，而在于纪律性：",
+                "推理优先的工作流适配：Reasonix 特别适合那些重视计划、复核、约束和可解释性的团队，而不是无条件追求最快生成速度。",
+                "transcript 与审计支持：因为 transcript 本身就是运行时表面的一部分，Reasonix 很适合那些除了“答案”，也同样关心“答案是怎么来的”的工作流。",
+                "模型与路由不被锁死：Reasonix 保留了模型选择的可配置性，不会把整个工作流永远锁进某一条 provider 路径里。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reasonix-vs-hagicode-section-2",
+      "title": "为什么 Reasonix CLI 需要 HagiCode",
+      "blocks": [
+        {
+          "id": "reasonix-vs-hagicode-section-2-intro",
+          "type": "rich-text",
+          "content": [
+            "Reasonix 更像是一个“讲究推理过程和执行约束”的 CLI，而不是追求最快响应的命令行助手。但只要任务开始跨越多个仓库、多个线程或长周期讨论，终端本身就不再够用。",
+            "HagiCode 补上的，是把这种“受控推理”变成长期工程工作流所必需的协调层和记忆层。"
+          ]
+        },
+        {
+          "id": "reasonix-vs-hagicode-section-2-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-1",
+              "title": "多线程并行：让多条 Reasonix 推理线程同时推进",
+              "content": [
+                "Reasonix 在单个会话里已经能做很多事，但真实开发几乎从来不是一次只推进一个任务。",
+                "HagiCode 允许你把多个 Reasonix 会话并行跑起来，每个会话都有独立上下文、明确职责和各自的推进节奏。",
+                "这样 Reasonix 就不再只是一个“慎重思考的单通道 CLI”，而是一个能同时推进多条推理轨道的工程工作面。"
+              ],
+              "bullets": [
+                "线程 A 在完善后端 API 接口；",
+                "线程 B 在重构前端组件；",
+                "线程 C 在编写单元测试；",
+                "线程 D 在审查代码安全漏洞。"
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-2",
+              "title": "OpenSpec 提案会话：把 effort 与预算选择沉淀成文档化决策",
+              "content": [
+                "在日常开发中，最容易出现的混乱不是代码写不出来，而是改了一堆东西之后，忘了为什么这么改、改了哪些、以及这些改动之间有什么关系。",
+                "HagiCode 内置的 OpenSpec 提案工作流从根本上解决了这个问题。每次开发任务都会以“提案”的形式启动：",
+                "对 Reasonix 来说，这种结构尤其重要，因为它不仅能记录最终方案，还能记录为什么当时选了某个 effort 档位、预算上限或者执行风格。"
+              ],
+              "bullets": [
+                "先写清楚这次要解决什么问题，为什么这样做是合理的；",
+                "在提案框架下与 Reasonix 深入讨论技术方案，所有对话和决策都记录在提案上下文里；",
+                "方案确定后，Reasonix 在提案的约束范围内进行代码实现；",
+                "最终提案文档、讨论记录和代码变更形成一条完整的追溯链。"
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-3",
+              "title": "AI 提交：把 Reasonix 的输出变成干净的提交历史",
+              "content": [
+                "写完代码之后还要写 commit message，这件事对很多开发者来说是一种精神内耗。写得太随意回头找不到关键提交，写得太正式又觉得浪费时间。",
+                "HagiCode 的 AI 提交功能把这件事整个人交给了 Reasonix：它会分析你的代码变更、理解改动的意图和影响范围，然后自动生成结构清晰、语义准确的 commit message。更关键的是，在 AI 提交的过程中，HagiCode 会自动锁定仓库，防止并发操作导致的状态冲突，确保提交安全可靠。",
+                "你把注意力留给创造，commit message 这种流水账交给 Reasonix 就好。"
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-4",
+              "title": "Code Server 浏览器编辑：从推理 transcript 直接进入精准修改",
+              "content": [
+                "Reasonix 分析完代码、定位到问题文件和具体行号之后，常见的尴尬发生了：你需要离开 AI 对话窗口，回到自己的 IDE 里重新找到那个文件，再手动跳到对应的位置。这个“分析→编辑”的上下文断点，不仅打断思路，也让 AI 的价值只停留在“告诉你问题在哪”，走不到“直接帮你进入修改状态”。",
+                "HagiCode 内置了基于 code-server 的浏览器编辑器，专门解决这个断点：",
+                "Code Server 集成让 HagiCode 不是一个“会分析代码的前台页面”，而是一个真正能让 Reasonix 的分析结论直接落地为编辑动作的完整工作站。它把“AI 分析”和“动手修改”之间的切换成本降到了最低。"
+              ],
+              "bullets": [
+                "一键从分析进入编辑：Reasonix 在提案中定位到需要修改的文件后，HagiCode 可以直接在工作台内打开该文件进入编辑状态。",
+                "本地、容器、远程全覆盖：无论项目运行在何处，推理和编辑都可以尽量保持在同一个工作台里。",
+                "Vault 直连编辑：Reasonix 在复核或规划时引用到的资料和样例，也可以被直接打开查看。"
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-5",
+              "title": "Preset Task：把重复出现的 Reasonix 评审与规划流程模板化",
+              "content": [
+                "Reasonix 很适合做评审、规划、审计类工作，但如果每次都要重新拼 effort 设置、约束条件和操作说明，本身就是重复劳动。",
+                "HagiCode 的 Preset Task 机制，就是把这些重复出现的工作流整理成可复用模板。它做的不只是“快捷指令”，更是一个可扩展的 Skills 集成平台：",
+                "Preset Task 让你和 Reasonix 的协作从“每次都从头描述流程”升级为“直接启动准备好的流程，把注意力放在结果上”。"
+              ],
+              "bullets": [
+                "社区 Skills 即装即用：直接复用现成的审查、文档、重构和交付模板。",
+                "可扩展的 Skills 体系：把团队自己的审计要求、检查清单和推理默认值叠加进去。",
+                "可视化操作，而不是终端重复劳动：选择流程、调整参数、启动执行，都可以在专门界面完成。"
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-6",
+              "title": "游戏化界面：让 effort、预算和推进状态一目了然",
+              "content": [
+                "编程本身可以是枯燥的，但也可以是好玩的。HagiCode 的游戏化界面设计，打破了命令行工具冷冰冰的体验：",
+                "Reasonix 提供纪律化推理，HagiCode 提供体验层——两者结合，才能让一个严格的终端工作流变成可感知、可管理的工作空间。"
+              ],
+              "bullets": [
+                "视觉反馈清晰：什么在运行、什么在等待、什么已完成，不必再从终端原始文本里自己提炼。",
+                "成就与进度可视化：提案、提交和交付节点都变成了可见里程碑。",
+                "降低认知负担：当 effort 设置和长链推理过程被放到更友好的界面里时，整个工作流会更容易驾驭。"
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-7",
+              "title": "Agents 多代理管理：把多个 Reasonix 工作者变成可编排 Agent 编队",
+              "content": [
+                "并行会话本身很有价值，但当你同时开着多个会话时，真正的新瓶颈会变成“怎么调度和管理它们”。",
+                "HagiCode 的 Agents 管理层会把每个 Reasonix 工作单元抽象成一个有名字、可调度、状态可见的 Agent。",
+                "你面对的不再是一堆打开的终端窗口，而是一支可以被统一协调的小型 AI 开发队伍。"
+              ],
+              "bullets": [
+                "Agent 身份与状态可视化：谁在运行、谁在等待、谁卡住、谁可归档，一眼就能看清。",
+                "任务与 Agent 绑定：提案、审查、重构、测试等任务都可以分配给专属 Agent。",
+                "Agent 配置独立可控：不同 Agent 可以挂不同的 effort、模型路由、Skills 和上下文范围，彼此互不干扰。"
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-8",
+              "title": "Monospecs 多仓库管理：让 Reasonix 真正跨仓库推理",
+              "content": [
+                "实际项目中，代码往往不在一个仓库里。前端、后端、文档、共享库分散在不同仓库，而一个功能变更可能要同时修改好几个仓库。对 Reasonix 来说，单仓库模式够用，但它无法天然理解跨仓库的关系——你得在每一次对话里手动告诉它“这个改动还要同步到另外两个仓库”，这显然是低效的。",
+                "HagiCode 的 Monospecs 机制就是为多仓库场景而设计的结构化方案。它通过 .hagicode/monospecs.yaml 配置文件声明项目群中所有子仓库的地址、名称和关系，让 Reasonix 在启动提案时就能自动获得完整的跨仓库地图：",
+                "对于 Reasonix 这种强调推理质量的工具来说，只有先看清全局变更面，它的慎重思考才真正有工程价值。"
+              ],
+              "bullets": [
+                "自动感知仓库关系：Reasonix 可以直接从 Monospecs 中读取 repo 图谱，而不是依赖人工重复 briefing。",
+                "跨仓库变更追踪：specs 保持集中，代码修改留在对应仓库，决策链条更清楚。",
+                "AI 提交精准识库：HagiCode 会结合 repo 地图自动判断提交归属。",
+                "每库可配 AGENTS.md：Reasonix 在跨仓库操作时自动读取相应规范。"
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-9",
+              "title": "Vault 跨项目知识库：把 Reasonix 不该重复学习的背景沉淀下来",
+              "content": [
+                "Reasonix 的强项是深度推理，但再强的推理也不该每次都重新摸索你的项目历史、参考资料和既有结论。",
+                "Vault 是 HagiCode 提供的跨项目持久化知识存储层，它的核心设计理念是“一次注册，处处复用”：",
+                "如果说 Monospecs 是让 Reasonix 看清项目地图，那 Vault 就是让 Reasonix 记住团队已经知道什么。受控推理只有叠加知识累积，才会变成真正的工程杠杆。"
+              ],
+              "bullets": [
+                "多类型知识容器：把文件夹、代码参考库、Obsidian 笔记和系统托管资产统一纳入共享记忆层。",
+                "AI 上下文自动注入：新提案一启动，Reasonix 就能拿到合适背景材料。",
+                "访问权限精细化控制：区分只读参考库和可编辑工作区，让 AI 看得广、改得稳。",
+                "跨项目知识复用：一次沉淀的结论和参考资料，可以在后续提案里持续复用。"
+              ]
+            },
+            {
+              "id": "reasonix-vs-hagicode-section-2-item-10",
+              "title": "OmniRoute 模型路由：让 Reasonix 的工作流保持稳定，模型路线保持灵活",
+              "content": [
+                "团队应该能保留自己信任的推理工作流，而不是把整个工作流永久绑定在某一条 provider 路径或订阅选择上。",
+                "OmniRoute 把交互层和模型路由层拆开，让 HagiCode 可以继续把 Reasonix 放在工作流里，同时在底层灵活切换模型来源。",
+                "这样你就能同时获得更好的成本控制、更合适的任务匹配，以及模型供应变化时更低的迁移摩擦。"
+              ],
+              "bullets": [
+                "保留你已经习惯的 CLI 或交互方式，只替换底层模型路由。",
+                "一套路由策略可以被多个 Agent 和多个接入 HagiCode 的 AI 工具共享。",
+                "针对快速实现、深度审查、架构规划等不同任务配置不同模型路线。",
+                "在路由层一次调整成本与能力配置，而不是逐个工作流重复折腾。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "reasonix-vs-hagicode-section-3",
+      "title": "总结",
+      "blocks": [
+        {
+          "id": "reasonix-vs-hagicode-section-3-intro",
+          "type": "rich-text",
+          "content": [
+            "Reasonix CLI 是一个强调推理控制的 AI 编程入口，HagiCode 是一个完整的 AI 编程工作台。它们的关系是互补：",
+            "如果你已经在用 Reasonix，不妨试试把它接入 HagiCode——你会发现 Reasonix 不再只是一个纪律化的终端推理循环，而是一个运行在结构化开发环境中的全流程 AI 搭档。"
+          ]
+        },
+        {
+          "id": "reasonix-vs-hagicode-section-3-bullets",
+          "type": "bullet-list",
+          "items": [
+            "Reasonix 提供纪律性：effort 控制、预算护栏、transcript 友好执行和工具能力；",
+            "HagiCode 提供效率：多线程并行、Agents 编队管理、OpenSpec 提案、AI 提交、Code Server 编辑器、Preset Task；",
+            "HagiCode 拓展边界：Monospecs 让 Reasonix 理解跨仓库项目关系，Vault 让 Reasonix 拥有跨会话长期记忆，OmniRoute 让工作流稳定、模型路由灵活；",
+            "两者结合提供体验：可追溯的决策链、自动化的日常事务、让人愉悦的操作界面，以及一个真正了解你项目全景、可自由配置模型来源的长期 AI 搭档。"
+          ]
+        }
+      ]
+    }
+  ]
+}

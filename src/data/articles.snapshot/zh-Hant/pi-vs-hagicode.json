@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "pi-vs-hagicode",
+  "category": "vs-hagicode",
+  "locale": "zh-Hant",
+  "updatedAt": "2026-06-18T00:00:00.000Z",
+  "seo": {
+    "title": "Pi Vs HagiCode",
+    "description": "了解 Pi CLI 以 provider 為中心的工作方式、會話控制和工具治理能力，並从多線程並行、OpenSpec 提案、AI 提交、Preset Task、游戏化界面、Agents 管理、Monospecs、Vault 和 OmniRoute 等角度，看 HagiCode 如何把 Pi 變成生產級的 AI 编程工作台。"
+  },
+  "summary": "Pi CLI 是一個强调 provider 解耦的灵活 AI 编程入口。它通过可配置的 thinking 模式、會話持久化控制以及顯式的工具開关，讓開發者能夠更细粒度地决定 AI 助手该如何工作。不过 Pi CLI 本質上仍然是一個命令行入口，而 HagiCode 是一個完整的 AI 编程工作台。两者結合，才能把 Pi 从“可配置 CLI”升級為“日常開發環境”。",
+  "sections": [
+    {
+      "id": "pi-vs-hagicode-section-1",
+      "title": "Pi CLI 的核心能力",
+      "blocks": [
+        {
+          "id": "pi-vs-hagicode-section-1-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "pi-vs-hagicode-section-1-item-1",
+              "title": "主要功能",
+              "content": [
+                "Pi CLI 的价值不在于把你锁进某一個模型供應商，而在于给你更可控的 AI 執行方式：",
+                "以 provider 為中心的模型接入：Pi 可以指向不同的模型後端，而不是把工作流强行绑定在单一供應商上。對于希望保留同一套 CLI 习惯、但又想灵活切换模型来源的團隊来说，這一點非常重要。",
+                "可配置的 thinking 與會話行為：Pi 暴露了 thinking、sessionDirectory 和 noSession 等控制項。你可以决定一個任務應该保留歷史上下文、持續複用會話，還是每次都以完全无状態的方式運行。",
+                "顯式的工具治理：Pi 允许你关闭内建工具，甚至整體关闭工具能力。当你需要更嚴格的安全邊界、更可预测的執行行為時，這种控制权會非常有价值。"
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-1-item-2",
+              "title": "技术架構",
+              "content": [
+                "Pi 在架構層面有几個值得注意的特點：",
+                "結構化 CLI 運行時：在 HagiCode Core 中，Pi 以一個很薄的适配層接入共享 libs runtime，對外维持稳定的產品契约，對内複用統一的 CLI 进程處理能力。",
+                "會話感知執行：Pi 既可以複用已有會話状態，也可以在 noSession 模式下进行完全无状態執行。它既适合長線程開發，也适合那些不希望上下文污染的单次任務。",
+                "支持流式輸出與工具调用：Pi 支持 streaming、tool calls 和 system messages。它不是一個只會“一问一答”的命令包装器，而是能夠进入更完整 AI 编程工作流的運行节點。"
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-1-item-3",
+              "title": "Provider 與工作流生態",
+              "content": [
+                "Pi 的生態優勢，本質上来自灵活性和可组合性：",
+                "天然适合模型路由體系：Pi 很适合放进“交互層與模型路由層分离”的環境里。尤其是当團隊想保留同一套操作习惯，同時持續试验不同上游模型時，這种设計會非常顺手。",
+                "模型槽位與 CLI 行為分离：在 HagiCode Core 中，Pi 把運行時配置放在 primary profession，而模型選擇放在 model slot。CLI 行為與模型選擇被有意识地拆開，這比把一切揉成一個黑箱更利于長期维护。",
+                "統一監控與發现：Pi 在系統里是一個被正式監控的 CLI，拥有自己的 executable 發现路径和健康检查能力。它更像工作台上的一等公民，而不是一条孤立的終端命令。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pi-vs-hagicode-section-2",
+      "title": "為什么 Pi CLI 需要 HagiCode",
+      "blocks": [
+        {
+          "id": "pi-vs-hagicode-section-2-intro",
+          "type": "rich-text",
+          "content": [
+            "Pi 最大的特點，是它把 provider 路由、thinking 模式、會話複用和工具暴露這些关键控制點都交還给了開發者。但纯終端工作流並不會自動提供項目管理、任務编排和長期知識沉淀能力。",
+            "在真實交付場景里，决定 AI 是否能長期成為生產力的，恰恰就是這些 Pi 自己並不打算承接的工作流層。HagiCode 补上的正是這一層。"
+          ]
+        },
+        {
+          "id": "pi-vs-hagicode-section-2-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "pi-vs-hagicode-section-2-item-1",
+              "title": "多線程並行：讓 Pi 同時跑出多条受控開發通道",
+              "content": [
+                "Pi 在单個會話里已經能做很多事，但真實開發几乎从来不是一次只推进一個任務。",
+                "HagiCode 允许你把多個 Pi 會話並行跑起来，每個會話都有独立上下文、明确职责和各自的推进节奏。",
+                "這樣 Pi 就不再是一個“参数很多的单線程 CLI”，而是一個真正贴近工程團隊工作方式的並行工作台。"
+              ],
+              "bullets": [
+                "線程 A 在完善後端 API 接口；",
+                "線程 B 在重構前端元件；",
+                "線程 C 在编寫单元测试；",
+                "線程 D 在審查代碼安全漏洞。"
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-2",
+              "title": "OpenSpec 提案會話：把 Pi 的 provider 與模型選擇變成可追溯決策",
+              "content": [
+                "在日常開發中，最容易出现的混乱不是代碼寫不出来，而是改了一堆东西之後，忘了為什么這么改、改了哪些、以及這些改動之间有什么關係。",
+                "HagiCode 内置的 OpenSpec 提案工作流从根本上解决了這個问題。每次開發任務都會以“提案”的形式启動：",
+                "對于 Pi 来说，這种結構尤其重要，因為它不仅能记录改了什么，還能记录為什么当時選擇了某条 provider 路由、某個模型来源，或者某种工具邊界。"
+              ],
+              "bullets": [
+                "先寫清楚這次要解决什么问題，為什么這樣做是合理的；",
+                "在提案框架下與 Pi 深入讨论技术方案，所有對話和決策都记录在提案上下文里；",
+                "方案确定後，Pi 在提案的约束范圍内进行代碼實现；",
+                "最終提案文檔、讨论记录和代碼變更形成一条完整的追溯链。"
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-3",
+              "title": "AI 提交：把 Pi 的產出沉淀成干净的提交歷史",
+              "content": [
+                "寫完代碼之後還要寫 commit message，這件事對很多開發者来说是一种精神内耗。寫得太随意回头找不到关键提交，寫得太正式又觉得浪费時间。",
+                "HagiCode 的 AI 提交功能把這件事整個人交给了 Pi：它會分析你的代碼變更、理解改動的意圖和影响范圍，然後自動生成結構清晰、语义准确的 commit message。更关键的是，在 AI 提交的过程中，HagiCode 會自動锁定仓庫，防止並發操作导致的状態冲突，确保提交安全可靠。",
+                "你把注意力留给创造，commit message 這种流水账交给 Pi 就好。"
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-4",
+              "title": "Code Server 瀏覽器编辑：讓 Pi 的分析結果直接落到编辑動作",
+              "content": [
+                "Pi 分析完代碼、定位到问題文件和具體行号之後，常见的尴尬發生了：你需要离開 AI 對話窗口，回到自己的 IDE 里重新找到那個文件，再手動跳到對應的位置。這個“分析→编辑”的上下文斷點，不仅打斷思路，也讓 AI 的价值只停留在“告诉你问題在哪”，走不到“直接帮你进入修改状態”。",
+                "HagiCode 内置了基于 code-server 的瀏覽器编辑器，专門解决這個斷點：",
+                "Code Server 集成讓 HagiCode 不是一個“會分析代碼的前台頁面”，而是一個真正能讓 Pi 的分析結论直接落地為编辑動作的完整工作站。它把“AI 分析”和“動手修改”之间的切换成本降到了最低。"
+              ],
+              "bullets": [
+                "一键从分析进入编辑：Pi 在提案中定位到需要修改的文件後，HagiCode 可以直接在工作台内打開该文件进入编辑状態。你不需要切换工具，也不需要重新定位文件。",
+                "本地、容器、遠端全覆盖：无论項目跑在本地、容器還是遠端機器上，HagiCode 的 Code Server 都能把编辑入口拉到同一個工作台里。",
+                "Vault 直連编辑：Pi 引用到的代碼参考庫和学习項目，也可以通过 Code Server 直接打開查看。"
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-5",
+              "title": "Preset Task：把 Pi 的常见工作流封装成可複用模板",
+              "content": [
+                "Pi 的灵活性很强，但如果每次都要手動重述 provider 選擇、工具邊界和任務框架，本身就是一种浪费。",
+                "HagiCode 的 Preset Task 机制，就是把這些重複出现的模式整理成可複用模板。它做的不只是“快捷指令”，更是一個可扩展的 Skills 集成平台：",
+                "Preset Task 讓你和 Pi 的协作从“每次都重新搭流程”升級為“直接挑流程並執行”。這時，配置能力才真正變成工程效率。"
+              ],
+              "bullets": [
+                "社区 Skills 即装即用：把成熟的審查、重構、CRUD、文檔生成流程直接匯入使用。",
+                "可扩展的 Skills 體系：在共享模板上叠加團隊自己的路由預設值、编码規范和检查清单。",
+                "可視化操作，不再靠終端记忆：選擇任務、切换参数、調整顺序，都可以在专門的界面里完成。"
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-6",
+              "title": "游戏化界面：讓 Pi 的 provider 開关和状態更直观",
+              "content": [
+                "编程本身可以是枯燥的，但也可以是好玩的。HagiCode 的游戏化界面设計，打破了命令行工具冷冰冰的體验：",
+                "Pi 提供控制力，HagiCode 提供體验層——两者結合，才能把一個配置丰富的 CLI 變成一個真正讓人愿意天天打開的工作空间。"
+              ],
+              "bullets": [
+                "視觉反馈清晰：會話状態、運行進度和結果都不再埋在終端輸出里。",
+                "成就與進度可視化：提交、提案节點和交付階段都變成了可见节奏點。",
+                "降低操作門槛：即便不是終端重度用户，也能通过界面充分利用 Pi 的控制模型。"
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-7",
+              "title": "Agents 多代理管理：把多個 Pi 會話變成可調度 Agent 编队",
+              "content": [
+                "並行會話本身很有价值，但当你同時開着多個會話時，真正的新瓶颈會變成“怎么調度和管理它們”。",
+                "HagiCode 的 Agents 管理層會把每個 Pi 工作单元抽象成一個有名字、可調度、状態可见的 Agent。",
+                "你面對的不再是一堆打開的終端窗口，而是一支可以被統一协调的小型 AI 開發队伍。"
+              ],
+              "bullets": [
+                "Agent 身份與状態可視化：谁在運行、谁在等待、谁卡住、谁可归檔，一眼就能看清。",
+                "任務與 Agent 绑定：提案、審查、重構、测试等任務都可以分配给专属 Agent。",
+                "Agent 配置独立可控：不同 Agent 可以挂不同的模型路由、Skills、工具邊界和上下文范圍，彼此互不干扰。"
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-8",
+              "title": "Monospecs 多仓庫管理：给 Pi 一张完整的仓庫地圖",
+              "content": [
+                "實际項目中，代碼往往不在一個仓庫里。前端、後端、文檔、共享庫分散在不同仓庫，而一個功能變更可能要同時修改好几個仓庫。對 Pi 来说，单仓庫模式夠用，但它无法天然理解跨仓庫的關係——你得在每一次對話里手動告诉它“這個改動還要同步到另外两個仓庫”，這顯然是低效的。",
+                "HagiCode 的 Monospecs 机制就是為多仓庫場景而设計的結構化方案。它通过 .hagicode/monospecs.yaml 配置文件声明項目群中所有子仓庫的地址、名称和關係，讓 Pi 在启動提案時就能自動获得完整的跨仓庫地圖：",
+                "Monospecs 的价值，在 Pi 身上會更明顯，因為只有当它同時理解代碼改動范圍和模型路由范圍時，這种灵活性才真正有意义。"
+              ],
+              "bullets": [
+                "自動感知仓庫關係：Pi 可以直接从 Monospecs 中讀取 repo 圖谱，而不是反複依赖人工解释。",
+                "跨仓庫變更追踪：specs 留在主仓庫，代碼修改留在對應子仓庫，決策链条和實现邊界都更清晰。",
+                "AI 提交精准识庫：HagiCode 會結合 Monospecs 自動判斷變更應落在哪個仓庫。",
+                "每庫可配 AGENTS.md：Pi 在不同仓庫中自動讀取相應開發约束。"
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-9",
+              "title": "Vault 跨項目知識庫：讓 Pi 记住的不止是一轮終端會話",
+              "content": [
+                "Pi 的會話控制已經很灵活，但“能複用會話”並不等于“拥有持久知識層”。如果没有這一層，重要背景仍然會被反複重讲。",
+                "Vault 是 HagiCode 提供的跨項目持久化知識存储層，它的核心设計理念是“一次注册，處處複用”：",
+                "如果说 Monospecs 是讓 Pi 看懂項目在哪里，那 Vault 就是讓 Pi 记住你已經积累了什么。一個可配置 CLI，只有在获得持久知識支撑後，才更像長期搭檔。"
+              ],
+              "bullets": [
+                "多类型知識容器：把文件夹、代碼参考庫、Obsidian 笔记和系統托管资產統一注册进来。",
+                "AI 上下文自動注入：新提案一启動，Pi 就能拿到合适的参考材料。",
+                "访问權限精细化控制：区分只讀参考庫和可编辑項目空间，讓 Pi 学得廣、改得稳。",
+                "跨項目知識複用：一次沉淀的模式，可以在後续提案里持續複用，而不用每次重建。"
+              ]
+            },
+            {
+              "id": "pi-vs-hagicode-section-2-item-10",
+              "title": "OmniRoute 模型路由：把 Pi 的 provider-first 设計真正放大",
+              "content": [
+                "Pi 本身已經鼓励把工作流和 provider 選擇拆開，但團隊規模一大，仍然需要一個中心化的路由層来把這种灵活性用起来。",
+                "OmniRoute 把交互層和模型路由層拆開，讓 HagiCode 可以继续把 Pi 放在工作流里，同時在底層灵活切换模型来源。",
+                "這樣你就能同時获得更好的成本控制、更合适的任務匹配，以及模型供應變化時更低的迁移摩擦。"
+              ],
+              "bullets": [
+                "保留你已經习惯的 CLI 或交互方式，只替换底層模型路由。",
+                "一套路由策略可以被多個 Agent 和多個接入 HagiCode 的 AI 工具共享。",
+                "针對快速编码、深度審查、架構規划等不同任務配置不同模型路線。",
+                "在路由層一次調整成本與能力配置，而不是逐個工作流重複折腾。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pi-vs-hagicode-section-3",
+      "title": "总結",
+      "blocks": [
+        {
+          "id": "pi-vs-hagicode-section-3-intro",
+          "type": "rich-text",
+          "content": [
+            "Pi CLI 是一個灵活、以 provider 為中心的 AI 编程入口，HagiCode 是一個完整的 AI 编程工作台。它們的關係是互补：",
+            "如果你已經在用 Pi，不妨试试把它接入 HagiCode——你會發现 Pi 不再只是一個可配置的終端命令，而是一個運行在結構化工程環境中的全流程 AI 搭檔。"
+          ]
+        },
+        {
+          "id": "pi-vs-hagicode-section-3-bullets",
+          "type": "bullet-list",
+          "items": [
+            "Pi 提供控制力：provider 路由、thinking 配置、會話行為和工具治理；",
+            "HagiCode 提供效率：多線程並行、Agents 编队管理、OpenSpec 提案、AI 提交、Code Server 编辑器、Preset Task；",
+            "HagiCode 拓展邊界：Monospecs 讓 Pi 理解跨仓庫項目關係，Vault 讓 Pi 拥有跨會話長期记忆，OmniRoute 讓 Pi 的 provider-first 工作流在團隊里可持續放大；",
+            "两者結合提供體验：可追溯的決策链、自動化的日常事務、讓人愉悦的操作界面，以及一個真正了解你項目全景、可自由配置模型来源的長期 AI 搭檔。"
+          ]
+        }
+      ]
+    }
+  ]
+}

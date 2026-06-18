@@ -1,0 +1,48 @@
+---
+/**
+ * Displays structured article locale resolution info and the `updatedAt`
+ * timestamp. Shows a fallback indicator when the article was served from a
+ * different locale than the one requested.
+ */
+import type { SiteLocale } from '@/i18n/locale-metadata';
+import { getSiteLocaleDefinition } from '@/i18n/locale-metadata';
+
+interface Props {
+  requestedLocale: string;
+  resolvedLocale: string;
+  usedFallback: boolean;
+  updatedAt: string;
+}
+
+const { requestedLocale, resolvedLocale, usedFallback, updatedAt } = Astro.props;
+
+function nativeName(locale: string): string {
+  try {
+    return getSiteLocaleDefinition(locale as SiteLocale).nativeName;
+  } catch {
+    return locale;
+  }
+}
+
+function formatTimestamp(value: string): string {
+  try {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) {
+      return value;
+    }
+    return date.toISOString().slice(0, 10);
+  } catch {
+    return value;
+  }
+}
+---
+
+<div class="structured-meta-row">
+  <span class="structured-meta-row__locale">{nativeName(resolvedLocale)}</span>
+  <span class="structured-meta-row__updated">{formatTimestamp(updatedAt)}</span>
+  {usedFallback ? (
+    <span class="structured-meta-row__fallback">
+      Served {nativeName(resolvedLocale)} (requested {nativeName(requestedLocale)})
+    </span>
+  ) : null}
+</div>

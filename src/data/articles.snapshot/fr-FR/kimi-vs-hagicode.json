@@ -1,0 +1,238 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "kimi-vs-hagicode",
+  "category": "vs-hagicode",
+  "locale": "fr-FR",
+  "updatedAt": "2026-06-17T00:00:00.000Z",
+  "seo": {
+    "title": "Kimi Vs HagiCode",
+    "description": "Comprenez les fonctions clés de Kimi CLI, son optimisation chinoise et son écosystème Moonshot AI, et voyez comment HagiCode porte Kimi CLI au niveau supérieur via le multithreading, les propositions OpenSpec, les commits IA, les Preset Tasks, l'UI gamifiée, la gestion des Agents, les Monospecs, le Vault et OmniRoute."
+  },
+  "summary": "Kimi CLI est l'outil de programmation IA terminal de Moonshot AI, uniquement positionné parmi les outils de programmation IA par son approche 'chinois d'abord'. Il excelle dans la compréhension profonde des contenus techniques en chinois, la génération et le commentaire de code en chinois et l'analyse de documents en chinois, et est un outil particulièrement convivial pour les développeurs sinophones. Cependant, Kimi CLI est un outil terminal, et HagiCode est un atelier avec visualisation, gestion multi-repo et persistance des connaissances. Les deux ensemble étendent la capacité chinoise de Kimi à une expérience de développement complète.",
+  "sections": [
+    {
+      "id": "kimi-vs-hagicode-section-1",
+      "title": "Les forces principales de Kimi CLI",
+      "blocks": [
+        {
+          "id": "kimi-vs-hagicode-section-1-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "kimi-vs-hagicode-section-1-item-1",
+              "title": "Fonctions clés",
+              "content": [
+                "La fonctionnalité de Kimi CLI se centre sur la programmation intelligente à priorité chinoise :",
+                "Génération et compréhension de code en chinois : la compréhension de Kimi pour les contenus techniques en chinois est extrêmement profonde, et il peut générer du code de haute qualité à partir de descriptions en chinois naturel. Même les exigences commerciales chinoises complexes sont captées précisément et converties en implémentations de code correspondantes.",
+                "Analyse et génération de documents en chinois : Kimi peut lire profondément les documents techniques en chinois, les résumer, interpréter et restructurer. Il excelle aussi à générer des documents et commentaires en chinois de haute qualité à partir du code, ce qui efficacité grandement la gestion documentaire en chinois.",
+                "Interaction native terminal : Kimi CLI fournit une expérience de programmation terminal complète et intègre opérations sur fichiers, exécution de commandes et liaison Git. Sans quitter le terminal, il complète le workflow de développement."
+              ]
+            },
+            {
+              "id": "kimi-vs-hagicode-section-1-item-2",
+              "title": "Optimisation chinoise",
+              "content": [
+                "Kimi a plusieurs avantages uniques dans l'optimisation chinoise :",
+                "Compréhension précise de la terminologie technique chinoise : pour les termes techniques chinois comme '委託','实现','需求定義','重構築', Kimi évite la compréhension mécanique et inexacte dans laquelle tombent les outils de traduction génériques, et saisit précisément le sens original qu'utilisent quotidiennement les développeurs sinophones.",
+                "Commentaires de code en chinois de haute qualité : les commentaires de code en chinois générés par Kimi sont naturels et fluides, sans la raideur d'une traduction automatique. Il peut écrire la fonctionnalité des fonctions, le sens des paramètres et les notes d'utilisation sous une forme lisible pour les développeurs chinois.",
+                "Sensibilité à la logique commerciale chinoise : Kimi comprend les scénarios commerciaux spécifiques à la Chine. Pour les paiements électroniques, les fonctionnalités sociales et les habitudes utilisateur localisées — les règles commerciales spéciales courantes dans le développement sinophone — il peut générer des implémentations de code plus appropriées."
+              ]
+            },
+            {
+              "id": "kimi-vs-hagicode-section-1-item-3",
+              "title": "Écosystème Moonshot AI",
+              "content": [
+                "Kimi CLI fait partie de l'écosystème Moonshot AI :",
+                "Intégration profonde à la série de modèles Kimi : Kimi CLI est profondément lié à la série de modèles Kimi de Moonshot AI et peut utiliser rapidement les capacités du dernier modèle Kimi. Il bénéficie immédiatement des mises à niveau de modèle.",
+                "Connexion à la communauté technique chinoise : Kimi a une compréhension profonde des frameworks, outils et bibliothèques populaires en Chine, et génère un code plus adapté à la stack technique des développeurs chinois.",
+                "Support du protocole ACP : Kimi CLI prend en charge le protocole ACP, permettant l'intégration dans des scénarios de collaboration multi-outils."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kimi-vs-hagicode-section-2",
+      "title": "Pourquoi Kimi a besoin de HagiCode",
+      "blocks": [
+        {
+          "id": "kimi-vs-hagicode-section-2-intro",
+          "type": "rich-text",
+          "content": [
+            "La capacité de programmation en chinois de Kimi CLI est remarquable au niveau linguistique, mais en tant qu'outil CLI, il a des limites claires en gestion de projet, persistance des connaissances et coordination multi-repo. Pour que la capacité chinoise de Kimi crée plus de valeur, elle a besoin d'un environnement de travail plus englobant."
+          ]
+        },
+        {
+          "id": "kimi-vs-hagicode-section-2-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "kimi-vs-hagicode-section-2-item-1",
+              "title": "Multithreading : laisser Kimi gérer plusieurs tâches de développement en chinois simultanément",
+              "content": [
+                "Kimi peut faire beaucoup au sein d'une session, mais la vraie livraison arrive rarement une tâche à la fois.",
+                "HagiCode vous permet de faire tourner plusieurs sessions Kimi en parallèle, chacune avec un contexte isolé, une frontière de responsabilité claire et une progression indépendante.",
+                "Cela transforme l'assistance IA d'une seule conversation en un atelier d'ingénierie parallèle qui correspond à la façon dont les équipes construisent réellement des logiciels."
+              ],
+              "bullets": [
+                "Le thread A peaufine les endpoints API backend;",
+                "Le thread B refactore des composants frontend;",
+                "Le thread C écrit des tests unitaires;",
+                "Le thread D audite le code pour les vulnérabilités de sécurité."
+              ]
+            },
+            {
+              "id": "kimi-vs-hagicode-section-2-item-2",
+              "title": "Sessions de proposition OpenSpec : rendre les décisions de développement en chinois de Kimi traçables",
+              "content": [
+                "Dans le développement quotidien, le chaos le plus courant n'est pas l'incapacité d'écrire du code — c'est de faire un tas de changements puis d'oublier pourquoi vous les avez faits, ce que vous avez changé et comment ces changements sont reliés entre eux.",
+                "Le workflow de proposition OpenSpec intégré à HagiCode résout fondamentalement ce problème. Chaque tâche de développement démarre comme une proposition :",
+                "Cette approche 'réfléchir d'abord puis agir' fait briller encore plus la puissance de raisonnement de Kimi et vous permet de comprendre rapidement le contexte de décision des mois plus tard en revenant au code."
+              ],
+              "bullets": [
+                "D'abord, notez quel problème cette tâche résout et pourquoi cette approche a du sens;",
+                "Discutez en profondeur de l'approche technique avec Kimi dans le cadre de la proposition — toutes les conversations et décisions sont enregistrées dans le contexte de la proposition;",
+                "Une fois l'approche confirmée, Kimi implémente le code dans les contraintes de la proposition;",
+                "Le document de proposition final, les enregistrements de discussion et les changements de code forment une chaîne de traçabilité complète."
+              ]
+            },
+            {
+              "id": "kimi-vs-hagicode-section-2-item-3",
+              "title": "Commits IA : standardiser les messages de commit en chinois de Kimi",
+              "content": [
+                "Écrire des messages de commit après avoir fini le code est une forme de friction mentale pour beaucoup de développeurs. Trop décontracté et vous ne retrouvez pas les commits clés plus tard ; trop formel et cela ressemble à du temps perdu.",
+                "La fonctionnalité de commit IA de HagiCode confie cela entièrement à Kimi : elle analyse vos changements de code, comprend l'intention et la portée de l'impact, puis génère automatiquement des messages de commit clairement structurés, sémantiquement exacts. Plus important encore, durant le commit IA, HagiCode verrouille automatiquement le dépôt pour empêcher les conflits d'état des opérations concurrentes, garantissant des commits sûrs et fiables.",
+                "Économisez votre attention pour la création — laissez Kimi gérer la paperasse du commit."
+              ]
+            },
+            {
+              "id": "kimi-vs-hagicode-section-2-item-4",
+              "title": "Éditeur de navigateur Code Server : de l'analyse de code en chinois de Kimi directement à l'édition",
+              "content": [
+                "Après que Kimi analyse le code, identifie le fichier problématique et localise le numéro de ligne exact, le moment gênant familier se produit : vous devez quitter la fenêtre de conversation IA, retourner dans votre IDE, retrouver le fichier et sauter manuellement au bon endroit. Cette rupture de contexte de l'analyse à l'édition n'interrompt pas seulement votre flux mais maintient la valeur de l'IA à 'vous dire où est le problème' plutôt que 'vous aider à entrer directement en mode édition'.",
+                "L'éditeur de navigateur basé sur Code Server intégré à HagiCode est conçu spécifiquement pour résoudre cette rupture :",
+                "L'intégration Code Server fait de HagiCode non pas seulement une page frontend qui peut analyser le code, mais une workstation complète où l'analyse de Kimi peut atterrir directement comme actions d'édition. Elle minimise le coût de changement d'outil entre l'analyse IA et la modification hands-on."
+              ],
+              "bullets": [
+                "En un clic de l'analyse à l'édition : une fois que Kimi identifie dans une proposition le fichier nécessitant des changements, HagiCode peut ouvrir directement ce fichier dans l'atelier pour l'éditer. Vous n'avez pas besoin de changer d'outil ni de retrouver le fichier — la distance entre le résultat de l'analyse et la modification hands-on est nulle.",
+                "Local, conteneur, distant — couverture totale : que votre projet tourne sur une machine locale, dans un conteneur Docker ou sur un serveur distant, le Code Server de HagiCode peut ouvrir le répertoire du projet via le navigateur pour l'édition. Vous n'êtes plus contraint par 'ce projet ne peut être édité que dans un environnement spécifique'.",
+                "Édition directe du Vault : les bibliothèques de référence de code et les projets d'apprentissage enregistrés dans votre Vault peuvent également être ouverts et parcourus directement via le Code Server. Quand Kimi référence un exemple de code, vous pouvez plonger à tout moment pour une étude ou une pratique plus approfondie."
+              ]
+            },
+            {
+              "id": "kimi-vs-hagicode-section-2-item-5",
+              "title": "Preset Task : modéliser les capacités de développement en chinois de Kimi",
+              "content": [
+                "Les capacités de Kimi sont fortes, mais taper manuellement les exigences à chaque fois n'est pas efficace. Plus important encore, la communauté a déjà produit une richesse de Skills de haute qualité — des modèles de revue de code aux générateurs CRUD full-stack, de la génération automatique de documentation à l'orchestration de cas de test. Ces pratiques éprouvées sont dispersées partout sans endroit unifié pour les héberger et les invoquer.",
+                "Le mécanisme Preset Task de HagiCode est conçu pour résoudre ce problème. C'est plus que de simples commandes raccourcies — c'est une plateforme d'intégration Skills extensible :",
+                "Preset Task met à niveau votre collaboration avec Kimi de 'communiquer à partir de zéro à chaque fois' à 'se tenir sur les épaules de la communauté, invoquer en un clic des workflows matures'. Vous choisissez le modèle, Kimi exécute — c'est la véritable automatisation de workflow, et tout le processus est visuellement délicieux."
+              ],
+              "bullets": [
+                "Compétences communautaires prêtes à l'emploi : HagiCode prend en charge l'import de Skills communautaires populaires en tant que Preset Tasks. Vous n'avez pas besoin de concevoir des prompts complexes à partir de zéro — la communauté a déjà accumulé une richesse de modèles de tâches de haute qualité. Importez et utilisez immédiatement : nouveaux modules CRUD, revues de code complètes, génération de documentation d'API — tout a des solutions prêtes.",
+                "Système de Skills extensible : si vous avez des exigences de projet uniques ou des conventions d'équipe, HagiCode vous permet de personnaliser et composer par-dessus les Skills communautaires. Vous pouvez ajuster les checklists, ajouter des standards de codage d'équipe, voire chaîner plusieurs Skills en un pipeline de développement complet, construisant ainsi la bibliothèque de modèles de tâches de votre équipe.",
+                "Opérations visuelles, adieu à la tediousness du texte brut : c'est la différence fondamentale entre HagiCode et les outils purement en ligne de commande. Choisir une Preset Task n'exige pas de taper des commandes et d'assembler des paramètres dans le terminal — cela se fait via une interface visuelle soigneusement conçue. Cliquez pour sélectionner des tâches, menus déroulants pour changer de paramètres, glisser-déposer pour réordonner les tâches — chaque étape a un retour visuel clair et des indicateurs de statut. L'interaction homme-machine passe de 'écrire du code pour invoquer l'IA' à 'utiliser une UI pour diriger l'IA'."
+              ]
+            },
+            {
+              "id": "kimi-vs-hagicode-section-2-item-6",
+              "title": "Interface gamifiée : rendre la programmation IA en chinois plus agréable",
+              "content": [
+                "La programmation elle-même peut être tedious, mais elle peut aussi être amusante. La conception d'interface gamifiée de HagiCode rompt avec l'expérience froide des outils en ligne de commande :",
+                "Kimi fournit l'intelligence, HagiCode fournit l'expérience — ensemble, ils transforment la programmation IA d'un 'outil de productivité' en 'un environnement de développement que vous voulez réellement ouvrir'."
+              ],
+              "bullets": [
+                "Retour visuel clair : le statut d'exécution, la progression et les résultats de chaque session sont présentés via des éléments d'interface intuitifs — plus besoin de défiler frénétiquement la sortie du terminal.",
+                "Visualisation des accomplissements et de la progression : l'achèvement des tâches, les commits de code, les approbations de propositions — ces jalons sont enveloppés en accomplissements visibles, donnant au processus de développement un sens du rythme et de l'accomplissement.",
+                "Faible barrière à l'entrée : la combinaison de clics de souris, de glisser-déposer et de raccourcis clavier permet aux développeurs peu habitués aux workflows purement terminaux d'exploiter facilement toutes les capacités de Kimi."
+              ]
+            },
+            {
+              "id": "kimi-vs-hagicode-section-2-item-7",
+              "title": "Gestion des Agents : transformer le multi-tâches de Kimi en une équipe de développement en chinois organisée",
+              "content": [
+                "Les sessions parallèles sont utiles, mais une fois que vous en avez plusieurs qui tournent, la coordination devient le prochain goulot d'étranglement.",
+                "La couche de gestion des Agents de HagiCode transforme chaque worker Kimi en un Agent nommé, planifiable, avec un statut visible, une portée assignée et une configuration indépendante.",
+                "Vous passez de 'beaucoup de terminaux sont ouverts' à 'une petite équipe IA est coordonnée en un seul endroit'."
+              ],
+              "bullets": [
+                "Visualisation de l'identité et du statut de l'Agent : voyez d'un coup d'œil quel Agent est en cours d'exécution, en attente, bloqué ou prêt à être archivé.",
+                "Liaison tâche-à-Agent : propositions, revues, refactors et travaux de test peuvent chacun être assignés à un Agent dédié.",
+                "Configuration d'Agent indépendante : différents Agents peuvent utiliser différentes routes de modèle, Skills et portées de contexte sans s'interférer."
+              ]
+            },
+            {
+              "id": "kimi-vs-hagicode-section-2-item-8",
+              "title": "Gestion multi-repo Monospecs : laisser Kimi comprendre les relations de repo des groupes de projets chinois",
+              "content": [
+                "Dans les projets réels, le code vit rarement dans un seul dépôt. Frontend, backend, documentation, bibliothèques partagées sont dispersés à travers différents repos, et un seul changement de fonctionnalité peut nécessiter de toucher plusieurs repos simultanément. Pour Kimi, le mode mono-repo fonctionne, mais il n'a pas de compréhension native des relations cross-repo — vous devez lui dire manuellement dans chaque conversation que 'ce changement doit aussi se synchroniser à deux autres repos', ce qui est clairement inefficace.",
+                "Le mécanisme Monospecs de HagiCode est la solution structurée conçue pour les scénarios multi-repo. Via le fichier de configuration .hagicode/monospecs.yaml, il déclare toutes les adresses, noms et relations des sous-repos dans le groupe de projets, donnant à Kimi une carte cross-repo automatique au lancement des propositions :",
+                "Monospecs élimine essentiellement les angles morts cognitifs de Kimi dans la collaboration cross-repo. Le raisonnement de Kimi est puissant, mais il a toujours besoin d'une carte précise pour localiser la portée des changements — et Monospecs est cette carte de projet gérée systématiquement."
+              ],
+              "bullets": [
+                "Prise de conscience automatique des relations de repo : lors de la création d'une proposition de développement, Kimi peut lire directement la liste des sous-repos depuis la configuration Monospecs, sachant que 'le code frontend de ce changement est dans repos/frontend, les définitions d'API dans repos/backend, la documentation dans repos/docs' — vous n'avez plus besoin d'énumérer manuellement quels repos sont impliqués à chaque fois.",
+                "Suivi des changements cross-repo : quand une proposition couvre plusieurs sous-repos, le répertoire de propositions OpenSpec reste dans le repo principal, les sous-repos ne portant que les changements de code. Cela maintient les specs et le code séparés, les sous-repos restent propres, mais toute la chaîne de décision et les enregistrements de discussion du changement sont centralisés en un seul endroit. À l'archivage, commit_when_archive peut aussi auto-committer les specs dans le repo principal, économisant les maux de tête de gestion de version manuelle.",
+                "Ciblage intelligent de repo lors des commits IA : lors des commits IA, HagiCode analyse vos changements par rapport à la configuration Monospecs et suggère automatiquement vers quel repo cible le commit devrait aller. Vous n'avez pas besoin de cd dans chaque répertoire dans le terminal — HagiCode gère le jugement du repo auquel ce code appartient.",
+                "AGENTS.md par repo : chaque sous-repo peut avoir son propre AGENTS.md indiquant à Kimi la stack technique, les standards de codage et les conventions de développement de ce repo. Kimi lit automatiquement les conseils correspondants en opérant sur différents repos, se comportant toujours selon les standards de votre équipe."
+              ]
+            },
+            {
+              "id": "kimi-vs-hagicode-section-2-item-9",
+              "title": "Base de connaissance cross-projet Vault : valoriser l'accumulation de connaissances en chinois de Kimi",
+              "content": [
+                "La fenêtre de contexte de Kimi est grande, mais chaque nouvelle session démarre de zéro — l'expérience accumulée dans le tour précédent de propositions, les structures de projet analysées, les bonnes pratiques discutées — tout est 'oublié' quand la session se termine. Dans les outils de conversation pure, vous ne pouvez qu'accepter cela, mais dans HagiCode, le système Vault change la donne.",
+                "Vault est la couche de stockage de connaissance persistante cross-projet de HagiCode. Sa philosophie de conception fondamentale est 'enregistrer une fois, réutiliser partout' :",
+                "Si Monospecs laisse Kimi comprendre où sont les projets, Vault laisse Kimi se souvenir de ce que nous avons appris avant. Le premier étend la vision spatiale de Kimi, le second prolonge la mémoire temporelle de Kimi — ensemble, Kimi n'est plus un étranger qui se représente à chaque fois, mais un partenaire à long terme qui comprend vraiment votre paysage de projet et l'accumulation de connaissances."
+              ],
+              "bullets": [
+                "Conteneurs de connaissance multi-types : Vault prend en charge quatre types — folder (répertoires de fichiers généraux), coderef (spécifiquement pour étudier des projets open-source, initialisant automatiquement des structures de répertoires standardisées), obsidian (connectant directement votre carnet Obsidian existant) et system-managed (configuration de projet gérée automatiquement par le système et bibliothèques de modèles de prompts). Vous pouvez enregistrer dans Vault des dépôts de code, des notes d'étude et des documents de conception dispersés — Kimi perçoit automatiquement l'existence de ces ressources de connaissance dans toute proposition.",
+                "Injection automatique de contexte IA : chaque fois qu'une nouvelle proposition démarre, HagiCode injecte automatiquement vos informations Vault enregistrées dans le contexte de Kimi. Vous n'avez pas besoin de copier manuellement des fragments de code ni de réexpliquer les arrière-plans du projet — Kimi reçoit la proposition tout en sachant déjà quelles ressources d'apprentissage et projets de référence vous avez disponibles, et peut commencer à travailler directement à partir des connaissances existantes.",
+                "Contrôle d'accès fin : chaque Vault peut être marqué comme reference (lecture seule) ou éditable. Les bibliothèques de code de référence pour les projets open-source sont en lecture seule — Kimi peut lire et analyser mais ne pas modifier, empêchant les changements accidentels. Vos propres Vaults de projet en éditable permettent à Kimi de vous aider à écrire du code directement. Cette frontière maintient la liberté de l'IA toujours contrôlable.",
+                "Réutilisation des connaissances cross-projet : enregistrez un Vault 'référence de design patterns' tout en analysant le projet A, et Kimi peut y accéder dans toute proposition ultérieure. Vous n'avez pas besoin de reconstruire des bases de connaissances à plusieurs reprises — Vault transforme vos résultats d'apprentissage et ressources de référence en actifs à long terme héritables."
+              ]
+            },
+            {
+              "id": "kimi-vs-hagicode-section-2-item-10",
+              "title": "Routage de modèle OmniRoute : donner à Kimi CLI plus de choix de modèle",
+              "content": [
+                "Les équipes devraient pouvoir conserver le workflow qu'elles aiment sans verrouiller l'accès au modèle à un seul fournisseur ou un seul chemin d'abonnement.",
+                "OmniRoute sépare la couche d'interaction de la couche de routage de modèle, de sorte que HagiCode peut garder Kimi dans le workflow tout en changeant les sources de modèle en dessous.",
+                "Cela vous donne un meilleur contrôle des coûts, un meilleur appariement tâche-à-modèle et moins de remous de workflow quand les prix ou la disponibilité des modèles changent."
+              ],
+              "bullets": [
+                "Conservez la CLI ou le style d'interaction que vous préférez déjà tout en ne changeant que la route de modèle en dessous.",
+                "Partagez une stratégie de routage entre plusieurs Agents et plusieurs outils IA connectés à HagiCode.",
+                "Ajustez différentes routes de modèle pour différentes charges de travail, comme le codage rapide, la revue approfondie ou la planification d'architecture.",
+                "Ajustez les coûts et capacités une fois sur la couche de routage au lieu de retravailler chaque workflow individuel."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kimi-vs-hagicode-section-3",
+      "title": "Résumé",
+      "blocks": [
+        {
+          "id": "kimi-vs-hagicode-section-3-intro",
+          "type": "rich-text",
+          "content": [
+            "Kimi CLI est un outil de programmation IA terminal aux capacités en chinois remarquables. HagiCode est un atelier conçu pour les scénarios de programmation IA. Leur relation est complémentaire :",
+            "Si vous utilisez déjà Kimi CLI, essayez de le connecter à HagiCode — vous découvrirez que la capacité chinoise de Kimi atterrit de manière plus ordonnée et plus durablement valuable au sein d'un atelier avec visualisation et persistance des connaissances."
+          ]
+        },
+        {
+          "id": "kimi-vs-hagicode-section-3-bullets",
+          "type": "bullet-list",
+          "items": [
+            "Kimi fournit l'intelligence chinoise : compréhension technique en chinois, génération de code en chinois, analyse de documents en chinois ;",
+            "HagiCode fournit l'efficacité : multithreading, gestion de flotte d'Agents, propositions OpenSpec, commits IA, éditeur Code Server, Preset Tasks ;",
+            "HagiCode étend les frontières : Monospecs laisse Kimi comprendre les relations de projet cross-repo, Vault donne à Kimi une mémoire à long terme cross-session, OmniRoute libère Kimi du verrouillage d'abonnement de modèle ;",
+            "Ensemble ils fournissent une expérience : chaînes de décision traçables, tâches quotidiennes automatisées, une interface agréable, et un partenaire IA à long terme qui comprend vraiment votre paysage de projet et peut être librement configuré avec n'importe quelle source de modèle."
+          ]
+        }
+      ]
+    }
+  ]
+}

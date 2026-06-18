@@ -1,0 +1,238 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "codebuddy-vs-hagicode",
+  "category": "vs-hagicode",
+  "locale": "zh-CN",
+  "updatedAt": "2026-06-17T00:00:00.000Z",
+  "seo": {
+    "title": "CodeBuddy Vs HagiCode",
+    "description": "了解 CodeBuddy CLI 的主要功能、企业级特性和技术生态，并从多线程并行、OpenSpec 提案、AI 提交、Preset Task、游戏化界面、Agents 管理、Monospecs、Vault 和 OmniRoute 等角度，看 HagiCode 如何让 CodeBuddy 的企业级能力获得全面工作流加持。"
+  },
+  "summary": "CodeBuddy CLI 是一款面向企业级开发场景的 AI 编码助手，以\"安全、可控、高效\"为产品理念。它在权限管理、代码安全和团队协作方面有比一般开源工具更成熟的考量，特别适合对代码安全和合规性有严格要求的团队。不过 CodeBuddy CLI 本身是一个编码助手工具，而 HagiCode 是一个全面的 AI 编程工作台——两者配合，才能把 CodeBuddy 的企业级基因从\"工具层面\"释放到\"平台层面\"。",
+  "sections": [
+    {
+      "id": "codebuddy-vs-hagicode-section-1",
+      "title": "CodeBuddy CLI 的核心能力",
+      "blocks": [
+        {
+          "id": "codebuddy-vs-hagicode-section-1-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "codebuddy-vs-hagicode-section-1-item-1",
+              "title": "主要功能",
+              "content": [
+                "CodeBuddy CLI 的功能以\"企业级 AI 编码\"为核心：",
+                "智能代码生成与重构：CodeBuddy 能够根据自然语言描述或代码上下文生成高质量的代码实现。支持多种编程语言和框架，特别在企业级 Java、C# 等后端技术栈上表现突出。重构建议兼顾性能、可维护性和团队编码规范。",
+                "安全合规的代码审查：CodeBuddy 的代码审查不仅关注功能性 bug，还特别强调安全漏洞检测和合规性检查。对于金融、医疗等对代码安全有高度要求的行业，这是核心差异化能力。",
+                "团队协作与知识管理：CodeBuddy 支持团队级别的配置管理和编码规范同步。团队的管理者可以定义编码标准、安全规则和最佳实践模板，团队成员使用 CodeBuddy 时自动遵循这些团队规范。"
+              ]
+            },
+            {
+              "id": "codebuddy-vs-hagicode-section-1-item-2",
+              "title": "企业级特性",
+              "content": [
+                "CodeBuddy 在企业级特性方面有几个突出的优势：",
+                "细粒度权限控制：CodeBuddy 支持项目级别和文件级别的访问权限控制。对于包含敏感代码的企业项目，这种粒度让管理者可以放心地引入 AI 编程工具。",
+                "代码安全保障：CodeBuddy 在处理代码时的数据传输、存储和处理流程都经过了安全审计。对于对数据安全敏感的企业，这是无法妥协的底线要求。",
+                "合规性支持：CodeBuddy 内置了对多种行业合规标准的支持——包括代码审计要求、数据保护规范等——让 AI 辅助的代码通过合规审查的可能性更高。"
+              ]
+            },
+            {
+              "id": "codebuddy-vs-hagicode-section-1-item-3",
+              "title": "技术生态",
+              "content": [
+                "CodeBuddy 的技术生态围绕企业开发场景展开：",
+                "ACP 协议支持：CodeBuddy CLI 支持 ACP 协议，可以与其他 ACP 兼容的 AI 工具进行标准化互操作。",
+                "企业技术栈深度适配：对 Java Spring、.NET、微服务架构等企业主流技术栈有深度适配，生成的代码在企业级框架规范上表现优异。",
+                "CI/CD 集成能力：CodeBuddy 可以集成到企业现有的 CI/CD 流水线中，在代码提交、构建和部署阶段发挥 AI 能力。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "codebuddy-vs-hagicode-section-2",
+      "title": "为什么 CodeBuddy CLI 需要 HagiCode",
+      "blocks": [
+        {
+          "id": "codebuddy-vs-hagicode-section-2-intro",
+          "type": "rich-text",
+          "content": [
+            "CodeBuddy 的企业级特性在安全性和合规性方面表现出色，但企业级开发从来不只是写代码——任务编排、项目管理、知识沉淀、多仓库协同——这些企业开发的日常需求，需要 HagiCode 这样的平台来承载。"
+          ]
+        },
+        {
+          "id": "codebuddy-vs-hagicode-section-2-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "codebuddy-vs-hagicode-section-2-item-1",
+              "title": "多线程并行：让 CodeBuddy 同时处理多个企业级开发任务",
+              "content": [
+                "CodeBuddy 在单个会话里已经能做很多事，但真实开发几乎从来不是一次只推进一个任务。",
+                "HagiCode 允许你把多个 CodeBuddy 会话并行跑起来，每个会话都有独立上下文、明确职责和各自的推进节奏。",
+                "这样 AI 协作就不再是一条串行对话，而是一个真正贴近工程团队工作方式的并行工作台。"
+              ],
+              "bullets": [
+                "线程 A 在完善后端 API 接口；",
+                "线程 B 在重构前端组件；",
+                "线程 C 在编写单元测试；",
+                "线程 D 在审查代码安全漏洞。"
+              ]
+            },
+            {
+              "id": "codebuddy-vs-hagicode-section-2-item-2",
+              "title": "OpenSpec 提案会话：让 CodeBuddy 的企业级变更合规可审计",
+              "content": [
+                "在日常开发中，最容易出现的混乱不是代码写不出来，而是改了一堆东西之后，忘了为什么这么改、改了哪些、以及这些改动之间有什么关系。",
+                "HagiCode 内置的 OpenSpec 提案工作流从根本上解决了这个问题。每次开发任务都会以\"提案\"的形式启动：",
+                "这种\"先想清楚再动手\"的工作方式，让 CodeBuddy 的推理能力发挥得更加充分，也让你在几个月后回头看代码时，依然能快速理解当时的决策背景。"
+              ],
+              "bullets": [
+                "先写清楚这次要解决什么问题，为什么这样做是合理的；",
+                "在提案框架下与 CodeBuddy 深入讨论技术方案，所有对话和决策都记录在提案上下文里；",
+                "方案确定后，CodeBuddy 在提案的约束范围内进行代码实现；",
+                "最终提案文档、讨论记录和代码变更形成一条完整的追溯链。"
+              ]
+            },
+            {
+              "id": "codebuddy-vs-hagicode-section-2-item-3",
+              "title": "AI 提交：让 CodeBuddy 的企业级提交规范自动执行",
+              "content": [
+                "写完代码之后还要写 commit message，这件事对很多开发者来说是一种精神内耗。写得太随意回头找不到关键提交，写得太正式又觉得浪费时间。",
+                "HagiCode 的 AI 提交功能把这件事整个人交给了 CodeBuddy：它会分析你的代码变更、理解改动的意图和影响范围，然后自动生成结构清晰、语义准确的 commit message。更关键的是，在 AI 提交的过程中，HagiCode 会自动锁定仓库，防止并发操作导致的状态冲突，确保提交安全可靠。",
+                "你把注意力留给创造，commit message 这种流水账交给 CodeBuddy 就好。"
+              ]
+            },
+            {
+              "id": "codebuddy-vs-hagicode-section-2-item-4",
+              "title": "Code Server 浏览器编辑：让 CodeBuddy 的安全分析直接进入编辑",
+              "content": [
+                "CodeBuddy 分析完代码、定位到问题文件和具体行号之后，常见的尴尬发生了：你需要离开 AI 对话窗口，回到自己的 IDE 里重新找到那个文件，再手动跳到对应的位置。这个\"分析→编辑\"的上下文断点，不仅打断思路，也让 AI 的价值只停留在\"告诉你问题在哪\"，走不到\"直接帮你进入修改状态\"。",
+                "HagiCode 内置了基于 code-server 的浏览器编辑器，专门解决这个断点：",
+                "Code Server 集成让 HagiCode 不是一个\"会分析代码的前台页面\"，而是一个真正能让 CodeBuddy 的分析结论直接落地为编辑动作的完整工作站。它把\"AI 分析\"和\"动手修改\"这两个步骤之间的工具切换成本降到了最低。"
+              ],
+              "bullets": [
+                "一键从分析进入编辑：CodeBuddy 在提案中定位到需要修改的文件后，HagiCode 可以直接在工作台内打开该文件进入编辑状态。你不需要切换工具、不需要重新定位文件——从分析结果到动手修改之间的距离是零。",
+                "本地、容器、远程全覆盖：无论你的项目跑在本地机器、Docker 容器还是远程服务器上，HagiCode 的 Code Server 都能通过浏览器打开项目目录并进入编辑。你不再受限于\"这个项目只在某个环境里能编辑\"的约束。",
+                "Vault 直连编辑：你注册到 Vault 中的代码参考库和学习项目，同样可以通过 Code Server 直接打开浏览和编辑。CodeBuddy 引用到的参考代码，你随时可以跳进去深入查看或临摹修改。"
+              ]
+            },
+            {
+              "id": "codebuddy-vs-hagicode-section-2-item-5",
+              "title": "Preset Task：让 CodeBuddy 的企业级开发流程模板化",
+              "content": [
+                "CodeBuddy 的能力很强，但每次都要手动打字描述需求确实不够高效。更关键的是，市面上已经涌现了大量社区贡献的优质 Skills——从代码审查模板到全栈 CRUD 生成器，从文档自动生成到测试用例编排，这些经过验证的实践方案散落在各处，没有一个统一的地方来承载和调用。",
+                "HagiCode 的 Preset Task 机制就是为解决这个问题而设计的。它做的不只是\"快捷指令\"，更是一个可扩展的 Skills 集成平台：",
+                "Preset Task 让你和 CodeBuddy 之间的协作从\"每次都要从头沟通\"升级为\"站在社区的肩膀上，一键调用成熟流程\"。你选好模板，CodeBuddy 负责执行——这是真正的工作流自动化，而且整个过程赏心悦目。"
+              ],
+              "bullets": [
+                "社区 Skills 即装即用：HagiCode 支持将市面上流行的 Skills 导入为 Preset Task。你不需要从头编写复杂的 prompt，社区已经沉淀了大量高质量的任务模板，直接导入就能用——新增 CRUD 模块、全面代码审查、API 文档生成，都有现成的方案。",
+                "可扩展的 Skills 体系：如果你有独特的项目需求或团队规范，HagiCode 允许你在社区 Skills 的基础之上进行定制和组合。你可以调整检查清单、添加团队编码规范、甚至把多个 Skills 串联成一条完整的开发流水线，打造属于你自己团队的任务模板库。",
+                "可视化操作，告别纯文本的枯燥：这是 HagiCode 与其他纯命令行工具最根本的区别。选择 Preset Task 不再需要在终端里敲命令、拼参数，而是通过精心设计的可视化界面完成——鼠标点击选择任务、下拉菜单切换参数、拖拽调整任务顺序，每一步都有清晰的视觉反馈和状态提示。把人机交互从\"写代码来调用 AI\"变成了\"用 UI 来指挥 AI\"。"
+              ]
+            },
+            {
+              "id": "codebuddy-vs-hagicode-section-2-item-6",
+              "title": "游戏化界面：让企业级 AI 编程不再\"严肃沉闷\"",
+              "content": [
+                "编程本身可以是枯燥的，但也可以是好玩的。HagiCode 的游戏化界面设计，打破了命令行工具冷冰冰的体验：",
+                "CodeBuddy 提供智力，HagiCode 提供体验——两者配合，才能让 AI 编程从\"生产力工具\"变成\"让人愿意打开的开发环境\"。"
+              ],
+              "bullets": [
+                "视觉反馈清晰：每个会话的运行状态、进度和结果都通过直观的界面元素呈现，不需要在终端里使劲翻找。",
+                "成就与进度可视化：任务完成、代码入库、提案通过——这些节点都被包装成可见的里程碑，让开发过程有节奏感和成就感。",
+                "操作门槛低：鼠标点击、拖拽操作和快捷键结合的设计，让不习惯纯终端工作流的开发者也能轻松驾驭 CodeBuddy 的全部能力。"
+              ]
+            },
+            {
+              "id": "codebuddy-vs-hagicode-section-2-item-7",
+              "title": "Agents 多代理管理：把 CodeBuddy 的企业开发任务编入可管理的 Agent 编队",
+              "content": [
+                "并行会话本身很有价值，但当你同时开着多个会话时，真正的新瓶颈会变成“怎么调度和管理它们”。",
+                "HagiCode 的 Agents 管理层会把每个 CodeBuddy 工作单元抽象成一个有名字、可调度、状态可见的 Agent。",
+                "你面对的不再是一堆打开的终端窗口，而是一支可以被统一编排的小型 AI 开发队伍。"
+              ],
+              "bullets": [
+                "Agent 身份与状态可视化：谁在运行、谁在等待、谁卡住、谁可归档，一眼就能看清。",
+                "任务与 Agent 绑定：提案、审查、重构、测试等任务都可以分配给专属 Agent。",
+                "Agent 配置独立可控：不同 Agent 可以挂不同的模型路由、Skills 和上下文范围，彼此互不干扰。"
+              ]
+            },
+            {
+              "id": "codebuddy-vs-hagicode-section-2-item-8",
+              "title": "Monospecs 多仓库管理：让 CodeBuddy 理解企业微服务架构的仓库关系",
+              "content": [
+                "实际项目中，代码往往不在一个仓库里。前端、后端、文档、共享库分散在不同仓库，而一个功能变更可能要同时修改好几个仓库。对 CodeBuddy 来说，单仓库模式够用，但它无法天然理解跨仓库的关系——你得在每一次对话里手动告诉它\"这个改动还要同步到另外两个仓库\"，这显然是低效的。",
+                "HagiCode 的 Monospecs 机制就是为多仓库场景而设计的结构化方案。它通过 .hagicode/monospecs.yaml 配置文件声明项目群中所有子仓库的地址、名称和关系，让 CodeBuddy 在启动提案时就能自动获得完整的跨仓库地图：",
+                "Monospecs 本质上是在帮 CodeBuddy 消除跨仓库协作的认知盲区。CodeBuddy 的推理能力再强，也需要一份准确的\"地图\"来定位变化范围——而 Monospecs 就是这张被体系化管理的项目地图。"
+              ],
+              "bullets": [
+                "自动感知仓库关系：创建开发提案时，CodeBuddy 可以直接从 Monospecs 配置中读取子仓库列表，知道\"这次变更的前端代码在 repos/frontend、API 定义在 repos/backend、文档在 repos/docs\"——你不再需要每次手动列出涉及哪些仓库。",
+                "跨仓库变更追踪：当一个提案同时涉及多个子仓库时，OpenSpec 提案目录保留在主仓库中，子仓库仅仅承载代码修改。这样 specs 与代码分离，子仓库保持纯净，但整个变更的决策链条和讨论记录都集中在一个地方。归档时 commit_when_archive 还可以自动提交 specs 到主仓库，省去手动管理版本控制的麻烦。",
+                "AI 提交精准识库：在做 AI 提交时，HagiCode 会根据 Monospecs 配置分析你的变更内容，自动建议应该提交到哪个目标仓库。你不用在终端里挨个切目录，HagiCode 帮你接管了\"这段代码属于哪个仓库\"的判断。",
+                "每库可配 AGENTS.md：每个子仓库可以有自己专属的 AGENTS.md，告诉 CodeBuddy 这个仓库的技术栈、代码规范和开发约定。CodeBuddy 在操作不同仓库时自动读取对应的指导，行为始终符合你团队的标准。"
+              ]
+            },
+            {
+              "id": "codebuddy-vs-hagicode-section-2-item-9",
+              "title": "Vault 跨项目知识库：让 CodeBuddy 的企业知识资产化",
+              "content": [
+                "CodeBuddy 的上下文窗口虽然很大，但每次新会话都是从零开始——上一轮提案中积累的经验、分析过的项目结构、讨论出的最佳实践，全都会随着会话结束而\"失忆\"。这在纯对话工具中只能默默接受，但在 HagiCode 里，Vault 系统改变了游戏规则。",
+                "Vault 是 HagiCode 提供的跨项目持久化知识存储层，它的核心设计理念是\"一次注册，处处复用\"：",
+                "如果说 Monospecs 是让 CodeBuddy 看懂\"项目在哪里\"，那 Vault 就是让 CodeBuddy 记住\"我们之前学会了什么\"。前者拓展了 CodeBuddy 的空间视野，后者延续了 CodeBuddy 的时间记忆——两者叠加，CodeBuddy 不再是每一次都要重新打招呼的陌生人，而是一个真正了解你项目全景和知识积累的长期搭档。"
+              ],
+              "bullets": [
+                "多类型知识容器：Vault 支持四种类型——folder（通用文件目录）、coderef（专门用于临摹开源项目，自动初始化标准化目录结构）、obsidian（直接接入你已有的 Obsidian 笔记库）和 system-managed（系统自动管理项目配置和 prompt 模板库）。你可以把分散在不同地方的代码仓库、学习笔记、设计文档全部注册到 Vault 中，CodeBuddy 在任何一个提案里都能自动感知到这些知识资源的存在。",
+                "AI 上下文自动注入：每次启动新提案时，HagiCode 会自动将你注册的 Vault 信息注入到 CodeBuddy 的上下文里。你不用手动复制代码片段、不用重新解释项目背景——CodeBuddy 拿到提案的同时就已经\"知道\"你有哪些可用的学习资源和参考项目，可以直接基于既有知识开展工作。",
+                "访问权限精细化控制：每个 Vault 可以标记为 reference（只读）或 editable（可编辑）。开源项目的参考代码库设定为只读，CodeBuddy 可以阅读和分析但不能修改，防止误操作。你自己的项目 Vault 设为可编辑，CodeBuddy 就能帮你直接写代码。这种边界让 AI 的\"自由度\"始终可控。",
+                "跨项目知识复用：在分析项目 A 时注册了一个\"设计模式参考\"Vault，之后在任何提案中 CodeBuddy 都能访问它。你不用重复积累知识库，Vault 让你的学习成果和参考资源变成了可继承的长期资产。"
+              ]
+            },
+            {
+              "id": "codebuddy-vs-hagicode-section-2-item-10",
+              "title": "OmniRoute 模型路由：让企业级的模型采购策略更灵活",
+              "content": [
+                "团队应该能保留自己喜欢的工作流，而不是被某一个模型供应商或订阅路径反向绑死。",
+                "OmniRoute 把交互层和模型路由层拆开，让 HagiCode 可以继续把 CodeBuddy 放在工作流里，同时在底层灵活切换模型来源。",
+                "这样你就能同时获得更好的成本控制、更合适的任务匹配，以及模型供应变化时更低的迁移摩擦。"
+              ],
+              "bullets": [
+                "保留你已经习惯的 CLI 或交互方式，只替换底层模型路由。",
+                "一套路由策略可以被多个 Agent 和多个接入 HagiCode 的 AI 工具共享。",
+                "针对快速编码、深度审查、架构规划等不同任务配置不同模型路线。",
+                "在路由层一次调整成本与能力配置，而不是逐个工作流重复折腾。"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "codebuddy-vs-hagicode-section-3",
+      "title": "总结",
+      "blocks": [
+        {
+          "id": "codebuddy-vs-hagicode-section-3-intro",
+          "type": "rich-text",
+          "content": [
+            "CodeBuddy CLI 是一个企业级 AI 编码助手，以安全性、合规性和团队协作能力见长；HagiCode 是一个全面的 AI 编程工作台。它们的关系是互补：",
+            "如果你已经在用 CodeBuddy CLI，不妨试试把它接入 HagiCode——你会发现 CodeBuddy 的安全和合规优势不再只是\"单独工具的亮点\"，而是一个被完整企业级工作流平台加持的全方位 AI 开发体系。"
+          ]
+        },
+        {
+          "id": "codebuddy-vs-hagicode-section-3-bullets",
+          "type": "bullet-list",
+          "items": [
+            "CodeBuddy 提供安全与合规：细粒度权限、代码安全保障、合规性支持；",
+            "HagiCode 提供效率：多线程并行、Agents 编队管理、OpenSpec 提案、AI 提交、Code Server 编辑器、Preset Task；",
+            "HagiCode 拓展边界：Monospecs 让 CodeBuddy 理解跨仓库项目关系，Vault 让 CodeBuddy 拥有跨会话长期记忆，OmniRoute 让 CodeBuddy 突破模型订阅的锁死；",
+            "两者结合提供体验：可追溯的决策链、自动化的日常事务、让人愉悦的操作界面，以及一个真正了解你项目全景、可自由配置模型来源的长期 AI 搭档。"
+          ]
+        }
+      ]
+    }
+  ]
+}
