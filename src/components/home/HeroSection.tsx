@@ -199,7 +199,7 @@ export default function HeroSection({
   const steamLabel = 'Steam';
   const steamAriaLabel = copy.steamAriaLabel || (isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam');
   const windowsStoreAriaLabel = copy.windowsStoreAriaLabel || (
-    isChineseLocale ? '打开 Hagicode Windows 商店页' : 'Open Hagicode on Windows Store'
+    isChineseLocale ? '打开 Hagicode Windows 商店页' : 'Open Hagicode on Microsoft Store'
   );
   const ctaGroupLabel = copy.ctaGroupLabel || (isChineseLocale ? '首页主要操作' : 'Primary homepage actions');
   const showSteamButton = FEATURE_SITE_STEAM_ENABLED && Boolean(steamStoreLink.href);

@@ -214,7 +214,7 @@ describe('DesktopHero fallback contract', () => {
     expect(markup).toContain('More versions');
   });
 
-  it('renders the Windows Store row ahead of the download table with the canonical store target', () => {
+  it('renders the Microsoft Store row ahead of the download table with the canonical store target', () => {
     const markup = renderToStaticMarkup(
       React.createElement(
         React.Fragment,
@@ -236,8 +236,8 @@ describe('DesktopHero fallback contract', () => {
     expect(markup).toContain('<ms-store-badge');
     expect(markup).toContain('productid="9N3PM0N3SVDW"');
     expect(markup).toContain('language="en-us"');
-    expect(markup).toContain('Open Hagicode on Windows Store');
-    expect(markup).toContain('Subscribe on Windows Store to stay on the latest version.');
+    expect(markup).toContain('Open Hagicode on Microsoft Store');
+    expect(markup).toContain('Subscribe on Microsoft Store to stay on the latest version.');
     expect(markup.indexOf('data-windows-store-row="desktop-downloads"')).toBeLessThan(
       markup.indexOf('data-platform-table="desktop-downloads"'),
     );

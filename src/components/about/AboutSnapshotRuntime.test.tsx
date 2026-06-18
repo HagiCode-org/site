@@ -28,6 +28,13 @@ const fetchedSnapshotFixture = normalizeAboutSnapshotData({
       url: 'https://www.youtube.com/@hagicode',
     },
     {
+      id: 'windows-store',
+      type: 'link',
+      label: 'Windows Store',
+      regionPriority: 'international-first',
+      url: 'https://apps.microsoft.com/detail/9N3PM0N3SVDW',
+    },
+    {
       id: 'steam',
       type: 'link',
       label: 'Steam',
@@ -108,7 +115,7 @@ const fetchedSnapshotFixture = normalizeAboutSnapshotData({
 });
 
 describe('AboutSnapshotRuntimeView', () => {
-  it('renders the English store section before community and content without duplicating Steam', () => {
+  it('renders the English store section before community and content without Steam', () => {
     const markup = renderToStaticMarkup(
       <AboutSnapshotRuntimeView model={buildAboutPageModel('en')} refreshState="static" />,
     );
@@ -122,18 +129,19 @@ describe('AboutSnapshotRuntimeView', () => {
     expect(markup.indexOf('id="about-store"')).toBeLessThan(markup.indexOf('id="about-community"'));
     expect(markup.indexOf('id="about-community"')).toBeLessThan(markup.indexOf('id="about-content"'));
     expect(storeSection).toContain('<h2>Store</h2>');
-    expect(storeSection).toContain('Steam');
+    expect(storeSection).toContain('Windows Store');
     expect(storeSection).toContain('>Store<');
-    expect(storeSection).toContain('Official store');
-    expect(storeSection).toContain('https://store.steampowered.com/app/4625540/Hagicode/');
+    expect(storeSection).toContain('Official Microsoft Store listing');
+    expect(storeSection).toContain('https://apps.microsoft.com/detail/9N3PM0N3SVDW');
     expect(storeSection).toContain('target="_blank"');
     expect(storeSection).toContain('rel="noopener noreferrer"');
+    expect(markup).not.toContain('Steam');
     expect(markup).toContain('Grow through exchange');
     expect(contentSection).toContain('Follow where the team publishes');
     expect(contentSection).not.toContain('Steam');
   });
 
-  it('renders the Chinese store section with localized copy and the same Steam destination', () => {
+  it('renders the Chinese store section with localized copy and Windows Store destination', () => {
     const refreshedModel = buildAboutPageModel('zh-CN', fetchedSnapshotFixture);
     const markup = renderToStaticMarkup(
       <AboutSnapshotRuntimeView model={refreshedModel} refreshState="synced" />,
@@ -151,12 +159,13 @@ describe('AboutSnapshotRuntimeView', () => {
     expect(markup).toContain('抖音');
     expect(markup.indexOf('id="about-store"')).toBeLessThan(markup.indexOf('id="about-community"'));
     expect(storeSection).toContain('<h2>商店</h2>');
-    expect(storeSection).toContain('Steam');
+    expect(storeSection).toContain('Windows 商店');
     expect(storeSection).toContain('>商店<');
-    expect(storeSection).toContain('官方商店');
-    expect(storeSection).toContain('https://store.steampowered.com/app/4625540/Hagicode/');
+    expect(storeSection).toContain('Windows 应用商店官方上架页');
+    expect(storeSection).toContain('打开商店页');
     expect(storeSection).toContain('target="_blank"');
     expect(storeSection).toContain('rel="noopener noreferrer"');
+    expect(markup).not.toContain('Steam');
     expect(markup).toContain('关注团队持续发布的内容');
     expect(contentSection).not.toContain('Steam');
   });
