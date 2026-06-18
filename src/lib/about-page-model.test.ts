@@ -27,6 +27,8 @@ describe('about page model', () => {
     const steamEntry = model.sections[0]?.entries.find((entry) => entry.id === 'steam');
     const discordEntry = model.sections[1]?.entries.find((entry) => entry.id === 'discord');
 
+    expect(steamEntry).toBeUndefined();
+
     expect(model.routePath).toBe('/en-US/about/');
     expect(model.alternatePath).toBe('/zh-CN/about/');
     expect(model.seo.canonicalUrl).toBe('https://hagicode.com/en-US/about/');
@@ -34,7 +36,7 @@ describe('about page model', () => {
     expect(model.sections.map((section) => section.id)).toEqual(['store', 'community', 'content']);
     expect(model.sections[0]?.title).toBe('Store');
     expect(model.sections[1]?.title).toBe('Grow through exchange');
-    expect(storeEntries).toEqual(['windows-store', 'steam']);
+    expect(storeEntries).toEqual(['windows-store']);
     expect(communityEntries).toEqual(['discord', 'feishu-group', 'qq-group']);
     expect(contentEntries?.slice(0, 4)).toEqual([
       'youtube',
@@ -55,19 +57,6 @@ describe('about page model', () => {
     });
     expect(contentEntries).toContain('douyin-account');
     expect(contentEntries).toContain('douyin-qr');
-    expect(steamEntry).toMatchObject({
-      kind: 'link',
-      kindLabel: 'Store',
-      label: 'Steam',
-      detail: 'Official store page',
-      linkText: 'Open store',
-      href: 'https://store.steampowered.com/app/4625540/Hagicode/',
-      presentation: {
-        theme: 'steam',
-        icon: 'steam',
-        badgeLabel: 'Official store',
-      },
-    });
     expect(discordEntry).toMatchObject({
       kind: 'link',
       detail: 'Official community server',
@@ -109,7 +98,7 @@ describe('about page model', () => {
     expect(model.sections[0]?.title).toBe('商店');
     expect(model.sections[1]?.title).toBe('增进交流，共同成长');
     expect(model.sections[2]?.title).toBe('关注团队持续发布的内容');
-    expect(storeIds).toEqual(['windows-store', 'steam']);
+    expect(storeIds).toEqual(['windows-store']);
     expect(model.sections[1]?.entries.map((entry) => entry.id)).toEqual(['feishu-group', 'qq-group', 'discord']);
     expect(contentIds).toEqual([
       'bilibili',
@@ -130,6 +119,7 @@ describe('about page model', () => {
       'x',
       'linkedin',
       'facebook',
+      'product-hunt',
     ]);
     expect(douyinEntry).toMatchObject({
       kind: 'combo',
@@ -155,17 +145,7 @@ describe('about page model', () => {
       linkText: '打开商店页',
       href: 'https://apps.microsoft.com/detail/9N3PM0N3SVDW',
     });
-    expect(model.sections[0]?.entries.find((entry) => entry.id === 'steam')).toMatchObject({
-      kindLabel: '商店',
-      detail: '官方商店页',
-      linkText: '打开商店页',
-      href: 'https://store.steampowered.com/app/4625540/Hagicode/',
-      presentation: {
-        theme: 'steam',
-        icon: 'steam',
-        badgeLabel: '官方商店',
-      },
-    });
+    expect(model.sections[0]?.entries.find((entry) => entry.id === 'steam')).toBeUndefined();
     expect(
       contentIds?.indexOf('facebook') ?? Number.MAX_SAFE_INTEGER,
     ).toBeGreaterThan(contentIds?.indexOf('xiaoheihe') ?? Number.MIN_SAFE_INTEGER);
@@ -186,7 +166,7 @@ describe('about page model', () => {
         {
           id: 'windows-store',
           type: 'link',
-          label: 'Windows Store',
+          label: 'Microsoft Store',
           regionPriority: 'international-first',
           url: 'https://apps.microsoft.com/detail/9N3PM0N3SVDW',
         },
@@ -278,13 +258,7 @@ describe('about page model', () => {
       kindLabel: 'Store',
       href: 'https://apps.microsoft.com/detail/9N3PM0N3SVDW',
     });
-    expect(runtimeModel.sections[0]?.entries.find((entry) => entry.id === 'steam')).toMatchObject({
-      kindLabel: 'Store',
-      href: 'https://store.steampowered.com/app/4625540/Hagicode/',
-      presentation: {
-        theme: 'steam',
-      },
-    });
+    expect(runtimeModel.sections[0]?.entries.find((entry) => entry.id === 'steam')).toBeUndefined();
     expect(runtimeModel.sections[2]?.entries.find((entry) => entry.id === 'douyin-qr')).toMatchObject({
       kind: 'media',
       imageUrl: 'https://index.hagicode.com/_astro/douyin.runtime.png',
@@ -307,7 +281,7 @@ describe('about page model', () => {
         {
           id: 'windows-store',
           type: 'link',
-          label: 'Windows Store',
+          label: 'Microsoft Store',
           regionPriority: 'international-first',
           url: 'https://apps.microsoft.com/detail/9N3PM0N3SVDW',
         },
@@ -403,14 +377,12 @@ describe('about page model', () => {
       imageUrl: 'https://index.hagicode.com/_astro/douyin.runtime-next.png',
       href: 'https://www.douyin.com/user/demo',
     });
-    expect(runtimeModel.sections[0]?.entries.map((entry) => entry.id)).toEqual(['windows-store', 'steam']);
+    expect(runtimeModel.sections[0]?.entries.map((entry) => entry.id)).toEqual(['windows-store']);
     expect(runtimeModel.sections[0]?.entries.find((entry) => entry.id === 'windows-store')).toMatchObject({
       kindLabel: '商店',
       label: 'Windows 商店',
     });
-    expect(runtimeModel.sections[0]?.entries.find((entry) => entry.id === 'steam')).toMatchObject({
-      kindLabel: '商店',
-    });
+    expect(runtimeModel.sections[0]?.entries.find((entry) => entry.id === 'steam')).toBeUndefined();
     expect(runtimeModel.snapshot.updatedAt).toBe('2026-04-06T00:00:00.000Z');
     expect(hasAboutPageModelMaterialChange(baselineModel, runtimeModel)).toBe(true);
   });

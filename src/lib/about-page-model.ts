@@ -110,6 +110,9 @@ export interface AboutPageModel {
 const STORE_ENTRY_IDS = new Set(['windows-store', 'steam']);
 const COMMUNITY_ENTRY_IDS = new Set(['qq-group', 'feishu-group', 'discord']);
 
+/** 站点层面不展示的条目（index 数据源中仍然存在，仅过滤显示） */
+const SITE_EXCLUDED_ENTRY_IDS = new Set(['steam']);
+
 const ENTRY_ORDER = [
   'feishu-group',
   'qq-group',
@@ -411,9 +414,10 @@ export function buildAboutPageModel(
   const locale = resolveSiteLocale(localeInput);
   const copy = getAboutLocaleCopy(locale);
   const alternateLocale: SiteLocale = locale === DEFAULT_LOCALE ? 'zh-CN' : DEFAULT_LOCALE;
-  const storeEntries = buildStoreEntries(locale, snapshot.entries);
-  const communityEntries = sortEntries(locale, snapshot.entries.filter((entry) => isCommunityEntry(entry)));
-  const contentEntries = buildContentEntries(locale, snapshot.entries);
+  const visibleEntries = snapshot.entries.filter((entry) => !SITE_EXCLUDED_ENTRY_IDS.has(entry.id));
+  const storeEntries = buildStoreEntries(locale, visibleEntries);
+  const communityEntries = sortEntries(locale, visibleEntries.filter((entry) => isCommunityEntry(entry)));
+  const contentEntries = buildContentEntries(locale, visibleEntries);
   const sections: AboutPageSection[] = [];
 
   if (storeEntries.length > 0) {
