@@ -78,6 +78,9 @@ interface DesktopHeroWindowsStoreRowProps {
 
 export function DesktopHeroWindowsStoreRow({ locale, href }: DesktopHeroWindowsStoreRowProps) {
   const { t } = getTranslation(locale);
+  const manualDownloadsNote = locale.toLowerCase().startsWith('zh')
+    ? 'Windows 用户推荐先通过 Microsoft Store 安装，下方表格仅在需要手动安装包或指定版本文件时使用。'
+    : 'Windows users should start with Microsoft Store. Use the package table below only when you need manual installers or version-specific files.';
 
   return (
     <div className={`${styles.steamRow} ${styles.windowsStoreRow}`} data-windows-store-row="desktop-downloads">
@@ -86,6 +89,7 @@ export function DesktopHeroWindowsStoreRow({ locale, href }: DesktopHeroWindowsS
           {t('desktopHero.windowsStore.eyebrow')}
         </span>
         <p className={styles.steamRowDescription}>{t('desktopHero.windowsStore.description')}</p>
+        <p className={styles.windowsStoreFollowupNote}>{manualDownloadsNote}</p>
       </div>
       <MicrosoftStoreBadge
         href={href}

@@ -266,6 +266,29 @@ describe('InstallButton markup', () => {
     expect(markup).toContain('>China<');
   });
 
+  it('promotes Microsoft Store as the primary Windows CTA in the compact install cluster', () => {
+    vi.stubGlobal('window', { location: { search: '?os=windows' } });
+
+    try {
+      const markup = renderToStaticMarkup(
+        <InstallButton
+          locale="en"
+          variant="compact"
+          version={multiSourceVersion}
+          platforms={groupAssetsByPlatform(multiSourceVersion.assets)}
+        />,
+      );
+
+      expect(markup).toContain('Install from Microsoft Store');
+      expect(markup).toContain(windowsStoreUrl);
+      expect(markup).not.toContain('>GitHub<');
+      expect(markup).not.toContain('>China<');
+      expect(markup).not.toContain('<ms-store-badge');
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+
   it('uses the shortened Chinese mainland label in the compact install cluster', () => {
     const markup = renderToStaticMarkup(
       <InstallButton

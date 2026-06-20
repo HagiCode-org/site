@@ -443,7 +443,6 @@ export default function InstallButton({
     isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam';
   const windowsStoreShortcutAriaLabel =
     isChineseLocale ? '打开 Hagicode Microsoft Store 页面' : 'Open Hagicode on Microsoft Store';
-  const showWindowsStoreShortcut = variant === 'compact';
   const showSteamShortcut = FEATURE_SITE_STEAM_ENABLED && variant === 'compact' && steamStoreLink.href.length > 0;
 
   useEffect(() => {
@@ -632,19 +631,33 @@ export default function InstallButton({
       .filter((entry) => Boolean(entry.action));
   }, [primaryTarget.actionPair, primarySourceOrder, locale]);
 
+  const preferWindowsStorePrimary = currentOS === 'windows' && menuState.hasDownloads;
+  const showWindowsStoreShortcut = variant === 'compact' && !preferWindowsStorePrimary;
+  const windowsStorePrimaryLabel = isChineseLocale ? 'Microsoft Store 安装' : 'Install from Microsoft Store';
+  const windowsStorePrimaryAriaLabel = isChineseLocale
+    ? '通过 Microsoft Store 安装 Hagicode Desktop'
+    : 'Install Hagicode Desktop from Microsoft Store';
+  const showPrimarySourceButtons = primaryActions.length > 0 && !preferWindowsStorePrimary;
+
   const primaryHref =
     menuState.mode === 'fatal'
       ? historyFallbackTarget
+      : preferWindowsStorePrimary
+        ? WINDOWS_STORE_URL
       : menuState.hasDownloads
         ? primaryActions[0]?.action?.url ?? primaryTarget.href
         : desktopPageUrl;
   const primaryText =
     menuState.mode === 'fatal'
       ? desktopFallbackCta
+      : preferWindowsStorePrimary
+        ? windowsStorePrimaryLabel
       : menuState.mode === 'loading' && variant === 'compact'
         ? loadingPrimaryLabel
         : installButtonLabel;
-  const primaryAriaLabel = menuState.hasDownloads
+  const primaryAriaLabel = preferWindowsStorePrimary
+    ? windowsStorePrimaryAriaLabel
+    : menuState.hasDownloads
     ? `${installDesktopAriaLabel}${primaryActions[0] ? ` (${primaryActions[0].label})` : ''}`
     : menuState.mode === 'loading'
       ? loadingLatestLabel
@@ -763,6 +776,10 @@ export default function InstallButton({
   };
 
   const handlePrimaryInstallClick = () => {
+    if (preferWindowsStorePrimary) {
+      return;
+    }
+
     if (!menuState.hasDownloads || !primaryTarget.option) {
       return;
     }
@@ -1036,7 +1053,7 @@ export default function InstallButton({
         className={`${styles.splitButtonContainer} ${variant === 'compact' ? styles.splitButtonContainerSegmented : ''}`}
         data-action-group={variant === 'compact' ? 'segmented' : 'default'}
       >
-        {primaryActions.length > 0 ? (
+        {showPrimarySourceButtons ? (
           <div
             className={`${styles.primarySourceActions} ${variant === 'compact' ? styles.primarySourceActionsGrouped : ''}`}
             data-segment-role="primary-actions"

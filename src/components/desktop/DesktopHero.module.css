@@ -97,6 +97,13 @@
   line-height: 1.5;
 }
 
+.windowsStoreFollowupNote {
+  margin: 0;
+  color: rgba(240, 249, 255, 0.92);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
 .steamRow:hover,
 .steamRow:focus-visible {
   transform: translateY(-2px) scale(1.01);
