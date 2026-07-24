@@ -296,29 +296,24 @@
     background-color 180ms ease;
 }
 
+/* Outline / soft-surface primary — solid fill made Chinese label hard to read */
 .buttonPrimary {
   isolation: isolate;
   width: 100%;
   min-height: 4.6rem;
   padding: 1rem 1.5rem;
-  border: 1px solid color-mix(in srgb, var(--color-primary) 42%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--color-primary) 78%, var(--hero-panel-border));
   border-radius: 1.2rem;
-  color: #f8fcff;
-  background: var(--gradient-primary);
+  color: var(--color-primary);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 12%, var(--hero-panel-strong)),
+      color-mix(in srgb, var(--color-primary) 5%, var(--hero-panel))
+    );
   box-shadow:
-    0 24px 52px color-mix(in srgb, var(--color-primary) 26%, transparent),
-    0 0 0 1px color-mix(in srgb, rgba(255, 255, 255, 0.18) 100%, transparent) inset;
-}
-
-.buttonPrimary::before {
-  content: '';
-  position: absolute;
-  inset: 1px;
-  z-index: -1;
-  border-radius: calc(1.2rem - 1px);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.24), transparent 48%);
-  opacity: 0.7;
-  pointer-events: none;
+    0 18px 40px color-mix(in srgb, var(--color-primary) 12%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-primary) 10%, transparent) inset;
 }
 
 .buttonSecondary {
@@ -389,9 +384,16 @@
 }
 
 .buttonPrimary:hover {
+  border-color: var(--color-primary);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-primary) 18%, var(--hero-panel-strong)),
+      color-mix(in srgb, var(--color-primary) 9%, var(--hero-panel))
+    );
   box-shadow:
-    0 30px 62px color-mix(in srgb, var(--color-primary) 34%, transparent),
-    0 0 0 1px color-mix(in srgb, rgba(255, 255, 255, 0.22) 100%, transparent) inset;
+    0 24px 52px color-mix(in srgb, var(--color-primary) 18%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-primary) 14%, transparent) inset;
 }
 
 .buttonSecondary:hover {
@@ -439,7 +441,7 @@
   line-height: 1;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(248, 252, 255, 0.84);
+  color: color-mix(in srgb, var(--color-primary) 72%, var(--hero-text));
 }
 
 .heroStage {
