@@ -45,7 +45,6 @@ jobs:
           rm -rf "${SITE_GH_PAGES_PAYLOAD_DIR}"
           mkdir -p "${SITE_GH_PAGES_PAYLOAD_DIR}/dist"
           cp .github/gh-pages/esa.jsonc "${SITE_GH_PAGES_PAYLOAD_DIR}/esa.jsonc"
-          cp .github/gh-pages/wrangler.jsonc "${SITE_GH_PAGES_PAYLOAD_DIR}/wrangler.jsonc"
           cp -R dist/. "${SITE_GH_PAGES_PAYLOAD_DIR}/dist/"
 
       - name: Upload validated gh-pages payload
@@ -103,8 +102,8 @@ jobs:
         run: |
           echo "## Publication status" >> "$GITHUB_STEP_SUMMARY"
           echo "- Publication source: validated build artifact" >> "$GITHUB_STEP_SUMMARY"
-          echo "- \`gh-pages\` publication: ${PUBLISH_OUTCOME}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Published payload: branch-root \`esa.jsonc\`, \`wrangler.jsonc\`, plus \`dist/\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- `gh-pages` publication: ${PUBLISH_OUTCOME}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Published payload: branch-root `esa.jsonc` plus `dist/`" >> "$GITHUB_STEP_SUMMARY"
           echo "- GitHub environment: site-production" >> "$GITHUB_STEP_SUMMARY"
           echo "- Expected public URL: https://hagicode.com" >> "$GITHUB_STEP_SUMMARY"
           echo "- Post-publication warmup: ${WARMUP_OUTCOME}" >> "$GITHUB_STEP_SUMMARY"
@@ -117,10 +116,7 @@ jobs:
             echo "- Warmup summary file was not created." >> "$GITHUB_STEP_SUMMARY"
           fi
           if [ "$PUBLISH_OUTCOME" = "success" ] && [ "$WARMUP_OUTCOME" = "failure" ]; then
-            echo "- Publication note: gh-pages snapshot was already published before warmup verification failed." >> "$GITHUB_STEP_SUMMARY"
-          fi
-          if [ "$PUBLISH_OUTCOME" = "success" ]; then
-            echo "Published the validated gh-pages payload with ./esa.jsonc, ./wrangler.jsonc, and ./dist/."
-          else
-            echo "Validated gh-pages publication did not complete successfully."
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "## Warmup failures" >> "$GITHUB_STEP_SUMMARY"
+            echo "- See the warmup summary above for the failed deployment-domain checks." >> "$GITHUB_STEP_SUMMARY"
           fi
