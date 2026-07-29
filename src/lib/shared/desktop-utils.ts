@@ -1054,15 +1054,6 @@ export async function getAllChannelVersions(
   return versionObjects;
 }
 
-/**
- * 检查资源文件是否为未签名版本
- * 未签名文件的文件名中包含 -unsigned 后缀（如 xxx-unsigned.exe）
- * @param filename - 文件名
- * @returns 是否为未签名文件
- */
-export function isUnsignedAsset(filename: string): boolean {
-  return /-unsigned(?:\.[^.]+)?$/.test(filename.toLowerCase());
-}
 
 /**
  * 将资源按平台分组
@@ -1083,10 +1074,6 @@ export function groupAssetsByPlatform(
   const architectures = new Map<DesktopPlatform, Set<CpuArchitecture>>();
 
   for (const asset of assets) {
-    // 跳过未签名的资源文件（文件名中包含 -unsigned 后缀）
-    if (isUnsignedAsset(asset.name)) {
-      continue;
-    }
 
     const assetType = inferAssetType(asset.name);
     if (assetType === AssetType.Unknown) {

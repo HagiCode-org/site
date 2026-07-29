@@ -73,6 +73,38 @@ const multiSourceVersion = {
     },
   ],
 };
+const unsignedVersion = {
+  version: 'v0.1.77',
+  assets: [
+    {
+      name: 'Hagicode.Desktop-0.1.77-arm64-unsigned.dmg',
+      path: 'v0.1.77/Hagicode.Desktop-0.1.77-arm64-unsigned.dmg',
+      size: 265383481,
+      lastModified: null,
+    },
+    {
+      name: 'Hagicode.Desktop-unsigned.msix',
+      path: 'v0.1.77/Hagicode.Desktop-unsigned.msix',
+      size: 1048576,
+      lastModified: null,
+    },
+    {
+      name: 'Hagicode.Desktop.0.1.77-unsigned.exe',
+      path: 'v0.1.77/Hagicode.Desktop.0.1.77-unsigned.exe',
+      size: 1048576,
+      lastModified: null,
+    },
+    {
+      name: 'Hagicode.Desktop.Setup.0.1.77-unsigned.exe',
+      path: 'v0.1.77/Hagicode.Desktop.Setup.0.1.77-unsigned.exe',
+      size: 1048576,
+      lastModified: null,
+    },
+  ],
+};
+
+const unsignedPlatformGroups = groupAssetsByPlatform(unsignedVersion.assets);
+
 
 describe('InstallButton runtime state helpers', () => {
   it('treats an unresolved runtime state as loading instead of frozen', () => {
@@ -204,6 +236,18 @@ describe('InstallButton markup', () => {
       'Hagicode.Desktop-1.2.3-arm64-mac.zip',
     ]);
   });
+  it('keeps v0.1.77 unsigned desktop assets in platform groups', () => {
+    expect(unsignedPlatformGroups.map((group) => group.platform)).toEqual(['macos', 'windows']);
+    expect(unsignedPlatformGroups[0]?.downloads.map((download) => download.filename)).toEqual([
+      'Hagicode.Desktop-0.1.77-arm64-unsigned.dmg',
+    ]);
+    expect(unsignedPlatformGroups[1]?.downloads.map((download) => download.filename)).toEqual([
+      'Hagicode.Desktop.Setup.0.1.77-unsigned.exe',
+      'Hagicode.Desktop-unsigned.msix',
+      'Hagicode.Desktop.0.1.77-unsigned.exe',
+    ]);
+  });
+
 
   it('renders a responsive loading trigger while runtime data is pending', () => {
     const markup = renderToStaticMarkup(<InstallButton locale="en" />);
