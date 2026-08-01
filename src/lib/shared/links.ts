@@ -245,7 +245,7 @@ export function getLinkWithLocale(key: PublicLinkKey, locale?: string): string {
       return rebuildAbsoluteUrl(urlObject, getLocalizedDocsPath(urlObject.pathname, currentLocale));
     }
 
-    if (urlObject.hostname === 'hagicode.com') {
+    if (urlObject.hostname === 'www.hagicode.com') {
       return rebuildAbsoluteUrl(urlObject, getLocalizedPathWithBase(urlObject.pathname, currentLocale, ''));
     }
 

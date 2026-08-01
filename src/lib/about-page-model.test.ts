@@ -31,7 +31,7 @@ describe('about page model', () => {
 
     expect(model.routePath).toBe('/en-US/about/');
     expect(model.alternatePath).toBe('/zh-CN/about/');
-    expect(model.seo.canonicalUrl).toBe('https://hagicode.com/en-US/about/');
+    expect(model.seo.canonicalUrl).toBe('https://www.hagicode.com/en-US/about/');
     expect(model.header.title).toBe('Grow through exchange');
     expect(model.sections.map((section) => section.id)).toEqual(['store', 'community', 'content']);
     expect(model.sections[0]?.title).toBe('Store');
@@ -50,7 +50,7 @@ describe('about page model', () => {
     expect(windowsStoreEntry).toMatchObject({
       kind: 'link',
       kindLabel: 'Store',
-      label: 'Windows Store',
+      label: 'Microsoft Store',
       detail: 'Official Microsoft Store listing',
       linkText: 'Open listing',
       href: 'https://apps.microsoft.com/detail/9N3PM0N3SVDW',
@@ -92,7 +92,7 @@ describe('about page model', () => {
 
     expect(model.routePath).toBe('/zh-CN/about/');
     expect(model.alternatePath).toBe('/en-US/about/');
-    expect(model.seo.canonicalUrl).toBe('https://hagicode.com/zh-CN/about/');
+    expect(model.seo.canonicalUrl).toBe('https://www.hagicode.com/zh-CN/about/');
     expect(model.header.title).toBe('增进交流，共同成长');
     expect(model.sections.map((section) => section.id)).toEqual(['store', 'community', 'content']);
     expect(model.sections[0]?.title).toBe('商店');

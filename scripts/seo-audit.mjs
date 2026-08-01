@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const distDir = path.resolve(process.cwd(), 'dist');
-const siteOrigin = 'https://hagicode.com';
+const siteOrigin = 'https://www.hagicode.com';
 const defaultLocale = 'en-US';
 const supportedLocales = [
   'en-US',

@@ -71,7 +71,7 @@ describe('site entry locale resolution', () => {
   it('builds localized redirect URLs and strips the lang query parameter', () => {
     expect(
       buildSiteEntryRedirectUrl({
-        currentUrl: new URL('https://hagicode.com/desktop/?lang=zh-HK&utm=campaign#download'),
+        currentUrl: new URL('https://www.hagicode.com/desktop/?lang=zh-HK&utm=campaign#download'),
         targetPath: '/desktop/',
         clientLanguages: ['en-US'],
       }),
@@ -79,14 +79,14 @@ describe('site entry locale resolution', () => {
       locale: 'zh-Hant',
       shouldPersist: true,
       shouldRedirect: true,
-      targetUrl: 'https://hagicode.com/zh-Hant/desktop/?utm=campaign#download',
+      targetUrl: 'https://www.hagicode.com/zh-Hant/desktop/?utm=campaign#download',
     });
   });
 
   it('supports non-root site bases when computing the redirect target', () => {
     expect(
       buildSiteEntryRedirectUrl({
-        currentUrl: new URL('https://hagicode.com/site/about/?ref=promo'),
+        currentUrl: new URL('https://www.hagicode.com/site/about/?ref=promo'),
         targetPath: '/about/',
         siteBase: '/site/',
         legacyStoredLocale: 'ja-JP',
@@ -95,7 +95,7 @@ describe('site entry locale resolution', () => {
       locale: 'ja-JP',
       shouldPersist: false,
       shouldRedirect: true,
-      targetUrl: 'https://hagicode.com/site/ja-JP/about/?ref=promo',
+      targetUrl: 'https://www.hagicode.com/site/ja-JP/about/?ref=promo',
     });
   });
 });

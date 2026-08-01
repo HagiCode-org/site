@@ -63,7 +63,7 @@ jobs:
       contents: write
     environment:
       name: site-production
-      url: https://hagicode.com
+      url: https://www.hagicode.com
     steps:
       - uses: actions/checkout@v4
         with:
@@ -106,7 +106,7 @@ jobs:
           echo "- \`gh-pages\` publication: ${PUBLISH_OUTCOME}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Published payload: branch-root \`esa.jsonc\`, \`wrangler.jsonc\`, plus \`dist/\`" >> "$GITHUB_STEP_SUMMARY"
           echo "- GitHub environment: site-production" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Expected public URL: https://hagicode.com" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Expected public URL: https://www.hagicode.com" >> "$GITHUB_STEP_SUMMARY"
           echo "- Post-publication warmup: ${WARMUP_OUTCOME}" >> "$GITHUB_STEP_SUMMARY"
           if [ -f "$WARMUP_SUMMARY_MARKDOWN" ]; then
             echo "" >> "$GITHUB_STEP_SUMMARY"

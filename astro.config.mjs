@@ -22,7 +22,7 @@ const DEFAULT_LOCALE = 'en-US';
 // https://astro.build/config
 export default defineConfig({
     // 站点完整 URL,用于生成 sitemap 和 canonical URL
-    site: 'https://hagicode.com',
+    site: 'https://www.hagicode.com',
     // 营销站点部署在根路径
     base: '/',
     // 国际化配置
@@ -79,7 +79,7 @@ export default defineConfig({
     integrations: [
         // robots.txt 配置 - 使用 astro-robots-txt 插件
         robotsTxt({
-            sitemap: 'https://hagicode.com/sitemap-index.xml',
+            sitemap: 'https://www.hagicode.com/sitemap-index.xml',
         }),
         sitemap({
             filter: (page) => {

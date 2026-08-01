@@ -39,7 +39,7 @@ describe('Footer related sites', () => {
     expect(markup).toContain('https://docs.hagicode.com/en-US/');
     expect(markup).toContain('https://builder.hagicode.com/');
     expect(markup).toContain('https://design.hagicode.com/');
-    expect(markup).not.toContain('https://hagicode.com/');
+    expect(markup).not.toContain('https://www.hagicode.com/');
     expect(countOccurrences(markup, 'https://cost.hagicode.com')).toBe(1);
 
     const snapshotEntry = footerSitesSnapshot.entries.find((entry) => entry.id === 'trait-builder');

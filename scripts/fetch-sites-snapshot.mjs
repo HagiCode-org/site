@@ -47,6 +47,9 @@ function normalizeHttpsUrl(value, fieldName) {
   }
 
   assert(parsed.protocol === 'https:', `Invalid footer sites snapshot payload: ${fieldName} must use https`);
+  if (parsed.hostname === 'hagicode.com') {
+    parsed.hostname = 'www.hagicode.com';
+  }
   parsed.hash = '';
   return parsed.toString();
 }

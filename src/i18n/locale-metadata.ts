@@ -1,4 +1,4 @@
-export const SITE_ORIGIN = 'https://hagicode.com';
+export const SITE_ORIGIN = 'https://www.hagicode.com';
 export const DEFAULT_LOCALE = 'en-US';
 export const LEGACY_ENGLISH_LOCALE = 'en';
 export const DESKTOP_LOCALE_SOURCE =

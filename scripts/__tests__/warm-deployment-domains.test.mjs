@@ -40,7 +40,7 @@ describe('site deployment warmup helper', () => {
           .fn()
           .mockResolvedValueOnce(new Response('warming', { status: 503 }))
           .mockResolvedValueOnce(new Response('ready', { status: 200 })),
-        'https://hagicode.com/': new Response(null, { status: 302 }),
+        'https://www.hagicode.com/': new Response(null, { status: 302 }),
       },
       calls,
     );
@@ -60,7 +60,7 @@ describe('site deployment warmup helper', () => {
       finalDetail: 'HTTP 200',
     });
     expect(result.domainResults[1]).toMatchObject({
-      domain: 'hagicode.com',
+      domain: 'www.hagicode.com',
       ok: true,
       retriesUsed: 0,
       finalDetail: 'HTTP 302',
@@ -70,12 +70,12 @@ describe('site deployment warmup helper', () => {
     expect(calls.map((call) => call.url)).toEqual([
       'https://site.472158246.workers.dev/',
       'https://site.472158246.workers.dev/',
-      'https://hagicode.com/',
+      'https://www.hagicode.com/',
     ]);
 
     const summary = renderWarmupSummary(result);
     expect(summary).toContain('`site.472158246.workers.dev`');
-    expect(summary).toContain('`hagicode.com`');
+    expect(summary).toContain('`www.hagicode.com`');
     expect(summary).toContain('warmed after retry');
   });
 
@@ -84,7 +84,7 @@ describe('site deployment warmup helper', () => {
     const logger = createLogger();
     const fetchImpl = createFetch({
       'https://site.472158246.workers.dev/': vi.fn().mockImplementation(async () => new Response('bad gateway', { status: 502 })),
-      'https://hagicode.com/': new Response('ok', { status: 200 }),
+      'https://www.hagicode.com/': new Response('ok', { status: 200 }),
     });
 
     let error;
@@ -105,7 +105,7 @@ describe('site deployment warmup helper', () => {
     expect(error.result.domainResults[0].finalDetail).toContain('HTTP 502 - bad gateway');
     expect(error.result.domainResults[0].finalDetail).toContain('retries exhausted');
     expect(error.result.domainResults[1]).toMatchObject({
-      domain: 'hagicode.com',
+      domain: 'www.hagicode.com',
       ok: true,
       finalDetail: 'HTTP 200',
     });
