@@ -3,7 +3,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 export const SITE_WARMUP_CONFIG = Object.freeze({
-  domains: Object.freeze(['hagicode.com']),
+  domains: Object.freeze(['site.472158246.workers.dev', 'hagicode.com']),
   maxAttempts: 4,
   retryDelayMs: 3000,
   timeoutMs: 10000,

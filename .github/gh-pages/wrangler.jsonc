@@ -1,7 +1,7 @@
 {
   "name": "site",
   "compatibility_date": "2026-05-04",
-  // Reserved for future direct worker publication; current release flow publishes only gh-pages.
+  // Direct wrangler deploy should publish the validated gh-pages dist/ snapshot as static web assets.
   "assets": {
     "directory": "./dist"
   }
