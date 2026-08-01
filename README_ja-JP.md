@@ -6,13 +6,13 @@
 
 <p>リポジトリの理解、提案の作成、タスクの分解、コードの変更、コミットの整理、複数リポジトリの管理、そして再利用可能な知識の蓄積までを、同じワークスペースから行えます。</p>
 
-<a href="https://hagicode.com/">Website</a>
+<a href="https://www.hagicode.com/">Website</a>
 ·
 <a href="https://docs.hagicode.com/product-overview/">Product Overview</a>
 ·
-<a href="https://hagicode.com/desktop/">Desktop</a>
+<a href="https://www.hagicode.com/desktop/">Desktop</a>
 ·
-<a href="https://hagicode.com/container/">Container</a>
+<a href="https://www.hagicode.com/container/">Container</a>
 ·
 <a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Microsoft Store</a>
 ·
@@ -28,7 +28,7 @@
 
 | プレビュー | 製品 | 概要 | 開始先 |
 | --- | --- | --- | --- |
-| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
+| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
 | <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus bundle artwork" width="280" /> | **Hagicode Plus** | Bundle and upgrade guidance remains available through the docs site. | [Read Hagicode Plus docs](https://docs.hagicode.com/bundles/hagicode-plus/) |
 | <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC artwork" width="280" /> | **Turbo Engine DLC** | DLC guidance for higher concurrency and customization remains available through the docs site. | [Read Turbo Engine DLC docs](https://docs.hagicode.com/dlc/turbo-engine-dlc/) |
 
@@ -78,10 +78,10 @@ HagiCode は、実績、日次レポート、効率倍率、トークン処理�
 
 ## 公式エントリーポイント
 
-- [Website](https://hagicode.com/) で製品サイト全体を見る
+- [Website](https://www.hagicode.com/) で製品サイト全体を見る
 - [Product Overview](https://docs.hagicode.com/product-overview/) で公式の公開製品紹介を見る
-- [Desktop](https://hagicode.com/desktop/) でローカルファーストの導入とサービス管理を見る
-- [Container](https://hagicode.com/container/) でセルフホストのデプロイ経路を見る
+- [Desktop](https://www.hagicode.com/desktop/) でローカルファーストの導入とサービス管理を見る
+- [Container](https://www.hagicode.com/container/) でセルフホストのデプロイ経路を見る
 - [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) で製品更新と長文記事を見る
@@ -111,7 +111,7 @@ npm run preview
 - 障害切り分け: `gh-pages` が成功しても R2 アップロードが失敗した場合、workflow は `upload-r2` で失敗します。GitHub の step summary を確認し、解決された bucket、prefix ルート、失敗が転送前の検証か同期中かを確認してください
 - 必要な GitHub 権限: deploy job には `contents: write` が必要で、build job は読み取り専用のままにします
 - 必要なホスティング設定: 本番ホストが `gh-pages/esa.jsonc` を読み、`gh-pages/dist/` を静的配信ディレクトリとして使うようにします
-- 初回デプロイ時の確認: ワークフローが `esa.jsonc` と `dist/` を公開したことを確認し、ホスティング先が引き続き `gh-pages` を見ていることを確かめ、summary に期待どおりの R2 bucket または prefix ルートが表示されることを確認したうえで `https://hagicode.com` を開きます
+- 初回デプロイ時の確認: ワークフローが `esa.jsonc` と `dist/` を公開したことを確認し、ホスティング先が引き続き `gh-pages` を見ていることを確かめ、summary に期待どおりの R2 bucket または prefix ルートが表示されることを確認したうえで `https://www.hagicode.com` を開きます
 - ロールバック方法: ソース変更を戻すか、古いコミットから再デプロイして、CI に前のスナップショットを再公開させます
 
 ### Desktop Index フォールバック

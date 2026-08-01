@@ -6,13 +6,13 @@
 
 <p>Используйте его, чтобы разбираться в репозиториях, писать предложения, декомпозировать задачи, изменять код, упорядочивать коммиты, управлять несколькими репозиториями и собирать переиспользуемую базу знаний, не выходя из одного рабочего пространства.</p>
 
-<a href="https://hagicode.com/">Website</a>
+<a href="https://www.hagicode.com/">Website</a>
 ·
 <a href="https://docs.hagicode.com/product-overview/">Product Overview</a>
 ·
-<a href="https://hagicode.com/desktop/">Desktop</a>
+<a href="https://www.hagicode.com/desktop/">Desktop</a>
 ·
-<a href="https://hagicode.com/container/">Container</a>
+<a href="https://www.hagicode.com/container/">Container</a>
 ·
 <a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Microsoft Store</a>
 ·
@@ -28,7 +28,7 @@
 
 | Превью | Продукт | Что это | С чего начать |
 | --- | --- | --- | --- |
-| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
+| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
 | <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus bundle artwork" width="280" /> | **Hagicode Plus** | Bundle and upgrade guidance remains available through the docs site. | [Read Hagicode Plus docs](https://docs.hagicode.com/bundles/hagicode-plus/) |
 | <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC artwork" width="280" /> | **Turbo Engine DLC** | DLC guidance for higher concurrency and customization remains available through the docs site. | [Read Turbo Engine DLC docs](https://docs.hagicode.com/dlc/turbo-engine-dlc/) |
 
@@ -78,10 +78,10 @@ HagiCode рассматривает достижения, ежедневные �
 
 ## Официальные точки входа
 
-- [Website](https://hagicode.com/) для полной главной страницы продукта
+- [Website](https://www.hagicode.com/) для полной главной страницы продукта
 - [Product Overview](https://docs.hagicode.com/product-overview/) для официального публичного введения в продукт
-- [Desktop](https://hagicode.com/desktop/) для локальной установки и управления сервисами
-- [Container](https://hagicode.com/container/) для сценария self-hosted развертывания
+- [Desktop](https://www.hagicode.com/desktop/) для локальной установки и управления сервисами
+- [Container](https://www.hagicode.com/container/) для сценария self-hosted развертывания
 - [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) для обновлений продукта и длинных публикаций
@@ -111,7 +111,7 @@ npm run preview
 - Диагностика сбоев: если `gh-pages` завершился успешно, а загрузка в R2 нет, workflow упадёт в `upload-r2`; смотрите GitHub step summary, чтобы увидеть вычисленный bucket, корень prefix и понять, случилась ли ошибка до передачи или во время синхронизации
 - Необходимые права GitHub: deploy job требует `contents: write`; build job остаётся только для чтения
 - Необходимая настройка хостинга: production-хост должен читать `gh-pages/esa.jsonc` и обслуживать `gh-pages/dist/` как каталог статических файлов
-- Проверки первого деплоя: убедитесь, что workflow публикует `esa.jsonc` и `dist/`, что целевой хостинг по-прежнему смотрит на `gh-pages`, что summary показывает ожидаемый bucket R2 или корень prefix, и затем откройте `https://hagicode.com`
+- Проверки первого деплоя: убедитесь, что workflow публикует `esa.jsonc` и `dist/`, что целевой хостинг по-прежнему смотрит на `gh-pages`, что summary показывает ожидаемый bucket R2 или корень prefix, и затем откройте `https://www.hagicode.com`
 - Путь отката: откатить изменение в исходниках или повторно запустить деплой из более старого коммита, чтобы CI снова опубликовал предыдущий снимок
 
 ### Резервный Desktop Index

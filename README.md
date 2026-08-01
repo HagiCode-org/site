@@ -6,13 +6,13 @@
 
 <p>Use it to understand repositories, write proposals, break down tasks, modify code, organize commits, manage multiple repositories, and build a reusable knowledge base without leaving the same workspace.</p>
 
-<a href="https://hagicode.com/">Website</a>
+<a href="https://www.hagicode.com/">Website</a>
 ·
 <a href="https://docs.hagicode.com/product-overview/">Product Overview</a>
 ·
-<a href="https://hagicode.com/desktop/">Desktop</a>
+<a href="https://www.hagicode.com/desktop/">Desktop</a>
 ·
-<a href="https://hagicode.com/container/">Container</a>
+<a href="https://www.hagicode.com/container/">Container</a>
 ·
 <a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Microsoft Store</a>
 ·
@@ -28,7 +28,7 @@
 
 | Preview | Product | What it is | Start here |
 | --- | --- | --- | --- |
-| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
+| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
 | <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus bundle artwork" width="280" /> | **Hagicode Plus** | Bundle and upgrade guidance remains available through the docs site. | [Read Hagicode Plus docs](https://docs.hagicode.com/bundles/hagicode-plus/) |
 | <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC artwork" width="280" /> | **Turbo Engine DLC** | DLC guidance for higher concurrency and customization remains available through the docs site. | [Read Turbo Engine DLC docs](https://docs.hagicode.com/dlc/turbo-engine-dlc/) |
 
@@ -78,10 +78,10 @@ HagiCode treats achievements, daily reports, efficiency multipliers, token throu
 
 ## Official Entry Points
 
-- [Website](https://hagicode.com/) for the full product homepage
+- [Website](https://www.hagicode.com/) for the full product homepage
 - [Product Overview](https://docs.hagicode.com/product-overview/) for the canonical public introduction
-- [Desktop](https://hagicode.com/desktop/) for local-first installation and service management
-- [Container](https://hagicode.com/container/) for the self-hosted deployment path
+- [Desktop](https://www.hagicode.com/desktop/) for local-first installation and service management
+- [Container](https://www.hagicode.com/container/) for the self-hosted deployment path
 - [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) for product updates and long-form posts
@@ -109,7 +109,7 @@ For contributor guidance, start with [`AGENTS.md`](./AGENTS.md) and [`CLAUDE.md`
 - Direct Cloudflare publication is now handled outside this workflow; keep `gh-pages/wrangler.jsonc` as the checked-in Wrangler contract for direct publish operations
 - Required GitHub permissions: the deploy job needs `contents: write`; the build job stays read-only
 - Required hosting setting: configure the production host to read `gh-pages/esa.jsonc`, treat `gh-pages/wrangler.jsonc` as the Wrangler source of truth for direct publication, and serve `gh-pages/dist/`
-- First deploy checks: confirm the workflow publishes `esa.jsonc`, `wrangler.jsonc`, and `dist/`, verify the hosting target still points at `gh-pages`, and load `https://hagicode.com`
+- First deploy checks: confirm the workflow publishes `esa.jsonc`, `wrangler.jsonc`, and `dist/`, verify the hosting target still points at `gh-pages`, and load `https://www.hagicode.com`
 - Rollback path: revert the source change or rerun deployment from an older commit so CI republishes the previous snapshot
 
 ### Desktop Index Fallback

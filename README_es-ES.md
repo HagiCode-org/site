@@ -6,13 +6,13 @@
 
 <p>Úsalo para entender repositorios, redactar propuestas, descomponer tareas, modificar código, organizar commits, gestionar varios repositorios y construir una base de conocimiento reutilizable sin salir del mismo espacio de trabajo.</p>
 
-<a href="https://hagicode.com/">Website</a>
+<a href="https://www.hagicode.com/">Website</a>
 ·
 <a href="https://docs.hagicode.com/product-overview/">Product Overview</a>
 ·
-<a href="https://hagicode.com/desktop/">Desktop</a>
+<a href="https://www.hagicode.com/desktop/">Desktop</a>
 ·
-<a href="https://hagicode.com/container/">Container</a>
+<a href="https://www.hagicode.com/container/">Container</a>
 ·
 <a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Microsoft Store</a>
 ·
@@ -28,7 +28,7 @@
 
 | Vista previa | Producto | Qué es | Empieza aquí |
 | --- | --- | --- | --- |
-| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
+| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
 | <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus bundle artwork" width="280" /> | **Hagicode Plus** | Bundle and upgrade guidance remains available through the docs site. | [Read Hagicode Plus docs](https://docs.hagicode.com/bundles/hagicode-plus/) |
 | <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC artwork" width="280" /> | **Turbo Engine DLC** | DLC guidance for higher concurrency and customization remains available through the docs site. | [Read Turbo Engine DLC docs](https://docs.hagicode.com/dlc/turbo-engine-dlc/) |
 
@@ -78,10 +78,10 @@ HagiCode trata los logros, los informes diarios, los multiplicadores de eficienc
 
 ## Puntos de entrada oficiales
 
-- [Website](https://hagicode.com/) para ver la página principal completa del producto
+- [Website](https://www.hagicode.com/) para ver la página principal completa del producto
 - [Product Overview](https://docs.hagicode.com/product-overview/) para ver la introducción pública oficial del producto
-- [Desktop](https://hagicode.com/desktop/) para la instalación local y la gestión de servicios
-- [Container](https://hagicode.com/container/) para la ruta de despliegue autoalojado
+- [Desktop](https://www.hagicode.com/desktop/) para la instalación local y la gestión de servicios
+- [Container](https://www.hagicode.com/container/) para la ruta de despliegue autoalojado
 - [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) para actualizaciones del producto y artículos extensos
@@ -111,7 +111,7 @@ Para la guía de contribución, empieza por [`AGENTS.md`](./AGENTS.md) y [`CLAUD
 - Diagnóstico de fallos: si `gh-pages` tiene éxito pero la subida a R2 falla, el workflow falla en `upload-r2`; revisa el step summary de GitHub para ver el bucket resuelto, la raíz de prefijo y si el fallo ocurrió antes de transferir o durante la sincronización
 - Permisos de GitHub necesarios: el job de despliegue necesita `contents: write`; el job de build se mantiene en solo lectura
 - Configuración de hosting necesaria: el host de producción debe leer `gh-pages/esa.jsonc` y servir `gh-pages/dist/` como directorio estático
-- Comprobaciones del primer despliegue: confirma que el flujo publica `esa.jsonc` y `dist/`, verifica que el destino de hosting siga apuntando a `gh-pages`, confirma que el summary muestra el bucket R2 o la raíz de prefijo esperada y luego carga `https://hagicode.com`
+- Comprobaciones del primer despliegue: confirma que el flujo publica `esa.jsonc` y `dist/`, verifica que el destino de hosting siga apuntando a `gh-pages`, confirma que el summary muestra el bucket R2 o la raíz de prefijo esperada y luego carga `https://www.hagicode.com`
 - Ruta de rollback: revierte el cambio fuente o vuelve a ejecutar el despliegue desde un commit anterior para que la CI vuelva a publicar la instantánea previa
 
 ### Fallback del Desktop Index

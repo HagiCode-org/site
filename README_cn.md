@@ -6,13 +6,13 @@
 
 <p>你可以用它理解仓库、写提案、拆任务、修改代码、整理提交、管理多仓库，并在同一个工作台里持续沉淀可复用的知识。</p>
 
-<a href="https://hagicode.com/">Website</a>
+<a href="https://www.hagicode.com/">Website</a>
 ·
 <a href="https://docs.hagicode.com/product-overview/">Product Overview</a>
 ·
-<a href="https://hagicode.com/desktop/">Desktop</a>
+<a href="https://www.hagicode.com/desktop/">Desktop</a>
 ·
-<a href="https://hagicode.com/container/">Container</a>
+<a href="https://www.hagicode.com/container/">Container</a>
 ·
 <a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Microsoft Store</a>
 ·
@@ -28,7 +28,7 @@
 
 | 预览 | 产品 | 定位 | 入口 |
 | --- | --- | --- | --- |
-| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
+| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
 | <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus bundle artwork" width="280" /> | **Hagicode Plus** | Bundle and upgrade guidance remains available through the docs site. | [Read Hagicode Plus docs](https://docs.hagicode.com/bundles/hagicode-plus/) |
 | <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC artwork" width="280" /> | **Turbo Engine DLC** | DLC guidance for higher concurrency and customization remains available through the docs site. | [Read Turbo Engine DLC docs](https://docs.hagicode.com/dlc/turbo-engine-dlc/) |
 
@@ -78,10 +78,10 @@ HagiCode 把成就、日报、效率倍率、Token 吞吐量和主题化界面�
 
 ## 官方入口
 
-- [Website](https://hagicode.com/) 查看完整产品官网
+- [Website](https://www.hagicode.com/) 查看完整产品官网
 - [Product Overview](https://docs.hagicode.com/product-overview/) 查看官方公开产品介绍
-- [Desktop](https://hagicode.com/desktop/) 进入本地优先的安装与服务管理入口
-- [Container](https://hagicode.com/container/) 查看自托管部署路径
+- [Desktop](https://www.hagicode.com/desktop/) 进入本地优先的安装与服务管理入口
+- [Container](https://www.hagicode.com/container/) 查看自托管部署路径
 - [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) 查看产品更新与长文内容
@@ -109,7 +109,7 @@ npm run preview
 - Cloudflare 直接发布现在在这个 workflow 之外处理；请把 `gh-pages/wrangler.jsonc` 视为直接发布操作使用的、受版本控制的 Wrangler 契约
 - 所需 GitHub 权限：deploy job 需要 `contents: write`；build job 保持只读
 - 所需托管设置：让生产托管读取 `gh-pages/esa.jsonc`，把 `gh-pages/wrangler.jsonc` 作为直接发布使用的 Wrangler 事实来源，并把 `gh-pages/dist/` 作为静态资源目录
-- 首次部署检查：确认工作流实际发布了 `esa.jsonc`、`wrangler.jsonc` 和 `dist/`，确认托管目标仍指向 `gh-pages`，再访问 `https://hagicode.com`
+- 首次部署检查：确认工作流实际发布了 `esa.jsonc`、`wrangler.jsonc` 和 `dist/`，确认托管目标仍指向 `gh-pages`，再访问 `https://www.hagicode.com`
 - 回滚路径：回退源提交，或从旧提交重新触发部署，让 CI 重新发布上一份快照
 
 ### Desktop Index 回退说明

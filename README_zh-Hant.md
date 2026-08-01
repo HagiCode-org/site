@@ -6,13 +6,13 @@
 
 <p>你可以用它來理解儲存庫、撰寫提案、拆解任務、修改程式碼、整理提交、管理多個儲存庫，並在同一個工作台內持續累積可重複使用的知識。</p>
 
-<a href="https://hagicode.com/">Website</a>
+<a href="https://www.hagicode.com/">Website</a>
 ·
 <a href="https://docs.hagicode.com/product-overview/">Product Overview</a>
 ·
-<a href="https://hagicode.com/desktop/">Desktop</a>
+<a href="https://www.hagicode.com/desktop/">Desktop</a>
 ·
-<a href="https://hagicode.com/container/">Container</a>
+<a href="https://www.hagicode.com/container/">Container</a>
 ·
 <a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Microsoft Store</a>
 ·
@@ -28,7 +28,7 @@
 
 | 預覽 | 產品 | 說明 | 開始位置 |
 | --- | --- | --- | --- |
-| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
+| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
 | <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus bundle artwork" width="280" /> | **Hagicode Plus** | Bundle and upgrade guidance remains available through the docs site. | [Read Hagicode Plus docs](https://docs.hagicode.com/bundles/hagicode-plus/) |
 | <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC artwork" width="280" /> | **Turbo Engine DLC** | DLC guidance for higher concurrency and customization remains available through the docs site. | [Read Turbo Engine DLC docs](https://docs.hagicode.com/dlc/turbo-engine-dlc/) |
 
@@ -78,10 +78,10 @@ HagiCode 把成就、每日報告、效率倍率、Token 吞吐量和主題化�
 
 ## 官方入口
 
-- [Website](https://hagicode.com/) 查看完整產品首頁
+- [Website](https://www.hagicode.com/) 查看完整產品首頁
 - [Product Overview](https://docs.hagicode.com/product-overview/) 查看官方公開產品介紹
-- [Desktop](https://hagicode.com/desktop/) 進入本地優先的安裝與服務管理入口
-- [Container](https://hagicode.com/container/) 查看自託管部署路徑
+- [Desktop](https://www.hagicode.com/desktop/) 進入本地優先的安裝與服務管理入口
+- [Container](https://www.hagicode.com/container/) 查看自託管部署路徑
 - [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) 查看產品更新與長篇文章
@@ -111,7 +111,7 @@ npm run preview
 - 故障排查：如果 `gh-pages` 已成功但 R2 上傳失敗，workflow 會在 `upload-r2` 失敗；請查看 GitHub step summary，確認解析後的 bucket、前綴根路徑，以及失敗發生在上傳前校驗還是同步階段
 - 所需 GitHub 權限：deploy job 需要 `contents: write`；build job 保持唯讀
 - 所需託管設定：讓正式環境讀取 `gh-pages/esa.jsonc`，並將 `gh-pages/dist/` 作為靜態資源目錄
-- 首次部署檢查：確認工作流實際發布了 `esa.jsonc` 和 `dist/`，確認託管目標仍指向 `gh-pages`，確認 summary 中的 R2 bucket 或前綴根路徑符合預期，再開啟 `https://hagicode.com`
+- 首次部署檢查：確認工作流實際發布了 `esa.jsonc` 和 `dist/`，確認託管目標仍指向 `gh-pages`，確認 summary 中的 R2 bucket 或前綴根路徑符合預期，再開啟 `https://www.hagicode.com`
 - 回滾路徑：回退來源提交，或從舊提交重新觸發部署，讓 CI 重新發布前一份快照
 
 ### Desktop Index 備援說明
