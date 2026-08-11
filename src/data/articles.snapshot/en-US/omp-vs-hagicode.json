@@ -1,0 +1,240 @@
+{
+  "schemaVersion": "1.0.0",
+  "slug": "omp-vs-hagicode",
+  "category": "vs-hagicode",
+  "locale": "en-US",
+  "updatedAt": "2026-08-11T00:00:00.000Z",
+  "seo": {
+    "title": "OMP Vs HagiCode",
+    "description": "Understand OMP CLI's provider-first workflow, environment-pinned one-shot execution, thinking controls, and fine-grained tool governance, and see how HagiCode turns OMP into a production-grade AI programming workbench through multi-threaded parallelism, OpenSpec proposals, AI commits, Preset Tasks, gamified UI, Agents management, Monospecs, Vault, and OmniRoute."
+  },
+  "summary": "OMP CLI is a disciplined AI coding interface built for reproducible, environment-scoped execution. With provider-agnostic model access, configurable thinking modes, explicit tool gating, and full control over the working directory and environment variables of every invocation, it gives developers a clean, auditable unit of AI work. However, OMP CLI is still fundamentally a terminal entry point, while HagiCode is a full AI programming workbench. Together, they turn OMP from a reproducible single-shot CLI into a complete daily development environment.",
+  "sections": [
+    {
+      "id": "omp-vs-hagicode-section-1",
+      "title": "OMP CLI's Core Strengths",
+      "blocks": [
+        {
+          "id": "omp-vs-hagicode-section-1-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "omp-vs-hagicode-section-1-item-1",
+              "title": "Key Features",
+              "content": [
+                "OMP CLI's value is not in locking you into one model vendor, but in making each AI invocation reproducible and auditable:",
+                "Provider-first model access: OMP can be pointed at different model backends (its default route is omniroute) instead of forcing one fixed vendor path. That makes it attractive for teams that want to preserve one CLI workflow while changing the underlying provider or model strategy over time.",
+                "Configurable thinking and session behavior: OMP exposes switches such as thinking level, session directory, and no-session execution. You can choose whether to preserve conversation state across runs or keep each turn completely stateless depending on the task.",
+                "Explicit tool governance: OMP lets you decide exactly how much tool access an AI turn receives. All tools, only built-in tools, or a precise allow/deny list can be applied when you want tighter safety boundaries or more predictable execution behavior.",
+                "Environment-pinned one-shot execution: OMP runs as a discrete, reproducible invocation with explicit working directory, executable path, and environment variables. Each run is a clean unit of work rather than an open-ended session, which is ideal for automation, CI, and repeatable tasks."
+              ]
+            },
+            {
+              "id": "omp-vs-hagicode-section-1-item-2",
+              "title": "Technical Architecture",
+              "content": [
+                "OMP has several notable architectural characteristics:",
+                "Structured CLI runtime: In HagiCode Core, OMP is integrated as a thin adapter over the shared libs runtime, preserving a stable product-facing contract while delegating the underlying CLI process handling to a common provider layer.",
+                "One-shot invocation model: OMP is designed around a single, self-contained CLI call. State is never implicit — session id, session directory, and environment are passed explicitly, so every invocation can be replayed and inspected.",
+                "Streaming and tool-capable responses: OMP supports streaming output, tool calls, and system messages. It is not just a fire-and-forget prompt wrapper; it can participate in richer AI programming workflows that need interactive execution."
+              ]
+            },
+            {
+              "id": "omp-vs-hagicode-section-1-item-3",
+              "title": "Provider and Workflow Ecosystem",
+              "content": [
+                "OMP's ecosystem value comes from discipline and composability:",
+                "Provider-routing friendly design: OMP fits naturally into environments where model routing is handled as an independent layer. This is especially useful when teams want to keep one interaction surface while experimenting with different upstream model providers.",
+                "Secondary model selection support: In HagiCode Core, OMP keeps the provider runtime in the primary profession while model selection remains configurable in the model slot. That separation reflects a workflow where CLI behavior and model choice are intentionally decoupled.",
+                "Unified monitoring and discovery: OMP is surfaced as a first-class monitored CLI with its own executable discovery path and health checks, making it easier to operate as part of a broader multi-agent workstation instead of as an isolated terminal command."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "omp-vs-hagicode-section-2",
+      "title": "Why OMP CLI Needs HagiCode",
+      "blocks": [
+        {
+          "id": "omp-vs-hagicode-section-2-intro",
+          "type": "rich-text",
+          "content": [
+            "OMP gives you unusually precise control over provider routing, thinking level, session reuse, tool exposure, and the exact environment each run executes in, but a pure terminal workflow still leaves project management, orchestration, and long-term knowledge persistence to the user.",
+            "In real delivery work, those missing layers matter more than one smart command. HagiCode supplies the workflow structure OMP itself does not try to own."
+          ]
+        },
+        {
+          "id": "omp-vs-hagicode-section-2-capabilities",
+          "type": "capability-list",
+          "items": [
+            {
+              "id": "omp-vs-hagicode-section-2-item-1",
+              "title": "Multi-threaded parallelism: Let OMP run multiple controlled coding lanes at once",
+              "content": [
+                "OMP can do a lot inside one invocation, but real delivery rarely happens one task at a time.",
+                "HagiCode lets you run multiple OMP sessions in parallel, each with isolated context, a clear responsibility boundary, and independent progress.",
+                "That turns OMP from a reproducible single-shot CLI into a parallel engineering workbench that matches how teams actually build software."
+              ],
+              "bullets": [
+                "Thread A is refining backend API endpoints;",
+                "Thread B is refactoring frontend components;",
+                "Thread C is writing unit tests;",
+                "Thread D is auditing code for security vulnerabilities."
+              ]
+            },
+            {
+              "id": "omp-vs-hagicode-section-2-item-2",
+              "title": "OpenSpec proposal sessions: Tie OMP's provider and model choices to traceable decisions",
+              "content": [
+                "In daily development, the most common chaos isn't being unable to write code — it's making a bunch of changes and then forgetting why you made them, what you changed, and how those changes relate to each other.",
+                "HagiCode's built-in OpenSpec proposal workflow fundamentally solves this problem. Every development task launches as a proposal:",
+                "This think-first-then-act approach gives OMP's flexible routing model a place to be documented. Months later, you can still see not only what changed, but why a certain provider, model route, or tool boundary was chosen."
+              ],
+              "bullets": [
+                "First, write down what problem this task solves and why this approach makes sense;",
+                "Discuss the technical approach in depth with OMP within the proposal framework — all conversations and decisions are recorded in the proposal context;",
+                "Once the approach is confirmed, OMP implements the code within the proposal's constraints;",
+                "The final proposal document, discussion records, and code changes form a complete trace chain."
+              ]
+            },
+            {
+              "id": "omp-vs-hagicode-section-2-item-3",
+              "title": "AI commits: Turn OMP output into clean commit history",
+              "content": [
+                "Writing commit messages after finishing code is a form of mental friction for many developers. Too casual and you can't find key commits later; too formal and it feels like wasted time.",
+                "HagiCode's AI commit feature hands this entirely to OMP: it analyzes your code changes, understands the intent and scope of impact, then automatically generates clearly structured, semantically accurate commit messages. More importantly, during the AI commit process, HagiCode automatically locks the repository to prevent state conflicts from concurrent operations, ensuring safe and reliable commits.",
+                "Save your attention for creation — let OMP handle the commit paperwork."
+              ]
+            },
+            {
+              "id": "omp-vs-hagicode-section-2-item-4",
+              "title": "Code Server browser editor: Jump from OMP analysis straight into editing",
+              "content": [
+                "After OMP analyzes code, identifies the problematic file, and pinpoints the exact line number, the familiar awkward moment occurs: you need to leave the AI conversation window, return to your IDE, find the file again, and manually jump to the right location. This analysis-to-editing context break not only interrupts your flow but keeps AI's value at 'telling you where the problem is' rather than 'helping you directly enter editing mode.'",
+                "HagiCode's built-in Code Server-based browser editor is designed specifically to solve this break:",
+                "The Code Server integration makes HagiCode not just a frontend page that can analyze code, but a complete workstation where OMP's analysis can directly land as editing actions. It minimizes the tool-switching cost between AI analysis and hands-on modification."
+              ],
+              "bullets": [
+                "One-click from analysis to editing: Once OMP identifies the file needing changes in a proposal, HagiCode can directly open that file in the workbench for editing. You do not need to switch tools or re-locate the file.",
+                "Local, container, remote — full coverage: whether your project runs on a local machine, in a Docker container, or on a remote server, HagiCode's Code Server can open the project directory through the browser for editing.",
+                "Vault direct editing: code reference libraries and learning projects registered in your Vault can also be opened and browsed directly through Code Server when OMP points you to relevant examples."
+              ]
+            },
+            {
+              "id": "omp-vs-hagicode-section-2-item-5",
+              "title": "Preset Task: Package OMP workflows as reusable command blueprints",
+              "content": [
+                "OMP's discipline is powerful, but manually restating the same provider choices, tool boundaries, environment variables, and task framing over and over is wasteful.",
+                "HagiCode's Preset Task mechanism turns those repeated patterns into reusable templates. It is more than shortcut commands — it is an extensible Skills integration platform:",
+                "Preset Task upgrades your collaboration with OMP from 'rebuild the workflow every time' to 'pick the prepared workflow and run it.' That is where configurability becomes real operational leverage."
+              ],
+              "bullets": [
+                "Community Skills ready to use: import proven review, refactor, CRUD, and documentation workflows instead of rebuilding them from scratch every time.",
+                "Extensible Skills system: adapt shared templates to your own team conventions, routing defaults, and coding standards.",
+                "Visual operations, not terminal bookkeeping: choose tasks, switch parameters, and reorder execution in a dedicated interface instead of encoding everything into repeated CLI habits."
+              ]
+            },
+            {
+              "id": "omp-vs-hagicode-section-2-item-6",
+              "title": "Gamified interface: Make OMP's governance knobs visible and approachable",
+              "content": [
+                "Programming itself can be tedious, but it can also be fun. HagiCode's gamified interface design breaks away from the cold experience of command-line tools:",
+                "OMP provides control, HagiCode provides experience — together, they turn a highly configurable CLI into a workspace people can actually enjoy operating every day."
+              ],
+              "bullets": [
+                "Clear visual feedback: session state, progress, and results are visible without digging through terminal output.",
+                "Achievement and progress visualization: commits, proposal milestones, and delivery checkpoints become visible rhythm markers instead of invisible background state.",
+                "Lower operating friction: developers who are not terminal purists can still benefit from OMP's control model through a much friendlier interface layer."
+              ]
+            },
+            {
+              "id": "omp-vs-hagicode-section-2-item-7",
+              "title": "Agents management: Turn multiple OMP sessions into a manageable Agent fleet",
+              "content": [
+                "Parallel sessions are useful, but once you have several of them running, coordination becomes the next bottleneck.",
+                "HagiCode's Agents management layer turns each OMP worker into a named, schedulable Agent with visible status, assigned scope, and independent configuration.",
+                "You move from 'a lot of terminals are open' to 'a small AI team is being coordinated in one place.'"
+              ],
+              "bullets": [
+                "Agent identity and status visualization: see which Agent is running, waiting, blocked, or ready for archive at a glance.",
+                "Task-to-Agent binding: proposals, reviews, refactors, and test work can each be assigned to a dedicated Agent.",
+                "Independent Agent configuration: different Agents can use different model routes, Skills, tool exposure rules, and context scopes without interfering with each other."
+              ]
+            },
+            {
+              "id": "omp-vs-hagicode-section-2-item-8",
+              "title": "Monospecs multi-repo management: Give OMP the repo map it needs",
+              "content": [
+                "In real projects, code rarely lives in a single repository. Frontend, backend, documentation, shared libraries are spread across different repos, and a single feature change may need to touch several repos simultaneously. For OMP, single-repo mode works, but it has no native understanding of cross-repo relationships — you have to manually tell it in every conversation that 'this change also needs to sync to two other repos,' which is clearly inefficient.",
+                "HagiCode's Monospecs mechanism is the structured solution designed for multi-repo scenarios. Through the .hagicode/monospecs.yaml configuration file, it declares all sub-repo addresses, names, and relationships in the project group, giving OMP an automatic cross-repo map when launching proposals:",
+                "Monospecs essentially eliminates OMP's cognitive blind spots in cross-repo collaboration. OMP's routing flexibility matters more once it can also see the full change surface."
+              ],
+              "bullets": [
+                "Automatic repo relationship awareness: when creating a development proposal, OMP can directly read the sub-repo list from the Monospecs config instead of relying on repeated manual explanation.",
+                "Cross-repo change tracking: specs stay centralized while code changes stay in the relevant repos, keeping decision history and implementation cleanly separated.",
+                "AI commit smart repo targeting: HagiCode analyzes your changes against the Monospecs config and suggests where each commit belongs.",
+                "Per-repo AGENTS.md: OMP automatically picks up repo-specific conventions when operating across different codebases."
+              ]
+            },
+            {
+              "id": "omp-vs-hagicode-section-2-item-9",
+              "title": "Vault cross-project knowledge base: Make OMP remember more than one terminal turn",
+              "content": [
+                "OMP's session controls are useful, but even persistent sessions are not the same as a durable cross-project memory layer. Without that, important context still has to be reintroduced too often.",
+                "Vault is HagiCode's cross-project persistent knowledge storage layer. Its core design philosophy is 'register once, reuse everywhere':",
+                "If Monospecs lets OMP understand where projects are, Vault lets OMP remember what you've already accumulated. That turns a reproducible CLI into a longer-term engineering partner."
+              ],
+              "bullets": [
+                "Multi-type knowledge containers: register folders, code reference projects, Obsidian notes, and system-managed prompt assets in one place.",
+                "Automatic AI context injection: new proposals start with the right reference material already available to OMP.",
+                "Fine-grained access control: separate read-only references from editable project spaces so OMP can learn broadly without modifying the wrong thing.",
+                "Cross-project knowledge reuse: patterns captured once can support every later proposal instead of being rebuilt from scratch."
+              ]
+            },
+            {
+              "id": "omp-vs-hagicode-section-2-item-10",
+              "title": "OmniRoute model routing: Make OMP's provider-first design usable at scale",
+              "content": [
+                "OMP already encourages a more decoupled relationship between workflow and provider choice, but a larger team still needs a central place to manage that routing cleanly.",
+                "OmniRoute separates the interaction layer from the model-routing layer, so HagiCode can keep OMP in the workflow while switching model sources underneath.",
+                "That gives you better cost control, better task-to-model fit, and less workflow churn when model pricing or availability changes."
+              ],
+              "bullets": [
+                "Keep the CLI or interaction style you already prefer while changing only the model route underneath.",
+                "Share one routing strategy across multiple Agents and multiple AI tools connected to HagiCode.",
+                "Tune different model routes for different workloads, such as fast coding, deep review, or architecture planning.",
+                "Adjust cost and capability once at the routing layer instead of reworking each individual workflow."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "omp-vs-hagicode-section-3",
+      "title": "Summary",
+      "blocks": [
+        {
+          "id": "omp-vs-hagicode-section-3-intro",
+          "type": "rich-text",
+          "content": [
+            "OMP CLI is a disciplined, provider-aware AI coding interface built for reproducible one-shot execution, and HagiCode is a complete AI programming workbench. Their relationship is complementary:",
+            "If you're already using OMP, try connecting it to HagiCode — you'll find OMP is no longer just a reproducible terminal command, but a full-workflow AI partner operating inside a structured engineering environment."
+          ]
+        },
+        {
+          "id": "omp-vs-hagicode-section-3-bullets",
+          "type": "bullet-list",
+          "items": [
+            "OMP provides control: provider routing, thinking configuration, session behavior, environment-scoped execution, and tool governance;",
+            "HagiCode provides efficiency: multi-threaded parallelism, Agents fleet management, OpenSpec proposals, AI commits, Code Server editor, Preset Tasks;",
+            "HagiCode expands boundaries: Monospecs lets OMP understand cross-repo project relationships, Vault gives OMP cross-session long-term memory, OmniRoute scales OMP's provider-first workflow cleanly;",
+            "Together they provide an experience: traceable decision chains, automated daily tasks, a genuinely enjoyable interface, and a long-term AI partner that truly understands your project landscape and can be freely configured with any model source."
+          ]
+        }
+      ]
+    }
+  ]
+}
