@@ -1155,11 +1155,18 @@
    ========================================================================== */
 
 .parallelShowcase {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
   justify-content: flex-start;
   height: 100%;
+  padding: 1rem;
+  border: 1px solid rgba(0, 128, 255, 0.16);
+  border-radius: 1.25rem;
+  background:
+    linear-gradient(180deg, rgba(0, 128, 255, 0.06) 0%, transparent 34%),
+    var(--color-surface-hover);
 }
 
 .parallelHeader {
@@ -1170,11 +1177,24 @@
   gap: 0.75rem;
 }
 
+.parallelTitleGroup {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.parallelKicker {
+  color: var(--color-primary);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
 .parallelTitle {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--color-text);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.01em;
 }
 
 .parallelBadge {
@@ -1193,8 +1213,8 @@
 
 .agentMatrix {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.85rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
   align-items: start;
 }
 
@@ -1462,8 +1482,9 @@
 }
 
 .agentLane {
-  padding: 1rem;
-  border-radius: var(--radius-lg, 0.75rem);
+  min-width: 0;
+  padding: 0.8rem;
+  border-radius: 0.9rem;
   border: 1px solid var(--color-border);
   background:
     linear-gradient(135deg, rgba(37, 194, 160, 0.08) 0%, rgba(6, 182, 212, 0.05) 100%),
@@ -1486,22 +1507,21 @@
 }
 
 .agentInfo {
-  display: flex;
+  display: grid;
   align-items: flex-start;
-  justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.75rem;
 }
 
 .agentInfoMain {
   display: flex;
-  align-items: center;
-  gap: 0.85rem;
+  align-items: flex-start;
+  gap: 0.6rem;
 }
 
 .agentIconBadge {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1531,25 +1551,35 @@
 }
 
 .agentLaneIcon {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.agentLaneIndex,
+.agentJobIndex {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
 }
 
 .agentName {
-  font-size: 0.95rem;
+  margin-top: 0.1rem;
+  font-size: 0.84rem;
   font-weight: 700;
   color: var(--color-text);
 }
 
 .agentRole {
   margin-top: 0.15rem;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--color-text-secondary);
 }
 
 .agentLaneMeter {
-  width: 5.5rem;
-  height: 0.5rem;
+  width: 100%;
+  height: 0.35rem;
   border-radius: 999px;
   overflow: hidden;
   background: rgba(15, 23, 42, 0.08);
@@ -1565,14 +1595,14 @@
 
 .agentQueue {
   display: grid;
-  gap: 0.65rem;
+  gap: 0.45rem;
 }
 
 .agentJob {
   display: grid;
   gap: 0.45rem;
-  padding: 0.75rem 0.85rem;
-  border-radius: 0.9rem;
+  padding: 0.55rem 0.6rem;
+  border-radius: 0.65rem;
   border: 1px solid rgba(15, 23, 42, 0.06);
   background: rgba(255, 255, 255, 0.58);
 }
@@ -1580,14 +1610,18 @@
 .agentJobTopline {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 0.75rem;
 }
 
 .agentJobName {
+  min-width: 0;
+  flex: 1;
   font-size: 0.78rem;
   font-weight: 700;
   color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .agentJobIndicator {

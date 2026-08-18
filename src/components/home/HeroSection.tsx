@@ -163,8 +163,13 @@ function AgentChooser({
               }}
             >
               <span className={styles.agentChooserCardLabel}>{formatAgentName(agent.agentName)}</span>
+              <span className={styles.agentChooserCardRoute} aria-hidden="true">
+                <span>Agent</span>
+                <span className={styles.agentChooserCardArrow}>→</span>
+                <span>HagiCode</span>
+              </span>
               <span className={styles.agentChooserCardMeta}>
-                {isChineseLocale ? '查看对比页' : 'Open compare page'}
+                {isChineseLocale ? '查看对比' : 'Compare now'}
               </span>
             </motion.a>
           );

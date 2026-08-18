@@ -596,7 +596,10 @@ function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] 
 
         <div className={styles.parallelShowcase}>
           <div className={styles.parallelHeader}>
-            <span className={styles.parallelTitle}>{copy.agentMatrix.title}</span>
+            <div className={styles.parallelTitleGroup}>
+              <span className={styles.parallelKicker}>LIVE ROUTING</span>
+              <span className={styles.parallelTitle}>{copy.agentMatrix.title}</span>
+            </div>
             <span className={styles.parallelBadge}>{copy.agentMatrix.badge}</span>
           </div>
 
@@ -607,6 +610,7 @@ function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] 
                 className={styles.agentLane}
                 data-agent={lane.key}
                 data-active={activeLane === index ? 'true' : 'false'}
+                data-lane-index={String(index + 1).padStart(2, '0')}
                 initial="hidden"
                 animate="visible"
                 variants={itemVariants}
@@ -616,6 +620,7 @@ function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] 
                   <div className={styles.agentInfoMain}>
                     <div className={styles.agentIconBadge}>{lane.icon}</div>
                     <div>
+                      <span className={styles.agentLaneIndex}>{String(index + 1).padStart(2, '0')}</span>
                       <div className={styles.agentName}>{lane.name}</div>
                       <div className={styles.agentRole}>{lane.role}</div>
                     </div>
@@ -637,6 +642,7 @@ function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] 
                     return (
                       <div key={instance} className={styles.agentJob} data-phase={String(phase)}>
                         <div className={styles.agentJobTopline}>
+                          <span className={styles.agentJobIndex}>{String(instanceIndex + 1).padStart(2, '0')}</span>
                           <span className={styles.agentJobName}>{instance}</span>
                           <span className={styles.agentJobIndicator} data-active={phase >= 2 ? 'true' : 'false'} />
                         </div>

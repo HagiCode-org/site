@@ -705,6 +705,38 @@
   transition: color 240ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.agentChooserCardRoute {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  color: var(--hero-muted);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.agentChooserCardRoute span:first-child {
+  color: var(--card-accent);
+}
+
+.agentChooserCardRoute span:last-child {
+  color: var(--hero-text);
+}
+
+.agentChooserCardArrow {
+  color: var(--hero-muted);
+  font-size: 0.85rem;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.agentChooserCard:hover .agentChooserCardArrow {
+  transform: translateX(3px);
+}
+
 .agentChooserCard:hover .agentChooserCardLabel {
   color: var(--card-accent);
 }
@@ -712,6 +744,9 @@
 .agentChooserCardMeta {
   position: relative;
   z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
   font-size: 0.82rem;
   font-weight: 700;
   line-height: 1.3;
