@@ -1,0 +1,1 @@
+import{o as e,t}from"./react.C1UsKmh6.js";import{i as n,n as r,r as i}from"./proxy.DhfqBmt1.js";var a=e(t(),1);function o(){!i.current&&r();let[e]=(0,a.useState)(n.current);return e}export{o as t};
