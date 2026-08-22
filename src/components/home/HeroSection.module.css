@@ -264,6 +264,22 @@
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 17.5rem), 1fr));
   gap: 0.9rem;
   width: 100%;
+  /* 防止子项（尤其是固定宽度的 ms-store-badge）把网格轨道撑破 */
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* 平板/手机区间：ms-store-badge 固有宽度较大，强制单列堆叠，
+   避免与桌面按钮并排时把内容推出右侧屏幕外。 */
+@media (max-width: 767px) {
+  .heroPrimaryActions {
+    grid-template-columns: 1fr;
+  }
+
+  .windowsStoreBadgePrimary {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 .heroSecondaryActions {
@@ -370,6 +386,18 @@
 
 .windowsStoreBadgeElement {
   display: block;
+  /* Microsoft 的 ms-store-badge 是固定像素宽度的 web component，
+     在窄屏下需要约束其最大宽度，避免把父级 grid 轨道撑破导致右侧溢出。 */
+  max-width: 100%;
+  height: auto;
+}
+
+/* 约束徽标内部渲染出的图片/元素，防止其固有宽度超出容器 */
+.windowsStoreBadgeElement :global(ms-store-badge),
+.windowsStoreBadgeElement :global(ms-store-badge) img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
 }
 
 .windowsStoreBadgePrimary:hover {
