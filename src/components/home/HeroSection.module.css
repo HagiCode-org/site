@@ -386,18 +386,22 @@
 
 .windowsStoreBadgeElement {
   display: block;
-  /* Microsoft 的 ms-store-badge 是固定像素宽度的 web component，
-     在窄屏下需要约束其最大宽度，避免把父级 grid 轨道撑破导致右侧溢出。 */
+  box-sizing: border-box;
+  min-width: 0;
+  /* Microsoft 的 ms-store-badge 通过 shadow DOM 渲染固定宽度的徽标，
+     外部 CSS 无法触及 shadow 内部，只能约束宿主元素本身来防止右侧溢出。
+     overflow:hidden 作为最后兜底，避免宿主被撑破时内容顶出屏幕右侧。 */
   max-width: 100%;
-  height: auto;
+  overflow: hidden;
 }
 
-/* 约束徽标内部渲染出的图片/元素，防止其固有宽度超出容器 */
-.windowsStoreBadgeElement :global(ms-store-badge),
-.windowsStoreBadgeElement :global(ms-store-badge) img {
+/* 直接约束徽标宿主元素：保留桌面端固有宽度，移动端最多占满容器，
+   从而阻止徽标加载后把内容推到屏幕右侧之外。 */
+.windowsStoreBadgeElement :global(ms-store-badge) {
+  display: block;
+  box-sizing: border-box;
   max-width: 100%;
-  width: auto;
-  height: auto;
+  min-width: 0;
 }
 
 .windowsStoreBadgePrimary:hover {
