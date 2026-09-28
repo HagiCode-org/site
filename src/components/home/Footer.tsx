@@ -60,21 +60,21 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
     rssFeedUrl: getLinkWithLocale('rss', locale),
     overrides: {
       downloadClient: { href: getLinkWithLocale('desktop', locale) },
+      dockerCompose: { href: getLinkWithLocale('dockerCompose', locale) },
       productDocs: { href: getLinkWithLocale('productOverview', locale) },
       blogPosts: { href: getLinkWithLocale('blog', locale) },
+      about: { href: getLinkWithLocale('about', locale) },
       github: { href: getLinkWithLocale('github', locale) },
       discord: { href: getLinkWithLocale('discord', locale) },
       qqGroup: { href: getLinkWithLocale('qqGroup', locale) },
+      icpFiling: { href: hagicodeCompliance.icp.href, label: hagicodeCompliance.icp.label },
+      publicSecurityFiling: {
+        href: hagicodeCompliance.publicSecurity.href,
+        label: hagicodeCompliance.publicSecurity.label,
+      },
     },
-    removeLinks: { quick: ['microsoftStore', 'dockerCompose', 'about'] },
     extraLinks: {
       community: [
-        {
-          id: 'costCalculator',
-          label: t('footer.costCalculator'),
-          href: getLinkWithLocale('costCalculator', locale),
-          external: true,
-        },
         {
           id: 'steam',
           label: t('footer.steam'),
@@ -117,9 +117,6 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
                   aria-label={t('footer.visitPage').replace('{title}', link.name)}
                 >
                   <span className={styles.sectionLinkText}>{link.name}</span>
-                  {link.description ? (
-                    <span className={styles.sectionLinkDescription}>{link.description}</span>
-                  ) : null}
                 </a>
               ))}
             </nav>
@@ -166,26 +163,20 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
       </div>
 
       {/* 备案信息区块 - 独立一行，居中显示 */}
-      <div className={styles.icpSection}>
-        <a
-          className={styles.icpLink}
-          href={hagicodeCompliance.icp.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={t('footer.icpLabel')}
-        >
-          {hagicodeCompliance.icp.label}
-        </a>
-        <a
-          className={styles.icpLink}
-          href={hagicodeCompliance.publicSecurity.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={t('footer.gonganLabel')}
-        >
-          {hagicodeCompliance.publicSecurity.label}
-        </a>
-      </div>
+      <nav className={styles.icpSection} aria-label={footerData.labels.navigation.filings}>
+        {footerData.filings.map((link) => (
+          <a
+            key={link.id}
+            className={styles.icpLink}
+            href={link.href}
+            target={link.target}
+            rel={link.rel}
+            aria-label={link.ariaLabel}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
     </footer>
   );
 }

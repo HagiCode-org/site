@@ -216,6 +216,7 @@
 }
 
 .sectionLink {
+  box-sizing: border-box;
   font-size: 0.9375rem;
   color: var(--footer-link-color);
   text-decoration: none;
