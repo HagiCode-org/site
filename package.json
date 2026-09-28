@@ -58,7 +58,6 @@
     "sharp": "^0.34.2"
   },
   "devDependencies": {
-    "@astrojs/starlight": "^0.42.4",
     "@hagicode/hagi18n": "^0.1.1",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
