@@ -42,7 +42,6 @@
     "@hagicode/hagilight": "0.2.4",
     "astro": "^7.3.5",
     "astro-robots-txt": "^1.0.0",
-    "astro-seo": "^1.1.0",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.3",
     "framer-motion": "^12.29.2",
