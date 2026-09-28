@@ -27,27 +27,6 @@ videoPlayer:
   play: 再生
   pause: 一時停止
   fullscreen: 全画面
-footer:
-  copyright: © {year} Hagicode. 無断転載を禁じます。
-  product: 製品
-  quickLinks: クイックリンク
-  community: コミュニティ
-  productInfo: Hagicode の紹介
-  downloadClient: クライアントをダウンロード
-  productDocs: 製品ドキュメント
-  blogPosts: ブログ記事
-  rssSubscribe: RSS を購読
-  github: GitHub
-  issueFeedback: Issue フィードバック
-  contactEmail: 連絡用メール
-  qqGroup: QQ グループ 610394020
-  icpLabel: ICP 登録情報を見る
-  gonganLabel: 公安登録情報を見る
-  visitPage: '{title} ページを開く'
-  discord: Discord コミュニティ
-  costCalculator: AI 代替コスト診断
-  steam: Steam
-  relatedSitesTitle: 関連サイト
 socialProof:
   highlights:
     multiAgent: マルチエージェント並列

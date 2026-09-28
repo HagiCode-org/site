@@ -27,27 +27,6 @@ videoPlayer:
   play: 播放
   pause: 暂停
   fullscreen: 全屏
-footer:
-  copyright: © {year} Hagicode. All rights reserved.
-  product: 产品
-  quickLinks: 快速链接
-  community: 社区
-  productInfo: Hagicode 简介
-  downloadClient: 下载客户端
-  productDocs: 产品文档
-  blogPosts: 博客文章
-  rssSubscribe: RSS 订阅
-  github: GitHub
-  issueFeedback: 问题反馈
-  contactEmail: 联系邮箱
-  qqGroup: QQ 群 610394020
-  icpLabel: 查看 ICP 备案信息
-  gonganLabel: 查看公安备案信息
-  visitPage: 访问 {title} 页面
-  discord: Discord 社区
-  costCalculator: 算一算，AI会不会淘汰我
-  steam: Steam
-  relatedSitesTitle: 生态站点
 socialProof:
   highlights:
     multiAgent: 多 Agent 并行
