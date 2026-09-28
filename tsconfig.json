@@ -8,7 +8,7 @@
       "@/*": ["./src/*"],
       "@/lib/shared/*": ["./src/lib/shared/*"]
     },
-    "module": "es2020",
+    "module": "esnext",
     "moduleResolution": "bundler",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
