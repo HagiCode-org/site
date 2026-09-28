@@ -104,6 +104,13 @@ Site pages use the default footer from `@hagicode/hagilight/Footer` with the
 active locale and no site-specific link overrides. The homepage also mounts
 `@hagicode/hagilight/PromotoBanner` directly in Astro.
 
+SEO for this Astro site remains site-owned: page templates render localized
+metadata and canonical URLs, `SeoAlternateLinks.astro` renders hreflang links,
+and `astro.config.mjs` generates the sitemap and robots.txt. The SEO features
+in `@hagicode/hagilight-starlight` require Starlight and are not provided by
+this site's `@hagicode/hagilight` component dependency. Keep `seo:audit` as
+the build-time check for managed marketing and redirect pages.
+
 ## Production Deployment
 
 - Authoritative workflow: `.github/workflows/site-deploy-gh-pages.yml`
