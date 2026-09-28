@@ -100,16 +100,9 @@ npm run preview
 The default dev server runs at `http://localhost:31264`.
 For contributor guidance, start with [`AGENTS.md`](./AGENTS.md) and [`CLAUDE.md`](./CLAUDE.md).
 
-The shared footer resolves links from `@hagicode/hagilight/site-links` without the
-Starlight plugin. `npm run build` first validates and syncs
-`src/data/footer-sites.snapshot.json`; `src/lib/footer-site-links.ts` passes its
-canonical entries (with the locale-aware Docs URL) before Hagilight's bundled
-ecosystem entries, so shared destinations missing from the snapshot remain
-visible without duplicating overlaps. `Footer.tsx` uses Hagilight's quick,
-community, and filing sections with site-owned route, RSS, Steam, and filing
-overrides. The
-homepage mounts `@hagicode/hagilight/PromotoBanner` directly in Astro with
-the active locale; other pages use the same footer without a banner.
+Site pages use the default footer from `@hagicode/hagilight/Footer` with the
+active locale and no site-specific link overrides. The homepage also mounts
+`@hagicode/hagilight/PromotoBanner` directly in Astro.
 
 ## Production Deployment
 
