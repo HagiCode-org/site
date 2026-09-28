@@ -100,6 +100,14 @@ npm run preview
 The default dev server runs at `http://localhost:31264`.
 For contributor guidance, start with [`AGENTS.md`](./AGENTS.md) and [`CLAUDE.md`](./CLAUDE.md).
 
+The shared footer resolves links from `@hagicode/hagilight/site-links` without the
+Starlight plugin. `npm run build` first validates and syncs
+`src/data/footer-sites.snapshot.json`; `src/lib/footer-site-links.ts` passes its
+canonical entries (with the locale-aware Docs URL) as `relatedSites`.
+`Footer.tsx` supplies site-owned routes, RSS, Steam and filing details. The
+homepage mounts `@hagicode/hagilight/PromotoBanner` directly in Astro with
+the active locale; other pages use the same footer without a banner.
+
 ## Production Deployment
 
 - Authoritative workflow: `.github/workflows/site-deploy-gh-pages.yml`
