@@ -61,7 +61,7 @@
   --footer-bg: var(--color-surface-glass);
   --footer-border: var(--color-border);
   --footer-link-color: var(--color-text-secondary);
-  --footer-link-hover: var(--color-primary);
+  --footer-link-hover: var(--color-primary-dark);
   --footer-section-gap: 2rem;
   --footer-grid-template: 1fr;
 
@@ -162,7 +162,7 @@
   --footer-bg: var(--color-surface-glass);
   --footer-border: var(--color-border);
   --footer-link-color: var(--color-text-secondary);
-  --footer-link-hover: var(--color-primary);
+  --footer-link-hover: var(--color-secondary);
   --footer-section-gap: 2rem;
   --footer-grid-template: 1fr;
 }

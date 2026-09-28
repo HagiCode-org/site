@@ -49,6 +49,26 @@
   --sl-color-accent-high: #891919;
 }
 
+.homepage .hagilight-promoto__slide,
+.homepage .hagilight-promoto__cta {
+  box-sizing: border-box;
+}
+
+.homepage .hagilight-footer {
+  --hagilight-footer-color: var(--footer-link-color);
+  --hagilight-footer-border: var(--footer-border);
+  background: var(--footer-bg);
+  font-family: var(--font-body);
+}
+
+.homepage .hagilight-footer h2 {
+  color: var(--color-text);
+}
+
+.homepage .hagilight-footer a:hover {
+  color: var(--footer-link-hover);
+}
+
 /* ==========================================================================
    首页全局基础样式
    ========================================================================== */
