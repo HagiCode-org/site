@@ -5,8 +5,7 @@ import FeaturesShowcase from '@/components/home/FeaturesShowcase';
 import ShowcaseSection from '@/components/home/ShowcaseSection';
 import VideoShowcase from '@/components/home/VideoShowcase';
 import PricingComparisonSection from '@/components/home/PricingComparisonSection';
-import { PromoteCard } from '@/components/promote/PromoteCard';
-import promoteCardStyles from '@/components/promote/PromoteCard.module.css';
+import PromotoBanner from '@hagicode/hagilight/PromotoBanner';
 import Footer from '@/components/home/Footer';
 import LunarNewYearDecorations from '@/components/home/LunarNewYearDecorations';
 import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
@@ -123,7 +122,7 @@ const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
       />
     </main>
 
-    <PromoteCard locale={locale} className={promoteCardStyles.promoteCard} client:idle />
+    <PromotoBanner locale={locale} />
     <Footer locale={locale} />
     <AnalyticsScripts />
   </body>

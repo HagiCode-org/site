@@ -24,6 +24,31 @@
 @import './common/themes.css';
 @import './common/accessibility.css';
 
+.homepage .hagilight-promoto {
+  --sl-color-bg: var(--color-surface);
+  --sl-color-bg-nav: var(--color-surface-hover);
+  --sl-color-bg-sidebar: var(--color-surface);
+  --sl-color-text: var(--color-text-secondary);
+  --sl-color-text-high: var(--color-text);
+  --sl-color-gray-1: var(--color-text);
+  --sl-color-gray-5: var(--color-border);
+  --sl-color-accent: #0060cc;
+  --sl-color-accent-high: #004999;
+  --sl-text-sm: 0.95rem;
+  --sl-text-xs: 0.85rem;
+  font-family: var(--font-body);
+}
+
+[data-theme='dark'] .homepage .hagilight-promoto {
+  --sl-color-accent: #075985;
+  --sl-color-accent-high: #0369a1;
+}
+
+[data-theme='lunar-new-year'] .homepage .hagilight-promoto {
+  --sl-color-accent: #a32121;
+  --sl-color-accent-high: #891919;
+}
+
 /* ==========================================================================
    首页全局基础样式
    ========================================================================== */
