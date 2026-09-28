@@ -225,6 +225,10 @@ homepageVideos:
     windowsStoreAriaLabel: 在 Microsoft Store 上開啟 Hagicode
     steamAriaLabel: 在 Steam 上開啟 Hagicode
     ctaGroupLabel: 首頁主要操作
+    agentChooser:
+      badge: 選擇 Agent
+      title: 選擇你熟悉的 Agent
+      description: 直接前往你目前使用的 Agent 對比頁面。
 pricing:
   title: 版本與定價
   limitTitle: 提案並行計數規則

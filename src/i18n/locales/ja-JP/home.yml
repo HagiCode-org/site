@@ -225,6 +225,10 @@ homepageVideos:
     windowsStoreAriaLabel: Microsoft Store で Hagicode を開く
     steamAriaLabel: Steam で Hagicode を開く
     ctaGroupLabel: ホームページの主要アクション
+    agentChooser:
+      badge: Agent を選択
+      title: 使い慣れた Agent を選択
+      description: 現在使用している Agent の比較ページに直接移動します。
 pricing:
   title: エディションと価格
   limitTitle: 提案並行数のカウントルール

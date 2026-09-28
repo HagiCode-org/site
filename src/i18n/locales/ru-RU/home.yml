@@ -225,6 +225,10 @@ homepageVideos:
     windowsStoreAriaLabel: Открыть Hagicode в Microsoft Store
     steamAriaLabel: Открыть Hagicode в Steam
     ctaGroupLabel: Основные действия на главной странице
+    agentChooser:
+      badge: Выберите агента
+      title: Выберите знакомого вам агента
+      description: Перейдите напрямую на страницу сравнения агента, которым уже пользуетесь.
 pricing:
   title: Редакции и цены
   limitTitle: Правило подсчёта параллельных предложений
