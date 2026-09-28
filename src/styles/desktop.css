@@ -408,12 +408,16 @@ main.homepage section > .bgGlow {
 }
 
 /* ==========================================================================
-   Starlight Tabs 组件样式覆盖
+   Desktop system requirement tabs
    ========================================================================== */
 
-starlight-tabs {
+.desktop-tabs {
   display: block;
   margin-top: 1.5rem;
+}
+
+.desktop-tabs [role='tabpanel'][hidden] {
+  display: none;
 }
 
 .tablist-wrapper {
@@ -446,6 +450,12 @@ starlight-tabs {
   font-weight: 500;
   border-bottom: 2px solid transparent;
   outline-offset: 2px;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
 }
 
 [data-theme='dark'] .tab > [role='tab'] {

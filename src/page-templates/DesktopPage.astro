@@ -1,5 +1,4 @@
 ---
-import { Tabs, TabItem } from '@astrojs/starlight/components';
 import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 import '@/styles/homepage.css';
@@ -120,8 +119,15 @@ const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
 
       <section class="system-requirements">
         <h2>{t('desktop.systemRequirements.title')}</h2>
-        <Tabs>
-          <TabItem label={t('desktop.systemRequirements.windows')}>
+        <div class="desktop-tabs" data-desktop-tabs>
+          <div class="tablist-wrapper">
+            <div role="tablist" aria-label={t('desktop.systemRequirements.title')}>
+              <div class="tab"><button type="button" role="tab" id="requirements-windows-tab" aria-controls="requirements-windows" aria-selected="true" tabindex="0">{t('desktop.systemRequirements.windows')}</button></div>
+              <div class="tab"><button type="button" role="tab" id="requirements-macos-tab" aria-controls="requirements-macos" aria-selected="false" tabindex="-1">{t('desktop.systemRequirements.macos')}</button></div>
+              <div class="tab"><button type="button" role="tab" id="requirements-linux-tab" aria-controls="requirements-linux" aria-selected="false" tabindex="-1">{t('desktop.systemRequirements.linux')}</button></div>
+            </div>
+          </div>
+          <div role="tabpanel" id="requirements-windows" aria-labelledby="requirements-windows-tab" tabindex="0">
             <div class="requirements-content">
               <p><strong>{t('desktop.systemRequirements.os')}:</strong> {t('desktop.systemRequirements.windowsOs')}</p>
               <p><strong>{t('desktop.systemRequirements.processor')}:</strong> {t('desktop.systemRequirements.windowsProcessor')}</p>
@@ -129,8 +135,8 @@ const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
               <p><strong>{t('desktop.systemRequirements.diskSpace')}:</strong> {t('desktop.systemRequirements.disk')}</p>
               <p><strong>{t('desktop.systemRequirements.network')}:</strong> {t('desktop.systemRequirements.networkDesc')}</p>
             </div>
-          </TabItem>
-          <TabItem label={t('desktop.systemRequirements.macos')}>
+          </div>
+          <div role="tabpanel" id="requirements-macos" aria-labelledby="requirements-macos-tab" tabindex="0" hidden>
             <div class="requirements-content">
               <p><strong>{t('desktop.systemRequirements.os')}:</strong> {t('desktop.systemRequirements.macosOs')}</p>
               <p><strong>{t('desktop.systemRequirements.processor')}:</strong> {t('desktop.systemRequirements.macosProcessor')}</p>
@@ -138,8 +144,8 @@ const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
               <p><strong>{t('desktop.systemRequirements.diskSpace')}:</strong> {t('desktop.systemRequirements.disk')}</p>
               <p><strong>{t('desktop.systemRequirements.network')}:</strong> {t('desktop.systemRequirements.networkDesc')}</p>
             </div>
-          </TabItem>
-          <TabItem label={t('desktop.systemRequirements.linux')}>
+          </div>
+          <div role="tabpanel" id="requirements-linux" aria-labelledby="requirements-linux-tab" tabindex="0" hidden>
             <div class="requirements-content">
               <p><strong>{t('desktop.systemRequirements.os')}:</strong> {t('desktop.systemRequirements.linuxOs')}</p>
               <p><strong>{t('desktop.systemRequirements.processor')}:</strong> {t('desktop.systemRequirements.linuxProcessor')}</p>
@@ -147,8 +153,8 @@ const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
               <p><strong>{t('desktop.systemRequirements.diskSpace')}:</strong> {t('desktop.systemRequirements.disk')}</p>
               <p><strong>{t('desktop.systemRequirements.network')}:</strong> {t('desktop.systemRequirements.networkDesc')}</p>
             </div>
-          </TabItem>
-        </Tabs>
+          </div>
+        </div>
       </section>
 
     </main>
@@ -157,3 +163,9 @@ const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
     <AnalyticsScripts />
   </body>
 </html>
+
+<script>
+  import { initDesktopTabs } from '@/lib/desktop-tabs';
+
+  document.querySelectorAll<HTMLElement>('[data-desktop-tabs]').forEach(initDesktopTabs);
+</script>
