@@ -4,13 +4,13 @@
  * 设计系统: 与首页整体风格保持一致 (Glassmorphism + Tech Dark)
  * 使用共享链接库管理所有站点间链接
  */
-import { useMemo } from 'react';
+import { resolveSiteLinks } from '@hagicode/hagilight/site-links';
 import { hagicodeCompliance } from '@/config/compliance';
 import { getServerTranslation } from '@/i18n/translation-resources';
 import { useLocale } from '@/lib/useLocale';
 import styles from './Footer.module.css';
 import { getLinkWithLocale } from '@/lib/shared/links';
-import { resolveSiteFooterCatalogLinks } from '@/lib/footer-site-links';
+import { getFooterRelatedSites } from '@/lib/footer-site-links';
 
 /**
  * Footer 组件 Props
@@ -21,32 +21,6 @@ interface FooterProps {
    */
   className?: string;
   locale?: string;
-}
-
-/**
- * Footer 链接接口
- */
-interface FooterLink {
-  /** 链接显示文字 */
-  label: string;
-  /** 链接简介 */
-  description?: string;
-  /** 链接目标 URL */
-  href: string;
-  /** 是否外部链接 */
-  external?: boolean;
-  /** ARIA 标签 */
-  ariaLabel?: string;
-}
-
-/**
- * Footer 区块接口
- */
-interface FooterSection {
-  /** 区块标题 */
-  title: string;
-  /** 区块链接列表 */
-  links: FooterLink[];
 }
 
 /**
@@ -79,119 +53,37 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
   const locale = propLocale || detectedLocale;
   const { t } = getServerTranslation(locale);
 
-  const desktopLink = getLinkWithLocale('desktop', locale);
-  const githubLink = getLinkWithLocale('github', locale);
-  const qqGroupLink = getLinkWithLocale('qqGroup', locale);
-  const costCalculatorLink = getLinkWithLocale('costCalculator', locale);
-  const discordLink = getLinkWithLocale('discord', locale);
-  const rssLink = getLinkWithLocale('rss', locale);
-  const productOverviewLink = getLinkWithLocale('productOverview', locale);
-  const steamLink = 'https://store.steampowered.com/app/4625540/Hagicode/';
-
   const currentYear = new Date().getFullYear();
-
-  // 定义三栏内容数据结构
-  const footerData = useMemo((): {
-    relatedSites: FooterSection;
-    quickLinks: FooterSection;
-    community: FooterSection;
-  } => {
-    const communityLinks: FooterLink[] = [
-      {
-        label: t('footer.github'),
-        href: githubLink,
-        external: true,
-        ariaLabel: t('footer.github'),
-      },
-      {
-        label: t('footer.discord'),
-        href: discordLink,
-        external: true,
-        ariaLabel: t('footer.discord'),
-      },
-      {
-        label: t('footer.issueFeedback'),
-        href: 'https://github.com/HagiCode-org/site/issues',
-        external: true,
-        ariaLabel: t('footer.issueFeedback'),
-      },
-      {
-        label: t('footer.contactEmail'),
-        href: 'mailto:support@hagicode.com',
-        external: true,
-        ariaLabel: t('footer.contactEmail'),
-      },
-      {
-        label: t('footer.qqGroup'),
-        href: qqGroupLink,
-        external: true,
-        ariaLabel: t('footer.qqGroup'),
-      },
-      {
-        label: t('footer.costCalculator'),
-        href: costCalculatorLink,
-        external: true,
-        ariaLabel: t('footer.costCalculator'),
-      },
-      {
-        label: t('footer.steam'),
-        href: steamLink,
-        external: true,
-        ariaLabel: t('footer.steam'),
-      },
-    ];
-
-    const relatedSiteLinks: FooterLink[] = resolveSiteFooterCatalogLinks({
-      locale,
-      localLinks: communityLinks.map((link) => ({ href: link.href })),
-    }).map((link) => ({
-      label: link.title,
-      description: link.description,
-      href: link.href,
-      external: true,
-      ariaLabel: t('footer.visitPage').replace('{title}', link.title),
-    }));
-
-    return {
-      relatedSites: {
-        title: t('footer.relatedSitesTitle'),
-        links: relatedSiteLinks,
-      },
-      quickLinks: {
-        title: t('footer.quickLinks'),
-        links: [
-          {
-            label: t('footer.downloadClient'),
-            href: desktopLink,
-            external: false,
-            ariaLabel: t('footer.downloadClient'),
-          },
-          {
-            label: t('footer.productDocs'),
-            href: productOverviewLink,
-            external: false,
-            ariaLabel: t('footer.productDocs'),
-          },
-          {
-            label: t('footer.blogPosts'),
-            href: getLinkWithLocale('blog', locale),
-            external: false,
-            ariaLabel: t('footer.blogPosts'),
-          },
-          {
-            label: t('footer.rssSubscribe'),
-            href: rssLink,
-            external: false,
-            ariaLabel: t('footer.rssSubscribe'),
-          },
-        ],
-      },
-      community: {
-        title: t('footer.community'),
-        links: communityLinks,
-      },
-    };
-  }, [t, desktopLink, githubLink, discordLink, productOverviewLink, rssLink, qqGroupLink, costCalculatorLink, locale, steamLink]);
+  const footerData = resolveSiteLinks(locale, {
+    siteId: 'hagicode-main',
+    relatedSites: getFooterRelatedSites(locale),
+    rssFeedUrl: getLinkWithLocale('rss', locale),
+    overrides: {
+      downloadClient: { href: getLinkWithLocale('desktop', locale) },
+      productDocs: { href: getLinkWithLocale('productOverview', locale) },
+      blogPosts: { href: getLinkWithLocale('blog', locale) },
+      github: { href: getLinkWithLocale('github', locale) },
+      discord: { href: getLinkWithLocale('discord', locale) },
+      qqGroup: { href: getLinkWithLocale('qqGroup', locale) },
+    },
+    removeLinks: { quick: ['microsoftStore', 'dockerCompose', 'about'] },
+    extraLinks: {
+      community: [
+        {
+          id: 'costCalculator',
+          label: t('footer.costCalculator'),
+          href: getLinkWithLocale('costCalculator', locale),
+          external: true,
+        },
+        {
+          id: 'steam',
+          label: t('footer.steam'),
+          href: 'https://store.steampowered.com/app/4625540/Hagicode/',
+          external: true,
+        },
+      ],
+    },
+  });
 
   return (
     <footer className={`${styles.footer} ${className}`}>
@@ -213,18 +105,18 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
         <div className={styles.sections}>
           {/* 产品信息 */}
           <div className={styles.section}>
-            <h3 className={styles.sectionTitle}>{footerData.relatedSites.title}</h3>
-            <nav className={styles.sectionLinks} aria-label={`${footerData.relatedSites.title}链接`}>
-              {footerData.relatedSites.links.map((link) => (
+            <h3 className={styles.sectionTitle}>{footerData.labels.relatedSites}</h3>
+            <nav className={styles.sectionLinks} aria-label={footerData.labels.navigation.relatedSites}>
+              {footerData.relatedSites.map((link) => (
                 <a
-                  key={link.href}
+                  key={link.id}
                   className={styles.sectionLink}
                   href={link.href}
-                  target={link.external ? '_blank' : undefined}
-                  rel={link.external ? 'noopener noreferrer' : undefined}
-                  aria-label={link.ariaLabel}
+                  target={link.target}
+                  rel={link.rel}
+                  aria-label={t('footer.visitPage').replace('{title}', link.name)}
                 >
-                  <span className={styles.sectionLinkText}>{link.label}</span>
+                  <span className={styles.sectionLinkText}>{link.name}</span>
                   {link.description ? (
                     <span className={styles.sectionLinkDescription}>{link.description}</span>
                   ) : null}
@@ -235,15 +127,15 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
 
           {/* 快速链接 */}
           <div className={styles.section}>
-            <h3 className={styles.sectionTitle}>{footerData.quickLinks.title}</h3>
-            <nav className={styles.sectionLinks} aria-label={`${footerData.quickLinks.title}链接`}>
-              {footerData.quickLinks.links.map((link) => (
+            <h3 className={styles.sectionTitle}>{footerData.labels.quickLinks}</h3>
+            <nav className={styles.sectionLinks} aria-label={footerData.labels.navigation.quickLinks}>
+              {footerData.quick.map((link) => (
                 <a
-                  key={link.href}
+                  key={link.id}
                   className={styles.sectionLink}
                   href={link.href}
-                  target={link.external ? '_blank' : undefined}
-                  rel={link.external ? 'noopener noreferrer' : undefined}
+                  target={link.target}
+                  rel={link.rel}
                   aria-label={link.ariaLabel}
                 >
                   {link.label}
@@ -254,15 +146,15 @@ export default function Footer({ className = '', locale: propLocale }: FooterPro
 
           {/* 社区与支持 */}
           <div className={styles.section}>
-            <h3 className={styles.sectionTitle}>{footerData.community.title}</h3>
-            <nav className={styles.sectionLinks} aria-label={`${footerData.community.title}链接`}>
-              {footerData.community.links.map((link) => (
+            <h3 className={styles.sectionTitle}>{footerData.labels.community}</h3>
+            <nav className={styles.sectionLinks} aria-label={footerData.labels.navigation.community}>
+              {footerData.community.map((link) => (
                 <a
-                  key={link.href}
+                  key={link.id}
                   className={styles.sectionLink}
                   href={link.href}
-                  target={link.external ? '_blank' : undefined}
-                  rel={link.external ? 'noopener noreferrer' : undefined}
+                  target={link.target}
+                  rel={link.rel}
                   aria-label={link.ariaLabel}
                 >
                   {link.label}
