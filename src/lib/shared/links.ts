@@ -166,11 +166,6 @@ export const SITE_LINKS = {
     prod: '/about/',
     external: false,
   } as LinkConfig,
-  rss: {
-    dev: 'https://docs.hagicode.com/blog/rss.xml',
-    prod: 'https://docs.hagicode.com/blog/rss.xml',
-    external: false,
-  } as LinkConfig,
   costCalculator: {
     dev: 'https://cost.hagicode.com',
     prod: 'https://cost.hagicode.com',
@@ -218,13 +213,6 @@ export function getDocsAbsoluteUrl(pathname: string, locale?: string): string {
   return rebuildAbsoluteUrl(docsUrl, getLocalizedDocsPath(pathname, locale));
 }
 
-function getDocsRssUrl(locale?: string): string {
-  const currentLocale = normalizeLocale(locale);
-  return currentLocale.startsWith('zh')
-    ? 'https://docs.hagicode.com/blog/rss.zh-CN.xml'
-    : 'https://docs.hagicode.com/blog/rss.en-US.xml';
-}
-
 export function getLinkWithLocale(key: PublicLinkKey, locale?: string): string {
   const config = SITE_LINKS[key];
   const env = getEnvironment();
@@ -238,10 +226,6 @@ export function getLinkWithLocale(key: PublicLinkKey, locale?: string): string {
   if (url.startsWith('http://') || url.startsWith('https://')) {
     const urlObject = new URL(url);
     if (urlObject.hostname === 'docs.hagicode.com') {
-      if (key === 'rss') {
-        return getDocsRssUrl(currentLocale);
-      }
-
       return rebuildAbsoluteUrl(urlObject, getLocalizedDocsPath(urlObject.pathname, currentLocale));
     }
 

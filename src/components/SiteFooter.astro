@@ -1,6 +1,5 @@
 ---
-import Footer from '@hagicode/hagilight/Footer';
-import { getLinkWithLocale } from '@/lib/shared/links';
+import Footer from '@hagicode/hagilight-core/Footer';
 import type { SiteLocale } from '@/i18n/locale-metadata';
 
 interface Props {
@@ -8,30 +7,6 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const docsBlogRssLabels: Record<SiteLocale, string> = {
-  'en-US': 'Docs Blog RSS',
-  'zh-CN': '文档博客 RSS',
-  'zh-Hant': '文件部落格 RSS',
-  'ja-JP': 'Docs ブログ RSS',
-  'ko-KR': 'Docs 블로그 RSS',
-  'de-DE': 'Docs-Blog-RSS',
-  'fr-FR': 'Flux RSS du blog Docs',
-  'es-ES': 'RSS del blog de Docs',
-  'pt-BR': 'RSS do blog Docs',
-  'ru-RU': 'RSS блога Docs',
-};
 ---
 
-<Footer
-  locale={locale}
-  links={{
-    extraLinks: {
-      quick: [{
-        id: 'docs-blog-rss',
-        label: docsBlogRssLabels[locale],
-        href: getLinkWithLocale('rss', locale),
-        external: true,
-      }],
-    },
-  }}
-/>
+<Footer locale={locale} />
