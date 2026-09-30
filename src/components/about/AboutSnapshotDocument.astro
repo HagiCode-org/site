@@ -4,6 +4,7 @@ import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 import MicrosoftStoreBadgeScript from '@/components/MicrosoftStoreBadgeScript.astro';
 import SiteFooter from '@/components/SiteFooter.astro';
 import Navbar from '@/components/home/Navbar';
+import PromotoBanner from '@hagicode/hagilight-core/PromotoBanner';
 import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
 import type { AboutPageModel } from '@/lib/about-page-model';
 import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
@@ -80,6 +81,7 @@ const interactiveCopy = getHomepageInteractiveCopy(currentLocale);
       languageSwitcherCopy={interactiveCopy.languageSwitcher}
     />
     <AboutSnapshotPage model={model} />
+    <PromotoBanner locale={currentLocale} />
     <SiteFooter locale={model.locale} />
     <AnalyticsScripts />
   </body>

@@ -3,6 +3,7 @@ import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 import MicrosoftStoreBadgeScript from '@/components/MicrosoftStoreBadgeScript.astro';
 import SiteFooter from '@/components/SiteFooter.astro';
 import Navbar from '@/components/home/Navbar';
+import PromotoBanner from '@hagicode/hagilight-core/PromotoBanner';
 import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
 import DesktopHero from '@/components/desktop/DesktopHero';
 import StructuredArticleBlocks from '@/components/structured-article/StructuredArticleBlocks.astro';
@@ -119,6 +120,7 @@ const heroTagline = t('desktopHero.tagline');
         </section>
       </div>
     </main>
+    <PromotoBanner locale={locale} />
     <SiteFooter locale={locale} />
   </body>
 </html>
