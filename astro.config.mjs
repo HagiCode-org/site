@@ -1,10 +1,8 @@
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
 import partytown from '@astrojs/partytown';
-import robotsTxt from 'astro-robots-txt';
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
-import { hagilightRss } from '@hagicode/hagilight/integration';
+import { hagilight } from '@hagicode/hagilight/integration';
 import { DEFAULT_LOCALE, SUPPORTED_SITE_LOCALES } from './src/i18n/locale-metadata.ts';
 
 // https://astro.build/config
@@ -50,22 +48,7 @@ export default defineConfig({
         },
     },
     integrations: [
-        // robots.txt 配置 - 使用 astro-robots-txt 插件
-        robotsTxt({
-            sitemap: 'https://www.hagicode.com/sitemap-index.xml',
-        }),
-        hagilightRss({
-            locales: Object.fromEntries(
-                SUPPORTED_SITE_LOCALES.map((lang) => [lang, { lang }]),
-            ),
-            getFeed: './src/lib/rss-feed.ts',
-        }),
-        sitemap({
-            filter: (page) => {
-                const pathname = new URL(page).pathname;
-                return !pathname.startsWith('/en/');
-            },
-        }),
+        hagilight(),
         partytown(),
         react(),
         mdx(),
