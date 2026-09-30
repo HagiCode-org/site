@@ -6,7 +6,7 @@ import ShowcaseSection from '@/components/home/ShowcaseSection';
 import VideoShowcase from '@/components/home/VideoShowcase';
 import PricingComparisonSection from '@/components/home/PricingComparisonSection';
 import PromotoBanner from '@hagicode/hagilight/PromotoBanner';
-import Footer from '@hagicode/hagilight/Footer';
+import SiteFooter from '@/components/SiteFooter.astro';
 import LunarNewYearDecorations from '@/components/home/LunarNewYearDecorations';
 import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
@@ -123,7 +123,7 @@ const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
     </main>
 
     <PromotoBanner locale={locale} />
-    <Footer locale={locale} />
+    <SiteFooter locale={locale} />
     <AnalyticsScripts />
   </body>
 </html>

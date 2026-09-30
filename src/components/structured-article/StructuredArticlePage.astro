@@ -1,7 +1,7 @@
 ---
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 import MicrosoftStoreBadgeScript from '@/components/MicrosoftStoreBadgeScript.astro';
-import Footer from '@hagicode/hagilight/Footer';
+import SiteFooter from '@/components/SiteFooter.astro';
 import Navbar from '@/components/home/Navbar';
 import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
 import DesktopHero from '@/components/desktop/DesktopHero';
@@ -119,6 +119,6 @@ const heroTagline = t('desktopHero.tagline');
         </section>
       </div>
     </main>
-    <Footer locale={locale} />
+    <SiteFooter locale={locale} />
   </body>
 </html>

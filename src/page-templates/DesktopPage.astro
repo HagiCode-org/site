@@ -4,7 +4,7 @@ import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 import '@/styles/homepage.css';
 import '@/styles/desktop.css';
 import Navbar from '@/components/home/Navbar';
-import Footer from '@hagicode/hagilight/Footer';
+import SiteFooter from '@/components/SiteFooter.astro';
 import DesktopHero from '@/components/desktop/DesktopHero';
 import FeatureIcon from '@/components/desktop/FeatureIcon.astro';
 import MicrosoftStoreBadgeScript from '@/components/MicrosoftStoreBadgeScript.astro';
@@ -159,7 +159,7 @@ const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
 
     </main>
 
-    <Footer locale={locale} />
+    <SiteFooter locale={locale} />
     <AnalyticsScripts />
   </body>
 </html>
