@@ -14,11 +14,15 @@ interface Props {
 
 const { pathname, siteBase = '', currentLocale } = Astro.props;
 const defaultUrl = getAbsoluteSiteUrl(pathname, DEFAULT_LOCALE, siteBase);
+const feedPath = currentLocale === DEFAULT_LOCALE ? '/rss.xml' : `/rss.${currentLocale}.xml`;
+if (!Astro.site) throw new Error('The Astro site URL is required to generate RSS discovery links.');
+const feedUrl = new URL(feedPath, Astro.site).href;
 ---
 
 {SUPPORTED_SITE_LOCALES.map((locale) => (
   <link rel="alternate" hreflang={locale} href={getAbsoluteSiteUrl(pathname, locale, siteBase)} />
 ))}
+<link rel="alternate" type="application/rss+xml" title="HagiCode RSS" href={feedUrl} />
 <link rel="alternate" hreflang="en" href={defaultUrl} />
 <link rel="alternate" hreflang="x-default" href={defaultUrl} />
 <meta name="og:locale" content={currentLocale} />
