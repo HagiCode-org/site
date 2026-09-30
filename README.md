@@ -100,9 +100,9 @@ npm run preview
 The default dev server runs at `http://localhost:31264`.
 For contributor guidance, start with [`AGENTS.md`](./AGENTS.md) and [`CLAUDE.md`](./CLAUDE.md).
 
-Site pages use the default footer from `@hagicode/hagilight/Footer` with the
+Site pages use the default footer from `@hagicode/hagilight-core/Footer` with the
 active locale and no site-specific link overrides. The homepage also mounts
-`@hagicode/hagilight/PromotoBanner` directly in Astro.
+`@hagicode/hagilight-core/PromotoBanner` directly in Astro.
 
 SEO for this Astro site remains site-owned: page templates render localized
 metadata and canonical URLs, `SeoAlternateLinks.astro` renders hreflang links,
