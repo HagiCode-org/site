@@ -20,6 +20,10 @@
 
 </div>
 
+## RSS feeds
+
+Hagilight 0.5.0 publishes valid empty default, English-alias, and configured locale feeds. The plain-Astro integration does not infer feed items from the marketing pages.
+
 [English](./README.md) · [简体中文](./README_cn.md) · [繁體中文](./README_zh-Hant.md) · [日本語](./README_ja-JP.md) · [한국어](./README_ko-KR.md) · [Deutsch](./README_de-DE.md) · [Français](./README_fr-FR.md) · [Español](./README_es-ES.md) · [Português (Brasil)](./README_pt-BR.md) · [Русский](./README_ru-RU.md)
 
 ---
