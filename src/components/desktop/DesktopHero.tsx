@@ -681,6 +681,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
                                       if (defaultOption) {
                                         trackEvent(getDesktopDownloadEventName(defaultOption.assetType), {
                                           source: `desktop-hero-${platform.platform}-primary-${githubAction.action.kind}`,
+                                          url: githubAction.action.url,
                                         });
                                       }
                                     }}
@@ -718,6 +719,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
                                       if (defaultOption) {
                                         trackEvent(getDesktopDownloadEventName(defaultOption.assetType), {
                                           source: `desktop-hero-${platform.platform}-primary-${acceleratedAction.action.kind}`,
+                                          url: acceleratedAction.action.url,
                                         });
                                       }
                                     }}
@@ -807,6 +809,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
                                                       onClick={() => {
                                                         trackEvent(getDesktopDownloadEventName(option.assetType), {
                                                           source: `desktop-hero-${platform.platform}-source-${githubOptionAction.kind}`,
+                                                          url: githubOptionAction.url,
                                                         });
                                                         setOpenDropdown(null);
                                                       }}
@@ -828,6 +831,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
                                                       onClick={() => {
                                                         trackEvent(getDesktopDownloadEventName(option.assetType), {
                                                           source: `desktop-hero-${platform.platform}-source-${acceleratedOptionAction.kind}`,
+                                                          url: acceleratedOptionAction.url,
                                                         });
                                                         setOpenDropdown(null);
                                                       }}
@@ -851,6 +855,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
                                                         onClick={() => {
                                                           trackEvent(getDesktopDownloadEventName(option.assetType), {
                                                             source: `desktop-hero-${platform.platform}-source-${action.kind}`,
+                                                            url: action.url,
                                                           });
                                                           setOpenDropdown(null);
                                                         }}

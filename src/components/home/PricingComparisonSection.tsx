@@ -1,3 +1,4 @@
+import { gaEventAttributes } from '@hagicode/hagilight-core/analytics-events';
 import type {
   EditionColumn,
   FeatureCell,
@@ -75,7 +76,9 @@ function renderCell(cell: FeatureCell, labels: { included: string; notIncluded: 
   );
 }
 
-function renderEditionHeader(column: EditionColumn, className?: string) {
+type EditionId = 'Desktop' | 'Container' | 'MicrosoftStore';
+
+function renderEditionHeader(column: EditionColumn, editionId: EditionId, className?: string) {
   if (!column.action) {
     return (
       <div className={`${styles.columnHeading} ${className ?? ''}`.trim()}>
@@ -91,6 +94,11 @@ function renderEditionHeader(column: EditionColumn, className?: string) {
         className={styles.headerButton}
         target={column.action.external ? '_blank' : undefined}
         rel={column.action.external ? 'noopener noreferrer' : undefined}
+        {...gaEventAttributes({
+          category: 'navigation',
+          label: `pricing${editionId}`,
+          location: 'pricing',
+        })}
       >
         {column.title}
       </a>
@@ -127,13 +135,13 @@ export default function PricingComparisonSection({ content }: Props) {
                 <tr>
                   <th scope="col" className={styles.featureHeading}>{content.featureHeader}</th>
                   <th scope="col">
-                    {renderEditionHeader(content.desktopEdition, styles.desktopColumnHeading)}
+                    {renderEditionHeader(content.desktopEdition, 'Desktop', styles.desktopColumnHeading)}
                   </th>
                   <th scope="col">
-                    {renderEditionHeader(content.containerEdition, styles.containerColumnHeading)}
+                    {renderEditionHeader(content.containerEdition, 'Container', styles.containerColumnHeading)}
                   </th>
                   <th scope="col">
-                    {renderEditionHeader(content.microsoftStoreEdition, styles.microsoftStoreColumnHeading)}
+                    {renderEditionHeader(content.microsoftStoreEdition, 'MicrosoftStore', styles.microsoftStoreColumnHeading)}
                   </th>
                 </tr>
               </thead>

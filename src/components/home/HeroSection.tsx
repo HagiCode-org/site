@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
+import { gaEventAttributes, type GaCategory } from '@hagicode/hagilight-core/analytics-events';
 import styles from './HeroSection.module.css';
 import { FEATURE_SITE_STEAM_ENABLED } from '@/config/features';
 import { WEBSITE_TRACKING_EVENTS } from '@/lib/analytics/events';
@@ -83,6 +84,12 @@ function SteamIcon({ className = '' }: IconProps) {
       <path d="M7.5 14.6l2.8 1.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
     </svg>
   );
+}
+
+const HERO_GA_LOCATION = 'home_hero';
+
+function heroGaAttributes(category: GaCategory, label: string, url?: string) {
+  return gaEventAttributes({ category, label, location: HERO_GA_LOCATION, url });
 }
 
 function formatAgentName(name: string) {
@@ -261,7 +268,11 @@ export default function HeroSection({
 
           <div className={styles.heroActions} role="group" aria-label={ctaGroupLabel}>
             <div className={styles.heroPrimaryActions}>
-              <a href={desktopUrl} className={styles.buttonPrimary}>
+              <a
+                href={desktopUrl}
+                className={styles.buttonPrimary}
+                {...heroGaAttributes('navigation', 'openDesktopPage')}
+              >
                 <span className={styles.buttonPrimaryContent}>
                   <DownloadIcon className={styles.buttonIcon} />
                   <span className={styles.buttonTextStack}>
@@ -279,13 +290,20 @@ export default function HeroSection({
                   aria-label={windowsStoreAriaLabel}
                   className={`${styles.windowsStoreBadgeButton} ${styles.windowsStoreBadgePrimary}`}
                   badgeClassName={styles.windowsStoreBadgeElement}
-                  badgeAttributes={{ 'data-windows-store-entry': 'site-home-hero' }}
+                  badgeAttributes={{
+                    'data-windows-store-entry': 'site-home-hero',
+                    ...heroGaAttributes('download', 'microsoftStore', windowsStoreLink.href),
+                  }}
                 />
               )}
             </div>
 
             <div className={styles.heroSecondaryActions}>
-              <a href={containerUrl} className={styles.buttonSecondary}>
+              <a
+                href={containerUrl}
+                className={styles.buttonSecondary}
+                {...heroGaAttributes('navigation', 'openContainerPage')}
+              >
                 <ContainerIcon className={styles.buttonIcon} />
                 <span>{copy.buttons.containerApp}</span>
               </a>
@@ -301,6 +319,7 @@ export default function HeroSection({
                   onClick={() =>
                     trackEvent(WEBSITE_TRACKING_EVENTS.openSteamStore, {
                       source: 'hero-section-steam',
+                      url: steamStoreLink.href,
                     })
                   }
                 >
@@ -309,7 +328,11 @@ export default function HeroSection({
                 </a>
               )}
 
-              <a className={styles.buttonSecondary} href={docsUrl}>
+              <a
+                className={styles.buttonSecondary}
+                href={docsUrl}
+                {...heroGaAttributes('navigation', 'productDocs')}
+              >
                 <span>{copy.buttons.learnMore}</span>
               </a>
             </div>

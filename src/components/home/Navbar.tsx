@@ -4,6 +4,7 @@
  * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
  */
 import { useState, useEffect, useMemo, type ReactElement } from "react";
+import { gaEventAttributes, type GaCategory } from "@hagicode/hagilight-core/analytics-events";
 import ThemeToggle from "./ThemeToggle";
 import InstallButton from "./InstallButton";
 import { LanguageSwitcher } from "../LanguageSwitcher";
@@ -26,6 +27,12 @@ interface NavbarProps {
 }
 
 type NavLinkTone = 'default' | 'support' | 'github';
+
+const NAVBAR_GA_LOCATION = 'navbar';
+
+function navbarGaAttributes(category: GaCategory, label: string) {
+  return gaEventAttributes({ category, label, location: NAVBAR_GA_LOCATION });
+}
 
 /**
  * SVG 图标组件
@@ -125,6 +132,7 @@ export default function Navbar({
       external: false,
       icon: 'open-book',
       tone: 'default' as NavLinkTone,
+      ga: navbarGaAttributes('navigation', 'productDocs'),
     },
     {
       label: copy.support,
@@ -132,6 +140,7 @@ export default function Navbar({
       external: false,
       icon: 'comment',
       tone: 'support' as NavLinkTone,
+      ga: navbarGaAttributes('navigation', 'support'),
     },
     {
       label: 'GitHub',
@@ -139,6 +148,7 @@ export default function Navbar({
       external: true,
       icon: 'github',
       tone: 'github' as NavLinkTone,
+      ga: navbarGaAttributes('community', 'github'),
     },
   ], [copy.docs, copy.support, locale]);
 
@@ -175,7 +185,12 @@ export default function Navbar({
 
       <div className={styles.container}>
         {/* Logo */}
-        <a href={homeUrl} className={styles.logo} aria-label={copy.home}>
+        <a
+          href={homeUrl}
+          className={styles.logo}
+          aria-label={copy.home}
+          {...navbarGaAttributes('navigation', 'home')}
+        >
           <div className={styles.logoIcon}>
             <img
               src={logoImage}
@@ -203,6 +218,7 @@ export default function Navbar({
               ].filter(Boolean).join(' ')}
               target={item.external ? "_blank" : undefined}
               rel={item.external ? "noopener noreferrer" : undefined}
+              {...item.ga}
             >
               {item.icon && (
                 <span className={styles.navLinkIcon}>
@@ -265,6 +281,7 @@ export default function Navbar({
               onClick={() => setIsMobileMenuOpen(false)}
               target={item.external ? "_blank" : undefined}
               rel={item.external ? "noopener noreferrer" : undefined}
+              {...item.ga}
             >
               {item.icon && (
                 <span className={styles.mobileNavIcon}>

@@ -197,7 +197,7 @@ export default function InstallOptionsSection({ locale: propLocale }: { locale?:
                     option.id === 'desktop'
                       ? WEBSITE_TRACKING_EVENTS.openDesktopPage
                       : WEBSITE_TRACKING_EVENTS.openContainerPage,
-                    { source: `install-options-${option.id}` },
+                    { source: `install-options-${option.id}`, url: option.ctaLink },
                   )
                 }
               >
