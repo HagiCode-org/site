@@ -3,6 +3,11 @@ import {
   type WebsiteTrackingEventName,
 } from './events';
 import {
+  createGoogleAnalyticsMirror,
+  type AnalyticsMirror,
+  type GoogleAnalyticsWindowLike,
+} from './provider-ga';
+import {
   create51LAProvider,
   type AnalyticsProvider,
   type AnalyticsWindowLike,
@@ -21,6 +26,8 @@ interface TrackableElement {
     trackEvent?: string;
     trackSource?: string;
   };
+  href?: string;
+  getAttribute?: (name: string) => string | null;
 }
 
 interface TrackableTarget {
@@ -36,7 +43,10 @@ interface AnalyticsEventTargetLike {
   dispatchEvent?: (event: Event) => boolean;
 }
 
-export interface BrowserAnalyticsWindow extends AnalyticsWindowLike, AnalyticsEventTargetLike {
+export interface BrowserAnalyticsWindow
+  extends AnalyticsWindowLike,
+    GoogleAnalyticsWindowLike,
+    AnalyticsEventTargetLike {
   document?: AnalyticsDocumentLike;
   __HAGI_WEBSITE_ANALYTICS__?: WebsiteAnalyticsRuntime;
 }
@@ -72,6 +82,7 @@ export class WebsiteAnalyticsRuntime {
     private readonly provider: AnalyticsProvider,
     private readonly eventTarget?: AnalyticsEventTargetLike,
     private readonly documentTarget?: AnalyticsDocumentLike,
+    private readonly mirror?: AnalyticsMirror,
   ) {}
 
   initialize() {
@@ -92,6 +103,9 @@ export class WebsiteAnalyticsRuntime {
     eventName: WebsiteTrackingEventName,
     context?: TrackingEventContext,
   ): TrackDispatchStatus {
+    // Mirrored here, not in flushPendingEvents(), so a queued event never reaches Google Analytics twice.
+    this.mirror?.mirror(eventName, context);
+
     if (this.provider.send(eventName, context)) {
       return 'sent';
     }
@@ -135,14 +149,16 @@ export class WebsiteAnalyticsRuntime {
 
   private readonly handleDocumentClick = (event: Event) => {
     const trackedElement = findTrackedElement(event.target);
-    const trackEventName = trackedElement?.dataset?.trackEvent;
+    // Locale files spell event names with hyphens; the catalog uses underscores.
+    const trackEventName = trackedElement?.dataset?.trackEvent?.replaceAll('-', '_');
 
-    if (!trackEventName || !isWebsiteTrackingEventName(trackEventName)) {
+    if (!trackedElement || !trackEventName || !isWebsiteTrackingEventName(trackEventName)) {
       return;
     }
 
     this.trackEvent(trackEventName, {
       source: trackedElement.dataset?.trackSource,
+      url: trackedElement.href || trackedElement.getAttribute?.('href') || undefined,
     });
   };
 }
@@ -157,6 +173,7 @@ function getGlobalRuntime(target = getBrowserWindow()): WebsiteAnalyticsRuntime 
       create51LAProvider(() => getBrowserWindow()),
       target,
       target.document,
+      createGoogleAnalyticsMirror(() => getBrowserWindow()),
     );
   }
 
@@ -182,10 +199,12 @@ export function createWebsiteAnalyticsRuntime(options: {
   provider: AnalyticsProvider;
   eventTarget?: AnalyticsEventTargetLike;
   documentTarget?: AnalyticsDocumentLike;
+  mirror?: AnalyticsMirror;
 }) {
   return new WebsiteAnalyticsRuntime(
     options.provider,
     options.eventTarget,
     options.documentTarget,
+    options.mirror,
   );
 }

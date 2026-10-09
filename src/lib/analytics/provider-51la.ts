@@ -2,6 +2,8 @@ import type { WebsiteTrackingEventName } from './events';
 
 export interface TrackingEventContext {
   source?: string;
+  /** Destination of the click, reported as `link_url` by the Google Analytics mirror. 51LA ignores it. */
+  url?: string;
 }
 
 export interface AnalyticsProvider {
