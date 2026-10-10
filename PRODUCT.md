@@ -1,5 +1,11 @@
 # Product
 
+<!-- impeccable:product-schema 1 -->
+
+## Platform
+
+web
+
 ## Register
 
 brand
@@ -12,6 +18,10 @@ HagiCode's public site serves developers, tech leads, indie teams, and self-host
 
 The site is the public narrative and conversion surface for the HagiCode ecosystem. It should explain HagiCode as an operational workspace for repository understanding, proposal-driven change, execution, and reusable knowledge, then direct visitors into the right next step without flattening the product into a single slogan. Success means the system feels legible, credible, and worth exploring further.
 
+## Positioning
+
+HagiCode is proposal-driven: changes move through proposal, execution, and reusable knowledge rather than open-ended chat. That workflow is the claim a code-chat tool could not truthfully copy, and the site's story should be built around it.
+
 ## Brand Personality
 
 Operational, ambitious, lucid. The tone should feel technically confident, systems-minded, and energetic without sounding breathless or inflated. Visitors should come away with a sense that HagiCode is serious software for real development work, not a novelty AI wrapper.
@@ -19,6 +29,10 @@ Operational, ambitious, lucid. The tone should feel technically confident, syste
 ## Anti-references
 
 Do not make HagiCode look like a generic AI SaaS landing page built from soft cream blocks, stock 3D blobs, and interchangeable productivity copy. Do not lean on decorative glassmorphism, neon-for-neon's-sake cyberpunk, mascot-driven toy AI branding, or anonymous enterprise minimalism. Avoid the hero-metric template, and do not reduce the product story to "chat with your code."
+
+## Evidence on Hand
+
+Real product screenshots and the docs site (`repos/docs`) are the citable evidence. Do not fabricate customers, testimonials, benchmarks, usage metrics, pricing, or licensing claims; if proof is missing, leave it out rather than inventing it.
 
 ## Design Principles
 
