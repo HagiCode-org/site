@@ -31,6 +31,7 @@
   --sl-color-text: var(--color-text-secondary);
   --sl-color-text-high: var(--color-text);
   --sl-color-gray-1: var(--color-text);
+  --sl-color-gray-2: var(--color-text-secondary);
   --sl-color-gray-5: var(--color-border);
   --sl-color-accent: #0060cc;
   --sl-color-accent-high: #004999;
