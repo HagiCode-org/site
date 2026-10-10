@@ -1,0 +1,1 @@
+import{r as e}from"./analytics-events.KDlcENc1.js";e();
