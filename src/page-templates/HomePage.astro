@@ -12,8 +12,15 @@ import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 import MicrosoftStoreBadgeScript from '@/components/MicrosoftStoreBadgeScript.astro';
 import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
+import showcaseProposalWorkflow from '../assets/img/home/showcase-proposal-workflow.png';
+import showcaseSessionBoard from '../assets/img/home/showcase-session-board.png';
+import showcaseTokenAnalytics from '../assets/img/home/showcase-token-analytics.png';
+import showcaseWorkspaceManagement from '../assets/img/home/showcase-workspace-management.png';
+import showcaseAchievementProgress from '../assets/img/home/showcase-achievement-progress.png';
+import { getImage } from 'astro:assets';
 import '@/styles/homepage.css';
 
+import type { ImageMetadata } from 'astro';
 import type { SiteLocale } from '@/i18n/locale-metadata';
 import { getAbsoluteSiteUrl } from '@/lib/locale-routing';
 import {
@@ -38,6 +45,22 @@ const showcaseCopy = getHomepageShowcaseCopy(locale);
 const pricingContent = getPricingContent(locale);
 const heroAgentChoices = getHomepageAgentChooserItems(locale);
 const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
+
+async function getShowcaseImageSources(source: ImageMetadata) {
+  const [avif, webp] = await Promise.all([
+    getImage({ src: source, format: 'avif' }),
+    getImage({ src: source, format: 'webp' }),
+  ]);
+  return { avif: avif.src, webp: webp.src, src: source.src };
+}
+
+const showcaseImages = {
+  proposalWorkflow: await getShowcaseImageSources(showcaseProposalWorkflow),
+  sessionBoard: await getShowcaseImageSources(showcaseSessionBoard),
+  tokenAnalytics: await getShowcaseImageSources(showcaseTokenAnalytics),
+  workspaceManagement: await getShowcaseImageSources(showcaseWorkspaceManagement),
+  achievementProgress: await getShowcaseImageSources(showcaseAchievementProgress),
+};
 ---
 
 <!doctype html>
@@ -109,7 +132,7 @@ const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
         }}
       />
       <FeaturesShowcase copy={featuresCopy} client:visible />
-      <ShowcaseSection copy={showcaseCopy} client:visible />
+      <ShowcaseSection copy={showcaseCopy} images={showcaseImages} client:visible />
       <VideoShowcase
         eyebrow={pageCopy.supportingSection.eyebrow}
         title={pageCopy.supportingSection.title}

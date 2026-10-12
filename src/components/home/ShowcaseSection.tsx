@@ -1,34 +1,47 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { homeShowcaseImages } from '@/assets/siteAssetUrls';
+import { useEffect, useMemo, useRef, useState, type ImgHTMLAttributes } from 'react';
 import type { HomepageShowcaseCopy } from '@/lib/homepage-section-copy';
 import styles from './ShowcaseSection.module.css';
 
-interface ScreenshotItem {
-  id: HomepageShowcaseCopy['screenshots'][number]['id'];
+type ScreenshotId = HomepageShowcaseCopy['screenshots'][number]['id'];
+
+interface ShowcaseImageSources {
+  avif: string;
+  webp: string;
   src: string;
+}
+
+interface ScreenshotItem {
+  id: ScreenshotId;
+  sources: ShowcaseImageSources;
   title: string;
   description: string;
   alt: string;
 }
 
-const screenshotSources: Record<HomepageShowcaseCopy['screenshots'][number]['id'], string> = {
-  proposalWorkflow: homeShowcaseImages.proposalWorkflow,
-  sessionBoard: homeShowcaseImages.sessionBoard,
-  tokenAnalytics: homeShowcaseImages.tokenAnalytics,
-  workspaceManagement: homeShowcaseImages.workspaceManagement,
-  achievementProgress: homeShowcaseImages.achievementProgress,
-};
+function ScreenshotPicture({
+  sources,
+  ...imgProps
+}: ImgHTMLAttributes<HTMLImageElement> & { sources: ShowcaseImageSources }) {
+  return (
+    <picture>
+      <source type="image/avif" srcSet={sources.avif} />
+      <source type="image/webp" srcSet={sources.webp} />
+      <img src={sources.src} {...imgProps} />
+    </picture>
+  );
+}
 
 const handleImageError = (event: React.SyntheticEvent<HTMLImageElement>) => {
   const target = event.currentTarget;
   target.style.display = 'none';
 
-  const parent = target.parentElement;
+  const anchor = target.closest('picture') ?? target;
+  const parent = anchor.parentElement;
   if (parent && !parent.querySelector(`.${styles.screenshotPlaceholder}`)) {
     const placeholder = document.createElement('div');
     placeholder.className = styles.screenshotPlaceholder;
     placeholder.textContent = target.dataset.fallbackLabel || 'Image unavailable';
-    parent.insertBefore(placeholder, target.nextSibling);
+    parent.insertBefore(placeholder, anchor.nextSibling);
   }
 };
 
@@ -38,9 +51,10 @@ function formatOrder(index: number) {
 
 interface Props {
   copy: HomepageShowcaseCopy;
+  images: Record<ScreenshotId, ShowcaseImageSources>;
 }
 
-export default function ShowcaseSection({ copy }: Props) {
+export default function ShowcaseSection({ copy, images }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
   const railRef = useRef<HTMLOListElement | null>(null);
@@ -50,26 +64,12 @@ export default function ShowcaseSection({ copy }: Props) {
   const screenshots: ScreenshotItem[] = useMemo(
     () => copy.screenshots.map((screenshot) => ({
       ...screenshot,
-      src: screenshotSources[screenshot.id],
+      sources: images[screenshot.id],
     })),
-    [copy.screenshots],
+    [copy.screenshots, images],
   );
 
   const activeScreenshot = screenshots[activeIndex] ?? screenshots[0];
-
-  useEffect(() => {
-    const currentImage = screenshots[activeIndex];
-    const nextImage = screenshots[Math.min(activeIndex + 1, screenshots.length - 1)];
-
-    [currentImage, nextImage].forEach((item) => {
-      if (!item) {
-        return;
-      }
-
-      const image = new Image();
-      image.src = item.src;
-    });
-  }, [activeIndex, screenshots]);
 
   useEffect(() => {
     if (!isFullscreenOpen || typeof window === 'undefined') {
@@ -224,9 +224,9 @@ export default function ShowcaseSection({ copy }: Props) {
                 onClick={() => setIsFullscreenOpen(true)}
                 aria-label={`${copy.controls.openFullscreen}${activeScreenshot.title}`}
               >
-                <img
+                <ScreenshotPicture
                   key={activeScreenshot.id}
-                  src={activeScreenshot.src}
+                  sources={activeScreenshot.sources}
                   alt={activeScreenshot.alt}
                   className={styles.featuredImage}
                   onError={handleImageError}
@@ -283,8 +283,8 @@ export default function ShowcaseSection({ copy }: Props) {
                     </span>
 
                     <span className={styles.thumbnailPreview} aria-hidden="true">
-                      <img
-                        src={screenshot.src}
+                      <ScreenshotPicture
+                        sources={screenshot.sources}
                         alt=""
                         className={styles.thumbnailImage}
                         onError={handleImageError}
@@ -319,8 +319,8 @@ export default function ShowcaseSection({ copy }: Props) {
             </button>
 
             <figure className={styles.lightboxFigure}>
-              <img
-                src={activeScreenshot.src}
+              <ScreenshotPicture
+                sources={activeScreenshot.sources}
                 alt={activeScreenshot.alt}
                 className={styles.lightboxImage}
                 onError={handleImageError}

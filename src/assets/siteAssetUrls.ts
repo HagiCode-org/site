@@ -30,11 +30,3 @@ const homeHeroAssetPaths = [
 ] as const;
 
 export const homeHeroImages = homeHeroAssetPaths.map(getSiteAssetUrl);
-
-export const homeShowcaseImages = {
-  proposalWorkflow: getSiteAssetUrl('img/home/showcase-proposal-workflow.png'),
-  sessionBoard: getSiteAssetUrl('img/home/showcase-session-board.png'),
-  tokenAnalytics: getSiteAssetUrl('img/home/showcase-token-analytics.png'),
-  workspaceManagement: getSiteAssetUrl('img/home/showcase-workspace-management.png'),
-  achievementProgress: getSiteAssetUrl('img/home/showcase-achievement-progress.png'),
-} as const;
