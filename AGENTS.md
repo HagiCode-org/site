@@ -43,6 +43,7 @@ npm run typecheck
 - Keep marketing pages intentional and distinctive rather than generic.
 - Preserve SEO metadata, structured content, and i18n-aware copy when editing pages.
 - If you change generated or synced content, check the corresponding scripts instead of editing derived outputs by hand.
+- Images meant to ship as AVIF and WebP are imported at a relative path as Astro assets (rendered with `<Picture>` in Astro files, or with `getImage` sources passed to React islands); `?url` imports, `public/` paths and remote URLs skip the image service.
 
 ## Google Analytics Events
 
