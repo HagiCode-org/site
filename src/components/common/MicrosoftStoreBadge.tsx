@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import {
   resolveMicrosoftStoreBadgeLanguage,
@@ -26,10 +26,19 @@ export default function MicrosoftStoreBadge({
   badgeClassName,
   badgeAttributes,
 }: MicrosoftStoreBadgeProps) {
+  const badgeRef = useRef<HTMLElement>(null);
+
+  // ms-store-badge only reacts to attribute changes, but React sets a prop the element
+  // already has (like `size`) as a property, so a size change after mount would be ignored.
+  useEffect(() => {
+    badgeRef.current?.setAttribute('size', size);
+  }, [size]);
+
   return (
     <span className={className}>
       {React.createElement('ms-store-badge', {
         ...badgeAttributes,
+        ref: badgeRef,
         className: badgeClassName,
         productid: resolveMicrosoftStoreProductId(href),
         productname: productName,
