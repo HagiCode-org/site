@@ -199,6 +199,7 @@ export default function HeroSection({
 }: HeroSectionProps) {
   const [steamStoreLink, setSteamStoreLink] = useState(() => getBundledSteamStoreLink());
   const [windowsStoreLink, setWindowsStoreLink] = useState(() => getBundledWindowsStoreLink());
+  const [windowsStoreBadgeSize, setWindowsStoreBadgeSize] = useState<'small' | 'large'>('large');
 
   const desktopUrl = getLinkWithLocale('desktop', locale);
   const containerUrl = getLinkWithLocale('container', locale);
@@ -216,6 +217,21 @@ export default function HeroSection({
   const ctaGroupLabel = copy.ctaGroupLabel || (isChineseLocale ? '首页主要操作' : 'Primary homepage actions');
   const showSteamButton = FEATURE_SITE_STEAM_ENABLED && Boolean(steamStoreLink.href);
   const showWindowsStoreButton = Boolean(windowsStoreLink.href);
+
+  // The large badge is a fixed 381px wide; phones only have room for the small one.
+  useEffect(() => {
+    if (typeof window.matchMedia !== 'function') {
+      return;
+    }
+
+    const query = window.matchMedia('(max-width: 479px)');
+    const syncBadgeSize = () => setWindowsStoreBadgeSize(query.matches ? 'small' : 'large');
+
+    syncBadgeSize();
+    query.addEventListener('change', syncBadgeSize);
+
+    return () => query.removeEventListener('change', syncBadgeSize);
+  }, []);
 
   useEffect(() => {
     let mounted = true;
@@ -286,7 +302,7 @@ export default function HeroSection({
                 <MicrosoftStoreBadge
                   href={windowsStoreLink.href}
                   locale={locale}
-                  size="large"
+                  size={windowsStoreBadgeSize}
                   aria-label={windowsStoreAriaLabel}
                   className={`${styles.windowsStoreBadgeButton} ${styles.windowsStoreBadgePrimary}`}
                   badgeClassName={styles.windowsStoreBadgeElement}

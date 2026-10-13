@@ -273,7 +273,9 @@
    避免与桌面按钮并排时把内容推出右侧屏幕外。 */
 @media (max-width: 767px) {
   .heroPrimaryActions {
-    grid-template-columns: 1fr;
+    /* 1fr 等于 minmax(auto, 1fr)，轨道会被徽标的固有宽度撑开；
+       minmax(0, 1fr) 才能让轨道始终等于容器宽度。 */
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .windowsStoreBadgePrimary {
@@ -364,6 +366,9 @@
 .windowsStoreBadgePrimary {
   box-sizing: border-box;
   width: 100%;
+  /* 网格子项的 min-width 默认为 auto（取内容最小宽度），
+     徽标宿主的固有宽度会因此撑破网格轨道。 */
+  min-width: 0;
   min-height: 4.6rem;
   padding: 0.9rem 1.25rem;
   border-radius: 1.2rem;
@@ -827,7 +832,7 @@
   }
 
   .heroPrimaryActions {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .heroSecondaryActions {
