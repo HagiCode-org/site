@@ -49,7 +49,7 @@
   gap: clamp(1.25rem, 3vw, 2rem);
   align-items: stretch;
   width: 100%;
-  max-width: 1080px;
+  max-width: var(--site-content-max, 1200px);
   margin: 0 auto;
   padding: 0 1.5rem;
   box-sizing: border-box;

@@ -1,6 +1,6 @@
 .boardSection {
   width: 100%;
-  max-width: 1120px;
+  max-width: var(--site-content-max, 1200px);
   margin: 1.15rem auto 0;
 }
 

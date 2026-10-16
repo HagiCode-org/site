@@ -209,7 +209,7 @@ main.homepage section > .bgGlow {
 
 .features > h2 {
   justify-self: center;
-  width: min(1200px, calc(100% - 3rem));
+  width: min(var(--site-content-max, 1200px), calc(100% - 3rem));
   max-width: none !important;
   box-sizing: border-box;
   margin: 0 !important;
@@ -219,7 +219,7 @@ main.homepage section > .bgGlow {
 
 .features-grid {
   justify-self: center;
-  width: min(1200px, calc(100% - 3rem));
+  width: min(var(--site-content-max, 1200px), calc(100% - 3rem));
   max-width: none !important;
   margin: 0 !important;
   padding: 0 1.5rem !important;
@@ -1030,7 +1030,7 @@ main.homepage section > .bgGlow {
 /* 区域容器 */
 .installation-steps {
   padding: 4rem 1.5rem;
-  max-width: 1200px;
+  max-width: var(--site-content-max, 1200px);
   margin: 0 auto;
 }
 

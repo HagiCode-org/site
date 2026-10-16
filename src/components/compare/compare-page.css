@@ -879,7 +879,7 @@
 .structured-desktop-hero {
   /* Full-bleed hero inside the constrained compare-page body. */
   width: 100%;
-  max-width: 1100px;
+  max-width: var(--site-content-max, 1200px);
   margin: 0 auto;
   padding: var(--spacing-xxl, 64px) var(--spacing-md, 24px);
   text-align: center;

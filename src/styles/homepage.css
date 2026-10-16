@@ -112,7 +112,7 @@ main.homepage {
 
 /* 内容区域限制 - 各个 section 的直接子元素容器 */
 .homepage > section > * {
-  max-width: 1200px !important;
+  max-width: var(--site-content-max, 1200px) !important;
   margin-left: auto !important;
   margin-right: auto !important;
   padding: 0 1.5rem !important;
@@ -124,7 +124,7 @@ main.homepage section > .container,
 main.homepage section div.container,
 .homepage section > .container,
 .homepage section div.container {
-  max-width: 1200px !important;
+  max-width: var(--site-content-max, 1200px) !important;
   margin-left: auto !important;
   margin-right: auto !important;
   padding: 0 1.5rem !important;
@@ -289,7 +289,7 @@ body.homepage {
 }
 
 main.homepage {
-  --homepage-content-max-width: 1200px;
+  --homepage-content-max-width: var(--site-content-max, 1200px);
   --homepage-inline-padding: 1.5rem;
   --homepage-mobile-inline-padding: 1rem;
   --homepage-mobile-section-spacing: 3.5rem;

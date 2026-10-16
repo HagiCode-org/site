@@ -126,7 +126,7 @@
   z-index: 1;
   display: grid;
   gap: clamp(1.8rem, 4vw, 2.8rem);
-  width: min(100%, 1220px);
+  width: min(100%, calc(var(--site-content-max, 1200px) + 20px));
   margin: 0 auto;
   padding: 0 clamp(1rem, 3vw, 2rem);
   box-sizing: border-box;

@@ -44,7 +44,7 @@
 .container {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
+  max-width: var(--site-content-max, 1200px);
   margin: 0 auto;
   padding: 0 1.5rem;
 }

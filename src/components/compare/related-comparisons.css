@@ -4,7 +4,7 @@
   --related-surface: rgba(15, 23, 42, 0.85);
   --related-border: rgba(0, 128, 255, 0.18);
 
-  max-width: 1100px;
+  max-width: var(--site-content-max, 1200px);
   margin: 0 auto;
   padding: var(--spacing-xl, 48px) var(--spacing-md, 24px);
   color: var(--related-fg);

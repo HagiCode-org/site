@@ -9,6 +9,11 @@
    ========================================================================== */
 :root,
 [data-theme='light'] {
+  /* 内容宽度 - 随视口分级增长，避免宽屏下内容被锁在 1200px 的窄列里。
+     正文行宽由各自的 ch/rem 限制，不依赖此变量。 */
+  --site-content-max: 1200px;
+  --site-frame-max: calc(var(--site-content-max) + 200px);
+
   /* 品牌色 - 霓虹青/全息蓝/成功绿 */
   --color-primary: #0080FF;
   --color-primary-dark: #0060CC;
@@ -165,4 +170,26 @@
   --footer-link-hover: var(--color-secondary);
   --footer-section-gap: 2rem;
   --footer-grid-template: 1fr;
+}
+
+/* ==========================================================================
+   宽屏内容宽度分级
+   1200 (默认) -> 1320 (>=1536) -> 1480 (>=1920) -> 1680 (>=2560)
+   ========================================================================== */
+@media (min-width: 1536px) {
+  :root {
+    --site-content-max: 1320px;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --site-content-max: 1480px;
+  }
+}
+
+@media (min-width: 2560px) {
+  :root {
+    --site-content-max: 1680px;
+  }
 }

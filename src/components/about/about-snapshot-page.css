@@ -107,7 +107,7 @@
 }
 
 .about-shell {
-  width: min(1100px, calc(100% - 2rem));
+  width: min(var(--site-content-max, 1100px), calc(100% - 2rem));
   margin: 0 auto;
 }
 
@@ -177,6 +177,13 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.8rem;
   padding: 0.9rem;
+}
+
+/* 宽屏：内容区达到 1480px 以上时，两列卡片会各自过宽，改为三列 */
+@media (min-width: 1920px) {
+  .entry-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .section-block-store .entry-list {
