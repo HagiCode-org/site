@@ -60,7 +60,7 @@ describe('website analytics runtime', () => {
     runtime.initialize();
 
     const firstResult = runtime.trackEvent(WEBSITE_TRACKING_EVENTS.openDesktopPage);
-    const secondResult = runtime.trackEvent(WEBSITE_TRACKING_EVENTS.openContainerPage);
+    const secondResult = runtime.trackEvent(WEBSITE_TRACKING_EVENTS.openSteamStore);
 
     expect(firstResult).toBe('queued');
     expect(secondResult).toBe('queued');
@@ -71,7 +71,7 @@ describe('website analytics runtime', () => {
 
     expect(sentEvents).toEqual([
       WEBSITE_TRACKING_EVENTS.openDesktopPage,
-      WEBSITE_TRACKING_EVENTS.openContainerPage,
+      WEBSITE_TRACKING_EVENTS.openSteamStore,
     ]);
     expect(runtime.getPendingCount()).toBe(0);
   });
@@ -104,12 +104,12 @@ describe('website analytics runtime', () => {
         mirror,
       });
 
-      runtime.trackEvent(WEBSITE_TRACKING_EVENTS.openContainerPage, { source: 'home-hero', url: '/container/' });
+      runtime.trackEvent(WEBSITE_TRACKING_EVENTS.openDesktopPage, { source: 'home-hero', url: '/desktop/' });
 
       expect(mirror.mirror).toHaveBeenCalledTimes(1);
-      expect(mirror.mirror).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openContainerPage, {
+      expect(mirror.mirror).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openDesktopPage, {
         source: 'home-hero',
-        url: '/container/',
+        url: '/desktop/',
       });
     });
 
@@ -196,27 +196,27 @@ describe('website analytics runtime', () => {
       return { click, mirror, send };
     }
 
-    it('recognizes the hyphenated spelling used by the Container FAQ link', () => {
+    it('recognizes the hyphenated spelling of a retained event', () => {
       const { click, mirror, send } = setup();
 
       click(
-        { trackEvent: 'open-container-deployment-guide', trackSource: 'container-faq' },
-        'https://docs.hagicode.com/installation/docker-compose/',
+        { trackEvent: 'open-steam-store', trackSource: 'home-hero-steam' },
+        'https://store.steampowered.com/app/hagicode',
       );
 
-      const context = { source: 'container-faq', url: 'https://docs.hagicode.com/installation/docker-compose/' };
-      expect(send).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openContainerDeploymentGuide, context);
+      const context = { source: 'home-hero-steam', url: 'https://store.steampowered.com/app/hagicode' };
+      expect(send).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openSteamStore, context);
       expect(mirror.mirror).toHaveBeenCalledTimes(1);
-      expect(mirror.mirror).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openContainerDeploymentGuide, context);
+      expect(mirror.mirror).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openSteamStore, context);
     });
 
     it('still recognizes the underscore spelling and leaves url empty without an href', () => {
       const { click, mirror } = setup();
 
-      click({ trackEvent: 'open_container_deployment_guide', trackSource: 'container-page-hero' });
+      click({ trackEvent: 'open_desktop_page', trackSource: 'install-options-desktop' });
 
-      expect(mirror.mirror).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openContainerDeploymentGuide, {
-        source: 'container-page-hero',
+      expect(mirror.mirror).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openDesktopPage, {
+        source: 'install-options-desktop',
         url: undefined,
       });
     });

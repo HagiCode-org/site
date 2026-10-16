@@ -53,15 +53,6 @@ function DownloadIcon({ className = '' }: IconProps) {
   );
 }
 
-function ContainerIcon({ className = '' }: IconProps) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <rect x="3.75" y="5.25" width="16.5" height="13.5" rx="2.25" stroke="currentColor" strokeWidth="1.8" />
-      <path d="M8.25 5.25V18.75M15.75 5.25V18.75M3.75 9.75H20.25M3.75 14.25H20.25" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 const HERO_GA_LOCATION = 'home_hero';
 
 function heroGaAttributes(category: GaCategory, label: string, url?: string) {
@@ -177,7 +168,6 @@ export default function HeroSection({
   const [windowsStoreBadgeSize, setWindowsStoreBadgeSize] = useState<'small' | 'large'>('large');
 
   const desktopUrl = getLinkWithLocale('desktop', locale);
-  const containerUrl = getLinkWithLocale('container', locale);
   const docsUrl = getLinkWithLocale('productOverview', locale);
   const primaryButtonHint = 'Windows · macOS · Linux';
   const windowsStoreAriaLabel = copy.windowsStoreAriaLabel;
@@ -268,15 +258,6 @@ export default function HeroSection({
             </div>
 
             <div className={styles.heroSecondaryActions}>
-              <a
-                href={containerUrl}
-                className={styles.buttonSecondary}
-                {...heroGaAttributes('navigation', 'openContainerPage')}
-              >
-                <ContainerIcon className={styles.buttonIcon} />
-                <span>{copy.buttons.containerApp}</span>
-              </a>
-
               <a
                 className={styles.buttonSecondary}
                 href={docsUrl}

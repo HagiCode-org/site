@@ -38,7 +38,6 @@ hero:
       description: Hero Dungeon がチーム作業と練習を冒険のようにします。
   buttons:
     desktopApp: デスクトップアプリをインストール
-    containerApp: コンテナ版を導入
     learnMore: 詳しく見る
   techStack:
     poweredBy: 提供元
@@ -243,8 +242,6 @@ pricing:
   editions:
     desktop:
       title: Desktop
-    container:
-      title: Container
     microsoftStore:
       title: Microsoft Store
   rows:
@@ -269,7 +266,6 @@ pricing:
   values:
     free: 無料
     desktopInstall: デスクトップへのインストール
-    containerDeployment: コンテナのデプロイメント
     microsoftStoreInstall: Microsoft Store からのインストール
 workflowBoard:
   titleLines:

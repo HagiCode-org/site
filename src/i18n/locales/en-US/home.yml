@@ -38,7 +38,6 @@ hero:
       description: Hero Dungeon makes teamwork and practice feel like an adventure.
   buttons:
     desktopApp: Install Desktop App
-    containerApp: Install Container App
     learnMore: Learn More
   techStack:
     poweredBy: Powered by
@@ -243,8 +242,6 @@ pricing:
   editions:
     desktop:
       title: Desktop
-    container:
-      title: Container
     microsoftStore:
       title: Microsoft Store
   rows:
@@ -269,7 +266,6 @@ pricing:
   values:
     free: Free
     desktopInstall: Desktop install
-    containerDeployment: Container deployment
     microsoftStoreInstall: Microsoft Store install
 workflowBoard:
   titleLines:

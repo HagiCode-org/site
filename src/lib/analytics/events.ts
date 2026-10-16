@@ -4,13 +4,10 @@ import { AssetType } from '../shared/types/desktop';
 export const WEBSITE_TRACKING_EVENTS = {
   downloadDesktop: 'download_desktop',
   openDesktopPage: 'open_desktop_page',
-  openContainerPage: 'open_container_page',
   openSteamStore: 'open_steam_store',
   downloadDesktopWindows: 'download_desktop_windows',
   downloadDesktopMacOS: 'download_desktop_macos',
   downloadDesktopLinux: 'download_desktop_linux',
-  openContainerDeploymentGuide: 'open_container_deployment_guide',
-  openContainerSourceRepo: 'open_container_source_repo',
 } as const;
 
 export type WebsiteTrackingEventName =
@@ -47,13 +44,6 @@ export const WEBSITE_TRACKING_EVENT_CATALOG: readonly WebsiteTrackingEventDefini
     ga: { category: 'navigation', label: 'openDesktopPage' },
   },
   {
-    name: WEBSITE_TRACKING_EVENTS.openContainerPage,
-    description: 'Navigation from marketing homepage into the Container product page',
-    locations: ['Homepage install options container card', 'Install button container fallback'],
-    meaning: 'User wants to learn more about the Container offering',
-    ga: { category: 'navigation', label: 'openContainerPage' },
-  },
-  {
     name: WEBSITE_TRACKING_EVENTS.openSteamStore,
     description: 'Open the Hagicode Steam store page from a marketing CTA',
     locations: ['Homepage hero Steam button'],
@@ -80,20 +70,6 @@ export const WEBSITE_TRACKING_EVENT_CATALOG: readonly WebsiteTrackingEventDefini
     locations: ['DesktopHero', 'InstallButton platform list'],
     meaning: 'User downloads a Linux build of Hagicode Desktop',
     ga: { category: 'download', label: 'downloadDesktopLinux' },
-  },
-  {
-    name: WEBSITE_TRACKING_EVENTS.openContainerDeploymentGuide,
-    description: 'Open the Docker Compose deployment guide or related docs entry',
-    locations: ['Container page CTA', 'Container page FAQ support link'],
-    meaning: 'User intends to deploy Hagicode via container workflow',
-    ga: { category: 'navigation', label: 'openContainerDeploymentGuide' },
-  },
-  {
-    name: WEBSITE_TRACKING_EVENTS.openContainerSourceRepo,
-    description: 'Open the source repository from the Container page CTA area',
-    locations: ['Container page secondary CTA'],
-    meaning: 'User wants to inspect the source repository before deployment',
-    ga: { category: 'navigation', label: 'openContainerSourceRepo' },
   },
 ] as const;
 

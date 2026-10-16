@@ -151,16 +151,6 @@ export const SITE_LINKS = {
     prod: '/desktop/',
     external: false,
   } as LinkConfig,
-  dockerCompose: {
-    dev: 'https://docs.hagicode.com/installation/docker-compose/',
-    prod: 'https://docs.hagicode.com/installation/docker-compose/',
-    external: false,
-  } as LinkConfig,
-  container: {
-    dev: '/container/',
-    prod: '/container/',
-    external: false,
-  } as LinkConfig,
   about: {
     dev: '/about/',
     prod: '/about/',
@@ -181,13 +171,6 @@ export const GLM_PROMO_LINKS = {
     description: 'Claude Code、Cline 等 20+ 大编程工具无缝支持，"码力"全开，越拼越爽！',
     discount: '10% 优惠',
   },
-  dockerComposeGuide: {
-    url: 'https://docs.hagicode.com/installation/docker-compose/',
-    label: '查看部署指南',
-    title: 'Docker Compose 部署: 一键部署 Hagicode',
-    description: '一键部署 Hagicode，快速体验 AI 编程助手',
-    isInternal: true,
-  },
 } as const;
 
 export function getGlmCodingUrl(): string {
@@ -196,10 +179,6 @@ export function getGlmCodingUrl(): string {
 
 export function getAliyunPromoUrl(): string {
   return '';
-}
-
-export function getDockerComposeGuideUrl(locale: string = DEFAULT_LOCALE): string {
-  return getDocsAbsoluteUrl('/installation/docker-compose/', locale);
 }
 
 export type PublicLinkKey = keyof typeof SITE_LINKS;

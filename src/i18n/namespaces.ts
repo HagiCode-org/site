@@ -2,7 +2,6 @@ export const SITE_I18N_NAMESPACES = [
   'common',
   'home',
   'desktop',
-  'container',
   'about',
 ] as const;
 

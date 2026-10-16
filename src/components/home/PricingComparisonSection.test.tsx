@@ -19,7 +19,6 @@ describe('PricingComparisonSection', () => {
       expect(content.microsoftStoreEdition.action?.href).toBe('https://apps.microsoft.com/detail/9N3PM0N3SVDW');
       expect(content.rows.map((row) => row.feature)).not.toContain(locale === 'zh-CN' ? '定价' : 'Pricing');
       expect(maxConcurrentRow?.desktop.value).toBe('3');
-      expect(maxConcurrentRow?.container.value).toBe('3');
       expect(maxConcurrentRow?.microsoftStore.value).toBe('32');
       expect(maxConcurrentRow?.microsoftStore.footnote).toBe('1');
       expect(documentThemesRow?.desktop.type).toBe('cross');

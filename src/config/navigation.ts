@@ -42,11 +42,6 @@ export const navLinks: NavLink[] = [
     linkKey: 'desktop',
   },
   {
-    label: "容器版本",
-    href: getLink('container'),
-    linkKey: 'container',
-  },
-  {
     label: "获取技术支持",
     href: getLink('about'),
     linkKey: 'about',

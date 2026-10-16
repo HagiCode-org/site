@@ -47,42 +47,42 @@ describe('GA click harness', () => {
     expect(gtag).toHaveBeenCalledTimes(2);
   });
 
-  it('reports the declarative Container hero CTA and the hyphenated FAQ spelling once each', async () => {
+  it('reports the declarative Steam CTA and the hyphenated spelling once each', async () => {
     const container = await harness.render(
       <div>
         <a
           id="hero"
-          href="https://docs.hagicode.com/installation/docker-compose/"
-          data-track-event="open_container_deployment_guide"
-          data-track-source="container-page-hero"
+          href="https://store.steampowered.com/app/hagicode"
+          data-track-event="open_steam_store"
+          data-track-source="home-hero-steam"
         />
         <a
           id="faq"
-          href="https://docs.hagicode.com/installation/docker-compose/"
-          data-track-event="open-container-deployment-guide"
-          data-track-source="container-faq-help"
+          href="https://store.steampowered.com/app/hagicode"
+          data-track-event="open-steam-store"
+          data-track-source="home-hero-steam-secondary"
         />
       </div>,
     );
 
     harness.click(container.querySelector('#hero') as Element);
     expect(gtag).toHaveBeenCalledTimes(1);
-    expect(gtag).toHaveBeenLastCalledWith('event', 'link_click', {
-      event_category: 'navigation',
-      event_label: 'openContainerDeploymentGuide',
-      link_location: 'container_page_hero',
-      link_url: 'https://docs.hagicode.com/installation/docker-compose/',
+    expect(gtag).toHaveBeenLastCalledWith('event', 'store_visit', {
+      event_category: 'store',
+      event_label: 'openSteamStore',
+      link_location: 'home_hero_steam',
+      link_url: 'https://store.steampowered.com/app/hagicode',
       transport_type: 'beacon',
     });
 
     gtag.mockClear();
     harness.click(container.querySelector('#faq') as Element);
     expect(gtag).toHaveBeenCalledTimes(1);
-    expect(gtag).toHaveBeenLastCalledWith('event', 'link_click', {
-      event_category: 'navigation',
-      event_label: 'openContainerDeploymentGuide',
-      link_location: 'container_faq_help',
-      link_url: 'https://docs.hagicode.com/installation/docker-compose/',
+    expect(gtag).toHaveBeenLastCalledWith('event', 'store_visit', {
+      event_category: 'store',
+      event_label: 'openSteamStore',
+      link_location: 'home_hero_steam_secondary',
+      link_url: 'https://store.steampowered.com/app/hagicode',
       transport_type: 'beacon',
     });
   });

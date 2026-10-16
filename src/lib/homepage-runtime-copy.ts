@@ -66,7 +66,6 @@ export interface HomepageHeroCopy {
   };
   buttons: {
     desktopApp: string;
-    containerApp: string;
     learnMore: string;
   };
   windowsStoreLabel: string;
@@ -186,7 +185,6 @@ export function getHomepageHeroCopy(locale: SiteLocale): HomepageHeroCopy {
     },
     buttons: {
       desktopApp: requireLocaleResourceString(resolvedLocale, 'home', 'hero.buttons.desktopApp'),
-      containerApp: requireLocaleResourceString(resolvedLocale, 'home', 'hero.buttons.containerApp'),
       learnMore: requireLocaleResourceString(resolvedLocale, 'home', 'hero.buttons.learnMore'),
     },
     windowsStoreLabel: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.windowsStoreLabel'),

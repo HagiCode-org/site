@@ -93,14 +93,6 @@
       "linkKey": "about"
     },
     {
-      "id": "dockerCompose",
-      "hubId": "delivery",
-      "x": 1530,
-      "y": 470,
-      "accent": "delivery",
-      "linkKey": "container"
-    },
-    {
       "id": "release",
       "hubId": "delivery",
       "x": 1940,

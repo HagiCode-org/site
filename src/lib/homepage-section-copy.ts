@@ -395,7 +395,6 @@ export type FeatureCell = {
 export type FeatureRow = {
   feature: string;
   desktop: FeatureCell;
-  container: FeatureCell;
   microsoftStore: FeatureCell;
   microsoftStoreExclusive?: boolean;
 };
@@ -410,7 +409,6 @@ export type PricingContent = {
   includedLabel: string;
   notIncludedLabel: string;
   desktopEdition: EditionColumn;
-  containerEdition: EditionColumn;
   microsoftStoreEdition: EditionColumn;
   rows: FeatureRow[];
 };
@@ -438,68 +436,59 @@ export function getPricingContent(locale: LocaleInput): PricingContent {
   };
   const pricingValues = {
     desktopInstall: getHomeString(resolvedLocale, 'pricing.values.desktopInstall'),
-    containerDeployment: getHomeString(resolvedLocale, 'pricing.values.containerDeployment'),
     microsoftStoreInstall: getHomeString(resolvedLocale, 'pricing.values.microsoftStoreInstall'),
   };
   const desktopHref = getLinkWithLocale('desktop', resolvedLocale);
-  const containerHref = getLinkWithLocale('container', resolvedLocale);
   const unlockFootnoteMarker = '1';
   const rows: FeatureRow[] = [
     {
       feature: pricingRows.entryPoint,
       desktop: { type: 'text', value: pricingValues.desktopInstall, href: desktopHref },
-      container: { type: 'text', value: pricingValues.containerDeployment, href: containerHref },
       microsoftStore: { type: 'text', value: pricingValues.microsoftStoreInstall, href: DEFAULT_WINDOWS_STORE_URL, external: true },
     },
-    { feature: pricingRows.allFreeFeaturesIncluded, desktop: { type: 'check' }, container: { type: 'check' }, microsoftStore: { type: 'check' } },
-    { feature: pricingRows.vault, desktop: { type: 'check' }, container: { type: 'check' }, microsoftStore: { type: 'check' } },
-    { feature: pricingRows.skills, desktop: { type: 'check' }, container: { type: 'check' }, microsoftStore: { type: 'check' } },
-    { feature: pricingRows.proposalWorkflow, desktop: { type: 'check' }, container: { type: 'check' }, microsoftStore: { type: 'check' } },
-    { feature: pricingRows.localAchievements, desktop: { type: 'check' }, container: { type: 'check' }, microsoftStore: { type: 'check' } },
-    { feature: pricingRows.allAgentCliIntegrations, desktop: { type: 'check' }, container: { type: 'check' }, microsoftStore: { type: 'check' } },
-    { feature: pricingRows.speechRecognition, desktop: { type: 'check' }, container: { type: 'check' }, microsoftStore: { type: 'check' } },
-    { feature: pricingRows.omniRouteIntegration, desktop: { type: 'check' }, container: { type: 'check' }, microsoftStore: { type: 'check' } },
-    { feature: pricingRows.githubIntegration, desktop: { type: 'check' }, container: { type: 'check' }, microsoftStore: { type: 'check' } },
-    { feature: pricingRows.gitManagement, desktop: { type: 'check' }, container: { type: 'check' }, microsoftStore: { type: 'check' } },
+    { feature: pricingRows.allFreeFeaturesIncluded, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
+    { feature: pricingRows.vault, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
+    { feature: pricingRows.skills, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
+    { feature: pricingRows.proposalWorkflow, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
+    { feature: pricingRows.localAchievements, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
+    { feature: pricingRows.allAgentCliIntegrations, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
+    { feature: pricingRows.speechRecognition, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
+    { feature: pricingRows.omniRouteIntegration, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
+    { feature: pricingRows.githubIntegration, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
+    { feature: pricingRows.gitManagement, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
     {
       feature: pricingRows.maximumConcurrentProposals,
       desktop: { type: 'text', value: '3' },
-      container: { type: 'text', value: '3' },
       microsoftStore: { type: 'text', value: '32', footnote: unlockFootnoteMarker },
       microsoftStoreExclusive: true,
     },
     {
       feature: pricingRows.documentThemes,
       desktop: { type: 'cross' },
-      container: { type: 'cross' },
       microsoftStore: { type: 'check', footnote: unlockFootnoteMarker },
       microsoftStoreExclusive: true,
     },
     {
       feature: pricingRows.customCommitSignature,
       desktop: { type: 'cross' },
-      container: { type: 'cross' },
       microsoftStore: { type: 'check', footnote: unlockFootnoteMarker },
       microsoftStoreExclusive: true,
     },
     {
       feature: pricingRows.brandCustomization,
       desktop: { type: 'cross' },
-      container: { type: 'cross' },
       microsoftStore: { type: 'check', footnote: unlockFootnoteMarker },
       microsoftStoreExclusive: true,
     },
     {
       feature: pricingRows.customAvatarUploads,
       desktop: { type: 'cross' },
-      container: { type: 'cross' },
       microsoftStore: { type: 'check', footnote: unlockFootnoteMarker },
       microsoftStoreExclusive: true,
     },
     {
       feature: pricingRows.avatarPacks,
       desktop: { type: 'cross' },
-      container: { type: 'cross' },
       microsoftStore: { type: 'check', footnote: unlockFootnoteMarker },
       microsoftStoreExclusive: true,
     },
@@ -517,10 +506,6 @@ export function getPricingContent(locale: LocaleInput): PricingContent {
     desktopEdition: {
       title: getHomeString(resolvedLocale, 'pricing.editions.desktop.title'),
       action: { label: 'Desktop', href: desktopHref },
-    },
-    containerEdition: {
-      title: getHomeString(resolvedLocale, 'pricing.editions.container.title'),
-      action: { label: 'Container', href: containerHref },
     },
     microsoftStoreEdition: {
       title: getHomeString(resolvedLocale, 'pricing.editions.microsoftStore.title'),

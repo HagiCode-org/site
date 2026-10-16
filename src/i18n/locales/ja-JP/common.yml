@@ -5,7 +5,6 @@ navbar:
   blog: ブログ
   about: 概要
   desktop: デスクトップアプリ
-  container: コンテナ版
   support: サポート
   mobileOpenMenu: メニューを開く
   mobileCloseMenu: メニューを閉じる
@@ -113,16 +112,6 @@ installOptions:
       - 自動更新で常に最新版
       - 個人開発者に最適
     ctaText: デスクトップアプリをダウンロード
-  container:
-    title: コンテナ版
-    description: サーバーへデプロイ可能。リモートアクセス対応でチーム利用に向いています
-    features:
-      - x86_64 アーキテクチャ対応
-      - 環境分離でシステムへ影響しない
-      - Docker Compose Builder 対応
-      - 永続化で安全かつ信頼性の高い運用
-      - 本番環境にも適しています
-    ctaText: コンテナ導入ガイド
   badge: おすすめ
 desktopHero:
   loading: バージョン情報を読み込み中...
@@ -142,8 +131,6 @@ desktopHero:
     recommended: 推奨
     unknown: 不明なエラー
     openVersionHistory: バージョン履歴を開く
-    openContainerPage: Container ページを開く
-    macNotice: 現時点では macOS ユーザーには Container 版を推奨しています。
   selectOtherVersions: '{platform} の他のバージョンを選択'
   versionInfo: '現在のバージョン: {version}'
   testVersion: ' (ベータ)'
@@ -192,10 +179,6 @@ pageMeta:
     description: ローカル実行型 AI コーディングアシスタント Hagicode Desktop をダウンロード。Windows、macOS、Linux に対応し、プライバシー保護と高速応答を提供します。
     runtimeFallbackLabel: フォールバック
     runtimeFallbackCopy: このページでパッケージの読み込みに失敗した場合は、公式の Index Desktop バージョン履歴ページへ移動します：
-  container:
-    title: Hagicode Container - Docker デプロイ
-    description: Docker Compose Builder を使って Hagicode をデプロイ。設定はシンプルで、すぐに使い始められます。複数のイメージソースと自動更新に対応しています。
-    faqHelp: 問題が解決しない場合は、<a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">詳細ドキュメント</a>を確認するか、技術サポートへお問い合わせください。
 commonActions:
   retry: 再試行
   unavailable: 利用不可

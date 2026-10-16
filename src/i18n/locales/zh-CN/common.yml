@@ -5,7 +5,6 @@ navbar:
   blog: 博客
   about: 关于
   desktop: 桌面应用
-  container: 容器版本
   support: 获取技术支持
   mobileOpenMenu: 打开菜单
   mobileCloseMenu: 关闭菜单
@@ -113,16 +112,6 @@ installOptions:
       - 自动更新，保持最新版本
       - 适合个人开发者
     ctaText: 下载桌面应用
-  container:
-    title: 容器版本
-    description: 部署在服务器上，支持远程访问，适合团队协作
-    features:
-      - 支持 x86_64 架构
-      - 环境隔离，不影响系统
-      - 支持 Docker Compose Builder
-      - 数据持久化，安全可靠
-      - 适合生产环境
-    ctaText: 容器部署指南
   badge: 推荐
 desktopHero:
   loading: 正在加载版本信息...
@@ -142,8 +131,6 @@ desktopHero:
     recommended: 推荐
     unknown: 未知错误
     openVersionHistory: 打开版本历史页
-    openContainerPage: 前往 Container 页面
-    macNotice: 当前更推荐 macOS 用户使用 Container 版本。
   selectOtherVersions: 选择 {platform} 其他版本
   versionInfo: '当前版本: {version}'
   testVersion: ' (测试版)'
@@ -192,10 +179,6 @@ pageMeta:
     description: 下载 Hagicode Desktop，本地化的 AI 代码助手。支持 Windows、macOS 和 Linux，保护隐私，快速响应。
     runtimeFallbackLabel: 回退说明
     runtimeFallbackCopy: 若此页加载安装包失败，将自动跳转到 canonical 的 Index Desktop 版本历史页：
-  container:
-    title: Hagicode Container - 容器部署
-    description: 通过 Docker Compose Builder 部署 Hagicode，配置简单，开箱即用。支持多种镜像源和自动更新。
-    faqHelp: 如果问题仍未解决，请查看<a href="{{docsUrl}}" data-track-event="open-container-deployment-guide" data-track-source="container-faq-help">详细文档</a>或联系技术支持。
 commonActions:
   retry: 重试
   unavailable: 暂无

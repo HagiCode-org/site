@@ -139,16 +139,6 @@
       ],
       "status": "公开入口"
     },
-    "dockerCompose": {
-      "title": "Docker Compose Builder",
-      "summary": "用可视化方式生成可直接部署的容器编排配置，不必手写复杂 YAML。",
-      "highlights": [
-        "可视化配置",
-        "Compose 生成",
-        "部署交接"
-      ],
-      "status": "公开入口"
-    },
     "release": {
       "title": "Release Grid",
       "summary": "负责桌面端和服务端安装包的版本协同、产物索引与发布历史组织。",

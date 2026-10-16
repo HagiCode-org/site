@@ -867,34 +867,6 @@
   color: var(--dropdown-header-text);
 }
 
-.dropdownUtilityDescription {
-  font-size: 0.875rem;
-  line-height: 1.45;
-  color: var(--dropdown-muted);
-}
-
-/* ==========================================================================
-   Docker 选项特殊样式
-   ========================================================================== */
-
-.dropdownItemDocker {
-  color: var(--dropdown-text);
-  font-weight: 600;
-  gap: 0.75rem;
-}
-
-.dropdownItemDocker:hover {
-  background: var(--dropdown-card-hover-surface);
-  border-color: var(--dropdown-card-hover-border);
-}
-
-.dockerIcon {
-  width: 1rem;
-  height: 1rem;
-  flex-shrink: 0;
-  color: currentColor;
-}
-
 .externalIcon {
   width: 0.875rem;
   height: 0.875rem;
@@ -1072,10 +1044,6 @@
   background: var(--dropdown-disabled-surface);
   border-color: var(--dropdown-disabled-border);
   color: var(--dropdown-disabled-text);
-}
-
-[data-theme='lunar-new-year'] .dropdownItemDocker {
-  color: #FFECB3;
 }
 
 /* ==========================================================================

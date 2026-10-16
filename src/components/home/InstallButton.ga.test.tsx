@@ -89,14 +89,13 @@ describe('InstallButton Google Analytics events', () => {
     expect(gtag).not.toHaveBeenCalled();
     const linkCount = readMenuLinks().length;
     expect(linkCount).toBeGreaterThan(0);
-    const seen = { container: 0, download: 0 };
+    let downloadCount = 0;
 
     for (let index = 0; index < linkCount; index += 1) {
       if (readMenuLinks().length === 0) {
         harness.click(toggle);
       }
       const link = readMenuLinks()[index];
-      const isContainerLink = link.getAttribute('href')?.includes('/container/') ?? false;
       expect(link.hasAttribute('data-ga-category')).toBe(false);
 
       gtag.mockClear();
@@ -104,19 +103,12 @@ describe('InstallButton Google Analytics events', () => {
 
       expect(gtag).toHaveBeenCalledTimes(1);
       const [, action, params] = gtag.mock.calls[0];
-      if (isContainerLink) {
-        seen.container += 1;
-        expect(action).toBe('link_click');
-        expect(params).toMatchObject({ event_category: 'navigation', event_label: 'openContainerPage' });
-      } else {
-        seen.download += 1;
-        expect(action).toBe('download_click');
-        expect(params).toMatchObject({ event_category: 'download', event_label: 'downloadDesktopWindows' });
-      }
+      downloadCount += 1;
+      expect(action).toBe('download_click');
+      expect(params).toMatchObject({ event_category: 'download', event_label: 'downloadDesktopWindows' });
       expect(params.link_url).toBe(link.getAttribute('href'));
     }
 
-    expect(seen.container).toBeGreaterThan(0);
-    expect(seen.download).toBeGreaterThan(0);
+    expect(downloadCount).toBeGreaterThan(0);
   });
 });

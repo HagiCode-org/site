@@ -17,13 +17,13 @@ describe('locale routing', () => {
   it('treats unprefixed routes as the canonical default locale', () => {
     expect(resolveLocaleFromPathname('/')).toBe('en-US');
     expect(resolveLocaleFromPathname('/desktop/')).toBe('en-US');
-    expect(resolveLocaleFromPathname('/container/')).toBe('en-US');
+    expect(resolveLocaleFromPathname('/about/')).toBe('en-US');
   });
 
   it('resolves explicit locale prefixes across the full locale catalog', () => {
     expect(resolveLocaleFromPathname('/zh-CN/')).toBe('zh-CN');
     expect(resolveLocaleFromPathname('/zh-CN/desktop/')).toBe('zh-CN');
-    expect(resolveLocaleFromPathname('/ja-JP/container/')).toBe('ja-JP');
+    expect(resolveLocaleFromPathname('/ja-JP/about/')).toBe('ja-JP');
     expect(resolveLocaleFromPathname('/unsupported/about/')).toBe('en-US');
     expect(resolveLocaleFromPathname('/fr-FR/about/')).toBe('fr-FR');
     expect(resolveLocaleFromPathname('/zh-TW/about/')).toBe('zh-Hant');
@@ -35,7 +35,7 @@ describe('locale routing', () => {
     expect(getCanonicalLocalePrefix('/en/about/')).toBe('en-US');
     expect(hasExplicitLocalePrefix('/en/about/')).toBe(true);
     expect(stripLocalePrefix('/en/desktop/')).toBe('/desktop');
-    expect(stripLocalePrefix('/en/container/')).toBe('/container');
+    expect(stripLocalePrefix('/en/about/')).toBe('/about');
     expect(buildLegacyEnglishPath('/desktop/')).toBe('/en/desktop/');
   });
 
@@ -43,10 +43,10 @@ describe('locale routing', () => {
     expect(getLocalizedPath('/', 'en-US')).toBe('/en-US/');
     expect(getLocalizedPath('/', 'zh-CN')).toBe('/zh-CN/');
     expect(getLocalizedPath('/desktop/', 'zh-CN')).toBe('/zh-CN/desktop/');
-    expect(getLocalizedPath('/container/', 'zh-CN')).toBe('/zh-CN/container/');
+    expect(getLocalizedPath('/about/', 'zh-CN')).toBe('/zh-CN/about/');
     expect(getLocalizedPath('/zh-CN/', 'en-US')).toBe('/en-US/');
     expect(getLocalizedPath('/zh-CN/desktop/', 'en-US')).toBe('/en-US/desktop/');
-    expect(getLocalizedPath('/zh-CN/container/', 'en-US')).toBe('/en-US/container/');
+    expect(getLocalizedPath('/zh-CN/about/', 'en-US')).toBe('/en-US/about/');
     expect(getLocalizedPath('/en/desktop/', 'en-US')).toBe('/en-US/desktop/');
     expect(getLocalizedPath('/desktop/', 'ja-JP')).toBe('/ja-JP/desktop/');
   });
@@ -62,19 +62,19 @@ describe('locale routing', () => {
 
     expect(
       getLocaleSwitchPath('en-US', {
-        pathname: '/zh-CN/container/',
+        pathname: '/zh-CN/about/',
         search: '?tab=faq',
         hash: '#pricing',
       }),
-    ).toBe('/en-US/container/?tab=faq#pricing');
+    ).toBe('/en-US/about/?tab=faq#pricing');
 
     expect(
       getLocaleSwitchPath('pt-BR', {
-        pathname: '/zh-TW/container/',
+        pathname: '/zh-TW/about/',
         search: 'channel=stable',
         hash: 'faq',
       }),
-    ).toBe('/pt-BR/container/?channel=stable#faq');
+    ).toBe('/pt-BR/about/?channel=stable#faq');
   });
 
   it('builds canonical URLs with the canonical default root and localized alternates', () => {
@@ -82,8 +82,8 @@ describe('locale routing', () => {
     expect(getAbsoluteSiteUrl('/', 'zh-CN')).toBe('https://www.hagicode.com/zh-CN/');
     expect(getAbsoluteSiteUrl('/desktop/', 'en-US')).toBe('https://www.hagicode.com/en-US/desktop/');
     expect(getAbsoluteSiteUrl('/desktop/', 'zh-CN')).toBe('https://www.hagicode.com/zh-CN/desktop/');
-    expect(getAbsoluteSiteUrl('/container/', 'en-US')).toBe('https://www.hagicode.com/en-US/container/');
-    expect(getAbsoluteSiteUrl('/container/', 'zh-CN')).toBe('https://www.hagicode.com/zh-CN/container/');
+    expect(getAbsoluteSiteUrl('/about/', 'en-US')).toBe('https://www.hagicode.com/en-US/about/');
+    expect(getAbsoluteSiteUrl('/about/', 'zh-CN')).toBe('https://www.hagicode.com/zh-CN/about/');
   });
 
   it('builds alternate paths for every supported locale', () => {
@@ -101,8 +101,8 @@ describe('locale routing', () => {
   it('respects an optional site base when building localized paths', () => {
     expect(joinWithSiteBase('/site/', '/')).toBe('/site/');
     expect(joinWithSiteBase('/site/', '/desktop/')).toBe('/site/desktop/');
-    expect(getAbsoluteSiteUrl('/container/', 'zh-CN', '/site/')).toBe(
-      'https://www.hagicode.com/site/zh-CN/container/',
+    expect(getAbsoluteSiteUrl('/about/', 'zh-CN', '/site/')).toBe(
+      'https://www.hagicode.com/site/zh-CN/about/',
     );
   });
 });

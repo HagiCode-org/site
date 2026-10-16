@@ -6,14 +6,13 @@ import path from 'node:path';
 const templatePages = {
   home: 'en-US/index.html',
   desktop: 'en-US/desktop/index.html',
-  container: 'en-US/container/index.html',
   about: 'en-US/about/index.html',
   'structured article': 'en-US/claude-vs-hagicode/index.html',
   'landing redirect': 'index.html',
 };
 
 // Templates that render the shared footer and promotion banner.
-const shellTemplates = new Set(['home', 'desktop', 'container', 'about', 'structured article']);
+const shellTemplates = new Set(['home', 'desktop', 'about', 'structured article']);
 
 const distDir = path.resolve(process.cwd(), 'dist');
 

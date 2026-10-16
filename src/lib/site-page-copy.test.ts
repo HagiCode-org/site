@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { SUPPORTED_SITE_LOCALES } from '@/i18n/locale-metadata';
 import {
-  getContainerPageCopy,
   getDesktopPageCopy,
   getHomePageCopy,
 } from './site-page-copy';
@@ -11,7 +10,6 @@ describe('site page copy', () => {
     for (const locale of SUPPORTED_SITE_LOCALES) {
       const homeCopy = getHomePageCopy(locale);
       const desktopCopy = getDesktopPageCopy(locale);
-      const containerCopy = getContainerPageCopy(locale);
 
       expect(homeCopy.title).toBeTruthy();
       expect(homeCopy.description).toBeTruthy();
@@ -31,9 +29,6 @@ describe('site page copy', () => {
       expect(desktopCopy.runtimeNoteLabel).toBeTruthy();
       expect(desktopCopy.runtimeNoteCopy).toBeTruthy();
       expect(desktopCopy.runtimeNoteAriaLabel).toBeTruthy();
-
-      expect(containerCopy.title).toBeTruthy();
-      expect(containerCopy.description).toBeTruthy();
     }
   });
 });

@@ -22,7 +22,6 @@ import {
 import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
 import { getTranslation, useTranslation } from '@/i18n/ui';
 import { useLocale } from '@/lib/useLocale';
-import { getLinkWithLocale } from '@/lib/shared/links';
 import { getBundledWindowsStoreLink, loadWindowsStoreLink } from '@/lib/shared/windows-store-link';
 import MicrosoftStoreBadge from '@/components/common/MicrosoftStoreBadge';
 import {
@@ -504,23 +503,13 @@ export default function DesktopHero(props: DesktopHeroProps) {
     return platformData.filter((platform) => platform.platform !== 'macos');
   }, [platformData]);
 
-  const showMacDownloadNotice = useMemo(() => {
-    if (FEATURE_MAC_DOWNLOAD_ENABLED) {
-      return false;
-    }
-    return platformData.some((platform) => platform.platform === 'macos');
-  }, [platformData]);
-
   const toggleDropdown = useCallback((platform: DesktopPlatformKey) => {
     setDropdownPosition(null);
     setOpenDropdown(prev => prev === platform ? null : platform);
   }, []);
 
   const currentVersion = resolveDesktopHeroCurrentVersion(versionData);
-  const macDownloadNotice = t('desktopHero.download.macNotice');
-  const containerPageUrl = useMemo(() => getLinkWithLocale('container', locale), [locale]);
   const fallbackCtaLabel = t('desktopHero.download.openVersionHistory');
-  const fallbackContainerLabel = t('desktopHero.download.openContainerPage');
   const runtimeError = error || versionData?.error || null;
   const fallbackState = resolveDesktopHeroFallbackState(locale, versionData, runtimeError, Boolean(currentVersion));
   const fallbackError = fallbackState?.message || runtimeError || t('desktopHero.download.unknown');
@@ -558,9 +547,6 @@ export default function DesktopHero(props: DesktopHeroProps) {
           <a href={DESKTOP_HISTORY_FALLBACK_URL} className="btn btn-primary">
             {fallbackCtaLabel}
           </a>
-          <a href={containerPageUrl} className="btn btn-secondary">
-            {fallbackContainerLabel}
-          </a>
         </div>
       </div>
     );
@@ -580,9 +566,6 @@ export default function DesktopHero(props: DesktopHeroProps) {
           <button type="button" className="btn btn-secondary" onClick={loadVersionData}>
             {t('commonActions.retry')}
           </button>
-          <a href={containerPageUrl} className="btn btn-secondary">
-            {fallbackContainerLabel}
-          </a>
         </div>
       </div>
     );
@@ -612,7 +595,7 @@ export default function DesktopHero(props: DesktopHeroProps) {
         </div>
       </div>
 
-        {currentVersion && (visiblePlatformData.length > 0 || showMacDownloadNotice) && (
+        {currentVersion && visiblePlatformData.length > 0 && (
           <>
             {/* 统一下载按钮组 */}
             <div className={styles.downloadSection}>
@@ -886,11 +869,6 @@ export default function DesktopHero(props: DesktopHeroProps) {
                     </table>
                   </div>
                 </div>
-              )}
-              {showMacDownloadNotice && (
-                <p className={styles.macNotice} role="status">
-                  ⚠ {macDownloadNotice}
-                </p>
               )}
             </div>
           </>

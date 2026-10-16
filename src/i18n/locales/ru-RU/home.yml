@@ -38,7 +38,6 @@ hero:
       description: Hero Dungeon делает командную работу и практику похожими на приключение.
   buttons:
     desktopApp: Установить Desktop-приложение
-    containerApp: Установить Container-приложение
     learnMore: Подробнее
   techStack:
     poweredBy: Работает на базе
@@ -243,8 +242,6 @@ pricing:
   editions:
     desktop:
       title: Desktop
-    container:
-      title: Container
     microsoftStore:
       title: Microsoft Store
   rows:
@@ -269,7 +266,6 @@ pricing:
   values:
     free: Бесплатно
     desktopInstall: Установка на рабочем столе
-    containerDeployment: Развертывание контейнера
     microsoftStoreInstall: Установка из Microsoft Store
 workflowBoard:
   titleLines:

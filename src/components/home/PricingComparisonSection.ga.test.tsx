@@ -22,7 +22,6 @@ describe('PricingComparisonSection Google Analytics events', () => {
 
       expect(actions.map((action) => action.dataset.gaLabel)).toEqual([
         'pricingDesktop',
-        'pricingContainer',
         'microsoftStore',
       ]);
 

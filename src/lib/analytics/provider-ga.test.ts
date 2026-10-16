@@ -14,14 +14,6 @@ describe('Google Analytics mirror', () => {
     [WEBSITE_TRACKING_EVENTS.downloadDesktopLinux, 'download_click', 'download', 'downloadDesktopLinux'],
     [WEBSITE_TRACKING_EVENTS.openSteamStore, 'store_visit', 'store', 'openSteamStore'],
     [WEBSITE_TRACKING_EVENTS.openDesktopPage, 'link_click', 'navigation', 'openDesktopPage'],
-    [WEBSITE_TRACKING_EVENTS.openContainerPage, 'link_click', 'navigation', 'openContainerPage'],
-    [
-      WEBSITE_TRACKING_EVENTS.openContainerDeploymentGuide,
-      'link_click',
-      'navigation',
-      'openContainerDeploymentGuide',
-    ],
-    [WEBSITE_TRACKING_EVENTS.openContainerSourceRepo, 'link_click', 'navigation', 'openContainerSourceRepo'],
   ] as Array<[WebsiteTrackingEventName, string, string, string]>)(
     'maps %s to %s with category %s and label %s',
     (eventName, action, category, label) => {
@@ -54,9 +46,9 @@ describe('Google Analytics mirror', () => {
   it('normalizes hyphens in the source to underscores for the location', () => {
     const gtag = vi.fn();
 
-    mirrorWith(gtag).mirror(WEBSITE_TRACKING_EVENTS.openContainerPage, { source: 'container-page-hero' });
+    mirrorWith(gtag).mirror(WEBSITE_TRACKING_EVENTS.openDesktopPage, { source: 'install-options-desktop' });
 
-    expect(gtag.mock.calls[0][2].link_location).toBe('container_page_hero');
+    expect(gtag.mock.calls[0][2].link_location).toBe('install_options_desktop');
   });
 
   it.each([undefined, {}, { source: '' }, { source: '   ' }])(

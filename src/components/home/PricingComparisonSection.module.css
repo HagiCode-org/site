@@ -187,10 +187,6 @@
   position: relative;
 }
 
-.containerColumnHeading {
-  position: relative;
-}
-
 .microsoftStoreColumnHeading {
   position: relative;
 }
@@ -292,7 +288,6 @@
 }
 
 .desktopColumnCell,
-.containerColumnCell,
 .microsoftStoreColumnCell {
   position: relative;
 }
@@ -301,8 +296,7 @@
   background: rgba(27, 127, 204, 0.05);
 }
 
-.desktopColumnCell,
-.containerColumnCell {
+.desktopColumnCell {
   background: rgba(148, 163, 184, 0.04);
 }
 
@@ -310,8 +304,7 @@
   background: rgba(0, 163, 255, 0.08);
 }
 
-[data-theme='dark'] .desktopColumnCell,
-[data-theme='dark'] .containerColumnCell {
+[data-theme='dark'] .desktopColumnCell {
   background: rgba(148, 163, 184, 0.05);
 }
 
@@ -319,8 +312,7 @@
   background: rgba(229, 57, 53, 0.12);
 }
 
-[data-theme='lunar-new-year'] .desktopColumnCell,
-[data-theme='lunar-new-year'] .containerColumnCell {
+[data-theme='lunar-new-year'] .desktopColumnCell {
   background: rgba(255, 236, 179, 0.04);
 }
 
@@ -349,14 +341,12 @@
     transform: translateY(-6px);
   }
 
-  .desktopColumnHeading .headerButton,
-  .containerColumnHeading .headerButton {
+  .desktopColumnHeading .headerButton {
     opacity: 0.82;
     box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
   }
 
-  [data-theme='dark'] .desktopColumnHeading .headerButton,
-  [data-theme='dark'] .containerColumnHeading .headerButton {
+  [data-theme='dark'] .desktopColumnHeading .headerButton {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
   }
 

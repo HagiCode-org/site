@@ -31,7 +31,6 @@ describe('PricingComparisonSection content', () => {
     expect(content.microsoftStoreEdition.title).toBe('Microsoft Store');
     expect(entryPointRow?.microsoftStore.value).toBe('Microsoft Store install');
     expect(entryPointRow?.desktop.href).toBe(content.desktopEdition.action?.href);
-    expect(entryPointRow?.container.href).toBe(content.containerEdition.action?.href);
     expect(entryPointRow?.microsoftStore.href).toBe(content.microsoftStoreEdition.action?.href);
     expect(entryPointRow?.microsoftStore.external).toBe(true);
     expect(row).toBeDefined();

@@ -1,6 +1,6 @@
 /**
  * InstallButton 组件 - 全局统一安装按钮 (React 版本)
- * 支持自动平台检测、下拉菜单选择版本、Docker 版本跳转
+ * 支持自动平台检测、下拉菜单选择版本
  * 可用于 Header（紧凑模式）和 Hero 区域（完整模式）
  *
  * 版本数据从共享的 VersionManager 获取
@@ -10,7 +10,6 @@ import { createPortal } from 'react-dom';
 
 import styles from './InstallButton.module.css';
 import { FEATURE_MAC_DOWNLOAD_ENABLED, FEATURE_SITE_STEAM_ENABLED } from '@/config/features';
-import { MAC_DOWNLOAD_DISABLED_NOTICE, MAC_DOWNLOAD_DISABLED_NOTICE_EN } from '@/constants/downloadMessages';
 import type {
   AssetType,
   DesktopVersion,
@@ -46,7 +45,7 @@ import {
   DESKTOP_HISTORY_FALLBACK_URL,
   getDesktopVersionData,
 } from '@/lib/shared/version-manager';
-import { getDesktopDownloadEventName, WEBSITE_TRACKING_EVENTS } from '@/lib/analytics/events';
+import { getDesktopDownloadEventName } from '@/lib/analytics/events';
 import { trackEvent } from '@/lib/analytics/tracker';
 import MicrosoftStoreBadge from '@/components/common/MicrosoftStoreBadge';
 
@@ -406,10 +405,6 @@ export default function InstallButton({
   const legacyLocale = isChineseLocale ? 'zh-CN' : 'en';
   const needsRuntimeFetch = !version && platforms.length === 0 && !versionError;
   const desktopPageUrl = useMemo(() => getLinkWithLocale('desktop', locale), [locale]);
-  const containerUrl = useMemo(() => getLinkWithLocale('container', locale), [locale]);
-  const macDisabledNotice = isChineseLocale ? MAC_DOWNLOAD_DISABLED_NOTICE : MAC_DOWNLOAD_DISABLED_NOTICE_EN;
-  const containerDeploymentLabel = isChineseLocale ? '容器部署' : 'Container Deployment';
-  const goToContainerLabel = isChineseLocale ? '前往 Container 页面' : 'Go to Container page';
   const installButtonLabel = isChineseLocale ? '立即安装' : 'Install now';
   const installDesktopAriaLabel =
     isChineseLocale ? '立即安装 Hagicode Desktop' : 'Install Hagicode Desktop';
@@ -435,9 +430,6 @@ export default function InstallButton({
   const currentDeviceLabel = isChineseLocale ? '当前设备' : 'Current device';
   const defaultSourceTaggedLabel = isChineseLocale ? '默认源已标记' : 'Default source tagged';
   const otherInstallPathsLabel = isChineseLocale ? '其他安装路径' : 'Other install paths';
-  const containerDescriptionLabel = isChineseLocale
-    ? '适合服务器、自托管部署，或桌面端安装包暂不可用时使用。'
-    : 'For servers, self-hosted deployments, or when desktop packages are unavailable.';
   const steamShortcutLabel = 'Steam';
   const steamShortcutAriaLabel =
     isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam';
@@ -521,10 +513,6 @@ export default function InstallButton({
   );
   const currentDevicePlatformLabel = currentOS === 'unknown' ? null : PLATFORM_LABELS[currentOS];
 
-  const macPlatform = useMemo(
-    () => allPlatformData.find((platform) => platform.platform === 'macos') || null,
-    [allPlatformData],
-  );
   const currentVersion = runtimeSnapshot.version;
   const menuState = useMemo(
     () => getInstallButtonMenuState(runtimeSnapshot, platformData.length),
@@ -798,11 +786,6 @@ export default function InstallButton({
     handleLinkClick();
   };
 
-  const handleContainerNavigationClick = (source: string, url?: string) => {
-    trackEvent(WEBSITE_TRACKING_EVENTS.openContainerPage, { source, url });
-    handleLinkClick();
-  };
-
   const renderStatusBlock = () => {
     const title = menuState.mode === 'loading' ? pendingMenuLabel : unavailableMenuLabel;
     const message = statusMessage || errorFallbackLabel;
@@ -952,61 +935,12 @@ export default function InstallButton({
                     </section>
                   );
                 })}
-              {!FEATURE_MAC_DOWNLOAD_ENABLED && macPlatform && (
-                <section
-                  className={`${styles.dropdownPlatformSection} ${styles['dropdownPlatformSection--macos']} ${currentOS === 'macos' ? styles.dropdownPlatformSectionCurrent : ''}`}
-                  role="group"
-                  aria-label={macPlatform.platformLabel}
-                >
-                  <div className={styles.dropdownGroupLabel} role="presentation">
-                    <div className={styles.dropdownGroupLead}>
-                      <span className={styles.platformIcon}>{PLATFORM_ICONS.macos}</span>
-                      <div className={styles.dropdownGroupText}>
-                        <span className={styles.platformName}>{macPlatform.platformLabel}</span>
-                        <span className={styles.dropdownGroupMeta}>{macDisabledNotice}</span>
-                      </div>
-                    </div>
-                    <div className={styles.dropdownGroupBadges}>
-                      {currentOS === 'macos' && (
-                        <span className={styles.platformStateBadge}>{currentDeviceLabel}</span>
-                      )}
-                      {currentVersion?.version && (
-                        <span className={styles.versionTag}>{currentVersion.version}</span>
-                      )}
-                    </div>
+              {!menuState.hasDownloads && (
+                <section className={styles.dropdownUtilitySection} role="group" aria-label={otherInstallPathsLabel}>
+                  <div className={styles.dropdownUtilityHeader} role="presentation">
+                    <span className={styles.dropdownUtilityTitle}>{otherInstallPathsLabel}</span>
                   </div>
                   <div className={styles.dropdownItemStack}>
-                    <div
-                      className={`${styles.dropdownItem} ${styles.dropdownItemDisabled}`}
-                      role="presentation"
-                      aria-disabled="true"
-                    >
-                      <span className={styles.dropdownItemTextBlock}>
-                        <span className={styles.dropdownItemLabel}>macOS</span>
-                        <span className={styles.dropdownItemDisabledNotice}>{macDisabledNotice}</span>
-                      </span>
-                    </div>
-                    <a
-                      href={containerUrl}
-                      className={styles.dropdownItem}
-                      role="menuitem"
-                      onClick={() => handleContainerNavigationClick('install-button-macos-fallback', containerUrl)}
-                    >
-                      <span className={styles.dropdownItemTextBlock}>
-                        <span className={styles.dropdownItemLabel}>{goToContainerLabel}</span>
-                        <span className={styles.dropdownItemDescription}>{containerDescriptionLabel}</span>
-                      </span>
-                    </a>
-                  </div>
-                </section>
-              )}
-              <section className={styles.dropdownUtilitySection} role="group" aria-label={otherInstallPathsLabel}>
-                <div className={styles.dropdownUtilityHeader} role="presentation">
-                  <span className={styles.dropdownUtilityTitle}>{otherInstallPathsLabel}</span>
-                  <span className={styles.dropdownUtilityDescription}>{containerDescriptionLabel}</span>
-                </div>
-                <div className={styles.dropdownItemStack}>
-                  {!menuState.hasDownloads && (
                     <a
                       href={historyFallbackTarget}
                       className={styles.dropdownItem}
@@ -1018,28 +952,9 @@ export default function InstallButton({
                         <span className={styles.dropdownItemDescription}>{errorFallbackLabel}</span>
                       </span>
                     </a>
-                  )}
-                  <a
-                    href={containerUrl}
-                    className={`${styles.dropdownItem} ${styles.dropdownItemDocker}`}
-                    role="menuitem"
-                    onClick={() => handleContainerNavigationClick('install-button-container-link', containerUrl)}
-                  >
-                    <svg className={styles.dockerIcon} viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186h-2.12a.186.186 0 00-.185.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z" />
-                    </svg>
-                    <span className={styles.dropdownItemTextBlock}>
-                      <span className={styles.dropdownItemLabel}>{containerDeploymentLabel}</span>
-                      <span className={styles.dropdownItemDescription}>{containerDescriptionLabel}</span>
-                    </span>
-                    <svg className={styles.externalIcon} viewBox="0 0 24 24" fill="none">
-                      <path d="M18 13V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V8C3 7.46957 3.21071 6.96086 3.58579 6.58579C3.96086 6.21071 4.46957 6 5 6H11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M15 3H21V9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      <path d="M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </a>
-                </div>
-              </section>
+                  </div>
+                </section>
+              )}
             </div>
           </div>,
           document.body,

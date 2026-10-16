@@ -139,16 +139,6 @@
       ],
       "status": "Public entry"
     },
-    "dockerCompose": {
-      "title": "Docker Compose Builder",
-      "summary": "A visual builder for composing ready-to-run container deployments without hand-writing complex YAML.",
-      "highlights": [
-        "Visual configuration",
-        "Compose generation",
-        "Deployment handoff"
-      ],
-      "status": "Public entry"
-    },
     "release": {
       "title": "Release Grid",
       "summary": "Artifact and version coordination for the desktop and server packages that ship through the ecosystem.",

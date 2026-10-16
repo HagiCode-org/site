@@ -35,12 +35,11 @@ describe('Website Google Analytics component', () => {
     }
   });
 
-  it('renders it once in each of the six page templates', () => {
+  it('renders it once in each of the five page templates', () => {
     const importers = listAstroFiles(srcDir).filter((file) => file !== wrapperPath && readSource(file).includes('GoogleAnalytics'));
 
     expect(importers.map((file) => path.basename(file)).sort()).toEqual([
       'AboutSnapshotDocument.astro',
-      'ContainerPage.astro',
       'DesktopPage.astro',
       'HomePage.astro',
       'LandingRedirectPage.astro',

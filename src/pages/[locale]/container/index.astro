@@ -1,5 +1,5 @@
 ---
-import ContainerPage from '@/page-templates/ContainerPage.astro';
+import LegacyLocaleRedirectPage from '@/page-templates/LegacyLocaleRedirectPage.astro';
 import { getNonDefaultSiteLocales } from '@/i18n/locale-metadata';
 
 export function getStaticPaths() {
@@ -11,4 +11,4 @@ export function getStaticPaths() {
 const { locale } = Astro.params as { locale: string };
 ---
 
-<ContainerPage locale={locale} />
+<LegacyLocaleRedirectPage target={`/${locale}/`} destinationName="the localized homepage" />

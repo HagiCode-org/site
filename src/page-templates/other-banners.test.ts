@@ -3,7 +3,6 @@ import { describe, expect, it } from 'vitest';
 
 const templates = [
   { file: new URL('./DesktopPage.astro', import.meta.url), localeProp: 'locale' },
-  { file: new URL('./ContainerPage.astro', import.meta.url), localeProp: 'locale' },
   { file: new URL('../components/about/AboutSnapshotDocument.astro', import.meta.url), localeProp: 'currentLocale' },
   { file: new URL('../components/structured-article/StructuredArticlePage.astro', import.meta.url), localeProp: 'locale' },
 ] as const;

@@ -20,8 +20,18 @@ const supportedLocales = [
 const managedLocalizedRoutes = [
   '/',
   '/desktop/',
-  '/container/',
   '/about/',
+];
+
+// Container aliases no longer render a page. Each one is a noindex redirect to its locale home.
+const retiredContainerRoutes = [
+  { route: '/container/', file: 'container/index.html', target: '/en-US/' },
+  { route: '/en/container/', file: 'en/container/index.html', target: '/en-US/' },
+  ...supportedLocales.map((locale) => ({
+    route: `/${locale}/container/`,
+    file: `${locale}/container/index.html`,
+    target: `/${locale}/`,
+  })),
 ];
 
 const managedEntryRoutes = [
@@ -31,7 +41,6 @@ const managedEntryRoutes = [
 const legacyEnglishRoutes = [
   '/',
   '/desktop/',
-  '/container/',
   '/about/',
 ];
 
@@ -105,6 +114,13 @@ const managedPages = [
     })),
   ),
   ...rootEntryPages,
+  ...retiredContainerRoutes.map(({ route, file, target }) => ({
+    route,
+    file,
+    canonicalPath: target,
+    redirectTarget: target,
+    requiresRobotsNoindex: true,
+  })),
   ...legacyEnglishRoutes.map((routePath) => ({
     route: getLegacyEnglishRoute(routePath),
     file: getLegacyEnglishFile(routePath),

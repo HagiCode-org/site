@@ -49,12 +49,12 @@ describe('HeroSection Google Analytics events', () => {
     harness.cleanup();
   });
 
-  it('reports the desktop, container, and documentation buttons through data-ga tags', async () => {
+  it('reports the desktop and documentation buttons through data-ga tags', async () => {
     const container = await renderHero();
     const byLabel = (label: string) =>
       container.querySelector<HTMLAnchorElement>(`a[data-ga-location="home_hero"][data-ga-label="${label}"]`) as HTMLAnchorElement;
 
-    for (const label of ['openDesktopPage', 'openContainerPage', 'productDocs']) {
+    for (const label of ['openDesktopPage', 'productDocs']) {
       const link = byLabel(label);
       expect(link, label).not.toBeNull();
 

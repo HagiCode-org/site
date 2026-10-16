@@ -76,7 +76,7 @@ function renderCell(cell: FeatureCell, labels: { included: string; notIncluded: 
   );
 }
 
-type EditionId = 'Desktop' | 'Container' | 'MicrosoftStore';
+type EditionId = 'Desktop' | 'MicrosoftStore';
 
 function renderEditionHeader(column: EditionColumn, editionId: EditionId, className?: string) {
   if (!column.action) {
@@ -140,9 +140,6 @@ export default function PricingComparisonSection({ content }: Props) {
                     {renderEditionHeader(content.desktopEdition, 'Desktop', styles.desktopColumnHeading)}
                   </th>
                   <th scope="col">
-                    {renderEditionHeader(content.containerEdition, 'Container', styles.containerColumnHeading)}
-                  </th>
-                  <th scope="col">
                     {renderEditionHeader(content.microsoftStoreEdition, 'MicrosoftStore', styles.microsoftStoreColumnHeading)}
                   </th>
                 </tr>
@@ -152,7 +149,6 @@ export default function PricingComparisonSection({ content }: Props) {
                   <tr key={row.feature} className={row.microsoftStoreExclusive ? styles.microsoftStoreExclusiveRow : undefined}>
                     <th scope="row" className={styles.rowHeading}>{row.feature}</th>
                     <td className={styles.desktopColumnCell} data-column={content.desktopEdition.title}>{renderCell(row.desktop, cellLabels)}</td>
-                    <td className={styles.containerColumnCell} data-column={content.containerEdition.title}>{renderCell(row.container, cellLabels)}</td>
                     <td className={styles.microsoftStoreColumnCell} data-column={content.microsoftStoreEdition.title}>{renderCell(row.microsoftStore, cellLabels)}</td>
                   </tr>
                 ))}

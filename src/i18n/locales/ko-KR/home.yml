@@ -38,7 +38,6 @@ hero:
       description: Hero Dungeon은 협업과 연습을 하나의 모험처럼 만듭니다.
   buttons:
     desktopApp: 데스크톱 앱 설치
-    containerApp: 컨테이너 앱 설치
     learnMore: 더 알아보기
   techStack:
     poweredBy: 기술 기반
@@ -243,8 +242,6 @@ pricing:
   editions:
     desktop:
       title: Desktop
-    container:
-      title: Container
     microsoftStore:
       title: Microsoft Store
   rows:
@@ -269,7 +266,6 @@ pricing:
   values:
     free: 무료
     desktopInstall: 데스크탑 설치
-    containerDeployment: 컨테이너 배포
     microsoftStoreInstall: Microsoft Store 설치
 workflowBoard:
   titleLines:

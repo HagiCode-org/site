@@ -38,7 +38,6 @@ hero:
       description: Hero Dungeon hace que el trabajo en equipo y la práctica se sientan como una aventura.
   buttons:
     desktopApp: Instalar la app Desktop
-    containerApp: Instalar la app Container
     learnMore: Más información
   techStack:
     poweredBy: Impulsado por
@@ -243,8 +242,6 @@ pricing:
   editions:
     desktop:
       title: Desktop
-    container:
-      title: Container
     microsoftStore:
       title: Microsoft Store
   rows:
@@ -269,7 +266,6 @@ pricing:
   values:
     free: Gratis
     desktopInstall: Instalación de escritorio
-    containerDeployment: Implementación de contenedores
     microsoftStoreInstall: Instalación desde Microsoft Store
 workflowBoard:
   titleLines:

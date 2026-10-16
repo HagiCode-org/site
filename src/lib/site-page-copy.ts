@@ -277,12 +277,3 @@ export function getDesktopPageCopy(locale: SiteLocale) {
     runtimeNoteAriaLabel: runtimeNote.ariaLabel,
   };
 }
-
-export function getContainerPageCopy(locale: SiteLocale) {
-  const resolvedLocale = resolveSiteLocale(locale);
-
-  return {
-    title: requireLocaleResourceString(resolvedLocale, 'container', 'container.title'),
-    description: requireLocaleResourceString(resolvedLocale, 'container', 'container.description'),
-  };
-}
