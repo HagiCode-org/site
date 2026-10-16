@@ -1,4 +1,8 @@
 hero:
+  headline: "Tire a programação com IA do chat e leve para um fluxo de propostas revisável e reutilizável"
+  subheadline: "Toda mudança passa por Proposta → Execução → Arquivo: primeiro alinha-se o plano, depois mexe-se no código, e o aprendizado vira conhecimento da equipe. Compatível com Claude Code, Codex, GitHub Copilot e outras CLIs de agentes populares."
+  storeRecommended: "Recomendado"
+  storeNote: "Compra única · licença permanente · desbloqueia todos os recursos"
   tagline: Aumente a eficiência de desenvolvimento com ferramentas de código impulsionadas por IA
   description: O HagiCode ajuda desenvolvedores a focarem no código, não em trabalho repetitivo
   ctaButton: Começar
@@ -223,7 +227,6 @@ homepageVideos:
   hero:
     windowsStoreLabel: Microsoft Store
     windowsStoreAriaLabel: Abrir Hagicode na Microsoft Store
-    steamAriaLabel: Abrir Hagicode no Steam
     ctaGroupLabel: Ações principais da página inicial
     agentChooser:
       badge: Escolha um agente

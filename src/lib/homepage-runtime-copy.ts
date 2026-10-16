@@ -31,6 +31,10 @@ export interface HomepageAgentChooserCopy {
 }
 
 export interface HomepageHeroCopy {
+  headline: string;
+  subheadline: string;
+  storeRecommended: string;
+  storeNote: string;
   tagline: string;
   description: string;
   secondaryLine: string;
@@ -67,7 +71,6 @@ export interface HomepageHeroCopy {
   };
   windowsStoreLabel: string;
   windowsStoreAriaLabel: string;
-  steamAriaLabel: string;
   ctaGroupLabel: string;
   agentChooser: HomepageAgentChooserCopy;
 }
@@ -144,6 +147,10 @@ export function getHomepageHeroCopy(locale: SiteLocale): HomepageHeroCopy {
   const resolvedLocale = resolveLocale(locale);
 
   return {
+    headline: requireLocaleResourceString(resolvedLocale, 'home', 'hero.headline'),
+    subheadline: requireLocaleResourceString(resolvedLocale, 'home', 'hero.subheadline'),
+    storeRecommended: requireLocaleResourceString(resolvedLocale, 'home', 'hero.storeRecommended'),
+    storeNote: requireLocaleResourceString(resolvedLocale, 'home', 'hero.storeNote'),
     tagline: requireLocaleResourceString(resolvedLocale, 'home', 'hero.tagline'),
     description: requireLocaleResourceString(resolvedLocale, 'home', 'hero.description'),
     secondaryLine: requireLocaleResourceString(resolvedLocale, 'home', 'hero.secondaryLine'),
@@ -188,7 +195,6 @@ export function getHomepageHeroCopy(locale: SiteLocale): HomepageHeroCopy {
       'home',
       'homepageVideos.hero.windowsStoreAriaLabel',
     ),
-    steamAriaLabel: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.steamAriaLabel'),
     ctaGroupLabel: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.ctaGroupLabel'),
     agentChooser: {
       title: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.agentChooser.title'),

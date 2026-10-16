@@ -189,7 +189,7 @@ describe('Store control wiring guard', () => {
   });
 
   it.each([
-    ['the hero Store badge and Steam button', () => (
+    ['the hero Store badge', () => (
       <HeroSection
         locale="en-US"
         copy={getHomepageInteractiveCopy('en-US').hero}

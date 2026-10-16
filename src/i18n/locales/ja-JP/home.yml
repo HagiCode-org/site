@@ -1,4 +1,8 @@
 hero:
+  headline: "AI コーディングを、チャットから「レビューできて再利用できる」提案フローへ"
+  subheadline: "すべての変更は 提案 → 実行 → アーカイブ の順で進みます。まず方針をそろえてからコードに手を入れ、得られた知見はチームの資産として蓄積。Claude Code、Codex、GitHub Copilot など主要な Agent CLI に対応しています。"
+  storeRecommended: "おすすめ"
+  storeNote: "買い切り・永続ライセンス・すべての機能を解放"
   tagline: AI が支えるコーディングツールで開発効率を高める
   description: HagiCode は繰り返し作業ではなく、本当に重要なコードに集中できるようにします
   ctaButton: 使い始める
@@ -223,7 +227,6 @@ homepageVideos:
   hero:
     windowsStoreLabel: Microsoft Store
     windowsStoreAriaLabel: Microsoft Store で Hagicode を開く
-    steamAriaLabel: Steam で Hagicode を開く
     ctaGroupLabel: ホームページの主要アクション
     agentChooser:
       badge: Agent を選択

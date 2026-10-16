@@ -1,4 +1,8 @@
 hero:
+  headline: "Turn AI coding from open-ended chat into reviewable, reusable proposals"
+  subheadline: "Every change moves through Proposal → Execution → Archive: align on the plan before touching code, then keep what you learned as team knowledge. Works with Claude Code, Codex, GitHub Copilot, and other mainstream agent CLIs."
+  storeRecommended: "Recommended"
+  storeNote: "One-time purchase · permanent license · unlocks the full feature set"
   tagline: Boost development efficiency with AI-powered coding tools
   description: HagiCode helps developers focus on code, not repetitive work
   ctaButton: Get Started
@@ -223,7 +227,6 @@ homepageVideos:
   hero:
     windowsStoreLabel: Microsoft Store
     windowsStoreAriaLabel: Open Hagicode on Microsoft Store
-    steamAriaLabel: Open Hagicode on Steam
     ctaGroupLabel: Primary homepage actions
     agentChooser:
       badge: Choose your agent

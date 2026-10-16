@@ -1,4 +1,8 @@
 hero:
+  headline: "KI-Coding vom Chat zum prüfbaren, wiederverwendbaren Vorschlags-Workflow"
+  subheadline: "Jede Änderung durchläuft Vorschlag → Umsetzung → Archiv: erst den Plan abstimmen, dann Code anfassen – und das Gelernte als Teamwissen bewahren. Funktioniert mit Claude Code, Codex, GitHub Copilot und weiteren gängigen Agent-CLIs."
+  storeRecommended: "Empfohlen"
+  storeNote: "Einmalkauf · dauerhafte Lizenz · schaltet alle Funktionen frei"
   tagline: Entwicklungsleistung mit KI-gestützten Coding-Tools steigern
   description: HagiCode hilft Entwicklern, sich auf Code statt auf wiederkehrende Arbeit zu konzentrieren
   ctaButton: Jetzt starten
@@ -223,7 +227,6 @@ homepageVideos:
   hero:
     windowsStoreLabel: Microsoft Store
     windowsStoreAriaLabel: Hagicode im Microsoft Store öffnen
-    steamAriaLabel: Hagicode auf Steam öffnen
     ctaGroupLabel: Primäre Homepage-Aktionen
     agentChooser:
       badge: Agent auswählen

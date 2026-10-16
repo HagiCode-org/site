@@ -31,7 +31,7 @@ const agentChoices = [
 ];
 
 describe('HeroSection', () => {
-  it('hides the homepage Steam button while Steam support is pending', () => {
+  it('has no Steam button and leads with the Microsoft Store badge', () => {
     const copy = getHomepageInteractiveCopy('en-US');
     const markup = renderToStaticMarkup(
       <HeroSection locale="en-US" copy={copy.hero} workflowBoardCopy={copy.workflowBoard} />,
@@ -42,8 +42,21 @@ describe('HeroSection', () => {
     expect(markup).toContain('productid="9N3PM0N3SVDW"');
     expect(markup).toContain('language="en-us"');
     expect(markup).toContain('size="large"');
+    expect(markup.indexOf('ms-store-badge')).toBeLessThan(markup.indexOf('Install Desktop App'));
+    expect(markup).toContain('Recommended');
     expect(markup).not.toContain('data-steam-entry="site-home-hero"');
     expect(markup).not.toContain('>Steam<');
+  });
+
+  it('leads with the proposal-driven headline instead of generic taglines', () => {
+    const copy = getHomepageInteractiveCopy('en-US');
+    const markup = renderToStaticMarkup(
+      <HeroSection locale="en-US" copy={copy.hero} workflowBoardCopy={copy.workflowBoard} />,
+    );
+
+    expect(markup).toContain('Turn AI coding from open-ended chat into reviewable, reusable proposals');
+    expect(markup).toContain('Proposal → Execution → Archive');
+    expect(markup).not.toContain('Not globally unique');
   });
 
   it('renders the chooser between the product overview video and the workflow board', () => {

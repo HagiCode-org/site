@@ -2,11 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { gaEventAttributes, type GaCategory } from '@hagicode/hagilight-core/analytics-events';
 import styles from './HeroSection.module.css';
-import { FEATURE_SITE_STEAM_ENABLED } from '@/config/features';
-import { WEBSITE_TRACKING_EVENTS } from '@/lib/analytics/events';
-import { trackEvent } from '@/lib/analytics/tracker';
 import { getLinkWithLocale } from '@/lib/shared/links';
-import { getBundledSteamStoreLink, loadSteamStoreLink } from '@/lib/shared/steam-store-link';
 import { getBundledWindowsStoreLink, loadWindowsStoreLink } from '@/lib/shared/windows-store-link';
 import MicrosoftStoreBadge from '@/components/common/MicrosoftStoreBadge';
 import HeroWorkflowBoard from './HeroWorkflowBoard';
@@ -62,26 +58,6 @@ function ContainerIcon({ className = '' }: IconProps) {
     <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <rect x="3.75" y="5.25" width="16.5" height="13.5" rx="2.25" stroke="currentColor" strokeWidth="1.8" />
       <path d="M8.25 5.25V18.75M15.75 5.25V18.75M3.75 9.75H20.25M3.75 14.25H20.25" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function SteamIcon({ className = '' }: IconProps) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      data-steam-icon="true"
-    >
-      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.75" />
-      <circle cx="16.8" cy="7.8" r="2.15" stroke="currentColor" strokeWidth="1.75" />
-      <circle cx="9.1" cy="15.1" r="1.45" fill="currentColor" />
-      <path d="M10.2 14.2L14.7 10.3" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
-      <path d="M15.6 9.2a1.75 1.75 0 1 0 2.4-2.4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
-      <path d="M7.5 14.6l2.8 1.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
     </svg>
   );
 }
@@ -197,25 +173,15 @@ export default function HeroSection({
   agentChoices = [],
   productOverviewVideo,
 }: HeroSectionProps) {
-  const [steamStoreLink, setSteamStoreLink] = useState(() => getBundledSteamStoreLink());
   const [windowsStoreLink, setWindowsStoreLink] = useState(() => getBundledWindowsStoreLink());
   const [windowsStoreBadgeSize, setWindowsStoreBadgeSize] = useState<'small' | 'large'>('large');
 
   const desktopUrl = getLinkWithLocale('desktop', locale);
   const containerUrl = getLinkWithLocale('container', locale);
   const docsUrl = getLinkWithLocale('productOverview', locale);
-  const isChineseLocale = locale.toLowerCase().startsWith('zh');
-  const heroStatement = isChineseLocale
-    ? '全球不唯一，但是超级好用的 Agentic Coding 软件就在这里'
-    : 'Not globally unique, but exceptionally usable Agentic Coding software lives here.';
   const primaryButtonHint = 'Windows · macOS · Linux';
-  const steamLabel = 'Steam';
-  const steamAriaLabel = copy.steamAriaLabel || (isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam');
-  const windowsStoreAriaLabel = copy.windowsStoreAriaLabel || (
-    isChineseLocale ? '打开 Hagicode Windows 商店页' : 'Open Hagicode on Microsoft Store'
-  );
-  const ctaGroupLabel = copy.ctaGroupLabel || (isChineseLocale ? '首页主要操作' : 'Primary homepage actions');
-  const showSteamButton = FEATURE_SITE_STEAM_ENABLED && Boolean(steamStoreLink.href);
+  const windowsStoreAriaLabel = copy.windowsStoreAriaLabel;
+  const ctaGroupLabel = copy.ctaGroupLabel;
   const showWindowsStoreButton = Boolean(windowsStoreLink.href);
 
   // The large badge is a fixed 381px wide; phones only have room for the small one.
@@ -247,24 +213,6 @@ export default function HeroSection({
     };
   }, []);
 
-  useEffect(() => {
-    if (!FEATURE_SITE_STEAM_ENABLED) {
-      return;
-    }
-
-    let mounted = true;
-
-    void loadSteamStoreLink().then((nextLink) => {
-      if (mounted) {
-        setSteamStoreLink(nextLink);
-      }
-    });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
   return (
     <section className={styles.heroSection}>
       <div className={styles.bgAurora} aria-hidden="true" />
@@ -279,11 +227,31 @@ export default function HeroSection({
               <span className={styles.titleAccent}>code</span>
             </h1>
 
-            <p className={styles.heroDescription}>{heroStatement}</p>
+            <p className={styles.heroHeadline}>{copy.headline}</p>
+            <p className={styles.heroDescription}>{copy.subheadline}</p>
           </div>
 
           <div className={styles.heroActions} role="group" aria-label={ctaGroupLabel}>
             <div className={styles.heroPrimaryActions}>
+              {showWindowsStoreButton && (
+                <div className={styles.storeCta}>
+                  <span className={styles.storeCtaTag}>{copy.storeRecommended}</span>
+                  <MicrosoftStoreBadge
+                    href={windowsStoreLink.href}
+                    locale={locale}
+                    size={windowsStoreBadgeSize}
+                    aria-label={windowsStoreAriaLabel}
+                    className={`${styles.windowsStoreBadgeButton} ${styles.windowsStoreBadgePrimary}`}
+                    badgeClassName={styles.windowsStoreBadgeElement}
+                    badgeAttributes={{
+                      'data-windows-store-entry': 'site-home-hero',
+                      ...heroGaAttributes('store', 'microsoftStore', windowsStoreLink.href),
+                    }}
+                  />
+                  <span className={styles.storeCtaNote}>{copy.storeNote}</span>
+                </div>
+              )}
+
               <a
                 href={desktopUrl}
                 className={styles.buttonPrimary}
@@ -297,21 +265,6 @@ export default function HeroSection({
                   </span>
                 </span>
               </a>
-
-              {showWindowsStoreButton && (
-                <MicrosoftStoreBadge
-                  href={windowsStoreLink.href}
-                  locale={locale}
-                  size={windowsStoreBadgeSize}
-                  aria-label={windowsStoreAriaLabel}
-                  className={`${styles.windowsStoreBadgeButton} ${styles.windowsStoreBadgePrimary}`}
-                  badgeClassName={styles.windowsStoreBadgeElement}
-                  badgeAttributes={{
-                    'data-windows-store-entry': 'site-home-hero',
-                    ...heroGaAttributes('store', 'microsoftStore', windowsStoreLink.href),
-                  }}
-                />
-              )}
             </div>
 
             <div className={styles.heroSecondaryActions}>
@@ -323,26 +276,6 @@ export default function HeroSection({
                 <ContainerIcon className={styles.buttonIcon} />
                 <span>{copy.buttons.containerApp}</span>
               </a>
-
-              {showSteamButton && (
-                <a
-                  href={steamStoreLink.href}
-                  className={`${styles.buttonSecondary} ${styles.buttonSteam}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={steamAriaLabel}
-                  data-steam-entry="site-home-hero"
-                  onClick={() =>
-                    trackEvent(WEBSITE_TRACKING_EVENTS.openSteamStore, {
-                      source: 'hero-section-steam',
-                      url: steamStoreLink.href,
-                    })
-                  }
-                >
-                  <SteamIcon className={styles.buttonIcon} />
-                  <span>{steamLabel}</span>
-                </a>
-              )}
 
               <a
                 className={styles.buttonSecondary}

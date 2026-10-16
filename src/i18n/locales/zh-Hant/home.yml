@@ -1,4 +1,8 @@
 hero:
+  headline: "把 AI 編碼從聊天，變成可審閱、可重複使用的提案流程"
+  subheadline: "每次改動都走 提案 → 執行 → 歸檔：先對齊方案再動程式碼，做完的經驗沉澱成團隊知識。支援 Claude Code、Codex、GitHub Copilot 等主流 Agent CLI。"
+  storeRecommended: "推薦取得方式"
+  storeNote: "一次買斷 · 永久授權 · 解鎖全部功能"
   tagline: 用 AI 驅動的程式設計工具，提升開發效率
   description: HagiCode 幫助開發者專注於程式碼，而不是重複性工作
   ctaButton: 立即開始
@@ -223,7 +227,6 @@ homepageVideos:
   hero:
     windowsStoreLabel: Microsoft Store
     windowsStoreAriaLabel: 在 Microsoft Store 上開啟 Hagicode
-    steamAriaLabel: 在 Steam 上開啟 Hagicode
     ctaGroupLabel: 首頁主要操作
     agentChooser:
       badge: 選擇 Agent
