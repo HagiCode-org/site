@@ -1,6 +1,6 @@
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import {
   DEFAULT_LOCALE,
   SITE_LOCALES,
@@ -8,9 +8,17 @@ import {
   normalizeSiteLocale,
 } from '@/i18n/locale-metadata';
 
-const LIB_DIR = path.dirname(fileURLToPath(import.meta.url));
-const ARTICLES_SNAPSHOT_ROOT = path.resolve(process.cwd(), 'src', 'data', 'articles.snapshot');
-const SOURCE_ARTICLES_SNAPSHOT_ROOT = path.resolve(LIB_DIR, '..', 'data', 'articles.snapshot');
+// Comparison article data ships with @hagicode/hagilight-core; `snapshotRoot` stays as a
+// test-only override of that packaged data root. The root is resolved through the package
+// entry point (<pkg>/dist/*.js -> <pkg>/data/comparison-articles) instead of importing the
+// loader's own root constant, because that constant derives from import.meta.url and points
+// into dist/.prerender once Astro bundles it.
+const ARTICLES_SNAPSHOT_ROOT = path.resolve(
+  path.dirname(createRequire(import.meta.url).resolve('@hagicode/hagilight-core/comparison-articles-source')),
+  '..',
+  'data',
+  'comparison-articles',
+);
 const ARTICLE_LOCALE_MAP_CACHE = new Map();
 
 function assert(condition, message) {
@@ -24,15 +32,7 @@ function isRecord(value) {
 }
 
 function resolveArticlesSnapshotRoot(snapshotRoot) {
-  if (snapshotRoot) {
-    return path.resolve(snapshotRoot);
-  }
-
-  if (fs.existsSync(ARTICLES_SNAPSHOT_ROOT)) {
-    return ARTICLES_SNAPSHOT_ROOT;
-  }
-
-  return SOURCE_ARTICLES_SNAPSHOT_ROOT;
+  return snapshotRoot ? path.resolve(snapshotRoot) : ARTICLES_SNAPSHOT_ROOT;
 }
 
 function readJsonFile(filePath, fallback = null) {
