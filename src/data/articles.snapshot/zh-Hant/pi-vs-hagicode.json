@@ -5,7 +5,7 @@
   "locale": "zh-Hant",
   "updatedAt": "2026-06-18T00:00:00.000Z",
   "seo": {
-    "title": "Pi Vs HagiCode",
+    "title": "Pi CLI 對比 HagiCode:功能與差異",
     "description": "了解 Pi CLI 以 provider 為中心的工作方式、會話控制和工具治理能力，並从多線程並行、OpenSpec 提案、AI 提交、Preset Task、游戏化界面、Agents 管理、Monospecs、Vault 和 OmniRoute 等角度，看 HagiCode 如何把 Pi 變成生產級的 AI 编程工作台。"
   },
   "summary": "Pi CLI 是一個强调 provider 解耦的灵活 AI 编程入口。它通过可配置的 thinking 模式、會話持久化控制以及顯式的工具開关，讓開發者能夠更细粒度地决定 AI 助手该如何工作。不过 Pi CLI 本質上仍然是一個命令行入口，而 HagiCode 是一個完整的 AI 编程工作台。两者結合，才能把 Pi 从“可配置 CLI”升級為“日常開發環境”。",

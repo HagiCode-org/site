@@ -5,7 +5,7 @@
   "locale": "en-US",
   "updatedAt": "2026-08-11T00:00:00.000Z",
   "seo": {
-    "title": "OMP Vs HagiCode",
+    "title": "OMP CLI vs HagiCode: Features and Comparison",
     "description": "Understand OMP CLI's provider-first workflow, environment-pinned one-shot execution, thinking controls, and fine-grained tool governance, and see how HagiCode turns OMP into a production-grade AI programming workbench through multi-threaded parallelism, OpenSpec proposals, AI commits, Preset Tasks, gamified UI, Agents management, Monospecs, Vault, and OmniRoute."
   },
   "summary": "OMP CLI is a disciplined AI coding interface built for reproducible, environment-scoped execution. With provider-agnostic model access, configurable thinking modes, explicit tool gating, and full control over the working directory and environment variables of every invocation, it gives developers a clean, auditable unit of AI work. However, OMP CLI is still fundamentally a terminal entry point, while HagiCode is a full AI programming workbench. Together, they turn OMP from a reproducible single-shot CLI into a complete daily development environment.",

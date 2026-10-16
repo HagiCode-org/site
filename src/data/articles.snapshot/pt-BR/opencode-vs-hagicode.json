@@ -5,7 +5,7 @@
   "locale": "pt-BR",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "OpenCode Vs HagiCode",
+    "title": "OpenCode vs HagiCode: recursos e comparação",
     "description": "Entenda as funções principais do OpenCode, sua arquitetura de código aberto e seu ecossistema comunitário, e veja como o HagiCode eleva o OpenCode ao próximo nível através de multithreading, propostas OpenSpec, commits de IA, Preset Tasks, UI gamificada, gestão de Agents, Monospecs, Vault e OmniRoute."
   },
   "summary": "O OpenCode é uma ferramenta CLI assistente de codificação com IA de código aberto construída sobre flexibilidade, personalizabilidade e desenvolvimento movido pela comunidade. Com código totalmente aberto, acesso multi-modelo flexível e um design centralizado em ACP, é uma escolha atraente para desenvolvedores que querem controlar a tecnologia. No entanto, o OpenCode é uma ferramenta CLI autônoma, e o HagiCode é uma workbench com gestão multi-repo, persistência de conhecimento e fluxo de trabalho visual. Ambos juntos estendem a flexibilidade aberta do OpenCode a uma experiência de desenvolvimento completa.",

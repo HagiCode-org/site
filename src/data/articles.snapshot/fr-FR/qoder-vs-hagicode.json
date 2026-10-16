@@ -5,7 +5,7 @@
   "locale": "fr-FR",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "QoderCLI Vs HagiCode",
+    "title": "QoderCLI vs HagiCode : fonctionnalités et comparaison",
     "description": "Comprenez les fonctions clés de QoderCLI, ses caractéristiques techniques et son écosystème d'application, et voyez comment HagiCode porte QoderCLI au niveau supérieur via le multithreading, les propositions OpenSpec, les commits IA, les Preset Tasks, l'UI gamifiée, la gestion des Agents, les Monospecs, le Vault et OmniRoute."
   },
   "summary": "QoderCLI est un outil CLI de programmation IA moderne avec interaction fluide, gestion de contexte efficace et appels d'outils flexibles. Avec une conception qui met l'expérience développeur en premier, il offre des conversations multi-tours naturelles et des flux de travail efficaces. Cependant, QoderCLI est un outil terminal, et HagiCode est un atelier avec gestion multi-repo, persistance des connaissances et workflow visuel. Les deux ensemble étendent l'expérience fluide de QoderCLI à un processus de développement complet.",

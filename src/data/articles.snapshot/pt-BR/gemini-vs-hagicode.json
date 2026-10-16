@@ -5,7 +5,7 @@
   "locale": "pt-BR",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "Gemini Vs HagiCode",
+    "title": "Gemini CLI vs HagiCode: recursos e comparação",
     "description": "Entenda as funções principais do Google Gemini CLI, suas capacidades multimodais e sua integração ao ecossistema Google, e veja como o HagiCode eleva o Gemini CLI ao próximo nível através de multithreading, propostas OpenSpec, commits de IA, Preset Tasks, UI gamificada, gestão de Agents, Monospecs, Vault e OmniRoute."
   },
   "summary": "O Google Gemini CLI é a ferramenta oficial de programação com IA em terminal do Google. Com a compreensão multimodal do Gemini, sua capacidade de processamento de contexto ultra-longo e profunda integração ao ecossistema Google, ele se destaca particularmente em tarefas complexas incluindo informações visuais. No entanto, o Gemini CLI é essencialmente uma ferramenta de terminal, e o HagiCode é uma workbench com visualização, gestão e persistência de conhecimento. Ambos juntos estendem a capacidade multimodal do Gemini a uma experiência de desenvolvimento completa.",

@@ -5,7 +5,7 @@
   "locale": "ko-KR",
   "updatedAt": "2026-06-18T00:00:00.000Z",
   "seo": {
-    "title": "Reasonix Vs HagiCode",
+    "title": "Reasonix CLI vs HagiCode 비교: 기능과 차이점",
     "description": "Reasonix CLI의 추론 제어, 예산 가드레일, 트랜스크립트 친화적 워크플로를 이해하고, 멀티스레드 병렬, OpenSpec 제안, AI 커밋, Preset Task, 게임화 UI, Agents 관리, Monospecs, Vault, OmniRoute를 통해 HagiCode가 Reasonix를 프로덕션급 AI 프로그래밍 플랫폼으로 바꾸는 방법을 살펴보세요."
   },
   "summary": "Reasonix CLI는 노력, 예산, 트랜스크립트 포착, 실행 적극성을 명령줄에서 직접 조정하려는 개발자를 위해 만들어진 추론 퍼스트 AI 코딩 인터페이스입니다. ACP 기반 도구 오케스트레이션과 설정 가능한 런타임 동작으로 신중하고 검사 가능한 엔지니어링 작업에 적합합니다. 다만 Reasonix는 터미널 도구로 남아 있고, HagiCode가 일상 프로덕션 사용에 필요한 오케스트레이션, 워크플로 기억, 다중 에이전트 면을 더합니다.",

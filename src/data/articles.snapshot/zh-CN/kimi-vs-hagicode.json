@@ -5,7 +5,7 @@
   "locale": "zh-CN",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "Kimi Vs HagiCode",
+    "title": "Kimi CLI 对比 HagiCode:功能与差异",
     "description": "了解 Kimi CLI 的主要功能、中文优化特点和 Moonshot AI 生态，并从多线程并行、OpenSpec 提案、AI 提交、Preset Task、游戏化界面、Agents 管理、Monospecs、Vault 和 OmniRoute 等角度，看 HagiCode 如何让 Kimi 的中文编程能力从\"翻译式辅助\"升级为\"母语级开发体验\"。"
   },
   "summary": "Kimi CLI 是 Moonshot AI 推出的终端 AI 编程工具，以\"中文为主、双语兼顾\"的独特定位在 AI 编程工具中独树一帜。Kimi 对中文技术文档、中文代码注释和中文开发场景的理解深度，是目前全球 AI 编程工具中最突出的之一。不过 Kimi CLI 是一个聚焦中文场景的编程助手，而 HagiCode 是一个面向完整开发工作流的桌面平台——两者配合，才能把 Kimi 的中文编程优势从\"语言层面\"扩展到\"全流程工程层面\"。",

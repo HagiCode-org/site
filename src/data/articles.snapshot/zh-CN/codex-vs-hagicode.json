@@ -5,7 +5,7 @@
   "locale": "zh-CN",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "Codex Vs HagiCode",
+    "title": "Codex CLI 对比 HagiCode:功能与差异",
     "description": "了解 OpenAI Codex 的主要功能、技术架构和 CLI 生态，并从多线程并行、OpenSpec 提案、AI 提交、Preset Task、游戏化界面、Agents 管理、Monospecs、Vault 和 OmniRoute 等角度，看 HagiCode 如何让 Codex 的极速编码能力更上一层楼。"
   },
   "summary": "OpenAI Codex 是 OpenAI 官方的终端 AI 编程工具，凭借与 OpenAI 模型生态的天然绑定、极简的命令行交互体验和高效的代码生成速度，成为许多偏好 OpenAI 技术栈的开发者的首选。不过 Codex 本质上是一个轻量级的 CLI 编程助手，而 HagiCode 是一个功能完整的 AI 编程工作台——两者配合使用，才能把 Codex 的极速编码能力升级为全流程开发体验。",

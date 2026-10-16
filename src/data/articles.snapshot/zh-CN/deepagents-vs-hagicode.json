@@ -5,7 +5,7 @@
   "locale": "zh-CN",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "DeepAgents Vs HagiCode",
+    "title": "DeepAgents 对比 HagiCode:功能与差异",
     "description": "了解 DeepAgents 的主要功能、LangChain 生态和技术架构，并从多线程并行、OpenSpec 提案、AI 提交、Preset Task、游戏化界面、Agents 管理、Monospecs、Vault 和 OmniRoute 等角度，看 HagiCode 如何让 DeepAgents 的深度编排能力从框架级工具变成日常可用的开发平台。"
   },
   "summary": "DeepAgents 是 LangChain 官方推出的 AI Agent CLI 工具，建立在 LangChain 深厚的 Agent 编排框架基础之上。它以\"深度多步推理、工具组合编排和复杂任务分解\"为设计核心，特别适合需要多个子任务协同编排的复杂开发场景。不过 DeepAgents 本质上是 LangChain 生态中的一个 CLI 节点，而 HagiCode 是一个面向完整开发工作流的桌面平台——两者配合，才能把 DeepAgents 的编排能力从\"框架功能\"变成\"日常开发工具\"。",

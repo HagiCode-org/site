@@ -5,7 +5,7 @@
   "locale": "ja-JP",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "GitHub Copilot Vs HagiCode",
+    "title": "GitHub Copilot と HagiCode の比較:機能と違い",
     "description": "GitHub Copilot の主な機能、マルチモデルサポート、技術アーキテクチャを理解し、マルチスレッド並列、OpenSpec 提案、AI コミット、Preset Task、ゲーム化 UI、Agents 管理、Monospecs、Vault、OmniRoute を通じて HagiCode が Copilot をコード補完アシスタントから全ワークフローの開発パートナーへと引き上げる方法をご覧ください。"
   },
   "summary": "GitHub Copilot は今日最も人気のある AI プログラミングツールの一つです。GitHub エコシステムとの深い統合、強力なコード補完、複数の AI モデルへの統合アクセスにより、何百万人もの開発者の日常の必需品になっています。ただし Copilot は根本的に AI 能力のインターフェース層であり、HagiCode は AI プログラミングシナリオのために特別に作られたデスクトップワークベンチです。両者はそれぞれの領域で優れており、組み合わせることで Copilot の開発 potential を完全に引き出せます。",

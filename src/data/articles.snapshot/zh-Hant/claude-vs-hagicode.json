@@ -5,7 +5,7 @@
   "locale": "zh-Hant",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "Claude Vs HagiCode",
+    "title": "Claude Code 對比 HagiCode:功能與差異",
     "description": "了解 Claude 的主要功能、模型特點和插件生態，並從多線程並行、OpenSpec 提案、AI 提交、Preset Task、遊戲化界面、Agents 管理、Monospecs、Vault 和 OmniRoute 等角度，看 HagiCode 如何讓 Claude 的實力更上一層樓。"
   },
   "summary": "Claude 是目前全球公認最強大的 AI 程式助手之一，憑藉超長上下文視窗、深度推理能力和高度安全的模型對齊，贏得了大量開發者的信賴。不過 Claude 本身是一個模型能力的載體，而 HagiCode 是一個專門為 AI 程式設計場景設計的桌面工作台——兩者各有所長，配合使用才能真正發揮 Claude 的全部實力。",

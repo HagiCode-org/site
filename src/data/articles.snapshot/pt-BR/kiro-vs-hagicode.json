@@ -5,7 +5,7 @@
   "locale": "pt-BR",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "Kiro Vs HagiCode",
+    "title": "Kiro CLI vs HagiCode: recursos e comparação",
     "description": "Entenda as funções principais do Kiro CLI, suas características técnicas e sua experiência de desenvolvedor, e veja como o HagiCode eleva o Kiro CLI ao próximo nível através de multithreading, propostas OpenSpec, commits de IA, Preset Tasks, UI gamificada, gestão de Agents, Monospecs, Vault e OmniRoute."
   },
   "summary": "O Kiro CLI é uma ferramenta CLI de programação com IA focada na experiência do desenvolvedor, projetada em torno de simplicidade, refinamento e eficiência. Com onboarding ultrarrápido, geração de código precisa e feedback de interação claro, ele é conhecido por uma experiência de codificação agradável. No entanto, o Kiro CLI é uma ferramenta de terminal, e o HagiCode é uma workbench com gestão multi-repo, persistência de conhecimento e fluxo de trabalho visual. Ambos juntos estendem a experiência refinada do Kiro a um processo de desenvolvimento completo.",

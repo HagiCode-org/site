@@ -5,7 +5,7 @@
   "locale": "ko-KR",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "Gemini Vs HagiCode",
+    "title": "Gemini CLI vs HagiCode 비교: 기능과 차이점",
     "description": "Google Gemini CLI의 주요 기능, 다중 모달 능력, Google 생태계 통합을 이해하고, 멀티스레드 병렬, OpenSpec 제안, AI 커밋, Preset Task, 게임화 UI, Agents 관리, Monospecs, Vault, OmniRoute를 통해 HagiCode가 Gemini CLI를 다음 단계로 끌어올리는 방법을 살펴보세요."
   },
   "summary": "Google Gemini CLI는 Google의 공식 터미널 AI 프로그래밍 도구입니다. Gemini의 다중 모달 이해, 초장문 컨텍스트 처리 능력, Google 생태계와의 깊은 통합으로 시각 정보를 포함한 복잡한 작업에 특히 뛰어납니다. 다만 Gemini CLI는 본질적으로 터미널 도구이고, HagiCode는 시각화, 관리, 지식 영속화를 갖춘 워크벤치입니다. 둘을 결합하면 Gemini의 다중 모달 능력을 완전한 개발 경험으로 확장할 수 있습니다.",

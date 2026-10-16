@@ -5,7 +5,7 @@
   "locale": "ja-JP",
   "updatedAt": "2026-06-18T00:00:00.000Z",
   "seo": {
-    "title": "Pi Vs HagiCode",
+    "title": "Pi CLI と HagiCode の比較:機能と違い",
     "description": "Pi CLI のプロバイダーファーストのワークフロー、セッション制御、ツールガバナンスを理解し、マルチスレッド並列、OpenSpec 提案、AI コミット、Preset Task、ゲーム化 UI、Agents 管理、Monospecs、Vault、OmniRoute を通じて HagiCode が Pi を本番級の AI プログラミングワークベンチへと変える方法をご覧ください。"
   },
   "summary": "Pi CLI はプロバイダー非依存のモデルアクセスのために作られた柔軟な AI コーディングインターフェースです。設定可能な思考モード、セッション永続化の制御、明示的なツールガバナンスにより、AI コーディングアシスタントの振る舞いをきめ細かく制御できます。ただし Pi CLI は依然として本質的にターミナルのエントリーポイントであり、HagiCode は完全な AI プログラミングワークベンチです。両者を組み合わせることで、Pi を設定可能な CLI から完全な日常の開発環境へと変えられます。",

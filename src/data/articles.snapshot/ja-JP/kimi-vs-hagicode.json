@@ -5,7 +5,7 @@
   "locale": "ja-JP",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "Kimi Vs HagiCode",
+    "title": "Kimi CLI と HagiCode の比較:機能と違い",
     "description": "Kimi CLI の主な機能、中国語最適化、Moonshot AI エコシステムを理解し、マルチスレッド並列、OpenSpec 提案、AI コミット、Preset Task、ゲーム化 UI、Agents 管理、Monospecs、Vault、OmniRoute を通じて HagiCode が Kimi CLI を次のレベルに引き上げる方法をご覧ください。"
   },
   "summary": "Kimi CLI は Moonshot AI のターミナル AI プログラミングツールで、中国語ファーストという独自の位置づけにより AI プログラミングツールの中で際立っています。中国語の技術コンテンツの深い理解、中国語のコード生成とコメント、中国語のドキュメントの分析に優れ、中国語圏の開発者にとって特に使いやすいツールです。ただし Kimi CLI はターミナルツールであり、HagiCode は可視化、マルチリポジトリ管理、知識の永続化を備えたワークベンチです。両者を組み合わせることで、Kimi の中国語能力を完全な開発体験へと拡張できます。",

@@ -5,7 +5,7 @@
   "locale": "zh-CN",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "Gemini Vs HagiCode",
+    "title": "Gemini CLI 对比 HagiCode:功能与差异",
     "description": "了解 Google Gemini CLI 的主要功能、多模态特性和 Google 生态整合，并从多线程并行、OpenSpec 提案、AI 提交、Preset Task、游戏化界面、Agents 管理、Monospecs、Vault 和 OmniRoute 等角度，看 HagiCode 如何让 Gemini 的多模态能力落地为生产级编程体验。"
   },
   "summary": "Google Gemini CLI 是 Google 官方推出的终端 AI 编程工具，凭借 Gemini 模型的多模态理解能力、超长上下文窗口以及与 Google Cloud 生态的深度连接，在 AI 编程领域开辟了独特的定位。不过 Gemini CLI 本身是一个模型能力的命令行入口，而 HagiCode 是一个为 AI 编程场景设计的桌面工作台——两者配合，才能将 Gemini 的差异化优势转化为真正可用的生产级开发体验。",

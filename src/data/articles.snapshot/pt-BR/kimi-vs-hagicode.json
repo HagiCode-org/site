@@ -5,7 +5,7 @@
   "locale": "pt-BR",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "Kimi Vs HagiCode",
+    "title": "Kimi CLI vs HagiCode: recursos e comparação",
     "description": "Entenda as funções principais do Kimi CLI, sua otimização chinesa e seu ecossistema Moonshot AI, e veja como o HagiCode eleva o Kimi CLI ao próximo nível através de multithreading, propostas OpenSpec, commits de IA, Preset Tasks, UI gamificada, gestão de Agents, Monospecs, Vault e OmniRoute."
   },
   "summary": "O Kimi CLI é a ferramenta de programação com IA em terminal do Moonshot AI, unicamente posicionada entre as ferramentas de programação com IA por sua abordagem 'chinês primeiro'. Ele se destaca em profunda compreensão de conteúdos técnicos em chinês, geração e comentário de código em chinês e análise de documentos em chinês, e é uma ferramenta particularmente amigável para desenvolvedores sinófonos. No entanto, o Kimi CLI é uma ferramenta de terminal, e o HagiCode é uma workbench com visualização, gestão multi-repo e persistência de conhecimento. Ambos juntos estendem a capacidade chinesa do Kimi a uma experiência de desenvolvimento completa.",

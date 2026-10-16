@@ -5,7 +5,7 @@
   "locale": "fr-FR",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "Claude Vs HagiCode",
+    "title": "Claude Code vs HagiCode : fonctionnalités et comparaison",
     "description": "Comprenez les fonctions clés de Claude, les caractéristiques du modèle et l'écosystème de plugins, et voyez comment HagiCode porte la puissance de Claude au niveau supérieur via le multithreading, les propositions OpenSpec, les commits IA, les Preset Tasks, l'UI gamifiée, la gestion des Agents, les Monospecs, le Vault et OmniRoute."
   },
   "summary": "Claude est largement reconnu comme l'un des assistants de codage IA les plus puissants au monde. Avec sa fenêtre de contexte ultra-longue, ses capacités de raisonnement approfondi et son alignement de modèle hautement sécurisé, il a gagné la confiance d'innombrables développeurs. Cependant, Claude lui-même est un porteur de capacité de modèle, tandis que HagiCode est un atelier de bureau conçu pour les scénarios de programmation IA. Chacun excelle dans son domaine, et les utiliser ensemble libère véritablement toute la puissance de Claude.",

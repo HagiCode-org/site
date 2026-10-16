@@ -5,7 +5,7 @@
   "locale": "ja-JP",
   "updatedAt": "2026-06-18T00:00:00.000Z",
   "seo": {
-    "title": "Reasonix Vs HagiCode",
+    "title": "Reasonix CLI と HagiCode の比較:機能と違い",
     "description": "Reasonix CLI の推論制御、予算ガードレール、トランスクリプトフレンドリーなワークフローを理解し、マルチスレッド並列、OpenSpec 提案、AI コミット、Preset Task、ゲーム化 UI、Agents 管理、Monospecs、Vault、OmniRoute を通じて HagiCode が Reasonix を本番級の AI プログラミングプラットフォームへと変える方法をご覧ください。"
   },
   "summary": "Reasonix CLI は、努力、予算、トランスクリプトの捕捉、実行の積極性をコマンドラインから直接調整したい開発者のために作られた、推論ファーストの AI コーディングインターフェースです。ACP ベースのツールオーケストレーションと設定可能なランタイム振る舞いにより、慎重で検査可能なエンジニアリング作業に適しています。ただし Reasonix はターミナルツールのままであり、HagiCode が日常の本番利用に必要なオーケストレーション、ワークフローの記憶、マルチエージェントの面を加えます。",

@@ -5,7 +5,7 @@
   "locale": "zh-CN",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "CodeBuddy Vs HagiCode",
+    "title": "CodeBuddy CLI 对比 HagiCode:功能与差异",
     "description": "了解 CodeBuddy CLI 的主要功能、企业级特性和技术生态，并从多线程并行、OpenSpec 提案、AI 提交、Preset Task、游戏化界面、Agents 管理、Monospecs、Vault 和 OmniRoute 等角度，看 HagiCode 如何让 CodeBuddy 的企业级能力获得全面工作流加持。"
   },
   "summary": "CodeBuddy CLI 是一款面向企业级开发场景的 AI 编码助手，以\"安全、可控、高效\"为产品理念。它在权限管理、代码安全和团队协作方面有比一般开源工具更成熟的考量，特别适合对代码安全和合规性有严格要求的团队。不过 CodeBuddy CLI 本身是一个编码助手工具，而 HagiCode 是一个全面的 AI 编程工作台——两者配合，才能把 CodeBuddy 的企业级基因从\"工具层面\"释放到\"平台层面\"。",

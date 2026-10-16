@@ -5,7 +5,7 @@
   "locale": "zh-CN",
   "updatedAt": "2026-08-11T00:00:00.000Z",
   "seo": {
-    "title": "OMP Vs HagiCode",
+    "title": "OMP CLI 对比 HagiCode:功能与差异",
     "description": "了解 OMP CLI 以 provider 为中心的工作方式、环境绑定的单次执行、thinking 控制与细粒度工具治理，并从多线程并行、OpenSpec 提案、AI 提交、Preset Task、游戏化界面、Agents 管理、Monospecs、Vault 和 OmniRoute 等角度，看 HagiCode 如何把 OMP 变成生产级的 AI 编程工作台。"
   },
   "summary": "OMP CLI 是一个强调可复现、环境作用域执行的严谨型 AI 编程入口。它通过 provider 解耦的模型接入、可配置的 thinking 模式、显式的工具开关，以及对每一次调用的工作目录和环境变量的完整控制，为开发者提供干净、可审计的 AI 工作单元。不过 OMP CLI 本质上仍然是一个命令行入口，而 HagiCode 是一个完整的 AI 编程工作台。两者结合，才能把 OMP 从“可复现的单次 CLI”升级为“日常开发环境”。",

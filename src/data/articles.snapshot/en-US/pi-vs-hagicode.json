@@ -5,7 +5,7 @@
   "locale": "en-US",
   "updatedAt": "2026-06-18T00:00:00.000Z",
   "seo": {
-    "title": "Pi Vs HagiCode",
+    "title": "Pi CLI vs HagiCode: Features and Comparison",
     "description": "Understand Pi CLI's provider-first workflow, session controls, and tool governance, and see how HagiCode turns Pi into a production-grade AI programming workbench through multi-threaded parallelism, OpenSpec proposals, AI commits, Preset Tasks, gamified UI, Agents management, Monospecs, Vault, and OmniRoute."
   },
   "summary": "Pi CLI is a flexible AI coding interface built for provider-agnostic model access. With configurable thinking modes, session persistence controls, and explicit tool gating, it gives developers fine-grained control over how an AI coding assistant behaves. However, Pi CLI is still fundamentally a terminal entry point, while HagiCode is a full AI programming workbench. Together, they turn Pi from a configurable CLI into a complete daily development environment.",

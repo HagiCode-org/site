@@ -5,7 +5,7 @@
   "locale": "zh-CN",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "Hermes Vs HagiCode",
+    "title": "Hermes Agent 对比 HagiCode:功能与差异",
     "description": "了解 Hermes Agent 的主要功能、推理特点和研究背景，并从多线程并行、OpenSpec 提案、AI 提交、Preset Task、游戏化界面、Agents 管理、Monospecs、Vault 和 OmniRoute 等角度，看 HagiCode 如何让 Hermes 的深度推理能力落地为日常开发生产力。"
   },
   "summary": "Hermes 是 Nous Research 推出的 AI Agent CLI 工具，以\"让 AI 具备真正的自主代理能力\"为核心理念。Hermes 在推理深度、自主规划和多步执行方面表现突出，特别适合需要深度思考的复杂编程任务。不过 Hermes 是一个研究驱动的 Agent 工具，而 HagiCode 是一个面向工程实践的 AI 编程工作台——两者配合，才能把 Hermes 的研究级能力转化为可复用的生产级工作流。",

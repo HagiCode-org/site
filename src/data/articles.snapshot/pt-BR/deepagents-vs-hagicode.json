@@ -5,7 +5,7 @@
   "locale": "pt-BR",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "DeepAgents Vs HagiCode",
+    "title": "DeepAgents vs HagiCode: recursos e comparação",
     "description": "Entenda as funções principais do DeepAgents, seu ecossistema LangChain e sua arquitetura técnica, e veja como o HagiCode eleva o DeepAgents ao próximo nível através de multithreading, propostas OpenSpec, commits de IA, Preset Tasks, UI gamificada, gestão de Agents, Monospecs, Vault e OmniRoute."
   },
   "summary": "O DeepAgents é a ferramenta CLI de Agent de IA oficial do LangChain, construída sobre o framework profundo de orquestração de Agent do LangChain. Ele se centraliza em decomposição automática de tarefas complexas, orquestração coordenada multi-ferramenta e consciência de estado, e é particularmente adequado para tarefas de desenvolvimento complexas e multi-etapas. No entanto, o DeepAgents é uma ferramenta de orquestração CLI, e o HagiCode é uma workbench que fornece gestão multi-repo, persistência de conhecimento e um ambiente de desenvolvimento visualizado. Ambos juntos elevam a capacidade de orquestração a uma experiência de desenvolvimento completa.",

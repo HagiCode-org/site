@@ -5,7 +5,7 @@
   "locale": "ko-KR",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "CodeBuddy Vs HagiCode",
+    "title": "CodeBuddy CLI vs HagiCode 비교: 기능과 차이점",
     "description": "CodeBuddy CLI의 주요 기능, 엔터프라이즈급 특성, 기술 생태계를 이해하고, 멀티스레드 병렬, OpenSpec 제안, AI 커밋, Preset Task, 게임화 UI, Agents 관리, Monospecs, Vault, OmniRoute를 통해 HagiCode가 CodeBuddy를 다음 단계로 끌어올리는 방법을 살펴보세요."
   },
   "summary": "CodeBuddy CLI는 엔터프라이즈 개발 시나리오를 위해 설계된 AI 코딩 어시스턴트로, 보안, 컴플라이언스, 팀 협업을 핵심으로 삼습니다. CodeBuddy CLI는 견고한 코드 보호와 컴플라이언스 보장을 제공하는 반면, HagiCode는 워크플로, 지식 관리, 다중 리포 연동 같은 더 넓은 영역을 담당하는 워크벤치입니다. 둘을 결합하면 엔터프라이즈급 AI 개발 경험을 완성할 수 있습니다.",

@@ -5,7 +5,7 @@
   "locale": "ja-JP",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "Claude Vs HagiCode",
+    "title": "Claude Code と HagiCode の比較:機能と違い",
     "description": "Claudeの主な機能、モデル特性、プラグインエコシステムを理解し、マルチスレッド並列処理、OpenSpec提案、AIコミット、Preset Task、ゲーム化UI、Agent管理、Monospecs、Vault、OmniRouteを通じてHagiCodeがClaudeを次のレベルに引き上げる方法をご覧ください。"
   },
   "summary": "Claudeは世界で最も強力なAIプログラミングアシスタントの一つです。超長コンテキストウィンドウ、深い推論能力、高度な安全性により、多くの開発者の信頼を獲得しています。Claudeはモデル能力の担い手であり、HagiCodeはAIプログラミングシナリオ向けに設計されたデスクトップワークベンチです。両者を組み合わせることで、Claudeの真の実力を発揮できます。",

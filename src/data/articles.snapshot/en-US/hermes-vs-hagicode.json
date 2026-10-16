@@ -5,7 +5,7 @@
   "locale": "en-US",
   "updatedAt": "2026-06-17T00:00:00.000Z",
   "seo": {
-    "title": "Hermes Vs HagiCode",
+    "title": "Hermes Agent vs HagiCode: Features and Comparison",
     "description": "Understand Hermes Agent's key features, reasoning characteristics, and research background, and see how HagiCode turns Hermes' deep reasoning into daily development productivity through multi-threaded parallelism, OpenSpec proposals, AI commits, Preset Tasks, gamified UI, Agents management, Monospecs, Vault, and OmniRoute."
   },
   "summary": "Hermes is Nous Research's AI Agent CLI tool, built on the core philosophy of giving AI genuine autonomous agent capabilities. Hermes excels in reasoning depth, autonomous planning, and multi-step execution — particularly well-suited for complex programming tasks requiring deep thought. However, Hermes is a research-driven Agent tool, while HagiCode is an engineering-practice-oriented AI programming workbench. Together, they transform Hermes' research-grade capabilities into reusable production-grade workflows.",
