@@ -206,3 +206,13 @@ commonActions:
   platform: プラットフォーム
   china: 中国
   default: デフォルト
+compare:
+  relatedTitle: "使っているエージェントと HagiCode を比較"
+  relatedDescription: "ほかの AI コーディング CLI を使っていますか?HagiCode との違いと併用の方法を確認できます。"
+  vsLabel: "{agent} と HagiCode の比較"
+  moreTitle: "ほかの比較"
+  faqTitle: "よくある質問"
+  ctaTitle: "今使っているエージェントの上で HagiCode を試す"
+  ctaDescription: "HagiCode デスクトップをインストールし、既存の CLI を接続して、今の作業スタイルのまま使えます。"
+  ctaButton: "HagiCode デスクトップをインストール"
+  allComparisons: "すべての比較"

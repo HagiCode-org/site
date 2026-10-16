@@ -7,6 +7,7 @@
  * - bullet-list      → ul/li with `.structured-bullet-list`
  * - capability-list  → responsive grid of cards
  * - comparison-grid  → responsive grid of `<dl>` cards
+ * - comparison-table → scrollable `<table>` with a header row and row labels
  * - callout          → `<aside>` with a tone class
  * - cta-group        → anchor buttons with a variant
  */
@@ -84,6 +85,35 @@ const { blocks } = Astro.props;
               </dl>
             </article>
           ))}
+        </div>
+      );
+
+    case 'comparison-table':
+      return (
+        <div class="structured-table-wrap" data-block-id={block.id} tabindex="0" role="region" aria-label={block.caption ?? block.headers.join(' / ')}>
+          <table class="structured-table">
+            {block.caption === undefined ? null : <caption class="structured-table__caption">{block.caption}</caption>}
+            <thead>
+              <tr>
+                {block.headers.map((header) => (
+                  <th scope="col" class="structured-table__th">{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row) => (
+                <tr>
+                  {row.cells.map((cell, index) =>
+                    index === 0 ? (
+                      <th scope="row" class="structured-table__rowhead">{cell}</th>
+                    ) : (
+                      <td class="structured-table__td">{cell}</td>
+                    ),
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       );
 

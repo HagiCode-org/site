@@ -206,3 +206,13 @@ commonActions:
   platform: 平台
   china: 中國大陸
   default: 預設
+compare:
+  relatedTitle: "比較 HagiCode 與你正在用的 Agent"
+  relatedDescription: "已經在用別的 AI 程式設計 CLI?看看它與 HagiCode 的差異,以及如何一起使用。"
+  vsLabel: "{agent} 對比 HagiCode"
+  moreTitle: "更多比較"
+  faqTitle: "常見問題"
+  ctaTitle: "在你既有的 Agent 之上試試 HagiCode"
+  ctaDescription: "安裝 HagiCode 桌面版,接入你現有的 CLI,維持原本的工作方式。"
+  ctaButton: "安裝 HagiCode 桌面版"
+  allComparisons: "全部比較"

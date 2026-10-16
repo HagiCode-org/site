@@ -1,0 +1,136 @@
+.related-comparisons {
+  --related-fg: var(--color-text-strong, #F8FAFC);
+  --related-muted: var(--color-text-muted, #E2E8F0);
+  --related-surface: rgba(15, 23, 42, 0.85);
+  --related-border: rgba(0, 128, 255, 0.18);
+
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--spacing-xl, 48px) var(--spacing-md, 24px);
+  color: var(--related-fg);
+}
+
+[data-theme="light"] .related-comparisons {
+  --related-fg: var(--color-text-strong-light, #0F172A);
+  --related-muted: var(--color-text-muted-light, #475569);
+  --related-surface: rgba(255, 255, 255, 0.85);
+  --related-border: rgba(0, 0, 0, 0.1);
+}
+
+.related-comparisons__title {
+  margin: 0 0 var(--spacing-xs, 8px);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--related-fg);
+}
+
+.related-comparisons__description {
+  margin: 0 0 var(--spacing-md, 24px);
+  max-width: 62ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--related-muted);
+}
+
+.related-comparisons__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: var(--spacing-sm, 16px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.related-comparisons__link {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid var(--related-border);
+  border-radius: 9999px;
+  background: var(--related-surface);
+  color: var(--related-fg);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.3;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.related-comparisons__link:hover,
+.related-comparisons__link:focus-visible {
+  border-color: var(--color-primary-cyan, #00CCCC);
+  color: var(--color-primary-cyan, #00CCCC);
+}
+
+[data-theme="light"] .related-comparisons__link:hover,
+[data-theme="light"] .related-comparisons__link:focus-visible {
+  color: var(--color-primary-blue, #0080FF);
+  border-color: var(--color-primary-blue, #0080FF);
+}
+
+.related-comparisons__cta {
+  margin-top: var(--spacing-lg, 32px);
+  padding: var(--spacing-md, 24px);
+  border: 1px solid var(--related-border);
+  border-left: 3px solid var(--color-primary-blue, #0080FF);
+  border-radius: var(--rounded-md, 8px);
+  background: var(--related-surface);
+}
+
+.related-comparisons__cta-title {
+  margin: 0 0 var(--spacing-xs, 8px);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--related-fg);
+}
+
+.related-comparisons__cta-text {
+  margin: 0 0 var(--spacing-sm, 16px);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--related-muted);
+}
+
+.related-comparisons__cta-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: var(--rounded-lg, 12px);
+  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 100%);
+  color: #FFFFFF;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.related-comparisons__cta-button:hover,
+.related-comparisons__cta-button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(0, 128, 255, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .related-comparisons__link,
+  .related-comparisons__cta-button {
+    transition: none;
+  }
+
+  .related-comparisons__cta-button:hover,
+  .related-comparisons__cta-button:focus-visible {
+    transform: none;
+  }
+}
+
+/* Inside a comparison page the body column is already centred and padded. */
+.compare-page .related-comparisons {
+  padding: var(--spacing-xl, 48px) 0 0;
+}
+
+@media (max-width: 480px) {
+  .related-comparisons {
+    padding-inline: var(--spacing-sm, 16px);
+  }
+}

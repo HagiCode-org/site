@@ -8,6 +8,9 @@ import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
 import DesktopHero from '@/components/desktop/DesktopHero';
 import StructuredArticleBlocks from '@/components/structured-article/StructuredArticleBlocks.astro';
 import StructuredArticleMetaRow from '@/components/structured-article/StructuredArticleMetaRow.astro';
+import RelatedComparisons from '@/components/compare/RelatedComparisons.astro';
+import { gaEventAttributes } from '@hagicode/hagilight-core/analytics-events';
+import { getDocsAbsoluteUrl } from '@/lib/shared/links';
 import type { StructuredArticleViewModel } from '@/components/structured-article/types';
 import type { SiteLocale } from '@/i18n/locale-metadata';
 import {
@@ -35,6 +38,41 @@ const { t } = getServerTranslation(locale);
 const desktopI18nBootstrap = getSerializedPageTranslationBootstrap(locale, ['common', 'desktop']);
 const heroBadge = t('desktopHero.badge');
 const heroTagline = t('desktopHero.tagline');
+const installHref = getDocsAbsoluteUrl('/installation/desktop/', locale);
+const SITE_ORIGIN = 'https://www.hagicode.com';
+
+// Article + FAQPage structured data. The FAQ entries are the same text the page renders below,
+// so the markup never describes content a reader cannot see.
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      '@id': `${canonicalUrl}#article`,
+      headline: viewModel.title,
+      description: viewModel.description,
+      inLanguage: viewModel.resolvedLocale,
+      dateModified: viewModel.updatedAt,
+      mainEntityOfPage: canonicalUrl,
+      author: { '@type': 'Organization', name: 'HagiCode', url: SITE_ORIGIN },
+      publisher: { '@type': 'Organization', name: 'HagiCode', url: SITE_ORIGIN },
+    },
+    ...(viewModel.faq.length === 0
+      ? []
+      : [
+          {
+            '@type': 'FAQPage',
+            '@id': `${canonicalUrl}#faq`,
+            mainEntity: viewModel.faq.map((entry) => ({
+              '@type': 'Question',
+              name: entry.question,
+              acceptedAnswer: { '@type': 'Answer', text: entry.answer },
+            })),
+          },
+        ]),
+  ],
+};
+const structuredDataJson = JSON.stringify(structuredData).replace(/</gu, '\\u003c');
 ---
 
 <!doctype html>
@@ -53,6 +91,7 @@ const heroTagline = t('desktopHero.tagline');
     <meta name="og:description" content={viewModel.description} />
     <meta name="og:type" content="website" />
     <meta name="og:url" content={canonicalUrl} />
+    <script is:inline type="application/ld+json" set:html={structuredDataJson} />
     <GoogleAnalytics />
     <MicrosoftStoreBadgeScript />
     <script is:inline set:html={desktopI18nBootstrap} />
@@ -94,6 +133,15 @@ const heroTagline = t('desktopHero.tagline');
         <span class="compare-page__badge">vs-hagicode</span>
         <h1 class="compare-page__title">{viewModel.title}</h1>
         <p class="compare-page__subtitle">{viewModel.summary}</p>
+        <p class="compare-page__hero-cta">
+          <a
+            class="structured-cta-button variant-primary"
+            href={installHref}
+            {...gaEventAttributes({ category: 'navigation', label: 'installDesktop', location: 'compare_cta' })}
+          >
+            {t('compare.ctaButton')}
+          </a>
+        </p>
       </section>
 
       <div class="compare-page__body">
@@ -110,6 +158,27 @@ const heroTagline = t('desktopHero.tagline');
             <StructuredArticleBlocks blocks={section.blocks} />
           </section>
         ))}
+
+        {viewModel.faq.length > 0 && (
+          <section id="faq" class="compare-section structured-section">
+            <h2 class="compare-section__title">{t('compare.faqTitle')}</h2>
+            <div class="structured-faq">
+              {viewModel.faq.map((entry) => (
+                <article class="structured-faq__item">
+                  <h3 class="structured-faq__question">{entry.question}</h3>
+                  <p class="structured-faq__answer">{entry.answer}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <RelatedComparisons
+          locale={locale}
+          currentSlug={slug}
+          heading={t('compare.moreTitle')}
+          withCta
+        />
 
         <section class="hero structured-desktop-hero">
           <div class="hero-content">

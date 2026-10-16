@@ -104,6 +104,24 @@ function normalizeArticleBlock(block, fieldName, sourceLabel) {
           };
         }),
       };
+    case 'comparison-table': {
+      const headers = assertStringArray(block.headers, `${fieldName}.headers`, sourceLabel);
+      assert(headers.length >= 2, `${sourceLabel}: ${fieldName}.headers must contain at least two columns`);
+      assert(Array.isArray(block.rows) && block.rows.length > 0, `${sourceLabel}: ${fieldName}.rows must be a non-empty array`);
+      return {
+        id,
+        type,
+        ...(block.caption === undefined ? {} : { caption: assertNonEmptyString(block.caption, `${fieldName}.caption`, sourceLabel) }),
+        headers,
+        rows: block.rows.map((row, index) => {
+          const rowField = `${fieldName}.rows[${index}]`;
+          assert(isRecord(row), `${sourceLabel}: ${rowField} must be an object`);
+          const cells = assertStringArray(row.cells, `${rowField}.cells`, sourceLabel);
+          assert(cells.length === headers.length, `${sourceLabel}: ${rowField}.cells must have ${headers.length} entries`);
+          return { id: assertNonEmptyString(row.id, `${rowField}.id`, sourceLabel), cells };
+        }),
+      };
+    }
     case 'callout': {
       const tone = assertNonEmptyString(block.tone, `${fieldName}.tone`, sourceLabel);
       assert(['info', 'success', 'warning'].includes(tone), `${sourceLabel}: ${fieldName}.tone must be info, success, or warning`);
@@ -162,6 +180,20 @@ function normalizeArticleDetail(payload, sourceLabel) {
         blocks: section.blocks.map((block, blockIndex) => normalizeArticleBlock(block, `${sectionField}.blocks[${blockIndex}]`, sourceLabel)),
       };
     }),
+    ...(payload.faq === undefined
+      ? {}
+      : {
+          faq: (() => {
+            assert(Array.isArray(payload.faq) && payload.faq.length > 0, `${sourceLabel}: faq must be a non-empty array`);
+            return payload.faq.map((entry, index) => {
+              assert(isRecord(entry), `${sourceLabel}: faq[${index}] must be an object`);
+              return {
+                question: assertNonEmptyString(entry.question, `faq[${index}].question`, sourceLabel),
+                answer: assertNonEmptyString(entry.answer, `faq[${index}].answer`, sourceLabel),
+              };
+            });
+          })(),
+        }),
     ...(payload.cta === undefined
       ? {}
       : {
@@ -338,6 +370,11 @@ export function getHomepageAgentChooserItems(locale, category = 'vs-hagicode', o
   return items;
 }
 
+/** Comparison pages other than `currentSlug`, in the same shape as the homepage agent chooser. */
+export function getRelatedComparisonItems(currentSlug, locale, category = 'vs-hagicode', options = {}) {
+  return getHomepageAgentChooserItems(locale, category, options).filter((item) => item.slug !== currentSlug);
+}
+
 function titleToAgentName(title, slug) {
   const normalized = title
     .replace(/\s*[-—–]+\s*.*/u, '')
@@ -394,6 +431,7 @@ export function getStructuredArticleViewModel(slug, locale = DEFAULT_LOCALE, opt
     usedFallback,
     snapshotPath,
     sections: detail.sections,
+    faq: detail.faq ?? [],
     toc: detail.sections.map((section) => ({ id: section.id, title: section.title })),
     cta: detail.cta ?? {},
   };

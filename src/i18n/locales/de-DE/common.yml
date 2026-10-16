@@ -206,3 +206,13 @@ commonActions:
   platform: Plattform
   china: Festlandchina
   default: Standard
+compare:
+  relatedTitle: "HagiCode mit Ihrem Agenten vergleichen"
+  relatedDescription: "Sie nutzen bereits ein anderes KI-Coding-CLI? Sehen Sie, wo es sich von HagiCode unterscheidet und wie beide zusammenarbeiten."
+  vsLabel: "{agent} vs. HagiCode"
+  moreTitle: "Weitere Vergleiche"
+  faqTitle: "Häufige Fragen"
+  ctaTitle: "HagiCode auf dem Agenten testen, den Sie schon nutzen"
+  ctaDescription: "Installieren Sie HagiCode Desktop, verbinden Sie Ihr bestehendes CLI und arbeiten Sie weiter wie bisher."
+  ctaButton: "HagiCode Desktop installieren"
+  allComparisons: "Alle Vergleiche"

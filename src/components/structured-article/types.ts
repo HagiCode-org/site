@@ -47,6 +47,20 @@ export interface StructuredComparisonGridBlock {
   items: StructuredComparisonItem[];
 }
 
+export interface StructuredComparisonTableRow {
+  id: string;
+  /** One entry per header; the first entry is the row label. */
+  cells: string[];
+}
+
+export interface StructuredComparisonTableBlock {
+  id: string;
+  type: 'comparison-table';
+  caption?: string;
+  headers: string[];
+  rows: StructuredComparisonTableRow[];
+}
+
 export interface StructuredCalloutBlock {
   id: string;
   type: 'callout';
@@ -70,6 +84,7 @@ export type StructuredArticleBlock =
   | StructuredBulletListBlock
   | StructuredCapabilityListBlock
   | StructuredComparisonGridBlock
+  | StructuredComparisonTableBlock
   | StructuredCalloutBlock
   | StructuredCtaGroupBlock;
 
@@ -84,6 +99,11 @@ export interface StructuredArticleCtaSet {
   secondary?: StructuredArticleCtaLink;
 }
 
+export interface StructuredArticleFaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface StructuredArticleViewModel {
   slug: string;
   title: string;
@@ -95,6 +115,7 @@ export interface StructuredArticleViewModel {
   usedFallback: boolean;
   snapshotPath: string;
   sections: StructuredArticleSection[];
+  faq: StructuredArticleFaqItem[];
   toc: Array<{ id: string; title: string }>;
   cta: StructuredArticleCtaSet;
 }

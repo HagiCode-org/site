@@ -206,3 +206,13 @@ commonActions:
   platform: 플랫폼
   china: 중국 본토
   default: 기본값
+compare:
+  relatedTitle: "사용 중인 에이전트와 HagiCode 비교"
+  relatedDescription: "다른 AI 코딩 CLI를 쓰고 있나요? HagiCode와의 차이와 함께 사용하는 방법을 확인하세요."
+  vsLabel: "{agent} vs HagiCode"
+  moreTitle: "다른 비교"
+  faqTitle: "자주 묻는 질문"
+  ctaTitle: "이미 쓰는 에이전트 위에서 HagiCode 사용해 보기"
+  ctaDescription: "HagiCode 데스크톱을 설치하고 기존 CLI를 연결해 지금의 작업 방식을 그대로 유지하세요."
+  ctaButton: "HagiCode 데스크톱 설치"
+  allComparisons: "모든 비교"

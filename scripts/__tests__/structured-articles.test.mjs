@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 import {
   buildArticleLocaleFallbacks,
   getHomepageAgentChooserItems,
+  getRelatedComparisonItems,
   getStructuredArticleEntriesByCategory,
   getStructuredArticleSlugsByCategory,
   getStructuredArticleViewModel,
@@ -208,5 +209,67 @@ describe('resolveStructuredArticle', () => {
     const result = resolveStructuredArticle('claude-vs-hagicode', 'zh-CN', { snapshotRoot });
     expect(result.detail.locale).toBe('zh-CN');
     expect(result.snapshotPath.endsWith(path.join('zh-CN', 'claude-vs-hagicode.json'))).toBe(true);
+  });
+});
+
+describe('comparison tables and FAQ', () => {
+  const table = {
+    id: 'table-1',
+    type: 'comparison-table',
+    caption: 'Compared',
+    headers: ['Aspect', 'Claude', 'HagiCode'],
+    rows: [{ id: 'row-1', cells: ['Price', 'Subscription', 'Free desktop'] }],
+  };
+
+  it('normalizes a comparison table and the FAQ into the view model', async () => {
+    const snapshotRoot = await createTempDir('site-articles-');
+    const detail = buildDetail({ locale: 'en-US' });
+    detail.sections[0].blocks.push(table);
+    detail.faq = [{ question: 'Is it free?', answer: 'The desktop edition is.' }];
+    await writeSnapshot(snapshotRoot, 'en-US', 'claude-vs-hagicode', detail);
+
+    const viewModel = getStructuredArticleViewModel('claude-vs-hagicode', 'en-US', { snapshotRoot });
+    expect(viewModel.sections[0].blocks.at(-1)).toEqual(table);
+    expect(viewModel.faq).toEqual(detail.faq);
+  });
+
+  it('gives an article without FAQ an empty list', async () => {
+    const snapshotRoot = await createTempDir('site-articles-');
+    await writeSnapshot(snapshotRoot, 'en-US', 'claude-vs-hagicode', buildDetail({ locale: 'en-US' }));
+
+    expect(getStructuredArticleViewModel('claude-vs-hagicode', 'en-US', { snapshotRoot }).faq).toEqual([]);
+  });
+
+  it('rejects a table row whose cell count does not match the headers', async () => {
+    const snapshotRoot = await createTempDir('site-articles-');
+    const detail = buildDetail({ locale: 'en-US' });
+    detail.sections[0].blocks.push({ ...table, rows: [{ id: 'row-1', cells: ['Price', 'Free'] }] });
+    await writeSnapshot(snapshotRoot, 'en-US', 'claude-vs-hagicode', detail);
+
+    expect(() => getStructuredArticleViewModel('claude-vs-hagicode', 'en-US', { snapshotRoot })).toThrow(
+      /rows\[0\]\.cells must have 3 entries/u,
+    );
+  });
+
+  it('rejects an empty FAQ list', async () => {
+    const snapshotRoot = await createTempDir('site-articles-');
+    await writeSnapshot(snapshotRoot, 'en-US', 'claude-vs-hagicode', { ...buildDetail({ locale: 'en-US' }), faq: [] });
+
+    expect(() => getStructuredArticleViewModel('claude-vs-hagicode', 'en-US', { snapshotRoot })).toThrow(
+      /faq must be a non-empty array/u,
+    );
+  });
+});
+
+describe('getRelatedComparisonItems', () => {
+  it('lists the other comparison pages and skips the current one', async () => {
+    const snapshotRoot = await createTempDir('site-articles-');
+    for (const slug of ['claude-vs-hagicode', 'codex-vs-hagicode', 'pi-vs-hagicode', 'reasonix-vs-hagicode']) {
+      await writeSnapshot(snapshotRoot, 'en-US', slug, buildDetail({ slug, locale: 'en-US', title: `${slug.split('-')[0]} CLI vs HagiCode: Features` }));
+    }
+
+    const related = getRelatedComparisonItems('codex-vs-hagicode', 'en-US', 'vs-hagicode', { snapshotRoot });
+    expect(related.map((item) => item.slug)).toEqual(['claude-vs-hagicode', 'pi-vs-hagicode', 'reasonix-vs-hagicode']);
+    expect(related[0].href).toBe('/en-US/claude-vs-hagicode/');
   });
 });

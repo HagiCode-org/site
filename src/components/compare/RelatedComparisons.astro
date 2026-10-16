@@ -1,0 +1,66 @@
+---
+/**
+ * Internal-link block that points readers at the "<agent> vs HagiCode" comparison pages.
+ * Used on the homepage, the desktop page, the about page and at the end of each comparison
+ * page (where `currentSlug` drops the page the reader is already on).
+ */
+import { gaEventAttributes } from '@hagicode/hagilight-core/analytics-events';
+import type { SiteLocale } from '@/i18n/locale-metadata';
+import { getServerTranslation } from '@/i18n/translation-resources';
+import { getDocsAbsoluteUrl } from '@/lib/shared/links';
+import { getRelatedComparisonItems } from '@/lib/structured-articles.mjs';
+import './related-comparisons.css';
+
+interface Props {
+  locale: SiteLocale;
+  currentSlug?: string;
+  /** Show the "install HagiCode Desktop" call to action under the links. */
+  withCta?: boolean;
+  /** `h2` for pages where this block is a top-level section; `h3` when nested. */
+  headingLevel?: 'h2' | 'h3';
+  /** Override the default heading (the comparison pages use the shorter "More comparisons"). */
+  heading?: string;
+}
+
+const { locale, currentSlug, withCta = false, headingLevel = 'h2', heading } = Astro.props;
+const { t } = getServerTranslation(locale);
+const items = getRelatedComparisonItems(currentSlug ?? '', locale);
+const Heading = headingLevel;
+const vsLabel = t('compare.vsLabel');
+const installHref = getDocsAbsoluteUrl('/installation/desktop/', locale);
+const allHref = `/${locale}/`;
+const headingId = `related-comparisons-${currentSlug ?? 'site'}`;
+---
+
+{items.length > 0 && (
+  <section class="related-comparisons" aria-labelledby={headingId} data-related-comparisons>
+    <Heading id={headingId} class="related-comparisons__title">{heading ?? t('compare.relatedTitle')}</Heading>
+    {heading === undefined && <p class="related-comparisons__description">{t('compare.relatedDescription')}</p>}
+    <ul class="related-comparisons__list">
+      {items.map((item) => (
+        <li class="related-comparisons__item">
+          <a
+            class="related-comparisons__link"
+            href={item.href}
+            {...gaEventAttributes({ category: 'navigation', label: 'relatedComparison', location: 'compare_related' })}
+          >
+            {vsLabel.replace('{agent}', item.agentName)}
+          </a>
+        </li>
+      ))}
+    </ul>
+    {withCta && (
+      <div class="related-comparisons__cta">
+        <h3 class="related-comparisons__cta-title">{t('compare.ctaTitle')}</h3>
+        <p class="related-comparisons__cta-text">{t('compare.ctaDescription')}</p>
+        <a
+          class="related-comparisons__cta-button"
+          href={installHref}
+          {...gaEventAttributes({ category: 'navigation', label: 'installDesktop', location: 'compare_cta' })}
+        >
+          {t('compare.ctaButton')}
+        </a>
+      </div>
+    )}
+  </section>
+)}

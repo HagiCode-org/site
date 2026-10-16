@@ -206,3 +206,13 @@ commonActions:
   platform: Платформа
   china: Материковый Китай
   default: По умолчанию
+compare:
+  relatedTitle: "Сравните HagiCode с вашим агентом"
+  relatedDescription: "Уже работаете с другим AI-CLI для кода? Посмотрите, чем он отличается от HagiCode и как использовать их вместе."
+  vsLabel: "{agent} и HagiCode: сравнение"
+  moreTitle: "Другие сравнения"
+  faqTitle: "Частые вопросы"
+  ctaTitle: "Попробуйте HagiCode поверх агента, который вы уже используете"
+  ctaDescription: "Установите HagiCode Desktop, подключите свой CLI и работайте так же, как сейчас."
+  ctaButton: "Установить HagiCode Desktop"
+  allComparisons: "Все сравнения"

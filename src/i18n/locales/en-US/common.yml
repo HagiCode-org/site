@@ -206,3 +206,13 @@ commonActions:
   platform: Platform
   china: China
   default: Default
+compare:
+  relatedTitle: "Compare HagiCode with the agent you use"
+  relatedDescription: "Already running another AI coding CLI? See where it differs from HagiCode and how to run both together."
+  vsLabel: "{agent} vs HagiCode"
+  moreTitle: "More comparisons"
+  faqTitle: "Frequently asked questions"
+  ctaTitle: "Try HagiCode on top of the agent you already use"
+  ctaDescription: "Install HagiCode Desktop, connect your existing CLI, and keep working the way you do today."
+  ctaButton: "Install HagiCode Desktop"
+  allComparisons: "All comparisons"
