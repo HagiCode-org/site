@@ -303,3 +303,17 @@ workflowBoard:
     elapsedTime: 經過時間
     formula: 效率 = 等效串行工作量 / 自然經過時間
     serialHint: 相對於單一串行工作者
+workflowSteps:
+  eyebrow: "運作方式"
+  title: "每次改動，都走同樣三步"
+  description: "沒有漫無邊際的聊天紀錄。每次改動都會變成可審閱的提案、可追溯的執行，以及可重複使用的知識。"
+  steps:
+    proposal:
+      label: "提案"
+      description: "描述你想做的改動。Hagicode 先查看儲存庫，起草附規格與任務清單的提案，你可以在動程式碼之前閱讀並修正。"
+    execution:
+      label: "執行"
+      description: "確認方案後，Agent 依任務逐項執行，可在 Claude Code、Codex、GitHub Copilot 等之間並行，完成一項勾選一項。"
+    archive:
+      label: "歸檔"
+      description: "完成的改動會歸檔回你的規範裡，下一次提案就能從團隊已累積的經驗出發。"

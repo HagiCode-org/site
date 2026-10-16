@@ -303,3 +303,17 @@ workflowBoard:
     elapsedTime: 경과 시간
     formula: 효율 = 직렬 환산 작업량 / 실제 경과 시간
     serialHint: 단일 직렬 작업자 대비
+workflowSteps:
+  eyebrow: "작동 방식"
+  title: "모든 변경은 같은 세 단계를 따릅니다"
+  description: "끝없는 채팅 스레드가 아닙니다. 각 변경은 검토할 수 있는 제안, 추적할 수 있는 실행, 재사용할 수 있는 지식이 됩니다."
+  steps:
+    proposal:
+      label: "제안"
+      description: "원하는 변경을 설명하세요. Hagicode가 저장소를 확인하고, 코드를 건드리기 전에 읽고 고칠 수 있는 명세와 작업이 담긴 제안을 작성합니다."
+    execution:
+      label: "실행"
+      description: "계획을 승인하면 에이전트가 작업 단위로 실행합니다. Claude Code, Codex, GitHub Copilot 등에서 병렬로 진행되며 완료된 작업부터 체크됩니다."
+    archive:
+      label: "아카이브"
+      description: "완료된 변경은 명세로 다시 아카이브되어, 다음 제안이 팀이 이미 쌓은 경험에서 출발합니다."

@@ -303,3 +303,17 @@ workflowBoard:
     elapsedTime: Verstrichene Zeit
     formula: Effizienz = entsprechende serielle Arbeit / reale Laufzeit
     serialHint: relativ zu einer einzelnen seriellen Arbeitskraft
+workflowSteps:
+  eyebrow: "So funktioniert es"
+  title: "Jede Änderung folgt denselben drei Schritten"
+  description: "Keine endlosen Chat-Verläufe. Jede Änderung wird zu einem prüfbaren Vorschlag, einem nachvollziehbaren Lauf und wiederverwendbarem Wissen."
+  steps:
+    proposal:
+      label: "Vorschlag"
+      description: "Beschreiben Sie die Änderung. Hagicode prüft Ihr Repository und entwirft einen Vorschlag mit Spezifikationen und Aufgaben, die Sie lesen und korrigieren können, bevor Code angefasst wird."
+    execution:
+      label: "Umsetzung"
+      description: "Genehmigen Sie den Plan, und Agenten arbeiten ihn Aufgabe für Aufgabe ab – parallel über Claude Code, Codex, GitHub Copilot und mehr, jede erledigte Aufgabe wird abgehakt."
+    archive:
+      label: "Archiv"
+      description: "Abgeschlossene Änderungen werden in Ihre Spezifikationen zurückarchiviert, damit der nächste Vorschlag auf dem aufbaut, was das Team bereits gelernt hat."

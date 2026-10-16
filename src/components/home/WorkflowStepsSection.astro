@@ -1,0 +1,158 @@
+---
+/**
+ * Three-step explanation of the proposal-driven workflow, shown right after the hero.
+ * Static markup only: no client JS, copy comes from the `home` namespace (`workflowSteps.*`).
+ */
+import type { HomepageWorkflowStepsCopy } from '@/lib/homepage-section-copy';
+
+interface Props {
+  copy: HomepageWorkflowStepsCopy;
+}
+
+const { copy } = Astro.props;
+---
+
+<section class="workflow-steps" aria-labelledby="workflow-steps-title" data-homepage-section="workflow-steps">
+  <div class="workflow-steps__container">
+    <header class="workflow-steps__header">
+      <span class="workflow-steps__eyebrow">{copy.eyebrow}</span>
+      <h2 id="workflow-steps-title" class="workflow-steps__title">{copy.title}</h2>
+      <p class="workflow-steps__description">{copy.description}</p>
+    </header>
+
+    <ol class="workflow-steps__list">
+      {
+        copy.steps.map((step, index) => (
+          <li class="workflow-steps__item" data-workflow-step={step.key}>
+            <span class="workflow-steps__index" aria-hidden="true">{index + 1}</span>
+            <h3 class="workflow-steps__label">{step.label}</h3>
+            <p class="workflow-steps__text">{step.description}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .workflow-steps {
+    position: relative;
+    width: 100%;
+    padding: 4.5rem 0 3.5rem;
+    background: var(--color-background);
+  }
+
+  .workflow-steps__container {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .workflow-steps__header {
+    max-width: 46rem;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+  }
+
+  .workflow-steps__eyebrow {
+    display: inline-block;
+    margin-bottom: 0.9rem;
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+
+  .workflow-steps__title {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4.4vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.15;
+    text-wrap: balance;
+    color: var(--color-text);
+  }
+
+  .workflow-steps__description {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    text-wrap: pretty;
+    color: var(--color-text-secondary);
+  }
+
+  .workflow-steps__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .workflow-steps__item {
+    position: relative;
+    box-sizing: border-box;
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    border: 1px solid var(--color-border-light);
+    background: color-mix(in srgb, var(--color-surface-glass, var(--color-background)) 88%, var(--color-background) 12%);
+  }
+
+  /* Connector between steps on wide screens: shows the order without relying on color. */
+  .workflow-steps__item:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    top: 1.6rem;
+    right: -1.05rem;
+    z-index: 1;
+    width: 0.9rem;
+    text-align: center;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+  }
+
+  .workflow-steps__index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    margin-bottom: 0.9rem;
+    border-radius: 50%;
+    border: 1.5px solid color-mix(in srgb, var(--color-primary) 60%, var(--color-border-light));
+    font-weight: 800;
+    color: var(--color-primary);
+  }
+
+  .workflow-steps__label {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--color-text);
+  }
+
+  .workflow-steps__text {
+    margin: 0;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 860px) {
+    .workflow-steps {
+      padding: 3rem 0 2.5rem;
+    }
+
+    .workflow-steps__list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .workflow-steps__item:not(:last-child)::after {
+      display: none;
+    }
+  }
+</style>

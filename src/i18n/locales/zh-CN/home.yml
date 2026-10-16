@@ -303,3 +303,17 @@ workflowBoard:
     elapsedTime: 自然流逝时间
     formula: 运行效率 = 累计串行工时 / 自然流逝时间
     serialHint: 相当于单串行的持续提速
+workflowSteps:
+  eyebrow: "工作方式"
+  title: "每次改动，都走同样三步"
+  description: "没有漫无边际的聊天记录。每次改动都会变成可审阅的提案、可追溯的执行，以及可复用的知识。"
+  steps:
+    proposal:
+      label: "提案"
+      description: "描述你想做的改动。Hagicode 先查看仓库，起草带规格和任务清单的提案，你可以在动代码之前阅读并修正。"
+    execution:
+      label: "执行"
+      description: "确认方案后，Agent 按任务逐项执行，可在 Claude Code、Codex、GitHub Copilot 等之间并行，完成一项勾选一项。"
+    archive:
+      label: "归档"
+      description: "完成的改动会归档回你的规范里，下一次提案就能从团队已经积累的经验出发。"

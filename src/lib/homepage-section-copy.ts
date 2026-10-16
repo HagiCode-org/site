@@ -529,3 +529,25 @@ export function getPricingContent(locale: LocaleInput): PricingContent {
     rows,
   };
 }
+
+export interface HomepageWorkflowStepsCopy {
+  eyebrow: string;
+  title: string;
+  description: string;
+  steps: Array<{ key: 'proposal' | 'execution' | 'archive'; label: string; description: string }>;
+}
+
+export function getHomepageWorkflowStepsCopy(locale: LocaleInput): HomepageWorkflowStepsCopy {
+  const resolvedLocale = resolveSiteLocale(locale);
+
+  return {
+    eyebrow: getHomeString(resolvedLocale, 'workflowSteps.eyebrow'),
+    title: getHomeString(resolvedLocale, 'workflowSteps.title'),
+    description: getHomeString(resolvedLocale, 'workflowSteps.description'),
+    steps: (['proposal', 'execution', 'archive'] as const).map((key) => ({
+      key,
+      label: getHomeString(resolvedLocale, `workflowSteps.steps.${key}.label`),
+      description: getHomeString(resolvedLocale, `workflowSteps.steps.${key}.description`),
+    })),
+  };
+}

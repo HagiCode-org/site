@@ -1,6 +1,7 @@
 ---
 import Navbar from '@/components/home/Navbar';
 import HeroSection from '@/components/home/HeroSection';
+import WorkflowStepsSection from '@/components/home/WorkflowStepsSection.astro';
 import FeaturesShowcase from '@/components/home/FeaturesShowcase';
 import ShowcaseSection from '@/components/home/ShowcaseSection';
 import VideoShowcase from '@/components/home/VideoShowcase';
@@ -26,6 +27,7 @@ import { getAbsoluteSiteUrl } from '@/lib/locale-routing';
 import {
   getHomepageFeaturesCopy,
   getHomepageShowcaseCopy,
+  getHomepageWorkflowStepsCopy,
   getPricingContent,
 } from '@/lib/homepage-section-copy';
 import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
@@ -42,6 +44,7 @@ const pageCopy = getHomePageCopy(locale);
 const interactiveCopy = getHomepageInteractiveCopy(locale);
 const featuresCopy = getHomepageFeaturesCopy(locale);
 const showcaseCopy = getHomepageShowcaseCopy(locale);
+const workflowStepsCopy = getHomepageWorkflowStepsCopy(locale);
 const pricingContent = getPricingContent(locale);
 const heroAgentChoices = getHomepageAgentChooserItems(locale);
 const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
@@ -131,6 +134,7 @@ const showcaseImages = {
           featuredVideos: pageCopy.featuredHomepageVideos,
         }}
       />
+      <WorkflowStepsSection copy={workflowStepsCopy} />
       <FeaturesShowcase copy={featuresCopy} client:visible />
       <ShowcaseSection copy={showcaseCopy} images={showcaseImages} client:visible />
       <VideoShowcase

@@ -303,3 +303,17 @@ workflowBoard:
     elapsedTime: 経過時間
     formula: 効率 = 直列換算作業量 / 実経過時間
     serialHint: 単一の直列作業者との比較
+workflowSteps:
+  eyebrow: "しくみ"
+  title: "すべての変更は、同じ 3 ステップで進みます"
+  description: "終わりのないチャットではありません。変更はレビューできる提案、追跡できる実行、再利用できる知見になります。"
+  steps:
+    proposal:
+      label: "提案"
+      description: "やりたい変更を伝えます。Hagicode がリポジトリを確認し、コードに触れる前に読んで直せる、仕様とタスク付きの提案を作成します。"
+    execution:
+      label: "実行"
+      description: "計画を承認すると、エージェントがタスクごとに実行します。Claude Code、Codex、GitHub Copilot などで並列に進み、完了したタスクから順にチェックされます。"
+    archive:
+      label: "アーカイブ"
+      description: "完了した変更は仕様へアーカイブされ、次の提案はチームがすでに得た知見から始まります。"
