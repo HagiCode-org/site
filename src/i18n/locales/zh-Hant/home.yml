@@ -49,8 +49,8 @@ hero:
   secondaryLine: Hagicode 全面支援主流 Agent，並行管理效率翻倍，OpenSpec 可降低幻覺。
 features:
   showcase:
-    title: 三大核心特性
-    subtitle: 重新定義你的 AI 程式設計體驗
+    title: "為真實開發工作而生"
+    subtitle: "提案讓每次改動可審閱，多 Agent 並行讓工作持續推進"
   smart:
     badge: 智慧
     title: 智慧
@@ -140,7 +140,7 @@ features:
   interesting:
     badge: 有趣
     title: 有趣
-    subtitle: Hero Dungeon 讓校園協作與實作訓練更有生命力
+    subtitle: "Hero Dungeon 把日常的 Agent 工作變成看得見進度的冒險"
     features:
       dungeons:
         label: 英雄副本
@@ -151,7 +151,7 @@ features:
       battle:
         label: 戰報回饋
         desc: 用 XP、等級與執行資料回看推進結果
-    description: 趣味不再只靠成就徽章堆疊，而是把 Hero Dungeon、隊長編組、Prompt 視覺與戰報回饋融進日常流程，讓校園場景中的 AI 程式設計訓練更像一場能持續推進的冒險。
+    description: "在同一套提案流程之上疊加一層遊戲化：Hero Dungeon 把提案、批次任務和 Prompt 工作台編成副本，為每個副本指定隊長，並在事後用 XP 和等級回看結果，讓長時間執行的 Agent 工作更容易跟進，也更願意持續做下去。"
     dungeonCards:
       proposal:
         title: 提案副本

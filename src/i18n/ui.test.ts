@@ -24,13 +24,13 @@ describe('site i18n translation lookup', () => {
   });
 
   it('uses localized Hero Dungeon subtitles outside the base locale', () => {
-    const englishSubtitle = 'Hero Dungeon makes campus collaboration and practice feel alive';
+    const englishSubtitle = 'Hero Dungeon turns everyday agent work into an adventure you can follow';
 
     expect(getTranslation('zh-CN', { resources: serverResources }).t('features.interesting.subtitle')).toBe(
-      'Hero Dungeon 让高校协作和训练更有趣',
+      'Hero Dungeon 把日常的 Agent 工作变成看得见进度的冒险',
     );
     expect(getTranslation('zh-Hant', { resources: serverResources }).t('features.interesting.subtitle')).toBe(
-      'Hero Dungeon 讓校園協作與實作訓練更有生命力',
+      'Hero Dungeon 把日常的 Agent 工作變成看得見進度的冒險',
     );
     expect(getTranslation('ja-JP', { resources: serverResources }).t('features.interesting.subtitle')).not.toBe(englishSubtitle);
     expect(getTranslation('ko-KR', { resources: serverResources }).t('features.interesting.subtitle')).not.toBe(englishSubtitle);

@@ -49,8 +49,8 @@ hero:
   secondaryLine: Hagicode supports mainstream agents, doubles parallel management efficiency, and reduces hallucinations with OpenSpec.
 features:
   showcase:
-    title: Three Core Features
-    subtitle: Redefine your AI coding experience
+    title: "Built for real development work"
+    subtitle: "Proposals keep every change reviewable; parallel agents keep the work moving"
   smart:
     badge: SMART
     title: Smart
@@ -140,7 +140,7 @@ features:
   interesting:
     badge: INTERESTING
     title: Fun
-    subtitle: Hero Dungeon makes campus collaboration and practice feel alive
+    subtitle: "Hero Dungeon turns everyday agent work into an adventure you can follow"
     features:
       dungeons:
         label: Hero Dungeons
@@ -151,7 +151,7 @@ features:
       battle:
         label: Battle Reports
         desc: Review XP, levels, and execution results after each push
-    description: Fun no longer depends on achievement badges. Hero Dungeon, captain rosters, prompt visuals, and battle reports turn daily AI coding practice into a workflow that feels more like a coordinated adventure for campus labs and student teams.
+    description: "A game layer on top of the same proposal workflow: Hero Dungeon turns proposals, batch tasks, and prompt work into dungeons, assigns a captain to each, and reports XP and levels afterwards, so long-running agent work is easier to follow and more fun to keep doing."
     dungeonCards:
       proposal:
         title: Proposal Dungeon

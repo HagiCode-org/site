@@ -49,8 +49,8 @@ hero:
   secondaryLine: O Hagicode oferece suporte aos Agent principais, dobra a eficiência de gestão paralela e reduz alucinações com OpenSpec.
 features:
   showcase:
-    title: Três recursos centrais
-    subtitle: Redefina sua experiência de coding com IA
+    title: "Feito para o trabalho real de desenvolvimento"
+    subtitle: "As propostas mantêm cada mudança revisável; agentes em paralelo mantêm o trabalho andando"
   smart:
     badge: INTELIGENTE
     title: Inteligente
@@ -140,7 +140,7 @@ features:
   interesting:
     badge: DIVERTIDO
     title: Divertido
-    subtitle: Hero Dungeon torna a colaboração e a prática no campus mais vivas
+    subtitle: "Hero Dungeon transforma o trabalho diário dos agentes em uma aventura com progresso visível"
     features:
       dungeons:
         label: Hero Dungeons
@@ -151,7 +151,7 @@ features:
       battle:
         label: Relatórios de batalha
         desc: Revise XP, níveis e resultados de execução após cada push
-    description: A diversão não depende mais só de badges de conquista. Hero Dungeon, escalações de capitães, visuais de prompt e relatórios de batalha transformam a prática diária de coding com IA em uma aventura coordenada para laboratórios e equipes estudantis.
+    description: "Uma camada de jogo sobre o mesmo fluxo de propostas: o Hero Dungeon organiza propostas, tarefas em lote e trabalho de prompts em masmorras, atribui um capitão a cada uma e depois mostra XP e níveis. O trabalho longo dos agentes fica mais fácil de acompanhar e mais divertido de continuar."
     dungeonCards:
       proposal:
         title: Dungeon de proposta

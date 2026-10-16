@@ -49,8 +49,8 @@ hero:
   secondaryLine: Hagicode 主流 Agent 全面支持，并行管理效率翻倍，OpenSpec 减少幻觉。
 features:
   showcase:
-    title: 三大核心特性
-    subtitle: 重新定义你的 AI 编码体验
+    title: "为真实开发工作而生"
+    subtitle: "提案让每次改动可审阅，多 Agent 并行让工作持续推进"
   smart:
     badge: SMART
     title: 智能
@@ -140,7 +140,7 @@ features:
   interesting:
     badge: INTERESTING
     title: 有趣
-    subtitle: Hero Dungeon 让高校协作和训练更有趣
+    subtitle: "Hero Dungeon 把日常的 Agent 工作变成看得见进度的冒险"
     features:
       dungeons:
         label: 英雄副本
@@ -151,7 +151,7 @@ features:
       battle:
         label: 战报反馈
         desc: 用 XP、等级与执行数据回看推进结果
-    description: 不再靠成就徽章堆趣味，而是把 Hero Dungeon、队长编组、Prompt 视觉和战报反馈融进日常流程，让高校场景里的 AI 编码训练更像一场可推进的冒险。
+    description: "在同一套提案流程之上叠加一层游戏化：Hero Dungeon 把提案、批量任务和 Prompt 工作台编成副本，为每个副本指定队长，并在事后用 XP 和等级回看结果，让长时间运行的 Agent 工作更容易跟进，也更愿意持续做下去。"
     dungeonCards:
       proposal:
         title: 提案副本
@@ -209,11 +209,11 @@ homepageVideos:
   overview:
     youtube:
       title: Hagicode YouTube
-      description: YouTube video.
+      description: Hagicode 工作流、多 Agent 执行方式与整体能力的主介绍视频。
       ctaLabel: 打开 YouTube
     bilibili:
       title: Hagicode Bilibili
-      description: Bilibili video.
+      description: Hagicode 工作流、多 Agent 执行方式与整体能力的主介绍视频（Bilibili）。
       ctaLabel: 打开 Bilibili
   supporting:
     first:

@@ -49,8 +49,8 @@ hero:
   secondaryLine: Hagicode unterstützt die wichtigsten Agenten, verdoppelt die Effizienz paralleler Verwaltung und reduziert Halluzinationen mit OpenSpec.
 features:
   showcase:
-    title: Drei Kernfunktionen
-    subtitle: Definieren Sie Ihr KI-Coding-Erlebnis neu
+    title: "Gemacht für echte Entwicklungsarbeit"
+    subtitle: "Vorschläge halten jede Änderung prüfbar, parallele Agenten halten die Arbeit in Bewegung"
   smart:
     badge: SMART
     title: Smart
@@ -140,7 +140,7 @@ features:
   interesting:
     badge: SPASS
     title: Mit Spaß
-    subtitle: Hero Dungeon macht Campus-Zusammenarbeit und Praxis lebendig
+    subtitle: "Hero Dungeon macht aus alltäglicher Agent-Arbeit ein Abenteuer mit sichtbarem Fortschritt"
     features:
       dungeons:
         label: Hero Dungeons
@@ -151,7 +151,7 @@ features:
       battle:
         label: Kampfberichte
         desc: Prüfen Sie XP, Level und Ausführungsergebnisse nach jedem Push
-    description: Spaß hängt nicht mehr nur an Erfolgsabzeichen. Hero Dungeon, Captain-Roster, Prompt-Visuals und Kampfberichte verwandeln tägliche KI-Coding-Praxis in einen koordinierten Abenteuer-Workflow für Campus-Labore und Studierendenteams.
+    description: "Eine Spielebene über demselben Vorschlags-Workflow: Hero Dungeon fasst Vorschläge, Batch-Aufgaben und Prompt-Arbeit zu Dungeons zusammen, weist jedem einen Captain zu und zeigt danach XP und Level. So lässt sich langlaufende Agent-Arbeit leichter verfolgen und macht mehr Spaß."
     dungeonCards:
       proposal:
         title: Vorschlags-Dungeon

@@ -49,8 +49,8 @@ hero:
   secondaryLine: Hagicode は主要な Agent をサポートし、並列管理効率を高め、OpenSpec で幻覚を減らします。
 features:
   showcase:
-    title: 3 つのコア機能
-    subtitle: AI コーディング体験を再定義
+    title: "実際の開発のために"
+    subtitle: "提案がすべての変更をレビュー可能にし、並列エージェントが作業を前へ進めます"
   smart:
     badge: スマート
     title: スマート
@@ -140,7 +140,7 @@ features:
   interesting:
     badge: 楽しい
     title: 楽しい
-    subtitle: Hero Dungeon が学内協業と実践をもっと生き生きさせる
+    subtitle: "Hero Dungeon が日々のエージェント作業を、進捗の見える冒険に変える"
     features:
       dungeons:
         label: ヒーローダンジョン
@@ -151,7 +151,7 @@ features:
       battle:
         label: 戦闘レポート
         desc: 実行後に XP、レベル、結果を確認
-    description: 楽しさは実績バッジだけでは生まれません。Hero Dungeon、隊長編成、プロンプト演出、戦闘レポートが、日々の AI コーディングを学内ラボや学生チーム向けの協調的な冒険に変えます。
+    description: "同じ提案ワークフローの上に重ねるゲーム層です。Hero Dungeon は提案・バッチタスク・Prompt 作業をダンジョンとして編成し、それぞれにキャプテンを割り当て、XP とレベルで結果を振り返れます。長く続くエージェント作業を追いやすく、続けやすくします。"
     dungeonCards:
       proposal:
         title: 提案ダンジョン
