@@ -58,7 +58,7 @@ export const WEBSITE_TRACKING_EVENT_CATALOG: readonly WebsiteTrackingEventDefini
     description: 'Open the Hagicode Steam store page from a marketing CTA',
     locations: ['Homepage hero Steam button'],
     meaning: 'User wants to view the Steam edition of Hagicode',
-    ga: { category: 'download', label: 'openSteamStore' },
+    ga: { category: 'store', label: 'openSteamStore' },
   },
   {
     name: WEBSITE_TRACKING_EVENTS.downloadDesktopWindows,

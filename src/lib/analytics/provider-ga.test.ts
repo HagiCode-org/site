@@ -12,7 +12,7 @@ describe('Google Analytics mirror', () => {
     [WEBSITE_TRACKING_EVENTS.downloadDesktopWindows, 'download_click', 'download', 'downloadDesktopWindows'],
     [WEBSITE_TRACKING_EVENTS.downloadDesktopMacOS, 'download_click', 'download', 'downloadDesktopMacOS'],
     [WEBSITE_TRACKING_EVENTS.downloadDesktopLinux, 'download_click', 'download', 'downloadDesktopLinux'],
-    [WEBSITE_TRACKING_EVENTS.openSteamStore, 'download_click', 'download', 'openSteamStore'],
+    [WEBSITE_TRACKING_EVENTS.openSteamStore, 'store_visit', 'store', 'openSteamStore'],
     [WEBSITE_TRACKING_EVENTS.openDesktopPage, 'link_click', 'navigation', 'openDesktopPage'],
     [WEBSITE_TRACKING_EVENTS.openContainerPage, 'link_click', 'navigation', 'openContainerPage'],
     [
@@ -39,6 +39,17 @@ describe('Google Analytics mirror', () => {
       });
     },
   );
+
+  it('reports the Steam store page as a store visit, never as a download click', () => {
+    const gtag = vi.fn();
+
+    mirrorWith(gtag).mirror(WEBSITE_TRACKING_EVENTS.openSteamStore, { source: 'hero-section-steam' });
+
+    expect(gtag).toHaveBeenCalledTimes(1);
+    expect(gtag.mock.calls[0][1]).toBe('store_visit');
+    expect(gtag.mock.calls[0][2].event_category).toBe('store');
+    expect(gtag.mock.calls.some(([, action]) => action === 'download_click')).toBe(false);
+  });
 
   it('normalizes hyphens in the source to underscores for the location', () => {
     const gtag = vi.fn();
