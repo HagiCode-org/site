@@ -12,8 +12,6 @@
 ·
 <a href="https://www.hagicode.com/desktop/">Desktop</a>
 ·
-<a href="https://www.hagicode.com/container/">Container</a>
-·
 <a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Microsoft Store</a>
 ·
 <a href="https://docs.hagicode.com/blog/">Blog</a>
@@ -81,7 +79,6 @@ HagiCode는 업적, 일일 리포트, 효율 배수, 토큰 처리량, 그리고
 - [Website](https://www.hagicode.com/) 에서 전체 제품 홈페이지 보기
 - [Product Overview](https://docs.hagicode.com/product-overview/) 에서 공식 공개 제품 소개 보기
 - [Desktop](https://www.hagicode.com/desktop/) 에서 로컬 우선 설치 및 서비스 관리 보기
-- [Container](https://www.hagicode.com/container/) 에서 셀프 호스팅 배포 경로 보기
 - [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) 에서 제품 업데이트와 장문 글 보기

@@ -12,8 +12,6 @@
 ·
 <a href="https://www.hagicode.com/desktop/">Desktop</a>
 ·
-<a href="https://www.hagicode.com/container/">Container</a>
-·
 <a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Microsoft Store</a>
 ·
 <a href="https://docs.hagicode.com/blog/">Blog</a>
@@ -81,7 +79,6 @@ HagiCode 把成就、每日報告、效率倍率、Token 吞吐量和主題化�
 - [Website](https://www.hagicode.com/) 查看完整產品首頁
 - [Product Overview](https://docs.hagicode.com/product-overview/) 查看官方公開產品介紹
 - [Desktop](https://www.hagicode.com/desktop/) 進入本地優先的安裝與服務管理入口
-- [Container](https://www.hagicode.com/container/) 查看自託管部署路徑
 - [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) 查看產品更新與長篇文章

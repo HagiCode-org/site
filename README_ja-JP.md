@@ -12,8 +12,6 @@
 ·
 <a href="https://www.hagicode.com/desktop/">Desktop</a>
 ·
-<a href="https://www.hagicode.com/container/">Container</a>
-·
 <a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Microsoft Store</a>
 ·
 <a href="https://docs.hagicode.com/blog/">Blog</a>
@@ -81,7 +79,6 @@ HagiCode は、実績、日次レポート、効率倍率、トークン処理�
 - [Website](https://www.hagicode.com/) で製品サイト全体を見る
 - [Product Overview](https://docs.hagicode.com/product-overview/) で公式の公開製品紹介を見る
 - [Desktop](https://www.hagicode.com/desktop/) でローカルファーストの導入とサービス管理を見る
-- [Container](https://www.hagicode.com/container/) でセルフホストのデプロイ経路を見る
 - [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) で製品更新と長文記事を見る

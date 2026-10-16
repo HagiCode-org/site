@@ -12,8 +12,6 @@
 ·
 <a href="https://www.hagicode.com/desktop/">Desktop</a>
 ·
-<a href="https://www.hagicode.com/container/">Container</a>
-·
 <a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW">Microsoft Store</a>
 ·
 <a href="https://docs.hagicode.com/blog/">Blog</a>
@@ -85,7 +83,6 @@ HagiCode treats achievements, daily reports, efficiency multipliers, token throu
 - [Website](https://www.hagicode.com/) for the full product homepage
 - [Product Overview](https://docs.hagicode.com/product-overview/) for the canonical public introduction
 - [Desktop](https://www.hagicode.com/desktop/) for local-first installation and service management
-- [Container](https://www.hagicode.com/container/) for the self-hosted deployment path
 - [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) for product updates and long-form posts
