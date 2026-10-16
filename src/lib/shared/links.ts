@@ -266,6 +266,55 @@ export function getLinkTarget(key: PublicLinkKey): '_blank' | undefined {
   return isExternalLink(key) ? '_blank' : undefined;
 }
 
-export function getLinkRel(key: PublicLinkKey): 'noopener noreferrer' | undefined {
-  return isExternalLink(key) ? 'noopener noreferrer' : undefined;
+const FIRST_PARTY_DOMAIN = 'hagicode.com';
+const FIRST_PARTY_GITHUB_HOST = 'github.com';
+const FIRST_PARTY_GITHUB_ORG = 'hagicode-org';
+const SITE_ORIGIN_BASE = 'https://www.hagicode.com';
+
+/**
+ * 判断目标地址是否为第一方站点。
+ * 第一方：http(s) 且主机为 hagicode.com 或其子域名，或 github.com 上的 HagiCode-org 组织。
+ * 相对地址按站点自身来源解析，视为第一方。
+ * 主机按解析后的 hostname 精确匹配，不做子串匹配。
+ */
+export function isFirstPartyHref(href: string): boolean {
+  let url: URL;
+  try {
+    url = new URL(href, SITE_ORIGIN_BASE);
+  } catch {
+    return false;
+  }
+
+  if (url.protocol !== 'https:' && url.protocol !== 'http:') {
+    return false;
+  }
+
+  const host = url.hostname.toLowerCase();
+  if (host === FIRST_PARTY_DOMAIN || host.endsWith(`.${FIRST_PARTY_DOMAIN}`)) {
+    return true;
+  }
+
+  if (host === FIRST_PARTY_GITHUB_HOST) {
+    const [org] = url.pathname.split('/').filter(Boolean);
+    return org?.toLowerCase() === FIRST_PARTY_GITHUB_ORG;
+  }
+
+  return false;
+}
+
+/**
+ * 按目标地址所属类别返回新标签页打开时的 rel。
+ * 第一方使用 noopener（保留来源 origin 作为 Referer），其他使用 noopener noreferrer。
+ */
+export function getRelForHref(href: string): 'noopener' | 'noopener noreferrer' {
+  return isFirstPartyHref(href) ? 'noopener' : 'noopener noreferrer';
+}
+
+/**
+ * 获取链接的 rel 属性（仅新标签页外部链接需要）。
+ * @param key - 链接键名
+ * @returns rel 属性值；同页跳转返回 undefined
+ */
+export function getLinkRel(key: PublicLinkKey): 'noopener' | 'noopener noreferrer' | undefined {
+  return isExternalLink(key) ? getRelForHref(getLink(key)) : undefined;
 }
