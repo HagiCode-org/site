@@ -35,6 +35,7 @@ npm run typecheck
 - `scripts/`: content sync, image generation, and SEO helpers
 - `PRODUCT.md`: product and brand context
 - `DESIGN.md`: visual system and design rules
+- `README.md`: project overview (translated variants sit beside it as `README_*.md`)
 
 ## Agent Guidelines
 
@@ -52,9 +53,3 @@ npm run typecheck
 - A new tracker event needs the required `ga: { category, label }` field in the catalog, otherwise the type check fails. Pass `url` to `trackEvent()` when the destination is in scope.
 - Test a new tracked control with `setupGaClickHarness()` from `src/lib/analytics/test-harness.ts` (jsdom): it installs the listener and the tracker over one stub `gtag`, so assert exactly one `gtag('event', …)` call per click.
 - `src/components/GoogleAnalytics.astro` stays a thin wrapper around `@hagicode/hagilight-core/GoogleAnalytics`; do not add an inline `gtag` snippet. `npm run verify:ga` (part of `npm run build`) checks one loader and one initialization per page template.
-
-## References
-
-- `README.md`
-- `PRODUCT.md`
-- `DESIGN.md`
