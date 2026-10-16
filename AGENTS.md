@@ -47,7 +47,7 @@ npm run typecheck
 
 ## Google Analytics Events
 
-- Click events use the shared Hagilight vocabulary (`download_click` / `link_click`; categories `download`, `navigation`, `community`, `promotion`). Labels are stable ids, never localized text. Rules, labels, and locations live in the mono-root `docs/google-analytics-integration-reference.md`.
+- Click events use the shared Hagilight vocabulary (`download_click` for installer downloads, `store_visit` for Microsoft Store and Steam listings, `link_click` for everything else; categories `download`, `store`, `navigation`, `community`, `promotion`). Store controls use category `store`, never `download`. Labels are stable ids, never localized text. Rules, labels, and locations live in the mono-root `docs/google-analytics-integration-reference.md`.
 - **One mechanism per element.** A control reports either through the unified tracker (`trackEvent()` or `data-track-event`, which reaches 51LA and, through the GA mirror in `src/lib/analytics/provider-ga.ts`, Google Analytics) or through `data-ga-*` attributes from `gaEventAttributes()` (`@hagicode/hagilight-core/analytics-events`, Google Analytics only). Never both: one click would send two GA events. Use the tracker where the catalog in `src/lib/analytics/events.ts` already names the surface; tag everything else.
 - A new tracker event needs the required `ga: { category, label }` field in the catalog, otherwise the type check fails. Pass `url` to `trackEvent()` when the destination is in scope.
 - Test a new tracked control with `setupGaClickHarness()` from `src/lib/analytics/test-harness.ts` (jsdom): it installs the listener and the tracker over one stub `gtag`, so assert exactly one `gtag('event', …)` call per click.
