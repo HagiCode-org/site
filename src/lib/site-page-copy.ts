@@ -34,54 +34,54 @@ function resolveSitePageCopy<T>(
 
 const homePageSeoCopy: LocalizedSitePageCopy<{ title: string; description: string }> = {
   'en-US': {
-    title: 'Hagicode - Smart · Efficient · Fun AI Coding Assistant',
+    title: 'Hagicode - Proposal-Driven AI Coding Workspace',
     description:
-      'Redefine coding with AI. OpenSpec workflows, multi-agent multi-instance execution, and Hero Dungeon gameplay make building faster and more engaging.',
+      'Turn AI coding from chat into reviewable proposals. Align on a plan, execute with Claude Code, Codex, GitHub Copilot and more, then archive what you learned as team knowledge. Get it on Microsoft Store.',
   },
   'zh-CN': {
-    title: 'Hagicode - 智能 · 高效 · 有趣的 AI 编码助手',
+    title: 'Hagicode - 提案驱动的 AI 编码工作台',
     description:
-      '用 AI 重新定义代码开发体验。OpenSpec 工作流、多 Agent 多实例并行、Hero Dungeon 游戏化，让编码更高效、更有趣。',
+      '把 AI 编码从聊天变成可审阅、可复用的提案流程：先对齐方案，再用 Claude Code、Codex、GitHub Copilot 等 Agent 执行，完成后沉淀为团队知识。可通过 Microsoft Store 获取。',
   },
   'zh-Hant': {
-    title: 'Hagicode - 智慧 · 高效 · 有趣的 AI 程式設計助手',
+    title: 'Hagicode - 提案驅動的 AI 編碼工作台',
     description:
-      '用 AI 重新定義程式開發體驗。OpenSpec 工作流、多 Agent 多實例並行、Hero Dungeon 遊戲化，讓編碼更高效、更有趣。',
+      '把 AI 編碼從聊天變成可審閱、可重複使用的提案流程：先對齊方案，再用 Claude Code、Codex、GitHub Copilot 等 Agent 執行，完成後沉澱為團隊知識。可透過 Microsoft Store 取得。',
   },
   'ja-JP': {
-    title: 'Hagicode - スマート・効率的・楽しい AI コーディングアシスタント',
+    title: 'Hagicode - 提案駆動の AI コーディングワークスペース',
     description:
-      'AI でコーディング体験を再設計。OpenSpec ワークフロー、マルチエージェント並列実行、Hero Dungeon のゲーム化で、開発をより速く、より楽しくします。',
+      'AI コーディングをチャットから、レビューできる提案フローへ。方針をそろえ、Claude Code・Codex・GitHub Copilot などで実行し、得られた知見をチームの資産に。Microsoft Store から入手できます。',
   },
   'ko-KR': {
-    title: 'Hagicode - 스마트하고 효율적이며 재미있는 AI 코딩 어시스턴트',
+    title: 'Hagicode - 제안 중심 AI 코딩 워크스페이스',
     description:
-      'AI로 코딩 경험을 재정의합니다. OpenSpec 워크플로, 멀티 에이전트 멀티 인스턴스 병렬 실행, Hero Dungeon 게임화로 개발을 더 빠르고 더 즐겁게 만듭니다.',
+      'AI 코딩을 채팅에서 검토 가능한 제안 흐름으로. 방향을 맞추고 Claude Code, Codex, GitHub Copilot 등으로 실행한 뒤, 얻은 경험을 팀 지식으로 남기세요. Microsoft Store에서 받을 수 있습니다.',
   },
   'de-DE': {
-    title: 'Hagicode - Intelligenter, effizienter und unterhaltsamer KI-Coding-Assistent',
+    title: 'Hagicode - Vorschlagsbasierter KI-Coding-Workspace',
     description:
-      'Definieren Sie das Programmieren mit KI neu. OpenSpec-Workflows, parallele Multi-Agent- und Multi-Instanz-Ausführung sowie Hero-Dungeon-Gamification machen Entwicklung schneller und spannender.',
+      'KI-Coding vom Chat zu prüfbaren Vorschlägen: Plan abstimmen, mit Claude Code, Codex, GitHub Copilot und mehr umsetzen und das Gelernte als Teamwissen archivieren. Erhältlich im Microsoft Store.',
   },
   'fr-FR': {
-    title: 'Hagicode - Assistant de codage IA intelligent, efficace et ludique',
+    title: 'Hagicode - Espace de codage IA piloté par propositions',
     description:
-      "Réinventez le développement avec l'IA. Les workflows OpenSpec, l'exécution parallèle multi-agents et multi-instances, et la gamification Hero Dungeon rendent la création plus rapide et plus engageante.",
+      "Du chat à des propositions vérifiables : alignez le plan, exécutez avec Claude Code, Codex, GitHub Copilot et plus, puis archivez l'expérience en connaissance d'équipe. Disponible sur le Microsoft Store.",
   },
   'es-ES': {
-    title: 'Hagicode - Asistente de programación con IA inteligente, eficiente y divertido',
+    title: 'Hagicode - Espacio de programación con IA basado en propuestas',
     description:
-      'Redefine el desarrollo con IA. Los flujos OpenSpec, la ejecución paralela multiagente y multiinstancia, y la gamificación Hero Dungeon hacen que crear sea más rápido y atractivo.',
+      'Del chat a propuestas revisables: acuerda el plan, ejecútalo con Claude Code, Codex, GitHub Copilot y más, y archiva lo aprendido como conocimiento del equipo. Disponible en Microsoft Store.',
   },
   'pt-BR': {
-    title: 'Hagicode - Assistente de programação com IA inteligente, eficiente e divertido',
+    title: 'Hagicode - Espaço de programação com IA orientado a propostas',
     description:
-      'Redefina o desenvolvimento com IA. Workflows OpenSpec, execução paralela com múltiplos agentes e instâncias e a gamificação Hero Dungeon tornam a construção mais rápida e envolvente.',
+      'Do chat para propostas revisáveis: alinhe o plano, execute com Claude Code, Codex, GitHub Copilot e mais, e arquive o aprendizado como conhecimento da equipe. Disponível na Microsoft Store.',
   },
   'ru-RU': {
-    title: 'Hagicode - Умный, эффективный и увлекательный ИИ-помощник для программирования',
+    title: 'Hagicode - ИИ-среда для кодинга на основе предложений',
     description:
-      'Переосмыслите разработку с ИИ. Workflow OpenSpec, параллельное выполнение с несколькими агентами и экземплярами и геймификация Hero Dungeon делают создание быстрее и интереснее.',
+      'От чата к проверяемым предложениям: согласуйте план, выполните его с Claude Code, Codex, GitHub Copilot и другими, а опыт сохраните как знания команды. Доступно в Microsoft Store.',
   },
 };
 
