@@ -23,16 +23,17 @@ describe('PricingComparisonSection Google Analytics events', () => {
       expect(actions.map((action) => action.dataset.gaLabel)).toEqual([
         'pricingDesktop',
         'pricingContainer',
-        'pricingMicrosoftStore',
+        'microsoftStore',
       ]);
 
       for (const action of actions) {
         gtag.mockClear();
         harness.click(action);
 
+        const isStoreAction = action.dataset.gaLabel === 'microsoftStore';
         expect(gtag).toHaveBeenCalledTimes(1);
-        expect(gtag).toHaveBeenCalledWith('event', 'link_click', {
-          event_category: 'navigation',
+        expect(gtag).toHaveBeenCalledWith('event', isStoreAction ? 'store_visit' : 'link_click', {
+          event_category: isStoreAction ? 'store' : 'navigation',
           event_label: action.dataset.gaLabel,
           link_location: 'pricing',
           link_url: action.href,

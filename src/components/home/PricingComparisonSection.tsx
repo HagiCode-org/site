@@ -95,8 +95,10 @@ function renderEditionHeader(column: EditionColumn, editionId: EditionId, classN
         target={column.action.external ? '_blank' : undefined}
         rel={column.action.external ? 'noopener noreferrer' : undefined}
         {...gaEventAttributes({
-          category: 'navigation',
-          label: `pricing${editionId}`,
+          // The Microsoft Store edition opens a store listing, so it reports as a store visit.
+          category: editionId === 'MicrosoftStore' ? 'store' : 'navigation',
+          // The Store edition reuses the shared Hagilight label so it matches the hero badge.
+          label: editionId === 'MicrosoftStore' ? 'microsoftStore' : `pricing${editionId}`,
           location: 'pricing',
         })}
       >

@@ -308,7 +308,7 @@ export default function HeroSection({
                   badgeClassName={styles.windowsStoreBadgeElement}
                   badgeAttributes={{
                     'data-windows-store-entry': 'site-home-hero',
-                    ...heroGaAttributes('download', 'microsoftStore', windowsStoreLink.href),
+                    ...heroGaAttributes('store', 'microsoftStore', windowsStoreLink.href),
                   }}
                 />
               )}

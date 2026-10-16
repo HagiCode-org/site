@@ -94,8 +94,8 @@ describe('HeroSection Google Analytics events', () => {
     expect(badge).not.toBeNull();
     harness.click(badge as Element);
 
-    expectOneEvent('download_click', {
-      event_category: 'download',
+    expectOneEvent('store_visit', {
+      event_category: 'store',
       event_label: 'microsoftStore',
       link_location: 'home_hero',
       link_url: storeUrl,
@@ -111,8 +111,8 @@ describe('HeroSection Google Analytics events', () => {
     expect(steam?.hasAttribute('data-ga-category')).toBe(false);
     harness.click(steam as Element);
 
-    expectOneEvent('download_click', {
-      event_category: 'download',
+    expectOneEvent('store_visit', {
+      event_category: 'store',
       event_label: 'openSteamStore',
       link_location: 'hero_section_steam',
       link_url: steamUrl,
