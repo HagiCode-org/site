@@ -4,6 +4,7 @@ import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 import '@/styles/homepage.css';
 import '@/styles/desktop.css';
 import Navbar from '@/components/home/Navbar';
+import RelatedComparisons from '@/components/compare/RelatedComparisons.astro';
 import SiteFooter from '@/components/SiteFooter.astro';
 import PromotoBanner from '@hagicode/hagilight-core/PromotoBanner';
 import DesktopHero from '@/components/desktop/DesktopHero';
@@ -158,6 +159,7 @@ const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
         </div>
       </section>
 
+      <RelatedComparisons locale={locale} />
     </main>
 
     <PromotoBanner locale={locale} />

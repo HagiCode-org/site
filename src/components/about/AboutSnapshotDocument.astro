@@ -8,6 +8,7 @@ import PromotoBanner from '@hagicode/hagilight-core/PromotoBanner';
 import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
 import type { AboutPageModel } from '@/lib/about-page-model';
 import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
+import RelatedComparisons from '@/components/compare/RelatedComparisons.astro';
 import AboutSnapshotPage from './AboutSnapshotPage.astro';
 import '@/styles/homepage.css';
 
@@ -81,6 +82,7 @@ const interactiveCopy = getHomepageInteractiveCopy(currentLocale);
       languageSwitcherCopy={interactiveCopy.languageSwitcher}
     />
     <AboutSnapshotPage model={model} />
+    <RelatedComparisons locale={model.locale} />
     <PromotoBanner locale={currentLocale} />
     <SiteFooter locale={model.locale} />
     <AnalyticsScripts />

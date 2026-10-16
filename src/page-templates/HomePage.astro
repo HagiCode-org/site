@@ -5,6 +5,7 @@ import WorkflowStepsSection from '@/components/home/WorkflowStepsSection.astro';
 import FeaturesShowcase from '@/components/home/FeaturesShowcase';
 import ShowcaseSection from '@/components/home/ShowcaseSection';
 import VideoShowcase from '@/components/home/VideoShowcase';
+import RelatedComparisons from '@/components/compare/RelatedComparisons.astro';
 import PricingComparisonSection from '@/components/home/PricingComparisonSection';
 import PromotoBanner from '@hagicode/hagilight-core/PromotoBanner';
 import SiteFooter from '@/components/SiteFooter.astro';
@@ -134,6 +135,7 @@ const showcaseImages = {
           featuredVideos: pageCopy.featuredHomepageVideos,
         }}
       />
+      <RelatedComparisons locale={locale} />
       <WorkflowStepsSection copy={workflowStepsCopy} />
       <FeaturesShowcase copy={featuresCopy} client:visible />
       <ShowcaseSection copy={showcaseCopy} images={showcaseImages} client:visible />
