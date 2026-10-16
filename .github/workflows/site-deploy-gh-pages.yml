@@ -14,7 +14,7 @@ permissions:
   contents: read
 
 env:
-  NODE_VERSION: "22.12.0"
+  NODE_VERSION: 24"
   NODE_ENV: production
   SITE_GH_PAGES_PAYLOAD_DIR: .deploy/gh-pages
 
