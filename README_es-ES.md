@@ -2,6 +2,10 @@
 
 # HagiCode
 
+[![license](https://img.shields.io/badge/license-AGPL--3.0-ffd43b)](./LICENSE)
+[![last commit](https://img.shields.io/github/last-commit/HagiCode-org/site)](https://github.com/HagiCode-org/site/commits/main)
+[![website](https://img.shields.io/website?url=https%3A%2F%2Fhagicode.com&label=website)](https://hagicode.com)
+
 <p><strong>HagiCode es un producto que reúne una herramienta de programación con IA, un sistema de retroalimentación gamificado y un espacio de trabajo de desarrollo completo en una sola plataforma.</strong></p>
 
 <p>Úsalo para entender repositorios, redactar propuestas, descomponer tareas, modificar código, organizar commits, gestionar varios repositorios y construir una base de conocimiento reutilizable sin salir del mismo espacio de trabajo.</p>
