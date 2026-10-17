@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { gaEventAttributes, type GaCategory } from '@hagicode/hagilight-core/analytics-events';
 import styles from './HeroSection.module.css';
 import { getLinkWithLocale } from '@/lib/shared/links';
@@ -62,6 +62,7 @@ export default function HeroSection({
 }: HeroSectionProps) {
   const [windowsStoreLink, setWindowsStoreLink] = useState(() => getBundledWindowsStoreLink());
   const [windowsStoreBadgeSize, setWindowsStoreBadgeSize] = useState<'small' | 'large'>('large');
+  const titleRunRef = useRef<HTMLSpanElement>(null);
 
   const desktopUrl = getLinkWithLocale('desktop', locale);
   const docsUrl = getLinkWithLocale('productOverview', locale);
@@ -83,6 +84,33 @@ export default function HeroSection({
     query.addEventListener('change', syncBadgeSize);
 
     return () => query.removeEventListener('change', syncBadgeSize);
+  }, []);
+
+  // Hovering the wordmark re-runs the sweep once it is idle. The two replay names alternate so the
+  // CSS animation restarts; reduced-motion and touch visitors never trigger it.
+  useEffect(() => {
+    const titleRun = titleRunRef.current;
+    if (!titleRun || typeof window.matchMedia !== 'function') {
+      return;
+    }
+
+    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let flip = false;
+
+    const replay = (event: PointerEvent) => {
+      if (event.pointerType === 'touch' || !finePointer.matches || reducedMotion.matches) {
+        return;
+      }
+      if (titleRun.getAnimations().some((animation) => animation.playState === 'running')) {
+        return;
+      }
+      flip = !flip;
+      titleRun.dataset.run = flip ? 'replay-a' : 'replay-b';
+    };
+
+    titleRun.addEventListener('pointerenter', replay);
+    return () => titleRun.removeEventListener('pointerenter', replay);
   }, []);
 
   useEffect(() => {
@@ -109,8 +137,24 @@ export default function HeroSection({
         <div className={styles.heroIntro}>
           <div className={styles.copyColumn}>
             <h1 className={styles.heroTitle}>
-              <span className={styles.titleWord}>Hagi</span>
-              <span className={styles.titleAccent}>code</span>
+              {/* One run of the proposal workflow: outline (proposed) -> solid (executed) -> lit rail (archived). */}
+              <span ref={titleRunRef} className={styles.titleRun} data-run="intro">
+                {/* The outline layer is drawn from data-text so the h1's text stays "Hagicode". */}
+                <span className={styles.titleGhost} aria-hidden="true">
+                  <span data-text="Hagi" />
+                  <span data-text="code" />
+                </span>
+                <span className={styles.titleSolid}>
+                  <span className={styles.titleWord}>Hagi</span>
+                  <span className={styles.titleAccent}>code</span>
+                </span>
+                <span className={styles.titleBeam} aria-hidden="true" />
+                <span className={styles.titleRail} aria-hidden="true">
+                  <i style={{ '--at': 0 } as CSSProperties} />
+                  <i style={{ '--at': 0.5 } as CSSProperties} />
+                  <i style={{ '--at': 1 } as CSSProperties} />
+                </span>
+              </span>
             </h1>
 
             <p className={styles.heroHeadline}>{copy.headline}</p>

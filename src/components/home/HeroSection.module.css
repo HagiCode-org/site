@@ -33,6 +33,9 @@
   --hero-title-main: #091526;
   --hero-title-accent: #0080ff;
   --hero-title-shadow: none;
+  --hero-beam-a: #0080ff;
+  --hero-beam-b: #00b8c4;
+  --hero-beam-c: #1fae55;
 }
 
 [data-theme='dark'] .heroSection {
@@ -58,6 +61,9 @@
   --hero-title-main: #f7fbff;
   --hero-title-accent: #6bd3ff;
   --hero-title-shadow: none;
+  --hero-beam-a: #3aa0ff;
+  --hero-beam-b: #22d3ee;
+  --hero-beam-c: #4ade80;
 }
 
 [data-theme='lunar-new-year'] .heroSection {
@@ -83,6 +89,9 @@
   --hero-title-main: #fff3cb;
   --hero-title-accent: #ffd54f;
   --hero-title-shadow: none;
+  --hero-beam-a: #ff6b57;
+  --hero-beam-b: #ffa000;
+  --hero-beam-c: #ffd54f;
 }
 
 .bgAurora,
@@ -187,16 +196,107 @@
   color: var(--hero-soft);
 }
 
+/*
+ * The wordmark is one run of the product's own workflow: it appears as an outline (the proposal),
+ * a beam executes across it and leaves solid letters behind, and the rail underneath lights its
+ * three stops (proposal, execution, archive). --run (0 -> 1) drives every layer, so the layers
+ * can never drift apart. Hover re-runs it; without animation support the title is simply solid.
+ */
+@property --run {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
 .heroTitle {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.14em;
-  margin: 0;
+  display: grid;
+  justify-items: center;
+  margin: 0 0 0.12em;
   font-family: var(--font-display);
   font-size: clamp(4.2rem, 9.4vw, 7rem);
   line-height: 0.9;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
+}
+
+.heroTitle ::selection {
+  background: color-mix(in srgb, var(--hero-title-accent) 34%, transparent);
+  color: inherit;
+}
+
+.titleRun {
+  --run: 1;
+  --edge: 0.1em;
+  position: relative;
+  display: inline-grid;
+  padding-bottom: 0.2em;
+}
+
+.titleRun[data-run='intro'] {
+  animation: titleRunIntro 2s cubic-bezier(0.3, 0.55, 0.15, 1) 0.45s both;
+}
+
+.titleRun[data-run='replay-a'] {
+  animation: titleRunReplayA 1.3s cubic-bezier(0.3, 0.55, 0.15, 1) both;
+}
+
+.titleRun[data-run='replay-b'] {
+  animation: titleRunReplayB 1.3s cubic-bezier(0.3, 0.55, 0.15, 1) both;
+}
+
+@keyframes titleRunIntro {
+  from {
+    --run: 0;
+  }
+  to {
+    --run: 1;
+  }
+}
+
+@keyframes titleRunReplayA {
+  from {
+    --run: 0;
+  }
+  to {
+    --run: 1;
+  }
+}
+
+@keyframes titleRunReplayB {
+  from {
+    --run: 0;
+  }
+  to {
+    --run: 1;
+  }
+}
+
+.titleGhost,
+.titleSolid {
+  grid-area: 1 / 1;
+  display: block;
+  white-space: nowrap;
+}
+
+/* Executed letters: revealed up to the beam. */
+.titleSolid {
+  clip-path: inset(-0.3em calc((1 - var(--run)) * 100% - var(--run) * var(--edge)) -0.3em -0.3em);
+}
+
+/* Proposed letters: outline only, visible ahead of the beam and gone once the run is complete. */
+.titleGhost {
+  color: transparent;
+  user-select: none;
+  -webkit-text-stroke: max(1.5px, 0.012em) color-mix(in srgb, var(--hero-title-main) 58%, transparent);
+  clip-path: inset(-0.3em -0.3em -0.3em calc(var(--run) * (100% + var(--edge))));
+  opacity: min(1, calc((1 - var(--run)) * 10));
+}
+
+.titleGhost > span::before {
+  content: attr(data-text);
+}
+
+.titleGhost > span:last-child {
+  -webkit-text-stroke-color: color-mix(in srgb, var(--hero-title-accent) 82%, transparent);
 }
 
 .titleWord {
@@ -206,6 +306,69 @@
 .titleAccent {
   color: var(--hero-title-accent);
   text-shadow: var(--hero-title-shadow);
+}
+
+.titleBeam {
+  position: absolute;
+  top: -0.04em;
+  bottom: 0.14em;
+  left: calc(var(--run) * (100% + var(--edge)));
+  width: max(2px, 0.02em);
+  margin-left: calc(max(2px, 0.02em) / -2);
+  background: linear-gradient(180deg, var(--hero-beam-a), var(--hero-beam-b) 52%, var(--hero-beam-c));
+  opacity: min(1, calc(var(--run) * 14), calc((1 - var(--run)) * 14));
+  pointer-events: none;
+}
+
+/* The wake: where execution has just been. */
+.titleBeam::before {
+  content: '';
+  position: absolute;
+  inset: 0 100% 0 auto;
+  width: 0.7em;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--hero-beam-b) 24%, transparent));
+  mask-image: linear-gradient(180deg, transparent, #000 22%, #000 78%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 22%, #000 78%, transparent);
+}
+
+.titleRail {
+  position: absolute;
+  inset: auto 0 0.04em;
+  height: 1px;
+  background: var(--hero-line);
+  pointer-events: none;
+}
+
+.titleRail::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(var(--run) * 100%);
+  background: linear-gradient(90deg, var(--hero-beam-a), var(--hero-beam-b), var(--hero-beam-c));
+  /* Quiet once the run is archived: the lit rail is a trace, not a second headline. */
+  opacity: calc(1 - var(--run) * 0.5);
+}
+
+.titleRail > i {
+  position: absolute;
+  left: calc(var(--at) * 100%);
+  top: 50%;
+  box-sizing: border-box;
+  width: 0.5rem;
+  height: 0.5rem;
+  translate: -50% -50%;
+  border-radius: 999px;
+  border: 1.5px solid color-mix(in srgb, var(--hero-title-main) 38%, transparent);
+  background: var(--hero-bg-mid);
+}
+
+.titleRail > i::after {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  background: var(--hero-beam-b);
+  opacity: clamp(0, calc((var(--run) - var(--at) + 0.04) * 30), 1);
 }
 
 .heroHeadline {
@@ -675,6 +838,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .titleRun[data-run] {
+    animation: none;
+  }
+
   .bgAurora,
   .bgPulse,
   .buttonPrimary,

@@ -43,6 +43,21 @@ describe('HeroSection', () => {
     expect(markup).not.toContain('>Steam<');
   });
 
+  it('keeps the wordmark readable as one "Hagicode" heading with a decorative outline layer', () => {
+    const copy = getHomepageInteractiveCopy('en-US');
+    const markup = renderToStaticMarkup(
+      <HeroSection locale="en-US" copy={copy.hero} workflowBoardCopy={copy.workflowBoard} />,
+    );
+    const heading = markup.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1] ?? '';
+    const readable = heading
+      .replace(/<span[^>]*aria-hidden="true"[^>]*>(?:<span[^>]*><\/span>)*<\/span>/g, '')
+      .replace(/<[^>]+>/g, '');
+
+    expect(readable).toBe('Hagicode');
+    expect(heading).toContain('data-run="intro"');
+    expect(heading.match(/aria-hidden="true"/g)?.length).toBeGreaterThanOrEqual(3);
+  });
+
   it('leads with the proposal-driven headline instead of generic taglines', () => {
     const copy = getHomepageInteractiveCopy('en-US');
     const markup = renderToStaticMarkup(
