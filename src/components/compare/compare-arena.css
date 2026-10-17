@@ -353,15 +353,11 @@
 .arena__cell {
   margin: 0;
   padding: 0 1.4rem;
-  font-size: 0.96rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.7;
   color: var(--color-text-secondary);
   text-wrap: pretty;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  overflow: hidden;
+  overflow-wrap: anywhere;
 }
 
 /* Each side's colour pools against the seam and fades out before it reaches an edge. */
@@ -599,12 +595,7 @@
     border-bottom: 1px solid var(--color-border-light);
   }
 
-  .arena__row:nth-child(n + 4) {
-    display: none;
-  }
-
-  .arena__row:last-child,
-  .arena__row:nth-child(3) {
+  .arena__row:last-child {
     border-bottom: 0;
   }
 
@@ -620,18 +611,15 @@
   }
 
   .arena__cell {
-    -webkit-line-clamp: 4;
-    line-clamp: 4;
     padding: 0 0 0 0.9rem;
     border-left: 1px solid var(--color-border);
-    font-size: 0.94rem;
   }
 
   .arena__cell::before {
     content: attr(data-who);
     display: block;
     margin-bottom: 0.15rem;
-    font-size: 0.78rem;
+    font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 0.02em;
     color: var(--color-text);
