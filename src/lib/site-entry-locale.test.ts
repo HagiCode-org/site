@@ -5,6 +5,7 @@ import {
   getStoredSiteLocale,
   resolveClientSiteLocale,
   resolveSiteEntryLocale,
+  traceSiteEntryLocale,
 } from './site-entry-locale';
 
 describe('site entry locale resolution', () => {
@@ -96,6 +97,33 @@ describe('site entry locale resolution', () => {
       shouldPersist: false,
       shouldRedirect: true,
       targetUrl: 'https://www.hagicode.com/site/ja-JP/about/?ref=promo',
+    });
+  });
+});
+
+describe('site entry locale source', () => {
+  it('reports the input that decided the locale, in priority order', () => {
+    expect(traceSiteEntryLocale({ requestedLang: 'ja', storedLocale: 'fr-FR', clientLanguages: ['de'] }).source).toBe('query');
+    expect(traceSiteEntryLocale({ storedLocale: 'fr-FR', clientLanguages: ['de'] }).source).toBe('stored');
+    expect(traceSiteEntryLocale({ legacyStoredLocale: 'zh-TW', clientLanguages: ['de'] }).source).toBe('stored');
+    expect(traceSiteEntryLocale({ clientLanguages: ['xx', 'de-AT'] }).source).toBe('browser');
+    expect(traceSiteEntryLocale({ clientLanguages: ['xx'] })).toEqual({
+      locale: 'en-US',
+      shouldPersist: true,
+      source: 'default',
+    });
+  });
+
+  it('skips an unsupported ?lang= and never persists what it fell back to', () => {
+    expect(traceSiteEntryLocale({ requestedLang: 'nope', clientLanguages: ['de'] })).toEqual({
+      locale: 'de-DE',
+      shouldPersist: false,
+      source: 'browser',
+    });
+    expect(traceSiteEntryLocale({ requestedLang: 'nope', clientLanguages: [] })).toEqual({
+      locale: 'en-US',
+      shouldPersist: false,
+      source: 'default',
     });
   });
 });
