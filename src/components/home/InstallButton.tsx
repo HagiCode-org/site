@@ -30,7 +30,6 @@ import {
   getAssetTypeLabel,
   getFileExtension,
   groupAssetsByPlatform,
-  PLATFORM_ICONS,
   resolvePrimaryDownloadAction,
   resolvePrimaryDownloadActionPair,
 } from '@/lib/shared/desktop-utils';
@@ -393,14 +392,17 @@ export default function InstallButton({
   locale = 'zh-CN',
 }: InstallButtonProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedPlatform, setSelectedPlatform] = useState<PlatformDownloads['platform'] | null>(null);
   const [fetchedData, setFetchedData] = useState<DesktopVersionData | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState<DropdownPosition | null>(null);
   const [downloadSourceProbeStates, setDownloadSourceProbeStates] = useState<DownloadSourceProbeStateMap>({});
   const [steamStoreLink, setSteamStoreLink] = useState(() => getBundledSteamStoreLink());
   const buttonRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   const buttonId = useId();
+  const isDropdownPositioned = dropdownPosition !== null;
   const isChineseLocale = locale.toLowerCase().startsWith('zh');
   const legacyLocale = isChineseLocale ? 'zh-CN' : 'en';
   const needsRuntimeFetch = !version && platforms.length === 0 && !versionError;
@@ -408,8 +410,7 @@ export default function InstallButton({
   const installButtonLabel = isChineseLocale ? '立即安装' : 'Install now';
   const installDesktopAriaLabel =
     isChineseLocale ? '立即安装 Hagicode Desktop' : 'Install Hagicode Desktop';
-  const selectOtherVersionsLabel = isChineseLocale ? '选择其他版本' : 'Choose other versions';
-  const selectDownloadVersionLabel = isChineseLocale ? '选择下载版本' : 'Choose download version';
+  const selectOtherVersionsLabel = isChineseLocale ? '选择下载平台和安装包' : 'Choose platform and package';
   const recommendedLabel = isChineseLocale ? '推荐' : 'Recommended';
   const loadingLatestLabel = isChineseLocale ? '正在获取最新版本...' : 'Fetching latest version...';
   const errorFallbackLabel =
@@ -421,14 +422,10 @@ export default function InstallButton({
   const unavailableMenuLabel = isChineseLocale ? '版本数据暂时不可用' : 'Version data is temporarily unavailable';
   const desktopFallbackMenuLabel = isChineseLocale ? '打开版本历史页' : 'Open version history';
   const loadingPrimaryLabel = isChineseLocale ? '获取中...' : 'Loading...';
-  const dropdownEyebrowLabel = isChineseLocale ? 'Desktop 安装包' : 'Desktop packages';
-  const dropdownTitleLabel = isChineseLocale ? '选择适合当前设备的安装包' : 'Choose the package for your device';
-  const dropdownDescriptionLabel = isChineseLocale
-    ? '当前设备对应的平台会优先展示，默认下载源会被明确标记。'
-    : 'Your current platform is listed first, and the default download source is clearly tagged.';
-  const dropdownVersionLabel = isChineseLocale ? '当前版本' : 'Version';
+  const dropdownTitleLabel = isChineseLocale ? '下载桌面版' : 'Download Desktop';
+  const choosePlatformLabel = isChineseLocale ? '选择操作系统' : 'Choose operating system';
+  const allDownloadsLabel = isChineseLocale ? '查看全部下载与安装说明' : 'All downloads and installation guide';
   const currentDeviceLabel = isChineseLocale ? '当前设备' : 'Current device';
-  const defaultSourceTaggedLabel = isChineseLocale ? '默认源已标记' : 'Default source tagged';
   const otherInstallPathsLabel = isChineseLocale ? '其他安装路径' : 'Other install paths';
   const steamShortcutLabel = 'Steam';
   const steamShortcutAriaLabel =
@@ -511,7 +508,8 @@ export default function InstallButton({
     () => prioritizeCurrentPlatform(platformData, currentOS),
     [currentOS, platformData],
   );
-  const currentDevicePlatformLabel = currentOS === 'unknown' ? null : PLATFORM_LABELS[currentOS];
+  const activePlatform = orderedPlatformData.find((platform) => platform.platform === selectedPlatform)
+    ?? orderedPlatformData[0];
 
   const currentVersion = runtimeSnapshot.version;
   const menuState = useMemo(
@@ -659,15 +657,11 @@ export default function InstallButton({
     const rect = buttonRef.current.getBoundingClientRect();
     const viewportPadding = 16;
     const gap = 4;
-    const estimatedWidth = Math.min(
-      704,
-      Math.max(window.innerWidth * 0.56, 480),
-      window.innerWidth - viewportPadding * 2,
-    );
+    const estimatedWidth = Math.min(400, window.innerWidth - viewportPadding * 2);
     const actualWidth = menuRef.current
       ? Math.min(menuRef.current.offsetWidth, window.innerWidth - viewportPadding * 2)
       : estimatedWidth;
-    const preferredMaxHeight = Math.max(280, window.innerHeight - viewportPadding * 2);
+    const preferredMaxHeight = Math.min(560, window.innerHeight - viewportPadding * 2);
     const spaceBelow = window.innerHeight - rect.bottom - viewportPadding;
     const spaceAbove = rect.top - viewportPadding;
     const actualHeight = menuRef.current
@@ -675,7 +669,7 @@ export default function InstallButton({
       : preferredMaxHeight;
     const openUpward = spaceBelow < Math.min(actualHeight, 320) && spaceAbove > spaceBelow;
     const maxHeight = Math.max(
-      180,
+      0,
       Math.min(preferredMaxHeight, openUpward ? spaceAbove - gap : spaceBelow - gap),
     );
     const renderedHeight = Math.min(actualHeight, maxHeight);
@@ -709,20 +703,28 @@ export default function InstallButton({
       setIsDropdownOpen(false);
     };
 
-    document.addEventListener('mousedown', handlePointerDownOutside);
-    return () => document.removeEventListener('mousedown', handlePointerDownOutside);
+    document.addEventListener('pointerdown', handlePointerDownOutside);
+    return () => document.removeEventListener('pointerdown', handlePointerDownOutside);
   }, [isDropdownOpen]);
 
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      if (event.key === 'Escape' && isDropdownOpen) {
+        event.preventDefault();
         setIsDropdownOpen(false);
+        toggleRef.current?.focus();
       }
     };
 
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
-  }, []);
+  }, [isDropdownOpen]);
+
+  useEffect(() => {
+    if (isDropdownOpen && isDropdownPositioned) {
+      menuRef.current?.focus({ preventScroll: true });
+    }
+  }, [isDropdownOpen, isDropdownPositioned]);
 
   useEffect(() => {
     if (!isDropdownOpen) {
@@ -748,11 +750,14 @@ export default function InstallButton({
       window.removeEventListener('resize', handleViewportChange);
       window.removeEventListener('scroll', handleViewportChange, true);
     };
-  }, [isDropdownOpen, updateDropdownPosition]);
+  }, [isDropdownOpen, activePlatform, menuState.mode, updateDropdownPosition]);
 
   const handleToggleDropdown = (event: React.MouseEvent) => {
     event.stopPropagation();
     const nextOpen = !isDropdownOpen;
+    if (nextOpen) {
+      setSelectedPlatform(null);
+    }
     setIsDropdownOpen(nextOpen);
     if (!nextOpen) {
       setDropdownPosition(null);
@@ -761,6 +766,21 @@ export default function InstallButton({
 
   const handleLinkClick = () => {
     setIsDropdownOpen(false);
+    toggleRef.current?.focus();
+  };
+
+  const handlePanelKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== 'Tab') {
+      return;
+    }
+    const controls = menuRef.current?.querySelectorAll<HTMLElement>('button, a[href]');
+    const first = controls?.[0];
+    const last = controls?.[controls.length - 1];
+    if ((event.shiftKey && (event.target === first || event.target === menuRef.current))
+      || (!event.shiftKey && event.target === last)) {
+      event.preventDefault();
+      handleLinkClick();
+    }
   };
 
   const handlePrimaryInstallClick = () => {
@@ -793,8 +813,7 @@ export default function InstallButton({
     return (
       <div
         className={`${styles.dropdownItem} ${styles.dropdownItemDisabled} ${styles.dropdownStatusBlock}`}
-        role="presentation"
-        aria-disabled="true"
+        role="status"
       >
         <span className={styles.dropdownItemTextBlock}>
           <span className={styles.dropdownItemLabel}>{title}</span>
@@ -812,8 +831,10 @@ export default function InstallButton({
             ref={menuRef}
             className={`${styles.dropdownMenu} ${styles.dropdownMenuOpen}`}
             id={`${buttonId}-menu`}
-            role="menu"
-            aria-label={selectDownloadVersionLabel}
+            role="dialog"
+            aria-labelledby={`${buttonId}-title`}
+            tabIndex={-1}
+            onKeyDown={handlePanelKeyDown}
             style={{
               top: dropdownPosition ? `${dropdownPosition.top}px` : '16px',
               left: dropdownPosition ? `${dropdownPosition.left}px` : '16px',
@@ -824,57 +845,41 @@ export default function InstallButton({
             }}
           >
             <div className={styles.dropdownHeader} role="presentation">
-              <div className={styles.dropdownHeaderCopy}>
-                <span className={styles.dropdownEyebrow}>{dropdownEyebrowLabel}</span>
-                <span className={styles.dropdownTitle}>{dropdownTitleLabel}</span>
-                <span className={styles.dropdownDescription}>{dropdownDescriptionLabel}</span>
-              </div>
-              <div className={styles.dropdownHeaderMeta}>
-                {currentVersion?.version && (
-                  <span className={styles.dropdownHeaderBadge}>
-                    {dropdownVersionLabel} {currentVersion.version}
-                  </span>
-                )}
-                {currentDevicePlatformLabel && (
-                  <span className={styles.dropdownHeaderBadge}>
-                    {currentDeviceLabel}: {currentDevicePlatformLabel}
-                  </span>
-                )}
-                <span className={styles.dropdownHeaderBadge}>{defaultSourceTaggedLabel}</span>
-              </div>
+              <span id={`${buttonId}-title`} className={styles.dropdownTitle}>{dropdownTitleLabel}</span>
+              {currentVersion?.version && <span className={styles.versionTag}>{currentVersion.version}</span>}
             </div>
+            {menuState.hasDownloads && (
+              <div className={styles.dropdownPlatformPicker} role="group" aria-label={choosePlatformLabel}>
+                {orderedPlatformData.map((platformGroup) => (
+                  <button
+                    key={platformGroup.platform}
+                    type="button"
+                    className={styles.dropdownPlatformButton}
+                    aria-pressed={activePlatform?.platform === platformGroup.platform}
+                    aria-controls={`${buttonId}-packages`}
+                    onClick={() => setSelectedPlatform(platformGroup.platform)}
+                  >
+                    {platformGroup.platformLabel}
+                  </button>
+                ))}
+              </div>
+            )}
             <div className={styles.dropdownBody}>
               {menuState.mode !== 'ready' && renderStatusBlock()}
               {menuState.hasDownloads &&
-                orderedPlatformData.map((platformGroup) => {
+                orderedPlatformData.filter((platformGroup) => platformGroup === activePlatform).map((platformGroup) => {
                   const isCurrentPlatform = platformGroup.platform === currentOS;
-                  const packageCountLabel = isChineseLocale
-                    ? `${platformGroup.options.length} 个安装包`
-                    : `${platformGroup.options.length} package${platformGroup.options.length === 1 ? '' : 's'}`;
 
                   return (
                     <section
                       key={platformGroup.platform}
-                      className={`${styles.dropdownPlatformSection} ${styles[`dropdownPlatformSection--${platformGroup.platform}`]} ${isCurrentPlatform ? styles.dropdownPlatformSectionCurrent : ''}`}
+                      id={`${buttonId}-packages`}
+                      className={styles.dropdownPlatformSection}
                       role="group"
                       aria-label={platformGroup.platformLabel}
                     >
                       <div className={styles.dropdownGroupLabel} role="presentation">
-                        <div className={styles.dropdownGroupLead}>
-                          <span className={styles.platformIcon}>{PLATFORM_ICONS[platformGroup.platform]}</span>
-                          <div className={styles.dropdownGroupText}>
-                            <span className={styles.platformName}>{platformGroup.platformLabel}</span>
-                            <span className={styles.dropdownGroupMeta}>{packageCountLabel}</span>
-                          </div>
-                        </div>
-                        <div className={styles.dropdownGroupBadges}>
-                          {isCurrentPlatform && (
-                            <span className={styles.platformStateBadge}>{currentDeviceLabel}</span>
-                          )}
-                          {currentVersion?.version && (
-                            <span className={styles.versionTag}>{currentVersion.version}</span>
-                          )}
-                        </div>
+                        {isCurrentPlatform ? `${currentDeviceLabel} · ` : ''}{platformGroup.platformLabel}
                       </div>
                       <div className={styles.dropdownItemStack}>
                         {platformGroup.options.map((option, idx) => {
@@ -889,41 +894,38 @@ export default function InstallButton({
                           return (
                             <div
                               key={`${platformGroup.platform}-${option.url}`}
-                              className={`${styles.dropdownItem} ${styles.dropdownItemMultiSource} ${isRecommended ? styles.dropdownItemRecommended : ''}`}
+                              className={`${styles.dropdownItem} ${styles.dropdownItemMultiSource}`}
                             >
                               <div className={styles.dropdownItemMeta}>
                                 <span className={styles.dropdownItemLabel}>
                                   {getAssetTypeLabel(option.assetType)}
-                                  {archLabel && <span className={styles.archLabel}> ({archLabel})</span>}
-                                  {fileExt && <span className={styles.fileExtBadge}>{fileExt}</span>}
                                   {isRecommended && (
                                     <span className={styles.recommendedBadge}>{recommendedLabel}</span>
                                   )}
                                 </span>
-                                {option.size && (
-                                  <span className={styles.dropdownItemSize}>{option.size}</span>
-                                )}
+                                <span className={styles.dropdownItemSize}>
+                                  {[archLabel, fileExt, option.size].filter(Boolean).join(' · ')}
+                                </span>
                               </div>
                               <div className={styles.dropdownSourceActions}>
-                                {option.sourceActions.map((action) => {
+                                {[
+                                  ...option.sourceActions.filter((action) => action.kind === resolvedAction?.kind),
+                                  ...option.sourceActions.filter((action) => action.kind !== resolvedAction?.kind),
+                                ].map((action) => {
                                   const isSmartDefault = resolvedAction?.kind === action.kind;
+                                  const sourceLabel = action.kind === 'github-release' ? 'GitHub' : getDownloadActionLabel(action.kind, legacyLocale);
+                                  const actionLabel = `${isSmartDefault ? `${isChineseLocale ? '下载' : 'Download'} · ` : ''}${sourceLabel}`;
 
                                   return (
                                     <a
                                       key={`${option.url}-${action.kind}`}
                                       href={action.url}
                                       className={`${styles.dropdownSourceAction} ${isSmartDefault ? styles.dropdownSourceActionDefault : ''}`}
-                                      role="menuitem"
                                       download
-                                      aria-label={`${getAssetTypeLabel(option.assetType)} ${getDownloadActionLabel(action.kind, legacyLocale)}`}
+                                      aria-label={`${actionLabel} — ${platformGroup.platformLabel} ${getAssetTypeLabel(option.assetType)} ${archLabel} ${fileExt}${isSmartDefault ? ` (${isChineseLocale ? '默认' : 'Default'})` : ''}`}
                                       onClick={() => handlePlatformDownloadClick(option.assetType, action)}
                                     >
-                                      <span>{getDownloadActionLabel(action.kind, legacyLocale)}</span>
-                                      {isSmartDefault && (
-                                        <span className={styles.dropdownSourceActionBadge}>
-                                          {isChineseLocale ? '默认' : 'Default'}
-                                        </span>
-                                      )}
+                                      <span>{actionLabel}</span>
                                     </a>
                                   );
                                 })}
@@ -944,7 +946,6 @@ export default function InstallButton({
                     <a
                       href={historyFallbackTarget}
                       className={styles.dropdownItem}
-                      role="menuitem"
                       onClick={handleLinkClick}
                     >
                       <span className={styles.dropdownItemTextBlock}>
@@ -956,6 +957,21 @@ export default function InstallButton({
                 </section>
               )}
             </div>
+            {menuState.hasDownloads && (
+              <a
+                href={desktopPageUrl}
+                className={styles.dropdownFooter}
+                onClick={() => {
+                  trackEvent('open_desktop_page', { source: `install-button-${variant}-all-downloads`, url: desktopPageUrl });
+                  handleLinkClick();
+                }}
+              >
+                {allDownloadsLabel}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true">
+                  <path d="M5 12h14m-6-6 6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            )}
           </div>,
           document.body,
         )
@@ -1053,11 +1069,12 @@ export default function InstallButton({
 
         {showDropdown && (
           <button
+            ref={toggleRef}
             className={styles.btnDropdownToggle}
             type="button"
             aria-expanded={isDropdownOpen}
             aria-controls={`${buttonId}-menu`}
-            aria-haspopup="menu"
+            aria-haspopup="dialog"
             aria-busy={menuState.mode === 'loading'}
             aria-label={selectOtherVersionsLabel}
             data-runtime-state={menuState.mode}
