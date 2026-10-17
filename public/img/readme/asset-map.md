@@ -61,14 +61,14 @@ The current selection includes 7 UI screenshots and 1 product visual.
 
 ## hero-highlights.webp
 - Type: Product visual
-- Feature mapping: Hero Dungeon brand identity and battle-report personality
+- Feature mapping: Hero persona brand identity and battle-report personality
 - Source: `repos/docs/src/content/docs/img/product-overview/hero-feature-showcase/hero-rune-mage.webp`
 - EN title: Hero highlight and personality layer
-- EN caption: Hero Dungeon personas and battle-report theming give long-running AI sessions a memorable identity.
-- EN alt: Stylized rune mage cat hero illustration representing HagiCode's Hero Dungeon theme.
+- EN caption: Hero personas and battle-report theming give long-running AI sessions a memorable identity.
+- EN alt: Stylized rune mage cat hero illustration representing HagiCode’s Hero persona theme.
 - ZH title: Hero 亮点与产品个性
-- ZH caption: Hero Dungeon 人设与战报主题，让长流程 AI 协作拥有更鲜明的记忆点。
-- ZH alt: 风格化的符文法师猫咪 Hero 插画，用来表达 HagiCode 的 Hero Dungeon 主题。
+- ZH caption: Hero 人设与战报主题，让长流程 AI 协作拥有更鲜明的记忆点。
+- ZH alt: 风格化的符文法师猫咪 Hero 插画，用来表达 HagiCode 的 Hero 人设主题。
 
 ## desktop-start-service.png
 - Type: UI screenshot
