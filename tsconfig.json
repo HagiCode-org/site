@@ -3,7 +3,6 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@/lib/shared/*": ["./src/lib/shared/*"]
@@ -11,8 +10,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "downlevelIteration": true
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     ".astro/types.d.ts",
