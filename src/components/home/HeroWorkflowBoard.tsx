@@ -1,473 +1,249 @@
-import { motion, useReducedMotion } from 'framer-motion';
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
+/**
+ * Hero "agent lanes": several agents, each taking its own task through the four stages
+ * (ideate -> propose -> execute -> archive) and starting over the moment a run is archived.
+ *
+ * The motion is the point and it costs almost nothing: every lane is one CSS timeline
+ * (`--d` long, started `--delay` seconds in), and every mark on it (fill, node, stage label,
+ * occupancy pip, task name, return arc) is a keyframe window over that same timeline. There is
+ * no JS tick, no state per frame, and the markup is identical on the server and the client. The
+ * lanes run at different periods, so they drift out of step instead of marching in lockstep.
+ *
+ * The only client logic is the courtesy layer: a pause control (WCAG 2.2.2), and pausing while
+ * the board is off screen or the tab is hidden. `prefers-reduced-motion` freezes the same
+ * timelines on a snapshot where every lane sits in a different stage.
+ *
+ * The stage windows here and the keyframe percentages in the stylesheet are one set of numbers:
+ * ideate 0-16%, propose 16-40%, execute 40-78%, archive 78-90%, "complete" 90-98%.
+ */
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import styles from './HeroWorkflowBoard.module.css';
-import { homeHeroImages } from '@/assets/siteAssetUrls';
 import type { HomepageWorkflowBoardCopy } from '@/lib/homepage-runtime-copy';
 
-type Locale = string;
-
-type AgentSpec = {
-  name: string;
-  accent: string;
-  glow: string;
-};
-
-type LanePhase = 'entering' | 'running' | 'completed';
-
-type LaneCycle = {
-  laneId: number;
-  taskId: number;
-  agent: AgentSpec;
-  heroVariant: number;
-  startedAt: number;
-  phaseStartedAt: number;
-  stageDurations: number[];
-  totalDuration: number;
-  speed: number;
-  phase: LanePhase;
-  completedAt: number | null;
-};
-
-type SimulationSnapshot = {
-  startedAt: number;
-  now: number;
-  completedTasks: number;
-  accumulatedTaskMs: number;
-  lanes: LaneCycle[];
-};
-
-type BoardCopy = {
-  titleLines: string[];
-  taskLabel: string;
-  headerSummary: string;
-  presetTasks: {
-    label: string;
-    items: string[];
-  };
-  steps: string[];
-  activeStates: string[];
-  completedState: string;
-  metrics: {
-    completed: string;
-    efficiency: string;
-    serialTime: string;
-    elapsedTime: string;
-    formula: string;
-    serialHint: string;
-  };
-};
-
 interface HeroWorkflowBoardProps {
-  locale?: Locale;
+  locale?: string;
   copy: HomepageWorkflowBoardCopy;
 }
 
-const AGENTS: AgentSpec[] = [
-  { name: 'Claude Code', accent: '#34d399', glow: 'rgba(52, 211, 153, 0.34)' },
-  { name: 'Codex', accent: '#60a5fa', glow: 'rgba(96, 165, 250, 0.34)' },
-  { name: 'GitHub Copilot', accent: '#a78bfa', glow: 'rgba(167, 139, 250, 0.34)' },
-  { name: 'OpenCode', accent: '#fb7185', glow: 'rgba(251, 113, 133, 0.34)' },
-  { name: 'Hermes', accent: '#f59e0b', glow: 'rgba(245, 158, 11, 0.34)' },
-  { name: 'Pi', accent: '#c084fc', glow: 'rgba(192, 132, 252, 0.34)' },
-  { name: 'Kiro', accent: '#22d3ee', glow: 'rgba(34, 211, 238, 0.34)' },
-  { name: 'QoderCLI', accent: '#f97316', glow: 'rgba(249, 115, 22, 0.34)' },
-  { name: 'Reasonix', accent: '#e879f9', glow: 'rgba(232, 121, 249, 0.34)' },
-  { name: 'Kimi', accent: '#f472b6', glow: 'rgba(244, 114, 182, 0.34)' },
-  { name: 'Gemini CLI', accent: '#38bdf8', glow: 'rgba(56, 189, 248, 0.34)' },
-  { name: 'DeepAgents', accent: '#4ade80', glow: 'rgba(74, 222, 128, 0.34)' },
-  { name: 'Codebuddy', accent: '#facc15', glow: 'rgba(250, 204, 21, 0.34)' },
+type Lane = {
+  agent: string;
+  /** Seconds for one run, ideate through archive. */
+  durationS: number;
+  /** Where in its run the lane is at first paint, 0-1. Spread so every stage is occupied. */
+  startFraction: number;
+};
+
+// Product names, not localized copy. Periods differ so the lanes never line up.
+const LANES: Lane[] = [
+  { agent: 'Claude Code', durationS: 13, startFraction: 0.62 },
+  { agent: 'Codex', durationS: 16, startFraction: 0.3 },
+  { agent: 'GitHub Copilot', durationS: 14, startFraction: 0.08 },
+  { agent: 'OpenCode', durationS: 18, startFraction: 0.83 },
+  { agent: 'Hermes', durationS: 15, startFraction: 0.5 },
 ];
 
-const LANE_COUNT = 5;
-const BASE_STAGE_DURATIONS = [1200, 2100, 2900, 1100] as const;
-const BASE_TOTAL_DURATION = BASE_STAGE_DURATIONS.reduce((sum, value) => sum + value, 0);
-const CARD_EXIT_MS = 460;
-const CARD_ENTER_MS = 420;
-const HERO_IMAGES = homeHeroImages;
+const STAGES = [0, 1, 2, 3] as const;
 
-function mixSeed(seed: number) {
-  let value = seed >>> 0;
-  value = Math.imul(value ^ (value >>> 16), 0x21f0aaad);
-  value = Math.imul(value ^ (value >>> 15), 0x735a2d97);
-  return (value ^ (value >>> 15)) >>> 0;
+function mod(value: number, divisor: number) {
+  return ((value % divisor) + divisor) % divisor;
 }
 
-function combineSeed(...parts: number[]) {
-  let hash = 0x811c9dc5;
+function seconds(value: number) {
+  return `${Number(value.toFixed(3))}s`;
+}
 
-  for (const part of parts) {
-    hash ^= part >>> 0;
-    hash = Math.imul(hash, 0x01000193);
+function formatList(items: string[], locale: string) {
+  try {
+    return new Intl.ListFormat(locale, { style: 'long', type: 'conjunction' }).format(items);
+  } catch {
+    return items.join(', ');
   }
-
-  return mixSeed(hash);
 }
 
-function seededUnit(seed: number) {
-  return mixSeed(seed) / 0xffffffff;
+function laneTimeline(lane: Lane): CSSProperties {
+  return {
+    '--d': seconds(lane.durationS),
+    '--delay': seconds(-lane.startFraction * lane.durationS),
+  } as CSSProperties;
 }
 
-function randomBetween(min: number, max: number, seed: number) {
-  return min + seededUnit(seed) * (max - min);
-}
-
-function pickAgent(seed: number, previousName?: string) {
-  const candidates = AGENTS.filter((agent) => agent.name !== previousName);
-  const pool = candidates.length > 0 ? candidates : AGENTS;
-  const index = Math.min(pool.length - 1, Math.floor(seededUnit(seed) * pool.length));
-  return pool[index] ?? AGENTS[0];
-}
-
-function pickHeroVariant(seed: number, previousVariant?: number) {
-  const variants = Array.from({ length: HERO_IMAGES.length }, (_, index) => index);
-  const pool = variants.filter((variant) => variant !== previousVariant);
-  const candidates = pool.length > 0 ? pool : variants;
-  const index = Math.min(
-    candidates.length - 1,
-    Math.floor(seededUnit(seed) * candidates.length),
+/**
+ * Task names rotate on a timeline four runs long, one name per run, shifted per lane so each
+ * lane starts on a different task. Returns the delay that puts task `taskIndex` on its turn.
+ */
+function taskDelay(lane: Lane, laneIndex: number, taskIndex: number, taskCount: number) {
+  const runsBeforeShowing = mod(taskIndex - laneIndex, taskCount);
+  const elapsed = mod(
+    lane.startFraction * lane.durationS - runsBeforeShowing * lane.durationS,
+    taskCount * lane.durationS,
   );
-  return candidates[index] ?? 0;
+  return seconds(-elapsed);
 }
 
-function createLaneCycle(
-  laneId: number,
-  startedAt: number,
-  taskId: number,
-  previousAgentName?: string,
-  previousHeroVariant?: number,
-  phase: LanePhase = 'running',
-  phaseStartedAt = startedAt,
-): LaneCycle {
-  const laneSeed = combineSeed(laneId + 1, taskId + 1, Math.round(startedAt), Math.round(phaseStartedAt));
-  const agent = pickAgent(combineSeed(laneSeed, 1), previousAgentName);
-  const pace = randomBetween(0.72, 1.34, combineSeed(laneSeed, 2));
-  const laneBias = 0.92 + laneId * 0.035;
-
-  const stageDurations = BASE_STAGE_DURATIONS.map((duration, index) => {
-    const stageBias = index === 2
-      ? randomBetween(1.02, 1.18, combineSeed(laneSeed, 10 + index))
-      : randomBetween(0.84, 1.12, combineSeed(laneSeed, 10 + index));
-    return Math.max(640, Math.round(duration * pace * laneBias * stageBias));
-  });
-
-  const totalDuration = stageDurations.reduce((sum, value) => sum + value, 0);
-  const speed = Number((BASE_TOTAL_DURATION / totalDuration).toFixed(2));
-
-  return {
-    laneId,
-    taskId,
-    agent,
-    heroVariant: pickHeroVariant(combineSeed(laneSeed, 3), previousHeroVariant),
-    startedAt,
-    phaseStartedAt,
-    stageDurations,
-    totalDuration,
-    speed,
-    phase,
-    completedAt: null,
-  };
+function PauseIcon() {
+  return (
+    <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+      <rect x="3.5" y="3" width="3" height="10" rx="0.75" fill="currentColor" />
+      <rect x="9.5" y="3" width="3" height="10" rx="0.75" fill="currentColor" />
+    </svg>
+  );
 }
 
-function createInitialSnapshot(now: number): SimulationSnapshot {
-  return {
-    startedAt: now,
-    now,
-    completedTasks: 0,
-    accumulatedTaskMs: 0,
-    lanes: Array.from({ length: LANE_COUNT }, (_, laneIndex) => {
-      const offset = laneIndex * 180;
-      return createLaneCycle(laneIndex, now - offset, laneIndex + 1);
-    }),
-  };
+function PlayIcon() {
+  return (
+    <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+      <path d="M4.5 2.75v10.5L13 8z" fill="currentColor" />
+    </svg>
+  );
 }
 
-function advanceSimulation(snapshot: SimulationSnapshot, now: number): SimulationSnapshot {
-  let completedTasks = snapshot.completedTasks;
-  let accumulatedTaskMs = snapshot.accumulatedTaskMs;
+export default function HeroWorkflowBoard({ locale = 'en-US', copy }: HeroWorkflowBoardProps) {
+  const rootRef = useRef<HTMLElement>(null);
+  const [userPaused, setUserPaused] = useState(false);
+  const [idle, setIdle] = useState(false);
 
-  const lanes = snapshot.lanes.map((lane) => {
-    let currentLane = lane;
-
-    while (true) {
-      if (currentLane.phase === 'running' && now >= currentLane.startedAt + currentLane.totalDuration) {
-        const finishedAt = currentLane.startedAt + currentLane.totalDuration;
-        completedTasks += 1;
-        accumulatedTaskMs += currentLane.totalDuration;
-        currentLane = {
-          ...currentLane,
-          phase: 'completed',
-          phaseStartedAt: finishedAt,
-          completedAt: finishedAt,
-        };
-        continue;
-      }
-
-      if (currentLane.phase === 'completed' && currentLane.completedAt !== null && now >= currentLane.phaseStartedAt + CARD_EXIT_MS) {
-        const enteringAt = currentLane.phaseStartedAt + CARD_EXIT_MS;
-        const nextLane = createLaneCycle(
-          currentLane.laneId,
-          enteringAt + CARD_ENTER_MS,
-          currentLane.taskId + LANE_COUNT,
-          currentLane.agent.name,
-          currentLane.heroVariant,
-          'entering',
-          enteringAt,
-        );
-        currentLane = nextLane;
-        continue;
-      }
-
-      if (currentLane.phase === 'entering' && now >= currentLane.phaseStartedAt + CARD_ENTER_MS) {
-        currentLane = {
-          ...currentLane,
-          phase: 'running',
-          phaseStartedAt: currentLane.startedAt,
-        };
-        continue;
-      }
-
-      break;
-    }
-
-    return currentLane;
-  });
-
-  return {
-    startedAt: snapshot.startedAt,
-    now,
-    completedTasks,
-    accumulatedTaskMs,
-    lanes,
-  };
-}
-
-function getLaneProgress(lane: LaneCycle, now: number) {
-  if (lane.phase === 'entering') {
-    return {
-      activeStepIndex: 0,
-      stepProgresses: lane.stageDurations.map(() => 0),
-      overallProgress: 0,
-      isCompleted: false,
-    };
-  }
-
-  if (lane.phase === 'completed') {
-    return {
-      activeStepIndex: lane.stageDurations.length - 1,
-      stepProgresses: lane.stageDurations.map(() => 0),
-      overallProgress: 0,
-      isCompleted: true,
-    };
-  }
-
-  const elapsed = Math.max(0, Math.min(now - lane.startedAt, lane.totalDuration));
-  let consumed = 0;
-  let activeStepIndex = lane.stageDurations.length - 1;
-  let activeSet = false;
-
-  const stepProgresses = lane.stageDurations.map((duration, index) => {
-    const stepElapsed = Math.max(0, Math.min(elapsed - consumed, duration));
-    const progress = duration === 0 ? 1 : stepElapsed / duration;
-
-    if (!activeSet && elapsed < consumed + duration) {
-      activeStepIndex = index;
-      activeSet = true;
-    }
-
-    consumed += duration;
-    return progress;
-  });
-
-  return {
-    activeStepIndex,
-    stepProgresses,
-    overallProgress: lane.totalDuration === 0 ? 1 : elapsed / lane.totalDuration,
-    isCompleted: false,
-  };
-}
-
-function formatDuration(durationMs: number, locale: Locale) {
-  const totalSeconds = Math.max(0, Math.floor(durationMs / 1000));
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-
-  if (locale.toLowerCase().startsWith('zh')) {
-    if (minutes > 0) {
-      return `${minutes}分 ${seconds.toString().padStart(2, '0')}秒`;
-    }
-
-    return `${seconds}秒`;
-  }
-
-  if (minutes > 0) {
-    return `${minutes}m ${seconds.toString().padStart(2, '0')}s`;
-  }
-
-  return `${seconds}s`;
-}
-
-export default function HeroWorkflowBoard({ locale = 'zh-CN', copy }: HeroWorkflowBoardProps) {
-  const shouldReduceMotion = Boolean(useReducedMotion());
-  const [snapshot, setSnapshot] = useState<SimulationSnapshot>(() => createInitialSnapshot(0));
-  const snapshotRef = useRef<SimulationSnapshot>(snapshot);
-
+  // Nothing animates while nobody can see it.
   useEffect(() => {
-    const now = typeof performance !== 'undefined' ? performance.now() : Date.now();
-    const initialSnapshot = createInitialSnapshot(now);
-    snapshotRef.current = initialSnapshot;
-    setSnapshot(initialSnapshot);
+    const root = rootRef.current;
+    let onScreen = true;
+    let tabVisible = typeof document === 'undefined' || document.visibilityState !== 'hidden';
 
-    const intervalMs = shouldReduceMotion ? 420 : 160;
-    const timerId = window.setInterval(() => {
-      const currentNow = typeof performance !== 'undefined' ? performance.now() : Date.now();
-      const nextSnapshot = advanceSimulation(snapshotRef.current, currentNow);
-      snapshotRef.current = nextSnapshot;
-      setSnapshot(nextSnapshot);
-    }, intervalMs);
+    const sync = () => setIdle(!onScreen || !tabVisible);
+    const handleVisibility = () => {
+      tabVisible = document.visibilityState !== 'hidden';
+      sync();
+    };
+
+    document.addEventListener('visibilitychange', handleVisibility);
+
+    let observer: IntersectionObserver | undefined;
+    if (root && typeof IntersectionObserver !== 'undefined') {
+      observer = new IntersectionObserver(
+        (entries) => {
+          onScreen = entries.some((entry) => entry.isIntersecting);
+          sync();
+        },
+        { rootMargin: '80px 0px' },
+      );
+      observer.observe(root);
+    }
 
     return () => {
-      window.clearInterval(timerId);
+      document.removeEventListener('visibilitychange', handleVisibility);
+      observer?.disconnect();
     };
-  }, [shouldReduceMotion]);
+  }, []);
 
-  const presetTaskLayout = copy.presetTasks.items.slice(0, copy.steps.length);
-  const metrics = useMemo(() => {
-    const elapsedMs = Math.max(snapshot.now - snapshot.startedAt, 1000);
-    const inFlightWorkMs = snapshot.lanes.reduce((sum, lane) => {
-      return sum + Math.max(0, Math.min(snapshot.now - lane.startedAt, lane.totalDuration));
-    }, 0);
-
-    const equivalentSerialMs = snapshot.accumulatedTaskMs + inFlightWorkMs;
-    const efficiency = equivalentSerialMs / elapsedMs;
-    const formatter = new Intl.NumberFormat(locale.toLowerCase().startsWith('zh') ? 'zh-CN' : 'en-US');
-
-    return {
-      completedTasks: formatter.format(snapshot.completedTasks),
-      efficiency: `${efficiency.toFixed(1)}x`,
-      equivalentSerial: formatDuration(equivalentSerialMs, locale),
-      elapsed: formatDuration(elapsedMs, locale),
-    };
-  }, [locale, snapshot]);
+  const diagramLabel = copy.diagramLabel
+    .replace('{agents}', formatList(LANES.map((lane) => lane.agent), locale))
+    .replace('{stages}', formatList(copy.steps, locale));
+  const taskCount = copy.tasks.length;
 
   return (
-    <motion.section
-      className={styles.boardSection}
-      initial={{ opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, ease: [0.2, 0.9, 0.2, 1] }}
+    <section
+      ref={rootRef}
+      className={styles.board}
+      data-paused={userPaused || idle ? 'true' : undefined}
       aria-labelledby="hero-workflow-title"
     >
-      <div className={styles.boardHeader}>
-        <h3 id="hero-workflow-title" className={styles.title}>
-          {copy.titleLines.map((line) => (
-            <span key={line} className={styles.titleLine}>{line}</span>
-          ))}
-        </h3>
-      </div>
-
-      <div className={styles.boardPanel}>
-        <div className={styles.sparkle} aria-hidden="true" />
-        <div className={styles.sparkleTwo} aria-hidden="true" />
-
-        <div className={styles.tableHeader}>
-          <span className={styles.summaryHeader}>{copy.headerSummary}</span>
-          <div className={styles.stepHeaderGrid}>
-            {copy.steps.map((step) => (
-              <button key={step} type="button" className={styles.stepHeaderButton} aria-pressed="false">
-                {step}
-              </button>
-            ))}
-          </div>
+      <header className={styles.header}>
+        <div className={styles.intro}>
+          <h3 id="hero-workflow-title" className={styles.title}>
+            {copy.title}
+          </h3>
+          <p className={styles.description}>{copy.description}</p>
         </div>
 
-        <div className={styles.presetTaskGroup} aria-label={copy.presetTasks.label}>
-          {presetTaskLayout.map((task, index) => (
-            <button key={task} type="button" className={styles.presetTaskButton} data-preset-task-index={index}>
-              {task}
-            </button>
+        <div className={styles.controls}>
+          <span className={styles.tag}>{copy.illustrative}</span>
+          <button
+            type="button"
+            className={styles.toggle}
+            aria-label={userPaused ? copy.play : copy.pause}
+            onClick={() => setUserPaused((value) => !value)}
+          >
+            {userPaused ? <PlayIcon /> : <PauseIcon />}
+            <span className={styles.toggleLabel}>{userPaused ? copy.play : copy.pause}</span>
+          </button>
+        </div>
+      </header>
+
+      <div className={styles.diagram} role="img" aria-label={diagramLabel}>
+        <div className={styles.head} aria-hidden="true">
+          <span className={styles.headSummary}>{copy.headerSummary}</span>
+          {STAGES.map((stage) => (
+            <div key={stage} className={styles.headCell} data-stage={stage}>
+              <span className={styles.headLabel}>
+                <span className={styles.key} />
+                {copy.steps[stage]}
+              </span>
+              {/* One pip per lane; it lights while that lane is in this stage. */}
+              <span className={styles.pips}>
+                {LANES.map((lane) => (
+                  <span key={lane.agent} className={styles.pip}>
+                    <span className={styles.pipLit} style={laneTimeline(lane)} />
+                  </span>
+                ))}
+              </span>
+            </div>
           ))}
         </div>
 
-        <div className={styles.laneStack}>
-          {snapshot.lanes.map((lane) => {
-            const progress = getLaneProgress(lane, snapshot.now);
-            const laneStyle = {
-              '--lane-accent': lane.agent.accent,
-              '--lane-glow': lane.agent.glow,
-            } as CSSProperties;
-
-            return (
-              <article
-                key={lane.laneId}
-                className={styles.laneRow}
-                style={laneStyle}
-                data-phase={lane.phase}
-              >
-                <div className={styles.laneSummary}>
-                  <div className={styles.summaryTopline}>
-                    <span className={styles.heroAvatar}>
-                      <img
-                        src={HERO_IMAGES[lane.heroVariant] ?? HERO_IMAGES[0]}
-                        alt=""
-                        className={styles.heroAvatarImage}
-                        loading="lazy"
-                        decoding="async"
-                      />
+        <ol className={styles.lanes} aria-hidden="true">
+          {LANES.map((lane, laneIndex) => (
+            <li key={lane.agent} className={styles.lane} style={laneTimeline(lane)}>
+              <div className={styles.agent}>
+                <span className={styles.agentName}>{lane.agent}</span>
+                <span className={styles.tasks}>
+                  {copy.tasks.map((task, taskIndex) => (
+                    <span
+                      key={task}
+                      className={styles.task}
+                      style={
+                        {
+                          '--task-d': seconds(lane.durationS * taskCount),
+                          '--task-delay': taskDelay(lane, laneIndex, taskIndex, taskCount),
+                        } as CSSProperties
+                      }
+                    >
+                      {task}
                     </span>
-                    <span className={styles.agentBadge}>{lane.agent.name}</span>
-                    <span className={styles.taskBadge}>{presetTaskLayout[(lane.taskId - 1) % presetTaskLayout.length] ?? copy.taskLabel}</span>
-                  </div>
+                  ))}
+                </span>
+              </div>
+
+              {STAGES.map((stage) => (
+                <div key={stage} className={styles.cell} data-stage={stage}>
+                  <span className={styles.track} />
+                  <span className={styles.node} />
+                  <span className={styles.progress}>
+                    <span className={styles.seg} />
+                    <span className={styles.nodeFill} />
+                    <span className={styles.pulse}>
+                      <span className={styles.ring} />
+                    </span>
+                    {stage === STAGES.length - 1 && <span className={styles.cap} />}
+                  </span>
+                  <span className={styles.state}>{copy.activeStates[stage]}</span>
+                  {stage === STAGES.length - 1 && (
+                    <span className={`${styles.state} ${styles.stateDone}`}>{copy.completedState}</span>
+                  )}
                 </div>
+              ))}
+            </li>
+          ))}
+        </ol>
 
-                <div className={styles.stepGrid}>
-                  {copy.steps.map((step, stepIndex) => {
-                    const stepProgress = Math.max(0, Math.min(progress.stepProgresses[stepIndex] ?? 0, 1));
-                    const stepState = progress.isCompleted
-                      ? 'celebrate'
-                      : stepProgress >= 1
-                        ? 'done'
-                        : stepIndex === progress.activeStepIndex
-                          ? 'active'
-                          : 'idle';
-                    const stepStyle = {
-                      '--step-progress': `${stepProgress * 100}%`,
-                      '--step-index': stepIndex,
-                    } as CSSProperties;
-
-                    return (
-                      <div
-                        key={`${lane.laneId}-${step}`}
-                        className={styles.stepCell}
-                        data-state={stepState}
-                        style={stepStyle}
-                        aria-label={`${step} ${progress.isCompleted ? copy.completedState : copy.activeStates[Math.min(stepIndex, copy.activeStates.length - 1)]}`}
-                      />
-                    );
-                  })}
-                </div>
-              </article>
-            );
-          })}
-        </div>
-
-        <div className={styles.metricsPanel}>
-          <div className={styles.metricCard}>
-            <span className={styles.metricLabel}>{copy.metrics.completed}</span>
-            <strong className={styles.metricValue}>{metrics.completedTasks}</strong>
-          </div>
-          <div className={styles.metricCard}>
-            <span className={styles.metricLabel}>{copy.metrics.efficiency}</span>
-            <strong className={styles.metricValue}>{metrics.efficiency}</strong>
-            <span className={styles.metricHint}>{copy.metrics.serialHint}</span>
-          </div>
-        </div>
-
-        <div className={styles.metricsFooter}>
-          <span>{copy.metrics.serialTime}: {metrics.equivalentSerial}</span>
-          <span>{copy.metrics.elapsedTime}: {metrics.elapsed}</span>
-          <span>{copy.metrics.formula}</span>
+        {/* Archive feeds the next proposal: the arc lights each time a lane finishes a run. */}
+        <div className={styles.loop} aria-hidden="true">
+          <span className={styles.loopArc}>
+            {LANES.map((lane) => (
+              <span key={lane.agent} className={styles.loopSweep} style={laneTimeline(lane)} />
+            ))}
+          </span>
+          <span className={styles.loopHead} />
+          <span className={styles.loopLabel}>{copy.loopLabel}</span>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

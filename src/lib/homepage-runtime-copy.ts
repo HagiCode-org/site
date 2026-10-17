@@ -68,24 +68,19 @@ export interface HomepageHeroCopy {
 }
 
 export interface HomepageWorkflowBoardCopy {
-  titleLines: string[];
-  taskLabel: string;
+  title: string;
+  description: string;
+  illustrative: string;
+  /** Screen-reader summary of the diagram; `{agents}` and `{stages}` are replaced with localized lists. */
+  diagramLabel: string;
+  loopLabel: string;
+  pause: string;
+  play: string;
   headerSummary: string;
-  presetTasks: {
-    label: string;
-    items: string[];
-  };
+  tasks: string[];
   steps: string[];
   activeStates: string[];
   completedState: string;
-  metrics: {
-    completed: string;
-    efficiency: string;
-    serialTime: string;
-    elapsedTime: string;
-    formula: string;
-    serialHint: string;
-  };
 }
 
 export interface HomepageInteractiveCopy {
@@ -192,45 +187,22 @@ export function getHomepageHeroCopy(locale: SiteLocale): HomepageHeroCopy {
 
 export function getHeroWorkflowBoardCopy(locale: SiteLocale): HomepageWorkflowBoardCopy {
   const resolvedLocale = resolveLocale(locale);
+  const read = (key: string) => requireLocaleResourceString(resolvedLocale, 'home', `workflowBoard.${key}`);
+  const readList = (key: string) => [0, 1, 2, 3].map((index) => read(`${key}.${index}`));
 
   return {
-    titleLines: [
-      requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.titleLines.0'),
-      requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.titleLines.1'),
-      requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.titleLines.2'),
-    ],
-    taskLabel: requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.taskLabel'),
-    headerSummary: requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.headerSummary'),
-    presetTasks: {
-      label: requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.presetTasks.label'),
-      items: [
-        requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.presetTasks.items.0'),
-        requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.presetTasks.items.1'),
-        requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.presetTasks.items.2'),
-        requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.presetTasks.items.3'),
-      ],
-    },
-    steps: [
-      requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.steps.0'),
-      requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.steps.1'),
-      requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.steps.2'),
-      requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.steps.3'),
-    ],
-    activeStates: [
-      requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.activeStates.0'),
-      requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.activeStates.1'),
-      requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.activeStates.2'),
-      requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.activeStates.3'),
-    ],
-    completedState: requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.completedState'),
-    metrics: {
-      completed: requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.metrics.completed'),
-      efficiency: requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.metrics.efficiency'),
-      serialTime: requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.metrics.serialTime'),
-      elapsedTime: requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.metrics.elapsedTime'),
-      formula: requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.metrics.formula'),
-      serialHint: requireLocaleResourceString(resolvedLocale, 'home', 'workflowBoard.metrics.serialHint'),
-    },
+    title: read('title'),
+    description: read('description'),
+    illustrative: read('illustrative'),
+    diagramLabel: read('diagramLabel'),
+    loopLabel: read('loopLabel'),
+    pause: read('pause'),
+    play: read('play'),
+    headerSummary: read('headerSummary'),
+    tasks: readList('tasks'),
+    steps: readList('steps'),
+    activeStates: readList('activeStates'),
+    completedState: read('completedState'),
   };
 }
 

@@ -264,41 +264,35 @@ pricing:
     desktopInstall: 데스크탑 설치
     microsoftStoreInstall: Microsoft Store 설치
 workflowBoard:
-  titleLines:
-    - 주요 Agent 지원
-    - 병렬 관리 효율 10배
-    - OpenSpec이 환각을 줄입니다
-  taskLabel: 작업
-  presetTasks:
-    label: 프리셋 작업
-    items:
-      - 신규 CRUD 모듈
-      - 전체 코드 리뷰
-      - API 문서 생성
-      - 테스트 케이스 구성
-  headerSummary: 작업 / Agent
+  title: "여러 Agent가 모든 단계에서 멈추지 않고 실행됩니다"
+  description: "각 Agent가 자신의 작업을 구상, 제안, 실행, 보관까지 진행합니다. 한 건이 보관되면 다음 건이 시작되어, 모든 단계에서 작업이 동시에 이어집니다."
+  illustrative: "동작 예시"
+  diagramLabel: "각 Agent({agents})가 작업 하나를 {stages} 순서로 진행합니다."
+  loopLabel: "보관한 내용이 다음 제안의 출발점이 됩니다"
+  pause: "애니메이션 일시정지"
+  play: "애니메이션 재생"
+  headerSummary: "Agent / 작업"
+  tasks:
+    - "신규 CRUD 모듈"
+    - "전체 코드 리뷰"
+    - "API 문서 생성"
+    - "테스트 케이스 구성"
   steps:
-    - 구상
-    - 제안
-    - 실행
-    - 보관
+    - "구상"
+    - "제안"
+    - "실행"
+    - "보관"
   activeStates:
-    - 구상 중
-    - 제안 중
-    - 실행 중
-    - 보관 중
-  completedState: 완료
-  metrics:
-    completed: 완료된 작업
-    efficiency: 실시간 효율
-    serialTime: 직렬 환산 시간
-    elapsedTime: 경과 시간
-    formula: 효율 = 직렬 환산 작업량 / 실제 경과 시간
-    serialHint: 단일 직렬 작업자 대비
+    - "구상 중"
+    - "제안 중"
+    - "실행 중"
+    - "보관 중"
+  completedState: "완료"
 workflowSteps:
   eyebrow: "작동 방식"
   title: "모든 변경은 같은 세 단계를 따릅니다"
   description: "끝없는 채팅 스레드가 아닙니다. 각 변경은 검토할 수 있는 제안, 추적할 수 있는 실행, 재사용할 수 있는 지식이 됩니다."
+  loopLabel: "보관한 내용이 다음 제안의 출발점이 됩니다"
   steps:
     proposal:
       label: "제안"
@@ -308,4 +302,4 @@ workflowSteps:
       description: "계획을 승인하면 에이전트가 작업 단위로 실행합니다. Claude Code, Codex, GitHub Copilot 등에서 병렬로 진행되며 완료된 작업부터 체크됩니다."
     archive:
       label: "아카이브"
-      description: "완료된 변경은 명세로 다시 아카이브되어, 다음 제안이 팀이 이미 쌓은 경험에서 출발합니다."
+      description: "완료된 변경은 명세로 다시 아카이브됩니다. 다음 제안은 그 명세를 먼저 읽고, 팀이 이미 쌓은 경험에서 출발합니다."

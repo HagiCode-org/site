@@ -75,17 +75,18 @@ describe('HeroSection', () => {
     expect(markup).not.toContain('Open on Bilibili');
   });
 
-  it('renders the workflow board summary copy in the hero stage', () => {
+  it('renders the agent lanes board in the hero stage', () => {
     const copy = getHomepageInteractiveCopy('en-US');
     const markup = renderToStaticMarkup(
       <HeroSection locale="en-US" copy={copy.hero} workflowBoardCopy={copy.workflowBoard} />,
     );
 
     expect(markup).not.toContain('Smart');
-    expect(markup).toContain('Mainstream Agents Supported');
-    expect(markup).toContain('10x Parallel Management Efficiency');
-    expect(markup).toContain('OpenSpec Reduces Hallucinations');
-    expect(markup).toContain('Completed Tasks');
-    expect(markup).toContain('Live Efficiency');
+    expect(markup).toContain('Many agents, every stage, always running');
+    expect(markup).toContain('Illustrative run');
+    expect(markup).toContain('Claude Code');
+    expect(markup).toContain('Archive feeds the next proposal');
+    expect(markup).not.toContain('10x Parallel Management Efficiency');
+    expect(markup).not.toContain('Live Efficiency');
   });
 });

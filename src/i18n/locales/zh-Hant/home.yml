@@ -264,41 +264,35 @@ pricing:
     desktopInstall: 桌面安裝
     microsoftStoreInstall: Microsoft Store 安裝
 workflowBoard:
-  titleLines:
-    - 主流 Agent 全面支援
-    - 並行管理效率 10X
-    - OpenSpec 減少幻覺
-  taskLabel: 任務
-  presetTasks:
-    label: 預設任務
-    items:
-      - 新增 CRUD 模組
-      - 全面程式碼審查
-      - API 文件生成
-      - 測試案例編排
-  headerSummary: 任務 / Agent
+  title: "多個 Agent，每個階段，持續運行"
+  description: "每個 Agent 各自把任務走完構思、提案、執行、歸檔。一輪歸檔，下一輪立刻開始，所有階段同時都有工作在推進。"
+  illustrative: "示意動畫"
+  diagramLabel: "{agents} 各自把一項任務推進過{stages}。"
+  loopLabel: "歸檔沉澱為下一次提案的起點"
+  pause: "暫停動畫"
+  play: "播放動畫"
+  headerSummary: "Agent / 任務"
+  tasks:
+    - "新增 CRUD 模組"
+    - "全面程式碼審查"
+    - "API 文件生成"
+    - "測試案例編排"
   steps:
-    - 構思
-    - 生成提案
-    - 執行提案
-    - 歸檔提案
+    - "構思"
+    - "生成提案"
+    - "執行提案"
+    - "歸檔提案"
   activeStates:
-    - 構思中
-    - 提案中
-    - 執行中
-    - 歸檔中
-  completedState: 已完成
-  metrics:
-    completed: 已完成任務
-    efficiency: 即時效率
-    serialTime: 等效串行時間
-    elapsedTime: 經過時間
-    formula: 效率 = 等效串行工作量 / 自然經過時間
-    serialHint: 相對於單一串行工作者
+    - "構思中"
+    - "提案中"
+    - "執行中"
+    - "歸檔中"
+  completedState: "已完成"
 workflowSteps:
   eyebrow: "運作方式"
   title: "每次改動，都走同樣三步"
   description: "沒有漫無邊際的聊天紀錄。每次改動都會變成可審閱的提案、可追溯的執行，以及可重複使用的知識。"
+  loopLabel: "歸檔沉澱為下一次提案的起點"
   steps:
     proposal:
       label: "提案"
@@ -308,4 +302,4 @@ workflowSteps:
       description: "確認方案後，Agent 依任務逐項執行，可在 Claude Code、Codex、GitHub Copilot 等之間並行，完成一項勾選一項。"
     archive:
       label: "歸檔"
-      description: "完成的改動會歸檔回你的規範裡，下一次提案就能從團隊已累積的經驗出發。"
+      description: "完成的改動會歸檔回你的規範裡，下一次提案會先讀取這些規範，從團隊已累積的經驗出發。"

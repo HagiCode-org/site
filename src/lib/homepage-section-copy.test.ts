@@ -23,6 +23,8 @@ describe('homepage workflow steps copy', () => {
       const copy = getHomepageWorkflowStepsCopy(locale);
 
       expect(copy.title, locale).not.toBe('workflowSteps.title');
+      expect(copy.loopLabel, locale).toBeTruthy();
+      expect(copy.loopLabel, locale).not.toBe('workflowSteps.loopLabel');
       expect(copy.steps.map((step) => step.key), locale).toEqual(['proposal', 'execution', 'archive']);
       for (const step of copy.steps) {
         expect(step.label, `${locale}:${step.key}`).toBeTruthy();

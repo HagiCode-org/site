@@ -997,3 +997,295 @@
     animation: none !important;
   }
 }
+
+/* ==========================================================================
+   Duel treatment
+   The edition table is itself a head-to-head, so it speaks the compare arena's
+   language: left-aligned header, opaque stage, a seam between the two editions,
+   each edition named in plain type over its own colour bar.
+   ========================================================================== */
+
+.section,
+[data-theme] .section {
+  background: var(--color-background);
+}
+
+.bgGrid,
+.bgGlow {
+  display: none;
+}
+
+.header {
+  max-width: none;
+  margin: 0 0 2.5rem;
+  text-align: left;
+}
+
+.title {
+  max-width: 48rem;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  background: none;
+  -webkit-background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+  background-clip: border-box;
+  color: var(--color-text);
+}
+
+.matrixWrap,
+[data-theme] .matrixWrap {
+  --seam: var(--color-primary);
+  --other: color-mix(in srgb, var(--color-text) 55%, var(--color-background));
+
+  position: relative;
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  background: var(--color-surface);
+  box-shadow: 0 18px 44px rgba(2, 6, 23, 0.12);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* The edge splits where the two edition columns meet. */
+.matrixWrap::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 2;
+  height: 3px;
+  background: linear-gradient(90deg, var(--other) 0 64%, var(--seam) 64% 100%);
+  pointer-events: none;
+}
+
+.matrixTable th,
+.matrixTable td,
+[data-theme] .matrixTable th,
+[data-theme] .matrixTable td {
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.matrixTable tbody tr:last-child th,
+.matrixTable tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.matrixTable thead th,
+[data-theme] .matrixTable thead th {
+  padding-top: 1.75rem;
+  padding-bottom: 1.25rem;
+  background: transparent;
+}
+
+.featureHeading {
+  vertical-align: middle !important;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  font-family: var(--font-body);
+}
+
+/* Edition names: plain display type, a short bar underneath in the edition colour. */
+.columnHeading {
+  position: relative;
+}
+
+.headerButton,
+.headerButton:hover,
+[data-theme] .headerButton,
+[data-theme] .headerButton:hover,
+[data-theme] .microsoftStoreColumnHeading .headerButton,
+[data-theme] .microsoftStoreColumnHeading .headerButton:hover,
+.desktopColumnHeading .headerButton,
+.microsoftStoreColumnHeading .headerButton:hover {
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 0;
+  padding: 0.2rem 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  opacity: 1;
+  transform: none;
+  font-size: clamp(1.15rem, 2vw, 1.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.headerButton::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--other);
+  transition: width 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.microsoftStoreColumnHeading .headerButton::after {
+  background: var(--seam);
+}
+
+a.headerButton:hover::after {
+  width: 4.5rem;
+}
+
+a.headerButton:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1px;
+}
+
+/* The seam between the editions, with the arena's diamond where it starts. */
+.matrixTable thead th:last-child,
+.matrixTable td:last-child {
+  border-left: 1px solid color-mix(in srgb, var(--color-text) 20%, transparent);
+}
+
+.matrixTable thead th:last-child {
+  position: relative;
+}
+
+.microsoftStoreColumnHeading::before {
+  content: 'vs';
+  position: absolute;
+  top: 50%;
+  left: -1.1rem;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  margin: 0 0 0 calc(-1.05rem - 1px);
+  border: 1px solid color-mix(in srgb, var(--color-text) 28%, var(--color-border));
+  border-radius: 4px;
+  background: var(--color-surface);
+  transform: translateY(-50%) rotate(45deg);
+  font-size: 0;
+}
+
+.microsoftStoreColumnHeading::after {
+  content: 'vs';
+  position: absolute;
+  top: 50%;
+  left: -1.1rem;
+  z-index: 2;
+  width: 2.1rem;
+  margin-left: calc(-1.05rem - 1px);
+  transform: translateY(-50%);
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.rowHeading {
+  font-family: var(--font-body);
+  font-size: 0.97rem;
+  font-weight: 600;
+}
+
+/* Each edition's colour pools against the seam instead of filling the column. */
+.desktopColumnCell,
+[data-theme] .desktopColumnCell {
+  background: linear-gradient(270deg, color-mix(in srgb, var(--other) 9%, transparent), transparent 85%);
+}
+
+.microsoftStoreColumnCell,
+[data-theme] .microsoftStoreColumnCell {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--seam) 9%, transparent), transparent 85%);
+  box-shadow: none;
+}
+
+.microsoftStoreExclusiveRow th,
+.microsoftStoreExclusiveRow td,
+[data-theme] .microsoftStoreExclusiveRow th,
+[data-theme] .microsoftStoreExclusiveRow td {
+  background: transparent;
+}
+
+.microsoftStoreExclusiveRow .microsoftStoreColumnCell,
+[data-theme] .microsoftStoreExclusiveRow .microsoftStoreColumnCell {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--seam) 17%, transparent), transparent 90%);
+}
+
+.cellText {
+  font-family: var(--font-body);
+}
+
+.cellLink,
+[data-theme] .cellLink {
+  border-radius: 8px;
+  box-shadow: none;
+  background: transparent;
+  border-color: color-mix(in srgb, var(--color-text) 30%, var(--color-border));
+  color: var(--color-text);
+}
+
+.cellLink:hover,
+[data-theme] .cellLink:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--seam);
+  background: color-mix(in srgb, var(--seam) 10%, transparent);
+}
+
+.cellCheck {
+  background: color-mix(in srgb, var(--color-success) 16%, transparent);
+  color: var(--color-success);
+}
+
+[data-theme='light'] .cellCheck,
+:root:not([data-theme]) .cellCheck {
+  color: #15803d;
+}
+
+@media (max-width: 768px) {
+  .matrixWrap::before,
+  .microsoftStoreColumnHeading::before,
+  .microsoftStoreColumnHeading::after {
+    display: none;
+  }
+
+  .matrixWrap,
+  [data-theme] .matrixWrap {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .matrixTable tbody tr,
+  [data-theme] .matrixTable tbody tr {
+    border-radius: 1rem;
+    background: var(--color-surface);
+    box-shadow: none;
+  }
+
+  .matrixTable td,
+  [data-theme] .matrixTable td {
+    border-left: 0;
+  }
+
+  .matrixTable td:last-child {
+    border-left: 0;
+  }
+
+  .matrixTable tbody th.rowHeading,
+  [data-theme] .matrixTable tbody th.rowHeading {
+    padding: 0 0 0.8rem;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .matrixTable td::before {
+    font-family: var(--font-body);
+  }
+}

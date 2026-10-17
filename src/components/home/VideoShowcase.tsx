@@ -32,7 +32,6 @@ interface VideoShowcaseProps {
 
 export default function VideoShowcase({
   locale,
-  eyebrow = 'Real Product Walkthroughs',
   title = 'See Hagicode in real coding sessions',
   description = 'Compare focused supporting demos that keep the broader product story visible after the main overview video.',
   supportingLabel = 'Focused demo',
@@ -42,7 +41,6 @@ export default function VideoShowcase({
     <section className={styles.videoShowcase} aria-labelledby="video-showcase-title" data-video-locale={locale}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <span className={styles.eyebrow}>{eyebrow}</span>
           <h2 id="video-showcase-title" className={styles.title}>
             {title}
           </h2>

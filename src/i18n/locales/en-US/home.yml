@@ -264,41 +264,35 @@ pricing:
     desktopInstall: Desktop install
     microsoftStoreInstall: Microsoft Store install
 workflowBoard:
-  titleLines:
-    - Mainstream Agents Supported
-    - 10x Parallel Management Efficiency
-    - OpenSpec Reduces Hallucinations
-  taskLabel: Task
-  presetTasks:
-    label: Preset Tasks
-    items:
-      - New CRUD Module
-      - Comprehensive Code Review
-      - API Documentation
-      - Test Case Pack
-  headerSummary: Task / Agent
+  title: "Many agents, every stage, always running"
+  description: "Each agent takes its own task through ideate, propose, execute and archive. When one run is archived the next begins, so work keeps moving through every stage at once."
+  illustrative: "Illustrative run"
+  diagramLabel: "{agents} each run a task through {stages}."
+  loopLabel: "Archive feeds the next proposal"
+  pause: "Pause animation"
+  play: "Play animation"
+  headerSummary: "Agent / Task"
+  tasks:
+    - "New CRUD Module"
+    - "Comprehensive Code Review"
+    - "API Documentation"
+    - "Test Case Pack"
   steps:
-    - Ideate
-    - Propose
-    - Execute
-    - Archive
+    - "Ideate"
+    - "Propose"
+    - "Execute"
+    - "Archive"
   activeStates:
-    - Ideating
-    - Proposing
-    - Executing
-    - Archiving
-  completedState: Complete
-  metrics:
-    completed: Completed Tasks
-    efficiency: Live Efficiency
-    serialTime: Equivalent Serial Time
-    elapsedTime: Elapsed Time
-    formula: Efficiency = equivalent serial work / natural elapsed time
-    serialHint: relative to a single serial worker
+    - "Ideating"
+    - "Proposing"
+    - "Executing"
+    - "Archiving"
+  completedState: "Complete"
 workflowSteps:
   eyebrow: "How it works"
   title: "Every change follows the same three steps"
   description: "No open-ended chat threads. Each change becomes a proposal you can review, a run you can trace, and knowledge you can reuse."
+  loopLabel: "Archive feeds the next proposal"
   steps:
     proposal:
       label: "Proposal"
@@ -308,4 +302,4 @@ workflowSteps:
       description: "Approve the plan and agents carry it out task by task, in parallel across Claude Code, Codex, GitHub Copilot and more, ticking each task off as it lands."
     archive:
       label: "Archive"
-      description: "Finished changes are archived back into your specs, so the next proposal starts from what the team already learned."
+      description: "Finished changes are archived back into your specs. The next proposal reads them first, so it starts from what the team already learned."

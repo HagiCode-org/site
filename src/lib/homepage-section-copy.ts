@@ -519,6 +519,8 @@ export interface HomepageWorkflowStepsCopy {
   eyebrow: string;
   title: string;
   description: string;
+  /** Names the return arc: the archive feeding the next proposal. */
+  loopLabel: string;
   steps: Array<{ key: 'proposal' | 'execution' | 'archive'; label: string; description: string }>;
 }
 
@@ -529,6 +531,7 @@ export function getHomepageWorkflowStepsCopy(locale: LocaleInput): HomepageWorkf
     eyebrow: getHomeString(resolvedLocale, 'workflowSteps.eyebrow'),
     title: getHomeString(resolvedLocale, 'workflowSteps.title'),
     description: getHomeString(resolvedLocale, 'workflowSteps.description'),
+    loopLabel: getHomeString(resolvedLocale, 'workflowSteps.loopLabel'),
     steps: (['proposal', 'execution', 'archive'] as const).map((key) => ({
       key,
       label: getHomeString(resolvedLocale, `workflowSteps.steps.${key}.label`),

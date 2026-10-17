@@ -34,44 +34,37 @@
   pointer-events: none;
 }
 
+/* Section header: the same left-aligned, solid-ink voice as the compare arena. */
 .showcaseHeader {
-  text-align: center;
-  margin-bottom: 5rem;
+  display: grid;
+  gap: 0.75rem;
+  max-width: 48rem;
+  margin: 0 0 3rem;
+  text-align: left;
 }
 
 .showcaseTitle {
-  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
   font-weight: 800;
-  margin-bottom: 1rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  color: var(--color-text);
   font-family: var(--font-display);
 }
 
 .titleAccent {
-  color: var(--color-primary);
-  position: relative;
-}
-
-.titleAccent::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 88px;
-  height: 3px;
-  background: currentColor;
-  opacity: 0.35;
-  border-radius: 999px;
-}
-
-[data-theme='dark'] .titleAccent {
-  color: var(--color-secondary);
+  color: inherit;
 }
 
 .showcaseSubtitle {
-  font-size: 1.25rem;
+  margin: 0;
+  max-width: 60ch;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  text-wrap: pretty;
   color: var(--color-text-secondary);
-  font-weight: 500;
 }
 
 /* ==========================================================================
@@ -2456,7 +2449,7 @@
   }
 
   .showcaseHeader {
-    margin-bottom: 2.25rem;
+    margin-bottom: 2rem;
   }
 
   .showcaseSubtitle {
@@ -2684,7 +2677,7 @@
   }
 
   .showcaseTitle {
-    font-size: clamp(1.85rem, 9vw, 2.3rem);
+    font-size: clamp(1.7rem, 8vw, 2.1rem);
   }
 
   .workflowCard,

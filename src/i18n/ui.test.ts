@@ -60,25 +60,25 @@ describe('site i18n translation lookup', () => {
     expect(getTranslation('fr-FR', { resources: serverResources }).t('pricing.rows.documentThemes')).toBe('Thèmes de documents');
   });
 
-  it('localizes workflow board title lines outside the base locale', () => {
-    const englishTitleLine = 'Mainstream Agents Supported';
+  it('localizes the workflow board title outside the base locale', () => {
+    const englishTitle = 'Many agents, every stage, always running';
 
-    expect(getTranslation('zh-CN', { resources: serverResources }).t('workflowBoard.titleLines.0')).toBe('主流 Agent 全面支持');
-    expect(getTranslation('zh-Hant', { resources: serverResources }).t('workflowBoard.titleLines.0')).toBe('主流 Agent 全面支援');
-    expect(getTranslation('ja-JP', { resources: serverResources }).t('workflowBoard.titleLines.0')).not.toBe(englishTitleLine);
-    expect(getTranslation('ko-KR', { resources: serverResources }).t('workflowBoard.titleLines.0')).not.toBe(englishTitleLine);
-    expect(getTranslation('de-DE', { resources: serverResources }).t('workflowBoard.titleLines.0')).not.toBe(englishTitleLine);
-    expect(getTranslation('fr-FR', { resources: serverResources }).t('workflowBoard.titleLines.0')).not.toBe(englishTitleLine);
-    expect(getTranslation('es-ES', { resources: serverResources }).t('workflowBoard.titleLines.0')).not.toBe(englishTitleLine);
-    expect(getTranslation('pt-BR', { resources: serverResources }).t('workflowBoard.titleLines.0')).not.toBe(englishTitleLine);
-    expect(getTranslation('ru-RU', { resources: serverResources }).t('workflowBoard.titleLines.0')).not.toBe(englishTitleLine);
+    expect(getTranslation('zh-CN', { resources: serverResources }).t('workflowBoard.title')).toBe('多个 Agent，每个阶段，持续运行');
+    expect(getTranslation('zh-Hant', { resources: serverResources }).t('workflowBoard.title')).toBe('多個 Agent，每個階段，持續運行');
+    expect(getTranslation('ja-JP', { resources: serverResources }).t('workflowBoard.title')).not.toBe(englishTitle);
+    expect(getTranslation('ko-KR', { resources: serverResources }).t('workflowBoard.title')).not.toBe(englishTitle);
+    expect(getTranslation('de-DE', { resources: serverResources }).t('workflowBoard.title')).not.toBe(englishTitle);
+    expect(getTranslation('fr-FR', { resources: serverResources }).t('workflowBoard.title')).not.toBe(englishTitle);
+    expect(getTranslation('es-ES', { resources: serverResources }).t('workflowBoard.title')).not.toBe(englishTitle);
+    expect(getTranslation('pt-BR', { resources: serverResources }).t('workflowBoard.title')).not.toBe(englishTitle);
+    expect(getTranslation('ru-RU', { resources: serverResources }).t('workflowBoard.title')).not.toBe(englishTitle);
   });
 
   it('supports page-scoped resource subsets with locale fallback intact', () => {
     const homeOnlyResources = getPageTranslationResources('zh-Hant', ['home']);
     const { t } = getTranslation('zh-Hant', { resources: homeOnlyResources });
 
-    expect(t('workflowBoard.titleLines.0')).toBe('主流 Agent 全面支援');
+    expect(t('workflowBoard.title')).toBe('多個 Agent，每個階段，持續運行');
     expect(t('navbar.home')).toBe('navbar.home');
   });
 });

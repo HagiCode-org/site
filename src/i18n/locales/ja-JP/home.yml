@@ -264,41 +264,35 @@ pricing:
     desktopInstall: デスクトップへのインストール
     microsoftStoreInstall: Microsoft Store からのインストール
 workflowBoard:
-  titleLines:
-    - 主要 Agent に対応
-    - 並列管理効率 10 倍
-    - OpenSpec が幻覚を低減
-  taskLabel: タスク
-  presetTasks:
-    label: プリセットタスク
-    items:
-      - 新規 CRUD モジュール
-      - 包括的コードレビュー
-      - API ドキュメント生成
-      - テストケース作成
-  headerSummary: タスク / Agent
+  title: "複数の Agent が、すべての段階で動き続ける"
+  description: "各 Agent が自分のタスクを発想、提案、実行、保存まで進めます。1 本が保存されると次が始まり、すべての段階で作業が同時に進み続けます。"
+  illustrative: "動作イメージ"
+  diagramLabel: "{agents} がそれぞれ 1 つのタスクを「{stages}」の順に進めます。"
+  loopLabel: "保存した内容が次の提案の起点になります"
+  pause: "アニメーションを一時停止"
+  play: "アニメーションを再生"
+  headerSummary: "Agent / タスク"
+  tasks:
+    - "新規 CRUD モジュール"
+    - "包括的コードレビュー"
+    - "API ドキュメント生成"
+    - "テストケース作成"
   steps:
-    - 発想
-    - 提案
-    - 実行
-    - 保存
+    - "発想"
+    - "提案"
+    - "実行"
+    - "保存"
   activeStates:
-    - 発想中
-    - 提案中
-    - 実行中
-    - 保存中
-  completedState: 完了
-  metrics:
-    completed: 完了タスク
-    efficiency: 実効効率
-    serialTime: 直列換算時間
-    elapsedTime: 経過時間
-    formula: 効率 = 直列換算作業量 / 実経過時間
-    serialHint: 単一の直列作業者との比較
+    - "発想中"
+    - "提案中"
+    - "実行中"
+    - "保存中"
+  completedState: "完了"
 workflowSteps:
   eyebrow: "しくみ"
   title: "すべての変更は、同じ 3 ステップで進みます"
   description: "終わりのないチャットではありません。変更はレビューできる提案、追跡できる実行、再利用できる知見になります。"
+  loopLabel: "保存した内容が次の提案の起点になります"
   steps:
     proposal:
       label: "提案"
@@ -308,4 +302,4 @@ workflowSteps:
       description: "計画を承認すると、エージェントがタスクごとに実行します。Claude Code、Codex、GitHub Copilot などで並列に進み、完了したタスクから順にチェックされます。"
     archive:
       label: "アーカイブ"
-      description: "完了した変更は仕様へアーカイブされ、次の提案はチームがすでに得た知見から始まります。"
+      description: "完了した変更は仕様へアーカイブされます。次の提案はその仕様を最初に読み込み、チームがすでに得た知見から始まります。"

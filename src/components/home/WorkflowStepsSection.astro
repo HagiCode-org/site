@@ -1,7 +1,12 @@
 ---
 /**
- * Three-step explanation of the proposal-driven workflow, shown right after the hero.
+ * Three-step explanation of the proposal-driven workflow, shown after the compare arena.
  * Static markup only: no client JS, copy comes from the `home` namespace (`workflowSteps.*`).
+ *
+ * Visual language shared with the arena: a single seam. Here it is the rail the change travels
+ * along (Proposal -> Execution -> Archive) and the arc that carries the archive back into the
+ * next proposal. Where the browser supports scroll-driven animation the rail is drawn by the
+ * scroll position; everywhere else it is simply drawn.
  */
 import type { HomepageWorkflowStepsCopy } from '@/lib/homepage-section-copy';
 
@@ -10,39 +15,74 @@ interface Props {
 }
 
 const { copy } = Astro.props;
+
+// Literal artefact names from the OpenSpec workflow, not localized copy.
+const artifacts: Record<string, string[]> = {
+  proposal: ['proposal.md', 'design.md', 'tasks.md'],
+  execution: ['tasks.md'],
+  archive: ['specs/'],
+};
 ---
 
-<section class="workflow-steps" aria-labelledby="workflow-steps-title" data-homepage-section="workflow-steps">
-  <div class="workflow-steps__container">
-    <header class="workflow-steps__header">
-      <span class="workflow-steps__eyebrow">{copy.eyebrow}</span>
-      <h2 id="workflow-steps-title" class="workflow-steps__title">{copy.title}</h2>
-      <p class="workflow-steps__description">{copy.description}</p>
+<section class="flow" aria-labelledby="workflow-steps-title" data-homepage-section="workflow-steps">
+  <div class="flow__inner">
+    <header class="flow__header">
+      <h2 id="workflow-steps-title" class="flow__title">{copy.title}</h2>
+      <p class="flow__description">{copy.description}</p>
     </header>
 
-    <ol class="workflow-steps__list">
-      {
-        copy.steps.map((step, index) => (
-          <li class="workflow-steps__item" data-workflow-step={step.key}>
-            <span class="workflow-steps__index" aria-hidden="true">{index + 1}</span>
-            <h3 class="workflow-steps__label">{step.label}</h3>
-            <p class="workflow-steps__text">{step.description}</p>
-          </li>
-        ))
-      }
-    </ol>
+    <div class="flow__stage">
+      <ol class="flow__track">
+        {
+          copy.steps.map((step, index) => (
+            <li class="flow__step" data-workflow-step={step.key} style={`--i: ${index}`}>
+              {index > 0 && <i class="flow__arrow" aria-hidden="true" />}
+              <span class="flow__node" aria-hidden="true"></span>
+              <h3 class="flow__label">{step.label}</h3>
+              <p class="flow__text">{step.description}</p>
+              <ul class="flow__files" aria-hidden="true">
+                {(artifacts[step.key] ?? []).map((file) => (
+                  <li class="flow__file">{file}</li>
+                ))}
+              </ul>
+              {step.key === 'execution' && (
+                <span class="flow__ticks" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i>
+                </span>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+
+      <!-- The rail the change travels along, and the arc that feeds the archive into the next proposal. -->
+      <div class="flow__rail" aria-hidden="true"><span class="flow__rail-fill"></span><i class="flow__arrow flow__arrow--end"></i></div>
+      <div class="flow__return" aria-hidden="true">
+        <span class="flow__return-run"></span>
+        <span class="flow__return-label">{copy.loopLabel}</span>
+        <svg class="flow__return-head" viewBox="0 0 12 12" width="12" height="12" focusable="false">
+          <path d="M6 1 11 8H1z" fill="currentColor" />
+        </svg>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-  .workflow-steps {
+  .flow {
+    --flow-a: var(--color-primary);
+    --flow-b: var(--color-secondary);
+    --flow-c: var(--color-success);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
     position: relative;
     width: 100%;
-    padding: 4.5rem 0 3.5rem;
+    padding: 4.5rem 0 5rem;
     background: var(--color-background);
+    color: var(--color-text);
   }
 
-  .workflow-steps__container {
+  .flow__inner {
     box-sizing: border-box;
     width: 100%;
     max-width: var(--site-content-max, 1200px);
@@ -50,109 +90,452 @@ const { copy } = Astro.props;
     padding: 0 1.5rem;
   }
 
-  .workflow-steps__header {
-    max-width: 46rem;
-    margin: 0 auto 2.5rem;
-    text-align: center;
+  .flow__header {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 48rem;
+    margin: 0 0 3rem;
   }
 
-  .workflow-steps__eyebrow {
-    display: inline-block;
-    margin-bottom: 0.9rem;
-    font-size: 0.84rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--color-text-secondary);
-  }
-
-  .workflow-steps__title {
-    margin: 0 0 0.75rem;
+  .flow__title {
+    margin: 0;
     font-family: var(--font-display);
-    font-size: clamp(1.8rem, 4.4vw, 2.8rem);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
     font-weight: 800;
     line-height: 1.15;
+    letter-spacing: -0.02em;
     text-wrap: balance;
     color: var(--color-text);
   }
 
-  .workflow-steps__description {
+  .flow__description {
     margin: 0;
-    font-size: 1.1rem;
+    max-width: 60ch;
+    font-size: 1.05rem;
     line-height: 1.65;
     text-wrap: pretty;
     color: var(--color-text-secondary);
   }
 
-  .workflow-steps__list {
+  .flow__stage {
+    position: relative;
+    padding-bottom: 3.25rem;
+  }
+
+  .flow__track {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
+    gap: 2.5rem;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  .workflow-steps__item {
+  .flow__step {
     position: relative;
-    box-sizing: border-box;
-    padding: 1.5rem;
-    border-radius: 1.25rem;
-    border: 1px solid var(--color-border-light);
-    background: color-mix(in srgb, var(--color-surface-glass, var(--color-background)) 88%, var(--color-background) 12%);
+    display: grid;
+    align-content: start;
+    gap: 0.6rem;
+    padding-top: 3.1rem;
+    --step-color: var(--flow-a);
   }
 
-  /* Connector between steps on wide screens: shows the order without relying on color. */
-  .workflow-steps__item:not(:last-child)::after {
-    content: '→';
+  .flow__step:nth-child(2) {
+    --step-color: var(--flow-b);
+  }
+
+  .flow__step:nth-child(3) {
+    --step-color: var(--flow-c);
+  }
+
+  /* Diamond node: the same mark the arena tabs use. */
+  .flow__node {
     position: absolute;
-    top: 1.6rem;
-    right: -1.05rem;
-    z-index: 1;
-    width: 0.9rem;
-    text-align: center;
-    font-weight: 700;
-    color: var(--color-text-secondary);
+    top: 0.55rem;
+    left: 0;
+    width: 0.95rem;
+    height: 0.95rem;
+    border: 1.5px solid var(--step-color);
+    border-radius: 2px;
+    background: var(--color-background);
+    transform: rotate(45deg);
   }
 
-  .workflow-steps__index {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.1rem;
-    height: 2.1rem;
-    margin-bottom: 0.9rem;
-    border-radius: 50%;
-    border: 1.5px solid color-mix(in srgb, var(--color-primary) 60%, var(--color-border-light));
-    font-weight: 800;
-    color: var(--color-primary);
+  .flow__node::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 1px;
+    background: var(--step-color);
   }
 
-  .workflow-steps__label {
-    margin: 0 0 0.5rem;
+  .flow__label {
+    margin: 0;
     font-family: var(--font-display);
-    font-size: 1.3rem;
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
     font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     color: var(--color-text);
   }
 
-  .workflow-steps__text {
+  .flow__text {
     margin: 0;
+    max-width: 38ch;
+    font-size: 1rem;
     line-height: 1.65;
+    text-wrap: pretty;
     color: var(--color-text-secondary);
   }
 
+  .flow__files {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .flow__file {
+    padding: 0.2rem 0.55rem;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: var(--color-surface);
+    font-family: var(--font-code, monospace);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--color-text-secondary);
+  }
+
+  .flow__ticks {
+    display: flex;
+    gap: 0.3rem;
+    margin-top: 0.15rem;
+  }
+
+  .flow__ticks i {
+    width: 1.6rem;
+    height: 0.3rem;
+    border-radius: 2px;
+    background: color-mix(in srgb, var(--color-text) 14%, transparent);
+  }
+
+  .flow__ticks i:nth-child(-n + 3) {
+    background: var(--flow-b);
+  }
+
+  /*
+   * Flow arrows: a chevron rides the rail just before each node (and at its far end) so the
+   * direction reads without animation. Pointing right here, down on the narrow layout.
+   */
+  .flow__arrow {
+    position: absolute;
+    top: 0.725rem;
+    left: -1.2rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    box-sizing: border-box;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(45deg);
+    pointer-events: none;
+    color: var(--flow-b);
+  }
+
+  .flow__step:nth-child(2) .flow__arrow {
+    color: color-mix(in srgb, var(--flow-a) 40%, var(--flow-b));
+  }
+
+  .flow__step:nth-child(3) .flow__arrow {
+    color: color-mix(in srgb, var(--flow-b) 40%, var(--flow-c));
+  }
+
+  .flow__arrow--end {
+    top: calc(50% - 0.3rem);
+    left: auto;
+    right: 0.15rem;
+    color: var(--flow-c);
+  }
+
+  /* Rail: sits on the node line and spans from the first node to the last column. */
+  .flow__rail {
+    position: absolute;
+    z-index: 0;
+    top: 1.025rem;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: color-mix(in srgb, var(--color-text) 20%, transparent);
+  }
+
+  .flow__rail-fill {
+    position: absolute;
+    inset: -1px 0;
+    background: linear-gradient(90deg, var(--flow-a), var(--flow-b) 50%, var(--flow-c));
+    transform-origin: left center;
+  }
+
+  /* Return arc: archive -> next proposal. It spans from the first node to the third. */
+  .flow__return {
+    --u: 3.25rem;
+
+    position: absolute;
+    z-index: 0;
+    left: 0.475rem;
+    bottom: 0;
+    box-sizing: border-box;
+    width: calc((100% - 5rem) / 3 * 2 + 5rem);
+    height: var(--u);
+    border: 1px dashed color-mix(in srgb, var(--color-text) 28%, transparent);
+    border-top: 0;
+    border-radius: 0 0 1.5rem 1.5rem;
+    pointer-events: none;
+  }
+
+  .flow__return-run {
+    position: absolute;
+    inset: -1px;
+    box-sizing: border-box;
+    border: 2px solid var(--flow-c);
+    border-top: 0;
+    border-radius: 0 0 1.5rem 1.5rem;
+  }
+
+  .flow__return-head {
+    position: absolute;
+    top: -3px;
+    left: 0;
+    margin-left: -6.5px;
+    color: var(--flow-a);
+  }
+
+  /* The arc names itself: it sits on the bottom edge, masking the dashes behind the text. */
+  .flow__return-label {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    translate: -50% 50%;
+    padding: 0 0.9rem;
+    background: var(--color-background);
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+    color: var(--color-text-secondary);
+  }
+
+  /* Dashed stubs carry the loop from under the archive and up to the proposal. */
+  .flow__step:first-child,
+  .flow__step:last-child {
+    grid-template-rows: auto auto auto auto 1fr;
+  }
+
+  .flow__step:first-child::after,
+  .flow__step:last-child::after {
+    content: '';
+    grid-row: 5;
+    justify-self: start;
+    align-self: stretch;
+    min-height: 1.25rem;
+    margin: 0.4rem 0 0 0.475rem;
+    border-left: 1px dashed color-mix(in srgb, var(--color-text) 28%, transparent);
+  }
+
+  /* ---- The one authored moment: scroll draws the rail, then the loop closes ---- */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .flow__stage {
+        view-timeline: --flow block;
+      }
+
+      .flow__rail-fill {
+        animation: flow-draw linear both;
+        animation-timeline: --flow;
+        animation-range: entry 25% entry 100%;
+      }
+
+      .flow__step {
+        animation: flow-step linear both;
+        animation-timeline: --flow;
+        animation-range: entry calc(25% + var(--i) * 28%) entry calc(60% + var(--i) * 28%);
+      }
+
+      .flow__node {
+        animation: flow-node linear both;
+        animation-timeline: --flow;
+        animation-range: entry calc(25% + var(--i) * 28%) entry calc(50% + var(--i) * 28%);
+      }
+
+      .flow__arrow--end {
+        animation: flow-arrow linear both;
+        animation-timeline: --flow;
+        animation-range: entry 80% entry 100%;
+      }
+
+      .flow__return-run {
+        animation: flow-loop linear both;
+        animation-timeline: --flow;
+        animation-range: entry 100% cover 45%;
+      }
+
+      .flow__return-head,
+      .flow__return-label {
+        animation: flow-step linear both;
+        animation-timeline: --flow;
+        animation-range: entry 100% cover 45%;
+      }
+    }
+  }
+
+  @keyframes flow-draw {
+    from {
+      transform: scaleX(0);
+    }
+  }
+
+  @keyframes flow-step {
+    from {
+      opacity: 0.25;
+      transform: translateY(0.75rem);
+    }
+  }
+
+  @keyframes flow-node {
+    from {
+      transform: rotate(45deg) scale(0.6);
+      border-color: var(--color-border);
+    }
+  }
+
+  @keyframes flow-arrow {
+    from {
+      opacity: 0;
+      translate: -0.6rem 0;
+    }
+  }
+
+  @keyframes flow-arrow-y {
+    from {
+      opacity: 0;
+      translate: 0 -0.6rem;
+    }
+  }
+
+  @keyframes flow-loop {
+    from {
+      clip-path: inset(0 0 0 100%);
+    }
+  }
+
+  /* ---- Narrow: vertical rail on the left, no return arc ---- */
   @media (max-width: 860px) {
-    .workflow-steps {
-      padding: 3rem 0 2.5rem;
+    .flow {
+      padding: 3rem 0 3rem;
     }
 
-    .workflow-steps__list {
+    .flow__inner {
+      padding: 0 1rem;
+    }
+
+    .flow__header {
+      margin-bottom: 2rem;
+    }
+
+    .flow__stage {
+      padding-bottom: 0;
+    }
+
+    .flow__track {
       grid-template-columns: minmax(0, 1fr);
+      gap: 2rem;
     }
 
-    .workflow-steps__item:not(:last-child)::after {
+    .flow__step {
+      padding: 0 0 0 2.25rem;
+    }
+
+    .flow__node {
+      top: 0.3rem;
+      left: 0.1rem;
+    }
+
+    .flow__rail {
+      top: 0.8rem;
+      bottom: 2rem;
+      left: 0.575rem;
+      right: auto;
+      width: 1px;
+      height: auto;
+    }
+
+    .flow__rail-fill {
+      inset: 0 -1px;
+      background: linear-gradient(180deg, var(--flow-a), var(--flow-b) 50%, var(--flow-c));
+      transform-origin: center top;
+    }
+
+    .flow__arrow {
+      top: -1.2rem;
+      left: 0.275rem;
+      transform: rotate(135deg);
+    }
+
+    .flow__arrow--end {
+      top: auto;
+      bottom: 0.1rem;
+      left: calc(50% - 0.3rem);
+      right: auto;
+    }
+
+    .flow__return,
+    .flow__step:first-child::after,
+    .flow__step:last-child::after {
       display: none;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      @supports (animation-timeline: view()) {
+        .flow__rail-fill {
+          animation-name: flow-draw-y;
+          animation-range: entry 25% cover 45%;
+        }
+
+        .flow__arrow--end {
+          animation-name: flow-arrow-y;
+          animation-range: entry 90% cover 45%;
+        }
+
+        .flow__step {
+          animation-range: entry calc(25% + var(--i) * 18%) entry calc(60% + var(--i) * 18%);
+        }
+
+        .flow__node {
+          animation-range: entry calc(25% + var(--i) * 18%) entry calc(50% + var(--i) * 18%);
+        }
+      }
+    }
+  }
+
+  @keyframes flow-draw-y {
+    from {
+      transform: scaleY(0);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .flow__rail-fill {
+      background: CanvasText;
+    }
+
+    .flow__return-run {
+      border-color: CanvasText;
+    }
+
+    .flow__arrow {
+      color: CanvasText;
     }
   }
 </style>

@@ -264,41 +264,35 @@ pricing:
     desktopInstall: Instalação na área de trabalho
     microsoftStoreInstall: Instalação pela Microsoft Store
 workflowBoard:
-  titleLines:
-    - Agents principais suportados
-    - Eficiência 10x na gestão paralela
-    - OpenSpec reduz alucinações
-  taskLabel: Tarefa
-  presetTasks:
-    label: Tarefas predefinidas
-    items:
-      - Novo módulo CRUD
-      - Revisão completa de código
-      - Documentação de API
-      - Pacote de testes
-  headerSummary: Tarefa / Agent
+  title: "Vários agentes, cada etapa, sempre em andamento"
+  description: "Cada agente leva a própria tarefa pela ideia, proposta, execução e arquivamento. Quando uma execução é arquivada, a próxima começa, e o trabalho avança em todas as etapas ao mesmo tempo."
+  illustrative: "Exemplo animado"
+  diagramLabel: "{agents} levam, cada um, uma tarefa por estas etapas: {stages}."
+  loopLabel: "O arquivo alimenta a próxima proposta"
+  pause: "Pausar animação"
+  play: "Reproduzir animação"
+  headerSummary: "Agente / Tarefa"
+  tasks:
+    - "Novo módulo CRUD"
+    - "Revisão completa de código"
+    - "Documentação de API"
+    - "Pacote de testes"
   steps:
-    - Idear
-    - Propor
-    - Executar
-    - Arquivar
+    - "Idear"
+    - "Propor"
+    - "Executar"
+    - "Arquivar"
   activeStates:
-    - Ideando
-    - Propondo
-    - Executando
-    - Arquivando
-  completedState: Concluído
-  metrics:
-    completed: Tarefas concluídas
-    efficiency: Eficiência em tempo real
-    serialTime: Tempo serial equivalente
-    elapsedTime: Tempo decorrido
-    formula: Eficiência = trabalho serial equivalente / tempo natural decorrido
-    serialHint: em relação a um único executor serial
+    - "Ideando"
+    - "Propondo"
+    - "Executando"
+    - "Arquivando"
+  completedState: "Concluído"
 workflowSteps:
   eyebrow: "Como funciona"
   title: "Toda mudança segue os mesmos três passos"
   description: "Sem threads de chat intermináveis. Cada mudança vira uma proposta revisável, uma execução rastreável e conhecimento reutilizável."
+  loopLabel: "O arquivo alimenta a próxima proposta"
   steps:
     proposal:
       label: "Proposta"
@@ -308,4 +302,4 @@ workflowSteps:
       description: "Aprove o plano e os agentes o executam tarefa por tarefa, em paralelo com Claude Code, Codex, GitHub Copilot e mais, marcando cada tarefa ao concluí-la."
     archive:
       label: "Arquivo"
-      description: "As mudanças concluídas são arquivadas nas suas especificações, para que a próxima proposta parta do que a equipe já aprendeu."
+      description: "As mudanças concluídas são arquivadas nas suas especificações. A próxima proposta as lê primeiro, então parte do que a equipe já aprendeu."

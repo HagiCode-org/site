@@ -30,9 +30,9 @@
   position: relative;
   z-index: 1;
   display: grid;
-  gap: 0.85rem;
-  margin-bottom: 2.25rem;
-  max-width: 54rem;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  max-width: 48rem;
 }
 
 .sectionKicker {
@@ -46,17 +46,21 @@
 
 .sectionTitle {
   margin: 0;
-  font-size: clamp(2.2rem, 6vw, 3.4rem);
-  line-height: 1.05;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
   color: var(--color-text);
   font-family: var(--font-display);
 }
 
 .sectionDescription {
   margin: 0;
-  max-width: 48rem;
+  max-width: 60ch;
   font-size: 1.05rem;
-  line-height: 1.72;
+  line-height: 1.65;
+  text-wrap: pretty;
   color: var(--color-text-secondary);
 }
 
@@ -195,6 +199,107 @@
 
 .featuredImage {
   aspect-ratio: 16 / 10;
+}
+
+/*
+ * The stage stacks the outgoing capture under the incoming one. The incoming
+ * layer is revealed with a clip-path edge that travels in the direction of
+ * navigation, and its image settles from a slight over-scale.
+ */
+.stage {
+  --showcase-wipe-duration: 820ms;
+  --showcase-wipe-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  display: grid;
+  overflow: hidden;
+}
+
+.stageLayer {
+  grid-area: 1 / 1;
+  display: block;
+  position: relative;
+  min-width: 0;
+}
+
+.stageLayer picture {
+  display: block;
+}
+
+.morphSource {
+  view-transition-name: showcase-shot;
+}
+
+.stageEnter {
+  animation: showcaseWipeForward var(--showcase-wipe-duration) var(--showcase-wipe-ease) both;
+}
+
+.stageEnter[data-direction='back'] {
+  animation-name: showcaseWipeBack;
+}
+
+.stageEnter .featuredImage {
+  animation: showcaseSettle var(--showcase-wipe-duration) var(--showcase-wipe-ease) both;
+}
+
+.stageEnter[data-direction='back'] .featuredImage {
+  --showcase-settle-shift: -1.6%;
+}
+
+/* The leading edge of the reveal: a 2px line on the clipped boundary. */
+.stageEnter::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  width: 2px;
+  background: var(--color-primary);
+  pointer-events: none;
+  animation: showcaseEdgeFade var(--showcase-wipe-duration) linear both;
+}
+
+.stageEnter[data-direction='back']::after {
+  inset-inline-end: auto;
+  inset-inline-start: 0;
+}
+
+@keyframes showcaseWipeForward {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes showcaseWipeBack {
+  from { clip-path: inset(0 0 0 100%); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes showcaseSettle {
+  from { transform: translateX(var(--showcase-settle-shift, 1.6%)) scale(1.045); }
+  to { transform: none; }
+}
+
+@keyframes showcaseEdgeFade {
+  0%, 55% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes showcaseCopyIn {
+  from { opacity: 0; transform: translateY(0.5rem); filter: blur(4px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+
+.copyEnter {
+  animation: showcaseCopyIn 520ms cubic-bezier(0.16, 1, 0.3, 1) 140ms both;
+}
+
+/* Lightbox morph: the featured capture grows into the dialog and back. */
+::view-transition-group(showcase-shot) {
+  animation-duration: 560ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::view-transition-old(showcase-shot),
+::view-transition-new(showcase-shot) {
+  mix-blend-mode: normal;
 }
 
 .featuredPreviewHint {
@@ -394,7 +499,8 @@
 .lightbox {
   position: fixed;
   inset: 0;
-  z-index: 30;
+  /* Above the fixed navbar (1000) so the close control is never covered. */
+  z-index: 1100;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -577,5 +683,18 @@
   .navButton,
   .thumbnailButton {
     transition: none;
+  }
+
+  .stageEnter,
+  .stageEnter .featuredImage,
+  .stageEnter::after,
+  .copyEnter {
+    animation: none;
+  }
+
+  ::view-transition-group(showcase-shot),
+  ::view-transition-old(showcase-shot),
+  ::view-transition-new(showcase-shot) {
+    animation: none;
   }
 }

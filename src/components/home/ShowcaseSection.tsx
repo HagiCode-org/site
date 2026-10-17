@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ImgHTMLAttributes } from 'react';
+import { flushSync } from 'react-dom';
 import type { HomepageShowcaseCopy } from '@/lib/homepage-section-copy';
 import styles from './ShowcaseSection.module.css';
 
@@ -49,6 +50,18 @@ function formatOrder(index: number) {
   return String(index + 1).padStart(2, '0');
 }
 
+/** Keep in step with --showcase-wipe-duration in ShowcaseSection.module.css. */
+const WIPE_SETTLE_MS = 820;
+
+interface OutgoingShot {
+  index: number;
+  direction: 1 | -1;
+}
+
+function prefersReducedMotion() {
+  return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
 interface Props {
   copy: HomepageShowcaseCopy;
   images: Record<ScreenshotId, ShowcaseImageSources>;
@@ -57,6 +70,10 @@ interface Props {
 export default function ShowcaseSection({ copy, images }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
+  const [shownIndex, setShownIndex] = useState(0);
+  const [outgoing, setOutgoing] = useState<OutgoingShot | null>(null);
+  const previewButtonRef = useRef<HTMLButtonElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const railRef = useRef<HTMLOListElement | null>(null);
   const stepRefs = useRef<Array<HTMLElement | null>>([]);
   const featuredPanelId = 'homepage-showcase-featured';
@@ -71,6 +88,43 @@ export default function ShowcaseSection({ copy, images }: Props) {
 
   const activeScreenshot = screenshots[activeIndex] ?? screenshots[0];
 
+  // The stage keeps the previous capture underneath while the next one is
+  // revealed over it, so a switch never flashes an empty frame.
+  if (shownIndex !== activeIndex) {
+    setOutgoing({ index: shownIndex, direction: activeIndex > shownIndex ? 1 : -1 });
+    setShownIndex(activeIndex);
+  }
+
+  useEffect(() => {
+    if (!outgoing) {
+      return undefined;
+    }
+
+    const timer = window.setTimeout(
+      () => setOutgoing(null),
+      prefersReducedMotion() ? 0 : WIPE_SETTLE_MS,
+    );
+
+    return () => window.clearTimeout(timer);
+  }, [outgoing]);
+
+  const outgoingScreenshot = outgoing ? screenshots[outgoing.index] : undefined;
+
+  // Same-document View Transition: the featured capture grows into the lightbox
+  // and shrinks back on close. Browsers without the API just toggle the state.
+  const setFullscreen = (open: boolean) => {
+    const startViewTransition = (document as Document & {
+      startViewTransition?: (update: () => void) => unknown;
+    }).startViewTransition?.bind(document);
+
+    if (!startViewTransition || prefersReducedMotion()) {
+      setIsFullscreenOpen(open);
+      return;
+    }
+
+    startViewTransition(() => flushSync(() => setIsFullscreenOpen(open)));
+  };
+
   useEffect(() => {
     if (!isFullscreenOpen || typeof window === 'undefined') {
       return undefined;
@@ -82,16 +136,20 @@ export default function ShowcaseSection({ copy, images }: Props) {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        setIsFullscreenOpen(false);
+        setFullscreen(false);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
+    closeButtonRef.current?.focus();
+    const returnTarget = previewButtonRef.current;
 
     return () => {
       body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', handleKeyDown);
+      returnTarget?.focus();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isFullscreenOpen]);
 
   useEffect(() => {
@@ -178,7 +236,6 @@ export default function ShowcaseSection({ copy, images }: Props) {
     <section className={styles.showcaseSection}>
       <div className="container">
         <div className={styles.sectionHeader}>
-          <p className={styles.sectionKicker}>Guided Tour</p>
           <h2 className={styles.sectionTitle}>{copy.title}</h2>
           <p className={styles.sectionDescription}>{copy.description}</p>
         </div>
@@ -220,19 +277,42 @@ export default function ShowcaseSection({ copy, images }: Props) {
             <div className={styles.featuredMedia}>
               <button
                 type="button"
+                ref={previewButtonRef}
                 className={styles.featuredPreviewButton}
-                onClick={() => setIsFullscreenOpen(true)}
+                onClick={() => setFullscreen(true)}
                 aria-label={`${copy.controls.openFullscreen}${activeScreenshot.title}`}
               >
-                <ScreenshotPicture
-                  key={activeScreenshot.id}
-                  sources={activeScreenshot.sources}
-                  alt={activeScreenshot.alt}
-                  className={styles.featuredImage}
-                  onError={handleImageError}
-                  data-fallback-label={copy.controls.imageUnavailable}
-                  fetchPriority="high"
-                />
+                <span className={styles.stage}>
+                  {outgoingScreenshot ? (
+                    <span
+                      key={`out-${outgoingScreenshot.id}`}
+                      className={styles.stageLayer}
+                      aria-hidden="true"
+                    >
+                      <ScreenshotPicture
+                        sources={outgoingScreenshot.sources}
+                        alt=""
+                        className={styles.featuredImage}
+                        onError={handleImageError}
+                        data-fallback-label={copy.controls.imageUnavailable}
+                      />
+                    </span>
+                  ) : null}
+                  <span
+                    key={activeScreenshot.id}
+                    className={`${styles.stageLayer} ${outgoing ? styles.stageEnter : ''} ${isFullscreenOpen ? '' : styles.morphSource}`}
+                    data-direction={outgoing?.direction === -1 ? 'back' : 'forward'}
+                  >
+                    <ScreenshotPicture
+                      sources={activeScreenshot.sources}
+                      alt={activeScreenshot.alt}
+                      className={styles.featuredImage}
+                      onError={handleImageError}
+                      data-fallback-label={copy.controls.imageUnavailable}
+                      fetchPriority="high"
+                    />
+                  </span>
+                </span>
                 <span className={styles.featuredPreviewHint}>
                   {copy.controls.openFullscreenHint}
                 </span>
@@ -240,7 +320,10 @@ export default function ShowcaseSection({ copy, images }: Props) {
             </div>
 
             <div className={styles.featuredContent} aria-live="polite" aria-atomic="true">
-              <div className={styles.featuredCopy}>
+              <div
+                className={`${styles.featuredCopy} ${outgoing ? styles.copyEnter : ''}`}
+                key={activeScreenshot.id}
+              >
                 <p className={styles.featuredState}>{copy.controls.activeState}</p>
                 <h3 className={styles.featuredTitle}>{activeScreenshot.title}</h3>
                 <p className={styles.featuredDescription}>{activeScreenshot.description}</p>
@@ -306,13 +389,14 @@ export default function ShowcaseSection({ copy, images }: Props) {
           role="dialog"
           aria-modal="true"
           aria-label={activeScreenshot.title}
-          onClick={() => setIsFullscreenOpen(false)}
+          onClick={() => setFullscreen(false)}
         >
           <div className={styles.lightboxInner} onClick={(event) => event.stopPropagation()}>
             <button
               type="button"
+              ref={closeButtonRef}
               className={styles.lightboxClose}
-              onClick={() => setIsFullscreenOpen(false)}
+              onClick={() => setFullscreen(false)}
               aria-label={copy.controls.closeFullscreen}
             >
               {copy.controls.closeFullscreen}
@@ -322,7 +406,7 @@ export default function ShowcaseSection({ copy, images }: Props) {
               <ScreenshotPicture
                 sources={activeScreenshot.sources}
                 alt={activeScreenshot.alt}
-                className={styles.lightboxImage}
+                className={`${styles.lightboxImage} ${styles.morphSource}`}
                 onError={handleImageError}
                 data-fallback-label={copy.controls.imageUnavailable}
               />

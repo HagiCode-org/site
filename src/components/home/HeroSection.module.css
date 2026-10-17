@@ -99,7 +99,7 @@
     radial-gradient(circle at 82% 14%, var(--hero-aurora-b), transparent 24%),
     radial-gradient(circle at 50% 76%, var(--hero-aurora-c), transparent 26%);
   filter: blur(34px);
-  opacity: 0.9;
+  opacity: 0.55;
 }
 
 .bgGrid {
@@ -118,7 +118,7 @@
   background:
     linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--color-primary) 12%, transparent) 20%, color-mix(in srgb, var(--color-secondary) 18%, transparent) 50%, color-mix(in srgb, var(--color-success) 12%, transparent) 78%, transparent 100%);
   filter: blur(54px);
-  opacity: 0.62;
+  opacity: 0.28;
 }
 
 .heroShell {
@@ -194,9 +194,9 @@
   gap: 0.14em;
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(4.4rem, 10vw, 7.9rem);
-  line-height: 0.88;
-  letter-spacing: -0.065em;
+  font-size: clamp(4.2rem, 9.4vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
 }
 
 .titleWord {

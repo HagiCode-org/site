@@ -264,41 +264,35 @@ pricing:
     desktopInstall: Desktop-Installation
     microsoftStoreInstall: Microsoft Store-Installation
 workflowBoard:
-  titleLines:
-    - Mainstream-Agenten unterstützt
-    - 10-fache Effizienz bei paralleler Verwaltung
-    - OpenSpec reduziert Halluzinationen
-  taskLabel: Aufgabe
-  presetTasks:
-    label: Preset-Aufgaben
-    items:
-      - Neues CRUD-Modul
-      - Umfassender Code-Review
-      - API-Dokumentation
-      - Testfall-Paket
-  headerSummary: Aufgabe / Agent
+  title: "Viele Agenten, jede Phase, dauerhaft in Bewegung"
+  description: "Jeder Agent führt seine eigene Aufgabe durch Idee, Vorschlag, Ausführung und Archivierung. Sobald ein Lauf archiviert ist, beginnt der nächste. So ist in jeder Phase gleichzeitig Arbeit im Gang."
+  illustrative: "Beispielablauf"
+  diagramLabel: "{agents} führen jeweils eine Aufgabe durch diese Phasen: {stages}."
+  loopLabel: "Das Archiv speist den nächsten Vorschlag"
+  pause: "Animation pausieren"
+  play: "Animation abspielen"
+  headerSummary: "Agent / Aufgabe"
+  tasks:
+    - "Neues CRUD-Modul"
+    - "Umfassender Code-Review"
+    - "API-Dokumentation"
+    - "Testfall-Paket"
   steps:
-    - Idee entwickeln
-    - Vorschlag erstellen
-    - Ausführen
-    - Archivieren
+    - "Idee entwickeln"
+    - "Vorschlag erstellen"
+    - "Ausführen"
+    - "Archivieren"
   activeStates:
-    - Ideenphase
-    - Vorschlag läuft
-    - Ausführung läuft
-    - Archivierung läuft
-  completedState: Abgeschlossen
-  metrics:
-    completed: Abgeschlossene Aufgaben
-    efficiency: Live-Effizienz
-    serialTime: Entsprechende serielle Zeit
-    elapsedTime: Verstrichene Zeit
-    formula: Effizienz = entsprechende serielle Arbeit / reale Laufzeit
-    serialHint: relativ zu einer einzelnen seriellen Arbeitskraft
+    - "Ideenphase"
+    - "Vorschlag läuft"
+    - "Ausführung läuft"
+    - "Archivierung läuft"
+  completedState: "Abgeschlossen"
 workflowSteps:
   eyebrow: "So funktioniert es"
   title: "Jede Änderung folgt denselben drei Schritten"
   description: "Keine endlosen Chat-Verläufe. Jede Änderung wird zu einem prüfbaren Vorschlag, einem nachvollziehbaren Lauf und wiederverwendbarem Wissen."
+  loopLabel: "Das Archiv speist den nächsten Vorschlag"
   steps:
     proposal:
       label: "Vorschlag"
@@ -308,4 +302,4 @@ workflowSteps:
       description: "Genehmigen Sie den Plan, und Agenten arbeiten ihn Aufgabe für Aufgabe ab – parallel über Claude Code, Codex, GitHub Copilot und mehr, jede erledigte Aufgabe wird abgehakt."
     archive:
       label: "Archiv"
-      description: "Abgeschlossene Änderungen werden in Ihre Spezifikationen zurückarchiviert, damit der nächste Vorschlag auf dem aufbaut, was das Team bereits gelernt hat."
+      description: "Abgeschlossene Änderungen werden in Ihre Spezifikationen zurückarchiviert. Der nächste Vorschlag liest sie zuerst und baut so auf dem auf, was das Team bereits gelernt hat."
