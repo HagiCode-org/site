@@ -72,7 +72,6 @@
   margin-top: var(--spacing-lg, 32px);
   padding: var(--spacing-md, 24px);
   border: 1px solid var(--related-border);
-  border-left: 3px solid var(--color-primary-blue, #0080FF);
   border-radius: var(--rounded-md, 8px);
   background: var(--related-surface);
 }

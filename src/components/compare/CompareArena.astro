@@ -1,0 +1,225 @@
+---
+/**
+ * Homepage entry to the "<agent> vs HagiCode" comparison pages: pick the agent you already use
+ * and a head-to-head preview opens, lifted from that comparison page's own table.
+ *
+ * Replaces the two lists the homepage used to carry (hero card grid + pill list). Every tab is a
+ * real link to its comparison page, so crawlers and no-JS visitors still get all of them; the
+ * script below upgrades the links into a tablist.
+ */
+import { gaEventAttributes } from '@hagicode/hagilight-core/analytics-events';
+import type { SiteLocale } from '@/i18n/locale-metadata';
+import { getServerTranslation } from '@/i18n/translation-resources';
+import { getHomepageCompareArenaItems } from '@/lib/structured-articles.mjs';
+import { agentAccent } from './agent-accents';
+import InlineText from './InlineText.astro';
+import './compare-arena.css';
+
+interface Props {
+  locale: SiteLocale;
+}
+
+const { locale } = Astro.props;
+const { t } = getServerTranslation(locale);
+const items = getHomepageCompareArenaItems(locale);
+const vsLabel = t('compare.vsLabel');
+const readFull = t('compare.arenaReadFull');
+---
+
+{items.length > 0 && (
+  <section class="arena" aria-labelledby="arena-title" data-compare-arena data-homepage-section="compare-arena">
+    <div class="arena__inner">
+      <header class="arena__header">
+        <h2 id="arena-title" class="arena__title">{t('compare.arenaTitle')}</h2>
+        <p class="arena__description">{t('compare.arenaDescription')}</p>
+      </header>
+
+      <div class="arena__layout">
+        <nav class="arena__nav" aria-label={t('compare.arenaTabsLabel')}>
+          <ul class="arena__tabs">
+            {items.map((item, index) => (
+              <li class="arena__tab-item">
+                <a
+                  class="arena__tab"
+                  href={item.href}
+                  data-arena-tab={item.slug}
+                  data-active={index === 0 ? '' : undefined}
+                  style={`--agent: ${agentAccent(item.accentIndex)}`}
+                >
+                  <span class="arena__tab-mark" aria-hidden="true"></span>
+                  <span class="arena__tab-name">{item.agentName}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div class="arena__stage" data-arena-stage>
+          {items.map((item, index) => (
+            <article
+              class="arena__panel"
+              data-arena-panel={item.slug}
+              data-active={index === 0 ? '' : undefined}
+              style={`--agent: ${agentAccent(item.accentIndex)}`}
+            >
+              <div class="arena__spot" aria-hidden="true"></div>
+              <h3 class="arena__duel" aria-label={vsLabel.replace('{agent}', item.agentName)}>
+                <span class="arena__fighter arena__fighter--agent" aria-hidden="true">{item.agentName}</span>
+                <span class="arena__vs" aria-hidden="true"><span>vs</span></span>
+                <span class="arena__fighter arena__fighter--hagi" aria-hidden="true">HagiCode</span>
+              </h3>
+
+              {item.rows.length > 0 ? (
+                <div
+                  class="arena__table"
+                  role="table"
+                  aria-label={vsLabel.replace('{agent}', item.agentName)}
+                  lang={item.contentLocale === locale ? undefined : item.contentLocale}
+                >
+                  {item.rows.map((row, rowIndex) => (
+                    <div class="arena__row" role="row" style={`--i: ${rowIndex}`}>
+                      <span class="arena__label" role="rowheader">{row.label}</span>
+                      <p class="arena__cell arena__cell--agent" role="cell" data-who={item.agentName}>
+                        <InlineText text={row.agent} />
+                      </p>
+                      <p class="arena__cell arena__cell--hagi" role="cell" data-who="HagiCode">
+                        <InlineText text={row.hagicode} />
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p class="arena__summary" lang={item.contentLocale === locale ? undefined : item.contentLocale}>
+                  {item.summary || t('compare.arenaNoPreview')}
+                </p>
+              )}
+
+              <a
+                class="arena__read"
+                href={item.href}
+                {...gaEventAttributes({ category: 'navigation', label: 'relatedComparison', location: 'compare_related' })}
+              >
+                <span>{readFull.replace('{agent}', item.agentName)}</span>
+                <svg class="arena__read-arrow" viewBox="0 0 20 20" width="18" height="18" fill="none" aria-hidden="true">
+                  <path d="M4 10h11m-4.5-4.5L15 10l-4.5 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-compare-arena]');
+
+  if (root) {
+    const nav = root.querySelector<HTMLElement>('.arena__nav');
+    const list = root.querySelector<HTMLElement>('.arena__tabs');
+    const stage = root.querySelector<HTMLElement>('[data-arena-stage]');
+    const tabs = Array.from(root.querySelectorAll<HTMLAnchorElement>('[data-arena-tab]'));
+    const panels = new Map(
+      Array.from(root.querySelectorAll<HTMLElement>('[data-arena-panel]')).map((panel) => [panel.dataset.arenaPanel ?? '', panel]),
+    );
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    if (nav && list && stage && tabs.length > 0) {
+      // The links stay as the no-JS path; with JS they become tabs that swap the stage.
+      list.setAttribute('role', 'tablist');
+      list.setAttribute('aria-label', nav.getAttribute('aria-label') ?? '');
+      nav.removeAttribute('aria-label');
+      nav.setAttribute('role', 'presentation');
+      list.querySelectorAll('li').forEach((item) => item.setAttribute('role', 'presentation'));
+
+      tabs.forEach((tab) => {
+        const slug = tab.dataset.arenaTab ?? '';
+        const panel = panels.get(slug);
+        tab.dataset.href = tab.getAttribute('href') ?? '';
+        tab.removeAttribute('href');
+        tab.setAttribute('role', 'tab');
+        tab.id = `arena-tab-${slug}`;
+        if (panel) {
+          panel.id = `arena-panel-${slug}`;
+          panel.setAttribute('role', 'tabpanel');
+          panel.setAttribute('aria-labelledby', tab.id);
+          tab.setAttribute('aria-controls', panel.id);
+        }
+      });
+
+      const select = (next: HTMLAnchorElement, moveFocus: boolean) => {
+        tabs.forEach((tab) => {
+          const active = tab === next;
+          tab.toggleAttribute('data-active', active);
+          tab.setAttribute('aria-selected', String(active));
+          tab.tabIndex = active ? 0 : -1;
+          panels.get(tab.dataset.arenaTab ?? '')?.toggleAttribute('data-active', active);
+        });
+
+        if (moveFocus) {
+          next.focus();
+        }
+
+        // Narrow screens scroll the tabs sideways: keep the chosen one in view without
+        // moving the page.
+        if (list.scrollWidth > list.clientWidth) {
+          list.scrollTo({
+            left: next.offsetLeft - (list.clientWidth - next.offsetWidth) / 2,
+            behavior: reduceMotion.matches ? 'auto' : 'smooth',
+          });
+        }
+      };
+
+      const initial = tabs.find((tab) => tab.hasAttribute('data-active')) ?? tabs[0];
+      select(initial, false);
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => select(tab, false));
+      });
+
+      list.addEventListener('keydown', (event) => {
+        const current = tabs.indexOf(document.activeElement as HTMLAnchorElement);
+        if (current < 0) {
+          return;
+        }
+
+        let target = -1;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') target = (current + 1) % tabs.length;
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') target = (current - 1 + tabs.length) % tabs.length;
+        if (event.key === 'Home') target = 0;
+        if (event.key === 'End') target = tabs.length - 1;
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          select(tabs[current], false);
+          return;
+        }
+
+        if (target >= 0) {
+          event.preventDefault();
+          select(tabs[target], true);
+        }
+      });
+
+      // A light follows the pointer across the stage; touch and pen keep the static state.
+      let frame = 0;
+      stage.addEventListener('pointermove', (event) => {
+        if (event.pointerType !== 'mouse' || reduceMotion.matches) {
+          return;
+        }
+
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(() => {
+          const box = stage.getBoundingClientRect();
+          stage.style.setProperty('--mx', `${event.clientX - box.left}px`);
+          stage.style.setProperty('--my', `${event.clientY - box.top}px`);
+          stage.dataset.lit = '';
+        });
+      });
+      stage.addEventListener('pointerleave', () => {
+        cancelAnimationFrame(frame);
+        delete stage.dataset.lit;
+      });
+    }
+  }
+</script>

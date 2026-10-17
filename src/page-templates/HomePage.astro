@@ -5,7 +5,7 @@ import WorkflowStepsSection from '@/components/home/WorkflowStepsSection.astro';
 import FeaturesShowcase from '@/components/home/FeaturesShowcase';
 import ShowcaseSection from '@/components/home/ShowcaseSection';
 import VideoShowcase from '@/components/home/VideoShowcase';
-import RelatedComparisons from '@/components/compare/RelatedComparisons.astro';
+import CompareArena from '@/components/compare/CompareArena.astro';
 import PricingComparisonSection from '@/components/home/PricingComparisonSection';
 import PromotoBanner from '@hagicode/hagilight-core/PromotoBanner';
 import SiteFooter from '@/components/SiteFooter.astro';
@@ -33,7 +33,6 @@ import {
 } from '@/lib/homepage-section-copy';
 import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
 import { getHomePageCopy } from '@/lib/site-page-copy';
-import { getHomepageAgentChooserItems } from '@/lib/structured-articles.mjs';
 
 interface Props {
   locale: SiteLocale;
@@ -47,7 +46,6 @@ const featuresCopy = getHomepageFeaturesCopy(locale);
 const showcaseCopy = getHomepageShowcaseCopy(locale);
 const workflowStepsCopy = getHomepageWorkflowStepsCopy(locale);
 const pricingContent = getPricingContent(locale);
-const heroAgentChoices = getHomepageAgentChooserItems(locale);
 const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
 
 async function getShowcaseImageSources(source: ImageMetadata) {
@@ -129,13 +127,12 @@ const showcaseImages = {
         locale={locale}
         copy={interactiveCopy.hero}
         workflowBoardCopy={interactiveCopy.workflowBoard}
-        agentChoices={heroAgentChoices}
         productOverviewVideo={{
           copy: pageCopy.productOverviewVideoCopy,
           featuredVideos: pageCopy.featuredHomepageVideos,
         }}
       />
-      <RelatedComparisons locale={locale} />
+      <CompareArena locale={locale} />
       <WorkflowStepsSection copy={workflowStepsCopy} />
       <FeaturesShowcase copy={featuresCopy} client:visible />
       <ShowcaseSection copy={showcaseCopy} images={showcaseImages} client:visible />

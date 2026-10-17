@@ -7,26 +7,76 @@
  * - bullet-list      → ul/li with `.structured-bullet-list`
  * - capability-list  → responsive grid of cards
  * - comparison-grid  → responsive grid of `<dl>` cards
- * - comparison-table → scrollable `<table>` with a header row and row labels
+ * - comparison-table → three columns (aspect / agent / HagiCode): a face-off table whose row
+ *                      labels sit on the centre seam; any other shape: a scrollable `<table>`
+ * - bullet-list pair  → the `-choose-agent` / `-choose-hagicode` lists of a comparison page render
+ *                      side by side as a verdict
  * - callout          → `<aside>` with a tone class
  * - cta-group        → anchor buttons with a variant
  */
+import InlineText from '@/components/compare/InlineText.astro';
 import type { StructuredArticleBlock } from '@/components/structured-article/types';
 
 interface Props {
   blocks: StructuredArticleBlock[];
+  /** Name of the compared agent; labels the verdict panes. */
+  agentName?: string;
+  /** Verdict pane headings; `{agent}` is replaced with `agentName`. */
+  verdictAgentLabel?: string;
+  verdictHagicodeLabel?: string;
 }
 
-const { blocks } = Astro.props;
+const { blocks, agentName = '', verdictAgentLabel = '', verdictHagicodeLabel = '' } = Astro.props;
+
+const toneIcons = {
+  info: 'M10 2.5a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15Zm0 6.5v4.5m0-7.25v.01',
+  success: 'M10 2.5a7.5 7.5 0 1 0 0 15 7.5 7.5 0 0 0 0-15Zm-3 7.6 2.2 2.2L13.2 8',
+  warning: 'M10 3 2.5 16.5h15L10 3Zm0 5.5v3.5m0 2.25v.01',
+} as const;
+
+const isVerdictPair = (index: number) =>
+  verdictAgentLabel !== '' &&
+  blocks[index]?.type === 'bullet-list' &&
+  blocks[index].id.endsWith('-choose-agent') &&
+  blocks[index + 1]?.type === 'bullet-list' &&
+  blocks[index + 1].id.endsWith('-choose-hagicode');
 ---
 
-{blocks.map((block) => {
+{blocks.map((block, blockIndex) => {
+  if (blockIndex > 0 && isVerdictPair(blockIndex - 1)) {
+    return null;
+  }
+
+  if (isVerdictPair(blockIndex) && block.type === 'bullet-list') {
+    const hagicodeBlock = blocks[blockIndex + 1];
+    return (
+      <div class="verdict" data-block-id={block.id}>
+        <section class="verdict__pane verdict__pane--agent">
+          <h3 class="verdict__title">{verdictAgentLabel.replace('{agent}', agentName)}</h3>
+          <ul class="verdict__list">
+            {block.items.map((item) => (
+              <li class="verdict__item"><InlineText text={item} /></li>
+            ))}
+          </ul>
+        </section>
+        <section class="verdict__pane verdict__pane--hagi">
+          <h3 class="verdict__title">{verdictHagicodeLabel}</h3>
+          <ul class="verdict__list">
+            {hagicodeBlock.type === 'bullet-list' && hagicodeBlock.items.map((item) => (
+              <li class="verdict__item"><InlineText text={item} /></li>
+            ))}
+          </ul>
+        </section>
+      </div>
+    );
+  }
+
   switch (block.type) {
     case 'rich-text':
       return (
         <div class="structured-rich-text" data-block-id={block.id}>
           {block.content.map((paragraph) => (
-            <p class="structured-rich-text__p">{paragraph}</p>
+            <p class="structured-rich-text__p"><InlineText text={paragraph} /></p>
           ))}
         </div>
       );
@@ -35,7 +85,7 @@ const { blocks } = Astro.props;
       return (
         <ul class="structured-bullet-list" data-block-id={block.id}>
           {block.items.map((item) => (
-            <li class="structured-bullet-list__item">{item}</li>
+            <li class="structured-bullet-list__item"><InlineText text={item} /></li>
           ))}
         </ul>
       );
@@ -44,15 +94,15 @@ const { blocks } = Astro.props;
       return (
         <div class="structured-capability-grid" data-block-id={block.id}>
           {block.items.map((item) => (
-            <article class="structured-capability-card">
+            <article class="structured-capability-card" data-spotlight>
               <h3 class="structured-capability-card__title">{item.title}</h3>
               {item.content.map((paragraph) => (
-                <p class="structured-capability-card__text">{paragraph}</p>
+                <p class="structured-capability-card__text"><InlineText text={paragraph} /></p>
               ))}
               {item.bullets === undefined ? null : (
                 <ul class="structured-capability-card__bullets">
                   {item.bullets.map((bullet) => (
-                    <li class="structured-capability-card__bullet">{bullet}</li>
+                    <li class="structured-capability-card__bullet"><InlineText text={bullet} /></li>
                   ))}
                 </ul>
               )}
@@ -89,6 +139,26 @@ const { blocks } = Astro.props;
       );
 
     case 'comparison-table':
+      if (block.headers.length === 3) {
+        return (
+          <div class="duel" data-block-id={block.id} role="table" aria-label={block.caption ?? block.headers.join(' / ')}>
+            <div class="duel__head" role="row">
+              <span class="duel__sr" role="columnheader">{block.headers[0]}</span>
+              <span class="duel__who duel__who--agent" role="columnheader">{block.headers[1]}</span>
+              <span class="duel__who duel__who--hagi" role="columnheader">{block.headers[2]}</span>
+            </div>
+            {block.rows.map((row) => (
+              <div class="duel__row" role="row" data-spotlight>
+                <span class="duel__label" role="rowheader">{row.cells[0]}</span>
+                <p class="duel__cell duel__cell--agent" role="cell" data-who={block.headers[1]}><InlineText text={row.cells[1]} /></p>
+                <p class="duel__cell duel__cell--hagi" role="cell" data-who={block.headers[2]}><InlineText text={row.cells[2]} /></p>
+              </div>
+            ))}
+            {block.caption === undefined ? null : <p class="duel__caption">{block.caption}</p>}
+          </div>
+        );
+      }
+
       return (
         <div class="structured-table-wrap" data-block-id={block.id} tabindex="0" role="region" aria-label={block.caption ?? block.headers.join(' / ')}>
           <table class="structured-table">
@@ -120,11 +190,14 @@ const { blocks } = Astro.props;
     case 'callout':
       return (
         <aside class={`structured-callout tone-${block.tone}`} data-block-id={block.id}>
+          <svg class="structured-callout__icon" viewBox="0 0 20 20" width="22" height="22" fill="none" aria-hidden="true">
+            <path d={toneIcons[block.tone]} stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
           {block.title === undefined ? null : (
             <h3 class="structured-callout__title">{block.title}</h3>
           )}
           {block.content.map((paragraph) => (
-            <p class="structured-callout__text">{paragraph}</p>
+            <p class="structured-callout__text"><InlineText text={paragraph} /></p>
           ))}
         </aside>
       );

@@ -118,4 +118,8 @@ export interface StructuredArticleViewModel {
   faq: StructuredArticleFaqItem[];
   toc: Array<{ id: string; title: string }>;
   cta: StructuredArticleCtaSet;
+  /** Display name of the compared agent, e.g. "Claude Code". */
+  agentName: string;
+  /** Position among all comparison pages; selects the agent's accent colour. */
+  accentIndex: number;
 }

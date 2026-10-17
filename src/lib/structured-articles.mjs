@@ -370,6 +370,56 @@ export function getHomepageAgentChooserItems(locale, category = 'vs-hagicode', o
   return items;
 }
 
+/**
+ * Index of the rows of an "at a glance" comparison table that the homepage arena previews:
+ * what it is, pricing, parallel work, spec and planning. Every full-length article keeps these
+ * rows at the same positions, whatever the locale.
+ */
+const ARENA_PREVIEW_ROW_INDEXES = [0, 2, 4, 5];
+
+/** Stable position of an agent among all comparison pages; picks its accent colour. */
+export function getAgentAccentIndex(slug, category = 'vs-hagicode', options = {}) {
+  const index = getStructuredArticleEntriesByCategory(category, options).findIndex((article) => article.slug === slug);
+  return index < 0 ? 0 : index;
+}
+
+/**
+ * Homepage "arena" entries: one per comparison page, carrying a head-to-head preview taken from
+ * the article's own comparison table so the homepage never states anything the article does not.
+ * Articles without a three-column table (short locale variants) and agents without an article
+ * keep an empty `rows` list.
+ */
+export function getHomepageCompareArenaItems(locale, category = 'vs-hagicode', options = {}) {
+  const requestedLocale = resolveArticleLocale(locale);
+
+  return getHomepageAgentChooserItems(locale, category, options).map((item) => {
+    const accentIndex = getAgentAccentIndex(item.slug, category, options);
+    let preview = { rows: [], summary: '', headers: null, contentLocale: item.localizedLocale };
+
+    try {
+      const { detail, resolvedLocale } = resolveStructuredArticle(item.slug, requestedLocale, options);
+      const table = detail.sections
+        .flatMap((section) => section.blocks)
+        .find((block) => block.type === 'comparison-table' && block.headers.length === 3);
+
+      preview = {
+        summary: detail.summary,
+        contentLocale: resolvedLocale,
+        headers: table ? table.headers : null,
+        rows: table
+          ? ARENA_PREVIEW_ROW_INDEXES.map((index) => table.rows[index])
+              .filter(Boolean)
+              .map((row) => ({ id: row.id, label: row.cells[0], agent: row.cells[1], hagicode: row.cells[2] }))
+          : [],
+      };
+    } catch {
+      // No article behind this entry: the arena falls back to a plain link.
+    }
+
+    return { ...item, accentIndex, ...preview };
+  });
+}
+
 /** Comparison pages other than `currentSlug`, in the same shape as the homepage agent chooser. */
 export function getRelatedComparisonItems(currentSlug, locale, category = 'vs-hagicode', options = {}) {
   return getHomepageAgentChooserItems(locale, category, options).filter((item) => item.slug !== currentSlug);
@@ -434,5 +484,9 @@ export function getStructuredArticleViewModel(slug, locale = DEFAULT_LOCALE, opt
     faq: detail.faq ?? [],
     toc: detail.sections.map((section) => ({ id: section.id, title: section.title })),
     cta: detail.cta ?? {},
+    agentName:
+      getStructuredArticleEntriesByCategory(detail.category ?? 'vs-hagicode', options).find((article) => article.slug === detail.slug)
+        ?.agentName ?? titleToAgentName(detail.seo.title, detail.slug),
+    accentIndex: getAgentAccentIndex(detail.slug, detail.category ?? 'vs-hagicode', options),
   };
 }

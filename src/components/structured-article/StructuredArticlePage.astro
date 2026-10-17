@@ -22,7 +22,9 @@ import { getAbsoluteSiteUrl } from '@/lib/locale-routing';
 import { getStructuredArticleViewModel } from '@/lib/structured-articles.mjs';
 import '@/styles/homepage.css';
 import '@/styles/desktop.css';
+import { agentAccent } from '@/components/compare/agent-accents';
 import '@/components/compare/compare-page.css';
+import '@/components/compare/compare-duel.css';
 
 interface Props {
   slug: string;
@@ -40,6 +42,24 @@ const heroBadge = t('desktopHero.badge');
 const heroTagline = t('desktopHero.tagline');
 const installHref = getDocsAbsoluteUrl('/installation/desktop/', locale);
 const SITE_ORIGIN = 'https://www.hagicode.com';
+
+// The h1 keeps the article title word for word; when it reads "<agent> <vs> HagiCode<rest>" the
+// three parts become the face-off lockup and `rest` drops to a quieter second line.
+const titleMatch = (() => {
+  const { title, agentName } = viewModel;
+  const hagicodeAt = title.indexOf('HagiCode');
+  if (!title.startsWith(agentName) || hagicodeAt <= agentName.length) {
+    return null;
+  }
+
+  const versus = title.slice(agentName.length, hagicodeAt).trim();
+  if (versus === '' || versus.length > 6) {
+    return null;
+  }
+
+  return { versus, rest: title.slice(hagicodeAt + 'HagiCode'.length).replace(/^[\s:：\-—–]+/u, '') };
+})();
+const accentStyle = `--agent: ${agentAccent(viewModel.accentIndex)}`;
 
 // Article + FAQPage structured data. The FAQ entries are the same text the page renders below,
 // so the markup never describes content a reader cannot see.
@@ -128,10 +148,25 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</gu, '\\u003
       themeToggleCopy={interactiveCopy.themeToggle}
       languageSwitcherCopy={interactiveCopy.languageSwitcher}
     />
-    <main class="compare-page">
+    <main class="compare-page" style={accentStyle}>
       <section class="compare-page__hero">
-        <span class="compare-page__badge">vs-hagicode</span>
-        <h1 class="compare-page__title">{viewModel.title}</h1>
+        {titleMatch === null ? (
+          <h1 class="compare-page__title">{viewModel.title}</h1>
+        ) : (
+          <h1 class="compare-page__title compare-page__title--duel">
+            <span class="compare-page__duel">
+              <span class="compare-page__fighter compare-page__fighter--agent">{viewModel.agentName}</span>{' '}
+              <span class="compare-page__vs"><span>{titleMatch.versus}</span></span>{' '}
+              <span class="compare-page__fighter compare-page__fighter--hagi">HagiCode</span>
+            </span>
+            {titleMatch.rest === '' ? null : (
+              <>
+                <span class="duel__sr">: </span>
+                <span class="compare-page__title-rest">{titleMatch.rest}</span>
+              </>
+            )}
+          </h1>
+        )}
         <p class="compare-page__subtitle">{viewModel.summary}</p>
         <p class="compare-page__hero-cta">
           <a
@@ -144,6 +179,19 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</gu, '\\u003
         </p>
       </section>
 
+      <div class="compare-page__layout">
+        <nav class="compare-rail" aria-label={t('compare.tocLabel')}>
+          <p class="compare-rail__label" aria-hidden="true">{t('compare.tocLabel')}</p>
+          <ol class="compare-rail__list">
+            {viewModel.toc.map((entry) => (
+              <li><a class="compare-rail__link" href={`#${entry.id}`} data-rail-link>{entry.title}</a></li>
+            ))}
+            {viewModel.faq.length > 0 && (
+              <li><a class="compare-rail__link" href="#faq" data-rail-link>{t('compare.faqTitle')}</a></li>
+            )}
+          </ol>
+        </nav>
+
       <div class="compare-page__body">
         <StructuredArticleMetaRow
           requestedLocale={viewModel.requestedLocale}
@@ -155,7 +203,12 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</gu, '\\u003
         {viewModel.sections.map((section) => (
           <section id={section.id} class="compare-section structured-section">
             <h2 class="compare-section__title">{section.title}</h2>
-            <StructuredArticleBlocks blocks={section.blocks} />
+            <StructuredArticleBlocks
+              blocks={section.blocks}
+              agentName={viewModel.agentName}
+              verdictAgentLabel={t('compare.choosePaneAgent')}
+              verdictHagicodeLabel={t('compare.choosePaneHagicode')}
+            />
           </section>
         ))}
 
@@ -188,8 +241,59 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</gu, '\\u003
           </div>
         </section>
       </div>
+      </div>
     </main>
     <PromotoBanner locale={locale} />
     <SiteFooter locale={locale} />
+    <script>
+      // Pointer light on cards and rows (mouse only), and the "on this page" rail follows the scroll.
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let frame = 0;
+
+      document.addEventListener('pointermove', (event) => {
+        if (event.pointerType !== 'mouse' || reduceMotion.matches) {
+          return;
+        }
+
+        const target = (event.target as Element | null)?.closest<HTMLElement>('[data-spotlight]');
+        if (!target) {
+          return;
+        }
+
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(() => {
+          const box = target.getBoundingClientRect();
+          target.style.setProperty('--sx', `${event.clientX - box.left}px`);
+          target.style.setProperty('--sy', `${event.clientY - box.top}px`);
+        });
+      });
+
+      const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-rail-link]'));
+      const sections = links
+        .map((link) => document.getElementById(link.getAttribute('href')?.slice(1) ?? ''))
+        .filter((section): section is HTMLElement => section !== null);
+
+      if (links.length > 0 && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+            if (!visible) {
+              return;
+            }
+
+            links.forEach((link) => {
+              if (link.getAttribute('href') === `#${visible.target.id}`) {
+                link.setAttribute('aria-current', 'location');
+              } else {
+                link.removeAttribute('aria-current');
+              }
+            });
+          },
+          { rootMargin: '-15% 0px -70% 0px' },
+        );
+
+        sections.forEach((section) => observer.observe(section));
+      }
+    </script>
   </body>
 </html>

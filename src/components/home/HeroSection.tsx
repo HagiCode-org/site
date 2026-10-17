@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
 import { gaEventAttributes, type GaCategory } from '@hagicode/hagilight-core/analytics-events';
 import styles from './HeroSection.module.css';
 import { getLinkWithLocale } from '@/lib/shared/links';
@@ -8,14 +7,7 @@ import MicrosoftStoreBadge from '@/components/common/MicrosoftStoreBadge';
 import HeroWorkflowBoard from './HeroWorkflowBoard';
 import ProductOverviewVideoSection from './ProductOverviewVideoSection';
 import type { FeaturedVideosByProvider } from './video-showcase-model';
-import type { HomepageAgentChooserCopy, HomepageHeroCopy, HomepageWorkflowBoardCopy } from '@/lib/homepage-runtime-copy';
-
-interface HeroAgentChoice {
-  slug: string;
-  agentName: string;
-  href: string;
-  localizedLocale: string;
-}
+import type { HomepageHeroCopy, HomepageWorkflowBoardCopy } from '@/lib/homepage-runtime-copy';
 
 interface HeroSectionProps {
   desktopVersion?: unknown;
@@ -26,7 +18,6 @@ interface HeroSectionProps {
   locale: string;
   copy: HomepageHeroCopy;
   workflowBoardCopy: HomepageWorkflowBoardCopy;
-  agentChoices?: HeroAgentChoice[];
   productOverviewVideo?: {
     copy: {
       title: string;
@@ -59,100 +50,6 @@ function heroGaAttributes(category: GaCategory, label: string, url?: string) {
   return gaEventAttributes({ category, label, location: HERO_GA_LOCATION, url });
 }
 
-function formatAgentName(name: string) {
-  return name;
-}
-
-const AGENT_ACCENT_PALETTE = [
-  ['#60a5fa', 'rgba(96, 165, 250, 0.22)'],
-  ['#34d399', 'rgba(52, 211, 153, 0.22)'],
-  ['#a78bfa', 'rgba(167, 139, 250, 0.22)'],
-  ['#f59e0b', 'rgba(245, 158, 11, 0.22)'],
-  ['#fb7185', 'rgba(251, 113, 133, 0.22)'],
-  ['#22d3ee', 'rgba(34, 211, 238, 0.22)'],
-  ['#f97316', 'rgba(249, 115, 22, 0.22)'],
-  ['#f472b6', 'rgba(244, 114, 182, 0.22)'],
-  ['#38bdf8', 'rgba(56, 189, 248, 0.22)'],
-  ['#4ade80', 'rgba(74, 222, 128, 0.22)'],
-];
-
-function AgentChooser({
-  locale,
-  copy,
-  agentChoices,
-}: {
-  locale: string;
-  copy: HomepageAgentChooserCopy;
-  agentChoices: HeroAgentChoice[];
-}) {
-  const isChineseLocale = locale.toLowerCase().startsWith('zh');
-  const shouldReduceMotion = Boolean(useReducedMotion());
-
-  if (agentChoices.length === 0) {
-    return null;
-  }
-
-  const cardBaseDelay = shouldReduceMotion ? 0 : 0.28;
-  const cardStaggerMs = shouldReduceMotion ? 0 : 65;
-
-  return (
-    <section className={styles.agentChooser} aria-labelledby="hero-agent-chooser-title">
-      <div className={styles.agentChooserGlow} aria-hidden="true" />
-      <motion.div
-        className={styles.agentChooserHeader}
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.48, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <span className={styles.agentChooserBadge}>
-          <span className={styles.agentChooserBadgeDot} aria-hidden="true" />
-          <span className={styles.agentChooserBadgeLabel}>{copy.badge}</span>
-        </span>
-        <div className={styles.agentChooserCopy}>
-          <h2 id="hero-agent-chooser-title" className={styles.agentChooserTitle}>{copy.title}</h2>
-          <p className={styles.agentChooserDescription}>{copy.description}</p>
-        </div>
-      </motion.div>
-      <div className={styles.agentChooserGrid} role="list">
-        {agentChoices.map((agent, index) => {
-          const [accentColor, accentGlow] = AGENT_ACCENT_PALETTE[index % AGENT_ACCENT_PALETTE.length];
-          const cardStyle = {
-            '--card-accent': accentColor,
-            '--card-glow': accentGlow,
-          } as React.CSSProperties;
-
-          return (
-            <motion.a
-              key={agent.slug}
-              role="listitem"
-              className={styles.agentChooserCard}
-              href={agent.href}
-              style={cardStyle}
-              initial={{ opacity: 0, y: 24, scale: 0.94, filter: 'blur(4px)' }}
-              animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-              transition={{
-                duration: 0.52,
-                delay: cardBaseDelay + index * cardStaggerMs / 1000,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-            >
-              <span className={styles.agentChooserCardLabel}>{formatAgentName(agent.agentName)}</span>
-              <span className={styles.agentChooserCardRoute} aria-hidden="true">
-                <span>Agent</span>
-                <span className={styles.agentChooserCardArrow}>→</span>
-                <span>HagiCode</span>
-              </span>
-              <span className={styles.agentChooserCardMeta}>
-                {isChineseLocale ? '查看对比' : 'Compare now'}
-              </span>
-            </motion.a>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
 export default function HeroSection({
   desktopVersion = null,
   desktopPlatforms = [],
@@ -161,7 +58,6 @@ export default function HeroSection({
   locale,
   copy,
   workflowBoardCopy,
-  agentChoices = [],
   productOverviewVideo,
 }: HeroSectionProps) {
   const [windowsStoreLink, setWindowsStoreLink] = useState(() => getBundledWindowsStoreLink());
@@ -282,7 +178,6 @@ export default function HeroSection({
                   />
                 </div>
               )}
-              <AgentChooser locale={locale} copy={copy.agentChooser} agentChoices={agentChoices} />
             </div>
 
             <HeroWorkflowBoard locale={locale} copy={workflowBoardCopy} />

@@ -20,31 +20,8 @@
   text-align: center;
 }
 
-.compare-page__badge {
-  display: inline-block;
-  font-family: "SF Mono, Menlo, Cascadia Code, Consolas, Roboto Mono, JetBrains Mono, monospace";
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-primary-cyan, #00CCCC);
-  border: 1px solid rgba(0, 204, 204, 0.3);
-  border-radius: 9999px;
-  padding: 6px 16px;
-  margin-bottom: var(--spacing-md, 24px);
-}
-
 .compare-page__title {
-  font-family: var(--font-display, "PingFang SC, sans-serif");
-  font-size: clamp(2.25rem, 6vw, 3.5rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
   margin: 0 0 var(--spacing-sm, 16px);
-  background: linear-gradient(135deg, #0080FF 0%, #00CCCC 50%, #22C55E 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .compare-page__subtitle {
@@ -158,7 +135,6 @@
 .compare-advantage-card {
   background: rgba(15, 23, 42, 0.85);
   border: 1px solid rgba(0, 128, 255, 0.15);
-  border-left: 3px solid var(--color-primary-blue, #0080FF);
   border-radius: var(--rounded-md, 8px);
   padding: var(--spacing-lg, 32px);
   margin-bottom: var(--spacing-md, 24px);
@@ -581,7 +557,6 @@
 .structured-comparison-card {
   background: rgba(15, 23, 42, 0.85);
   border: 1px solid rgba(0, 128, 255, 0.15);
-  border-left: 3px solid var(--color-primary-blue, #0080FF);
   border-radius: var(--rounded-md, 8px);
   padding: var(--spacing-lg, 32px);
 }
@@ -631,27 +606,9 @@
   font-weight: 500;
 }
 
-/* Callout */
+/* Callout: surface, tone and icon live in compare-duel.css */
 .structured-callout {
-  border-radius: var(--rounded-lg, 12px);
-  padding: var(--spacing-md, 24px) var(--spacing-lg, 32px);
   margin: 0 0 var(--spacing-md, 24px);
-  border-left: 3px solid;
-}
-
-.structured-callout.tone-info {
-  background: rgba(0, 128, 255, 0.08);
-  border-left-color: var(--color-primary-blue, #0080FF);
-}
-
-.structured-callout.tone-success {
-  background: rgba(34, 197, 94, 0.08);
-  border-left-color: #22C55E;
-}
-
-.structured-callout.tone-warning {
-  background: rgba(245, 158, 11, 0.08);
-  border-left-color: #F59E0B;
 }
 
 .structured-callout__title {
@@ -843,18 +800,6 @@
 [data-theme="light"] .structured-comparison-card__row--combined .structured-comparison-card__dd,
 [data-theme="light"] .structured-callout__title {
   color: var(--color-text-strong-light, #0F172A);
-}
-
-[data-theme="light"] .structured-callout.tone-info {
-  background: rgba(0, 128, 255, 0.04);
-}
-
-[data-theme="light"] .structured-callout.tone-success {
-  background: rgba(34, 197, 94, 0.05);
-}
-
-[data-theme="light"] .structured-callout.tone-warning {
-  background: rgba(245, 158, 11, 0.06);
 }
 
 [data-theme="light"] .structured-page-cta {

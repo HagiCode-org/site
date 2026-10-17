@@ -1,0 +1,12 @@
+---
+/**
+ * Plain article text with `code` spans. The comparison data marks commands with backticks;
+ * this turns them into <code> elements without ever injecting markup.
+ */
+interface Props {
+  text: string;
+}
+
+const parts = Astro.props.text.split(/`([^`]+)`/gu);
+---
+{parts.map((part, index) => (index % 2 === 1 ? <code>{part}</code> : part))}

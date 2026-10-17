@@ -18,10 +18,6 @@ vi.mock('@/lib/shared/windows-store-link', async (importOriginal) => ({
 const harness = setupGaClickHarness();
 const { gtag } = harness;
 
-const agentChoices = [
-  { slug: 'claude-vs-hagicode', agentName: 'Claude Code', href: '/en-US/claude-vs-hagicode/', localizedLocale: 'en-US' },
-];
-
 async function renderHero() {
   const copy = getHomepageInteractiveCopy('en-US');
   return await harness.render(
@@ -29,7 +25,6 @@ async function renderHero() {
       locale="en-US"
       copy={copy.hero}
       workflowBoardCopy={copy.workflowBoard}
-      agentChoices={agentChoices}
     />,
   );
 }
@@ -81,15 +76,5 @@ describe('HeroSection Google Analytics events', () => {
       link_location: 'home_hero',
       link_url: storeUrl,
     });
-  });
-
-  it('sends nothing for the agent chooser cards', async () => {
-    const container = await renderHero();
-    const card = container.querySelector('a[href="/en-US/claude-vs-hagicode/"]');
-
-    expect(card).not.toBeNull();
-    harness.click(card as Element);
-
-    expect(gtag).not.toHaveBeenCalled();
   });
 });

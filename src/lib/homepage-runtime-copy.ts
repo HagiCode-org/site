@@ -24,12 +24,6 @@ export interface HomepageLanguageSwitcherCopy {
   selectedState: string;
 }
 
-export interface HomepageAgentChooserCopy {
-  title: string;
-  description: string;
-  badge: string;
-}
-
 export interface HomepageHeroCopy {
   headline: string;
   subheadline: string;
@@ -71,7 +65,6 @@ export interface HomepageHeroCopy {
   windowsStoreLabel: string;
   windowsStoreAriaLabel: string;
   ctaGroupLabel: string;
-  agentChooser: HomepageAgentChooserCopy;
 }
 
 export interface HomepageWorkflowBoardCopy {
@@ -194,11 +187,6 @@ export function getHomepageHeroCopy(locale: SiteLocale): HomepageHeroCopy {
       'homepageVideos.hero.windowsStoreAriaLabel',
     ),
     ctaGroupLabel: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.ctaGroupLabel'),
-    agentChooser: {
-      title: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.agentChooser.title'),
-      description: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.agentChooser.description'),
-      badge: requireLocaleResourceString(resolvedLocale, 'home', 'homepageVideos.hero.agentChooser.badge'),
-    },
   };
 }
 

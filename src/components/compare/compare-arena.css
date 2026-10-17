@@ -1,0 +1,657 @@
+/* ------------------------------------------------------------------ */
+/*  Homepage compare arena                                            */
+/*  One entry to every "<agent> vs HagiCode" page. Tabs on the left,  */
+/*  a head-to-head stage on the right. Theme colours come from the    */
+/*  shared tokens; the agent accent only fills shapes and tints.      */
+/* ------------------------------------------------------------------ */
+
+.arena {
+  --accent-darken: 24%;
+  --seam: var(--color-primary);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  position: relative;
+  width: 100%;
+  padding: 4.5rem 0 3.5rem;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+[data-theme='dark'] .arena,
+[data-theme='lunar-new-year'] .arena {
+  --accent-darken: 0%;
+}
+
+.arena__inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--site-content-max, 1200px);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.arena__header {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 48rem;
+  margin: 0 0 2rem;
+}
+
+.arena__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  color: var(--color-text);
+}
+
+.arena__description {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  text-wrap: pretty;
+  color: var(--color-text-secondary);
+}
+
+.arena__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+/* ---------------------------------------------------------------- */
+/*  Tabs                                                              */
+/* ---------------------------------------------------------------- */
+
+.arena__tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.25rem 0.125rem;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.arena__tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.arena__tab-item {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+}
+
+.arena__tab {
+  --accent: color-mix(in srgb, var(--agent), black var(--accent-darken));
+
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2.75rem;
+  box-sizing: border-box;
+  padding: 0.55rem 0.95rem;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 0.97rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color 200ms var(--ease-out-expo),
+    border-color 200ms var(--ease-out-expo),
+    color 200ms var(--ease-out-expo);
+}
+
+.arena__tab-mark {
+  flex: 0 0 auto;
+  width: 0.55rem;
+  height: 0.55rem;
+  border: 1.5px solid var(--accent);
+  border-radius: 1px;
+  background: transparent;
+  transform: rotate(45deg);
+  transition:
+    background-color 200ms var(--ease-out-expo),
+    transform 320ms var(--ease-out-expo);
+}
+
+.arena__tab:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.arena__tab[data-active] {
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--color-border));
+  background: color-mix(in srgb, var(--accent) 10%, var(--color-surface));
+  color: var(--color-text);
+}
+
+.arena__tab[data-active] .arena__tab-mark {
+  background: var(--accent);
+  transform: rotate(45deg) scale(1.3);
+}
+
+.arena__tab:focus-visible,
+.arena__read:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------- */
+/*  Stage                                                             */
+/* ---------------------------------------------------------------- */
+
+.arena__stage {
+  --mx: 50%;
+  --my: 0%;
+
+  position: relative;
+  display: grid;
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  background: var(--color-surface);
+  box-shadow: 0 18px 44px rgba(2, 6, 23, 0.12);
+  overflow: hidden;
+}
+
+.arena__panel {
+  --accent: color-mix(in srgb, var(--agent), black var(--accent-darken));
+
+  position: relative;
+  grid-area: 1 / 1;
+  display: grid;
+  align-content: start;
+  gap: 1.5rem;
+  padding: 2rem 2rem 1.75rem;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.arena__panel[data-active] {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* The seam colours along the top edge: agent on one half, HagiCode on the other. */
+.arena__panel::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 2;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent) 0 50%, var(--seam) 50% 100%);
+  pointer-events: none;
+}
+
+.arena__spot {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(30rem circle at var(--mx) var(--my), color-mix(in srgb, var(--accent) 13%, transparent), transparent 62%),
+    linear-gradient(180deg, color-mix(in srgb, var(--accent) 7%, transparent), transparent 14rem);
+  opacity: 0.55;
+  pointer-events: none;
+  transition: opacity 400ms var(--ease-out-expo);
+}
+
+.arena__stage[data-lit] .arena__spot {
+  opacity: 1;
+}
+
+/* Duel header: agent | vs | HagiCode */
+.arena__duel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1.25rem;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.arena__fighter {
+  font-size: clamp(1.45rem, 3.2vw, 2.4rem);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.arena__fighter--agent {
+  justify-self: end;
+  text-align: right;
+}
+
+.arena__fighter--hagi {
+  justify-self: start;
+}
+
+/* Underlines tie each name to its half of the seam. */
+.arena__fighter::after {
+  content: '';
+  display: block;
+  height: 3px;
+  margin-top: 0.6rem;
+  border-radius: 2px;
+}
+
+.arena__fighter--agent::after {
+  margin-left: auto;
+  width: 3.5rem;
+  background: var(--accent);
+}
+
+.arena__fighter--hagi::after {
+  width: 3.5rem;
+  background: var(--seam);
+}
+
+.arena__vs {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid color-mix(in srgb, var(--color-text) 28%, var(--color-border));
+  border-radius: 4px;
+  background: var(--color-surface);
+  transform: rotate(45deg);
+}
+
+.arena__vs > span {
+  display: block;
+  transform: rotate(-45deg);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+/* Rows: the aspect label sits on the seam, the two answers face each other below it. */
+.arena__table {
+  position: relative;
+  display: grid;
+  gap: 0.25rem;
+}
+
+/* The vertical seam. */
+.arena__table::before {
+  content: '';
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    color-mix(in srgb, var(--color-text) 22%, transparent) 14%,
+    color-mix(in srgb, var(--color-text) 22%, transparent) 86%,
+    transparent
+  );
+  transform-origin: top;
+  pointer-events: none;
+}
+
+/* A short bright segment that travels down the seam when a preview opens. */
+.arena__table::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  width: 2px;
+  height: 4rem;
+  margin-left: -0.5px;
+  border-radius: 1px;
+  background: linear-gradient(180deg, transparent, var(--seam), transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.arena__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  padding-top: 1rem;
+}
+
+.arena__label {
+  position: relative;
+  z-index: 1;
+  grid-column: 1 / -1;
+  justify-self: center;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0.65rem;
+  padding: 0.28rem 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.arena__cell {
+  margin: 0;
+  padding: 0 1.4rem;
+  font-size: 0.96rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  text-wrap: pretty;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+/* Each side's colour pools against the seam and fades out before it reaches an edge. */
+.arena__cell--agent {
+  background: radial-gradient(100% 55% at 100% 50%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 90%);
+}
+
+.arena__cell--hagi {
+  background: radial-gradient(100% 55% at 0% 50%, color-mix(in srgb, var(--seam) 10%, transparent), transparent 90%);
+}
+
+.arena__cell code,
+.arena__summary code {
+  font-family: var(--font-code, monospace);
+  font-size: 0.88em;
+  padding: 0.08em 0.35em;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--color-text) 9%, transparent);
+  color: var(--color-text);
+}
+
+.arena__summary {
+  position: relative;
+  margin: 0;
+  max-width: 62ch;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  text-wrap: pretty;
+}
+
+.arena__read {
+  position: relative;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  box-sizing: border-box;
+  padding: 0.6rem 1.15rem;
+  border: 1px solid color-mix(in srgb, var(--color-text) 30%, var(--color-border));
+  border-radius: 0.75rem;
+  color: var(--color-text);
+  font-size: 0.97rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  transition:
+    background-color 200ms var(--ease-out-expo),
+    border-color 200ms var(--ease-out-expo);
+}
+
+.arena__read:hover {
+  border-color: var(--seam);
+  background: color-mix(in srgb, var(--seam) 10%, transparent);
+}
+
+.arena__read-arrow {
+  flex: 0 0 auto;
+  transition: transform 260ms var(--ease-out-expo);
+}
+
+.arena__read:hover .arena__read-arrow {
+  transform: translateX(4px);
+}
+
+/* ---------------------------------------------------------------- */
+/*  The one authored moment: the stage opens from the seam            */
+/* ---------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .arena__panel[data-active] .arena__fighter--agent {
+    animation: arena-from-left 560ms var(--ease-out-expo) both;
+  }
+
+  .arena__panel[data-active] .arena__fighter--hagi {
+    animation: arena-from-right 560ms var(--ease-out-expo) both;
+  }
+
+  .arena__panel[data-active] .arena__vs {
+    animation: arena-vs 620ms var(--ease-out-expo) both;
+  }
+
+  .arena__panel[data-active] .arena__table::before {
+    animation: arena-seam 700ms var(--ease-out-expo) 80ms both;
+  }
+
+  .arena__panel[data-active] .arena__table::after {
+    animation: arena-scan 900ms var(--ease-out-expo) 120ms both;
+  }
+
+  .arena__panel[data-active] .arena__row {
+    animation: arena-open 620ms var(--ease-out-expo) calc(120ms + var(--i) * 85ms) both;
+  }
+
+  .arena__panel[data-active] .arena__read,
+  .arena__panel[data-active] .arena__summary {
+    animation: arena-rise 520ms var(--ease-out-expo) 420ms both;
+  }
+}
+
+@keyframes arena-scan {
+  from {
+    top: 0;
+    opacity: 1;
+  }
+
+  to {
+    top: calc(100% - 4rem);
+    opacity: 0;
+  }
+}
+
+@keyframes arena-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-1.5rem);
+    filter: blur(6px);
+  }
+}
+
+@keyframes arena-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(1.5rem);
+    filter: blur(6px);
+  }
+}
+
+@keyframes arena-vs {
+  from {
+    opacity: 0;
+    transform: rotate(-45deg) scale(0.5);
+  }
+}
+
+@keyframes arena-seam {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes arena-open {
+  from {
+    opacity: 0;
+    clip-path: inset(0 50% 0 50%);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(-2px);
+  }
+}
+
+@keyframes arena-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.6rem);
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/*  Wide screens: tabs become a two-column index beside the stage     */
+/* ---------------------------------------------------------------- */
+
+@media (min-width: 960px) {
+  .arena__layout {
+    grid-template-columns: minmax(16rem, 21rem) minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .arena__tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.4rem;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .arena__tab {
+    height: 100%;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/*  Phones: answers stack under their label                           */
+/* ---------------------------------------------------------------- */
+
+@media (max-width: 719px) {
+  .arena {
+    padding: 3rem 0 2.5rem;
+  }
+
+  .arena__inner {
+    padding: 0 1rem;
+  }
+
+  .arena__panel {
+    gap: 1.25rem;
+    padding: 1.35rem 1.1rem 1.25rem;
+  }
+
+  .arena__duel {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .arena__fighter--agent,
+  .arena__fighter--hagi {
+    justify-self: center;
+    text-align: center;
+  }
+
+  .arena__fighter::after {
+    margin-inline: auto;
+  }
+
+  .arena__vs {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .arena__table::before,
+  .arena__table::after {
+    display: none;
+  }
+
+  .arena__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--color-border-light);
+  }
+
+  .arena__row:nth-child(n + 4) {
+    display: none;
+  }
+
+  .arena__row:last-child,
+  .arena__row:nth-child(3) {
+    border-bottom: 0;
+  }
+
+  .arena__label {
+    justify-self: start;
+    margin-bottom: 0.15rem;
+  }
+
+  .arena__cell,
+  .arena__cell--agent,
+  .arena__cell--hagi {
+    background: none;
+  }
+
+  .arena__cell {
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    padding: 0 0 0 0.9rem;
+    border-left: 1px solid var(--color-border);
+    font-size: 0.94rem;
+  }
+
+  .arena__cell::before {
+    content: attr(data-who);
+    display: block;
+    margin-bottom: 0.15rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+  }
+
+  .arena__cell--agent {
+    border-left-color: var(--accent);
+  }
+
+  .arena__cell--hagi {
+    border-left-color: var(--seam);
+  }
+}
+
+@media (forced-colors: active) {
+  .arena__tab[data-active] {
+    border-color: Highlight;
+  }
+
+  .arena__panel::before {
+    background: CanvasText;
+  }
+}
