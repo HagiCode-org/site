@@ -420,6 +420,93 @@ export function getHomepageCompareArenaItems(locale, category = 'vs-hagicode', o
   });
 }
 
+/** Order the homepage CLI bay lists agents in; slugs without an article are skipped. */
+const CLI_PROFILE_ORDER = [
+  'claude',
+  'codex',
+  'copilot',
+  'opencode',
+  'hermes',
+  'qoder',
+  'kiro',
+  'kimi',
+  'gemini',
+  'pi',
+  'omp',
+  'reasonix',
+  'deepagents',
+  'codebuddy',
+  'dsh',
+  'junie',
+];
+
+/** "Codex CLI" -> "Codex", "QoderCLI" -> "Qoder", "DeepSeek Harness (dsh)" -> "dsh". */
+function toShortAgentName(agentName) {
+  const alias = agentName.match(/\(([^)]{2,12})\)\s*$/u);
+  return (alias ? alias[1] : agentName).replace(/\s*CLI$/u, '').trim();
+}
+
+/** Row positions of a full-length three-column comparison table (identical in every article). */
+const PROFILE_ROW = { whatItIs: 0, runsOn: 1, models: 3 };
+
+function readCliProfile(slug, locale, options) {
+  const { detail, resolvedLocale } = resolveStructuredArticle(slug, locale, options);
+  const table = detail.sections
+    .flatMap((section) => section.blocks)
+    .find((block) => block.type === 'comparison-table' && block.headers.length === 3 && block.rows.length >= 9);
+
+  if (!table) {
+    return null;
+  }
+
+  const rows = table.rows;
+  // "Asking you questions" sits before the setup row and exists in some articles only (10 rows).
+  const hasQuestionsRow = rows.length >= 10;
+  const strengths = detail.sections
+    .flatMap((section) => section.blocks)
+    .find((block) => block.type === 'capability-list');
+
+  return {
+    contentLocale: resolvedLocale,
+    whatItIs: rows[PROFILE_ROW.whatItIs].cells[1],
+    runsOn: rows[PROFILE_ROW.runsOn].cells[1],
+    models: rows[PROFILE_ROW.models].cells[1],
+    start: rows[rows.length - 2].cells[1],
+    questions: hasQuestionsRow ? rows[rows.length - 3].cells[2] : '',
+    strengths: strengths ? strengths.items.map((item) => item.title) : [],
+  };
+}
+
+/**
+ * Per-CLI profiles for the homepage CLI bay, taken from each agent's own comparison article so the
+ * homepage never states anything the article does not. Locales whose article keeps the short
+ * template (no full comparison table) read the English article instead.
+ */
+export function getHomepageCliProfiles(locale, category = 'vs-hagicode', options = {}) {
+  const requestedLocale = resolveArticleLocale(locale);
+  const items = new Map(getHomepageAgentChooserItems(locale, category, options).map((item) => [item.slug, item]));
+
+  return CLI_PROFILE_ORDER.map((name) => `${name}-vs-hagicode`)
+    .filter((slug) => items.has(slug))
+    .map((slug) => {
+      const item = items.get(slug);
+      let profile = null;
+      for (const candidate of [requestedLocale, DEFAULT_LOCALE]) {
+        try {
+          profile = readCliProfile(slug, candidate, options);
+        } catch {
+          profile = null;
+        }
+        if (profile) {
+          break;
+        }
+      }
+
+      return profile ? { slug, key: slug.replace(/-vs-hagicode$/u, ''), agentName: item.agentName, shortName: toShortAgentName(item.agentName), href: item.href, ...profile } : null;
+    })
+    .filter(Boolean);
+}
+
 /** Comparison pages other than `currentSlug`, in the same shape as the homepage agent chooser. */
 export function getRelatedComparisonItems(currentSlug, locale, category = 'vs-hagicode', options = {}) {
   return getHomepageAgentChooserItems(locale, category, options).filter((item) => item.slug !== currentSlug);

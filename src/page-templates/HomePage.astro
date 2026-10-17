@@ -31,6 +31,7 @@ import {
   getHomepageWorkflowStepsCopy,
   getPricingContent,
 } from '@/lib/homepage-section-copy';
+import { getHomepageCliProfiles } from '@/lib/structured-articles.mjs';
 import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
 import { getHomePageCopy } from '@/lib/site-page-copy';
 
@@ -43,6 +44,7 @@ const siteBase = import.meta.env.VITE_SITE_BASE || '';
 const pageCopy = getHomePageCopy(locale);
 const interactiveCopy = getHomepageInteractiveCopy(locale);
 const featuresCopy = getHomepageFeaturesCopy(locale);
+const cliProfiles = getHomepageCliProfiles(locale);
 const showcaseCopy = getHomepageShowcaseCopy(locale);
 const workflowStepsCopy = getHomepageWorkflowStepsCopy(locale);
 const pricingContent = getPricingContent(locale);
@@ -134,7 +136,7 @@ const showcaseImages = {
       />
       <CompareArena locale={locale} />
       <WorkflowStepsSection copy={workflowStepsCopy} />
-      <FeaturesShowcase copy={featuresCopy} client:visible />
+      <FeaturesShowcase copy={featuresCopy} cliProfiles={cliProfiles} client:visible />
       <ShowcaseSection copy={showcaseCopy} images={showcaseImages} client:visible />
       <VideoShowcase
         eyebrow={pageCopy.supportingSection.eyebrow}

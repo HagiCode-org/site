@@ -1,17 +1,16 @@
 /**
- * FeaturesShowcase 组件 - 科技感设计风格
- * 展示产品三大特性: 智能、高效、有趣（通过丰富、便捷的 UI 交互）
- * 设计系统: HUD/Sci-Fi FUI + Glassmorphism
+ * FeaturesShowcase: the three focus cards of the homepage.
  *
- * 优化要点:
- * - 微交互: hover 状态增强、视觉反馈、平滑过渡
- * - HUD 元素: 角标装饰、扫描线、数据流动画
- * - 主题适配: 亮/暗模式对比度优化
+ * - Smart: proposal-driven changes. The artifact tree shows what each OpenSpec stage writes to disk.
+ * - Efficient: many agents and instances in parallel lanes instead of one queue.
+ * - Interesting: Hero dungeons, captains, XP and the battle report.
+ *
+ * Nothing here claims a measured number. Values that illustrate a mechanic are labelled as examples in the copy.
  */
 import { useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { getSiteAssetUrl } from '@/assets/siteAssetUrls';
-import type { HomepageFeaturesCopy } from '@/lib/homepage-section-copy';
+import type { HomepageCliProfile, HomepageFeaturesCopy, HomepageWorldKey } from '@/lib/homepage-section-copy';
 import styles from './FeaturesShowcase.module.css';
 
 type Variants = {
@@ -41,28 +40,11 @@ const ZapIcon = ({ className = '' }: IconProps) => (
   </svg>
 );
 
-const TrophyIcon = ({ className = '' }: IconProps) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
-    <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
-    <path d="M4 22h16" />
-    <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
-    <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
-    <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
-  </svg>
-);
-
 const TargetIcon = ({ className = '' }: IconProps) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="10" />
     <circle cx="12" cy="12" r="6" />
     <circle cx="12" cy="12" r="2" />
-  </svg>
-);
-
-const FlameIcon = ({ className = '' }: IconProps) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
   </svg>
 );
 
@@ -95,27 +77,14 @@ const humanizeGalleryLabel = (fileName: string) => fileName
   .map((part) => (part ? part[0].toUpperCase() + part.slice(1) : part))
   .join(' ');
 
-const buildGalleryAssets = (group: 'dungeons' | 'heroes', files: string[]): GalleryAsset[] => (
+const buildHeroGalleryAssets = (files: string[]): GalleryAsset[] => (
   files.map((file) => ({
-    src: getSiteAssetUrl(`img/home/interesting/${group}/${file}`),
+    src: getSiteAssetUrl(`img/home/interesting/heroes/${file}`),
     label: humanizeGalleryLabel(file),
   }))
 );
 
-const interestingDungeonGallery = buildGalleryAssets('dungeons', [
-  'docs-editorial-still-life.webp',
-  'proposal-ff-futurist-poster.webp',
-  'annotation-notebook-scrapbook.webp',
-  'proposal-name-badge-forge.webp',
-  'proposal-new-fantasy-sketch.webp',
-  'index-blueprint-network.webp',
-  'proposal-apply-cyber-forge.webp',
-  'description-soft-editorial-room.webp',
-  'title-minimal-editorial.webp',
-  'proposal-explore-abstract-atlas.webp',
-]);
-
-const interestingHeroGallery = buildGalleryAssets('heroes', [
+const interestingHeroGallery = buildHeroGalleryAssets([
   'cat-line-03.webp',
   'cat-ink-09.webp',
   'cat-sticker-02.webp',
@@ -229,12 +198,100 @@ function SupportedCliIcon({ providerKey }: CliIconProps) {
           <path d="M11 12h2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </svg>
       );
+    case 'OmpCli':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="6.5" stroke="currentColor" strokeWidth="2" />
+          <path d="M9 10h6M11 10v4.5M13.5 10v4.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case 'DshCli':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="m6.5 8 4 4-4 4M13 16h5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case 'JunieCli':
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M14.5 6v8a3.5 3.5 0 0 1-7 0M11 6h7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
     default:
       return <span className={styles.supportedProviderFallback}>CLI</span>;
   }
 }
 
+const CLI_PROVIDER_KEYS: Record<string, string> = {
+  claude: 'ClaudeCodeCli',
+  codex: 'CodexCli',
+  copilot: 'GitHubCopilot',
+  opencode: 'OpenCodeCli',
+  hermes: 'HermesCli',
+  qoder: 'QoderCli',
+  kiro: 'KiroCli',
+  kimi: 'KimiCli',
+  gemini: 'GeminiCli',
+  pi: 'PiCli',
+  omp: 'OmpCli',
+  reasonix: 'ReasonixCli',
+  deepagents: 'DeepAgentsCli',
+  codebuddy: 'CodebuddyCli',
+  dsh: 'DshCli',
+  junie: 'JunieCli',
+};
+
+const cliProviderKey = (key: string) => CLI_PROVIDER_KEYS[key] ?? key;
+
+/** Comparison article cells mark commands with backticks; render those spans as code. */
+function renderInlineCode(text: string): React.ReactNode {
+  return text.split('`').map((part, index) => (index % 2 === 1 ? <code key={index} className={styles.cliInlineCode}>{part}</code> : part));
+}
+
 const zeroPad = (value: number) => String(value).padStart(2, '0');
+
+type ArtifactRow = {
+  key: string;
+  path: string;
+  kind: 'dir' | 'file' | 'command';
+  depth: 0 | 1;
+  /** First stage at which the row exists on disk (index into workflowStages). */
+  born: number;
+  /** Stages in which the row is being read or written. */
+  active: number[];
+};
+
+// Mirrors the order of workflowStages: review, scaffold, spec, design, tasks, validate, apply, archive.
+const artifactRows: ArtifactRow[] = [
+  { key: 'specs', path: 'openspec/specs/', kind: 'dir', depth: 0, born: 0, active: [0] },
+  { key: 'change', path: 'openspec/changes/<change-id>/', kind: 'dir', depth: 0, born: 1, active: [1] },
+  { key: 'proposal', path: 'proposal.md', kind: 'file', depth: 1, born: 1, active: [1] },
+  { key: 'design', path: 'design.md', kind: 'file', depth: 1, born: 1, active: [3] },
+  { key: 'tasks', path: 'tasks.md', kind: 'file', depth: 1, born: 1, active: [4, 6] },
+  { key: 'delta', path: 'specs/<capability>/spec.md', kind: 'file', depth: 1, born: 2, active: [2] },
+  { key: 'validate', path: 'openspec validate --strict', kind: 'command', depth: 0, born: 5, active: [5] },
+  { key: 'archive', path: 'openspec/changes/archive/', kind: 'dir', depth: 0, born: 7, active: [7] },
+];
+
+function ArtifactMarker({ state }: { state: 'idle' | 'done' | 'active' }) {
+  return (
+    <svg className={styles.artifactMarker} viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      {state === 'done' ? (
+        <>
+          <circle cx="8" cy="8" r="7" fill="currentColor" opacity="0.16" />
+          <path d="m4.8 8.3 2.1 2.1 4.3-4.6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </>
+      ) : state === 'active' ? (
+        <>
+          <circle className={styles.artifactMarkerRing} cx="8" cy="8" r="6.5" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="8" cy="8" r="3" fill="currentColor" />
+        </>
+      ) : (
+        <circle cx="8" cy="8" r="6.25" stroke="currentColor" strokeWidth="1.5" strokeDasharray="2.4 2.6" />
+      )}
+    </svg>
+  );
+}
 
 function SmartFeature({ copy }: { copy: HomepageFeaturesCopy['smart'] }) {
   const prefersReducedMotion = useReducedMotion();
@@ -273,104 +330,48 @@ function SmartFeature({ copy }: { copy: HomepageFeaturesCopy['smart'] }) {
       <div className={styles.featureContent}>
         <div className={styles.featureText}>
           <div>
-            <span className={styles.featureBadge}>{copy.badge}</span>
             <h2 className={styles.featureTitle}>{copy.title}</h2>
             <p className={styles.featureSubtitle}>{copy.subtitle}</p>
           </div>
 
-          <div className={styles.smartIntroGrid}>
-            <div className={styles.efficiencyHighlight}>
-              <div className={styles.efficiencySignal}>
-                <motion.span
-                  key={currentStage.key}
-                  className={styles.efficiencySignalStage}
-                  initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  {zeroPad(activeStage + 1)} / {zeroPad(stages.length)} · {currentStage.label}
-                </motion.span>
-                <motion.span
-                  key={`${currentStage.key}-desc`}
-                  className={styles.efficiencySignalDesc}
-                  initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  {currentStage.desc}
-                </motion.span>
-              </div>
-
-              <motion.div
-                className={styles.efficiencyValue}
-                initial={prefersReducedMotion ? false : { scale: 0.92, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.55, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          <div className={styles.artifactPanel}>
+            <div className={styles.artifactHeader}>
+              <span className={styles.artifactTitle}>{copy.artifactsTitle}</span>
+              <motion.span
+                key={currentStage.key}
+                className={styles.artifactStage}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               >
-                <span className={styles.efficiencyNumber}>300</span>
-                <span className={styles.efficiencyPercent}>%</span>
-              </motion.div>
-              <div className={styles.efficiencyLabel}>{copy.efficiency}</div>
-              <div className={styles.efficiencyChart}>
-                <div className={`${styles.chartBar} ${styles.barShort}`}>
-                  <motion.span
-                    className={`${styles.chartFill} ${styles.chartFillMuted}`}
-                    style={{ transformOrigin: 'center bottom' }}
-                    initial={prefersReducedMotion ? false : { scaleY: 0 }}
-                    animate={{ scaleY: 0.3 }}
-                    transition={{ duration: 0.65, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                  />
-                  <span className={styles.chartLabel}>{copy.traditional}</span>
-                </div>
-                <div className={`${styles.chartBar} ${styles.barFull}`}>
-                  <motion.span
-                    className={`${styles.chartFill} ${styles.chartFillPrimary}`}
-                    style={{ transformOrigin: 'center bottom' }}
-                    initial={prefersReducedMotion ? false : { scaleY: 0 }}
-                    animate={{ scaleY: 1 }}
-                    transition={{ duration: 0.65, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  />
-                  <span className={styles.chartLabel}>{copy.hagicode}</span>
-                </div>
-              </div>
+                {zeroPad(activeStage + 1)} / {zeroPad(stages.length)} · {currentStage.label}
+              </motion.span>
             </div>
+            <ul className={styles.artifactTree}>
+              {artifactRows.map((row) => {
+                const state = row.active.includes(activeStage) ? 'active' : activeStage >= row.born ? 'done' : 'idle';
 
-            <div className={styles.smartNarrative}>
-              <div className={styles.workflowSummary}>
-                <div className={styles.workflowSummaryTopline}>
-                  <span className={styles.workflowSummaryCount}>{zeroPad(activeStage + 1)} / {zeroPad(stages.length)}</span>
-                  <motion.span
-                    key={`${currentStage.key}-pill`}
-                    className={styles.workflowSummaryPill}
-                    initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                return (
+                  <li
+                    key={row.key}
+                    className={styles.artifactRow}
+                    data-state={state}
+                    data-kind={row.kind}
+                    data-depth={row.depth}
+                    aria-current={state === 'active' ? 'step' : undefined}
                   >
-                    {currentStage.label}
-                  </motion.span>
-                </div>
-                <motion.p
-                  key={`${currentStage.key}-summary`}
-                  className={styles.workflowSummaryDesc}
-                  initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  {currentStage.desc}
-                </motion.p>
-                <div className={styles.workflowProgress}>
-                  <motion.div
-                    className={styles.progressFill}
-                    style={{ transformOrigin: 'left center' }}
-                    animate={{ scaleX: progressRatio }}
-                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  />
-                </div>
-              </div>
-
-              <p className={styles.featureDesc}>{copy.description}</p>
-            </div>
+                    <ArtifactMarker state={state} />
+                    <code className={styles.artifactPath}>
+                      {row.kind === 'command' ? <span className={styles.artifactPrompt} aria-hidden="true">$ </span> : null}
+                      {row.path}
+                    </code>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
+
+          <p className={styles.featureDesc}>{copy.description}</p>
         </div>
 
         <div className={styles.workflowAnimation}>
@@ -432,10 +433,11 @@ function SmartFeature({ copy }: { copy: HomepageFeaturesCopy['smart'] }) {
   );
 }
 
-function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] }) {
+function ConvenientFeature({ copy, cliProfiles }: { copy: HomepageFeaturesCopy['convenient']; cliProfiles: HomepageCliProfile[] }) {
   const prefersReducedMotion = useReducedMotion();
   const [activityTick, setActivityTick] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [activeCli, setActiveCli] = useState(0);
 
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
@@ -470,6 +472,7 @@ function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] 
   }, [isPaused, prefersReducedMotion]);
 
   const activeLane = agentLanes.length > 0 ? activityTick % agentLanes.length : 0;
+  const activeProfile = cliProfiles[Math.min(activeCli, Math.max(cliProfiles.length - 1, 0))];
   const throughputScales = [0, 1, 2].map((laneIndex) => {
     const phase = (activityTick + laneIndex) % 3;
 
@@ -498,7 +501,6 @@ function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] 
       <div className={styles.featureContent}>
         <div className={styles.featureText}>
           <div>
-            <span className={styles.featureBadge}>{copy.badge}</span>
             <h2 className={styles.featureTitle}>{copy.title}</h2>
             <p className={styles.featureSubtitle}>{copy.subtitle}</p>
           </div>
@@ -526,12 +528,9 @@ function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] 
                 </div>
               </div>
               <div className={styles.quotaArrow}>
-                <motion.span
-                  animate={prefersReducedMotion ? { opacity: 1 } : { opacity: [0.45, 1, 0.45], x: [0, 4, 0] }}
-                  transition={prefersReducedMotion ? { duration: 0 } : { duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                  →
-                </motion.span>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </div>
               <div className={styles.quotaItem}>
                 <span className={styles.quotaLabel}>{copy.multiThread}</span>
@@ -557,38 +556,6 @@ function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] 
                 </div>
               </div>
             </div>
-
-            <motion.div
-              className={styles.boostRange}
-              initial={prefersReducedMotion ? false : { scale: 0.97, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.45, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className={styles.boostSummary}>
-                <span className={styles.boostLabel}>{copy.boost}</span>
-                <span className={styles.boostValue}>{copy.boostValue}</span>
-              </div>
-              <div className={styles.boostLanes}>
-                {agentLanes.map((lane, index) => (
-                  <span key={lane.key} className={styles.boostLaneDot} data-active={activeLane === index ? 'true' : 'false'} />
-                ))}
-              </div>
-            </motion.div>
-
-            <div className={styles.supportedProvidersPanel}>
-              <div className={styles.supportedProvidersTitle}>{copy.agentMatrix.supportedProvidersTitle}</div>
-              <div className={styles.supportedProvidersGrid}>
-                {copy.agentMatrix.supportedProviders.map((provider) => (
-                  <span key={provider.key} className={styles.supportedProviderPill}>
-                    <span className={styles.supportedProviderIcon} data-provider={provider.key} aria-hidden="true">
-                      <SupportedCliIcon providerKey={provider.key} />
-                    </span>
-                    <span className={styles.supportedProviderName}>{provider.name}</span>
-                  </span>
-                ))}
-              </div>
-              <p className={styles.supportedProvidersNote}>{copy.agentMatrix.supportedProvidersNote}</p>
-            </div>
           </div>
 
           <p className={styles.featureDesc}>{copy.description}</p>
@@ -597,7 +564,6 @@ function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] 
         <div className={styles.parallelShowcase}>
           <div className={styles.parallelHeader}>
             <div className={styles.parallelTitleGroup}>
-              <span className={styles.parallelKicker}>LIVE ROUTING</span>
               <span className={styles.parallelTitle}>{copy.agentMatrix.title}</span>
             </div>
             <span className={styles.parallelBadge}>{copy.agentMatrix.badge}</span>
@@ -681,29 +647,199 @@ function ConvenientFeature({ copy }: { copy: HomepageFeaturesCopy['convenient'] 
           </motion.div>
         </div>
       </div>
+
+      {activeProfile ? (
+        <div className={styles.supportedProvidersPanel}>
+          <div className={styles.cliBayHeader}>
+            <span className={styles.cliBayTitle}>{copy.cliBay.title}</span>
+            <span className={styles.cliBayHint}>{copy.cliBay.hint}</span>
+          </div>
+
+          <div className={styles.cliBayBody}>
+            <div className={styles.cliDock} role="group" aria-label={copy.cliBay.title}>
+              {cliProfiles.map((profile, index) => (
+                <button
+                  type="button"
+                  key={profile.key}
+                  className={styles.cliTile}
+                  aria-pressed={index === activeCli}
+                  onClick={() => setActiveCli(index)}
+                >
+                  <span className={styles.supportedProviderIcon} data-provider={cliProviderKey(profile.key)} aria-hidden="true">
+                    <SupportedCliIcon providerKey={cliProviderKey(profile.key)} />
+                  </span>
+                  <span className={styles.cliTileName}>{profile.shortName}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className={styles.cliStage}>
+              <ol className={styles.cliChain}>
+                <li className={styles.cliNode}>
+                  <span className={styles.cliNodeBadge}>
+                    <BrainIcon className={styles.cliNodeGlyph} />
+                  </span>
+                  <span className={styles.cliNodeLabel}>{copy.cliBay.chain.agent}</span>
+                </li>
+                <li className={styles.cliLinkItem} aria-hidden="true">
+                  <motion.span
+                    key={`${activeProfile.key}-in`}
+                    className={styles.cliLink}
+                    style={{ transformOrigin: 'left center' }}
+                    initial={prefersReducedMotion ? false : { scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  />
+                </li>
+                <li className={styles.cliNode} data-role="cli">
+                  <motion.span
+                    key={`${activeProfile.key}-node`}
+                    className={`${styles.supportedProviderIcon} ${styles.cliNodeCli}`}
+                    data-provider={cliProviderKey(activeProfile.key)}
+                    aria-hidden="true"
+                    initial={prefersReducedMotion ? false : { scale: 0.82, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.4, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <SupportedCliIcon providerKey={cliProviderKey(activeProfile.key)} />
+                  </motion.span>
+                  <span className={styles.cliNodeLabel}>{activeProfile.shortName}</span>
+                </li>
+                <li className={styles.cliLinkItem} aria-hidden="true">
+                  <motion.span
+                    key={`${activeProfile.key}-out`}
+                    className={styles.cliLink}
+                    style={{ transformOrigin: 'left center' }}
+                    initial={prefersReducedMotion ? false : { scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.45, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  />
+                </li>
+                <li className={styles.cliNode} data-role="model">
+                  <span className={styles.cliNodeBadge} data-slot="model">
+                    <svg className={styles.cliNodeGlyph} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="m5 12.5 4.5 4.5L19 7.5" />
+                    </svg>
+                  </span>
+                  <span className={styles.cliNodeLabel}>{copy.cliBay.chain.model}</span>
+                </li>
+              </ol>
+
+              <motion.div
+                key={activeProfile.key}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                lang={activeProfile.contentLocale}
+              >
+                <dl className={styles.cliFacts}>
+                  {([
+                    ['whatItIs', activeProfile.whatItIs],
+                    ['models', activeProfile.models],
+                    ['runsOn', activeProfile.runsOn],
+                    ['start', activeProfile.start],
+                    ['questions', activeProfile.questions],
+                  ] as const)
+                    .filter(([, value]) => value)
+                    .map(([labelKey, value]) => (
+                      <div key={labelKey} className={styles.cliFact}>
+                        <dt className={styles.cliFactLabel}>{copy.cliBay.labels[labelKey]}</dt>
+                        <dd className={styles.cliFactValue}>{renderInlineCode(value)}</dd>
+                      </div>
+                    ))}
+                </dl>
+
+                {activeProfile.strengths.length > 0 ? (
+                  <div className={styles.cliStrengths}>
+                    <span className={styles.cliFactLabel}>{copy.cliBay.labels.strengths}</span>
+                    <ul className={styles.cliStrengthList}>
+                      {activeProfile.strengths.map((strength) => (
+                        <li key={strength} className={styles.cliStrength}>{strength}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+
+                <a className={styles.cliCompareLink} href={activeProfile.href}>
+                  {copy.cliBay.labels.compare}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M5 12h14m-5-5 5 5-5 5" />
+                  </svg>
+                </a>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </motion.div>
   );
 }
 
+const worldCovers: Record<HomepageWorldKey, string> = {
+  agents: getSiteAssetUrl('img/home/interesting/worlds/agents.webp'),
+  fantasyAdventure: getSiteAssetUrl('img/home/interesting/worlds/fantasy-adventure.webp'),
+  cattleRanching: getSiteAssetUrl('img/home/interesting/worlds/cattle-ranching.webp'),
+  animeAcademy: getSiteAssetUrl('img/home/interesting/worlds/anime-academy.webp'),
+  imperialCourt: getSiteAssetUrl('img/home/interesting/worlds/imperial-court.webp'),
+  alienLaboratory: getSiteAssetUrl('img/home/interesting/worlds/alien-laboratory.webp'),
+  hiveColony: getSiteAssetUrl('img/home/interesting/worlds/hive-colony.webp'),
+  oceanSphereColony: getSiteAssetUrl('img/home/interesting/worlds/ocean-sphere-colony.webp'),
+  clockworkWorkshop: getSiteAssetUrl('img/home/interesting/worlds/clockwork-workshop.webp'),
+  pastoralPlanting: getSiteAssetUrl('img/home/interesting/worlds/pastoral-planting.webp'),
+};
+
+// Example agents: avatar series are real product avatars; the Agent CLI names match the Efficient card.
+const exampleAgents: Record<string, { avatar: string; cli: string }> = {
+  strategist: { avatar: 'cat-sticker-02.webp', cli: 'Claude Code' },
+  runner: { avatar: 'cat-line-03.webp', cli: 'Codex' },
+  artist: { avatar: 'cat-oil-09.webp', cli: 'Qwen · GLM' },
+};
+
+const TROPHY_TIERS = ['star', 'moon', 'sun', 'crown'] as const;
+
+function TrophyIcon({ tier }: { tier: (typeof TROPHY_TIERS)[number] }) {
+  return (
+    <svg className={styles.trophyIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {tier === 'star' ? <path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7L12 3Z" /> : null}
+      {tier === 'moon' ? <path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z" /> : null}
+      {tier === 'sun' ? (
+        <>
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" />
+        </>
+      ) : null}
+      {tier === 'crown' ? <path d="M4 18h16M5 18 3.5 8l5 4 3.5-6 3.5 6 5-4L19 18" /> : null}
+    </svg>
+  );
+}
+
 function InterestingFeature({ copy }: { copy: HomepageFeaturesCopy['interesting'] }) {
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
-  const dungeonGalleryLoop = [...interestingDungeonGallery, ...interestingDungeonGallery];
+  const prefersReducedMotion = useReducedMotion();
+  const worlds = copy.worlds.items;
+  const [activeWorld, setActiveWorld] = useState(0);
+  const [isHolding, setIsHolding] = useState(false);
+  const [hasPicked, setHasPicked] = useState(false);
   const heroGalleryLoop = [...interestingHeroGallery, ...interestingHeroGallery];
 
-  const dungeonCards = [
-    { ...copy.dungeonCards[0], icon: <TargetIcon className={styles.gameIcon} /> },
-    { ...copy.dungeonCards[1], icon: <ZapIcon className={styles.gameIcon} /> },
-    { ...copy.dungeonCards[2], icon: <FlameIcon className={styles.gameIcon} /> },
-  ].filter((card) => card.key);
+  // The world rotates on its own until the visitor hovers, focuses, or picks one.
+  useEffect(() => {
+    if (isHolding || hasPicked || prefersReducedMotion) {
+      return undefined;
+    }
 
-  const rosterHeroes = [
-    { ...copy.roster.heroes[0], icon: <BrainIcon className={styles.gameIcon} /> },
-    { ...copy.roster.heroes[1], icon: <ZapIcon className={styles.gameIcon} /> },
-    { ...copy.roster.heroes[2], icon: <AwardIcon className={styles.gameIcon} /> },
-  ].filter((hero) => hero.key);
+    const interval = setInterval(() => {
+      setActiveWorld((prev) => (prev + 1) % worlds.length);
+    }, 3400);
+
+    return () => clearInterval(interval);
+  }, [isHolding, hasPicked, prefersReducedMotion, worlds.length]);
+
+  const world = worlds[activeWorld];
+  const termRows = (['agent', 'group', 'job', 'log'] as const).map((slot) => ({
+    slot,
+    label: copy.worlds.labels[slot],
+    value: world[slot],
+  }));
 
   return (
     <motion.div className={`${styles.featureZone} ${styles.interesting}`}>
@@ -716,116 +852,140 @@ function InterestingFeature({ copy }: { copy: HomepageFeaturesCopy['interesting'
       <div className={styles.featureContent}>
         <div className={styles.featureText}>
           <div>
-            <span className={styles.featureBadge}>{copy.badge}</span>
             <h2 className={styles.featureTitle}>{copy.title}</h2>
             <p className={styles.featureSubtitle}>{copy.subtitle}</p>
           </div>
 
-          <div className={styles.gameFeatures}>
-            {copy.features.map((feature) => {
-              const icon = feature.key === 'dungeons'
-                ? <TrophyIcon className={styles.gameIcon} />
-                : feature.key === 'captains'
-                  ? <TargetIcon className={styles.gameIcon} />
-                  : <FlameIcon className={styles.gameIcon} />;
-
-              return (
-                <motion.div key={feature.key} className={styles.gameFeature} whileHover={{ y: -4, transition: { duration: 0.2 } }} style={{ cursor: 'pointer' }}>
-                  {icon}
-                  <span className={styles.gameLabel}>{feature.label}</span>
-                  <p className={styles.gameDesc}>{feature.desc}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-
           <p className={styles.featureDesc}>{copy.description}</p>
 
-          <div className={styles.interestingLowerGrid}>
-            <div className={styles.battlePanel}>
-              <div className={styles.reportHeader}>
-                <span className={styles.reportTitle}>{copy.battleReport.title}</span>
-                <span className={styles.parallelBadge}>{copy.battleReport.badge}</span>
-              </div>
-              <div className={styles.battleMetrics}>
-                {copy.battleReport.metrics.map((metric) => (
-                  <div key={metric.key} className={styles.battleMetric}>
-                    <span className={styles.battleMetricValue}>{metric.value}</span>
-                    <span className={styles.battleMetricLabel}>{metric.label}</span>
-                  </div>
+          <div
+            className={styles.worldPanel}
+            onMouseEnter={() => setIsHolding(true)}
+            onMouseLeave={() => setIsHolding(false)}
+            onFocus={() => setIsHolding(true)}
+            onBlur={() => setIsHolding(false)}
+          >
+            <span className={styles.worldTitle}>{copy.worlds.title}</span>
+            <div className={styles.worldChips} role="group" aria-label={copy.worlds.title}>
+              {worlds.map((item, index) => (
+                <button
+                  type="button"
+                  key={item.key}
+                  className={styles.worldChip}
+                  aria-pressed={index === activeWorld}
+                  onClick={() => {
+                    setActiveWorld(index);
+                    setHasPicked(true);
+                  }}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
+            <dl className={styles.worldTerms}>
+              {termRows.map((row) => (
+                <div key={row.slot} className={styles.worldTerm}>
+                  <dt className={styles.worldTermLabel}>{row.label}</dt>
+                  <motion.dd
+                    key={`${world.key}-${row.slot}`}
+                    className={styles.worldTermValue}
+                    initial={prefersReducedMotion ? false : { opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    {row.value}
+                  </motion.dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className={styles.progressPanel}>
+            <span className={styles.worldTitle}>{copy.progress.title}</span>
+            <div className={styles.progressRow}>
+              <svg className={styles.levelIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="m6 11 6-6 6 6M6 19l6-6 6 6" />
+              </svg>
+              <p className={styles.progressText}>{copy.progress.token}</p>
+            </div>
+            <div className={styles.progressRow}>
+              <span className={styles.progressLabel}>{copy.progress.achievements}</span>
+              <ol className={styles.trophyLadder}>
+                {TROPHY_TIERS.map((tier) => (
+                  <li key={tier} className={styles.trophyStep} data-tier={tier}>
+                    <TrophyIcon tier={tier} />
+                    <span>{copy.progress.tiers[tier]}</span>
+                  </li>
                 ))}
-              </div>
-              <div className={styles.battleProgressTrack}>
-                <motion.div className={styles.battleProgressFill} animate={{ width: ['38%', '84%', '62%'] }} transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }} />
-              </div>
-              <p className={styles.battleNote}>{copy.battleReport.note}</p>
+              </ol>
             </div>
           </div>
         </div>
 
-        <div className={styles.dungeonShowcase}>
-          <div className={styles.dungeonGrid}>
-            {dungeonCards.map((card, index) => (
-              <motion.div
-                key={card.key}
-                className={styles.dungeonCard}
-                whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.2 } }}
-                whileTap={{ scale: 0.98 }}
-                initial="hidden"
-                animate="visible"
-                variants={itemVariants}
-                transition={{ delay: 0.12 * index }}
-              >
-                <div className={styles.dungeonCardTop}>
-                  <span className={styles.dungeonCardIcon}>{card.icon}</span>
-                  <span className={styles.dungeonStatus}>{card.status}</span>
-                </div>
-                <span className={styles.dungeonName}>{card.title}</span>
-                <p className={styles.dungeonDesc}>{card.desc}</p>
-              </motion.div>
+        <div className={styles.worldShowcase}>
+          <figure className={styles.worldCover}>
+            {worlds.map((item, index) => (
+              <img
+                key={item.key}
+                src={worldCovers[item.key]}
+                alt={index === activeWorld ? item.name : ''}
+                aria-hidden={index === activeWorld ? undefined : true}
+                className={styles.worldCoverImage}
+                data-active={index === activeWorld ? 'true' : 'false'}
+                width={720}
+                height={480}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
             ))}
+            <figcaption className={styles.worldCoverCaption}>{world.name}</figcaption>
+          </figure>
+
+          <div className={styles.personaPanel}>
+            <div className={styles.personaRow}>
+              {copy.agents.items.map((agent) => {
+                const profile = exampleAgents[agent.key];
+
+                return (
+                  <div key={agent.key} className={styles.persona}>
+                    <img
+                      src={getSiteAssetUrl(`img/home/interesting/heroes/${profile.avatar}`)}
+                      alt=""
+                      className={styles.personaAvatar}
+                      width={56}
+                      height={56}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span className={styles.personaName}>{agent.name}</span>
+                    <motion.span
+                      key={`${world.key}-${agent.key}`}
+                      className={styles.personaMeta}
+                      initial={prefersReducedMotion ? false : { opacity: 0, y: 4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      {world.agent} · {profile.cli}
+                    </motion.span>
+                    <span className={styles.personaTrait}>{agent.trait}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <p className={styles.personaCaption}>{copy.agents.caption}</p>
           </div>
 
           <div className={styles.galleryShowcase}>
             <div className={styles.galleryPanel}>
               <div className={styles.galleryViewport}>
                 <div className={styles.galleryTrack}>
-                  {dungeonGalleryLoop.map((asset, index) => (
-                    <div key={`${asset.src}-${index}`} className={styles.galleryCard} data-kind="dungeon">
-                      <img src={asset.src} alt={asset.label} className={styles.galleryImage} width={128} height={128} loading="lazy" decoding="async" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.galleryPanel}>
-              <div className={styles.galleryViewport}>
-                <div className={`${styles.galleryTrack} ${styles.galleryTrackReverse}`}>
                   {heroGalleryLoop.map((asset, index) => (
                     <div key={`${asset.src}-${index}`} className={styles.galleryCard} data-kind="hero">
-                      <img src={asset.src} alt={asset.label} className={styles.galleryImage} width={128} height={128} loading="lazy" decoding="async" />
+                      <img src={asset.src} alt="" aria-hidden={index >= interestingHeroGallery.length ? true : undefined} className={styles.galleryImage} width={128} height={128} loading="lazy" decoding="async" />
                     </div>
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div className={styles.rosterPanel}>
-            <div className={styles.rosterHeader}>
-              <span className={styles.reportTitle}>{copy.roster.title}</span>
-            </div>
-            <div className={styles.rosterList}>
-              {rosterHeroes.map((hero) => (
-                <div key={hero.key} className={styles.rosterHero}>
-                  <span className={styles.rosterAvatar}>{hero.icon}</span>
-                  <div>
-                    <div className={styles.rosterName}>{hero.name}</div>
-                    <div className={styles.rosterRole}>{hero.role}</div>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
@@ -836,9 +996,11 @@ function InterestingFeature({ copy }: { copy: HomepageFeaturesCopy['interesting'
 
 interface Props {
   copy: HomepageFeaturesCopy;
+  /** Per-CLI profiles read from the comparison articles; the CLI bay is hidden when empty. */
+  cliProfiles?: HomepageCliProfile[];
 }
 
-export default function FeaturesShowcase({ copy }: Props) {
+export default function FeaturesShowcase({ copy, cliProfiles = [] }: Props) {
   return (
     <section className={styles.featuresShowcase}>
       <div className="container">
@@ -851,7 +1013,7 @@ export default function FeaturesShowcase({ copy }: Props) {
 
         <div className={styles.zonesContainer}>
           <SmartFeature copy={copy.smart} />
-          <ConvenientFeature copy={copy.convenient} />
+          <ConvenientFeature copy={copy.convenient} cliProfiles={cliProfiles} />
           <InterestingFeature copy={copy.interesting} />
         </div>
       </div>

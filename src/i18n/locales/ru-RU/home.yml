@@ -51,52 +51,46 @@ features:
     title: "Создано для реальной разработки"
     subtitle: "Предложения делают каждое изменение проверяемым, параллельные агенты не дают работе стоять"
   smart:
-    badge: УМНО
     title: Умно
-    subtitle: Workflow OpenSpec для роста эффективности AI-coding
-    efficiency: Рост эффективности
-    traditional: Традиционно
-    hagicode: Hagicode
-    description: Полноценный workflow предложений из 9 этапов, от идеи до архива, с поддержкой ИИ на каждом шаге. Это помогает увеличить эффективность coding в 3 раза.
+    subtitle: "Сначала предложение, потом выполнение: у каждого изменения остаётся след"
+    artifactsTitle: "Что остаётся после каждого изменения"
+    description: "HagiCode не просто обсуждает ваш код. Он изучает реальное состояние проекта, пишет предложение и дельты спецификации, строго проверяет их, выполняет задачи по порядку и в конце архивирует накопленный опыт для следующего изменения."
     workflow:
       review:
-        label: Ревью
-        desc: Автоматическое ревью
+        label: "Ревью"
+        desc: "Изучить состояние проекта, действующие спецификации и связанный код, прежде чем что-либо писать."
       scaffold:
-        label: Scaffold
-        desc: Choose a change-id and create proposal.md, tasks.md, and design.md when needed.
+        label: "Каркас"
+        desc: "Выбрать change-id и создать proposal.md, tasks.md и при необходимости design.md."
       spec:
-        label: Spec
-        desc: Translate the change into capability-level spec deltas with explicit requirements.
+        label: "Spec"
+        desc: "Превратить изменение в дельты спецификации по capability с явными требованиями."
       design:
-        label: Design
-        desc: Capture architecture and trade-offs in design.md when the change spans systems.
+        label: "Дизайн"
+        desc: "Зафиксировать архитектуру и компромиссы в design.md, если изменение затрагивает несколько систем."
       tasks:
-        label: Задачи
-        desc: Разбиение задач
+        label: "Задачи"
+        desc: "Разбить работу на небольшие проверяемые пункты с понятным порядком и параллелизмом."
       validate:
-        label: Validate
-        desc: Run openspec validate in strict mode and clear every issue before execution.
+        label: "Проверка"
+        desc: "Запустить openspec validate в строгом режиме и устранить все замечания до выполнения."
       apply:
-        label: Apply
-        desc: Read proposal, design, and tasks, then implement in order while checking items off.
+        label: "Выполнение"
+        desc: "Прочитать proposal, design и tasks и реализовать по порядку, отмечая выполненное."
       archive:
-        label: Архив
-        desc: Архивация знаний
+        label: "Архив"
+        desc: "Заархивировать завершённое изменение и вернуть результат в долгосрочную историю спецификаций."
     paused: На паузе - нажмите на узел для переключения
   convenient:
-    badge: ЭФФЕКТИВНО
     title: Эффективно
-    subtitle: Multi-agent и multi-instance execution, которая не даёт вашей квоте простаивать
-    traditional: Традиционный один Agent / одна инстанция
-    multiThread: Multi-agent параллельная матрица
-    boost: Рост пропускной способности
-    boostValue: 10x+ параллельно
-    description: Поддерживаемые сейчас Agent CLI, такие как Claude Code, Codex, GitHub Copilot, OpenCode и Hermes, могут работать сразу на нескольких инстанциях, поэтому предложения, исправления и ревью идут параллельно, а не ждут в последовательной очереди.
+    subtitle: "Много агентов и экземпляров параллельно — чтобы ваша квота не простаивала"
+    traditional: "По одному, в очереди"
+    multiThread: "Бок о бок, никто никого не ждёт"
+    description: "Claude Code, Codex, GitHub Copilot, OpenCode, Hermes и другие поддерживаемые Agent CLI могут запускать по несколько экземпляров одновременно. У предложений, исправлений и ревью — своя полоса, поэтому один медленный результат не тормозит остальное."
     agentMatrix:
       title: Матрица параллельного выполнения
-      badge: Несколько агентов / несколько инстанций
-      status: Несколько агентов прямо сейчас управляют несколькими инстанциями
+      badge: "Пример конфигурации"
+      status: "Иллюстрация: каждая полоса движется, ни одна не блокирует другую"
       agents:
         claude:
           name: Claude Code
@@ -119,84 +113,113 @@ features:
             - Проследить проблему
             - Отшлифовать copy
             - Зафиксировать выводы
-      supportedNames:
-        title: 13 Agent CLI, поддерживаемых сейчас
-        names:
-          - Claude Code
-          - Codex
-          - GitHub Copilot
-          - OpenCode
-          - Hermes
-          - QoderCLI
-          - Kiro
-          - Kimi
-          - Gemini
-          - Pi
-          - Reasonix
-          - DeepAgents
-          - Codebuddy
-    supportedProvidersNote: OpenCode может загружать общий каталог OmniRoute в значения по умолчанию для hero-модели и при этом сохранять возможность редактировать сырые идентификаторы моделей для branch-специфичных workflow.
+    cliBay:
+      title: "Agent CLI, которые можно экипировать"
+      hint: "Выберите одну, чтобы увидеть, как она подключается"
+      chain:
+        agent: "Агент"
+        model: "Совместимая модель"
+      labels:
+        whatItIs: "Что это"
+        models: "Модели и вход"
+        runsOn: "Где работает"
+        start: "Начало работы"
+        questions: "Вопросы в HagiCode"
+        strengths: "Сильные стороны"
+        compare: "Читать полное сравнение"
   interesting:
-    badge: ИНТЕРЕСНО
     title: Интересно
-    subtitle: "Понятный и увлекательный процесс благодаря удобным и наглядным UI-взаимодействиям."
-    features:
-      dungeons:
-        label: Hero Dungeons
-        desc: Превращает генерацию, выполнение и prompt-верстаки в настоящие забеги по подземельям
-      captains:
-        label: Состав капитанов
-        desc: Назначайте подходящего hero-капитана для каждого подземелья
-      battle:
-        label: Боевые отчёты
-        desc: Просматривайте XP, уровни и результаты выполнения после каждого push
-    description: "Удобные UI-взаимодействия упрощают планирование, запуск агентов и работу над проектами."
-    dungeonCards:
-      proposal:
-        title: Подземелье предложений
-        desc: OpenSpec generate / apply / archive
-        status: Капитан готов
-      autotask:
-        title: Подземелье AutoTask
-        desc: Параллельные исправления и пакетная автоматизация
-        status: 2 инстанции активны
-      prompt:
-        title: Подземелье prompt
-        desc: Предпросмотр prompt и верстак стиля
-        status: Визуальная синхронизация готова
-    roster:
-      title: Текущий состав капитанов
-      heroes:
+    subtitle: "У каждого агента есть лицо, характер и свой мир"
+    description: "Дайте каждому агенту аватар, Trait и Soul и выберите лексику своей команды. Один и тот же состав читается как герои и подземелья, ранчо, императорский двор или улей, а уровни и трофеи награждают работу по мере её выполнения."
+    worlds:
+      title: "Один состав — десять названий"
+      labels:
+        agent: "Агент"
+        group: "Группа"
+        job: "Задача"
+        log: "Журнал"
+      items:
+        agents:
+          name: "AgentCLI Базовый уровень"
+          agent: "Агент"
+          group: "Рабочая группа"
+          job: "Работа"
+          log: "История активности"
+        fantasyAdventure:
+          name: "Фэнтезийное приключение"
+          agent: "Герой"
+          group: "Приключенческая вечеринка"
+          job: "Подземелье"
+          log: "Журнал приключений"
+        cattleRanching:
+          name: "Ранчо «Рабочая лошадка»"
+          agent: "Рабочая лошадка"
+          group: "Ранчо"
+          job: "Мельница"
+          log: "Измельчить журнал"
+        animeAcademy:
+          name: "Аниме Академия"
+          agent: "Кадет"
+          group: "Классный отряд"
+          job: "Краткое описание миссии"
+          log: "Журнал боя"
+        imperialCourt:
+          name: "Императорский двор"
+          agent: "Министр"
+          group: "Большой Секретариат"
+          job: "Указ"
+          log: "Мемориальный архив"
+        alienLaboratory:
+          name: "Инопланетная лаборатория"
+          agent: "синтезатор"
+          group: "Экспедиционная ячейка"
+          job: "Эксперимент"
+          log: "Архив сигналов"
+        hiveColony:
+          name: "Улей Колония"
+          agent: "Рабочий"
+          group: "Сотовый кластер"
+          job: "Пыльцевый бег"
+          log: "Ройовая хроника"
+        oceanSphereColony:
+          name: "Колония океанской сферы"
+          agent: "Строитель"
+          group: "Гильдия памятников"
+          job: "Этап сборки"
+          log: "Книга прогресса"
+        clockworkWorkshop:
+          name: "Заводная мастерская"
+          agent: "Дежурный"
+          group: "Усадебная смена"
+          job: "Дежурный вызов"
+          log: "Белл Леджер"
+        pastoralPlanting:
+          name: "Пасторальные насаждения"
+          agent: "Гровер"
+          group: "Орчард Роу"
+          job: "Цикл сбора урожая"
+          log: "Урожайный журнал"
+    agents:
+      caption: "Примеры агентов"
+      items:
         strategist:
-          name: Spec Strategist
-          role: Капитан предложений
+          name: "Spec Strategist"
+          trait: "Ревью спецификаций"
         runner:
-          name: Patch Runner
-          role: Капитан исполнения
+          name: "Patch Runner"
+          trait: "Исправление патчей"
         artist:
-          name: Prompt Artist
-          role: Визуальная поддержка
-    battleReport:
-      title: Сегодняшний отчёт по подземельям
-      badge: Hero Battle
-      metrics:
-        dungeons:
-          value: '4'
-          label: Продвинутые подземелья
-        level:
-          value: Lv.27
-          label: Уровень капитана
-        xp:
-          value: 12.8M
-          label: XP сегодня
-      note: Когда несколько подземелий двигаются параллельно, этот отчёт сводит опыт, уровни и результаты выполнения в одну общую картину.
-    gallery:
-      dungeons:
-        title: Карусель карт подземелий
-        subtitle: 10 случайных визуалов из текущей коллекции dungeon и prompt-карт фронтенда.
-      heroes:
-        title: Карусель галереи героев
-        subtitle: 10 случайных визуалов из текущей фронтенд-коллекции героев.
+          name: "Prompt Artist"
+          trait: "Стиль промптов"
+    progress:
+      title: "Прогресс, который чувствуется"
+      token: "Каждые 100 млн токенов — один уровень, о вехах сообщает строка состояния"
+      achievements: "Ежедневные достижения"
+      tiers:
+        star: "Звезда"
+        moon: "Луна"
+        sun: "Солнце"
+        crown: "Корона"
 productOverviewVideo:
   title: Узнайте о Hagicode до экскурсии по функциям
 videoShowcase:

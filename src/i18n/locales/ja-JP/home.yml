@@ -51,52 +51,46 @@ features:
     title: "実際の開発のために"
     subtitle: "提案がすべての変更をレビュー可能にし、並列エージェントが作業を前へ進めます"
   smart:
-    badge: スマート
     title: スマート
-    subtitle: OpenSpec ワークフローで AI コーディング効率を向上
-    efficiency: 効率向上
-    traditional: 従来型
-    hagicode: Hagicode
-    description: アイデアからアーカイブまでの 9 段階提案ワークフローを AI が伴走します。コーディング効率を 3 倍に高めます。
+    subtitle: "まず提案、次に実行。すべての変更に根拠が残る"
+    artifactsTitle: "変更ごとに残るもの"
+    description: "HagiCode はコードとただ会話するのではありません。プロジェクトの実際の状態を確認し、提案と Spec の差分を書き、厳密に検証してからタスクを順に実行し、最後にアーカイブして次の変更へ知見を引き継ぎます。"
     workflow:
       review:
-        label: レビュー
-        desc: 自動レビュー
+        label: "レビュー"
+        desc: "何かを書く前に、プロジェクトの現状・既存の spec・関連コードを確認します。"
       scaffold:
-        label: Scaffold
-        desc: Choose a change-id and create proposal.md, tasks.md, and design.md when needed.
+        label: "雛形"
+        desc: "change-id を決め、proposal.md・tasks.md・必要なら design.md を作成します。"
       spec:
-        label: Spec
-        desc: Translate the change into capability-level spec deltas with explicit requirements.
+        label: "Spec"
+        desc: "変更を capability 単位の spec 差分に落とし、要件を明確にします。"
       design:
-        label: Design
-        desc: Capture architecture and trade-offs in design.md when the change spans systems.
+        label: "設計"
+        desc: "複数システムにまたがる変更では、構成とトレードオフを design.md に残します。"
       tasks:
-        label: タスク
-        desc: タスク分解
+        label: "タスク"
+        desc: "作業を、順序と並列可否が分かる小さく検証可能な項目に分けます。"
       validate:
-        label: Validate
-        desc: Run openspec validate in strict mode and clear every issue before execution.
+        label: "検証"
+        desc: "openspec validate を strict モードで実行し、実行前にすべての指摘を解消します。"
       apply:
-        label: Apply
-        desc: Read proposal, design, and tasks, then implement in order while checking items off.
+        label: "実行"
+        desc: "proposal・design・tasks を読み、順に実装しながら完了項目にチェックを入れます。"
       archive:
-        label: アーカイブ
-        desc: 知識を保存
+        label: "アーカイブ"
+        desc: "完了した変更をアーカイブし、結果を長期的な spec の履歴へ還元します。"
     paused: 一時停止中 - ノードをクリックして切り替え
   convenient:
-    badge: 効率的
     title: 効率的
-    subtitle: クォータを止めないマルチエージェント・マルチインスタンス実行
-    traditional: 従来の単一エージェント / 単一インスタンス
-    multiThread: マルチエージェント並列マトリクス
-    boost: スループット向上
-    boostValue: 10 倍以上の並列
-    description: Claude Code、Codex、GitHub Copilot、OpenCode、Hermes などの対応 Agent CLI は複数インスタンスで同時に動作できるため、提案、修正、レビューが直列待ちではなく並列で進みます。
+    subtitle: "複数の Agent・インスタンスを並列に動かし、クォータを遊ばせない"
+    traditional: "1 つずつ順番待ち"
+    multiThread: "並走して、互いに待たない"
+    description: "Claude Code、Codex、GitHub Copilot、OpenCode、Hermes など対応済みの Agent CLI は、それぞれ複数のインスタンスを同時に動かせます。提案・修正・レビューが別々のレーンを走るので、遅い結果が全体を止めません。"
     agentMatrix:
       title: 並列実行マトリクス
-      badge: 複数エージェント / 複数インスタンス
-      status: 複数のエージェントが複数インスタンスを同時に駆動中
+      badge: "構成例"
+      status: "イメージ：どのレーンも止まらず進み、互いにブロックしません"
       agents:
         claude:
           name: Claude Code（クロード・コード）
@@ -119,84 +113,113 @@ features:
             - 問題を追跡
             - 文言を整える
             - 知見を記録
-      supportedNames:
-        title: 現在対応している 13 個の Agent CLI
-        names:
-          - Claude Code（クロード・コード）
-          - Codex（コーデックス）
-          - GitHub Copilot（ギットハブ・コパイロット）
-          - OpenCode（オープンコード）
-          - Hermes（ヘルメス）
-          - QoderCLI（コーダー CLI）
-          - Kiro（キロ）
-          - Kimi（キミ）
-          - Gemini（ジェミニ）
-          - Pi（パイ）
-          - Reasonix（リーズニクス）
-          - DeepAgents（ディープエージェンツ）
-          - Codebuddy（コードバディ）
-    supportedProvidersNote: OpenCode は共有 OmniRoute カタログを Hero モデル既定値として読み込みつつ、ブランチ固有ワークフロー向けに生のモデル識別子を編集可能なまま維持できます。
+    cliBay:
+      title: "装備できる Agent CLI"
+      hint: "ひとつ選ぶと、つながり方が見えます"
+      chain:
+        agent: "エージェント"
+        model: "対応モデル"
+      labels:
+        whatItIs: "概要"
+        models: "モデルとサインイン"
+        runsOn: "動作環境"
+        start: "始め方"
+        questions: "HagiCode での質問"
+        strengths: "得意なこと"
+        compare: "比較記事を読む"
   interesting:
-    badge: 興味深い
     title: 興味深い
-    subtitle: "豊富で便利なUI操作で、開発の流れがわかりやすく快適に。"
-    features:
-      dungeons:
-        label: ヒーローダンジョン
-        desc: 生成、実行、プロンプト作業台をダンジョン攻略の流れに変える
-      captains:
-        label: 隊長編成
-        desc: 各ダンジョンに最適なヒーロー隊長を割り当てる
-      battle:
-        label: 戦闘レポート
-        desc: 実行後に XP、レベル、結果を確認
-    description: "豊富で便利なUI操作で、計画・エージェント実行・プロジェクト作業をわかりやすく進められます。"
-    dungeonCards:
-      proposal:
-        title: 提案ダンジョン
-        desc: OpenSpec の generate / apply / archive
-        status: 隊長準備完了
-      autotask:
-        title: 自動タスクダンジョン
-        desc: 並列修正とバッチ自動化
-        status: 2 インスタンス稼働中
-      prompt:
-        title: プロンプトダンジョン
-        desc: プロンプト確認とスタイル作業台
-        status: ビジュアル同期準備完了
-    roster:
-      title: 現在の隊長編成
-      heroes:
+    subtitle: "どの Agent にも顔があり、性格があり、住む世界がある"
+    description: "Agent ごとにアバター・Trait・Soul を与え、チームが使う言葉を選べます。同じ顔ぶれが、英雄とダンジョンにも、牧場にも、朝廷にも、ハチの巣にもなり、レベルとトロフィーが作業の進みをその場で返してくれます。"
+    worlds:
+      title: "同じ編成を、10 通りの呼び方で"
+      labels:
+        agent: "エージェント"
+        group: "グループ"
+        job: "ジョブ"
+        log: "ログ"
+      items:
+        agents:
+          name: "AgentCLI ベースライン"
+          agent: "エージェント"
+          group: "ワーキンググループ"
+          job: "仕事"
+          log: "活動履歴"
+        fantasyAdventure:
+          name: "ファンタジーアドベンチャー"
+          agent: "ヒーロー"
+          group: "アドベンチャーパーティー"
+          job: "ダンジョン"
+          log: "冒険日誌"
+        cattleRanching:
+          name: "主力牧場"
+          agent: "主力製品"
+          group: "牧場"
+          job: "ミル"
+          log: "グラインドログ"
+        animeAcademy:
+          name: "アニメアカデミー"
+          agent: "士官候補生"
+          group: "ホームルームチーム"
+          job: "ミッション概要"
+          log: "バトルログ"
+        imperialCourt:
+          name: "朝廷"
+          agent: "大臣"
+          group: "大事務局"
+          job: "政令"
+          log: "記念アーカイブ"
+        alienLaboratory:
+          name: "エイリアン研究所"
+          agent: "シンセサイザー"
+          group: "遠征セル"
+          job: "実験"
+          log: "信号アーカイブ"
+        hiveColony:
+          name: "ハイブコロニー"
+          agent: "労働者"
+          group: "ハニカムクラスター"
+          job: "花粉ラン"
+          log: "スワームクロニクル"
+        oceanSphereColony:
+          name: "オーシャンスフィアコロニー"
+          agent: "ビルダー"
+          group: "記念碑ギルド"
+          job: "ビルドステージ"
+          log: "進捗台帳"
+        clockworkWorkshop:
+          name: "時計仕掛けのワークショップ"
+          agent: "アテンダント"
+          group: "マナーシフト"
+          job: "任務の呼び出し"
+          log: "ベル台帳"
+        pastoralPlanting:
+          name: "牧歌的な植栽"
+          agent: "栽培者"
+          group: "オーチャード ロウ"
+          job: "収穫サイクル"
+          log: "作物日誌"
+    agents:
+      caption: "サンプル Agent"
+      items:
         strategist:
-          name: スペック・ストラテジスト
-          role: 提案隊長
+          name: "Spec Strategist"
+          trait: "Spec レビュー"
         runner:
-          name: パッチ・ランナー
-          role: 実行隊長
+          name: "Patch Runner"
+          trait: "パッチ修正"
         artist:
-          name: プロンプト・アーティスト
-          role: ビジュアル支援
-    battleReport:
-      title: 今日のダンジョンレポート
-      badge: ヒーローバトル
-      metrics:
-        dungeons:
-          value: '4'
-          label: 進行したダンジョン
-        level:
-          value: Lv.27
-          label: 隊長レベル
-        xp:
-          value: 12.8M
-          label: 本日の XP
-      note: 複数ダンジョンが並列で進むとき、このレポートが経験値、レベル、実行結果を 1 つにまとめます。
-    gallery:
-      dungeons:
-        title: ダンジョンマップカルーセル
-        subtitle: 現在のフロントエンド用ダンジョン / プロンプトマップ集からランダムに 10 枚表示します。
-      heroes:
-        title: ヒーローギャラリーカルーセル
-        subtitle: 現在のフロントエンド用ヒーローコレクションからランダムに 10 枚表示します。
+          name: "Prompt Artist"
+          trait: "Prompt スタイル"
+    progress:
+      title: "手応えのある進捗"
+      token: "1 億トークンごとに 1 レベル。節目はステータスバーでお知らせ"
+      achievements: "毎日の成果"
+      tiers:
+        star: "スター"
+        moon: "月"
+        sun: "太陽"
+        crown: "クラウン"
 productOverviewVideo:
   title: 機能紹介の前に Hagicode の全体像を把握しましょう
 videoShowcase:

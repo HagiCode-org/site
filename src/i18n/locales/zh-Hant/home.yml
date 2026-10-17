@@ -51,52 +51,46 @@ features:
     title: "為真實開發工作而生"
     subtitle: "提案讓每次改動可審閱，多 Agent 並行讓工作持續推進"
   smart:
-    badge: 智慧
     title: 智慧
-    subtitle: OpenSpec 工作流程，提升 AI 程式設計效率
-    efficiency: 效率提升
-    traditional: 傳統方式
-    hagicode: Hagicode
-    description: 從想法到歸檔共 9 個階段的完整提案流程，全程都有 AI 協助，讓你的程式設計效率提升 3 倍。
+    subtitle: "先提案、再執行：每次改動都有據可查"
+    artifactsTitle: "每次改動留下的東西"
+    description: "HagiCode 不只是對著程式碼聊天：先審閱專案的真實現況，寫下提案與 Spec 變更，嚴格驗證後再依任務執行，最後歸檔，把這次的經驗留給下一次改動。"
     workflow:
       review:
-        label: 評審
-        desc: 自動評審
+        label: "審閱"
+        desc: "對照專案現況、現有 spec 與相關程式碼，先確認真實脈絡。"
       scaffold:
-        label: Scaffold
-        desc: Choose a change-id and create proposal.md, tasks.md, and design.md when needed.
+        label: "腳手架"
+        desc: "選定 change-id，並產生 proposal.md、tasks.md、design.md 草稿。"
       spec:
-        label: Spec
-        desc: Translate the change into capability-level spec deltas with explicit requirements.
+        label: "Spec"
+        desc: "把變更拆成 capability 與 spec delta，明確新增或修改的要求。"
       design:
-        label: Design
-        desc: Capture architecture and trade-offs in design.md when the change spans systems.
+        label: "設計"
+        desc: "跨系統或有取捨時補充 design.md，提前寫清結構與權衡。"
       tasks:
-        label: 任務
-        desc: 任務拆解
+        label: "任務"
+        desc: "將實作切成有順序、可驗證、可並行的任務清單。"
       validate:
-        label: Validate
-        desc: Run openspec validate in strict mode and clear every issue before execution.
+        label: "驗證"
+        desc: "以 strict 模式執行 openspec validate，先讓提案驗證通過。"
       apply:
-        label: Apply
-        desc: Read proposal, design, and tasks, then implement in order while checking items off.
+        label: "執行"
+        desc: "讀取 proposal、design、tasks，依序實作並持續勾選完成項。"
       archive:
-        label: 歸檔
-        desc: 知識歸檔
+        label: "歸檔"
+        desc: "變更完成後歸檔 proposal 資產，把經驗沉澱回長期規範。"
     paused: 已暫停 - 點擊節點切換
   convenient:
-    badge: 高效
     title: 高效
-    subtitle: 多 Agent、多實例並行，真正把額度跑滿
-    traditional: 傳統單 Agent / 單實例
-    multiThread: 多 Agent 並行矩陣
-    boost: 吞吐提升
-    boostValue: 並行 10x+
-    description: Claude Code、Codex、GitHub Copilot、OpenCode、Hermes 等目前活躍支援的 Agent CLI，可以同時處理多個實例與任務，讓提案、修復與評審並行推進，不再卡在串行等待。
+    subtitle: "多 Agent、多實例並行，讓額度不再空等"
+    traditional: "一個接一個排隊"
+    multiThread: "並排推進，互不等待"
+    description: "Claude Code、Codex、GitHub Copilot、OpenCode、Hermes 等受支援的 Agent CLI 都能同時執行多個實例。提案、修復、審查各占一條車道，某個結果慢了，也不會拖住其餘工作。"
     agentMatrix:
       title: 並行執行矩陣
-      badge: 多個 Agent / 多個實例
-      status: 多個 Agent 正在同時驅動多個實例
+      badge: "示例編排"
+      status: "示意：每條車道都在推進，互不阻塞"
       agents:
         claude:
           name: Claude Code
@@ -119,84 +113,113 @@ features:
             - 問題排查
             - 文案優化
             - 知識提煉
-      supportedNames:
-        title: 目前活躍支援的 13 個 Agent CLI
-        names:
-          - Claude Code
-          - Codex
-          - GitHub Copilot
-          - OpenCode
-          - Hermes
-          - QoderCLI
-          - Kiro
-          - Kimi
-          - Gemini
-          - Pi
-          - Reasonix
-          - DeepAgents
-          - Codebuddy
-    supportedProvidersNote: OpenCode 現在可以把共享的 OmniRoute 目錄投影到 Hero 的模型預設項中，同時保留可編輯原始模型識別子的能力，以支援分支級工作流程。
+    cliBay:
+      title: "可裝備的 Agent CLI"
+      hint: "點選一個，看它如何接入"
+      chain:
+        agent: "Agent"
+        model: "相容模型"
+      labels:
+        whatItIs: "它是什麼"
+        models: "模型與登入"
+        runsOn: "執行位置"
+        start: "上手方式"
+        questions: "在 HagiCode 裡提問"
+        strengths: "擅長"
+        compare: "閱讀完整對比"
   interesting:
-    badge: 有趣
     title: 有趣
-    subtitle: "豐富、便利的介面互動，讓開發流程清晰易跟進"
-    features:
-      dungeons:
-        label: 英雄副本
-        desc: 把生成、執行與 Prompt 工作台編成副本流程
-      captains:
-        label: 隊長編組
-        desc: 為不同副本指定最合適的 Hero 隊長
-      battle:
-        label: 戰報回饋
-        desc: 用 XP、等級與執行資料回看推進結果
-    description: "豐富便捷的介面互動，讓規劃、Agent 執行與專案工作更容易掌握。"
-    dungeonCards:
-      proposal:
-        title: 提案副本
-        desc: OpenSpec generate / apply / archive
-        status: 隊長就緒
-      autotask:
-        title: AutoTask 副本
-        desc: 並行修復與批次自動任務
-        status: 2 個實例運作中
-      prompt:
-        title: Prompt 副本
-        desc: Prompt 預覽與風格工作台
-        status: 視覺預覽已同步
-    roster:
-      title: 目前隊長編組
-      heroes:
+    subtitle: "每個 Agent 都有臉、有個性，還有一個屬於它的世界"
+    description: "為每個 Agent 配上頭像、Trait 與 Soul，再選一套團隊習慣的說法：同一支陣容，可以是英雄與副本，也可以是牧場、朝堂或蜂巢；等級與獎盃會隨工作即時回饋。"
+    worlds:
+      title: "同一支陣容，十種叫法"
+      labels:
+        agent: "Agent"
+        group: "小組"
+        job: "任務"
+        log: "日誌"
+      items:
+        agents:
+          name: "AgentCLI 基線"
+          agent: "Agent"
+          group: "協作組"
+          job: "作業"
+          log: "活動歷史"
+        fantasyAdventure:
+          name: "奇幻冒險"
+          agent: "英雄"
+          group: "冒險團"
+          job: "副本"
+          log: "冒險日誌"
+        cattleRanching:
+          name: "牛馬養殖"
+          agent: "牛馬"
+          group: "牧場"
+          job: "磨坊"
+          log: "搬磚記錄"
+        animeAcademy:
+          name: "二次元學院"
+          agent: "學員"
+          group: "同窗小隊"
+          job: "任務簡報"
+          log: "戰鬥記錄"
+        imperialCourt:
+          name: "帝王朝堂"
+          agent: "臣工"
+          group: "中書班"
+          job: "詔令"
+          log: "奏報檔"
+        alienLaboratory:
+          name: "外星實驗室"
+          agent: "研究員"
+          group: "遠徵單元"
+          job: "實驗"
+          log: "信號檔案"
+        hiveColony:
+          name: "蜂巢群落"
+          agent: "工蜂"
+          group: "巢室群組"
+          job: "採粉任務"
+          log: "蜂群紀事"
+        oceanSphereColony:
+          name: "海洋穹頂殖民地"
+          agent: "建造員"
+          group: "紀念碑公會"
+          job: "建造階段"
+          log: "進度帳簿"
+        clockworkWorkshop:
+          name: "發條工坊"
+          agent: "侍務員"
+          group: "宅邸班次"
+          job: "侍務單"
+          log: "鈴鐺日誌"
+        pastoralPlanting:
+          name: "田園種植"
+          agent: "種植員"
+          group: "田壟班組"
+          job: "耕作週期"
+          log: "作物日誌"
+    agents:
+      caption: "示例 Agent"
+      items:
         strategist:
-          name: Spec Strategist
-          role: 提案隊長
+          name: "Spec Strategist"
+          trait: "規範審閱"
         runner:
-          name: Patch Runner
-          role: 執行隊長
+          name: "Patch Runner"
+          trait: "補丁修復"
         artist:
-          name: Prompt Artist
-          role: 視覺支援
-    battleReport:
-      title: 今日副本戰報
-      badge: Hero Battle
-      metrics:
-        dungeons:
-          value: '4'
-          label: 副本推進
-        level:
-          value: Lv.27
-          label: 隊長等級
-        xp:
-          value: 12.8M
-          label: 今日 XP
-      note: 多個副本並行推進時，戰報會把經驗、等級與執行結果整合成單一視圖。
-    gallery:
-      dungeons:
-        title: 副本地圖輪播
-        subtitle: 從目前前端副本與 Prompt 地圖集合中隨機選出 10 張畫面。
-      heroes:
-        title: 英雄圖鑑輪播
-        subtitle: 從目前前端英雄集合中隨機選出 10 張視覺圖。
+          name: "Prompt Artist"
+          trait: "Prompt 風格"
+    progress:
+      title: "看得見的進度"
+      token: "每消耗 1 億 Token 升一級，里程碑會在狀態列提示"
+      achievements: "每日成就"
+      tiers:
+        star: "星"
+        moon: "月"
+        sun: "日"
+        crown: "冠"
 productOverviewVideo:
   title: 在深入功能導覽前先認識 Hagicode
 videoShowcase:

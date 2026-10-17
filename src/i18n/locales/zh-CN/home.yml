@@ -51,13 +51,10 @@ features:
     title: "为真实开发工作而生"
     subtitle: "提案让每次改动可审阅，多 Agent 并行让工作持续推进"
   smart:
-    badge: SMART
     title: 智能
-    subtitle: OpenSpec 工作流，AI 编码效率提升
-    efficiency: 效率提升
-    traditional: 传统
-    hagicode: Hagicode
-    description: 从审阅上下文、脚手架提案、编写 Spec Delta，到严格校验、按任务执行与最终归档，OpenSpec 把需求推进路径固定成可复用流程。
+    subtitle: "先提案、再执行：每次改动都有据可查"
+    artifactsTitle: "每次改动留下的东西"
+    description: "HagiCode 不只是对着代码聊天：先审阅项目的真实现状，写下提案与 Spec 变更，严格校验后再按任务执行，最后归档，把这次的经验留给下一次改动。"
     workflow:
       review:
         label: 审阅
@@ -85,18 +82,15 @@ features:
         desc: 变更完成后归档 proposal 资产，把经验沉淀回长期规范。
     paused: 已暂停 - 点击节点切换
   convenient:
-    badge: EFFICIENT
     title: 高效
-    subtitle: 多 Agent 多实例并行，真正把额度跑满
-    traditional: 传统单 Agent / 单实例
-    multiThread: 多 Agent 并行矩阵
-    boost: 吞吐提升
-    boostValue: 并行 10x+
-    description: Claude Code、Codex、GitHub Copilot、OpenCode、Hermes 等当前活跃支持的 Agent CLI 可以同时处理多个实例与任务，让提案、修复、评审并行推进，把额度利用率从串行等待转成持续输出。
+    subtitle: "多 Agent、多实例并行，让额度不再空等"
+    traditional: "一个接一个排队"
+    multiThread: "并排推进，互不等待"
+    description: "Claude Code、Codex、GitHub Copilot、OpenCode、Hermes 等受支持的 Agent CLI 都能同时运行多个实例。提案、修复、评审各占一条车道，某个结果慢了，也不会拖住其余工作。"
     agentMatrix:
       title: 并行执行矩阵
-      badge: 多个 Agent / 多个实例
-      status: 多个 Agent 正在同时驱动多个实例
+      badge: "示例编排"
+      status: "示意：每条车道都在推进，互不阻塞"
       agents:
         claude:
           name: Claude Code
@@ -119,84 +113,113 @@ features:
             - 问题排查
             - 文案优化
             - 知识提炼
-      supportedNames:
-        title: 当前活跃支持的 13 个 Agent CLI
-        names:
-          - Claude Code
-          - Codex
-          - GitHub Copilot
-          - OpenCode
-          - Hermes
-          - QoderCLI
-          - Kiro
-          - Kimi
-          - Gemini
-          - Pi
-          - Reasonix
-          - DeepAgents
-          - Codebuddy
-    supportedProvidersNote: OpenCode 现在可以把共享的 OmniRoute 目录投影到 Hero 的模型默认项里，同时继续允许分支级自定义原始模型标识。
+    cliBay:
+      title: "可装备的 Agent CLI"
+      hint: "点选一个，看它如何接入"
+      chain:
+        agent: "Agent"
+        model: "兼容模型"
+      labels:
+        whatItIs: "它是什么"
+        models: "模型与登录"
+        runsOn: "运行位置"
+        start: "上手方式"
+        questions: "在 HagiCode 里提问"
+        strengths: "擅长"
+        compare: "阅读完整对比"
   interesting:
-    badge: INTERESTING
     title: 有趣
-    subtitle: "丰富、便捷的界面交互，让开发流程清晰易跟进"
-    features:
-      dungeons:
-        label: 英雄副本
-        desc: 把生成、执行和 Prompt 工作台编成副本
-      captains:
-        label: 队长编组
-        desc: 为不同副本指定最合适的 Hero 队长
-      battle:
-        label: 战报反馈
-        desc: 用 XP、等级与执行数据回看推进结果
-    description: "丰富便捷的界面交互，让规划、Agent 执行和项目工作更容易跟进。"
-    dungeonCards:
-      proposal:
-        title: 提案副本
-        desc: OpenSpec 生成 / 执行 / 归档
-        status: 队长就绪
-      autotask:
-        title: AutoTask 副本
-        desc: 并行修复与批量自动任务
-        status: 2 个实例运行中
-      prompt:
-        title: Prompt 副本
-        desc: Prompt 预览与风格工作台
-        status: 视觉预览已同步
-    roster:
-      title: 当前队长编组
-      heroes:
+    subtitle: "每个 Agent 都有脸、有性格，还有一个属于它的世界"
+    description: "给每个 Agent 配上头像、Trait 与 Soul，再选一套团队习惯的说法：同一支阵容，可以是英雄与副本，也可以是牧场、朝堂或蜂巢；等级与奖杯会随工作实时回馈。"
+    worlds:
+      title: "同一支阵容，十种叫法"
+      labels:
+        agent: "Agent"
+        group: "小组"
+        job: "任务"
+        log: "日志"
+      items:
+        agents:
+          name: "AgentCLI 基线"
+          agent: "Agent"
+          group: "协作组"
+          job: "作业"
+          log: "活动历史"
+        fantasyAdventure:
+          name: "奇幻冒险"
+          agent: "英雄"
+          group: "冒险团"
+          job: "副本"
+          log: "冒险日志"
+        cattleRanching:
+          name: "牛马养殖"
+          agent: "牛马"
+          group: "牧场"
+          job: "磨坊"
+          log: "搬砖记录"
+        animeAcademy:
+          name: "二次元学院"
+          agent: "学员"
+          group: "同窗小队"
+          job: "任务简报"
+          log: "战斗记录"
+        imperialCourt:
+          name: "帝王朝堂"
+          agent: "臣工"
+          group: "中书班列"
+          job: "诏令"
+          log: "奏报档"
+        alienLaboratory:
+          name: "外星实验室"
+          agent: "研究员"
+          group: "远征单元"
+          job: "实验"
+          log: "信号档案"
+        hiveColony:
+          name: "蜂巢群落"
+          agent: "工蜂"
+          group: "巢室群组"
+          job: "采粉任务"
+          log: "蜂群纪事"
+        oceanSphereColony:
+          name: "海洋穹顶殖民地"
+          agent: "建造员"
+          group: "纪念碑公会"
+          job: "建造阶段"
+          log: "进度账簿"
+        clockworkWorkshop:
+          name: "发条工坊"
+          agent: "侍务员"
+          group: "宅邸班次"
+          job: "侍务单"
+          log: "铃铛日志"
+        pastoralPlanting:
+          name: "田园种植"
+          agent: "种植员"
+          group: "田垄班组"
+          job: "耕作周期"
+          log: "作物日志"
+    agents:
+      caption: "示例 Agent"
+      items:
         strategist:
-          name: Spec Strategist
-          role: 提案队长
+          name: "Spec Strategist"
+          trait: "规范审阅"
         runner:
-          name: Patch Runner
-          role: 执行队长
+          name: "Patch Runner"
+          trait: "补丁修复"
         artist:
-          name: Prompt Artist
-          role: 视觉支援
-    battleReport:
-      title: 今日副本战报
-      badge: Hero Battle
-      metrics:
-        dungeons:
-          value: '4'
-          label: 副本推进
-        level:
-          value: Lv.27
-          label: 队长等级
-        xp:
-          value: 12.8M
-          label: 今日 XP
-      note: 多个副本并行推进时，战报会把经验、等级与执行结果聚合展示。
-    gallery:
-      dungeons:
-        title: 副本地图轮播
-        subtitle: 从当前前端副本视觉中随机选取 10 张，展示提案、副本与 Prompt 工作台的地图感画面。
-      heroes:
-        title: 英雄图鉴轮播
-        subtitle: 从当前前端英雄图库中随机选取 10 张，展示不同队长与职业风格。
+          name: "Prompt Artist"
+          trait: "Prompt 风格"
+    progress:
+      title: "看得见的进度"
+      token: "每消耗 1 亿 Token 升一级，里程碑会在状态栏提示"
+      achievements: "每日成就"
+      tiers:
+        star: "星"
+        moon: "月"
+        sun: "日"
+        crown: "冠"
 productOverviewVideo:
   title: Hagicode video
 videoShowcase:

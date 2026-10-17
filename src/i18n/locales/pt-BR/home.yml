@@ -51,52 +51,46 @@ features:
     title: "Feito para o trabalho real de desenvolvimento"
     subtitle: "As propostas mantêm cada mudança revisável; agentes em paralelo mantêm o trabalho andando"
   smart:
-    badge: INTELIGENTE
     title: Inteligente
-    subtitle: Workflow OpenSpec para elevar a eficiência do coding com IA
-    efficiency: Ganho de eficiência
-    traditional: Tradicional
-    hagicode: Hagicode
-    description: Um workflow completo de propostas em 9 estágios, da ideia ao arquivo, com assistência de IA do começo ao fim. Sua eficiência de coding pode aumentar em 3x.
+    subtitle: "Primeiro propor, depois executar: cada mudança deixa um registro"
+    artifactsTitle: "O que cada mudança deixa para trás"
+    description: "O HagiCode não fica só conversando sobre o seu código. Ele revisa o estado real do projeto, escreve a proposta e os deltas de spec, valida com rigor, executa as tarefas em ordem e, por fim, arquiva o que aprendeu para a próxima mudança."
     workflow:
       review:
-        label: Revisão
-        desc: Revisão automática
+        label: "Revisão"
+        desc: "Revisar o estado do projeto, as specs existentes e o código relacionado antes de escrever qualquer coisa."
       scaffold:
-        label: Scaffold
-        desc: Choose a change-id and create proposal.md, tasks.md, and design.md when needed.
+        label: "Estrutura"
+        desc: "Escolher um change-id e criar proposal.md, tasks.md e, se preciso, design.md."
       spec:
-        label: Spec
-        desc: Translate the change into capability-level spec deltas with explicit requirements.
+        label: "Spec"
+        desc: "Traduzir a mudança em deltas de spec por capability, com requisitos explícitos."
       design:
-        label: Design
-        desc: Capture architecture and trade-offs in design.md when the change spans systems.
+        label: "Design"
+        desc: "Registrar arquitetura e trade-offs em design.md quando a mudança envolve vários sistemas."
       tasks:
-        label: Tarefas
-        desc: Quebra de tarefas
+        label: "Tarefas"
+        desc: "Dividir o trabalho em itens pequenos e verificáveis, com ordem e paralelismo claros."
       validate:
-        label: Validate
-        desc: Run openspec validate in strict mode and clear every issue before execution.
+        label: "Validação"
+        desc: "Rodar openspec validate em modo strict e resolver tudo antes de executar."
       apply:
-        label: Apply
-        desc: Read proposal, design, and tasks, then implement in order while checking items off.
+        label: "Execução"
+        desc: "Ler proposal, design e tasks e implementar em ordem, marcando o que for concluído."
       archive:
-        label: Arquivo
-        desc: Arquivo de conhecimento
+        label: "Arquivo"
+        desc: "Arquivar a mudança concluída e devolver o resultado ao histórico de specs de longo prazo."
     paused: Em pausa - clique no nó para alternar
   convenient:
-    badge: EFICIENTE
     title: Eficiente
-    subtitle: Execução multi-agent e multi-instância que mantém sua cota em movimento
-    traditional: Fluxo tradicional de Agent único / instância única
-    multiThread: Matriz paralela multi-agent
-    boost: Ganho de vazão
-    boostValue: 10x+ em paralelo
-    description: Agent CLI atualmente suportados, como Claude Code, Codex, GitHub Copilot, OpenCode e Hermes, podem trabalhar em várias instâncias ao mesmo tempo, então propostas, correções e reviews avançam em paralelo em vez de esperar em uma fila serial.
+    subtitle: "Vários agentes e instâncias em paralelo, para sua cota nunca ficar ociosa"
+    traditional: "Um de cada vez, em fila"
+    multiThread: "Lado a lado, sem esperar um pelo outro"
+    description: "Claude Code, Codex, GitHub Copilot, OpenCode, Hermes e os demais Agent CLIs compatíveis podem executar várias instâncias ao mesmo tempo. Propostas, correções e revisões ganham cada uma a sua faixa, então um resultado lento não trava o resto."
     agentMatrix:
       title: Matriz de execução paralela
-      badge: Vários agentes / várias instâncias
-      status: Vários agentes estão conduzindo várias instâncias agora mesmo
+      badge: "Exemplo de configuração"
+      status: "Ilustração: cada faixa avança, nenhuma bloqueia a outra"
       agents:
         claude:
           name: Claude Code
@@ -119,84 +113,113 @@ features:
             - Rastrear problema
             - Refinar copy
             - Registrar insights
-      supportedNames:
-        title: 13 Agent CLI atualmente suportados
-        names:
-          - Claude Code
-          - Codex
-          - GitHub Copilot
-          - OpenCode
-          - Hermes
-          - QoderCLI
-          - Kiro
-          - Kimi
-          - Gemini
-          - Pi
-          - Reasonix
-          - DeepAgents
-          - Codebuddy
-    supportedProvidersNote: O OpenCode pode carregar o catálogo compartilhado do OmniRoute nos padrões do modelo hero e, ao mesmo tempo, manter editáveis os identificadores brutos de modelo para workflows específicos por branch.
+    cliBay:
+      title: "Agent CLIs que você pode equipar"
+      hint: "Escolha uma para ver como ela se conecta"
+      chain:
+        agent: "Agente"
+        model: "Modelo compatível"
+      labels:
+        whatItIs: "O que é"
+        models: "Modelos e login"
+        runsOn: "Onde roda"
+        start: "Primeiros passos"
+        questions: "Perguntas no HagiCode"
+        strengths: "Destaque"
+        compare: "Ler a comparação completa"
   interesting:
-    badge: INTERESSANTE
     title: Interessante
-    subtitle: "Um fluxo claro e envolvente, guiado por interações de interface ricas e práticas."
-    features:
-      dungeons:
-        label: Hero Dungeons
-        desc: Transforma geração, execução e bancadas de prompt em percursos de dungeon
-      captains:
-        label: Escalação de capitães
-        desc: Atribua o capitão hero certo a cada dungeon
-      battle:
-        label: Relatórios de batalha
-        desc: Revise XP, níveis e resultados de execução após cada push
-    description: "Interações de interface ricas e práticas facilitam o planejamento, a execução dos agentes e o trabalho nos projetos."
-    dungeonCards:
-      proposal:
-        title: Dungeon de proposta
-        desc: OpenSpec generate / apply / archive
-        status: Capitão pronto
-      autotask:
-        title: Dungeon AutoTask
-        desc: Correções paralelas e automação em lote
-        status: 2 instâncias ativas
-      prompt:
-        title: Dungeon de prompt
-        desc: Prévia de prompt e bancada de estilo
-        status: Sincronia visual pronta
-    roster:
-      title: Escalação atual de capitães
-      heroes:
+    subtitle: "Cada agente ganha rosto, personalidade e um mundo próprio"
+    description: "Dê a cada agente um avatar, um Trait e uma Soul e escolha o vocabulário da sua equipe. A mesma escalação vira heróis e dungeons, um rancho, uma corte imperial ou uma colmeia, e níveis e troféus recompensam o trabalho enquanto ele acontece."
+    worlds:
+      title: "Uma escalação, dez jeitos de chamá-la"
+      labels:
+        agent: "Agente"
+        group: "Grupo"
+        job: "Tarefa"
+        log: "Registro"
+      items:
+        agents:
+          name: "Linha de base AgentCLI"
+          agent: "Agente"
+          group: "Grupo de Trabalho"
+          job: "Trabalho"
+          log: "Histórico de atividades"
+        fantasyAdventure:
+          name: "Aventura de fantasia"
+          agent: "Herói"
+          group: "Festa de Aventura"
+          job: "Masmorra"
+          log: "Registro de aventuras"
+        cattleRanching:
+          name: "Rancho de cavalos de batalha"
+          agent: "Cavalo de batalha"
+          group: "Rancho"
+          job: "Moinho"
+          log: "Moer registro"
+        animeAcademy:
+          name: "Academia de Anime"
+          agent: "Cadete"
+          group: "Esquadrão de sala de aula"
+          job: "Resumo da missão"
+          log: "Registro de Batalha"
+        imperialCourt:
+          name: "Corte Imperial"
+          agent: "Ministro"
+          group: "Grande Secretariado"
+          job: "Decreto"
+          log: "Arquivo Memorial"
+        alienLaboratory:
+          name: "Laboratório Alienígena"
+          agent: "Sintetizador"
+          group: "Célula de Expedição"
+          job: "Experimentar"
+          log: "Arquivo de Sinais"
+        hiveColony:
+          name: "Colônia de colmeias"
+          agent: "Trabalhador"
+          group: "Cluster de favo de mel"
+          job: "Corrida de pólen"
+          log: "Crônica do Enxame"
+        oceanSphereColony:
+          name: "Colônia da Esfera Oceânica"
+          agent: "Construtor"
+          group: "Guilda do Monumento"
+          job: "Estágio de construção"
+          log: "Livro de progresso"
+        clockworkWorkshop:
+          name: "Oficina Mecânica"
+          agent: "Atendente"
+          group: "Mudança de mansão"
+          job: "Chamada de dever"
+          log: "Livro-razão do sino"
+        pastoralPlanting:
+          name: "Plantio Pastoral"
+          agent: "Produtor"
+          group: "Linha do Pomar"
+          job: "Ciclo de colheita"
+          log: "Diário de colheita"
+    agents:
+      caption: "Agentes de exemplo"
+      items:
         strategist:
-          name: Spec Strategist
-          role: Capitão de proposta
+          name: "Spec Strategist"
+          trait: "Revisão de spec"
         runner:
-          name: Patch Runner
-          role: Capitão de execução
+          name: "Patch Runner"
+          trait: "Correção de patches"
         artist:
-          name: Prompt Artist
-          role: Suporte visual
-    battleReport:
-      title: Relatório de dungeon de hoje
-      badge: Hero Battle
-      metrics:
-        dungeons:
-          value: '4'
-          label: Dungeons avançadas
-        level:
-          value: Lv.27
-          label: Nível do capitão
-        xp:
-          value: 12.8M
-          label: XP de hoje
-      note: Quando várias dungeons avançam em paralelo, este relatório reúne experiência, níveis e resultados de execução em uma única leitura.
-    gallery:
-      dungeons:
-        title: Carrossel de mapas de dungeon
-        subtitle: 10 visuais aleatórios da coleção atual de mapas de dungeon e prompts do frontend.
-      heroes:
-        title: Carrossel da galeria de heróis
-        subtitle: 10 visuais aleatórios da coleção atual de heróis do frontend.
+          name: "Prompt Artist"
+          trait: "Estilo de prompt"
+    progress:
+      title: "Progresso que se sente"
+      token: "Um nível a cada 100 M de tokens, com um aviso de marco na barra de status"
+      achievements: "Conquistas Diárias"
+      tiers:
+        star: "Estrela"
+        moon: "Lua"
+        sun: "Sol"
+        crown: "Coroa"
 productOverviewVideo:
   title: Entenda o Hagicode antes do tour de recursos
 videoShowcase:

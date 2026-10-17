@@ -51,13 +51,10 @@ features:
     title: "Built for real development work"
     subtitle: "Proposals keep every change reviewable; parallel agents keep the work moving"
   smart:
-    badge: SMART
     title: Smart
-    subtitle: OpenSpec workflow, boost AI coding efficiency
-    efficiency: Efficiency Boost
-    traditional: Traditional
-    hagicode: Hagicode
-    description: "OpenSpec turns change delivery into a reusable path: review context, scaffold the proposal, draft spec deltas, validate strictly, apply ordered tasks, then archive the change."
+    subtitle: "Propose first, execute second: every change leaves a trail"
+    artifactsTitle: "What each change leaves behind"
+    description: "HagiCode doesn't just chat about your code. It reviews the real project state, writes a proposal and spec deltas, validates them strictly, runs the tasks in order, then archives what it learned for the next change."
     workflow:
       review:
         label: Review
@@ -85,18 +82,15 @@ features:
         desc: Move the completed change into archive and feed the outcome back into the long-term spec history.
     paused: Paused - Click node to switch
   convenient:
-    badge: EFFICIENT
     title: Efficient
-    subtitle: Multi-agent, multi-instance execution that keeps your quota moving
-    traditional: Traditional single-agent / single-instance
-    multiThread: Multi-agent parallel matrix
-    boost: Throughput Boost
-    boostValue: 10x+ parallel
-    description: Current supported Agent CLIs such as Claude Code, Codex, GitHub Copilot, OpenCode, and Hermes can work across multiple instances at the same time, so proposals, fixes, and reviews move in parallel instead of waiting in a serial queue.
+    subtitle: "Run many agents and instances in parallel so your quota never sits idle"
+    traditional: "One at a time, waiting in line"
+    multiThread: "Side by side, none waiting on another"
+    description: "Claude Code, Codex, GitHub Copilot, OpenCode, Hermes and the other supported Agent CLIs can each run several instances at once. Proposals, fixes and reviews get their own lane, so one slow result never stalls the rest."
     agentMatrix:
       title: Parallel execution matrix
-      badge: Multiple agents / multiple instances
-      status: Multiple agents are driving multiple instances right now
+      badge: "Example setup"
+      status: "Illustrative: every lane keeps moving, none blocked by another"
       agents:
         claude:
           name: Claude Code
@@ -119,84 +113,113 @@ features:
             - Trace issue
             - Polish copy
             - Capture insights
-      supportedNames:
-        title: 13 currently supported Agent CLIs
-        names:
-          - Claude Code
-          - Codex
-          - GitHub Copilot
-          - OpenCode
-          - Hermes
-          - QoderCLI
-          - Kiro
-          - Kimi
-          - Gemini
-          - Pi
-          - Reasonix
-          - DeepAgents
-          - Codebuddy
-    supportedProvidersNote: OpenCode can load the shared OmniRoute catalog into hero model defaults while keeping custom raw model identifiers editable for branch-specific workflows.
+    cliBay:
+      title: "Agent CLIs you can equip"
+      hint: "Pick one to see how it plugs in"
+      chain:
+        agent: "Agent"
+        model: "Compatible model"
+      labels:
+        whatItIs: "What it is"
+        models: "Models and sign-in"
+        runsOn: "Where it runs"
+        start: "Getting started"
+        questions: "Questions in HagiCode"
+        strengths: "Known for"
+        compare: "Read the full comparison"
   interesting:
-    badge: INTERESTING
     title: Interesting
-    subtitle: "A clear, engaging workflow shaped by rich and convenient UI interactions"
-    features:
-      dungeons:
-        label: Hero Dungeons
-        desc: Turn generation, execution, and prompt workbenches into dungeon runs
-      captains:
-        label: Captain Roster
-        desc: Assign the right hero captain to each dungeon
-      battle:
-        label: Battle Reports
-        desc: Review XP, levels, and execution results after each push
-    description: "Rich, convenient UI interactions make planning, agent execution, and project work easier to navigate."
-    dungeonCards:
-      proposal:
-        title: Proposal Dungeon
-        desc: OpenSpec generate / apply / archive
-        status: Captain ready
-      autotask:
-        title: AutoTask Dungeon
-        desc: Parallel fixes and batch automation
-        status: 2 instances active
-      prompt:
-        title: Prompt Dungeon
-        desc: Prompt preview and style workbench
-        status: Visual sync ready
-    roster:
-      title: Current captain roster
-      heroes:
+    subtitle: "Every agent gets a face, a personality and a world to live in"
+    description: "Give each agent an avatar, Trait and Soul, then choose the vocabulary your team speaks. The same lineup reads as heroes and dungeons, a ranch, an imperial court or a hive, and levels and trophies reward the work as it happens."
+    worlds:
+      title: "One lineup, ten ways to name it"
+      labels:
+        agent: "Agent"
+        group: "Group"
+        job: "Job"
+        log: "Log"
+      items:
+        agents:
+          name: "AgentCLI Baseline"
+          agent: "Agent"
+          group: "Working Group"
+          job: "Job"
+          log: "Activity History"
+        fantasyAdventure:
+          name: "Fantasy Adventure"
+          agent: "Hero"
+          group: "Adventure Party"
+          job: "Dungeon"
+          log: "Adventure Log"
+        cattleRanching:
+          name: "Workhorse Ranch"
+          agent: "Workhorse"
+          group: "Ranch"
+          job: "Mill"
+          log: "Grind Log"
+        animeAcademy:
+          name: "Anime Academy"
+          agent: "Cadet"
+          group: "Homeroom Squad"
+          job: "Mission Brief"
+          log: "Battle Log"
+        imperialCourt:
+          name: "Imperial Court"
+          agent: "Minister"
+          group: "Grand Secretariat"
+          job: "Decree"
+          log: "Memorial Archive"
+        alienLaboratory:
+          name: "Alien Laboratory"
+          agent: "Synth"
+          group: "Expedition Cell"
+          job: "Experiment"
+          log: "Signal Archive"
+        hiveColony:
+          name: "Hive Colony"
+          agent: "Worker"
+          group: "Honeycomb Cluster"
+          job: "Pollen Run"
+          log: "Swarm Chronicle"
+        oceanSphereColony:
+          name: "Ocean Sphere Colony"
+          agent: "Builder"
+          group: "Monument Guild"
+          job: "Build Stage"
+          log: "Progress Ledger"
+        clockworkWorkshop:
+          name: "Clockwork Workshop"
+          agent: "Attendant"
+          group: "Manor Shift"
+          job: "Duty Call"
+          log: "Bell Ledger"
+        pastoralPlanting:
+          name: "Pastoral Planting"
+          agent: "Grower"
+          group: "Orchard Row"
+          job: "Harvest Cycle"
+          log: "Crop Journal"
+    agents:
+      caption: "Example agents"
+      items:
         strategist:
-          name: Spec Strategist
-          role: Proposal captain
+          name: "Spec Strategist"
+          trait: "Spec review"
         runner:
-          name: Patch Runner
-          role: Execution captain
+          name: "Patch Runner"
+          trait: "Patch fixing"
         artist:
-          name: Prompt Artist
-          role: Visual support
-    battleReport:
-      title: Today's dungeon report
-      badge: Hero Battle
-      metrics:
-        dungeons:
-          value: '4'
-          label: Dungeons pushed
-        level:
-          value: Lv.27
-          label: Captain level
-        xp:
-          value: 12.8M
-          label: XP today
-      note: When several dungeons move in parallel, the report rolls up experience, levels, and execution outcomes into one readout.
-    gallery:
-      dungeons:
-        title: Dungeon map carousel
-        subtitle: 10 random visuals from the current frontend dungeon and prompt map collection.
-      heroes:
-        title: Hero gallery carousel
-        subtitle: 10 random hero visuals from the current frontend hero collection.
+          name: "Prompt Artist"
+          trait: "Prompt styling"
+    progress:
+      title: "Progress you can feel"
+      token: "Every 100M tokens is one level, with a milestone cue in the status bar"
+      achievements: "Daily Achievements"
+      tiers:
+        star: "Star"
+        moon: "Moon"
+        sun: "Sun"
+        crown: "Crown"
 productOverviewVideo:
   title: Understand Hagicode before the feature tour
 videoShowcase:

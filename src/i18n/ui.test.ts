@@ -9,36 +9,30 @@ describe('site i18n translation lookup', () => {
   it('resolves numeric path segments inside YAML arrays', () => {
     const { t } = getTranslation('en-US', { resources: serverResources });
 
-    expect(t('features.convenient.agentMatrix.supportedNames.names.1')).toBe('Codex');
-    expect(t('features.convenient.agentMatrix.supportedNames.names.9')).toBe('Pi');
-    expect(t('features.convenient.agentMatrix.supportedNames.names.10')).toBe('Reasonix');
+    expect(t('features.interesting.worlds.items.fantasyAdventure.name')).toBe('Fantasy Adventure');
     expect(t('features.convenient.agentMatrix.agents.claude.instances.1')).toBe('Check design');
   });
 
   it('falls back to the key when an array index does not exist', () => {
     const { t } = getTranslation('en-US', { resources: serverResources });
 
-    expect(t('features.convenient.agentMatrix.supportedNames.names.99')).toBe(
-      'features.convenient.agentMatrix.supportedNames.names.99',
+    expect(t('features.convenient.agentMatrix.agents.claude.instances.99')).toBe(
+      'features.convenient.agentMatrix.agents.claude.instances.99',
     );
   });
 
-  it('uses localized interaction-focused subtitles outside the base locale', () => {
-    const englishSubtitle = 'A clear, engaging workflow shaped by rich and convenient UI interactions';
+  it('uses localized Fun card subtitles outside the base locale', () => {
+    const englishSubtitle = 'Every agent gets a face, a personality and a world to live in';
 
     expect(getTranslation('zh-CN', { resources: serverResources }).t('features.interesting.subtitle')).toBe(
-      '丰富、便捷的界面交互，让开发流程清晰易跟进',
+      '每个 Agent 都有脸、有性格，还有一个属于它的世界',
     );
     expect(getTranslation('zh-Hant', { resources: serverResources }).t('features.interesting.subtitle')).toBe(
-      '豐富、便利的介面互動，讓開發流程清晰易跟進',
+      '每個 Agent 都有臉、有個性，還有一個屬於它的世界',
     );
-    expect(getTranslation('ja-JP', { resources: serverResources }).t('features.interesting.subtitle')).not.toBe(englishSubtitle);
-    expect(getTranslation('ko-KR', { resources: serverResources }).t('features.interesting.subtitle')).not.toBe(englishSubtitle);
-    expect(getTranslation('de-DE', { resources: serverResources }).t('features.interesting.subtitle')).not.toBe(englishSubtitle);
-    expect(getTranslation('fr-FR', { resources: serverResources }).t('features.interesting.subtitle')).not.toBe(englishSubtitle);
-    expect(getTranslation('es-ES', { resources: serverResources }).t('features.interesting.subtitle')).not.toBe(englishSubtitle);
-    expect(getTranslation('pt-BR', { resources: serverResources }).t('features.interesting.subtitle')).not.toBe(englishSubtitle);
-    expect(getTranslation('ru-RU', { resources: serverResources }).t('features.interesting.subtitle')).not.toBe(englishSubtitle);
+    for (const locale of ['ja-JP', 'ko-KR', 'de-DE', 'fr-FR', 'es-ES', 'pt-BR', 'ru-RU']) {
+      expect(getTranslation(locale, { resources: serverResources }).t('features.interesting.subtitle')).not.toBe(englishSubtitle);
+    }
   });
 
   it('localizes pricing row labels outside the base locale', () => {

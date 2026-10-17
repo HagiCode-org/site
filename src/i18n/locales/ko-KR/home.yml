@@ -51,52 +51,46 @@ features:
     title: "실제 개발 작업을 위해"
     subtitle: "제안이 모든 변경을 검토 가능하게 하고, 병렬 에이전트가 작업을 계속 진행시킵니다"
   smart:
-    badge: 스마트
     title: 스마트
-    subtitle: OpenSpec 워크플로로 AI 코딩 효율 향상
-    efficiency: 효율 향상
-    traditional: 기존 방식
-    hagicode: Hagicode
-    description: 아이디어에서 아카이브까지 이어지는 9단계 제안 워크플로를 AI가 전 과정에서 보조합니다. 코딩 효율을 3배까지 끌어올립니다.
+    subtitle: "먼저 제안하고 그다음 실행합니다. 모든 변경에 근거가 남습니다"
+    artifactsTitle: "변경마다 남는 것"
+    description: "HagiCode는 코드와 대화만 하지 않습니다. 프로젝트의 실제 상태를 검토하고, 제안과 Spec 변경안을 작성하고, 엄격하게 검증한 뒤 작업을 순서대로 실행하고, 마지막으로 아카이브해 다음 변경에 경험을 넘깁니다."
     workflow:
       review:
-        label: 검토
-        desc: 자동 검토
+        label: "검토"
+        desc: "무엇이든 쓰기 전에 프로젝트 현황, 기존 spec, 관련 코드를 먼저 확인합니다."
       scaffold:
-        label: Scaffold
-        desc: Choose a change-id and create proposal.md, tasks.md, and design.md when needed.
+        label: "스캐폴드"
+        desc: "change-id를 정하고 proposal.md, tasks.md, 필요하면 design.md를 만듭니다."
       spec:
-        label: Spec
-        desc: Translate the change into capability-level spec deltas with explicit requirements.
+        label: "Spec"
+        desc: "변경을 capability 단위의 spec 델타로 옮겨 요구사항을 분명히 합니다."
       design:
-        label: Design
-        desc: Capture architecture and trade-offs in design.md when the change spans systems.
+        label: "설계"
+        desc: "여러 시스템에 걸친 변경은 구조와 트레이드오프를 design.md에 남깁니다."
       tasks:
-        label: 작업
-        desc: 작업 분해
+        label: "작업"
+        desc: "작업을 순서와 병렬 가능 여부가 드러나는 작고 검증 가능한 항목으로 나눕니다."
       validate:
-        label: Validate
-        desc: Run openspec validate in strict mode and clear every issue before execution.
+        label: "검증"
+        desc: "openspec validate를 strict 모드로 실행해 실행 전에 모든 문제를 해결합니다."
       apply:
-        label: Apply
-        desc: Read proposal, design, and tasks, then implement in order while checking items off.
+        label: "실행"
+        desc: "proposal, design, tasks를 읽고 순서대로 구현하며 완료 항목을 체크합니다."
       archive:
-        label: 아카이브
-        desc: 지식 보관
+        label: "아카이브"
+        desc: "완료된 변경을 아카이브하고 결과를 장기 spec 이력에 되돌려 줍니다."
     paused: 일시정지됨 - 노드를 클릭해 전환
   convenient:
-    badge: 고효율
     title: 고효율
-    subtitle: 멀티 Agent, 멀티 인스턴스 실행으로 사용 한도를 계속 움직이게 합니다
-    traditional: 기존 단일 Agent / 단일 인스턴스
-    multiThread: 멀티 Agent 병렬 매트릭스
-    boost: 처리량 향상
-    boostValue: 10배+ 병렬
-    description: Claude Code, Codex, GitHub Copilot, OpenCode, Hermes 같은 현재 지원 Agent CLI는 여러 인스턴스를 동시에 돌릴 수 있어 제안, 수정, 리뷰가 직렬 대기 대신 병렬로 진행됩니다.
+    subtitle: "여러 Agent와 인스턴스를 병렬로 돌려 할당량이 놀지 않게 합니다"
+    traditional: "하나씩 줄 서서 대기"
+    multiThread: "나란히 진행, 서로 기다리지 않음"
+    description: "Claude Code, Codex, GitHub Copilot, OpenCode, Hermes 등 지원되는 Agent CLI는 각각 여러 인스턴스를 동시에 실행할 수 있습니다. 제안, 수정, 리뷰가 각자의 레인을 달리므로 느린 결과 하나가 전체를 멈추지 않습니다."
     agentMatrix:
       title: 병렬 실행 매트릭스
-      badge: 여러 Agent / 여러 인스턴스
-      status: 여러 Agent가 지금 여러 인스턴스를 동시에 구동 중입니다
+      badge: "구성 예시"
+      status: "예시: 모든 레인이 멈추지 않고 진행되며 서로 막지 않음"
       agents:
         claude:
           name: Claude Code
@@ -119,84 +113,113 @@ features:
             - 이슈 추적
             - 문구 다듬기
             - 인사이트 정리
-      supportedNames:
-        title: 현재 활발히 지원하는 13개 Agent CLI
-        names:
-          - Claude Code
-          - Codex
-          - GitHub Copilot
-          - OpenCode
-          - Hermes
-          - QoderCLI
-          - Kiro
-          - Kimi
-          - Gemini
-          - Pi
-          - Reasonix
-          - DeepAgents
-          - Codebuddy
-    supportedProvidersNote: OpenCode는 공유 OmniRoute 카탈로그를 hero 모델 기본값으로 불러오면서도, 브랜치별 워크플로에 맞춰 원시 모델 식별자를 계속 수정할 수 있습니다.
+    cliBay:
+      title: "장착할 수 있는 Agent CLI"
+      hint: "하나를 골라 연결 방식을 확인하세요"
+      chain:
+        agent: "에이전트"
+        model: "호환 모델"
+      labels:
+        whatItIs: "소개"
+        models: "모델과 로그인"
+        runsOn: "실행 환경"
+        start: "시작 방법"
+        questions: "HagiCode에서의 질문"
+        strengths: "강점"
+        compare: "전체 비교 읽기"
   interesting:
-    badge: 흥미로움
     title: 흥미로운
-    subtitle: "풍부하고 편리한 UI 상호작용으로 개발 흐름을 명확하고 흥미롭게 만듭니다."
-    features:
-      dungeons:
-        label: Hero Dungeons
-        desc: 생성, 실행, 프롬프트 작업대를 하나의 던전 진행처럼 바꿉니다
-      captains:
-        label: 캡틴 로스터
-        desc: 각 던전에 가장 어울리는 hero 캡틴을 배치합니다
-      battle:
-        label: 전투 리포트
-        desc: 각 푸시 이후 XP, 레벨, 실행 결과를 확인합니다
-    description: "풍부하고 편리한 UI 상호작용으로 계획, 에이전트 실행, 프로젝트 작업을 쉽게 따라갈 수 있습니다."
-    dungeonCards:
-      proposal:
-        title: 제안 던전
-        desc: OpenSpec generate / apply / archive
-        status: 캡틴 준비 완료
-      autotask:
-        title: AutoTask 던전
-        desc: 병렬 수정과 배치 자동화
-        status: 인스턴스 2개 활성
-      prompt:
-        title: 프롬프트 던전
-        desc: 프롬프트 미리보기와 스타일 작업대
-        status: 비주얼 동기화 준비 완료
-    roster:
-      title: 현재 캡틴 로스터
-      heroes:
+    subtitle: "모든 Agent에게 얼굴과 성격, 그리고 살아갈 세계가 있습니다"
+    description: "Agent마다 아바타, Trait, Soul을 지정하고 팀이 쓰는 용어를 고르세요. 같은 구성이 영웅과 던전, 목장, 조정, 벌집으로 읽히고, 레벨과 트로피가 작업 진행을 바로 보상해 줍니다."
+    worlds:
+      title: "같은 구성, 열 가지 이름"
+      labels:
+        agent: "에이전트"
+        group: "그룹"
+        job: "작업"
+        log: "로그"
+      items:
+        agents:
+          name: "AgentCLI 베이스라인"
+          agent: "대리인"
+          group: "실무 그룹"
+          job: "직업"
+          log: "활동 내역"
+        fantasyAdventure:
+          name: "판타지 어드벤처"
+          agent: "영웅"
+          group: "모험 파티"
+          job: "던전"
+          log: "모험 기록"
+        cattleRanching:
+          name: "일꾼 목장"
+          agent: "일꾼"
+          group: "목장"
+          job: "밀"
+          log: "그라인드 로그"
+        animeAcademy:
+          name: "애니메이션 아카데미"
+          agent: "생도"
+          group: "홈룸 스쿼드"
+          job: "미션 브리핑"
+          log: "전투 기록"
+        imperialCourt:
+          name: "황실"
+          agent: "장관"
+          group: "총사무국"
+          job: "법령"
+          log: "기념 기록 보관소"
+        alienLaboratory:
+          name: "외계인 연구실"
+          agent: "신디사이저"
+          group: "원정대 세포"
+          job: "실험"
+          log: "시그널 아카이브"
+        hiveColony:
+          name: "하이브 콜로니"
+          agent: "노동자"
+          group: "벌집 클러스터"
+          job: "꽃가루 실행"
+          log: "스웜 크로니클"
+        oceanSphereColony:
+          name: "해양권 식민지"
+          agent: "빌더"
+          group: "기념물 길드"
+          job: "빌드 단계"
+          log: "진행 원장"
+        clockworkWorkshop:
+          name: "시계작업장"
+          agent: "수행자"
+          group: "매너 시프트"
+          job: "의무 호출"
+          log: "벨 레저"
+        pastoralPlanting:
+          name: "목가적인 심기"
+          agent: "재배자"
+          group: "오차드 로우"
+          job: "수확주기"
+          log: "작물 일지"
+    agents:
+      caption: "예시 Agent"
+      items:
         strategist:
-          name: Spec Strategist
-          role: 제안 캡틴
+          name: "Spec Strategist"
+          trait: "Spec 리뷰"
         runner:
-          name: Patch Runner
-          role: 실행 캡틴
+          name: "Patch Runner"
+          trait: "패치 수정"
         artist:
-          name: Prompt Artist
-          role: 비주얼 지원
-    battleReport:
-      title: 오늘의 던전 리포트
-      badge: Hero Battle
-      metrics:
-        dungeons:
-          value: '4'
-          label: 진행된 던전
-        level:
-          value: Lv.27
-          label: 캡틴 레벨
-        xp:
-          value: 12.8M
-          label: 오늘의 XP
-      note: 여러 던전이 병렬로 진행될 때 이 리포트가 경험치, 레벨, 실행 결과를 하나로 묶어 보여줍니다.
-    gallery:
-      dungeons:
-        title: 던전 맵 캐러셀
-        subtitle: 현재 프런트엔드 던전 및 프롬프트 맵 컬렉션에서 무작위 비주얼 10개를 보여줍니다.
-      heroes:
-        title: 히어로 갤러리 캐러셀
-        subtitle: 현재 프런트엔드 히어로 컬렉션에서 무작위 비주얼 10개를 보여줍니다.
+          name: "Prompt Artist"
+          trait: "Prompt 스타일"
+    progress:
+      title: "눈에 보이는 진행"
+      token: "1억 토큰마다 1레벨, 이정표는 상태 표시줄에서 알려 줍니다"
+      achievements: "일일 성과"
+      tiers:
+        star: "스타"
+        moon: "달"
+        sun: "태양"
+        crown: "크라운"
 productOverviewVideo:
   title: 기능 투어 전에 Hagicode를 먼저 살펴보세요
 videoShowcase:
