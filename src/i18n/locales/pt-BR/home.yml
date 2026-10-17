@@ -7,7 +7,7 @@ hero:
   description: O HagiCode ajuda desenvolvedores a focarem no código, não em trabalho repetitivo
   ctaButton: Começar
   taglines:
-    smart: Inteligente · Eficiente · Divertido
+    smart: Inteligente · Eficiente · Interessante
     aiDriven: Orquestrado por IA · Multi-Agent em paralelo
     openspec: OpenSpec · Revolução do fluxo de trabalho
     multiThread: Multi-Agent · Multi-instância
@@ -24,7 +24,7 @@ hero:
   features:
     - workflow OpenSpec
     - execução multi-agent e multi-instância
-    - gamificação Hero Dungeon
+    - interações de interface ricas e práticas
   redefine: .
   valueCards:
     smart:
@@ -34,8 +34,8 @@ hero:
       title: Eficiente
       description: A execução multi-agent transforma espera em vazão real.
     interesting:
-      title: Divertido
-      description: O Hero Dungeon faz colaboração e prática parecerem uma aventura.
+      title: Interessante
+      description: As interações de interface facilitam o planejamento, a execução de agentes e os projetos.
   buttons:
     desktopApp: Instalar app Desktop
     learnMore: Saiba mais
@@ -50,14 +50,16 @@ features:
   showcase:
     title: "Feito para o trabalho real de desenvolvimento"
     subtitle: "As propostas mantêm cada mudança revisável; agentes em paralelo mantêm o trabalho andando"
+    demoLabel: "Fluxo ilustrativo · sem tarefas ao vivo"
+    previewLabel: "Interface real do produto"
   smart:
     badge: INTELIGENTE
     title: Inteligente
-    subtitle: Workflow OpenSpec para elevar a eficiência do coding com IA
+    subtitle: "Alinhe a intenção. Depois, a IA constrói."
     efficiency: Ganho de eficiência
     traditional: Tradicional
     hagicode: Hagicode
-    description: Um workflow completo de propostas em 9 estágios, da ideia ao arquivo, com assistência de IA do começo ao fim. Sua eficiência de coding pode aumentar em 3x.
+    description: "Reúna requisitos, design e tarefas no OpenSpec. Cada mudança mantém seu contexto, e o trabalho concluído se torna conhecimento reutilizável."
     workflow:
       review:
         label: Revisão
@@ -87,12 +89,12 @@ features:
   convenient:
     badge: EFICIENTE
     title: Eficiente
-    subtitle: Execução multi-agent e multi-instância que mantém sua cota em movimento
+    subtitle: "Mais tarefas avançando juntas."
     traditional: Fluxo tradicional de Agent único / instância única
     multiThread: Matriz paralela multi-agent
     boost: Ganho de vazão
     boostValue: 10x+ em paralelo
-    description: Agent CLI atualmente suportados, como Claude Code, Codex, GitHub Copilot, OpenCode e Hermes, podem trabalhar em várias instâncias ao mesmo tempo, então propostas, correções e reviews avançam em paralelo em vez de esperar em uma fila serial.
+    description: "Agentes diferentes cuidam de propostas, implementação e revisão ao mesmo tempo. Várias instâncias em paralelo reduzem a espera entre tarefas."
     agentMatrix:
       title: Matriz de execução paralela
       badge: Vários agentes / várias instâncias
@@ -137,20 +139,20 @@ features:
           - Codebuddy
     supportedProvidersNote: O OpenCode pode carregar o catálogo compartilhado do OmniRoute nos padrões do modelo hero e, ao mesmo tempo, manter editáveis os identificadores brutos de modelo para workflows específicos por branch.
   interesting:
-    badge: DIVERTIDO
-    title: Divertido
-    subtitle: "Hero Dungeon transforma o trabalho diário dos agentes em uma aventura com progresso visível"
+    badge: INTERESSANTE
+    title: Interessante
+    subtitle: "Um fluxo claro e envolvente, guiado por interações de interface ricas e práticas."
     features:
-      dungeons:
-        label: Hero Dungeons
-        desc: Transforma geração, execução e bancadas de prompt em percursos de dungeon
-      captains:
-        label: Escalação de capitães
-        desc: Atribua o capitão hero certo a cada dungeon
-      battle:
-        label: Relatórios de batalha
-        desc: Revise XP, níveis e resultados de execução após cada push
-    description: "Uma camada de jogo sobre o mesmo fluxo de propostas: o Hero Dungeon organiza propostas, tarefas em lote e trabalho de prompts em masmorras, atribui um capitão a cada uma e depois mostra XP e níveis. O trabalho longo dos agentes fica mais fácil de acompanhar e mais divertido de continuar."
+      planning:
+        label: "Planejar"
+        desc: "Confira tarefas e resultados na visão de propostas."
+      execution:
+        label: "Executar"
+        desc: "Acompanhe vários agentes no quadro de sessões."
+      workspace:
+        label: "Projetos"
+        desc: "Veja e gerencie diferentes projetos no espaço de trabalho."
+    description: "Interações de interface ricas e práticas facilitam o planejamento, a execução dos agentes e o trabalho nos projetos."
     dungeonCards:
       proposal:
         title: Dungeon de proposta

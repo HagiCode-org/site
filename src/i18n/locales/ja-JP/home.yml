@@ -7,7 +7,7 @@ hero:
   description: HagiCode は繰り返し作業ではなく、本当に重要なコードに集中できるようにします
   ctaButton: 使い始める
   taglines:
-    smart: スマート・効率的・楽しい
+    smart: スマート・効率的・興味深い
     aiDriven: AI オーケストレーション・マルチエージェント並列
     openspec: OpenSpec・ワークフロー革命
     multiThread: マルチエージェント・マルチインスタンス
@@ -24,7 +24,7 @@ hero:
   features:
     - OpenSpec ワークフロー
     - マルチエージェント・マルチインスタンス実行
-    - Hero Dungeon のゲーム化
+    - 使いやすく豊富な UI インタラクション
   redefine: ''
   valueCards:
     smart:
@@ -34,8 +34,8 @@ hero:
       title: 効率的
       description: マルチエージェント実行で待ち時間を処理量へ変えます。
     interesting:
-      title: 楽しい
-      description: Hero Dungeon がチーム作業と練習を冒険のようにします。
+      title: 興味深い
+      description: 使いやすい UI で、計画・Agent 実行・プロジェクト作業を進めやすくします。
   buttons:
     desktopApp: デスクトップアプリをインストール
     learnMore: 詳しく見る
@@ -50,14 +50,16 @@ features:
   showcase:
     title: "実際の開発のために"
     subtitle: "提案がすべての変更をレビュー可能にし、並列エージェントが作業を前へ進めます"
+    demoLabel: "動作イメージ · 実行中のタスクではありません"
+    previewLabel: "実際の製品画面"
   smart:
     badge: スマート
     title: スマート
-    subtitle: OpenSpec ワークフローで AI コーディング効率を向上
+    subtitle: "意図を揃えてから、AI が実装。"
     efficiency: 効率向上
     traditional: 従来型
     hagicode: Hagicode
-    description: アイデアからアーカイブまでの 9 段階提案ワークフローを AI が伴走します。コーディング効率を 3 倍に高めます。
+    description: "要件・設計・タスクを OpenSpec にまとめます。変更の根拠を明確にし、完了した仕事を再利用できる知識へ。"
     workflow:
       review:
         label: レビュー
@@ -87,12 +89,12 @@ features:
   convenient:
     badge: 効率的
     title: 効率的
-    subtitle: クォータを止めないマルチエージェント・マルチインスタンス実行
+    subtitle: "複数のタスクを、同時に前へ。"
     traditional: 従来の単一エージェント / 単一インスタンス
     multiThread: マルチエージェント並列マトリクス
     boost: スループット向上
     boostValue: 10 倍以上の並列
-    description: Claude Code、Codex、GitHub Copilot、OpenCode、Hermes などの対応 Agent CLI は複数インスタンスで同時に動作できるため、提案、修正、レビューが直列待ちではなく並列で進みます。
+    description: "提案・実装・レビューを異なる Agent が同時に担当。複数インスタンスの並列実行で、順番待ちを減らします。"
     agentMatrix:
       title: 並列実行マトリクス
       badge: 複数エージェント / 複数インスタンス
@@ -137,20 +139,20 @@ features:
           - Codebuddy（コードバディ）
     supportedProvidersNote: OpenCode は共有 OmniRoute カタログを Hero モデル既定値として読み込みつつ、ブランチ固有ワークフロー向けに生のモデル識別子を編集可能なまま維持できます。
   interesting:
-    badge: 楽しい
-    title: 楽しい
-    subtitle: "Hero Dungeon が日々のエージェント作業を、進捗の見える冒険に変える"
+    badge: 興味深い
+    title: 興味深い
+    subtitle: "豊富で便利なUI操作で、開発の流れがわかりやすく快適に。"
     features:
-      dungeons:
-        label: ヒーローダンジョン
-        desc: 生成、実行、プロンプト作業台をダンジョン攻略の流れに変える
-      captains:
-        label: 隊長編成
-        desc: 各ダンジョンに最適なヒーロー隊長を割り当てる
-      battle:
-        label: 戦闘レポート
-        desc: 実行後に XP、レベル、結果を確認
-    description: "同じ提案ワークフローの上に重ねるゲーム層です。Hero Dungeon は提案・バッチタスク・Prompt 作業をダンジョンとして編成し、それぞれにキャプテンを割り当て、XP とレベルで結果を振り返れます。長く続くエージェント作業を追いやすく、続けやすくします。"
+      planning:
+        label: "計画"
+        desc: "提案ビューでタスク一覧と実行結果を確認。"
+      execution:
+        label: "実行"
+        desc: "セッションボードで複数 Agent の作業を把握。"
+      workspace:
+        label: "プロジェクト"
+        desc: "ワークスペースで複数のプロジェクトを管理。"
+    description: "豊富で便利なUI操作で、計画・エージェント実行・プロジェクト作業をわかりやすく進められます。"
     dungeonCards:
       proposal:
         title: 提案ダンジョン

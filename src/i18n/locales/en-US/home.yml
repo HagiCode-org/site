@@ -7,7 +7,7 @@ hero:
   description: HagiCode helps developers focus on code, not repetitive work
   ctaButton: Get Started
   taglines:
-    smart: Smart · Efficient · Fun
+    smart: Smart · Efficient · Interesting
     aiDriven: AI Orchestrated · Multi-Agent Parallel
     openspec: OpenSpec · Workflow Revolution
     multiThread: Multi-Agent · Multi-Instance
@@ -24,7 +24,7 @@ hero:
   features:
     - OpenSpec workflow
     - multi-agent multi-instance execution
-    - Hero Dungeon gameplay
+    - rich, convenient UI interactions
   redefine: .
   valueCards:
     smart:
@@ -35,7 +35,7 @@ hero:
       description: Multi-agent execution turns waiting into throughput.
     interesting:
       title: Interesting
-      description: Hero Dungeon makes teamwork and practice feel like an adventure.
+      description: Rich UI interactions make planning, agent work, and projects easier to follow.
   buttons:
     desktopApp: Install Desktop App
     learnMore: Learn More
@@ -50,14 +50,16 @@ features:
   showcase:
     title: "Built for real development work"
     subtitle: "Proposals keep every change reviewable; parallel agents keep the work moving"
+    demoLabel: "Illustration · not live tasks"
+    previewLabel: "Actual product interface"
   smart:
     badge: SMART
     title: Smart
-    subtitle: OpenSpec workflow, boost AI coding efficiency
+    subtitle: "Align on the intent. Then let AI build."
     efficiency: Efficiency Boost
     traditional: Traditional
     hagicode: Hagicode
-    description: "OpenSpec turns change delivery into a reusable path: review context, scaffold the proposal, draft spec deltas, validate strictly, apply ordered tasks, then archive the change."
+    description: "Put requirements, design, and tasks into OpenSpec. Keep each change grounded and turn completed work into reusable knowledge."
     workflow:
       review:
         label: Review
@@ -87,12 +89,12 @@ features:
   convenient:
     badge: EFFICIENT
     title: Efficient
-    subtitle: Multi-agent, multi-instance execution that keeps your quota moving
+    subtitle: "More tasks moving forward, together."
     traditional: Traditional single-agent / single-instance
     multiThread: Multi-agent parallel matrix
     boost: Throughput Boost
     boostValue: 10x+ parallel
-    description: Current supported Agent CLIs such as Claude Code, Codex, GitHub Copilot, OpenCode, and Hermes can work across multiple instances at the same time, so proposals, fixes, and reviews move in parallel instead of waiting in a serial queue.
+    description: "Let different agents handle proposals, implementation, and review at the same time. Run multiple instances with less serial waiting."
     agentMatrix:
       title: Parallel execution matrix
       badge: Multiple agents / multiple instances
@@ -138,19 +140,19 @@ features:
     supportedProvidersNote: OpenCode can load the shared OmniRoute catalog into hero model defaults while keeping custom raw model identifiers editable for branch-specific workflows.
   interesting:
     badge: INTERESTING
-    title: Fun
-    subtitle: "Hero Dungeon turns everyday agent work into an adventure you can follow"
+    title: Interesting
+    subtitle: "A clear, engaging workflow shaped by rich and convenient UI interactions"
     features:
-      dungeons:
-        label: Hero Dungeons
-        desc: Turn generation, execution, and prompt workbenches into dungeon runs
-      captains:
-        label: Captain Roster
-        desc: Assign the right hero captain to each dungeon
-      battle:
-        label: Battle Reports
-        desc: Review XP, levels, and execution results after each push
-    description: "A game layer on top of the same proposal workflow: Hero Dungeon turns proposals, batch tasks, and prompt work into dungeons, assigns a captain to each, and reports XP and levels afterwards, so long-running agent work is easier to follow and more fun to keep doing."
+      planning:
+        label: "Plan"
+        desc: "Review task lists and execution results in the proposal view."
+      execution:
+        label: "Execute"
+        desc: "Follow multiple agents at work on the session board."
+      workspace:
+        label: "Projects"
+        desc: "View and manage different projects in the workspace."
+    description: "Rich, convenient UI interactions make planning, agent execution, and project work easier to navigate."
     dungeonCards:
       proposal:
         title: Proposal Dungeon

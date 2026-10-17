@@ -172,8 +172,8 @@ promote:
   ariaLabel: プロモーション
 pageMeta:
   home:
-    title: Hagicode - スマート・効率的・楽しい AI コーディングアシスタント
-    description: AI でコーディングを再定義。OpenSpec ワークフロー、マルチエージェント並列実行、Hero Dungeon のゲーム化で開発をより速く、より楽しくします。
+    title: Hagicode - スマート・効率的・興味深い AI コーディングアシスタント
+    description: 豊富で便利な UI インタラクションにより、計画・エージェント実行・プロジェクト作業を始めやすく、進めやすくします。
   desktop:
     title: Hagicode Desktop - ダウンロード
     description: ローカル実行型 AI コーディングアシスタント Hagicode Desktop をダウンロード。Windows、macOS、Linux に対応し、プライバシー保護と高速応答を提供します。

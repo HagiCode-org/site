@@ -23,14 +23,14 @@ describe('site i18n translation lookup', () => {
     );
   });
 
-  it('uses localized Hero Dungeon subtitles outside the base locale', () => {
-    const englishSubtitle = 'Hero Dungeon turns everyday agent work into an adventure you can follow';
+  it('uses localized interaction-focused subtitles outside the base locale', () => {
+    const englishSubtitle = 'A clear, engaging workflow shaped by rich and convenient UI interactions';
 
     expect(getTranslation('zh-CN', { resources: serverResources }).t('features.interesting.subtitle')).toBe(
-      'Hero Dungeon 把日常的 Agent 工作变成看得见进度的冒险',
+      '丰富、便捷的界面交互，让开发流程清晰易跟进',
     );
     expect(getTranslation('zh-Hant', { resources: serverResources }).t('features.interesting.subtitle')).toBe(
-      'Hero Dungeon 把日常的 Agent 工作變成看得見進度的冒險',
+      '豐富、便利的介面互動，讓開發流程清晰易跟進',
     );
     expect(getTranslation('ja-JP', { resources: serverResources }).t('features.interesting.subtitle')).not.toBe(englishSubtitle);
     expect(getTranslation('ko-KR', { resources: serverResources }).t('features.interesting.subtitle')).not.toBe(englishSubtitle);
