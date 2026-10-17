@@ -34,8 +34,8 @@ socialProof:
     privacyDesc: Local deployment, no code upload
     openspec: OpenSpec Orchestration
     openspecDesc: Standardized proposal, execution, and archive flow
-    heroDungeons: Hero Dungeon Workflow
-    heroDungeonsDesc: Dungeons, captains, and battle reports close the loop
+    heroScenarios: Szenario-Workflow
+    heroScenariosDesc: Szenarien, Captains und Kampfberichte schließen den Kreis
   badges:
     claude: Claude AI
     claudeDesc: Powered by
@@ -84,7 +84,7 @@ showcase:
       description: Workflow-Phase, Ausfuehrungsergebnis und Sitzungskontext bleiben auf einem Bildschirm sichtbar, damit Teams vor dem Weitergehen genau sehen, wo eine Aenderung steht.
       alt: HagiCode-Screenshot zur Vorschlagsausfuehrung mit Workflow-Phasen, Ausfuehrungsergebnis und Sitzungsseitenleiste
     sessionBoard:
-      title: Sitzungsboard und Dungeon-Planung
+      title: Sitzungsboard und Szenario-Planung
       description: Ausstehende, laufende und archivierte Sitzungen bleiben neben einem Fantasy-Aufgabenpanel sichtbar, damit parallele Agentenarbeit auf einen Blick erfassbar ist.
       alt: HagiCode-Screenshot des Sitzungsboards mit ausstehenden, laufenden und archivierten Spalten neben einem Fantasy-Aufgabenpanel
     tokenAnalytics:

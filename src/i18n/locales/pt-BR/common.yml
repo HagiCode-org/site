@@ -34,8 +34,8 @@ socialProof:
     privacyDesc: Local deployment, no code upload
     openspec: OpenSpec Orchestration
     openspecDesc: Standardized proposal, execution, and archive flow
-    heroDungeons: Hero Dungeon Workflow
-    heroDungeonsDesc: Dungeons, captains, and battle reports close the loop
+    heroScenarios: Scenario Workflow
+    heroScenariosDesc: Scenarios, captains, and battle reports close the loop
   badges:
     claude: Claude AI
     claudeDesc: Powered by
@@ -84,7 +84,7 @@ showcase:
       description: Mantem a etapa do fluxo, o resultado da execucao e o contexto da sessao em uma so tela para que a equipe veja exatamente em que ponto uma mudanca esta antes de seguir adiante.
       alt: Captura da execucao de propostas no HagiCode mostrando etapas do fluxo, resultado da execucao e barra lateral da sessao
     sessionBoard:
-      title: Quadro de sessoes e planejamento de dungeon
+      title: Quadro de sessoes e planejamento de cenarios
       description: Sessoes pendentes, em andamento e arquivadas continuam visiveis ao lado de um painel de tarefas com tema fantasy, facilitando a leitura do trabalho paralelo dos agentes de relance.
       alt: Captura do quadro de sessoes do HagiCode mostrando colunas pendentes, em andamento e arquivadas ao lado de um painel de tarefas fantasy
     tokenAnalytics:

@@ -34,8 +34,8 @@ socialProof:
     privacyDesc: 本地化部署，代码不上传
     openspec: OpenSpec 编排
     openspecDesc: 标准化提案、执行与归档流程
-    heroDungeons: 英雄副本工作流
-    heroDungeonsDesc: 副本、队长编组与战报反馈形成闭环
+    heroScenarios: 场景工作流
+    heroScenariosDesc: 场景、队长编组与战报反馈形成闭环
   badges:
     claude: Claude AI
     claudeDesc: Powered by
@@ -84,9 +84,9 @@ showcase:
       description: 把 OpenSpec 提案从工作流阶段、执行结果到会话侧栏放在同一屏里，方便快速理解当前变更已经推进到哪里。
       alt: HagiCode 提案执行完成界面截图，展示工作流阶段、执行结果与会话侧栏
     sessionBoard:
-      title: 会话看板与副本编排
-      description: 待处理、进行中与已归档会话并排呈现，配合右侧副本任务卡，让多 Agent 推进状态一眼可见。
-      alt: HagiCode 会话看板界面截图，展示待处理、进行中、已归档列与副本任务卡
+      title: 会话看板与场景编排
+      description: 待处理、进行中与已归档会话并排呈现，配合右侧场景任务卡，让多 Agent 推进状态一眼可见。
+      alt: HagiCode 会话看板界面截图，展示待处理、进行中、已归档列与场景任务卡
     tokenAnalytics:
       title: 实时 Token 分析
       description: 在同一块面板里追踪吞吐速率、调用历史和累计用量，便于控制并行执行时的成本与节奏。

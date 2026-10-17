@@ -34,8 +34,8 @@ socialProof:
     privacyDesc: Local deployment, no code upload
     openspec: OpenSpec Orchestration
     openspecDesc: Standardized proposal, execution, and archive flow
-    heroDungeons: Hero Dungeon Workflow
-    heroDungeonsDesc: Dungeons, captains, and battle reports close the loop
+    heroScenarios: Scenario Workflow
+    heroScenariosDesc: Scenarios, captains, and battle reports close the loop
   badges:
     claude: Claude AI
     claudeDesc: Powered by
@@ -84,9 +84,9 @@ showcase:
       description: 把 OpenSpec 提案從工作流程階段、執行結果到工作階段側欄放在同一個畫面中，方便快速理解目前變更已推進到哪一步。
       alt: HagiCode 提案執行完成畫面截圖，展示工作流程階段、執行結果與工作階段側欄
     sessionBoard:
-      title: 工作階段看板與副本編排
-      description: 待處理、進行中與已封存的工作階段並排呈現，搭配右側副本任務卡，讓多 Agent 推進狀態一眼可見。
-      alt: HagiCode 工作階段看板畫面截圖，展示待處理、進行中、已封存欄位與副本任務卡
+      title: 工作階段看板與場景編排
+      description: 待處理、進行中與已封存的工作階段並排呈現，搭配右側場景任務卡，讓多 Agent 推進狀態一眼可見。
+      alt: HagiCode 工作階段看板畫面截圖，展示待處理、進行中、已封存欄位與場景任務卡
     tokenAnalytics:
       title: 即時 Token 分析
       description: 在同一塊面板中追蹤吞吐速率、呼叫歷史與累計用量，方便在平行執行時掌握成本與節奏。

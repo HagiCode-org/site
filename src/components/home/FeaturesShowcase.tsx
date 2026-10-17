@@ -3,7 +3,7 @@
  *
  * - Smart: proposal-driven changes. The artifact tree shows what each OpenSpec stage writes to disk.
  * - Efficient: many agents and instances in parallel lanes instead of one queue.
- * - Interesting: Hero dungeons, captains, XP and the battle report.
+ * - Interesting: Scenarios, captains, XP and the battle report.
  *
  * Nothing here claims a measured number. Values that illustrate a mechanic are labelled as examples in the copy.
  */

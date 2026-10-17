@@ -39,7 +39,7 @@ export default function SocialProofSection({ locale: propLocale }: { locale?: st
     { icon: '⚡', title: t('socialProof.highlights.multiAgent'), description: t('socialProof.highlights.multiAgentDesc') },
     { icon: '🔒', title: t('socialProof.highlights.privacy'), description: t('socialProof.highlights.privacyDesc') },
     { icon: '📋', title: t('socialProof.highlights.openspec'), description: t('socialProof.highlights.openspecDesc') },
-    { icon: '🎮', title: t('socialProof.highlights.heroDungeons'), description: t('socialProof.highlights.heroDungeonsDesc') },
+    { icon: '🎮', title: t('socialProof.highlights.heroScenarios'), description: t('socialProof.highlights.heroScenariosDesc') },
   ];
 
   // 技术标识徽章

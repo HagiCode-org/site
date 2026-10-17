@@ -34,8 +34,8 @@ socialProof:
     privacyDesc: Local deployment, no code upload
     openspec: OpenSpec Orchestration
     openspecDesc: Standardized proposal, execution, and archive flow
-    heroDungeons: Hero Dungeon Workflow
-    heroDungeonsDesc: Dungeons, captains, and battle reports close the loop
+    heroScenarios: Scenario Workflow
+    heroScenariosDesc: Scenarios, captains, and battle reports close the loop
   badges:
     claude: Claude AI
     claudeDesc: Powered by

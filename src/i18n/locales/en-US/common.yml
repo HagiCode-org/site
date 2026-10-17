@@ -34,8 +34,8 @@ socialProof:
     privacyDesc: Local deployment, no code upload
     openspec: OpenSpec Orchestration
     openspecDesc: Standardized proposal, execution, and archive flow
-    heroDungeons: Hero Dungeon Workflow
-    heroDungeonsDesc: Dungeons, captains, and battle reports close the loop
+    heroScenarios: Scenario Workflow
+    heroScenariosDesc: Scenarios, captains, and battle reports close the loop
   badges:
     claude: Claude AI
     claudeDesc: Powered by
@@ -84,7 +84,7 @@ showcase:
       description: Keep the workflow stage, execution result, and session context in one screen so teams can see exactly where a change stands before moving on.
       alt: HagiCode proposal execution screenshot showing workflow stages, execution result, and session sidebar
     sessionBoard:
-      title: Session board and dungeon planning
+      title: Session board and scenario planning
       description: Pending, in-progress, and archived sessions stay visible beside a fantasy task panel so parallel agent work is easy to scan at a glance.
       alt: HagiCode session board screenshot showing pending, in-progress, and archived columns beside a fantasy task panel
     tokenAnalytics:

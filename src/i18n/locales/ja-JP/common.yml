@@ -34,8 +34,8 @@ socialProof:
     privacyDesc: ローカル配置でコードをアップロードしない
     openspec: OpenSpec オーケストレーション
     openspecDesc: 提案・実行・アーカイブの標準化された流れ
-    heroDungeons: Hero Dungeon ワークフロー
-    heroDungeonsDesc: ダンジョン、隊長、戦闘レポートで流れを閉じる
+    heroScenarios: シナリオワークフロー
+    heroScenariosDesc: シナリオ、隊長、戦闘レポートで流れを閉じる
   badges:
     claude: Claude AI
     claudeDesc: 提供元
