@@ -50,16 +50,14 @@ features:
   showcase:
     title: "為真實開發工作而生"
     subtitle: "提案讓每次改動可審閱，多 Agent 並行讓工作持續推進"
-    demoLabel: "流程示意 · 非即時任務"
-    previewLabel: "真實產品介面"
   smart:
     badge: 智慧
     title: 智慧
-    subtitle: "先對齊意圖，再讓 AI 動手"
+    subtitle: OpenSpec 工作流程，提升 AI 程式設計效率
     efficiency: 效率提升
     traditional: 傳統方式
     hagicode: Hagicode
-    description: "把需求、設計與任務寫進 OpenSpec。每次改動有據可循，完成後沉澱為可重用的經驗。"
+    description: 從想法到歸檔共 9 個階段的完整提案流程，全程都有 AI 協助，讓你的程式設計效率提升 3 倍。
     workflow:
       review:
         label: 評審
@@ -89,12 +87,12 @@ features:
   convenient:
     badge: 高效
     title: 高效
-    subtitle: "多個任務，同步向前"
+    subtitle: 多 Agent、多實例並行，真正把額度跑滿
     traditional: 傳統單 Agent / 單實例
     multiThread: 多 Agent 並行矩陣
     boost: 吞吐提升
     boostValue: 並行 10x+
-    description: "讓不同 Agent 同時處理提案、實作和審查。多個實例並行推進，減少循序等待。"
+    description: Claude Code、Codex、GitHub Copilot、OpenCode、Hermes 等目前活躍支援的 Agent CLI，可以同時處理多個實例與任務，讓提案、修復與評審並行推進，不再卡在串行等待。
     agentMatrix:
       title: 並行執行矩陣
       badge: 多個 Agent / 多個實例
@@ -143,15 +141,15 @@ features:
     title: 有趣
     subtitle: "豐富、便利的介面互動，讓開發流程清晰易跟進"
     features:
-      planning:
-        label: "規劃"
-        desc: "在提案檢視中查看任務清單與執行結果。"
-      execution:
-        label: "執行"
-        desc: "在工作階段看板中追蹤多個 Agent 的工作。"
-      workspace:
-        label: "專案"
-        desc: "在工作區中查看和管理不同專案。"
+      dungeons:
+        label: 英雄副本
+        desc: 把生成、執行與 Prompt 工作台編成副本流程
+      captains:
+        label: 隊長編組
+        desc: 為不同副本指定最合適的 Hero 隊長
+      battle:
+        label: 戰報回饋
+        desc: 用 XP、等級與執行資料回看推進結果
     description: "豐富便捷的介面互動，讓規劃、Agent 執行與專案工作更容易掌握。"
     dungeonCards:
       proposal:

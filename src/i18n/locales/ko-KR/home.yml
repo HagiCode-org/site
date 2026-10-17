@@ -50,16 +50,14 @@ features:
   showcase:
     title: "실제 개발 작업을 위해"
     subtitle: "제안이 모든 변경을 검토 가능하게 하고, 병렬 에이전트가 작업을 계속 진행시킵니다"
-    demoLabel: "흐름 예시 · 실시간 작업 아님"
-    previewLabel: "실제 제품 화면"
   smart:
     badge: 스마트
     title: 스마트
-    subtitle: "의도를 맞춘 뒤, AI가 구현합니다."
+    subtitle: OpenSpec 워크플로로 AI 코딩 효율 향상
     efficiency: 효율 향상
     traditional: 기존 방식
     hagicode: Hagicode
-    description: "요구사항, 설계, 작업을 OpenSpec에 담으세요. 변경의 근거를 명확히 하고, 완료한 작업을 재사용할 수 있는 지식으로 남깁니다."
+    description: 아이디어에서 아카이브까지 이어지는 9단계 제안 워크플로를 AI가 전 과정에서 보조합니다. 코딩 효율을 3배까지 끌어올립니다.
     workflow:
       review:
         label: 검토
@@ -89,12 +87,12 @@ features:
   convenient:
     badge: 고효율
     title: 고효율
-    subtitle: "여러 작업을 동시에 앞으로."
+    subtitle: 멀티 Agent, 멀티 인스턴스 실행으로 사용 한도를 계속 움직이게 합니다
     traditional: 기존 단일 Agent / 단일 인스턴스
     multiThread: 멀티 Agent 병렬 매트릭스
     boost: 처리량 향상
     boostValue: 10배+ 병렬
-    description: "서로 다른 Agent가 제안, 구현, 검토를 동시에 처리합니다. 여러 인스턴스를 병렬로 실행해 순차 대기를 줄이세요."
+    description: Claude Code, Codex, GitHub Copilot, OpenCode, Hermes 같은 현재 지원 Agent CLI는 여러 인스턴스를 동시에 돌릴 수 있어 제안, 수정, 리뷰가 직렬 대기 대신 병렬로 진행됩니다.
     agentMatrix:
       title: 병렬 실행 매트릭스
       badge: 여러 Agent / 여러 인스턴스
@@ -143,15 +141,15 @@ features:
     title: 흥미로운
     subtitle: "풍부하고 편리한 UI 상호작용으로 개발 흐름을 명확하고 흥미롭게 만듭니다."
     features:
-      planning:
-        label: "계획"
-        desc: "제안 화면에서 작업 목록과 실행 결과를 확인하세요."
-      execution:
-        label: "실행"
-        desc: "세션 보드에서 여러 Agent의 작업을 살펴보세요."
-      workspace:
-        label: "프로젝트"
-        desc: "작업 공간에서 여러 프로젝트를 확인하고 관리하세요."
+      dungeons:
+        label: Hero Dungeons
+        desc: 생성, 실행, 프롬프트 작업대를 하나의 던전 진행처럼 바꿉니다
+      captains:
+        label: 캡틴 로스터
+        desc: 각 던전에 가장 어울리는 hero 캡틴을 배치합니다
+      battle:
+        label: 전투 리포트
+        desc: 각 푸시 이후 XP, 레벨, 실행 결과를 확인합니다
     description: "풍부하고 편리한 UI 상호작용으로 계획, 에이전트 실행, 프로젝트 작업을 쉽게 따라갈 수 있습니다."
     dungeonCards:
       proposal:

@@ -50,16 +50,14 @@ features:
   showcase:
     title: "Built for real development work"
     subtitle: "Proposals keep every change reviewable; parallel agents keep the work moving"
-    demoLabel: "Illustration · not live tasks"
-    previewLabel: "Actual product interface"
   smart:
     badge: SMART
     title: Smart
-    subtitle: "Align on the intent. Then let AI build."
+    subtitle: OpenSpec workflow, boost AI coding efficiency
     efficiency: Efficiency Boost
     traditional: Traditional
     hagicode: Hagicode
-    description: "Put requirements, design, and tasks into OpenSpec. Keep each change grounded and turn completed work into reusable knowledge."
+    description: "OpenSpec turns change delivery into a reusable path: review context, scaffold the proposal, draft spec deltas, validate strictly, apply ordered tasks, then archive the change."
     workflow:
       review:
         label: Review
@@ -89,12 +87,12 @@ features:
   convenient:
     badge: EFFICIENT
     title: Efficient
-    subtitle: "More tasks moving forward, together."
+    subtitle: Multi-agent, multi-instance execution that keeps your quota moving
     traditional: Traditional single-agent / single-instance
     multiThread: Multi-agent parallel matrix
     boost: Throughput Boost
     boostValue: 10x+ parallel
-    description: "Let different agents handle proposals, implementation, and review at the same time. Run multiple instances with less serial waiting."
+    description: Current supported Agent CLIs such as Claude Code, Codex, GitHub Copilot, OpenCode, and Hermes can work across multiple instances at the same time, so proposals, fixes, and reviews move in parallel instead of waiting in a serial queue.
     agentMatrix:
       title: Parallel execution matrix
       badge: Multiple agents / multiple instances
@@ -143,15 +141,15 @@ features:
     title: Interesting
     subtitle: "A clear, engaging workflow shaped by rich and convenient UI interactions"
     features:
-      planning:
-        label: "Plan"
-        desc: "Review task lists and execution results in the proposal view."
-      execution:
-        label: "Execute"
-        desc: "Follow multiple agents at work on the session board."
-      workspace:
-        label: "Projects"
-        desc: "View and manage different projects in the workspace."
+      dungeons:
+        label: Hero Dungeons
+        desc: Turn generation, execution, and prompt workbenches into dungeon runs
+      captains:
+        label: Captain Roster
+        desc: Assign the right hero captain to each dungeon
+      battle:
+        label: Battle Reports
+        desc: Review XP, levels, and execution results after each push
     description: "Rich, convenient UI interactions make planning, agent execution, and project work easier to navigate."
     dungeonCards:
       proposal:

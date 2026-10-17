@@ -50,16 +50,14 @@ features:
   showcase:
     title: "Conçu pour le vrai travail de développement"
     subtitle: "Les propositions gardent chaque changement vérifiable, les agents en parallèle font avancer le travail"
-    demoLabel: "Exemple de flux · tâches non réelles"
-    previewLabel: "Interface réelle du produit"
   smart:
     badge: INTELLIGENT
     title: Intelligent
-    subtitle: "Clarifiez l’intention. Puis l’IA construit."
+    subtitle: Workflow OpenSpec, pour booster l'efficacité du coding IA
     efficiency: Gain d'efficacité
     traditional: Traditionnel
     hagicode: Hagicode
-    description: "Consignez les besoins, la conception et les tâches dans OpenSpec. Chaque modification garde ses repères, et le travail terminé devient un savoir réutilisable."
+    description: Un workflow complet en 9 étapes, de l'idée à l'archivage, accompagné par l'IA à chaque phase. Votre efficacité de coding peut être multipliée par trois.
     workflow:
       review:
         label: Revue
@@ -89,12 +87,12 @@ features:
   convenient:
     badge: EFFICACE
     title: Efficace
-    subtitle: "Plusieurs tâches avancent ensemble."
+    subtitle: Une exécution multi-agent et multi-instance qui garde votre quota en mouvement
     traditional: Approche traditionnelle mono-agent / mono-instance
     multiThread: Matrice parallèle multi-agent
     boost: Gain de débit
     boostValue: 10x+ en parallèle
-    description: "Confiez propositions, implémentation et revues à différents agents en même temps. Plusieurs instances en parallèle réduisent l’attente entre les tâches."
+    description: Les Agent CLI actuellement pris en charge, comme Claude Code, Codex, GitHub Copilot, OpenCode et Hermes, peuvent travailler sur plusieurs instances en même temps, de sorte que propositions, correctifs et revues avancent en parallèle au lieu d'attendre dans une file sérielle.
     agentMatrix:
       title: Matrice d'exécution parallèle
       badge: Plusieurs agents / plusieurs instances
@@ -143,15 +141,15 @@ features:
     title: Intéressant
     subtitle: "Un workflow clair et engageant grâce à des interactions d’interface riches et pratiques."
     features:
-      planning:
-        label: "Planifier"
-        desc: "Consultez les tâches et les résultats dans la vue des propositions."
-      execution:
-        label: "Exécuter"
-        desc: "Suivez le travail de plusieurs agents sur le tableau des sessions."
-      workspace:
-        label: "Projets"
-        desc: "Consultez et gérez vos projets dans l’espace de travail."
+      dungeons:
+        label: Hero Dungeons
+        desc: Transforme les ateliers de génération, d'exécution et de prompts en véritables runs de donjon
+      captains:
+        label: Roster des capitaines
+        desc: Assignez le bon capitaine hero à chaque donjon
+      battle:
+        label: Rapports de bataille
+        desc: Consultez XP, niveaux et résultats d'exécution après chaque push
     description: "Des interactions d’interface riches et pratiques facilitent la planification, l’exécution des agents et le travail sur les projets."
     dungeonCards:
       proposal:

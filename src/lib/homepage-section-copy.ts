@@ -74,13 +74,16 @@ export interface HomepageFeaturesCopy {
   showcase: {
     title: string;
     subtitle: string;
-    demoLabel: string;
-    previewLabel: string;
   };
   smart: {
+    badge: string;
     title: string;
     subtitle: string;
+    efficiency: string;
+    traditional: string;
+    hagicode: string;
     description: string;
+    paused: string;
     workflowStages: Array<{
       key: string;
       label: string;
@@ -88,13 +91,20 @@ export interface HomepageFeaturesCopy {
     }>;
   };
   convenient: {
+    badge: string;
     title: string;
     subtitle: string;
+    traditional: string;
+    multiThread: string;
+    boost: string;
+    boostValue: string;
     description: string;
     agentMatrix: {
       title: string;
       badge: string;
+      status: string;
       supportedProvidersTitle: string;
+      supportedProvidersNote: string;
       supportedProviders: Array<{
         key: string;
         name: string;
@@ -108,6 +118,7 @@ export interface HomepageFeaturesCopy {
     };
   };
   interesting: {
+    badge: string;
     title: string;
     subtitle: string;
     description: string;
@@ -116,6 +127,30 @@ export interface HomepageFeaturesCopy {
       label: string;
       desc: string;
     }>;
+    battleReport: {
+      title: string;
+      badge: string;
+      note: string;
+      metrics: Array<{
+        key: string;
+        value: string;
+        label: string;
+      }>;
+    };
+    dungeonCards: Array<{
+      key: string;
+      title: string;
+      desc: string;
+      status: string;
+    }>;
+    roster: {
+      title: string;
+      heroes: Array<{
+        key: string;
+        name: string;
+        role: string;
+      }>;
+    };
   };
 }
 
@@ -150,18 +185,22 @@ export function getHomepageShowcaseCopy(locale: LocaleInput): HomepageShowcaseCo
 
 export function getHomepageFeaturesCopy(locale: LocaleInput): HomepageFeaturesCopy {
   const resolvedLocale = resolveSiteLocale(locale);
+  const isChineseLocale = resolvedLocale.toLowerCase().startsWith('zh');
 
   return {
     showcase: {
       title: getHomeString(resolvedLocale, 'features.showcase.title'),
       subtitle: getHomeString(resolvedLocale, 'features.showcase.subtitle'),
-      demoLabel: getHomeString(resolvedLocale, 'features.showcase.demoLabel'),
-      previewLabel: getHomeString(resolvedLocale, 'features.showcase.previewLabel'),
     },
     smart: {
+      badge: getHomeString(resolvedLocale, 'features.smart.badge'),
       title: getHomeString(resolvedLocale, 'features.smart.title'),
       subtitle: getHomeString(resolvedLocale, 'features.smart.subtitle'),
+      efficiency: getHomeString(resolvedLocale, 'features.smart.efficiency'),
+      traditional: getHomeString(resolvedLocale, 'features.smart.traditional'),
+      hagicode: getHomeString(resolvedLocale, 'features.smart.hagicode'),
       description: getHomeString(resolvedLocale, 'features.smart.description'),
+      paused: getHomeString(resolvedLocale, 'features.smart.paused'),
       workflowStages: [
         'review',
         'scaffold',
@@ -178,13 +217,22 @@ export function getHomepageFeaturesCopy(locale: LocaleInput): HomepageFeaturesCo
       })),
     },
     convenient: {
+      badge: getHomeString(resolvedLocale, 'features.convenient.badge'),
       title: getHomeString(resolvedLocale, 'features.convenient.title'),
       subtitle: getHomeString(resolvedLocale, 'features.convenient.subtitle'),
+      traditional: getHomeString(resolvedLocale, 'features.convenient.traditional'),
+      multiThread: getHomeString(resolvedLocale, 'features.convenient.multiThread'),
+      boost: getHomeString(resolvedLocale, 'features.convenient.boost'),
+      boostValue: getHomeString(resolvedLocale, 'features.convenient.boostValue'),
       description: getHomeString(resolvedLocale, 'features.convenient.description'),
       agentMatrix: {
         title: getHomeString(resolvedLocale, 'features.convenient.agentMatrix.title'),
         badge: getHomeString(resolvedLocale, 'features.convenient.agentMatrix.badge'),
+        status: getHomeString(resolvedLocale, 'features.convenient.agentMatrix.status'),
         supportedProvidersTitle: getHomeString(resolvedLocale, 'features.convenient.agentMatrix.supportedNames.title'),
+        supportedProvidersNote: isChineseLocale
+          ? 'OpenCode 可继承共享的 OmniRoute 模型目录，同时保留分支级原始模型覆写。'
+          : 'OpenCode can inherit the shared OmniRoute catalog while keeping branch-level raw model overrides editable.',
         supportedProviders: [
           'ClaudeCodeCli',
           'CodexCli',
@@ -238,26 +286,89 @@ export function getHomepageFeaturesCopy(locale: LocaleInput): HomepageFeaturesCo
       },
     },
     interesting: {
+      badge: getHomeString(resolvedLocale, 'features.interesting.badge'),
       title: getHomeString(resolvedLocale, 'features.interesting.title'),
       subtitle: getHomeString(resolvedLocale, 'features.interesting.subtitle'),
       description: getHomeString(resolvedLocale, 'features.interesting.description'),
       features: [
         {
-          key: 'planning',
-          label: getHomeString(resolvedLocale, 'features.interesting.features.planning.label'),
-          desc: getHomeString(resolvedLocale, 'features.interesting.features.planning.desc'),
+          key: 'dungeons',
+          label: getHomeString(resolvedLocale, 'features.interesting.features.dungeons.label'),
+          desc: getHomeString(resolvedLocale, 'features.interesting.features.dungeons.desc'),
         },
         {
-          key: 'execution',
-          label: getHomeString(resolvedLocale, 'features.interesting.features.execution.label'),
-          desc: getHomeString(resolvedLocale, 'features.interesting.features.execution.desc'),
+          key: 'captains',
+          label: getHomeString(resolvedLocale, 'features.interesting.features.captains.label'),
+          desc: getHomeString(resolvedLocale, 'features.interesting.features.captains.desc'),
         },
         {
-          key: 'workspace',
-          label: getHomeString(resolvedLocale, 'features.interesting.features.workspace.label'),
-          desc: getHomeString(resolvedLocale, 'features.interesting.features.workspace.desc'),
+          key: 'battle',
+          label: getHomeString(resolvedLocale, 'features.interesting.features.battle.label'),
+          desc: getHomeString(resolvedLocale, 'features.interesting.features.battle.desc'),
         },
       ],
+      battleReport: {
+        title: getHomeString(resolvedLocale, 'features.interesting.battleReport.title'),
+        badge: getHomeString(resolvedLocale, 'features.interesting.battleReport.badge'),
+        note: getHomeString(resolvedLocale, 'features.interesting.battleReport.note'),
+        metrics: [
+          {
+            key: 'dungeons',
+            value: getHomeString(resolvedLocale, 'features.interesting.battleReport.metrics.dungeons.value'),
+            label: getHomeString(resolvedLocale, 'features.interesting.battleReport.metrics.dungeons.label'),
+          },
+          {
+            key: 'level',
+            value: getHomeString(resolvedLocale, 'features.interesting.battleReport.metrics.level.value'),
+            label: getHomeString(resolvedLocale, 'features.interesting.battleReport.metrics.level.label'),
+          },
+          {
+            key: 'xp',
+            value: getHomeString(resolvedLocale, 'features.interesting.battleReport.metrics.xp.value'),
+            label: getHomeString(resolvedLocale, 'features.interesting.battleReport.metrics.xp.label'),
+          },
+        ],
+      },
+      dungeonCards: [
+        {
+          key: 'proposal',
+          title: getHomeString(resolvedLocale, 'features.interesting.dungeonCards.proposal.title'),
+          desc: getHomeString(resolvedLocale, 'features.interesting.dungeonCards.proposal.desc'),
+          status: getHomeString(resolvedLocale, 'features.interesting.dungeonCards.proposal.status'),
+        },
+        {
+          key: 'autotask',
+          title: getHomeString(resolvedLocale, 'features.interesting.dungeonCards.autotask.title'),
+          desc: getHomeString(resolvedLocale, 'features.interesting.dungeonCards.autotask.desc'),
+          status: getHomeString(resolvedLocale, 'features.interesting.dungeonCards.autotask.status'),
+        },
+        {
+          key: 'prompt',
+          title: getHomeString(resolvedLocale, 'features.interesting.dungeonCards.prompt.title'),
+          desc: getHomeString(resolvedLocale, 'features.interesting.dungeonCards.prompt.desc'),
+          status: getHomeString(resolvedLocale, 'features.interesting.dungeonCards.prompt.status'),
+        },
+      ],
+      roster: {
+        title: getHomeString(resolvedLocale, 'features.interesting.roster.title'),
+        heroes: [
+          {
+            key: 'strategist',
+            name: getHomeString(resolvedLocale, 'features.interesting.roster.heroes.strategist.name'),
+            role: getHomeString(resolvedLocale, 'features.interesting.roster.heroes.strategist.role'),
+          },
+          {
+            key: 'runner',
+            name: getHomeString(resolvedLocale, 'features.interesting.roster.heroes.runner.name'),
+            role: getHomeString(resolvedLocale, 'features.interesting.roster.heroes.runner.role'),
+          },
+          {
+            key: 'artist',
+            name: getHomeString(resolvedLocale, 'features.interesting.roster.heroes.artist.name'),
+            role: getHomeString(resolvedLocale, 'features.interesting.roster.heroes.artist.role'),
+          },
+        ],
+      },
     },
   };
 }

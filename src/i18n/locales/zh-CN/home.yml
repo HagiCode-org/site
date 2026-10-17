@@ -50,16 +50,14 @@ features:
   showcase:
     title: "为真实开发工作而生"
     subtitle: "提案让每次改动可审阅，多 Agent 并行让工作持续推进"
-    demoLabel: "流程示意 · 非实时任务"
-    previewLabel: "真实产品界面"
   smart:
     badge: SMART
     title: 智能
-    subtitle: "先对齐意图，再让 AI 动手"
+    subtitle: OpenSpec 工作流，AI 编码效率提升
     efficiency: 效率提升
     traditional: 传统
     hagicode: Hagicode
-    description: "把需求、设计与任务写进 OpenSpec。每次改动有据可循，完成后沉淀为可复用的经验。"
+    description: 从审阅上下文、脚手架提案、编写 Spec Delta，到严格校验、按任务执行与最终归档，OpenSpec 把需求推进路径固定成可复用流程。
     workflow:
       review:
         label: 审阅
@@ -89,12 +87,12 @@ features:
   convenient:
     badge: EFFICIENT
     title: 高效
-    subtitle: "多个任务，同步向前"
+    subtitle: 多 Agent 多实例并行，真正把额度跑满
     traditional: 传统单 Agent / 单实例
     multiThread: 多 Agent 并行矩阵
     boost: 吞吐提升
     boostValue: 并行 10x+
-    description: "让不同 Agent 同时处理提案、实现和评审。多个实例并行推进，减少串行等待。"
+    description: Claude Code、Codex、GitHub Copilot、OpenCode、Hermes 等当前活跃支持的 Agent CLI 可以同时处理多个实例与任务，让提案、修复、评审并行推进，把额度利用率从串行等待转成持续输出。
     agentMatrix:
       title: 并行执行矩阵
       badge: 多个 Agent / 多个实例
@@ -143,15 +141,15 @@ features:
     title: 有趣
     subtitle: "丰富、便捷的界面交互，让开发流程清晰易跟进"
     features:
-      planning:
-        label: "规划"
-        desc: "在提案视图中查看任务清单与执行结果。"
-      execution:
-        label: "执行"
-        desc: "在会话看板中跟进多个 Agent 的工作。"
-      workspace:
-        label: "项目"
-        desc: "在工作区中查看和管理不同项目。"
+      dungeons:
+        label: 英雄副本
+        desc: 把生成、执行和 Prompt 工作台编成副本
+      captains:
+        label: 队长编组
+        desc: 为不同副本指定最合适的 Hero 队长
+      battle:
+        label: 战报反馈
+        desc: 用 XP、等级与执行数据回看推进结果
     description: "丰富便捷的界面交互，让规划、Agent 执行和项目工作更容易跟进。"
     dungeonCards:
       proposal:

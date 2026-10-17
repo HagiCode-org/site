@@ -50,16 +50,14 @@ features:
   showcase:
     title: "Gemacht für echte Entwicklungsarbeit"
     subtitle: "Vorschläge halten jede Änderung prüfbar, parallele Agenten halten die Arbeit in Bewegung"
-    demoLabel: "Ablaufbeispiel · keine Live-Aufgaben"
-    previewLabel: "Echte Produktoberfläche"
   smart:
     badge: SMART
     title: Smart
-    subtitle: "Erst die Absicht klären. Dann baut die KI."
+    subtitle: OpenSpec-Workflow für mehr KI-Coding-Effizienz
     efficiency: Effizienzgewinn
     traditional: Traditionell
     hagicode: Hagicode
-    description: "Anforderungen, Entwurf und Aufgaben gehören in OpenSpec. So bleibt jede Änderung nachvollziehbar und abgeschlossene Arbeit wird zu wiederverwendbarem Wissen."
+    description: Ein vollständiger 9-stufiger Proposal-Workflow von der Idee bis zum Archiv, durchgängig mit KI-Unterstützung. So wird Ihre Coding-Effizienz um das Dreifache gesteigert.
     workflow:
       review:
         label: Review
@@ -89,12 +87,12 @@ features:
   convenient:
     badge: EFFIZIENT
     title: Effizient
-    subtitle: "Mehr Aufgaben, die gemeinsam vorankommen."
+    subtitle: Multi-Agent- und Multi-Instanz-Ausführung, die Ihr Kontingent in Bewegung hält
     traditional: Traditioneller Einzel-Agent / Einzel-Instanz
     multiThread: Multi-Agent-Parallelmatrix
     boost: Durchsatzgewinn
     boostValue: 10x+ parallel
-    description: "Verschiedene Agents bearbeiten Vorschläge, Implementierung und Reviews gleichzeitig. Mehrere parallele Instanzen verkürzen das Warten aufeinander."
+    description: Aktuell unterstützte Agent CLI wie Claude Code, Codex, GitHub Copilot, OpenCode und Hermes können mehrere Instanzen gleichzeitig bedienen, sodass Vorschläge, Fixes und Reviews parallel laufen statt in einer seriellen Warteschlange zu warten.
     agentMatrix:
       title: Parallele Ausführungsmatrix
       badge: Mehrere Agenten / mehrere Instanzen
@@ -143,15 +141,15 @@ features:
     title: Interessant
     subtitle: "Ein klarer, motivierender Ablauf durch vielseitige, praktische UI-Interaktionen."
     features:
-      planning:
-        label: "Planung"
-        desc: "Aufgabenlisten und Ergebnisse in der Vorschlagsansicht prüfen."
-      execution:
-        label: "Ausführung"
-        desc: "Die Arbeit mehrerer Agents auf dem Sitzungsboard verfolgen."
-      workspace:
-        label: "Projekte"
-        desc: "Verschiedene Projekte im Arbeitsbereich ansehen und verwalten."
+      dungeons:
+        label: Hero Dungeons
+        desc: Macht aus Generierung, Ausführung und Prompt-Werkbänken echte Dungeon-Läufe
+      captains:
+        label: Captain-Roster
+        desc: Weist jedem Dungeon den passenden Hero-Captain zu
+      battle:
+        label: Kampfberichte
+        desc: Prüfen Sie XP, Level und Ausführungsergebnisse nach jedem Push
     description: "Reichhaltige, praktische UI-Interaktionen machen Planung, Agentenausführung und Projektarbeit leichter nachvollziehbar."
     dungeonCards:
       proposal:
