@@ -24,7 +24,10 @@ npm run dev
 npm run build
 npm run test
 npm run typecheck
+npm run i18n:check
 ```
+
+Requires Node.js 24+ (`engines` in `package.json`). `npm run build` also runs `sync:about-snapshot`, `seo:audit` and `verify:ga` after the Astro build.
 
 ## Key Paths
 
@@ -32,6 +35,8 @@ npm run typecheck
 - `src/components/`: Astro and React components
 - `src/styles/`: shared styles
 - `src/config/`: site configuration
+- `src/i18n/locales/`: translation sources per locale (`en-US` is the base; checked with `hagi18n` via `hagi18n.yaml`)
+- `src/i18n/generated-locales/`: Git-ignored output of `npm run prepare:i18n`, which `dev`, `build`, `test` and `typecheck` run first
 - `scripts/`: content sync, image generation, and SEO helpers
 - `PRODUCT.md`: product and brand context
 - `DESIGN.md`: visual system and design rules
@@ -43,6 +48,7 @@ npm run typecheck
 - Treat this repo as Astro-first; use React only where interactivity justifies it.
 - Keep marketing pages intentional and distinctive rather than generic.
 - Preserve SEO metadata, structured content, and i18n-aware copy when editing pages.
+- Comparison article data comes from `@hagicode/hagilight-core`; do not reintroduce a local snapshot copy.
 - If you change generated or synced content, check the corresponding scripts instead of editing derived outputs by hand.
 - Images meant to ship as AVIF and WebP are imported at a relative path as Astro assets (rendered with `<Picture>` in Astro files, or with `getImage` sources passed to React islands); `?url` imports, `public/` paths and remote URLs skip the image service.
 
