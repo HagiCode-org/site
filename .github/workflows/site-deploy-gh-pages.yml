@@ -53,6 +53,7 @@ jobs:
         with:
           name: site-gh-pages-payload
           path: ${{ env.SITE_GH_PAGES_PAYLOAD_DIR }}
+          include-hidden-files: true
           if-no-files-found: error
 
   deploy:
