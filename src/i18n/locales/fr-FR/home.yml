@@ -281,7 +281,6 @@ pricing:
     customCommitSignature: Paternité de commit personnalisée
     brandCustomization: Personnalisation de marque
     customAvatarUploads: Import d'avatars personnalisés
-    avatarPacks: Packs d'avatars
   values:
     free: Gratuit
     desktopInstall: Installation de bureau

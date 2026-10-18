@@ -281,7 +281,6 @@ pricing:
     customCommitSignature: 커스텀 커밋 저작자
     brandCustomization: 브랜딩 사용자 지정
     customAvatarUploads: 사용자 지정 아바타 업로드
-    avatarPacks: 아바타 팩
   values:
     free: 무료
     desktopInstall: 데스크탑 설치

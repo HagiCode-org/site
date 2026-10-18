@@ -281,7 +281,6 @@ pricing:
     customCommitSignature: カスタムコミット著者名
     brandCustomization: ブランディングカスタマイズ
     customAvatarUploads: カスタムアバターアップロード
-    avatarPacks: アバターパック
   values:
     free: 無料
     desktopInstall: デスクトップへのインストール

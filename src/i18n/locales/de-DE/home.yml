@@ -281,7 +281,6 @@ pricing:
     customCommitSignature: Benutzerdefinierte Commit-Autorschaft
     brandCustomization: Branding-Anpassung
     customAvatarUploads: Upload eigener Avatare
-    avatarPacks: Avatar-Pakete
   values:
     free: Kostenlos
     desktopInstall: Desktop-Installation

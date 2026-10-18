@@ -281,7 +281,6 @@ pricing:
     customCommitSignature: Custom commit signature
     brandCustomization: Brand customization
     customAvatarUploads: Custom avatar uploads
-    avatarPacks: Avatar packs
   values:
     free: Free
     desktopInstall: Desktop install

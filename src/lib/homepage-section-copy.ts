@@ -404,7 +404,6 @@ export function getPricingContent(locale: LocaleInput): PricingContent {
     customCommitSignature: getHomeString(resolvedLocale, 'pricing.rows.customCommitSignature'),
     brandCustomization: getHomeString(resolvedLocale, 'pricing.rows.brandCustomization'),
     customAvatarUploads: getHomeString(resolvedLocale, 'pricing.rows.customAvatarUploads'),
-    avatarPacks: getHomeString(resolvedLocale, 'pricing.rows.avatarPacks'),
   };
   const pricingValues = {
     desktopInstall: getHomeString(resolvedLocale, 'pricing.values.desktopInstall'),
@@ -454,12 +453,6 @@ export function getPricingContent(locale: LocaleInput): PricingContent {
     },
     {
       feature: pricingRows.customAvatarUploads,
-      desktop: { type: 'cross' },
-      microsoftStore: { type: 'check', footnote: unlockFootnoteMarker },
-      microsoftStoreExclusive: true,
-    },
-    {
-      feature: pricingRows.avatarPacks,
       desktop: { type: 'cross' },
       microsoftStore: { type: 'check', footnote: unlockFootnoteMarker },
       microsoftStoreExclusive: true,

@@ -281,7 +281,6 @@ pricing:
     customCommitSignature: Настраиваемое авторство коммитов
     brandCustomization: Настройка брендинга
     customAvatarUploads: Загрузка собственных аватаров
-    avatarPacks: Наборы аватаров
   values:
     free: Бесплатно
     desktopInstall: Установка на рабочем столе

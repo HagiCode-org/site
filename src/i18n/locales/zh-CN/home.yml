@@ -281,7 +281,6 @@ pricing:
     customCommitSignature: 自定义提交署名
     brandCustomization: 品牌自定义
     customAvatarUploads: 自定义头像上传
-    avatarPacks: 头像包
   values:
     free: 免费
     desktopInstall: Desktop 安装
