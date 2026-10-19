@@ -32,14 +32,17 @@ Requires Node.js 24+ (`engines` in `package.json`). `npm run build` also runs `s
 ## Key Paths
 
 - `src/pages/`: Astro routes
+- `src/page-templates/`: shared page bodies reused by the locale route files under `src/pages/`
 - `src/components/`: Astro and React components
 - `src/styles/`: shared styles
 - `src/config/`: site configuration
+- `src/lib/`: page models, locale routing, copy helpers, and `analytics/`; tests are colocated as `*.test.ts` (Vitest), with a few under `tests/`
 - `src/i18n/locales/`: translation sources per locale (`en-US` is the base; checked with `hagi18n` via `hagi18n.yaml`)
 - `src/i18n/generated-locales/`: Git-ignored output of `npm run prepare:i18n`, which `dev`, `build`, `test` and `typecheck` run first
 - `scripts/`: content sync, image generation, and SEO helpers
 - `PRODUCT.md`: product and brand context
 - `DESIGN.md`: visual system and design rules
+- `.github/workflows/`: `site-deploy-gh-pages.yml` (builds with `npm run build`, publishes the validated payload to `gh-pages` for `www.hagicode.com`, then warms deployment domains) and `link-check.yml` (scheduled external link check); the payload's `esa.jsonc`/`wrangler.jsonc` come from `.github/gh-pages/`
 - `README.md`: project overview (translated variants sit beside it as `README_*.md`)
 
 ## Agent Guidelines
