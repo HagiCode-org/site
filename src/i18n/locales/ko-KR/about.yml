@@ -14,6 +14,9 @@ page:
     image: 이미지 카드
   contactFallbackDetail: 앱에서 이 계정을 사용하세요
   comboLabel: 채널 + QR
+  actions:
+    copy: 복사
+    copied: 복사됨
   platformBadges:
     steam: 공식 스토어
     youtube: 공식 채널

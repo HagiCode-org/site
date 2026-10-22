@@ -14,6 +14,9 @@ page:
     image: Cartão de imagem
   contactFallbackDetail: Use esta conta no aplicativo
   comboLabel: Canal + QR
+  actions:
+    copy: Copiar
+    copied: Copiado
   platformBadges:
     steam: Loja oficial
     youtube: Canal oficial

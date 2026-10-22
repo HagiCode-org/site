@@ -1,10 +1,11 @@
-import { startTransition, useEffect, useState, type CSSProperties } from 'react';
+import { startTransition, useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react';
 
 import {
   buildAboutPageModel,
   hasAboutPageModelMaterialChange,
   type AboutPageEntry,
   type AboutPageModel,
+  type AboutPageSection,
   type AboutPageSectionId,
 } from '@/lib/about-page-model';
 import {
@@ -61,13 +62,6 @@ interface PlatformIconDefinition {
   readonly label: string;
   readonly shapes: readonly PlatformIconShape[];
 }
-
-const entryAccents = [
-  'var(--about-accent-1)',
-  'var(--about-accent-2)',
-  'var(--about-accent-3)',
-  'var(--about-accent-4)',
-];
 
 const sectionOrder = new Map<AboutPageSectionId, number>([
   ['store', 0],
@@ -315,56 +309,29 @@ const platformIcons: Record<string, PlatformIconDefinition> = {
       { type: 'circle', cx: 17, cy: 14.2, r: 0.65, fill: '#24c78a' },
     ],
   },
+  'windows-store': {
+    tone: 'sky',
+    viewBox: '0 0 24 24',
+    label: 'Microsoft Store',
+    shapes: [
+      { type: 'path', d: 'M4.6 4.6h6.4v6.4H4.6V4.6Z', fill: 'white' },
+      { type: 'path', d: 'M13 4.6h6.4v6.4H13V4.6Z', fill: 'white' },
+      { type: 'path', d: 'M4.6 13h6.4v6.4H4.6V13Z', fill: 'white' },
+      { type: 'path', d: 'M13 13h6.4v6.4H13V13Z', fill: 'white' },
+    ],
+  },
+  'product-hunt': {
+    tone: 'hot',
+    viewBox: '0 0 24 24',
+    label: 'Product Hunt',
+    shapes: [
+      { type: 'circle', cx: 12, cy: 12, r: 7.2, stroke: 'white', strokeWidth: 1.7 },
+      { type: 'text', x: 12, y: 12.6, value: 'P', fontSize: 8.6, fontWeight: 900, fill: 'white', textAnchor: 'middle' },
+    ],
+  },
 };
 
-function getStringSeed(value: string) {
-  return Array.from(value).reduce((seed, char) => seed + char.charCodeAt(0), 0);
-}
-
-function getEntryStyle(entry: AboutPageEntry, index: number): CSSProperties {
-  if (entry.presentation?.theme === 'youtube') {
-    return {
-      ['--entry-accent' as string]: 'var(--about-accent-youtube)',
-      ['--entry-accent-soft' as string]: 'var(--about-accent-youtube-soft)',
-    };
-  }
-
-  if (entry.presentation?.theme === 'steam') {
-    return {
-      ['--entry-accent' as string]: 'var(--about-accent-steam)',
-      ['--entry-accent-soft' as string]: 'var(--about-accent-steam-soft)',
-    };
-  }
-
-  const accent = entryAccents[(getStringSeed(entry.id) + index) % entryAccents.length];
-
-  return {
-    ['--entry-accent' as string]: accent,
-    ['--entry-accent-soft' as string]: accent,
-  };
-}
-
-function getEntryClass(entry: AboutPageEntry) {
-  const classes = ['entry-item', `entry-kind-${entry.kind}`];
-
-  if (entry.presentation?.theme === 'youtube') {
-    classes.push('entry-item-youtube');
-  }
-
-  if (entry.presentation?.theme === 'steam') {
-    classes.push('entry-item-steam');
-  }
-
-  if (entry.kind === 'combo' || entry.kind === 'media') {
-    classes.push('entry-item-with-preview');
-  }
-
-  return classes.join(' ');
-}
-
-function getSectionClassName(sectionId: AboutPageSectionId) {
-  return `section-block section-block-${sectionId}`;
-}
+const FALLBACK_TONE = 'default';
 
 function getPlatformIcon(entry: AboutPageEntry): PlatformIconDefinition | null {
   const iconKey = platformIconAliases[entry.id] ?? entry.id;
@@ -373,6 +340,34 @@ function getPlatformIcon(entry: AboutPageEntry): PlatformIconDefinition | null {
 
 function isAbortError(error: unknown): boolean {
   return error instanceof Error && error.name === 'AbortError';
+}
+
+function isScannable(entry: AboutPageEntry): entry is Extract<AboutPageEntry, { imageUrl: string }> {
+  return entry.kind === 'media' || entry.kind === 'combo';
+}
+
+function getEntryTone(entry: AboutPageEntry): string {
+  if (entry.presentation?.theme === 'youtube') {
+    return 'youtube';
+  }
+
+  if (entry.presentation?.theme === 'steam') {
+    return 'steam';
+  }
+
+  return getPlatformIcon(entry)?.tone ?? FALLBACK_TONE;
+}
+
+function getEntryHandle(entry: AboutPageEntry): string | null {
+  return entry.kind === 'contact' || entry.kind === 'combo' ? entry.value : null;
+}
+
+function getEntryHref(entry: AboutPageEntry): string | undefined {
+  return 'href' in entry ? entry.href : undefined;
+}
+
+function getSectionClassName(sectionId: AboutPageSectionId) {
+  return `section-block section-block-${sectionId}`;
 }
 
 function renderPlatformShape(shape: PlatformIconShape, index: number) {
@@ -425,74 +420,343 @@ function renderPlatformShape(shape: PlatformIconShape, index: number) {
   );
 }
 
-function AboutEntryCard({ entry, index }: { entry: AboutPageEntry; index: number }) {
-  const platformIcon = getPlatformIcon(entry);
-  const className = getEntryClass(entry);
-  const style = getEntryStyle(entry, index);
-  const content = (
-    <>
-      <div className="entry-main">
-        <div className="entry-heading">
-          <span className="entry-kind">{entry.kindLabel}</span>
-          <div className="entry-title-row">
-            {platformIcon ? (
-              <span
-                className={`entry-platform-icon entry-platform-icon-tone-${platformIcon.tone}`}
-                aria-hidden="true"
-              >
-                <svg viewBox={platformIcon.viewBox} focusable="false" aria-label={platformIcon.label}>
-                  {platformIcon.shapes.map((shape, shapeIndex) => renderPlatformShape(shape, shapeIndex))}
-                </svg>
-              </span>
-            ) : null}
-            <h3>{entry.label}</h3>
-            {entry.presentation?.badgeLabel ? (
-              <span className="entry-brand-badge">{entry.presentation.badgeLabel}</span>
-            ) : null}
-          </div>
-        </div>
 
-        {entry.kind === 'contact' ? <p className="entry-value">{entry.value}</p> : null}
-        {entry.kind === 'combo' ? <p className="entry-value">{entry.value}</p> : null}
-
-        <p className="entry-detail">{entry.detail}</p>
-        {entry.linkText ? <p className="entry-link">{entry.linkText}</p> : null}
-      </div>
-
-      {entry.kind === 'media' || entry.kind === 'combo' ? (
-        <div className="entry-preview">
-          <img
-            src={entry.imageUrl}
-            alt={entry.alt}
-            width={entry.width}
-            height={entry.height}
-            loading="lazy"
-          />
-        </div>
-      ) : null}
-    </>
+function ArrowIcon({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false">
+      <path
+        d="M4 12 12 4M5.5 4H12v6.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
+}
 
-  if ('href' in entry && entry.href) {
-    return (
-      <a
-        className={className}
-        style={style}
-        href={entry.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        role="listitem"
-      >
-        {content}
-      </a>
-    );
+function EntryIcon({ entry, size }: { entry: AboutPageEntry; size: 'sm' | 'md' | 'lg' }) {
+  const icon = getPlatformIcon(entry);
+
+  if (!icon) {
+    return null;
   }
 
   return (
-    <article className={className} style={style} role="listitem">
-      {content}
+    <span
+      className={`platform-icon platform-icon-${size} entry-platform-icon-tone-${icon.tone}`}
+      aria-hidden="true"
+    >
+      <svg viewBox={icon.viewBox} focusable="false">
+        {icon.shapes.map((shape, shapeIndex) => renderPlatformShape(shape, shapeIndex))}
+      </svg>
+    </span>
+  );
+}
+
+function CopyHandleButton({ value, copy, copied }: { value: string; copy: string; copied: string }) {
+  const [didCopy, setDidCopy] = useState(false);
+  const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(
+    () => () => {
+      if (resetTimer.current) {
+        clearTimeout(resetTimer.current);
+      }
+    },
+    [],
+  );
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+    } catch {
+      return;
+    }
+
+    setDidCopy(true);
+
+    if (resetTimer.current) {
+      clearTimeout(resetTimer.current);
+    }
+
+    resetTimer.current = setTimeout(() => setDidCopy(false), 1800);
+  };
+
+  return (
+    <button
+      type="button"
+      className="handle-copy"
+      data-copied={didCopy ? 'true' : undefined}
+      onClick={() => void handleCopy()}
+      aria-label={`${copy}: ${value}`}
+    >
+      <span aria-live="polite">{didCopy ? copied : copy}</span>
+    </button>
+  );
+}
+
+function ScanTile({ entry }: { entry: Extract<AboutPageEntry, { imageUrl: string }> }) {
+  return (
+    <span className="scan-tile">
+      <img src={entry.imageUrl} alt={entry.alt} width={entry.width} height={entry.height} loading="lazy" />
+    </span>
+  );
+}
+
+function EntryLink({ entry }: { entry: AboutPageEntry }) {
+  const href = getEntryHref(entry);
+
+  if (!href || !entry.linkText) {
+    return null;
+  }
+
+  return (
+    <a className="entry-cta" href={href} target="_blank" rel="noopener noreferrer">
+      <span>{entry.linkText}</span>
+      <ArrowIcon />
+    </a>
+  );
+}
+
+function StorePanel({ entry }: { entry: AboutPageEntry }) {
+  return (
+    <article className="store-panel" data-tone={getEntryTone(entry)}>
+      <div className="store-panel__body">
+        <span className="entry-kind">{entry.kindLabel}</span>
+        <div className="store-panel__title">
+          <EntryIcon entry={entry} size="lg" />
+          <h3>{entry.label}</h3>
+          {entry.presentation?.badgeLabel ? (
+            <span className="entry-brand-badge">{entry.presentation.badgeLabel}</span>
+          ) : null}
+        </div>
+        <p className="entry-detail">{entry.detail}</p>
+        <EntryLink entry={entry} />
+      </div>
+      <div className="store-panel__panes" aria-hidden="true">
+        <i />
+        <i />
+        <i />
+        <i />
+      </div>
     </article>
   );
+}
+
+function CommunityCard({
+  entry,
+  index,
+  copyLabels,
+}: {
+  entry: AboutPageEntry;
+  index: number;
+  copyLabels: AboutPageModel['ui'];
+}) {
+  const handle = getEntryHandle(entry);
+  const href = getEntryHref(entry);
+  const style = { ['--i' as string]: index } as CSSProperties;
+
+  return (
+    <li
+      className={`community-card community-card-${entry.kind}`}
+      data-tone={getEntryTone(entry)}
+      data-linked={href ? 'true' : undefined}
+      style={style}
+    >
+      {isScannable(entry) ? <ScanTile entry={entry} /> : null}
+      <div className="community-card__body">
+        <span className="entry-kind">{entry.kindLabel}</span>
+        <div className="community-card__title">
+          {isScannable(entry) ? null : <EntryIcon entry={entry} size="md" />}
+          <h3>{entry.label}</h3>
+        </div>
+        {handle ? (
+          <p className="handle">
+            <span className="handle-value">{handle}</span>
+            <CopyHandleButton value={handle} copy={copyLabels.copy} copied={copyLabels.copied} />
+          </p>
+        ) : null}
+        <p className="entry-detail">{entry.detail}</p>
+        <EntryLink entry={entry} />
+      </div>
+    </li>
+  );
+}
+
+function ScanCard({
+  entry,
+  copyLabels,
+}: {
+  entry: Extract<AboutPageEntry, { imageUrl: string }>;
+  copyLabels: AboutPageModel['ui'];
+}) {
+  const handle = getEntryHandle(entry);
+
+  return (
+    <li className="scan-card" data-tone={getEntryTone(entry)}>
+      <ScanTile entry={entry} />
+      <div className="scan-card__body">
+        <span className="entry-kind">{entry.kindLabel}</span>
+        <div className="scan-card__title">
+          <EntryIcon entry={entry} size="md" />
+          <h3>{entry.label}</h3>
+        </div>
+        {handle ? (
+          <p className="handle">
+            <span className="handle-value">{handle}</span>
+            <CopyHandleButton value={handle} copy={copyLabels.copy} copied={copyLabels.copied} />
+          </p>
+        ) : null}
+        <p className="entry-detail">{entry.detail}</p>
+        <EntryLink entry={entry} />
+      </div>
+    </li>
+  );
+}
+
+function ChannelWall({ entries }: { entries: readonly AboutPageEntry[] }) {
+  const wallRef = useRef<HTMLUListElement | null>(null);
+  const frameRef = useRef(0);
+
+  const handlePointerMove = (event: PointerEvent<HTMLUListElement>) => {
+    if (event.pointerType !== 'mouse' || !wallRef.current) {
+      return;
+    }
+
+    const wall = wallRef.current;
+    const { clientX, clientY } = event;
+
+    cancelAnimationFrame(frameRef.current);
+    frameRef.current = requestAnimationFrame(() => {
+      const bounds = wall.getBoundingClientRect();
+
+      wall.style.setProperty('--mx', `${clientX - bounds.left}px`);
+      wall.style.setProperty('--my', `${clientY - bounds.top}px`);
+      wall.dataset.lit = 'true';
+    });
+  };
+
+  const handlePointerLeave = () => {
+    cancelAnimationFrame(frameRef.current);
+
+    if (wallRef.current) {
+      delete wallRef.current.dataset.lit;
+    }
+  };
+
+  useEffect(() => () => cancelAnimationFrame(frameRef.current), []);
+
+  return (
+    <ul className="channel-wall" ref={wallRef} onPointerMove={handlePointerMove} onPointerLeave={handlePointerLeave}>
+      {entries.map((entry) => {
+        const href = getEntryHref(entry);
+        const handle = getEntryHandle(entry);
+        const body = (
+          <>
+            <EntryIcon entry={entry} size="sm" />
+            <span className="channel-tile__text">
+              <strong>{entry.label}</strong>
+              <span className={handle ? 'channel-tile__detail channel-tile__handle' : 'channel-tile__detail'}>
+                {handle ?? entry.detail}
+              </span>
+            </span>
+            {entry.presentation?.badgeLabel ? (
+              <span className="entry-brand-badge">{entry.presentation.badgeLabel}</span>
+            ) : null}
+            {href ? <ArrowIcon className="channel-tile__arrow" /> : null}
+          </>
+        );
+
+        return (
+          <li key={entry.id} data-tone={getEntryTone(entry)}>
+            {href ? (
+              <a className="channel-tile" href={href} target="_blank" rel="noopener noreferrer">
+                {body}
+              </a>
+            ) : (
+              <div className="channel-tile">{body}</div>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function StoreSection({ entries }: { entries: readonly AboutPageEntry[] }) {
+  const [primary, ...rest] = entries;
+
+  if (!primary) {
+    return null;
+  }
+
+  return (
+    <div className="store-stack">
+      <StorePanel entry={primary} />
+      {rest.length > 0 ? (
+        <ul className="channel-wall channel-wall-static">
+          {rest.map((entry) => {
+            const href = getEntryHref(entry);
+
+            return (
+              <li key={entry.id} data-tone={getEntryTone(entry)}>
+                <a className="channel-tile" href={href} target="_blank" rel="noopener noreferrer">
+                  <EntryIcon entry={entry} size="sm" />
+                  <span className="channel-tile__text">
+                    <strong>{entry.label}</strong>
+                    <span className="channel-tile__detail">{entry.detail}</span>
+                  </span>
+                  <ArrowIcon className="channel-tile__arrow" />
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
+
+function CommunitySection({ entries, copyLabels }: { entries: readonly AboutPageEntry[]; copyLabels: AboutPageModel['ui'] }) {
+  return (
+    <ul className="community-grid">
+      {entries.map((entry, index) => (
+        <CommunityCard entry={entry} index={index} copyLabels={copyLabels} key={entry.id} />
+      ))}
+    </ul>
+  );
+}
+
+function ContentSection({ entries, copyLabels }: { entries: readonly AboutPageEntry[]; copyLabels: AboutPageModel['ui'] }) {
+  const scannable = entries.filter(isScannable);
+  const directory = entries.filter((entry) => !isScannable(entry));
+
+  return (
+    <div className="content-stack">
+      {scannable.length > 0 ? (
+        <ul className="scan-row" data-count={scannable.length}>
+          {scannable.map((entry) => (
+            <ScanCard entry={entry} copyLabels={copyLabels} key={entry.id} />
+          ))}
+        </ul>
+      ) : null}
+      {directory.length > 0 ? <ChannelWall entries={directory} /> : null}
+    </div>
+  );
+}
+
+function SectionBody({ section, copyLabels }: { section: AboutPageSection; copyLabels: AboutPageModel['ui'] }) {
+  if (section.id === 'store') {
+    return <StoreSection entries={section.entries} />;
+  }
+
+  if (section.id === 'community') {
+    return <CommunitySection entries={section.entries} copyLabels={copyLabels} />;
+  }
+
+  return <ContentSection entries={section.entries} copyLabels={copyLabels} />;
 }
 
 export function AboutSnapshotRuntimeView({
@@ -509,10 +773,19 @@ export function AboutSnapshotRuntimeView({
   return (
     <main className="about-page" data-about-refresh-state={refreshState}>
       <section className="about-hero">
-        <div className="about-shell">
-          <div className="about-hero__content">
-            <h1>{model.header.title}</h1>
-          </div>
+        <div className="about-shell about-hero__grid">
+          <h1 style={{ ['--i' as string]: 0 } as CSSProperties}>{model.header.title}</h1>
+          <ul className="about-index">
+            {orderedSections.map((section, index) => (
+              <li key={section.id} style={{ ['--i' as string]: index + 1 } as CSSProperties}>
+                <a href={`#about-${section.id}`}>
+                  <span className="about-index__title">{section.title}</span>
+                  <span className="about-index__count">{section.entries.length}</span>
+                  <ArrowIcon className="about-index__arrow" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
       <section className="about-sections">
@@ -527,12 +800,7 @@ export function AboutSnapshotRuntimeView({
               <header className="section-header">
                 <h2>{section.title}</h2>
               </header>
-
-              <div className="entry-list" role="list">
-                {section.entries.map((entry, index) => (
-                  <AboutEntryCard entry={entry} index={index} key={`${section.id}-${entry.id}`} />
-                ))}
-              </div>
+              <SectionBody section={section} copyLabels={model.ui} />
             </section>
           ))}
         </div>

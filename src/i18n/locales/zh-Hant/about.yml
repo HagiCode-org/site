@@ -14,6 +14,9 @@ page:
     image: 圖片卡片
   contactFallbackDetail: 在應用程式內使用此帳號
   comboLabel: 頻道 + QR
+  actions:
+    copy: 複製
+    copied: 已複製
   platformBadges:
     steam: 官方商店
     youtube: 官方頻道

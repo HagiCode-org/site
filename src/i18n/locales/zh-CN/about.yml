@@ -14,6 +14,9 @@ page:
     image: 图片卡片
   contactFallbackDetail: 在应用内搜索该账号
   comboLabel: 账号 + 二维码
+  actions:
+    copy: 复制
+    copied: 已复制
   platformBadges:
     steam: 官方商店
     youtube: 官方频道

@@ -14,6 +14,9 @@ page:
     image: 画像カード
   contactFallbackDetail: アプリ内でこの連絡先を利用してください
   comboLabel: チャンネル + QR
+  actions:
+    copy: コピー
+    copied: コピーしました
   platformBadges:
     steam: 公式ストア
     youtube: 公式チャンネル

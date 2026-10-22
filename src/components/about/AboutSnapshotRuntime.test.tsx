@@ -129,7 +129,7 @@ describe('AboutSnapshotRuntimeView', () => {
     expect(markup.indexOf('id="about-store"')).toBeLessThan(markup.indexOf('id="about-community"'));
     expect(markup.indexOf('id="about-community"')).toBeLessThan(markup.indexOf('id="about-content"'));
     expect(storeSection).toContain('<h2>Store</h2>');
-    expect(storeSection).toContain('Windows Store');
+    expect(storeSection).toContain('Microsoft Store');
     expect(storeSection).toContain('>Store<');
     expect(storeSection).toContain('Official Microsoft Store listing');
     expect(storeSection).toContain('https://apps.microsoft.com/detail/9N3PM0N3SVDW');
@@ -168,5 +168,30 @@ describe('AboutSnapshotRuntimeView', () => {
     expect(markup).not.toContain('Steam');
     expect(markup).toContain('关注团队持续发布的内容');
     expect(contentSection).not.toContain('Steam');
+  });
+
+  it('links each section from the hero index with its entry count', () => {
+    const model = buildAboutPageModel('en');
+    const markup = renderToStaticMarkup(<AboutSnapshotRuntimeView model={model} refreshState="static" />);
+
+    for (const section of model.sections) {
+      expect(markup).toContain(`href="#about-${section.id}"`);
+      expect(markup).toContain(`<span class="about-index__count">${section.entries.length}</span>`);
+    }
+  });
+
+  it('gives handles a copy button and keeps QR cards out of the directory wall', () => {
+    const model = buildAboutPageModel('zh-CN', fetchedSnapshotFixture);
+    const markup = renderToStaticMarkup(<AboutSnapshotRuntimeView model={model} refreshState="static" />);
+    const communitySection = getSectionMarkup(markup, 'community');
+    const contentSection = getSectionMarkup(markup, 'content');
+
+    expect(communitySection).toContain('class="handle-copy"');
+    expect(communitySection).toContain('aria-label="复制: 610394020"');
+    expect(communitySection).toContain('community-card-media');
+    expect(contentSection).toContain('class="scan-row"');
+    expect(contentSection).toContain('class="channel-wall"');
+    expect(contentSection.match(/class="scan-card"/g)).toHaveLength(2);
+    expect(contentSection.slice(contentSection.indexOf('class="channel-wall"'))).not.toContain('<img');
   });
 });

@@ -104,6 +104,10 @@ export interface AboutPageModel {
   readonly header: {
     readonly title: string;
   };
+  readonly ui: {
+    readonly copy: string;
+    readonly copied: string;
+  };
   readonly sections: readonly AboutPageSection[];
 }
 
@@ -172,6 +176,10 @@ interface AboutLocaleCopy {
   };
   readonly contactFallbackDetail: string;
   readonly comboLabel: string;
+  readonly actions: {
+    readonly copy: string;
+    readonly copied: string;
+  };
   readonly platformBadges: {
     readonly steam: string;
     readonly youtube: string;
@@ -207,6 +215,10 @@ function getAboutLocaleCopy(locale: SiteLocale): AboutLocaleCopy {
       'page.contactFallbackDetail',
     ),
     comboLabel: requireLocaleResourceString(locale, 'about', 'page.comboLabel'),
+    actions: {
+      copy: requireLocaleResourceString(locale, 'about', 'page.actions.copy'),
+      copied: requireLocaleResourceString(locale, 'about', 'page.actions.copied'),
+    },
     platformBadges: {
       steam: requireLocaleResourceString(locale, 'about', 'page.platformBadges.steam'),
       youtube: requireLocaleResourceString(locale, 'about', 'page.platformBadges.youtube'),
@@ -457,6 +469,10 @@ export function buildAboutPageModel(
     },
     header: {
       title: copy.title,
+    },
+    ui: {
+      copy: copy.actions.copy,
+      copied: copy.actions.copied,
     },
     sections,
   };

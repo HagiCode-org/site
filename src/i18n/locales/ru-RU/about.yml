@@ -14,6 +14,9 @@ page:
     image: Карточка с изображением
   contactFallbackDetail: Используйте этот аккаунт в приложении
   comboLabel: Канал + QR
+  actions:
+    copy: Копировать
+    copied: Скопировано
   platformBadges:
     steam: Официальный магазин
     youtube: Официальный канал
