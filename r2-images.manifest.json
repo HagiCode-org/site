@@ -1,0 +1,370 @@
+{
+  "schemaVersion": 1,
+  "base": "https://img-gen.hagicode.com",
+  "budgets": {
+    "perFileBytes": 40960,
+    "totalBytes": 131072
+  },
+  "entries": [
+    {
+      "id": "features-persona-strategist",
+      "surface": "home/features-showcase/persona-avatar/strategist",
+      "album": "hero-avatars",
+      "objectKey": "hero-avatars/cat-abstract-08.avif",
+      "file": "src/assets/r2/hero-avatars/cat-abstract-08.avif",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 17354,
+      "sha256": "72cf2b7bfd0f4f8869fac10ad1cc753f7ad1ca31d247754dff5748ccaef26fbd",
+      "transforms": [
+        "Astro getImage: AVIF and WebP at 112 px for the persona slot"
+      ],
+      "decorative": true,
+      "pool": "features-persona-avatar",
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-21",
+        "notes": "Text-free character bust from the hero-avatars audit (audit/hero-pool.json, 46 sampled keys). Decorative persona avatar; alt is empty."
+      }
+    },
+    {
+      "id": "features-persona-runner",
+      "surface": "home/features-showcase/persona-avatar/runner",
+      "album": "hero-avatars",
+      "objectKey": "hero-avatars/cat-line-11.avif",
+      "file": "src/assets/r2/hero-avatars/cat-line-11.avif",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 26030,
+      "sha256": "fa580d8d992dc0aae4fdf9af76d888993e77cf48f5bbd630c3aec752d8615eae",
+      "transforms": [
+        "Astro getImage: AVIF and WebP at 112 px for the persona slot"
+      ],
+      "decorative": true,
+      "pool": "features-persona-avatar",
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-21",
+        "notes": "Text-free character bust from the hero-avatars audit (audit/hero-pool.json, 46 sampled keys). Decorative persona avatar; alt is empty."
+      }
+    },
+    {
+      "id": "features-persona-artist",
+      "surface": "home/features-showcase/persona-avatar/artist",
+      "album": "hero-avatars",
+      "objectKey": "hero-avatars/cat-oil-08.avif",
+      "file": "src/assets/r2/hero-avatars/cat-oil-08.avif",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 39849,
+      "sha256": "f6a5cbc390bb08eed3b44221f5018c3e5806efe08025457824cf6f09562d7f4f",
+      "transforms": [
+        "Astro getImage: AVIF and WebP at 112 px for the persona slot"
+      ],
+      "decorative": true,
+      "pool": "features-persona-avatar",
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-21",
+        "notes": "Text-free character bust from the hero-avatars audit (audit/hero-pool.json, 46 sampled keys). Decorative persona avatar; alt is empty."
+      }
+    }
+  ],
+  "pools": {
+    "features-persona-avatar": {
+      "album": "hero-avatars",
+      "maxBytes": 40960,
+      "source": "Audited hero-avatars sample (46 keys, index updated 2026-10-21T01:24:10Z, cap 40960 bytes), minus the three persona defaults",
+      "entries": [
+        {
+          "objectKey": "hero-avatars/arctic-expedition-06.avif",
+          "bytes": 40478,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/aurora-12.avif",
+          "bytes": 33595,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/cat-cyber-05.avif",
+          "bytes": 27601,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/cat-line-01.avif",
+          "bytes": 32825,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/cat-paper-07.avif",
+          "bytes": 35870,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/cat-sticker-03.avif",
+          "bytes": 31789,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/cat-sticker-11.avif",
+          "bytes": 38976,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/cat-storybook-07.avif",
+          "bytes": 31257,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/civic-advocates-02.avif",
+          "bytes": 17846,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/civic-advocates-10.avif",
+          "bytes": 20630,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/culinary-brigade-06.avif",
+          "bytes": 24718,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/desert-caravan-02.avif",
+          "bytes": 37153,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/desert-caravan-11.avif",
+          "bytes": 34462,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/dream-post-office-01.avif",
+          "bytes": 30637,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/dream-post-office-09.avif",
+          "bytes": 35062,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/goblin-market-01.avif",
+          "bytes": 34100,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/goblin-market-10.avif",
+          "bytes": 33729,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/haunted-manor-07.avif",
+          "bytes": 31559,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/kite-festival-09.avif",
+          "bytes": 39547,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/mecha-academy-06.avif",
+          "bytes": 34814,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/metro-conductors-02.avif",
+          "bytes": 31703,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/metro-conductors-10.avif",
+          "bytes": 21782,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/mountain-monastery-11.avif",
+          "bytes": 32466,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/nebula-11.avif",
+          "bytes": 38449,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/noir-detective-04.avif",
+          "bytes": 21068,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/olympian-pantheon-01.avif",
+          "bytes": 26515,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/olympian-pantheon-09.avif",
+          "bytes": 32541,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/orbital-station-10.avif",
+          "bytes": 38227,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/orchestral-guild-08.avif",
+          "bytes": 30142,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/porcelain-tea-salon-04.avif",
+          "bytes": 31435,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/puppet-theater-02.avif",
+          "bytes": 28303,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/puppet-theater-11.avif",
+          "bytes": 36914,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/robot-foundry-07.avif",
+          "bytes": 30926,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/royal-03.avif",
+          "bytes": 26449,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/royal-11.avif",
+          "bytes": 31173,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/silent-film-studio-07.avif",
+          "bytes": 23298,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/storm-01.avif",
+          "bytes": 26413,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/storm-09.avif",
+          "bytes": 33785,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/storm-observatory-05.avif",
+          "bytes": 40593,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/sugar-kingdom-06.avif",
+          "bytes": 28629,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/tide-07.avif",
+          "bytes": 37237,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/vampire-court-09.avif",
+          "bytes": 39294,
+          "width": 1024,
+          "height": 1024
+        },
+        {
+          "objectKey": "hero-avatars/volcanic-rescue-08.avif",
+          "bytes": 31660,
+          "width": 1024,
+          "height": 1024
+        }
+      ]
+    }
+  },
+  "unchangedSurfaces": [
+    {
+      "surface": "home/hero",
+      "reason": "The stage already holds the product overview video and the workflow board; a still image would add a second focal point beside the primary download call to action."
+    },
+    {
+      "surface": "home/workflow-board",
+      "reason": "The board is a CSS systems visual that DESIGN.md asks to keep legible; a backdrop image would compete with its lanes."
+    },
+    {
+      "surface": "home/features-showcase/gallery-strip",
+      "reason": "Already shows ten decorative hero avatars from local files; not a persona slot, so it stays as it is."
+    },
+    {
+      "surface": "home/features-showcase/world-covers",
+      "reason": "Per-world illustrations tied to the world copy; no audited R2 album depicts these worlds."
+    },
+    {
+      "surface": "home/showcase",
+      "reason": "Product screenshots are meaningful evidence and never change."
+    },
+    {
+      "surface": "about",
+      "reason": "The entry previews are the Douyin and WeChat QR codes from the about snapshot, which are meaningful and have their own alt text."
+    },
+    {
+      "surface": "site-footer",
+      "reason": "The footer block is rendered by the shared Hagilight footer (@hagicode/hagilight-core); its avatar belongs to the Hagilight footer change and would duplicate here."
+    }
+  ]
+}

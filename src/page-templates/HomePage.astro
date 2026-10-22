@@ -19,6 +19,10 @@ import showcaseSessionBoard from '../assets/img/home/showcase-session-board.png'
 import showcaseTokenAnalytics from '../assets/img/home/showcase-token-analytics.png';
 import showcaseWorkspaceManagement from '../assets/img/home/showcase-workspace-management.png';
 import showcaseAchievementProgress from '../assets/img/home/showcase-achievement-progress.png';
+import personaStrategistAvatar from '../assets/r2/hero-avatars/cat-abstract-08.avif';
+import personaRunnerAvatar from '../assets/r2/hero-avatars/cat-line-11.avif';
+import personaArtistAvatar from '../assets/r2/hero-avatars/cat-oil-08.avif';
+import r2Manifest from '../../r2-images.manifest.json';
 import { getImage } from 'astro:assets';
 import '@/styles/homepage.css';
 
@@ -64,6 +68,24 @@ const showcaseImages = {
   tokenAnalytics: await getShowcaseImageSources(showcaseTokenAnalytics),
   workspaceManagement: await getShowcaseImageSources(showcaseWorkspaceManagement),
   achievementProgress: await getShowcaseImageSources(showcaseAchievementProgress),
+};
+
+async function getPersonaAvatarSources(source: ImageMetadata) {
+  const [avif, webp] = await Promise.all([
+    getImage({ src: source, format: 'avif', width: 112, height: 112 }),
+    getImage({ src: source, format: 'webp', width: 112, height: 112 }),
+  ]);
+  return { avif: avif.src, webp: webp.src, src: webp.src };
+}
+
+// Persona defaults are vendored R2 images (r2-images.manifest.json); the pool is the R2 list a persona may swap to.
+const r2PersonaPool = r2Manifest.pools['features-persona-avatar'].entries.map(
+  (entry) => `${r2Manifest.base}/${entry.objectKey}`,
+);
+const personaAvatars = {
+  strategist: await getPersonaAvatarSources(personaStrategistAvatar),
+  runner: await getPersonaAvatarSources(personaRunnerAvatar),
+  artist: await getPersonaAvatarSources(personaArtistAvatar),
 };
 ---
 
@@ -136,7 +158,13 @@ const showcaseImages = {
       />
       <CompareArena locale={locale} />
       <WorkflowStepsSection copy={workflowStepsCopy} />
-      <FeaturesShowcase copy={featuresCopy} cliProfiles={cliProfiles} client:visible />
+      <FeaturesShowcase
+        copy={featuresCopy}
+        cliProfiles={cliProfiles}
+        personaAvatars={personaAvatars}
+        personaPool={r2PersonaPool}
+        client:visible
+      />
       <ShowcaseSection copy={showcaseCopy} images={showcaseImages} client:visible />
       <VideoShowcase
         eyebrow={pageCopy.supportingSection.eyebrow}

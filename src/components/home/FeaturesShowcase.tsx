@@ -7,10 +7,11 @@
  *
  * Nothing here claims a measured number. Values that illustrate a mechanic are labelled as examples in the copy.
  */
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { getSiteAssetUrl } from '@/assets/siteAssetUrls';
 import type { HomepageCliProfile, HomepageFeaturesCopy, HomepageWorldKey } from '@/lib/homepage-section-copy';
+import { pickR2PoolImage } from '@/scripts/r2-random-image';
 import styles from './FeaturesShowcase.module.css';
 
 type Variants = {
@@ -21,6 +22,13 @@ type Variants = {
 
 interface IconProps {
   className?: string;
+}
+
+/** Astro-resolved renditions of a persona's vendored R2 default. */
+export interface PersonaAvatarSources {
+  avif: string;
+  webp: string;
+  src: string;
 }
 
 interface CliIconProps {
@@ -788,11 +796,11 @@ const worldCovers: Record<HomepageWorldKey, string> = {
   pastoralPlanting: getSiteAssetUrl('img/home/interesting/worlds/pastoral-planting.webp'),
 };
 
-// Example agents: avatar series are real product avatars; the Agent CLI names match the Efficient card.
-const exampleAgents: Record<string, { avatar: string; cli: string }> = {
-  strategist: { avatar: 'cat-sticker-02.webp', cli: 'Claude Code' },
-  runner: { avatar: 'cat-line-03.webp', cli: 'Codex' },
-  artist: { avatar: 'cat-oil-09.webp', cli: 'Qwen · GLM' },
+// Example agents: the Agent CLI names match the Efficient card. Avatars come from the page (R2 defaults and pool).
+const exampleAgents: Record<string, { cli: string }> = {
+  strategist: { cli: 'Claude Code' },
+  runner: { cli: 'Codex' },
+  artist: { cli: 'Qwen · GLM' },
 };
 
 const TROPHY_TIERS = ['star', 'moon', 'sun', 'crown'] as const;
@@ -813,7 +821,44 @@ function TrophyIcon({ tier }: { tier: (typeof TROPHY_TIERS)[number] }) {
   );
 }
 
-function InterestingFeature({ copy }: { copy: HomepageFeaturesCopy['interesting'] }) {
+/** Persona avatar: the vendored R2 default first, then at most one random pool entry after it loads. */
+function PersonaAvatar({ sources, pool }: { sources: PersonaAvatarSources; pool: string[] }) {
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if (imageRef.current) {
+      pickR2PoolImage(imageRef.current, pool);
+    }
+  }, []);
+
+  return (
+    <picture className={styles.personaPicture}>
+      <source srcSet={sources.avif} type="image/avif" />
+      <source srcSet={sources.webp} type="image/webp" />
+      <img
+        ref={imageRef}
+        src={sources.src}
+        alt=""
+        aria-hidden="true"
+        className={styles.personaAvatar}
+        width={56}
+        height={56}
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
+  );
+}
+
+function InterestingFeature({
+  copy,
+  personaAvatars,
+  personaPool,
+}: {
+  copy: HomepageFeaturesCopy['interesting'];
+  personaAvatars?: Partial<Record<string, PersonaAvatarSources>>;
+  personaPool: string[];
+}) {
   const prefersReducedMotion = useReducedMotion();
   const worlds = copy.worlds.items;
   const [activeWorld, setActiveWorld] = useState(0);
@@ -945,18 +990,11 @@ function InterestingFeature({ copy }: { copy: HomepageFeaturesCopy['interesting'
             <div className={styles.personaRow}>
               {copy.agents.items.map((agent) => {
                 const profile = exampleAgents[agent.key];
+                const avatarSources = personaAvatars?.[agent.key];
 
                 return (
                   <div key={agent.key} className={styles.persona}>
-                    <img
-                      src={getSiteAssetUrl(`img/home/interesting/heroes/${profile.avatar}`)}
-                      alt=""
-                      className={styles.personaAvatar}
-                      width={56}
-                      height={56}
-                      loading="lazy"
-                      decoding="async"
-                    />
+                    {avatarSources ? <PersonaAvatar sources={avatarSources} pool={personaPool} /> : null}
                     <span className={styles.personaName}>{agent.name}</span>
                     <motion.span
                       key={`${world.key}-${agent.key}`}
@@ -998,9 +1036,13 @@ interface Props {
   copy: HomepageFeaturesCopy;
   /** Per-CLI profiles read from the comparison articles; the CLI bay is hidden when empty. */
   cliProfiles?: HomepageCliProfile[];
+  /** Persona avatars keyed by example agent: vendored R2 defaults rendered by Astro. */
+  personaAvatars?: Partial<Record<string, PersonaAvatarSources>>;
+  /** Absolute R2 URLs a persona avatar may swap to at random; empty means no swap. */
+  personaPool?: string[];
 }
 
-export default function FeaturesShowcase({ copy, cliProfiles = [] }: Props) {
+export default function FeaturesShowcase({ copy, cliProfiles = [], personaAvatars, personaPool = [] }: Props) {
   return (
     <section className={styles.featuresShowcase}>
       <div className="container">
@@ -1014,7 +1056,7 @@ export default function FeaturesShowcase({ copy, cliProfiles = [] }: Props) {
         <div className={styles.zonesContainer}>
           <SmartFeature copy={copy.smart} />
           <ConvenientFeature copy={copy.convenient} cliProfiles={cliProfiles} />
-          <InterestingFeature copy={copy.interesting} />
+          <InterestingFeature copy={copy.interesting} personaAvatars={personaAvatars} personaPool={personaPool} />
         </div>
       </div>
     </section>
