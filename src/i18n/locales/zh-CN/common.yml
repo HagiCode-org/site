@@ -64,8 +64,8 @@ activityMetrics:
     alt: HagiCode site 仓库的 Star 历史图
     cta: 查看完整图表
 showcase:
-  title: 最新产品界面
-  description: 从提案执行、会话看板、Token 分析到工作区与成就进度，首页直接展示与 docs 同步维护的最新产品截图。
+  title: "看看 HagiCode 如何工作"
+  description: "十个产品区域，全部采用英文暗色界面，覆盖五套暗色主题：会话看板、提案、Agent、技能、Vault、用量、成就、Git 与定时计划。"
   controls:
     previous: 上一张
     next: 下一张
@@ -79,26 +79,46 @@ showcase:
     openFullscreenHint: 点击查看大图
     closeFullscreen: 关闭全屏
   screenshots:
-    proposalWorkflow:
-      title: 提案执行总览
-      description: 把 OpenSpec 提案从工作流阶段、执行结果到会话侧栏放在同一屏里，方便快速理解当前变更已经推进到哪里。
-      alt: HagiCode 提案执行完成界面截图，展示工作流阶段、执行结果与会话侧栏
     sessionBoard:
-      title: 会话看板与场景编排
-      description: 待处理、进行中与已归档会话并排呈现，配合右侧场景任务卡，让多 Agent 推进状态一眼可见。
-      alt: HagiCode 会话看板界面截图，展示待处理、进行中、已归档列与场景任务卡
-    tokenAnalytics:
-      title: 实时 Token 分析
-      description: 在同一块面板里追踪吞吐速率、调用历史和累计用量，便于控制并行执行时的成本与节奏。
-      alt: HagiCode Token 分析面板截图，展示吞吐速率、调用历史与累计用量
-    workspaceManagement:
-      title: 工作区与 Vault 管理
-      description: 集中管理用户 Vault、系统 Vault 与 code-server 入口，让多人环境下的工作区维护更清楚。
-      alt: HagiCode Vault 工作区管理界面截图，展示用户 Vault、系统 Vault 与 code-server 操作
-    achievementProgress:
-      title: 成就与成长进度
-      description: 把每日与全局成长、生命周期指标和在线趋势合在一个仪表板里，让长期使用反馈更具持续性。
-      alt: HagiCode 成就进度仪表板截图，展示每日与全局成长指标和趋势
+      title: "会话看板"
+      description: "提案、运行中的 Agent 与已归档的工作放在同一块看板里，等待、执行、完成一目了然。"
+      alt: "HagiCode 会话看板，包含提案与评审、执行、已归档三列，右侧是项目快捷操作面板"
+    proposalWorkflow:
+      title: "提案工作流"
+      description: "每个变更都从提案开始：规格增量、有序任务和阶段进度，在代码运行之前先由你审阅。"
+      alt: "HagiCode 提案对话，展示规格增量表格、任务清单和提案阶段进度"
+    agentRoster:
+      title: "Agent 阵容"
+      description: "给每个 Agent 一个头像和一份职责，按背后的 Agent CLI 分组，再决定谁来接下一个任务。"
+      alt: "HagiCode Agents 工作区，十二个 Agent 按 Claude Code、Codex、OpenCode、Gemini、Hermes 分组"
+    agentCli:
+      title: "Agent CLI 管理"
+      description: "Claude Code、Codex、GitHub Copilot、OpenCode 等并排列出，附带版本号与健康检查结果。"
+      alt: "HagiCode AgentCLI 管理表格，列出各个受支持的 Agent CLI 及其版本和健康状态"
+    skillsGallery:
+      title: "技能图库"
+      description: "浏览可信的技能来源，对比安装量，并一眼看出哪些技能已经装在本机。"
+      alt: "HagiCode 技能图库，列出技能的来源、安装量以及“已在本地安装”标记"
+    vault:
+      title: "Vault"
+      description: "把团队手册、契约和参考资料放进 Vault，直接在应用内浏览文件并预览内容。"
+      alt: "HagiCode Vault 浏览器，包含 Vault 列表、文件树和一份评审规范的 Markdown 预览"
+    tokenUsage:
+      title: "Token 用量"
+      description: "今日 Token 与费用常驻状态栏，等级阶梯标示这一天用得有多满。"
+      alt: "HagiCode 状态栏显示今日 Token 总量与费用，弹层列出从 Breath 到 Radiance 的用量等级"
+    achievements:
+      title: "成就大厅"
+      description: "每日目标、在线成长和终身成就，把稳定的推进变成看得见的进度。"
+      alt: "HagiCode 成就大厅，展示每日完成率、今日收益和在线成长栏"
+    gitManagement:
+      title: "Git 管理"
+      description: "在一个面板里查看项目各仓库的分支、同步状态和未提交改动，并完成提交、推送或拉取。"
+      alt: "HagiCode 项目 Git 标签页，列出四个仓库的分支与同步状态以及仓库简报"
+    scheduledPlans:
+      title: "定时计划"
+      description: "用日历安排提案与 HagiTask：夜间审计、每周草稿、一次性的发布准备。"
+      alt: "HagiCode 定时计划十月日历，包含每晚、每周和一次性计划"
 installOptions:
   sectionTitle: 选择您的安装方式
   sectionDescription: 根据您的使用场景，选择最适合的安装方式

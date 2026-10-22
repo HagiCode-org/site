@@ -6,18 +6,28 @@ import { DEFAULT_WINDOWS_STORE_URL } from '@/lib/shared/windows-store-link';
 type LocaleInput = string | null | undefined;
 
 type ShowcaseScreenshotKey =
-  | 'proposalWorkflow'
   | 'sessionBoard'
-  | 'tokenAnalytics'
-  | 'workspaceManagement'
-  | 'achievementProgress';
+  | 'proposalWorkflow'
+  | 'agentRoster'
+  | 'agentCli'
+  | 'skillsGallery'
+  | 'vault'
+  | 'tokenUsage'
+  | 'achievements'
+  | 'gitManagement'
+  | 'scheduledPlans';
 
 const SHOWCASE_SCREENSHOT_KEYS: ShowcaseScreenshotKey[] = [
-  'proposalWorkflow',
   'sessionBoard',
-  'tokenAnalytics',
-  'workspaceManagement',
-  'achievementProgress',
+  'proposalWorkflow',
+  'agentRoster',
+  'agentCli',
+  'skillsGallery',
+  'vault',
+  'tokenUsage',
+  'achievements',
+  'gitManagement',
+  'scheduledPlans',
 ];
 
 function getNamespacedString(locale: LocaleInput, namespace: 'common' | 'home', key: string) {

@@ -64,8 +64,8 @@ activityMetrics:
     alt: Star history chart for the HagiCode site repository
     cta: View full chart
 showcase:
-  title: Neueste Produktansichten
-  description: Von der Vorschlagsausfuehrung und Sitzungsboards bis zu Token-Analysen, Arbeitsbereichsverwaltung und Fortschritten bei Erfolgen zeigt die Startseite jetzt die neuesten kuratierten Screenshots, die zusammen mit der Docs-Site gepflegt werden.
+  title: "HagiCode bei der Arbeit"
+  description: "Zehn Produktbereiche in der englischen dunklen Oberflaeche und fuenf dunklen Themes: Sitzungsboard, Vorschlaege, Agents, Skills, Vaults, Nutzung, Erfolge, Git und geplante Laeufe."
   controls:
     previous: Zurueck
     next: Weiter
@@ -79,26 +79,46 @@ showcase:
     openFullscreenHint: Zum Vergroessern klicken
     closeFullscreen: Vollbild schliessen
   screenshots:
-    proposalWorkflow:
-      title: Ueberblick zur Vorschlagsausfuehrung
-      description: Workflow-Phase, Ausfuehrungsergebnis und Sitzungskontext bleiben auf einem Bildschirm sichtbar, damit Teams vor dem Weitergehen genau sehen, wo eine Aenderung steht.
-      alt: HagiCode-Screenshot zur Vorschlagsausfuehrung mit Workflow-Phasen, Ausfuehrungsergebnis und Sitzungsseitenleiste
     sessionBoard:
-      title: Sitzungsboard und Szenario-Planung
-      description: Ausstehende, laufende und archivierte Sitzungen bleiben neben einem Fantasy-Aufgabenpanel sichtbar, damit parallele Agentenarbeit auf einen Blick erfassbar ist.
-      alt: HagiCode-Screenshot des Sitzungsboards mit ausstehenden, laufenden und archivierten Spalten neben einem Fantasy-Aufgabenpanel
-    tokenAnalytics:
-      title: Token-Analysen in Echtzeit
-      description: Durchsatz, aktuelle API-Aktivitaet und Gesamtverbrauch erscheinen in einer gemeinsamen Metrikansicht, damit Kosten und Tempo waehrend paralleler Ausfuehrung kontrollierbar bleiben.
-      alt: HagiCode-Screenshot der Token-Analyse mit Durchsatz, aktueller API-Aktivitaet und Gesamtverbrauch
-    workspaceManagement:
-      title: Arbeitsbereichs- und Vault-Verwaltung
-      description: Benutzer-Vaults, System-Vaults und code-server-Einstiegspunkte lassen sich ueber eine gemeinsame Steuerflaeche fuer geteilte Umgebungen und schnelle Wartung verwalten.
-      alt: HagiCode-Screenshot der Arbeitsbereichsverwaltung mit Benutzer-Vaults, System-Vaults und code-server-Aktionen
-    achievementProgress:
-      title: Fortschritt bei Erfolgen und Wachstum
-      description: Taeglicher Fortschritt, globales Wachstum und Lifecycle-Metriken laufen in einem Dashboard zusammen, damit langfristige Nutzung messbar statt abstrakt wirkt.
-      alt: HagiCode-Screenshot des Erfolgs-Dashboards mit taeglichem Fortschritt, globalem Wachstum und Lifecycle-Metriken
+      title: "Sitzungsboard"
+      description: "Vorschlaege, laufende Agents und archivierte Arbeit teilen sich ein Board. So sehen Sie sofort, was wartet, was laeuft und was erledigt ist."
+      alt: "HagiCode-Sitzungsboard mit den Spuren Vorschlag und Pruefung, Ausfuehrung und Archiv neben einem Schnellaktionen-Panel des Projekts"
+    proposalWorkflow:
+      title: "Vorschlags-Workflow"
+      description: "Jede Aenderung beginnt als Vorschlag: Spezifikationsdelta, geordnete Aufgaben und Phasenanzeige, die Sie pruefen, bevor Code laeuft."
+      alt: "HagiCode-Vorschlagsunterhaltung mit Spezifikationsdelta-Tabelle, Aufgabenliste und Phasenanzeige des Vorschlags"
+    agentRoster:
+      title: "Agent-Aufstellung"
+      description: "Geben Sie jedem Agent ein Avatarbild und eine Aufgabe, gruppiert nach der dahinterliegenden Agent-CLI, und waehlen Sie, wer die naechste Aufgabe uebernimmt."
+      alt: "HagiCode-Agent-Arbeitsbereich mit zwoelf Agents, gruppiert nach Claude Code, Codex, OpenCode, Gemini und Hermes"
+    agentCli:
+      title: "Agent-CLI-Verwaltung"
+      description: "Claude Code, Codex, GitHub Copilot, OpenCode und weitere stehen nebeneinander, mit Version und Gesundheitspruefung."
+      alt: "HagiCode-Tabelle zur AgentCLI-Verwaltung mit Version und Status jeder unterstuetzten Agent-CLI"
+    skillsGallery:
+      title: "Skill-Galerie"
+      description: "Stoebern Sie in vertrauenswuerdigen Skill-Quellen, vergleichen Sie Installationszahlen und erkennen Sie sofort, welche Skills schon auf diesem Rechner sind."
+      alt: "HagiCode-Skill-Galerie mit Skills, Quelle, Installationszahlen und dem Hinweis Lokal installiert"
+    vault:
+      title: "Vault"
+      description: "Halten Sie Team-Playbooks, Vertraege und Referenzen in Vaults, durchsuchen Sie die Dateien und zeigen Sie sie an, ohne die App zu verlassen."
+      alt: "HagiCode-Vault-Browser mit Vault-Liste, Dateibaum und Markdown-Vorschau einer Review-Richtlinie"
+    tokenUsage:
+      title: "Token-Nutzung"
+      description: "Die Tokens und Kosten von heute stehen in der Statusleiste, und eine Stufenleiter zeigt, wie intensiv der Tag war."
+      alt: "HagiCode-Statusleiste mit Token-Summe und Kosten von heute sowie ein Popover mit den Nutzungsstufen von Breath bis Radiance"
+    achievements:
+      title: "Erfolgshalle"
+      description: "Tagesziele, Online-Wachstum und Langzeitreihen machen stetigen Fortschritt sichtbar."
+      alt: "HagiCode-Erfolgshalle mit Tagesabschlussquote, heutiger Beute und der Spur fuer Online-Wachstum"
+    gitManagement:
+      title: "Git-Verwaltung"
+      description: "Pruefen Sie Branch, Sync-Status und uncommittete Aenderungen aller Repositories eines Projekts und committen, pushen oder pullen Sie in einem Panel."
+      alt: "HagiCode-Git-Tab eines Projekts mit vier Repositories samt Branch, Sync-Status und Repository-Kurzinfo"
+    scheduledPlans:
+      title: "Geplante Laeufe"
+      description: "Starten Sie Vorschlaege und HagiTasks per Kalender: naechtliche Audits, woechentliche Entwuerfe und einmalige Release-Vorbereitung."
+      alt: "HagiCode-Kalender fuer geplante Laeufe im Oktober mit naechtlichen, woechentlichen und einmaligen Plaenen"
 installOptions:
   sectionTitle: Choose Your Installation Method
   sectionDescription: Choose the most suitable installation method based on your usage scenario

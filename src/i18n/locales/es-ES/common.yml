@@ -64,8 +64,8 @@ activityMetrics:
     alt: Star history chart for the HagiCode site repository
     cta: View full chart
 showcase:
-  title: Vistas recientes del producto
-  description: Desde la ejecucion de propuestas y los tableros de sesiones hasta el analisis de tokens, la gestion del espacio de trabajo y el progreso de logros, la pagina principal ahora usa las capturas mas recientes seleccionadas y mantenidas junto con el sitio de docs.
+  title: "HagiCode en acción"
+  description: "Diez áreas del producto, mostradas en la interfaz oscura en inglés con cinco temas oscuros: tablero de sesiones, propuestas, agentes, habilidades, vaults, consumo, logros, Git y planes programados."
   controls:
     previous: Anterior
     next: Siguiente
@@ -79,26 +79,46 @@ showcase:
     openFullscreenHint: Haz clic para ampliar
     closeFullscreen: Cerrar pantalla completa
   screenshots:
-    proposalWorkflow:
-      title: Resumen de ejecucion de propuestas
-      description: Mantiene la etapa del flujo, el resultado de la ejecucion y el contexto de la sesion en una sola pantalla para que el equipo vea exactamente en que punto esta un cambio antes de avanzar.
-      alt: Captura de HagiCode de ejecucion de propuestas que muestra etapas del flujo, resultado de la ejecucion y barra lateral de la sesion
     sessionBoard:
-      title: Tablero de sesiones y planificacion de escenarios
-      description: Las sesiones pendientes, en curso y archivadas permanecen visibles junto a un panel de tareas de fantasia para que el trabajo paralelo de agentes se pueda revisar de un vistazo.
-      alt: Captura del tablero de sesiones de HagiCode que muestra columnas de pendientes, en curso y archivadas junto a un panel de tareas de fantasia
-    tokenAnalytics:
-      title: Analisis de tokens en tiempo real
-      description: Supervisa el rendimiento, la actividad reciente de la API y el uso total en una sola superficie de metricas para mantener bajo control el coste y el ritmo durante la ejecucion paralela.
-      alt: Captura del analisis de tokens de HagiCode que muestra rendimiento, actividad reciente de la API y uso total
-    workspaceManagement:
-      title: Gestion del espacio de trabajo y de vaults
-      description: Gestiona los vaults de usuario, los vaults del sistema y los accesos a code-server desde una unica consola pensada para entornos compartidos y mantenimiento rapido.
-      alt: Captura de gestion del espacio de trabajo de HagiCode que muestra vaults de usuario, vaults del sistema y acciones de code-server
-    achievementProgress:
-      title: Progreso de logros y crecimiento
-      description: El progreso diario, el crecimiento global y las metricas del ciclo de vida se reunen en un solo panel para que la adopcion a largo plazo resulte medible y no abstracta.
-      alt: Captura del panel de logros de HagiCode que muestra progreso diario, crecimiento global y metricas del ciclo de vida
+      title: "Tablero de sesiones"
+      description: "Propuestas, agentes en ejecución y trabajo archivado comparten un tablero, así que ves de un vistazo qué espera, qué se ejecuta y qué está terminado."
+      alt: "Tablero de sesiones de HagiCode con los carriles Propuesta y revisión, Ejecución y Archivado junto al panel de acciones rápidas del proyecto"
+    proposalWorkflow:
+      title: "Flujo de propuestas"
+      description: "Cada cambio empieza como propuesta: delta de especificación, tareas ordenadas y seguimiento de etapas que revisas antes de ejecutar código."
+      alt: "Conversación de propuesta de HagiCode con tabla de delta de especificación, lista de tareas y seguimiento de etapas"
+    agentRoster:
+      title: "Plantilla de agentes"
+      description: "Da a cada agente un avatar y un trabajo, agrupados por el Agent CLI que lo impulsa, y elige quién se encarga de la siguiente tarea."
+      alt: "Espacio de Agentes de HagiCode con doce agentes agrupados por Claude Code, Codex, OpenCode, Gemini y Hermes"
+    agentCli:
+      title: "Gestión de Agent CLI"
+      description: "Claude Code, Codex, GitHub Copilot, OpenCode y más aparecen juntos, con su versión y la comprobación de estado."
+      alt: "Tabla de gestión de AgentCLI de HagiCode con la versión y el estado de cada Agent CLI compatible"
+    skillsGallery:
+      title: "Galería de habilidades"
+      description: "Explora fuentes de habilidades de confianza, compara instalaciones y reconoce de un vistazo cuáles ya están en esta máquina."
+      alt: "Galería de habilidades de HagiCode con fuente, número de instalaciones e insignia Instalada localmente"
+    vault:
+      title: "Vault"
+      description: "Guarda manuales de equipo, contratos y referencias en vaults, y explora y previsualiza los archivos sin salir de la aplicación."
+      alt: "Explorador de vaults de HagiCode con lista de vaults, árbol de archivos y vista previa en Markdown de una guía de revisión"
+    tokenUsage:
+      title: "Consumo de tokens"
+      description: "Los tokens y el coste de hoy viven en la barra de estado, y una escalera de niveles marca lo intenso que ha sido el día."
+      alt: "Barra de estado de HagiCode con el total de tokens y el coste de hoy, y una ventana con los niveles de Breath a Radiance"
+    achievements:
+      title: "Sala de logros"
+      description: "Objetivos diarios, crecimiento en línea y rachas acumuladas hacen visible el progreso constante."
+      alt: "Sala de logros de HagiCode con la tasa de finalización diaria, el botín de hoy y el carril de crecimiento en línea"
+    gitManagement:
+      title: "Gestión de Git"
+      description: "Revisa rama, sincronización y cambios sin confirmar de todos los repositorios de un proyecto, y confirma, empuja o trae desde un solo panel."
+      alt: "Pestaña Git de un proyecto de HagiCode con cuatro repositorios, su rama, estado de sincronización y resumen"
+    scheduledPlans:
+      title: "Planes programados"
+      description: "Lanza propuestas y HagiTasks desde un calendario: auditorías nocturnas, borradores semanales y preparación puntual de versiones."
+      alt: "Calendario de planes programados de HagiCode en octubre con planes nocturnos, semanales y puntuales"
 installOptions:
   sectionTitle: Choose Your Installation Method
   sectionDescription: Choose the most suitable installation method based on your usage scenario

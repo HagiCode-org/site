@@ -8,12 +8,37 @@ describe('homepage showcase copy', () => {
     const englishCopy = getHomepageShowcaseCopy('en-US');
     const chineseCopy = getHomepageShowcaseCopy('zh-CN');
 
-    expect(englishCopy.title).toBe('Latest Product Views');
-    expect(chineseCopy.title).toBe('最新产品界面');
+    expect(englishCopy.title).toBe('See HagiCode at work');
+    expect(chineseCopy.title).toBe('看看 HagiCode 如何工作');
     expect(chineseCopy.controls.current).toBe('当前主图');
-    expect(chineseCopy.screenshots[0]?.title).toBe('提案执行总览');
-    expect(chineseCopy.screenshots[0]?.description).toContain('OpenSpec 提案');
-    expect(chineseCopy.screenshots[0]?.alt).toContain('HagiCode 提案执行完成界面截图');
+    expect(englishCopy.screenshots[0]?.title).toBe('Session board');
+    expect(chineseCopy.screenshots[0]?.title).toBe('会话看板');
+    expect(chineseCopy.screenshots[0]?.alt).toContain('HagiCode 会话看板');
+  });
+
+  it('lists ten feature areas with real copy in every locale', () => {
+    for (const locale of SUPPORTED_SITE_LOCALES) {
+      const { screenshots } = getHomepageShowcaseCopy(locale);
+
+      expect(screenshots.map((screenshot) => screenshot.id), locale).toEqual([
+        'sessionBoard',
+        'proposalWorkflow',
+        'agentRoster',
+        'agentCli',
+        'skillsGallery',
+        'vault',
+        'tokenUsage',
+        'achievements',
+        'gitManagement',
+        'scheduledPlans',
+      ]);
+      for (const screenshot of screenshots) {
+        for (const field of ['title', 'description', 'alt'] as const) {
+          expect(screenshot[field], `${locale}:${screenshot.id}.${field}`).toBeTruthy();
+          expect(screenshot[field], `${locale}:${screenshot.id}.${field}`).not.toMatch(/^showcase\./);
+        }
+      }
+    }
   });
 });
 

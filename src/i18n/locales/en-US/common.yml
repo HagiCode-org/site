@@ -64,8 +64,8 @@ activityMetrics:
     alt: Star history chart for the HagiCode site repository
     cta: View full chart
 showcase:
-  title: Latest Product Views
-  description: From proposal execution and session boards to token analytics, workspace management, and achievement progress, the homepage now uses the latest curated screenshots maintained with the docs site.
+  title: "See HagiCode at work"
+  description: "Ten areas of the product, shown in the English dark interface across five dark themes: the board, proposals, agents, skills, vaults, usage, achievements, Git and scheduled plans."
   controls:
     previous: Previous
     next: Next
@@ -79,26 +79,46 @@ showcase:
     openFullscreenHint: Click to enlarge
     closeFullscreen: Close fullscreen
   screenshots:
-    proposalWorkflow:
-      title: Proposal execution overview
-      description: Keep the workflow stage, execution result, and session context in one screen so teams can see exactly where a change stands before moving on.
-      alt: HagiCode proposal execution screenshot showing workflow stages, execution result, and session sidebar
     sessionBoard:
-      title: Session board and scenario planning
-      description: Pending, in-progress, and archived sessions stay visible beside a fantasy task panel so parallel agent work is easy to scan at a glance.
-      alt: HagiCode session board screenshot showing pending, in-progress, and archived columns beside a fantasy task panel
-    tokenAnalytics:
-      title: Real-time token analytics
-      description: Watch throughput, recent API activity, and total usage in one metrics surface so cost and pacing stay controllable during parallel execution.
-      alt: HagiCode token analytics screenshot showing throughput, recent API activity, and total usage
-    workspaceManagement:
-      title: Workspace and vault management
-      description: Manage user vaults, system vaults, and code-server entry points from one control surface built for shared environments and fast maintenance.
-      alt: HagiCode workspace management screenshot showing user vaults, system vaults, and code-server actions
-    achievementProgress:
-      title: Achievement and growth progress
-      description: Daily progress, global growth, and lifecycle metrics roll into one dashboard so long-running adoption feels measurable instead of abstract.
-      alt: HagiCode achievement dashboard screenshot showing daily progress, global growth, and lifecycle metrics
+      title: "Session board"
+      description: "Proposals, running agents and archived work share one board, so you can see what is waiting, what is executing and what is done."
+      alt: "HagiCode session board with Proposal & Review, Execution and Archived lanes beside a project quick-actions panel"
+    proposalWorkflow:
+      title: "Proposal workflow"
+      description: "Every change starts as a proposal: a spec delta, ordered tasks and a stage tracker that you review before any code runs."
+      alt: "HagiCode proposal conversation showing a spec delta table, a task checklist and the proposal stage tracker"
+    agentRoster:
+      title: "Agent roster"
+      description: "Give each agent an avatar and a job, grouped by the Agent CLI behind it, then choose who takes the next task."
+      alt: "HagiCode Agents workspace listing twelve agents grouped by Claude Code, Codex, OpenCode, Gemini and Hermes"
+    agentCli:
+      title: "Agent CLI management"
+      description: "Claude Code, Codex, GitHub Copilot, OpenCode and more sit side by side with their versions and health checks."
+      alt: "HagiCode AgentCLI management table showing each supported Agent CLI with its version and healthy status"
+    skillsGallery:
+      title: "Skills gallery"
+      description: "Browse trusted skill sources, compare install counts and see at a glance which skills are already on this machine."
+      alt: "HagiCode skill gallery listing skills with their source, install counts and an Installed locally badge"
+    vault:
+      title: "Vault"
+      description: "Keep team playbooks, contracts and references in vaults, then browse the files and preview them without leaving the app."
+      alt: "HagiCode vault browser with a vault list, a file tree and a Markdown preview of a review guideline"
+    tokenUsage:
+      title: "Token usage"
+      description: "Today's tokens and cost live in the status bar, and a level ladder marks how heavy the day has been."
+      alt: "HagiCode status bar with today's token total and cost, and a popover listing token usage levels from Breath to Radiance"
+    achievements:
+      title: "Achievement hall"
+      description: "Daily goals, online growth and lifetime tracks turn steady progress into something you can see."
+      alt: "HagiCode achievement hall showing daily completion rate, today's loot and the online growth lane"
+    gitManagement:
+      title: "Git management"
+      description: "Check branch, sync state and uncommitted changes across a project's repositories, then commit, push or pull from one panel."
+      alt: "HagiCode project Git tab listing four repositories with branch and sync status and a repository brief"
+    scheduledPlans:
+      title: "Scheduled plans"
+      description: "Start proposals and HagiTasks from a calendar: nightly audits, weekly drafts and one-off release prep."
+      alt: "HagiCode scheduled plans calendar for October with nightly, weekly and one-time plans"
 installOptions:
   sectionTitle: Choose Your Installation Method
   sectionDescription: Choose the most suitable installation method based on your usage scenario

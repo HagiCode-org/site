@@ -64,8 +64,8 @@ activityMetrics:
     alt: Star history chart for the HagiCode site repository
     cta: View full chart
 showcase:
-  title: 최신 제품 화면
-  description: 제안 실행과 세션 보드부터 토큰 분석, 워크스페이스 관리, 성과 진행 현황까지, 이제 홈페이지에서 docs 사이트와 함께 관리되는 최신 선별 스크린샷을 바로 보여줍니다.
+  title: "HagiCode가 일하는 모습"
+  description: "제품의 열 가지 영역을 영어 다크 인터페이스와 다섯 가지 다크 테마로 보여 드립니다. 세션 보드, 제안, 에이전트, 스킬, Vault, 사용량, 업적, Git, 예약 계획입니다."
   controls:
     previous: 이전
     next: 다음
@@ -79,26 +79,46 @@ showcase:
     openFullscreenHint: 클릭하여 확대
     closeFullscreen: 전체 화면 닫기
   screenshots:
-    proposalWorkflow:
-      title: 제안 실행 개요
-      description: 워크플로 단계, 실행 결과, 세션 맥락을 한 화면에 유지해 다음 단계로 넘어가기 전에 변경 사항이 어디까지 진행됐는지 팀이 정확히 확인할 수 있습니다.
-      alt: 워크플로 단계, 실행 결과, 세션 사이드바를 보여주는 HagiCode 제안 실행 스크린샷
     sessionBoard:
-      title: 세션 보드와 던전 계획
-      description: 대기 중, 진행 중, 보관된 세션이 판타지 작업 패널 옆에 함께 표시되어 병렬 에이전트 작업 상태를 한눈에 파악할 수 있습니다.
-      alt: 대기 중, 진행 중, 보관된 열과 판타지 작업 패널을 보여주는 HagiCode 세션 보드 스크린샷
-    tokenAnalytics:
-      title: 실시간 토큰 분석
-      description: 처리량, 최근 API 활동, 총 사용량을 하나의 지표 화면에서 확인해 병렬 실행 중에도 비용과 속도를 통제할 수 있습니다.
-      alt: 처리량, 최근 API 활동, 총 사용량을 보여주는 HagiCode 토큰 분석 스크린샷
-    workspaceManagement:
-      title: 워크스페이스 및 Vault 관리
-      description: 공유 환경과 빠른 유지보수를 위해 사용자 Vault, 시스템 Vault, code-server 진입점을 하나의 제어 화면에서 관리할 수 있습니다.
-      alt: 사용자 Vault, 시스템 Vault, code-server 작업을 보여주는 HagiCode 워크스페이스 관리 스크린샷
-    achievementProgress:
-      title: 성과와 성장 진행 현황
-      description: 일일 진행 상황, 전체 성장, 라이프사이클 지표를 하나의 대시보드에 모아 장기 도입 효과를 추상적이지 않게 확인할 수 있습니다.
-      alt: 일일 진행 상황, 전체 성장, 라이프사이클 지표를 보여주는 HagiCode 성과 대시보드 스크린샷
+      title: "세션 보드"
+      description: "제안, 실행 중인 에이전트, 보관된 작업을 한 보드에 모아 대기·실행·완료를 한눈에 확인합니다."
+      alt: "제안 및 검토, 실행, 보관 세 개의 레인과 프로젝트 빠른 작업 패널이 있는 HagiCode 세션 보드"
+    proposalWorkflow:
+      title: "제안 워크플로"
+      description: "모든 변경은 제안에서 시작합니다. 사양 변경분, 순서가 정해진 작업, 단계 진행 상황을 코드가 실행되기 전에 검토합니다."
+      alt: "사양 변경 표, 작업 체크리스트, 제안 단계 진행 상황을 보여 주는 HagiCode 제안 대화"
+    agentRoster:
+      title: "에이전트 명단"
+      description: "각 에이전트에 아바타와 역할을 주고 뒤에 있는 Agent CLI별로 묶어, 다음 작업을 맡길 에이전트를 고릅니다."
+      alt: "Claude Code, Codex, OpenCode, Gemini, Hermes별로 에이전트 열두 명을 나열한 HagiCode 에이전트 작업 공간"
+    agentCli:
+      title: "Agent CLI 관리"
+      description: "Claude Code, Codex, GitHub Copilot, OpenCode 등을 버전과 상태 점검 결과와 함께 나란히 관리합니다."
+      alt: "지원되는 각 Agent CLI의 버전과 정상 상태를 보여 주는 HagiCode AgentCLI 관리 표"
+    skillsGallery:
+      title: "스킬 갤러리"
+      description: "신뢰할 수 있는 스킬 출처를 둘러보고 설치 수를 비교하며, 이 컴퓨터에 이미 있는 스킬을 한눈에 확인합니다."
+      alt: "스킬 출처, 설치 수, 로컬 설치됨 배지를 나열한 HagiCode 스킬 갤러리"
+    vault:
+      title: "Vault"
+      description: "팀 플레이북, 계약, 참고 자료를 Vault에 보관하고 앱을 떠나지 않고 파일을 탐색하고 미리 볼 수 있습니다."
+      alt: "Vault 목록, 파일 트리, 검토 지침 Markdown 미리보기가 있는 HagiCode Vault 브라우저"
+    tokenUsage:
+      title: "토큰 사용량"
+      description: "오늘의 토큰과 비용이 상태 표시줄에 상시 표시되고, 레벨 사다리로 그날의 사용 강도를 보여 줍니다."
+      alt: "오늘의 토큰 합계와 비용을 표시한 상태 표시줄과 Breath부터 Radiance까지 사용 레벨을 나열한 팝오버"
+    achievements:
+      title: "업적 홀"
+      description: "일일 목표, 온라인 성장, 누적 트랙이 꾸준한 진행을 눈에 보이는 형태로 바꿔 줍니다."
+      alt: "일일 달성률, 오늘의 보상, 온라인 성장 레인을 보여 주는 HagiCode 업적 홀"
+    gitManagement:
+      title: "Git 관리"
+      description: "프로젝트의 모든 저장소에서 브랜치, 동기화 상태, 커밋되지 않은 변경을 확인하고 한 패널에서 커밋·푸시·풀을 실행합니다."
+      alt: "저장소 네 개의 브랜치와 동기화 상태, 저장소 요약을 보여 주는 HagiCode 프로젝트 Git 탭"
+    scheduledPlans:
+      title: "예약 계획"
+      description: "제안과 HagiTask를 달력에서 시작합니다. 야간 점검, 주간 초안, 일회성 릴리스 준비에 적합합니다."
+      alt: "야간, 주간, 일회성 계획이 있는 HagiCode 10월 예약 계획 달력"
 installOptions:
   sectionTitle: Choose Your Installation Method
   sectionDescription: Choose the most suitable installation method based on your usage scenario

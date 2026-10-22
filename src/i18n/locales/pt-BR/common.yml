@@ -64,8 +64,8 @@ activityMetrics:
     alt: Star history chart for the HagiCode site repository
     cta: View full chart
 showcase:
-  title: Visoes mais recentes do produto
-  description: Da execucao de propostas e dos quadros de sessao ate a analise de tokens, a gestao do workspace e o progresso de conquistas, a pagina inicial agora usa as capturas mais recentes selecionadas e mantidas junto com o site de docs.
+  title: "HagiCode em ação"
+  description: "Dez áreas do produto, mostradas na interface escura em inglês com cinco temas escuros: quadro de sessões, propostas, agentes, habilidades, vaults, consumo, conquistas, Git e planos agendados."
   controls:
     previous: Anterior
     next: Proximo
@@ -79,26 +79,46 @@ showcase:
     openFullscreenHint: Clique para ampliar
     closeFullscreen: Fechar tela cheia
   screenshots:
-    proposalWorkflow:
-      title: Visao geral da execucao de propostas
-      description: Mantem a etapa do fluxo, o resultado da execucao e o contexto da sessao em uma so tela para que a equipe veja exatamente em que ponto uma mudanca esta antes de seguir adiante.
-      alt: Captura da execucao de propostas no HagiCode mostrando etapas do fluxo, resultado da execucao e barra lateral da sessao
     sessionBoard:
-      title: Quadro de sessoes e planejamento de cenarios
-      description: Sessoes pendentes, em andamento e arquivadas continuam visiveis ao lado de um painel de tarefas com tema fantasy, facilitando a leitura do trabalho paralelo dos agentes de relance.
-      alt: Captura do quadro de sessoes do HagiCode mostrando colunas pendentes, em andamento e arquivadas ao lado de um painel de tarefas fantasy
-    tokenAnalytics:
-      title: Analise de tokens em tempo real
-      description: Acompanhe throughput, atividade recente da API e uso total em uma unica superficie de metricas para manter custo e ritmo sob controle durante a execucao paralela.
-      alt: Captura da analise de tokens do HagiCode mostrando throughput, atividade recente da API e uso total
-    workspaceManagement:
-      title: Gestao de workspace e vaults
-      description: Gerencie vaults de usuario, vaults do sistema e pontos de entrada do code-server em uma unica superficie de controle pensada para ambientes compartilhados e manutencao rapida.
-      alt: Captura da gestao de workspace do HagiCode mostrando vaults de usuario, vaults do sistema e acoes do code-server
-    achievementProgress:
-      title: Progresso de conquistas e crescimento
-      description: Progresso diario, crescimento global e metricas de ciclo de vida se unem em um unico dashboard para que a adocao de longo prazo pareca mensuravel em vez de abstrata.
-      alt: Captura do dashboard de conquistas do HagiCode mostrando progresso diario, crescimento global e metricas de ciclo de vida
+      title: "Quadro de sessões"
+      description: "Propostas, agentes em execução e trabalho arquivado dividem um quadro, e você vê de relance o que espera, o que roda e o que terminou."
+      alt: "Quadro de sessões do HagiCode com as faixas Proposta e revisão, Execução e Arquivado ao lado do painel de ações rápidas do projeto"
+    proposalWorkflow:
+      title: "Fluxo de propostas"
+      description: "Toda mudança começa como proposta: delta de especificação, tarefas ordenadas e acompanhamento de etapas que você revisa antes de qualquer código rodar."
+      alt: "Conversa de proposta do HagiCode com tabela de delta de especificação, lista de tarefas e acompanhamento das etapas"
+    agentRoster:
+      title: "Elenco de agentes"
+      description: "Dê a cada agente um avatar e uma função, agrupados pelo Agent CLI por trás dele, e escolha quem assume a próxima tarefa."
+      alt: "Espaço de Agentes do HagiCode com doze agentes agrupados por Claude Code, Codex, OpenCode, Gemini e Hermes"
+    agentCli:
+      title: "Gerenciamento de Agent CLI"
+      description: "Claude Code, Codex, GitHub Copilot, OpenCode e outros aparecem lado a lado, com versão e verificação de integridade."
+      alt: "Tabela de gerenciamento de AgentCLI do HagiCode com a versão e o estado de cada Agent CLI compatível"
+    skillsGallery:
+      title: "Galeria de habilidades"
+      description: "Explore fontes confiáveis de habilidades, compare instalações e veja de relance quais já estão nesta máquina."
+      alt: "Galeria de habilidades do HagiCode com fonte, número de instalações e selo Instalada localmente"
+    vault:
+      title: "Vault"
+      description: "Guarde playbooks da equipe, contratos e referências em vaults, navegue pelos arquivos e visualize-os sem sair do aplicativo."
+      alt: "Navegador de vaults do HagiCode com lista de vaults, árvore de arquivos e pré-visualização em Markdown de uma diretriz de revisão"
+    tokenUsage:
+      title: "Consumo de tokens"
+      description: "Os tokens e o custo de hoje ficam na barra de status, e uma escada de níveis mostra o quão intenso foi o dia."
+      alt: "Barra de status do HagiCode com o total de tokens e o custo de hoje, e um popover com os níveis de Breath a Radiance"
+    achievements:
+      title: "Salão de conquistas"
+      description: "Metas diárias, crescimento online e trilhas acumuladas tornam visível o progresso constante."
+      alt: "Salão de conquistas do HagiCode com a taxa de conclusão diária, o butim de hoje e a faixa de crescimento online"
+    gitManagement:
+      title: "Gerenciamento de Git"
+      description: "Confira branch, sincronização e alterações não commitadas de todos os repositórios de um projeto e faça commit, push ou pull em um só painel."
+      alt: "Aba Git de um projeto do HagiCode com quatro repositórios, seu branch, estado de sincronização e resumo"
+    scheduledPlans:
+      title: "Planos agendados"
+      description: "Inicie propostas e HagiTasks por um calendário: auditorias noturnas, rascunhos semanais e preparação pontual de versões."
+      alt: "Calendário de planos agendados do HagiCode em outubro com planos noturnos, semanais e pontuais"
 installOptions:
   sectionTitle: Choose Your Installation Method
   sectionDescription: Choose the most suitable installation method based on your usage scenario

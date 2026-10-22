@@ -2,11 +2,16 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
 const showcaseScreenshots = [
-  'showcase-proposal-workflow',
   'showcase-session-board',
-  'showcase-token-analytics',
-  'showcase-workspace-management',
-  'showcase-achievement-progress',
+  'showcase-proposal-workflow',
+  'showcase-agent-roster',
+  'showcase-agent-cli',
+  'showcase-skills-gallery',
+  'showcase-vault',
+  'showcase-token-usage',
+  'showcase-achievements',
+  'showcase-git-management',
+  'showcase-scheduled-plans',
 ];
 
 const homePageSource = readFileSync(new URL('./HomePage.astro', import.meta.url), 'utf8');

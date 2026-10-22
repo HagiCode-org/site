@@ -64,8 +64,8 @@ activityMetrics:
     alt: HagiCode サイトリポジトリの Star 履歴チャート
     cta: グラフ全体を見る
 showcase:
-  title: 最新の製品ビュー
-  description: 提案実行、セッションボード、トークン分析、ワークスペース管理、実績進捗まで、ホームページでは docs サイトで管理される最新の厳選スクリーンショットを表示します。
+  title: "HagiCode の動きを見る"
+  description: "製品の10領域を、英語のダークUIと5つのダークテーマで紹介します。セッションボード、提案、エージェント、スキル、Vault、使用量、実績、Git、スケジュール計画です。"
   controls:
     previous: 前へ
     next: 次へ
@@ -79,26 +79,46 @@ showcase:
     openFullscreenHint: クリックして拡大
     closeFullscreen: 全画面を閉じる
   screenshots:
-    proposalWorkflow:
-      title: 提案実行の概要
-      description: ワークフローステージ、実行結果、セッション文脈を 1 画面にまとめ、次へ進む前に変更の状態を正確に把握できます。
-      alt: ワークフローステージ、実行結果、セッションサイドバーを示す HagiCode の提案実行スクリーンショット
     sessionBoard:
-      title: セッションボードとダンジョン計画
-      description: 保留中・進行中・アーカイブ済みのセッションをファンタジー風タスクパネル横に並べて、並列作業をひと目で把握できます。
-      alt: ファンタジー風タスクパネル横に保留中・進行中・アーカイブ済み列を表示する HagiCode セッションボードのスクリーンショット
-    tokenAnalytics:
-      title: リアルタイムトークン分析
-      description: スループット、最近の API アクティビティ、総使用量を 1 つの指標画面で確認し、並列実行中のコストとペースを制御できます。
-      alt: スループット、最近の API アクティビティ、総使用量を表示する HagiCode トークン分析のスクリーンショット
-    workspaceManagement:
-      title: ワークスペースと Vault 管理
-      description: 共有環境と迅速な保守を前提に、ユーザー Vault、システム Vault、code-server 入口を 1 つの画面で管理できます。
-      alt: ユーザー Vault、システム Vault、code-server 操作を表示する HagiCode ワークスペース管理のスクリーンショット
-    achievementProgress:
-      title: 実績と成長の進捗
-      description: 日次進捗、全体成長、ライフサイクル指標を 1 つのダッシュボードに集約し、長期導入の成果を具体的に確認できます。
-      alt: 日次進捗、全体成長、ライフサイクル指標を表示する HagiCode 実績ダッシュボードのスクリーンショット
+      title: "セッションボード"
+      description: "提案、実行中のエージェント、アーカイブ済みの作業を1つのボードに集約。待機・実行・完了が一目で分かります。"
+      alt: "提案とレビュー、実行、アーカイブの3レーンとプロジェクトのクイック操作パネルを並べた HagiCode のセッションボード"
+    proposalWorkflow:
+      title: "提案ワークフロー"
+      description: "すべての変更は提案から始まります。仕様の差分、順序付きタスク、ステージの進行をコードの実行前にレビューできます。"
+      alt: "仕様差分の表、タスクチェックリスト、提案ステージの進行を表示した HagiCode の提案会話"
+    agentRoster:
+      title: "エージェント一覧"
+      description: "各エージェントにアバターと役割を与え、背後の Agent CLI ごとに整理。次のタスクを任せる相手を選べます。"
+      alt: "Claude Code、Codex、OpenCode、Gemini、Hermes ごとに12のエージェントを並べた HagiCode のエージェント画面"
+    agentCli:
+      title: "Agent CLI 管理"
+      description: "Claude Code、Codex、GitHub Copilot、OpenCode などをバージョンとヘルスチェックの結果とともに並べて管理します。"
+      alt: "対応する各 Agent CLI のバージョンと正常状態を表示した HagiCode の AgentCLI 管理テーブル"
+    skillsGallery:
+      title: "スキルギャラリー"
+      description: "信頼できるスキルの提供元を閲覧し、インストール数を比較し、このマシンに入っているスキルを一目で確認できます。"
+      alt: "スキルの提供元、インストール数、ローカルにインストール済みのバッジを並べた HagiCode のスキルギャラリー"
+    vault:
+      title: "Vault"
+      description: "チームのプレイブック、契約、参考資料を Vault にまとめ、アプリを離れずにファイルを参照・プレビューできます。"
+      alt: "Vault 一覧、ファイルツリー、レビュー指針の Markdown プレビューを備えた HagiCode の Vault ブラウザー"
+    tokenUsage:
+      title: "トークン使用量"
+      description: "今日のトークン数とコストをステータスバーに常時表示。レベルのはしごで、その日の使い込みが分かります。"
+      alt: "今日のトークン合計とコストを表示するステータスバーと、Breath から Radiance までの使用レベルを並べたポップオーバー"
+    achievements:
+      title: "実績ホール"
+      description: "デイリー目標、オンライン成長、通算トラックが、着実な前進を目に見える形にします。"
+      alt: "デイリー達成率、今日の報酬、オンライン成長レーンを表示した HagiCode の実績ホール"
+    gitManagement:
+      title: "Git 管理"
+      description: "プロジェクトの全リポジトリのブランチ、同期状態、未コミットの変更を確認し、1つのパネルからコミット・プッシュ・プルできます。"
+      alt: "4つのリポジトリのブランチと同期状態、リポジトリ概要を表示した HagiCode のプロジェクト Git タブ"
+    scheduledPlans:
+      title: "スケジュール計画"
+      description: "提案や HagiTask をカレンダーから起動。夜間の監査、毎週の下書き、単発のリリース準備に使えます。"
+      alt: "夜間、毎週、単発の計画を並べた HagiCode の10月のスケジュール計画カレンダー"
 installOptions:
   sectionTitle: インストール方法を選択
   sectionDescription: 利用シナリオに応じて最適な方法を選んでください

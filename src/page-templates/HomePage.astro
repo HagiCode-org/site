@@ -14,11 +14,16 @@ import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 import MicrosoftStoreBadgeScript from '@/components/MicrosoftStoreBadgeScript.astro';
 import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
-import showcaseProposalWorkflow from '../assets/img/home/showcase-proposal-workflow.png';
 import showcaseSessionBoard from '../assets/img/home/showcase-session-board.png';
-import showcaseTokenAnalytics from '../assets/img/home/showcase-token-analytics.png';
-import showcaseWorkspaceManagement from '../assets/img/home/showcase-workspace-management.png';
-import showcaseAchievementProgress from '../assets/img/home/showcase-achievement-progress.png';
+import showcaseProposalWorkflow from '../assets/img/home/showcase-proposal-workflow.png';
+import showcaseAgentRoster from '../assets/img/home/showcase-agent-roster.png';
+import showcaseAgentCli from '../assets/img/home/showcase-agent-cli.png';
+import showcaseSkillsGallery from '../assets/img/home/showcase-skills-gallery.png';
+import showcaseVault from '../assets/img/home/showcase-vault.png';
+import showcaseTokenUsage from '../assets/img/home/showcase-token-usage.png';
+import showcaseAchievements from '../assets/img/home/showcase-achievements.png';
+import showcaseGitManagement from '../assets/img/home/showcase-git-management.png';
+import showcaseScheduledPlans from '../assets/img/home/showcase-scheduled-plans.png';
 import personaStrategistAvatar from '../assets/r2/cat-head-gallery/g017-cyanotype-06-256.avif';
 import personaRunnerAvatar from '../assets/r2/cat-head-gallery/g004-pixel-art-03-256.avif';
 import personaArtistAvatar from '../assets/r2/cat-head-gallery/g045-impressionist-08-256.avif';
@@ -74,11 +79,16 @@ async function getShowcaseImageSources(source: ImageMetadata) {
 }
 
 const showcaseImages = {
-  proposalWorkflow: await getShowcaseImageSources(showcaseProposalWorkflow),
   sessionBoard: await getShowcaseImageSources(showcaseSessionBoard),
-  tokenAnalytics: await getShowcaseImageSources(showcaseTokenAnalytics),
-  workspaceManagement: await getShowcaseImageSources(showcaseWorkspaceManagement),
-  achievementProgress: await getShowcaseImageSources(showcaseAchievementProgress),
+  proposalWorkflow: await getShowcaseImageSources(showcaseProposalWorkflow),
+  agentRoster: await getShowcaseImageSources(showcaseAgentRoster),
+  agentCli: await getShowcaseImageSources(showcaseAgentCli),
+  skillsGallery: await getShowcaseImageSources(showcaseSkillsGallery),
+  vault: await getShowcaseImageSources(showcaseVault),
+  tokenUsage: await getShowcaseImageSources(showcaseTokenUsage),
+  achievements: await getShowcaseImageSources(showcaseAchievements),
+  gitManagement: await getShowcaseImageSources(showcaseGitManagement),
+  scheduledPlans: await getShowcaseImageSources(showcaseScheduledPlans),
 };
 
 async function getR2ImageSources(source: ImageMetadata, width: number, height: number) {
