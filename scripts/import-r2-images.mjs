@@ -1,11 +1,16 @@
 #!/usr/bin/env node
 /**
- * Vendors the R2 images named in r2-images.manifest.json into src/assets/r2/ and checks each
- * random pool against its album index.
+ * Verifies the R2 images named in r2-images.manifest.json, renders the vendored renditions into
+ * src/assets/r2/, and checks each random pool against its album index.
  *
- * Every download is verified (content type, bytes, sha256 and AVIF dimensions) and every pool
- * entry is matched against index.json before anything is written. Files are written through a
- * temp file and a rename, so a failed run exits non-zero and leaves the vendored files untouched.
+ * Two classes (see the manifest's `class` field):
+ * - vendored: the R2 object is verified against `source`, rendered to the small size its display
+ *   needs (`render`, via the site's existing sharp dependency), and the rendition is written.
+ * - rotating-remote: the R2 object is verified (content type, bytes, sha256, dimensions) and its
+ *   bytes checked against `byteCap`, but nothing is written; the page requests it on activation.
+ *
+ * Every check runs before anything is written. Files are written through a temp file and a rename,
+ * so a failed run exits non-zero and leaves the vendored files untouched.
  *
  * Usage: npm run import:r2-images [-- --manifest <path>]
  */
@@ -13,12 +18,14 @@ import { createHash, randomUUID } from 'node:crypto';
 import { mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import sharp from 'sharp';
 
 const SITE_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const DEFAULT_MANIFEST = resolve(SITE_ROOT, 'r2-images.manifest.json');
 const POOL_MIN_ENTRIES = 12;
 const POOL_MAX_ENTRIES = 200;
 const SHA256_PATTERN = /^[0-9a-f]{64}$/;
+const CLASSES = new Set(['vendored', 'rotating-remote']);
 
 /** Finds the first `ispe` property (width and height) in an AVIF file's ISOBMFF box tree. */
 export function readAvifDimensions(bytes) {
@@ -63,12 +70,19 @@ export function sha256Hex(bytes) {
   return createHash('sha256').update(bytes).digest('hex');
 }
 
+function isPositiveInteger(value) {
+  return Number.isInteger(value) && value > 0;
+}
+
 /** Structural checks on the manifest. Returns a list of problems; empty means the shape is valid. */
 export function validateManifestShape(manifest) {
   const problems = [];
-  if (manifest?.schemaVersion !== 1) problems.push('schemaVersion must be 1');
+  if (manifest?.schemaVersion !== 2) problems.push('schemaVersion must be 2');
   if (typeof manifest?.base !== 'string' || !manifest.base.startsWith('https://')) {
     problems.push('base must be an https URL');
+  }
+  if (!isPositiveInteger(manifest?.budgets?.perFileBytes) || !isPositiveInteger(manifest?.budgets?.totalBytes)) {
+    problems.push('budgets must set perFileBytes and totalBytes');
   }
   if (!Array.isArray(manifest?.entries)) problems.push('entries must be an array');
   if (!Array.isArray(manifest?.unchangedSurfaces)) problems.push('unchangedSurfaces must be an array');
@@ -80,15 +94,12 @@ export function validateManifestShape(manifest) {
     const label = entry?.id ?? '(no id)';
     if (!entry?.id || ids.has(entry.id)) problems.push(`${label}: id must be present and unique`);
     ids.add(entry?.id);
+    if (!CLASSES.has(entry?.class)) problems.push(`${label}: class must be vendored or rotating-remote`);
     if (typeof entry?.album !== 'string' || !entry?.objectKey?.startsWith(`${entry.album}/`)) {
       problems.push(`${label}: objectKey must start with its album`);
     }
-    if (typeof entry?.file !== 'string' || !entry.file.startsWith('src/assets/r2/') || files.has(entry.file)) {
-      problems.push(`${label}: file must be a unique path under src/assets/r2/`);
-    }
-    files.add(entry?.file);
     for (const field of ['width', 'height', 'bytes']) {
-      if (!Number.isInteger(entry?.[field]) || entry[field] <= 0) problems.push(`${label}: ${field} must be a positive integer`);
+      if (!isPositiveInteger(entry?.[field])) problems.push(`${label}: ${field} must be a positive integer`);
     }
     if (!SHA256_PATTERN.test(entry?.sha256 ?? '')) problems.push(`${label}: sha256 must be 64 lowercase hex characters`);
     if (typeof entry?.decorative !== 'boolean') problems.push(`${label}: decorative must be a boolean`);
@@ -99,6 +110,34 @@ export function validateManifestShape(manifest) {
     if (entry?.decorative === false && entry?.pool !== undefined) problems.push(`${label}: a meaningful image may not declare a pool`);
     if (entry?.audit?.verdict !== 'accepted' || !entry.audit.checkedOn || !entry.audit.notes) {
       problems.push(`${label}: audit needs verdict accepted, checkedOn and notes`);
+    }
+
+    if (entry?.class === 'vendored') {
+      if (typeof entry?.file !== 'string' || !entry.file.startsWith('src/assets/r2/') || files.has(entry.file)) {
+        problems.push(`${label}: file must be a unique path under src/assets/r2/`);
+      }
+      files.add(entry?.file);
+      const source = entry?.source;
+      if (!source || !isPositiveInteger(source.bytes) || !SHA256_PATTERN.test(source.sha256 ?? '')
+        || !isPositiveInteger(source.width) || !isPositiveInteger(source.height)) {
+        problems.push(`${label}: vendored entries need source {bytes, sha256, width, height} of the R2 object`);
+      }
+      if (entry?.render !== null && entry?.render !== undefined) {
+        const render = entry.render;
+        if (!isPositiveInteger(render.width) || !isPositiveInteger(render.height) || render.format !== 'avif'
+          || !isPositiveInteger(render.quality)) {
+          problems.push(`${label}: render needs width, height, format avif and quality`);
+        }
+        if (!Array.isArray(entry.transforms) || entry.transforms.length === 0) {
+          problems.push(`${label}: a rendered entry must record its transforms`);
+        }
+      }
+    }
+    if (entry?.class === 'rotating-remote') {
+      if (entry?.file !== null) problems.push(`${label}: a rotating remote frame has no vendored file (file must be null)`);
+      if (!isPositiveInteger(entry?.byteCap)) problems.push(`${label}: a rotating remote frame needs a byteCap`);
+      if (typeof entry?.activation !== 'string' || !entry.activation) problems.push(`${label}: a rotating remote frame needs an activation rule`);
+      if (entry?.decorative !== true) problems.push(`${label}: a rotating remote frame must be decorative`);
     }
   }
   for (const [name, pool] of Object.entries(pools)) {
@@ -112,10 +151,29 @@ export function validateManifestShape(manifest) {
   return problems;
 }
 
-/** Checks one downloaded object against its manifest entry. Returns a list of problems. */
+/** The R2 object an entry names: its `source` for a vendored entry, the entry itself for a remote frame. */
+function objectFields(entry) {
+  return entry.class === 'vendored' ? entry.source : entry;
+}
+
+/** Checks one downloaded R2 object against the manifest. Returns a list of problems. */
 export function verifyDownload(entry, { contentType, bytes }) {
+  const expected = objectFields(entry);
   const problems = [];
   if (!/^image\/avif(;|$)/.test(contentType)) problems.push(`content type is ${contentType || 'missing'}, expected image/avif`);
+  if (bytes.length !== expected.bytes) problems.push(`has ${bytes.length} bytes, manifest says ${expected.bytes}`);
+  if (sha256Hex(bytes) !== expected.sha256) problems.push('sha256 does not match the manifest');
+  const dimensions = readAvifDimensions(bytes);
+  if (!dimensions) problems.push('no AVIF ispe box found');
+  else if (dimensions.width !== expected.width || dimensions.height !== expected.height) {
+    problems.push(`is ${dimensions.width}x${dimensions.height}, manifest says ${expected.width}x${expected.height}`);
+  }
+  return problems;
+}
+
+/** Checks a rendered or committed file (bytes, sha256, dimensions) against its vendored entry. */
+export function verifyFile(entry, bytes) {
+  const problems = [];
   if (bytes.length !== entry.bytes) problems.push(`has ${bytes.length} bytes, manifest says ${entry.bytes}`);
   if (sha256Hex(bytes) !== entry.sha256) problems.push('sha256 does not match the manifest');
   const dimensions = readAvifDimensions(bytes);
@@ -124,6 +182,15 @@ export function verifyDownload(entry, { contentType, bytes }) {
     problems.push(`is ${dimensions.width}x${dimensions.height}, manifest says ${entry.width}x${entry.height}`);
   }
   return problems;
+}
+
+/** Produces the committed file for a vendored entry from its verified R2 object. */
+export async function renderVendored(entry, sourceBytes) {
+  if (!entry.render) return sourceBytes;
+  return sharp(sourceBytes)
+    .resize(entry.render.width, entry.render.height, { fit: 'cover' })
+    .avif({ quality: entry.render.quality, effort: 4 })
+    .toBuffer();
 }
 
 /** Checks every pool entry against the album index. Returns a list of problems. */
@@ -152,22 +219,18 @@ export function verifyPool(name, pool, indexEntries) {
   return problems;
 }
 
-/** Offline check of the vendored files against the manifest. Returns a list of problems. */
+/** Offline check of the committed vendored files against the manifest. Returns a list of problems. */
 export async function checkVendoredFiles(manifest, manifestDir) {
   const problems = [];
-  for (const entry of manifest.entries) {
-    const path = resolve(manifestDir, entry.file);
+  for (const entry of manifest.entries.filter((item) => item.class === 'vendored')) {
     let bytes;
     try {
-      bytes = await readFile(path);
+      bytes = await readFile(resolve(manifestDir, entry.file));
     } catch {
       problems.push(`${entry.file}: missing`);
       continue;
     }
-    const fileProblems = verifyDownload(entry, { contentType: 'image/avif', bytes });
-    for (const problem of fileProblems.filter((item) => !item.startsWith('content type'))) {
-      problems.push(`${entry.file}: ${problem}`);
-    }
+    for (const problem of verifyFile(entry, bytes)) problems.push(`${entry.file}: ${problem}`);
   }
   return problems;
 }
@@ -213,15 +276,27 @@ async function main(argv) {
 
   const problems = validateManifestShape(manifest);
   const downloads = new Map();
+  let remoteCount = 0;
 
   for (const entry of manifest.entries ?? []) {
     try {
       const downloaded = await fetchObject(manifest.base, entry.objectKey);
-      const entryProblems = verifyDownload(entry, downloaded);
-      if (entryProblems.length > 0) {
-        problems.push(...entryProblems.map((problem) => `${entry.objectKey}: ${problem}`));
+      const objectProblems = verifyDownload(entry, downloaded);
+      if (objectProblems.length > 0) {
+        problems.push(...objectProblems.map((problem) => `${entry.objectKey}: ${problem}`));
+        continue;
+      }
+      if (entry.class === 'rotating-remote') {
+        remoteCount += 1;
+        if (entry.bytes > entry.byteCap) problems.push(`${entry.objectKey}: ${entry.bytes} bytes is over the ${entry.byteCap} byte cap`);
+        continue;
+      }
+      const rendered = await renderVendored(entry, downloaded.bytes);
+      const fileProblems = verifyFile(entry, rendered);
+      if (fileProblems.length > 0) {
+        problems.push(...fileProblems.map((problem) => `${entry.file} (rendered from ${entry.objectKey}): ${problem}`));
       } else {
-        downloads.set(entry.file, downloaded.bytes);
+        downloads.set(entry.file, rendered);
       }
     } catch (error) {
       problems.push(`${entry.objectKey}: ${error instanceof Error ? error.message : error}`);
@@ -264,7 +339,8 @@ async function main(argv) {
     process.exitCode = 1;
     return;
   }
-  console.log(`Verified ${downloads.size} R2 image(s) and ${Object.keys(manifest.pools ?? {}).length} pool(s) from ${manifest.base}.`);
+  const vendoredCount = manifest.entries.filter((entry) => entry.class === 'vendored').length;
+  console.log(`Verified ${vendoredCount} vendored rendition(s), ${remoteCount} rotating remote frame(s) (not written) and ${Object.keys(manifest.pools ?? {}).length} pool(s) from ${manifest.base}.`);
   console.log(`Wrote ${written} file(s); ${downloads.size - written} already matched.`);
 }
 

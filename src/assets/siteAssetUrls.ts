@@ -15,18 +15,3 @@ export function getSiteAssetUrl(assetPath: string): string {
 
   return assetUrl;
 }
-
-const homeHeroAssetPaths = [
-  'img/home/interesting/heroes/aurora-04.webp',
-  'img/home/interesting/heroes/cat-ink-09.webp',
-  'img/home/interesting/heroes/cat-line-03.webp',
-  'img/home/interesting/heroes/cat-oil-09.webp',
-  'img/home/interesting/heroes/cat-paper-04.webp',
-  'img/home/interesting/heroes/cat-sticker-02.webp',
-  'img/home/interesting/heroes/cat-sticker-08.webp',
-  'img/home/interesting/heroes/royal-10.webp',
-  'img/home/interesting/heroes/thorn-06.webp',
-  'img/home/interesting/heroes/tide-09.webp',
-] as const;
-
-export const homeHeroImages = homeHeroAssetPaths.map(getSiteAssetUrl);

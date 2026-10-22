@@ -19,9 +19,20 @@ import showcaseSessionBoard from '../assets/img/home/showcase-session-board.png'
 import showcaseTokenAnalytics from '../assets/img/home/showcase-token-analytics.png';
 import showcaseWorkspaceManagement from '../assets/img/home/showcase-workspace-management.png';
 import showcaseAchievementProgress from '../assets/img/home/showcase-achievement-progress.png';
-import personaStrategistAvatar from '../assets/r2/hero-avatars/cat-abstract-08.avif';
-import personaRunnerAvatar from '../assets/r2/hero-avatars/cat-line-11.avif';
-import personaArtistAvatar from '../assets/r2/hero-avatars/cat-oil-08.avif';
+import personaStrategistAvatar from '../assets/r2/cat-head-gallery/g017-cyanotype-06-256.avif';
+import personaRunnerAvatar from '../assets/r2/cat-head-gallery/g004-pixel-art-03-256.avif';
+import personaArtistAvatar from '../assets/r2/cat-head-gallery/g045-impressionist-08-256.avif';
+import funWorldAgentsCover from '../assets/r2/cat-head-gallery/g002-ukiyo-e-01-960.avif';
+import funHeroFrame01 from '../assets/r2/cat-head-gallery/g023-chalk-pastel-10-256.avif';
+import funHeroFrame02 from '../assets/r2/cat-head-gallery/g025-voxel-03-256.avif';
+import funHeroFrame03 from '../assets/r2/cat-head-gallery/g031-illuminated-manuscript-04-256.avif';
+import funHeroFrame04 from '../assets/r2/cat-head-gallery/g034-vaporwave-04-256.avif';
+import funHeroFrame05 from '../assets/r2/cat-head-gallery/g035-synthwave-chrome-09-256.avif';
+import funHeroFrame06 from '../assets/r2/cat-head-gallery/g038-frosted-glass-02-256.avif';
+import funHeroFrame07 from '../assets/r2/cat-head-gallery/g039-needle-felt-09-256.avif';
+import funHeroFrame08 from '../assets/r2/cat-head-gallery/g041-glossy-balloon-05-256.avif';
+import funHeroFrame09 from '../assets/r2/cat-head-gallery/g042-blue-white-porcelain-05-256.avif';
+import funHeroFrame10 from '../assets/r2/cat-head-gallery/g043-glazed-ceramic-06-256.avif';
 import r2Manifest from '../../r2-images.manifest.json';
 import { getImage } from 'astro:assets';
 import '@/styles/homepage.css';
@@ -70,10 +81,10 @@ const showcaseImages = {
   achievementProgress: await getShowcaseImageSources(showcaseAchievementProgress),
 };
 
-async function getPersonaAvatarSources(source: ImageMetadata) {
+async function getR2ImageSources(source: ImageMetadata, width: number, height: number) {
   const [avif, webp] = await Promise.all([
-    getImage({ src: source, format: 'avif', width: 112, height: 112 }),
-    getImage({ src: source, format: 'webp', width: 112, height: 112 }),
+    getImage({ src: source, format: 'avif', width, height }),
+    getImage({ src: source, format: 'webp', width, height }),
   ]);
   return { avif: avif.src, webp: webp.src, src: webp.src };
 }
@@ -83,10 +94,34 @@ const r2PersonaPool = r2Manifest.pools['features-persona-avatar'].entries.map(
   (entry) => `${r2Manifest.base}/${entry.objectKey}`,
 );
 const personaAvatars = {
-  strategist: await getPersonaAvatarSources(personaStrategistAvatar),
-  runner: await getPersonaAvatarSources(personaRunnerAvatar),
-  artist: await getPersonaAvatarSources(personaArtistAvatar),
+  strategist: await getR2ImageSources(personaStrategistAvatar, 112, 112),
+  runner: await getR2ImageSources(personaRunnerAvatar, 112, 112),
+  artist: await getR2ImageSources(personaArtistAvatar, 112, 112),
 };
+
+// Fun-section frames (cat heads from cat-head-gallery): the first world cover and the hero strip are vendored
+// renditions; the other world covers are rotating remote frames (see the manifest).
+const funWorldCovers = {
+  agents: await getR2ImageSources(funWorldAgentsCover, 720, 480),
+};
+// Rotating remote frames: the other covers, referenced by their object URL and requested only on activation.
+const funRemoteWorldCovers = Object.fromEntries(
+  r2Manifest.entries
+    .filter((entry) => entry.class === 'rotating-remote')
+    .map((entry) => [entry.id.replace('fun-world-', ''), `${r2Manifest.base}/${entry.objectKey}`]),
+);
+const funHeroStrip = [
+  await getR2ImageSources(funHeroFrame01, 256, 256),
+  await getR2ImageSources(funHeroFrame02, 256, 256),
+  await getR2ImageSources(funHeroFrame03, 256, 256),
+  await getR2ImageSources(funHeroFrame04, 256, 256),
+  await getR2ImageSources(funHeroFrame05, 256, 256),
+  await getR2ImageSources(funHeroFrame06, 256, 256),
+  await getR2ImageSources(funHeroFrame07, 256, 256),
+  await getR2ImageSources(funHeroFrame08, 256, 256),
+  await getR2ImageSources(funHeroFrame09, 256, 256),
+  await getR2ImageSources(funHeroFrame10, 256, 256),
+];
 ---
 
 <!doctype html>
@@ -163,6 +198,9 @@ const personaAvatars = {
         cliProfiles={cliProfiles}
         personaAvatars={personaAvatars}
         personaPool={r2PersonaPool}
+        worldCovers={funWorldCovers}
+        remoteWorldCovers={funRemoteWorldCovers}
+        heroStrip={funHeroStrip}
         client:visible
       />
       <ShowcaseSection copy={showcaseCopy} images={showcaseImages} client:visible />

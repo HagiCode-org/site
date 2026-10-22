@@ -1902,6 +1902,12 @@
   aspect-ratio: 1;
 }
 
+.galleryPicture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .galleryImage {
   display: block;
   width: 100%;
@@ -2438,6 +2444,13 @@
 .worldCoverImage[data-active='true'] {
   opacity: 1;
   transform: scale(1);
+}
+
+.worldCoverImage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .worldCoverCaption {

@@ -2,13 +2,13 @@
 import { resolve } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { pickR2PoolImage, R2_POOL_TIMEOUT_MS } from './r2-random-image';
+import { pickR2PoolImage, R2_POOL_TIMEOUT_MS, resetR2PoolClaims } from './r2-random-image';
 
 const POOL = [
-  'https://pool.test/hero-avatars/a.avif',
-  'https://pool.test/hero-avatars/b.avif',
-  'https://pool.test/hero-avatars/c.avif',
-  'https://pool.test/hero-avatars/d.avif',
+  'https://pool.test/cat-head-gallery/a.avif',
+  'https://pool.test/cat-head-gallery/b.avif',
+  'https://pool.test/cat-head-gallery/c.avif',
+  'https://pool.test/cat-head-gallery/d.avif',
 ];
 
 /** A preload element whose outcome the test decides. */
@@ -50,6 +50,7 @@ function pick(slot: HTMLImageElement, random: () => number, extra: object = {}) 
 describe('pickR2PoolImage', () => {
   beforeEach(() => {
     FakeImage.created = [];
+    resetR2PoolClaims();
     vi.useFakeTimers();
   });
 
@@ -64,6 +65,7 @@ describe('pickR2PoolImage', () => {
     const steps = 4000;
 
     for (let step = 0; step < steps; step += 1) {
+      resetR2PoolClaims();
       pick(slot, () => (step + 0.5) / steps);
       const probe = FakeImage.created[step];
       counts.set(probe.src, (counts.get(probe.src) ?? 0) + 1);
@@ -142,6 +144,41 @@ describe('pickR2PoolImage', () => {
 
     expect(pickR2PoolImage(slot, [], { createImage: () => new FakeImage() as unknown as HTMLImageElement, saveData: false })).toBe(false);
     expect(FakeImage.created).toHaveLength(0);
+  });
+
+  it('never gives two slots the same entry while the pool has entries left', () => {
+    const slots = [setupSlot(), setupSlot(), setupSlot(), setupSlot()];
+    const shown: string[] = [];
+
+    for (const slot of slots) {
+      pick(slot, () => 0.5);
+      const probe = FakeImage.created[FakeImage.created.length - 1];
+      shown.push(probe.src);
+      probe.load();
+    }
+
+    expect(new Set(shown).size).toBe(POOL.length);
+    expect(pick(setupSlot(), () => 0.5)).toBe(false);
+  });
+
+  it('releases an entry whose preload fails, so another slot can use it', () => {
+    const first = setupSlot();
+    const second = setupSlot();
+
+    pick(first, () => 0.1);
+    FakeImage.created[0].fail();
+    pick(second, () => 0.1);
+    expect(FakeImage.created[1].src).toBe(POOL[0]);
+  });
+
+  it('releases an entry that times out, so another slot can use it', () => {
+    const first = setupSlot();
+    const second = setupSlot();
+
+    pick(first, () => 0.1);
+    vi.advanceTimersByTime(R2_POOL_TIMEOUT_MS);
+    pick(second, () => 0.1);
+    expect(FakeImage.created[1].src).toBe(POOL[0]);
   });
 
   it('does not swap into a slot that was removed before the entry loaded', () => {

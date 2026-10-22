@@ -9,9 +9,9 @@
  */
 import { useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { getSiteAssetUrl } from '@/assets/siteAssetUrls';
 import type { HomepageCliProfile, HomepageFeaturesCopy, HomepageWorldKey } from '@/lib/homepage-section-copy';
 import { pickR2PoolImage } from '@/scripts/r2-random-image';
+import { loadR2RemoteFrame } from '@/scripts/r2-remote-frame';
 import styles from './FeaturesShowcase.module.css';
 
 type Variants = {
@@ -24,8 +24,8 @@ interface IconProps {
   className?: string;
 }
 
-/** Astro-resolved renditions of a persona's vendored R2 default. */
-export interface PersonaAvatarSources {
+/** Astro-resolved renditions of a vendored R2 image (AVIF, WebP and the fallback src). */
+export interface R2ImageSources {
   avif: string;
   webp: string;
   src: string;
@@ -73,37 +73,6 @@ const workflowIcons: Record<string, React.ReactElement> = {
   apply: <ZapIcon className={styles.workflowIcon} />,
   archive: <AwardIcon className={styles.workflowIcon} />,
 };
-
-type GalleryAsset = {
-  src: string;
-  label: string;
-};
-
-const humanizeGalleryLabel = (fileName: string) => fileName
-  .replace(/\.(webp|png|jpe?g)$/i, '')
-  .split('-')
-  .map((part) => (part ? part[0].toUpperCase() + part.slice(1) : part))
-  .join(' ');
-
-const buildHeroGalleryAssets = (files: string[]): GalleryAsset[] => (
-  files.map((file) => ({
-    src: getSiteAssetUrl(`img/home/interesting/heroes/${file}`),
-    label: humanizeGalleryLabel(file),
-  }))
-);
-
-const interestingHeroGallery = buildHeroGalleryAssets([
-  'cat-line-03.webp',
-  'cat-ink-09.webp',
-  'cat-sticker-02.webp',
-  'cat-sticker-08.webp',
-  'thorn-06.webp',
-  'cat-paper-04.webp',
-  'tide-09.webp',
-  'royal-10.webp',
-  'cat-oil-09.webp',
-  'aurora-04.webp',
-]);
 
 function SupportedCliIcon({ providerKey }: CliIconProps) {
   switch (providerKey) {
@@ -783,19 +752,6 @@ function ConvenientFeature({ copy, cliProfiles }: { copy: HomepageFeaturesCopy['
   );
 }
 
-const worldCovers: Record<HomepageWorldKey, string> = {
-  agents: getSiteAssetUrl('img/home/interesting/worlds/agents.webp'),
-  fantasyAdventure: getSiteAssetUrl('img/home/interesting/worlds/fantasy-adventure.webp'),
-  cattleRanching: getSiteAssetUrl('img/home/interesting/worlds/cattle-ranching.webp'),
-  animeAcademy: getSiteAssetUrl('img/home/interesting/worlds/anime-academy.webp'),
-  imperialCourt: getSiteAssetUrl('img/home/interesting/worlds/imperial-court.webp'),
-  alienLaboratory: getSiteAssetUrl('img/home/interesting/worlds/alien-laboratory.webp'),
-  hiveColony: getSiteAssetUrl('img/home/interesting/worlds/hive-colony.webp'),
-  oceanSphereColony: getSiteAssetUrl('img/home/interesting/worlds/ocean-sphere-colony.webp'),
-  clockworkWorkshop: getSiteAssetUrl('img/home/interesting/worlds/clockwork-workshop.webp'),
-  pastoralPlanting: getSiteAssetUrl('img/home/interesting/worlds/pastoral-planting.webp'),
-};
-
 // Example agents: the Agent CLI names match the Efficient card. Avatars come from the page (R2 defaults and pool).
 const exampleAgents: Record<string, { cli: string }> = {
   strategist: { cli: 'Claude Code' },
@@ -822,7 +778,7 @@ function TrophyIcon({ tier }: { tier: (typeof TROPHY_TIERS)[number] }) {
 }
 
 /** Persona avatar: the vendored R2 default first, then at most one random pool entry after it loads. */
-function PersonaAvatar({ sources, pool }: { sources: PersonaAvatarSources; pool: string[] }) {
+function PersonaAvatar({ sources, pool }: { sources: R2ImageSources; pool: string[] }) {
   const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
@@ -854,17 +810,47 @@ function InterestingFeature({
   copy,
   personaAvatars,
   personaPool,
+  worldCovers,
+  remoteWorldCovers,
+  heroStrip = [],
 }: {
   copy: HomepageFeaturesCopy['interesting'];
-  personaAvatars?: Partial<Record<string, PersonaAvatarSources>>;
+  personaAvatars?: Partial<Record<string, R2ImageSources>>;
   personaPool: string[];
+  worldCovers?: Partial<Record<HomepageWorldKey, R2ImageSources>>;
+  remoteWorldCovers?: Partial<Record<HomepageWorldKey, string>>;
+  heroStrip?: R2ImageSources[];
 }) {
   const prefersReducedMotion = useReducedMotion();
   const worlds = copy.worlds.items;
   const [activeWorld, setActiveWorld] = useState(0);
+  const [shownWorld, setShownWorld] = useState(0);
   const [isHolding, setIsHolding] = useState(false);
   const [hasPicked, setHasPicked] = useState(false);
-  const heroGalleryLoop = [...interestingHeroGallery, ...interestingHeroGallery];
+  // Covers that can be shown: the vendored ones at once, a remote frame once its activation has loaded it.
+  const [readyWorlds, setReadyWorlds] = useState<Set<HomepageWorldKey>>(
+    () => new Set(worlds.filter((item) => worldCovers?.[item.key]).map((item) => item.key)),
+  );
+  const heroGalleryLoop = [...heroStrip, ...heroStrip];
+
+  // Activating a remote cover requests it (only now). The previous cover stays on screen until it loads.
+  useEffect(() => {
+    const key = worlds[activeWorld].key;
+    if (readyWorlds.has(key)) {
+      setShownWorld(activeWorld);
+      return undefined;
+    }
+
+    const url = remoteWorldCovers?.[key];
+    if (!url) return undefined;
+    return loadR2RemoteFrame(url, () => setReadyWorlds((prev) => new Set(prev).add(key)));
+  }, [activeWorld]);
+
+  useEffect(() => {
+    if (readyWorlds.has(worlds[activeWorld].key)) {
+      setShownWorld(activeWorld);
+    }
+  }, [activeWorld, readyWorlds]);
 
   // The world rotates on its own until the visitor hovers, focuses, or picks one.
   useEffect(() => {
@@ -969,20 +955,50 @@ function InterestingFeature({
 
         <div className={styles.worldShowcase}>
           <figure className={styles.worldCover}>
-            {worlds.map((item, index) => (
-              <img
-                key={item.key}
-                src={worldCovers[item.key]}
-                alt={index === activeWorld ? item.name : ''}
-                aria-hidden={index === activeWorld ? undefined : true}
-                className={styles.worldCoverImage}
-                data-active={index === activeWorld ? 'true' : 'false'}
-                width={720}
-                height={480}
-                loading={index === 0 ? 'eager' : 'lazy'}
-                decoding="async"
-              />
-            ))}
+            {worlds.map((item, index) => {
+              const cover = worldCovers?.[item.key];
+              const isShown = index === shownWorld;
+
+              if (cover) {
+                return (
+                  <picture
+                    key={item.key}
+                    className={styles.worldCoverImage}
+                    data-active={isShown ? 'true' : 'false'}
+                  >
+                    <source srcSet={cover.avif} type="image/avif" />
+                    <source srcSet={cover.webp} type="image/webp" />
+                    <img
+                      src={cover.src}
+                      alt={isShown ? item.name : ''}
+                      aria-hidden={isShown ? undefined : true}
+                      width={720}
+                      height={480}
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </picture>
+                );
+              }
+
+              // A rotating remote frame exists in the DOM only after its activation has loaded it.
+              const remote = remoteWorldCovers?.[item.key];
+              if (!remote || !readyWorlds.has(item.key)) return null;
+
+              return (
+                <img
+                  key={item.key}
+                  src={remote}
+                  alt={isShown ? item.name : ''}
+                  aria-hidden={isShown ? undefined : true}
+                  className={styles.worldCoverImage}
+                  data-active={isShown ? 'true' : 'false'}
+                  width={720}
+                  height={480}
+                  decoding="async"
+                />
+              );
+            })}
             <figcaption className={styles.worldCoverCaption}>{world.name}</figcaption>
           </figure>
 
@@ -1017,9 +1033,13 @@ function InterestingFeature({
             <div className={styles.galleryPanel}>
               <div className={styles.galleryViewport}>
                 <div className={styles.galleryTrack}>
-                  {heroGalleryLoop.map((asset, index) => (
-                    <div key={`${asset.src}-${index}`} className={styles.galleryCard} data-kind="hero">
-                      <img src={asset.src} alt="" aria-hidden={index >= interestingHeroGallery.length ? true : undefined} className={styles.galleryImage} width={128} height={128} loading="lazy" decoding="async" />
+                  {heroGalleryLoop.map((frame, index) => (
+                    <div key={`${frame.src}-${index}`} className={styles.galleryCard} data-kind="hero">
+                      <picture className={styles.galleryPicture}>
+                        <source srcSet={frame.avif} type="image/avif" />
+                        <source srcSet={frame.webp} type="image/webp" />
+                        <img src={frame.src} alt="" aria-hidden="true" className={styles.galleryImage} width={128} height={128} loading="lazy" decoding="async" />
+                      </picture>
                     </div>
                   ))}
                 </div>
@@ -1037,12 +1057,18 @@ interface Props {
   /** Per-CLI profiles read from the comparison articles; the CLI bay is hidden when empty. */
   cliProfiles?: HomepageCliProfile[];
   /** Persona avatars keyed by example agent: vendored R2 defaults rendered by Astro. */
-  personaAvatars?: Partial<Record<string, PersonaAvatarSources>>;
+  personaAvatars?: Partial<Record<string, R2ImageSources>>;
   /** Absolute R2 URLs a persona avatar may swap to at random; empty means no swap. */
   personaPool?: string[];
+  /** Fun-section world covers keyed by world: vendored R2 cat heads rendered by Astro. */
+  worldCovers?: Partial<Record<HomepageWorldKey, R2ImageSources>>;
+  /** Fun-section covers that are rotating remote frames, by world: their object URLs, requested on activation. */
+  remoteWorldCovers?: Partial<Record<HomepageWorldKey, string>>;
+  /** Fun-section hero strip frames in strip order: vendored R2 cat heads rendered by Astro. */
+  heroStrip?: R2ImageSources[];
 }
 
-export default function FeaturesShowcase({ copy, cliProfiles = [], personaAvatars, personaPool = [] }: Props) {
+export default function FeaturesShowcase({ copy, cliProfiles = [], personaAvatars, personaPool = [], worldCovers, remoteWorldCovers, heroStrip }: Props) {
   return (
     <section className={styles.featuresShowcase}>
       <div className="container">
@@ -1056,7 +1082,14 @@ export default function FeaturesShowcase({ copy, cliProfiles = [], personaAvatar
         <div className={styles.zonesContainer}>
           <SmartFeature copy={copy.smart} />
           <ConvenientFeature copy={copy.convenient} cliProfiles={cliProfiles} />
-          <InterestingFeature copy={copy.interesting} personaAvatars={personaAvatars} personaPool={personaPool} />
+          <InterestingFeature
+            copy={copy.interesting}
+            personaAvatars={personaAvatars}
+            personaPool={personaPool}
+            worldCovers={worldCovers}
+            remoteWorldCovers={remoteWorldCovers}
+            heroStrip={heroStrip}
+          />
         </div>
       </div>
     </section>

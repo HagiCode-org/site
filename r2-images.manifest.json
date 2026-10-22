@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "base": "https://img-gen.hagicode.com",
   "budgets": {
     "perFileBytes": 40960,
@@ -9,328 +9,828 @@
     {
       "id": "features-persona-strategist",
       "surface": "home/features-showcase/persona-avatar/strategist",
-      "album": "hero-avatars",
-      "objectKey": "hero-avatars/cat-abstract-08.avif",
-      "file": "src/assets/r2/hero-avatars/cat-abstract-08.avif",
-      "width": 1024,
-      "height": 1024,
-      "bytes": 17354,
-      "sha256": "72cf2b7bfd0f4f8869fac10ad1cc753f7ad1ca31d247754dff5748ccaef26fbd",
-      "transforms": [
-        "Astro getImage: AVIF and WebP at 112 px for the persona slot"
-      ],
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g017-cyanotype-06.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 5581,
+      "sha256": "385356796b442b80d765f75a843287e7c2b416bff5eda92b737d8424ba73dade",
       "decorative": true,
       "pool": "features-persona-avatar",
       "audit": {
         "verdict": "accepted",
-        "checkedOn": "2026-10-21",
-        "notes": "Text-free character bust from the hero-avatars audit (audit/hero-pool.json, 46 sampled keys). Decorative persona avatar; alt is empty."
-      }
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative persona avatar; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/cat-head-gallery/g017-cyanotype-06-256.avif",
+      "source": {
+        "bytes": 18762,
+        "sha256": "500fb3c72e3a4403a1fce663f4d3d0e7a53e977456ed58fb8c1608536bd9a48b",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 60
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 60, effort 4 (sharp)"
+      ]
     },
     {
       "id": "features-persona-runner",
       "surface": "home/features-showcase/persona-avatar/runner",
-      "album": "hero-avatars",
-      "objectKey": "hero-avatars/cat-line-11.avif",
-      "file": "src/assets/r2/hero-avatars/cat-line-11.avif",
-      "width": 1024,
-      "height": 1024,
-      "bytes": 26030,
-      "sha256": "fa580d8d992dc0aae4fdf9af76d888993e77cf48f5bbd630c3aec752d8615eae",
-      "transforms": [
-        "Astro getImage: AVIF and WebP at 112 px for the persona slot"
-      ],
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g004-pixel-art-03.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 9734,
+      "sha256": "a68be88afbab340d670f02eeaefb1de7d24ca0c51d396762a54ff09e9af0304d",
       "decorative": true,
       "pool": "features-persona-avatar",
       "audit": {
         "verdict": "accepted",
-        "checkedOn": "2026-10-21",
-        "notes": "Text-free character bust from the hero-avatars audit (audit/hero-pool.json, 46 sampled keys). Decorative persona avatar; alt is empty."
-      }
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative persona avatar; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/cat-head-gallery/g004-pixel-art-03-256.avif",
+      "source": {
+        "bytes": 24154,
+        "sha256": "47d48788dc55fe090321684161b8fccafb50ab15f6d0fc160de19bddf5da412c",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 60
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 60, effort 4 (sharp)"
+      ]
     },
     {
       "id": "features-persona-artist",
       "surface": "home/features-showcase/persona-avatar/artist",
-      "album": "hero-avatars",
-      "objectKey": "hero-avatars/cat-oil-08.avif",
-      "file": "src/assets/r2/hero-avatars/cat-oil-08.avif",
-      "width": 1024,
-      "height": 1024,
-      "bytes": 39849,
-      "sha256": "f6a5cbc390bb08eed3b44221f5018c3e5806efe08025457824cf6f09562d7f4f",
-      "transforms": [
-        "Astro getImage: AVIF and WebP at 112 px for the persona slot"
-      ],
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g045-impressionist-08.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 7834,
+      "sha256": "8ee9092fb79c493dc2eb61a3c7d580cecb13098c3adeb3ea898ac2425e249970",
       "decorative": true,
       "pool": "features-persona-avatar",
       "audit": {
         "verdict": "accepted",
-        "checkedOn": "2026-10-21",
-        "notes": "Text-free character bust from the hero-avatars audit (audit/hero-pool.json, 46 sampled keys). Decorative persona avatar; alt is empty."
-      }
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative persona avatar; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/cat-head-gallery/g045-impressionist-08-256.avif",
+      "source": {
+        "bytes": 32479,
+        "sha256": "66a87e10c3b923e1a82de1724004aa92ae0839e9724a6391da184b96e3c9fc9a",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 60
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 60, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-world-agents",
+      "surface": "home/features-showcase/interesting/world-cover/agents",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g002-ukiyo-e-01.avif",
+      "width": 960,
+      "height": 960,
+      "bytes": 29942,
+      "sha256": "e581302c63aed709bd87af4a93356192efda17c937513267d937a69d2b6a5bce",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/cat-head-gallery/g002-ukiyo-e-01-960.avif",
+      "source": {
+        "bytes": 25795,
+        "sha256": "6f942c4c0a9bf9aed7fd9463871242d30247f9ec31460a4539d2b851bf1a0e30",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 960,
+        "height": 960,
+        "format": "avif",
+        "quality": 60
+      },
+      "transforms": [
+        "resize to 960x960 (cover) from the R2 object",
+        "encode AVIF quality 60, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-world-fantasyAdventure",
+      "surface": "home/features-showcase/interesting/world-cover/fantasyAdventure",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g003-watercolor-wash-02.avif",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 30932,
+      "sha256": "ffb4e54fee1347a8a37f3b89cbd037680fb0242d76357e68183ac68638d14bc4",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section world cover; rotating remote frame, alt and caption unchanged."
+      },
+      "class": "rotating-remote",
+      "file": null,
+      "byteCap": 40960,
+      "activation": "Requested only when the carousel first activates this cover (timer or world chip); preloaded with an image element and swapped into the same box."
+    },
+    {
+      "id": "fun-world-cattleRanching",
+      "surface": "home/features-showcase/interesting/world-cover/cattleRanching",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g005-oil-impasto-06.avif",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 37209,
+      "sha256": "8e09ebc3b5ee2472acc47de9f3955218b7b4e71b12e50d4e84c919d4b61c630e",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section world cover; rotating remote frame, alt and caption unchanged."
+      },
+      "class": "rotating-remote",
+      "file": null,
+      "byteCap": 40960,
+      "activation": "Requested only when the carousel first activates this cover (timer or world chip); preloaded with an image element and swapped into the same box."
+    },
+    {
+      "id": "fun-world-animeAcademy",
+      "surface": "home/features-showcase/interesting/world-cover/animeAcademy",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g006-paper-cut-layers-07.avif",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 15837,
+      "sha256": "2b7ec5587c63ba8579929310d78627d9525662c1398f5b2a56533c160d08c5a5",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section world cover; rotating remote frame, alt and caption unchanged."
+      },
+      "class": "rotating-remote",
+      "file": null,
+      "byteCap": 40960,
+      "activation": "Requested only when the carousel first activates this cover (timer or world chip); preloaded with an image element and swapped into the same box."
+    },
+    {
+      "id": "fun-world-imperialCourt",
+      "surface": "home/features-showcase/interesting/world-cover/imperialCourt",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g008-low-poly-07.avif",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 17251,
+      "sha256": "a04072d8535eb59e6391dc56449b451f4700fccb14304bfcb9e8357e6bf9a0c3",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section world cover; rotating remote frame, alt and caption unchanged."
+      },
+      "class": "rotating-remote",
+      "file": null,
+      "byteCap": 40960,
+      "activation": "Requested only when the carousel first activates this cover (timer or world chip); preloaded with an image element and swapped into the same box."
+    },
+    {
+      "id": "fun-world-alienLaboratory",
+      "surface": "home/features-showcase/interesting/world-cover/alienLaboratory",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g009-claymation-07.avif",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 16599,
+      "sha256": "bc9931cc299ff23c8cc395572cf65025e5454d7b98c6f871f4e51b4aa8ee95ce",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section world cover; rotating remote frame, alt and caption unchanged."
+      },
+      "class": "rotating-remote",
+      "file": null,
+      "byteCap": 40960,
+      "activation": "Requested only when the carousel first activates this cover (timer or world chip); preloaded with an image element and swapped into the same box."
+    },
+    {
+      "id": "fun-world-hiveColony",
+      "surface": "home/features-showcase/interesting/world-cover/hiveColony",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g010-neon-line-07.avif",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 21312,
+      "sha256": "f7cb901ceaafa71041d7e42f202bfce741acfe95001e43c21932303adecbd312",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section world cover; rotating remote frame, alt and caption unchanged."
+      },
+      "class": "rotating-remote",
+      "file": null,
+      "byteCap": 40960,
+      "activation": "Requested only when the carousel first activates this cover (timer or world chip); preloaded with an image element and swapped into the same box."
+    },
+    {
+      "id": "fun-world-oceanSphereColony",
+      "surface": "home/features-showcase/interesting/world-cover/oceanSphereColony",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g016-bauhaus-geometry-06.avif",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 13663,
+      "sha256": "a394e4ea31ccc178a1513eafca459e9e4b4fb9a3bbfa8f0ef7aad408ee2ea933",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section world cover; rotating remote frame, alt and caption unchanged."
+      },
+      "class": "rotating-remote",
+      "file": null,
+      "byteCap": 40960,
+      "activation": "Requested only when the carousel first activates this cover (timer or world chip); preloaded with an image element and swapped into the same box."
+    },
+    {
+      "id": "fun-world-clockworkWorkshop",
+      "surface": "home/features-showcase/interesting/world-cover/clockworkWorkshop",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g020-origami-03.avif",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 26060,
+      "sha256": "98b9335709a53ad3cb1287023490762a8bfe9aa2a64beb183df1a445ef6619dd",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section world cover; rotating remote frame, alt and caption unchanged."
+      },
+      "class": "rotating-remote",
+      "file": null,
+      "byteCap": 40960,
+      "activation": "Requested only when the carousel first activates this cover (timer or world chip); preloaded with an image element and swapped into the same box."
+    },
+    {
+      "id": "fun-world-pastoralPlanting",
+      "surface": "home/features-showcase/interesting/world-cover/pastoralPlanting",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g022-blueprint-03.avif",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 23845,
+      "sha256": "f4b0df21af3b979d3355859991361c3f748e62b1debc1ad8add5facc30a81e30",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section world cover; rotating remote frame, alt and caption unchanged."
+      },
+      "class": "rotating-remote",
+      "file": null,
+      "byteCap": 40960,
+      "activation": "Requested only when the carousel first activates this cover (timer or world chip); preloaded with an image element and swapped into the same box."
+    },
+    {
+      "id": "fun-hero-aurora-04",
+      "surface": "home/features-showcase/interesting/hero-strip/01-aurora-04",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g023-chalk-pastel-10.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 5081,
+      "sha256": "73e4abaeca7833cea0231f41ba25ee1c5c887aecd13e6f5a9e4dd3294a9e47fa",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/cat-head-gallery/g023-chalk-pastel-10-256.avif",
+      "source": {
+        "bytes": 29427,
+        "sha256": "782e76e30c4c58f7ebea2221b925d84989286cc5f004a0348956029ef7cd3ca7",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 60
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 60, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-cat-ink-09",
+      "surface": "home/features-showcase/interesting/hero-strip/02-cat-ink-09",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g025-voxel-03.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 3308,
+      "sha256": "39cffbea0f79c324f767fd8483a40ad3041225ca57c4bc9f8e22785fab446957",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/cat-head-gallery/g025-voxel-03-256.avif",
+      "source": {
+        "bytes": 8242,
+        "sha256": "23808a6d5241ce9085ec91329bd021d62a249f18bc3094dae0e8c8eeae4d8cf1",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 60
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 60, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-cat-line-03",
+      "surface": "home/features-showcase/interesting/hero-strip/03-cat-line-03",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g031-illuminated-manuscript-04.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 6840,
+      "sha256": "59a40c16a3e25445b3526a2b730d06217d727e08e45fc3ac070940e7e4f85749",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/cat-head-gallery/g031-illuminated-manuscript-04-256.avif",
+      "source": {
+        "bytes": 32530,
+        "sha256": "53486da06ca5a71438274f2ef42b07a036c3410858210538aa35a459a03ecf06",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 60
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 60, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-cat-oil-09",
+      "surface": "home/features-showcase/interesting/hero-strip/04-cat-oil-09",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g034-vaporwave-04.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 8138,
+      "sha256": "fbc93102d8d6b8a27767fbb0017e64d3344cba78ad0eed1138bafb4abe2b6c97",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/cat-head-gallery/g034-vaporwave-04-256.avif",
+      "source": {
+        "bytes": 36264,
+        "sha256": "75bbeab53b39d6dbeb40a1b720a39b28990fda11f73d9afcbdecd1dfd2ccf573",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 60
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 60, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-cat-paper-04",
+      "surface": "home/features-showcase/interesting/hero-strip/05-cat-paper-04",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g035-synthwave-chrome-09.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 7195,
+      "sha256": "bbfc66744597e175934a031ac8aaba38290504d2b8cfbbed64351ce61b1fef8a",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/cat-head-gallery/g035-synthwave-chrome-09-256.avif",
+      "source": {
+        "bytes": 18415,
+        "sha256": "b70201302ca70cd4d4f20bfbf42c7d79a29c56d0eb35c67a16bbaa75b58f39fe",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 60
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 60, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-cat-sticker-02",
+      "surface": "home/features-showcase/interesting/hero-strip/06-cat-sticker-02",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g038-frosted-glass-02.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 9037,
+      "sha256": "cccb4e24006a55b232f2342faa9b348b5dcbe19011b7334838122896d2cf6e1b",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/cat-head-gallery/g038-frosted-glass-02-256.avif",
+      "source": {
+        "bytes": 28185,
+        "sha256": "eb121db856d905895e5310aae737717bf8720e463f12a31637440537c0036409",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 60
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 60, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-cat-sticker-08",
+      "surface": "home/features-showcase/interesting/hero-strip/07-cat-sticker-08",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g039-needle-felt-09.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 7617,
+      "sha256": "f83cd4609fe69d65a0c6eb40e425d2f4b1442eec8475e78c91a26da516f3fa6c",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/cat-head-gallery/g039-needle-felt-09-256.avif",
+      "source": {
+        "bytes": 33696,
+        "sha256": "103a8a07df9ed005dbdde5e430df803be365307523cce0ad0b38a0e2df8b2cc3",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 60
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 60, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-royal-10",
+      "surface": "home/features-showcase/interesting/hero-strip/08-royal-10",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g041-glossy-balloon-05.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 4861,
+      "sha256": "8ba062b2a8c4b223f945cae3f451dabbc78a7ae94a573d572455237817c7f67d",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/cat-head-gallery/g041-glossy-balloon-05-256.avif",
+      "source": {
+        "bytes": 14623,
+        "sha256": "9067ea279143b9d8ad3e2604914da9950795721bd668633928bfc7453a635d3a",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 60
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 60, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-thorn-06",
+      "surface": "home/features-showcase/interesting/hero-strip/09-thorn-06",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g042-blue-white-porcelain-05.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 7043,
+      "sha256": "843aab6b7a0f11c7e5bb86806f4094bcd74683b54c8234d98a2bf114e6c891c8",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/cat-head-gallery/g042-blue-white-porcelain-05-256.avif",
+      "source": {
+        "bytes": 31257,
+        "sha256": "ccaef6c90a8f9916d7fce11bc392b8ce2b32d145d88f18cd375fb5c4e286fc8d",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 60
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 60, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-tide-09",
+      "surface": "home/features-showcase/interesting/hero-strip/10-tide-09",
+      "album": "cat-head-gallery",
+      "objectKey": "cat-head-gallery/g043-glazed-ceramic-06.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 4183,
+      "sha256": "dae2065c0bc734543847472c52932143813a2bd930267596fd0c0347f11c3c60",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-22",
+        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/cat-head-gallery/g043-glazed-ceramic-06-256.avif",
+      "source": {
+        "bytes": 11086,
+        "sha256": "878d5dee896212f697bc8cb44271aa8251f2fb929ec6f72075dd5ddf81078cdf",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 60
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 60, effort 4 (sharp)"
+      ]
     }
   ],
   "pools": {
     "features-persona-avatar": {
-      "album": "hero-avatars",
+      "album": "cat-head-gallery",
       "maxBytes": 40960,
-      "source": "Audited hero-avatars sample (46 keys, index updated 2026-10-21T01:24:10Z, cap 40960 bytes), minus the three persona defaults",
+      "source": "Audited cat-head-gallery pool (50 keys, index updated 2026-10-21T01:17:37.109Z, cap 40960 bytes), minus the three persona defaults and the 20 Fun-section frames, so no cat head repeats on the page",
       "entries": [
         {
-          "objectKey": "hero-avatars/arctic-expedition-06.avif",
-          "bytes": 40478,
+          "objectKey": "cat-head-gallery/g047-fauvist-09.avif",
+          "bytes": 18358,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/aurora-12.avif",
-          "bytes": 33595,
+          "objectKey": "cat-head-gallery/g048-cubist-10.avif",
+          "bytes": 31586,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/cat-cyber-05.avif",
-          "bytes": 27601,
+          "objectKey": "cat-head-gallery/g051-naive-folk-art-07.avif",
+          "bytes": 19613,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/cat-line-01.avif",
-          "bytes": 32825,
+          "objectKey": "cat-head-gallery/g056-wax-print-fabric-07.avif",
+          "bytes": 16978,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/cat-paper-07.avif",
-          "bytes": 35870,
+          "objectKey": "cat-head-gallery/g058-red-paper-cut-10.avif",
+          "bytes": 20948,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/cat-sticker-03.avif",
-          "bytes": 31789,
+          "objectKey": "cat-head-gallery/g060-kawaii-pastel-01.avif",
+          "bytes": 12179,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/cat-sticker-11.avif",
-          "bytes": 38976,
+          "objectKey": "cat-head-gallery/g061-retro-90s-anime-01.avif",
+          "bytes": 29377,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/cat-storybook-07.avif",
-          "bytes": 31257,
+          "objectKey": "cat-head-gallery/g062-shoujo-sparkle-08.avif",
+          "bytes": 27048,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/civic-advocates-02.avif",
-          "bytes": 17846,
+          "objectKey": "cat-head-gallery/g065-saturday-cartoon-09.avif",
+          "bytes": 19421,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/civic-advocates-10.avif",
-          "bytes": 20630,
+          "objectKey": "cat-head-gallery/g067-pixar-style-3d-03.avif",
+          "bytes": 16925,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/culinary-brigade-06.avif",
-          "bytes": 24718,
+          "objectKey": "cat-head-gallery/g068-toon-shaded-3d-04.avif",
+          "bytes": 14116,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/desert-caravan-02.avif",
-          "bytes": 37153,
+          "objectKey": "cat-head-gallery/g069-ps1-lowpoly-06.avif",
+          "bytes": 18227,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/desert-caravan-11.avif",
-          "bytes": 34462,
+          "objectKey": "cat-head-gallery/g070-matte-clay-render-07.avif",
+          "bytes": 12775,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/dream-post-office-01.avif",
-          "bytes": 30637,
+          "objectKey": "cat-head-gallery/g071-y2k-chrome-08.avif",
+          "bytes": 24059,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/dream-post-office-09.avif",
-          "bytes": 35062,
+          "objectKey": "cat-head-gallery/g072-glossy-3d-icon-08.avif",
+          "bytes": 13376,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/goblin-market-01.avif",
-          "bytes": 34100,
+          "objectKey": "cat-head-gallery/g073-marble-bust-08.avif",
+          "bytes": 17446,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/goblin-market-10.avif",
-          "bytes": 33729,
+          "objectKey": "cat-head-gallery/g075-wood-carving-10.avif",
+          "bytes": 38433,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/haunted-manor-07.avif",
-          "bytes": 31559,
+          "objectKey": "cat-head-gallery/g076-carved-jade-10.avif",
+          "bytes": 14512,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/kite-festival-09.avif",
-          "bytes": 39547,
+          "objectKey": "cat-head-gallery/g078-toy-brick-02.avif",
+          "bytes": 11910,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/mecha-academy-06.avif",
-          "bytes": 34814,
+          "objectKey": "cat-head-gallery/g079-designer-vinyl-toy-02.avif",
+          "bytes": 10594,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/metro-conductors-02.avif",
-          "bytes": 31703,
+          "objectKey": "cat-head-gallery/g081-patchwork-quilt-03.avif",
+          "bytes": 25601,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/metro-conductors-10.avif",
-          "bytes": 21782,
+          "objectKey": "cat-head-gallery/g083-warhol-silkscreen-04.avif",
+          "bytes": 14747,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/mountain-monastery-11.avif",
-          "bytes": 32466,
+          "objectKey": "cat-head-gallery/g088-vintage-lithograph-02.avif",
+          "bytes": 27832,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/nebula-11.avif",
-          "bytes": 38449,
+          "objectKey": "cat-head-gallery/g090-alcohol-marker-09.avif",
+          "bytes": 34894,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/noir-detective-04.avif",
-          "bytes": 21068,
+          "objectKey": "cat-head-gallery/g091-painterly-concept-art-09.avif",
+          "bytes": 18574,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/olympian-pantheon-01.avif",
-          "bytes": 26515,
+          "objectKey": "cat-head-gallery/g092-gradient-minimal-09.avif",
+          "bytes": 14823,
           "width": 1024,
           "height": 1024
         },
         {
-          "objectKey": "hero-avatars/olympian-pantheon-09.avif",
-          "bytes": 32541,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/orbital-station-10.avif",
-          "bytes": 38227,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/orchestral-guild-08.avif",
-          "bytes": 30142,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/porcelain-tea-salon-04.avif",
-          "bytes": 31435,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/puppet-theater-02.avif",
-          "bytes": 28303,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/puppet-theater-11.avif",
-          "bytes": 36914,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/robot-foundry-07.avif",
-          "bytes": 30926,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/royal-03.avif",
-          "bytes": 26449,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/royal-11.avif",
-          "bytes": 31173,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/silent-film-studio-07.avif",
-          "bytes": 23298,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/storm-01.avif",
-          "bytes": 26413,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/storm-09.avif",
-          "bytes": 33785,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/storm-observatory-05.avif",
-          "bytes": 40593,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/sugar-kingdom-06.avif",
-          "bytes": 28629,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/tide-07.avif",
-          "bytes": 37237,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/vampire-court-09.avif",
-          "bytes": 39294,
-          "width": 1024,
-          "height": 1024
-        },
-        {
-          "objectKey": "hero-avatars/volcanic-rescue-08.avif",
-          "bytes": 31660,
+          "objectKey": "cat-head-gallery/g095-constellation-map-09.avif",
+          "bytes": 25940,
           "width": 1024,
           "height": 1024
         }
@@ -345,14 +845,6 @@
     {
       "surface": "home/workflow-board",
       "reason": "The board is a CSS systems visual that DESIGN.md asks to keep legible; a backdrop image would compete with its lanes."
-    },
-    {
-      "surface": "home/features-showcase/gallery-strip",
-      "reason": "Already shows ten decorative hero avatars from local files; not a persona slot, so it stays as it is."
-    },
-    {
-      "surface": "home/features-showcase/world-covers",
-      "reason": "Per-world illustrations tied to the world copy; no audited R2 album depicts these worlds."
     },
     {
       "surface": "home/showcase",

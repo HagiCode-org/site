@@ -8,6 +8,14 @@
 
 export const R2_POOL_TIMEOUT_MS = 3000;
 
+/** Pool entries already shown or being loaded on this page, so two slots never show the same entry. */
+const claimed = new Set<string>();
+
+/** Forgets every claim. The page never needs this; tests use it between cases. */
+export function resetR2PoolClaims() {
+  claimed.clear();
+}
+
 export interface R2PoolPickOptions {
   /** Returns a number in [0, 1). Defaults to Math.random. */
   random?: () => number;
@@ -31,21 +39,27 @@ function swapIn(slot: HTMLImageElement, url: string) {
   slot.src = url;
 }
 
-/** Starts one preload for a random pool entry. Returns false when nothing was started. */
+/**
+ * Starts one preload for a random pool entry that no other slot on the page has claimed. Returns
+ * false when nothing was started. A failed or late entry is released for other slots to use.
+ */
 export function pickR2PoolImage(
   slot: HTMLImageElement,
   pool: readonly string[],
   options: R2PoolPickOptions = {},
 ): boolean {
   const saveData = options.saveData ?? browserPrefersSaveData();
-  if (pool.length === 0 || saveData) return false;
+  const free = pool.filter((url) => !claimed.has(url));
+  if (free.length === 0 || saveData) return false;
 
   const random = options.random ?? Math.random;
-  const url = pool[Math.min(pool.length - 1, Math.floor(random() * pool.length))];
+  const url = free[Math.min(free.length - 1, Math.floor(random() * free.length))];
+  claimed.add(url);
   const probe = options.createImage ? options.createImage() : new Image();
   let settled = false;
   const timer = setTimeout(() => {
     settled = true;
+    claimed.delete(url);
   }, options.timeoutMs ?? R2_POOL_TIMEOUT_MS);
 
   probe.onload = () => {
@@ -58,6 +72,7 @@ export function pickR2PoolImage(
     if (settled) return;
     settled = true;
     clearTimeout(timer);
+    claimed.delete(url);
   };
   probe.src = url;
   return true;
