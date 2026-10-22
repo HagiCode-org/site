@@ -77,6 +77,8 @@ showcase:
     imageUnavailable: 圖片暫時無法顯示
     openFullscreen: 全螢幕檢視：
     openFullscreenHint: 點擊查看大圖
+    zoomIn: "查看原始大小"
+    zoomOut: "符合螢幕"
     closeFullscreen: 關閉全螢幕
   screenshots:
     sessionBoard:

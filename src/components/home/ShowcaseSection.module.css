@@ -1,47 +1,17 @@
 .showcaseSection {
   position: relative;
   overflow-x: clip;
-  padding: 5rem 0;
+  padding: 5rem 0 5.5rem;
   background: var(--color-background);
 }
 
-.showcaseSection::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--color-border-light) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-border-light) 1px, transparent 1px);
-  background-size: 60px 60px;
-  opacity: 0.18;
-  pointer-events: none;
-  mask-image: linear-gradient(to bottom, black 20%, transparent 82%);
-  -webkit-mask-image: linear-gradient(to bottom, black 20%, transparent 82%);
-}
-
-[data-theme='dark'] .showcaseSection::before {
-  opacity: 0.12;
-  background-image:
-    linear-gradient(rgba(125, 211, 252, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(125, 211, 252, 0.05) 1px, transparent 1px);
-}
-
 .sectionHeader {
-  position: relative;
-  z-index: 1;
   display: grid;
   gap: 0.75rem;
-  margin-bottom: 2.5rem;
+  margin: 0 auto 2.5rem;
   max-width: 48rem;
-}
-
-.sectionKicker {
-  margin: 0;
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-text-secondary);
+  text-align: center;
+  justify-items: center;
 }
 
 .sectionTitle {
@@ -64,637 +34,706 @@
   color: var(--color-text-secondary);
 }
 
-.showcaseLayout {
-  position: relative;
-  z-index: 1;
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/*
+ * The screening room: one console-dark frame, as wide as the viewport can hold at the captures'
+ * 16:10, so the whole frame (bar, capture, caption) fits on screen. The captures are all dark UI,
+ * so the frame stays dark in both themes.
+ */
+.cinema {
+  --cx-bar: #0a0f1e;
+  --cx-stage: #05080f;
+  --cx-line: rgba(148, 163, 184, 0.16);
+  --cx-text: #f8fafc;
+  --cx-muted: #cbd5e1;
+  --showcase-enter-duration: 560ms;
+  --showcase-ease: cubic-bezier(0.16, 1, 0.3, 1);
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(20rem, 0.92fr);
-  gap: 1.5rem;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  width: min(100%, max(40rem, calc((100dvh - 16rem) * 1.6)), 75rem);
+  margin-inline: auto;
 }
 
-.featuredPanel {
-  position: sticky;
-  top: calc(5rem + 1.25rem);
-  display: grid;
-  gap: 1rem;
-  padding: 1.1rem;
-  border-radius: 1.75rem;
-  border: 1px solid var(--color-border);
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--color-surface) 94%, transparent), color-mix(in srgb, var(--color-surface) 88%, transparent));
-  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.12);
+.frame {
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--cx-bar);
+  color: var(--cx-text);
+  box-shadow:
+    0 32px 56px -28px rgba(2, 6, 23, 0.5),
+    0 12px 20px -14px rgba(2, 6, 23, 0.32);
 }
 
-[data-theme='dark'] .featuredPanel {
-  border-color: rgba(148, 163, 184, 0.14);
-  background:
-    linear-gradient(180deg, rgba(6, 15, 28, 0.92) 0%, rgba(8, 15, 33, 0.84) 100%);
-  box-shadow: 0 32px 90px rgba(2, 6, 23, 0.36);
+[data-theme='dark'] .frame {
+  box-shadow: inset 0 0 0 1px var(--cx-line);
 }
 
-.featuredPanelTopline {
+/* ---- Bar ---- */
+
+.bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  flex-wrap: wrap;
+  min-height: 2.75rem;
+  padding: 0.25rem 0.5rem 0.25rem 1.1rem;
+  border-bottom: 1px solid var(--cx-line);
 }
 
-.featuredEyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+.counter {
   margin: 0;
   font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-text-secondary);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: var(--cx-muted);
 }
 
-.featuredCounter {
+.counterNow {
+  color: var(--cx-text);
+  font-weight: 800;
+}
+
+.enlarge,
+.lbButton {
+  appearance: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2rem;
-  border-radius: 999px;
-  padding: 0.32rem 0.7rem;
-  border: 1px solid color-mix(in srgb, var(--color-primary) 28%, transparent);
-  color: var(--color-primary);
-}
-
-.featuredControls {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.navButton {
-  appearance: none;
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0 0.75rem;
+  border: 0;
+  border-radius: 10px;
   background: transparent;
-  color: var(--color-text);
-  padding: 0.72rem 1.1rem;
+  color: var(--cx-muted);
   font: inherit;
+  font-size: 0.86rem;
   font-weight: 700;
   cursor: pointer;
   transition:
-    border-color var(--duration-normal) var(--ease-out),
-    transform var(--duration-normal) var(--ease-out),
-    background-color var(--duration-normal) var(--ease-out),
-    box-shadow var(--duration-normal) var(--ease-out);
+    background-color 180ms var(--showcase-ease),
+    color 180ms var(--showcase-ease);
 }
 
-.navButton:hover:not(:disabled) {
-  transform: translateY(-1px);
-  border-color: color-mix(in srgb, var(--color-primary) 58%, transparent);
-  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
-  box-shadow: 0 12px 24px color-mix(in srgb, var(--color-primary) 12%, transparent);
+.enlarge:hover,
+.lbButton:hover {
+  background: rgba(248, 250, 252, 0.09);
+  color: var(--cx-text);
 }
 
-.navButton:focus-visible,
-.thumbnailButton:focus-visible,
-.featuredPreviewButton:focus-visible,
-.lightboxClose:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--color-primary) 72%, transparent);
-  outline-offset: 3px;
+.lbButton[aria-pressed='true'] {
+  background: rgba(0, 128, 255, 0.22);
+  color: var(--cx-text);
 }
 
-.navButton:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-  box-shadow: none;
-}
+/* ---- Stage ---- */
 
-.featuredMedia {
+.stage {
   position: relative;
-  overflow: hidden;
-  border-radius: 1.3rem;
-  border: 1px solid color-mix(in srgb, var(--color-border) 86%, transparent);
-  background:
-    radial-gradient(circle at top left, rgba(37, 194, 160, 0.18), transparent 40%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
-}
-
-.featuredPreviewButton {
-  position: relative;
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: inherit;
-  cursor: zoom-in;
-}
-
-.featuredImage,
-.thumbnailImage {
-  display: block;
-  width: 100%;
-  object-fit: cover;
-  background: var(--color-surface-placeholder);
-}
-
-.featuredImage {
   aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--cx-stage);
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.layer picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.layer img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 0.92rem;
+  color: var(--cx-muted);
 }
 
 /*
- * The stage stacks the outgoing capture under the incoming one. The incoming
- * layer is revealed with a clip-path edge that travels in the direction of
- * navigation, and its image settles from a slight over-scale.
+ * A slide change is two layers: the capture on stage and the next one, mounted invisible until it
+ * is decoded. The next one then travels in from the side it was reached from while the old one
+ * drifts out the other way. It is fully opaque by 55% so the dark stage never shows through.
  */
-.stage {
-  --showcase-wipe-duration: 820ms;
-  --showcase-wipe-ease: cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  display: grid;
-  overflow: hidden;
+.layer[data-phase='wait'] {
+  opacity: 0;
+  pointer-events: none;
 }
 
-.stageLayer {
-  grid-area: 1 / 1;
-  display: block;
-  position: relative;
-  min-width: 0;
+.layer[data-phase='enter'] {
+  z-index: 2;
+  will-change: transform, opacity;
+  animation: showcaseIn var(--showcase-enter-duration) var(--showcase-ease) both;
 }
 
-.stageLayer picture {
-  display: block;
+.layer[data-phase='leave'] {
+  z-index: 1;
+  will-change: transform, opacity;
+  animation: showcaseOut var(--showcase-enter-duration) var(--showcase-ease) both;
 }
 
-.morphSource {
-  view-transition-name: showcase-shot;
+@keyframes showcaseIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(calc(var(--dir) * 5%), 0, 0) scale(0.985);
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.stageEnter {
-  animation: showcaseWipeForward var(--showcase-wipe-duration) var(--showcase-wipe-ease) both;
+@keyframes showcaseOut {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(calc(var(--dir) * -3.5%), 0, 0) scale(0.99);
+  }
 }
 
-.stageEnter[data-direction='back'] {
-  animation-name: showcaseWipeBack;
-}
-
-.stageEnter .featuredImage {
-  animation: showcaseSettle var(--showcase-wipe-duration) var(--showcase-wipe-ease) both;
-}
-
-.stageEnter[data-direction='back'] .featuredImage {
-  --showcase-settle-shift: -1.6%;
-}
-
-/* The leading edge of the reveal: a 2px line on the clipped boundary. */
-.stageEnter::after {
+/* The only loading state: a hairline that appears if the next capture is slow, never for a cached one. */
+.stage::after {
   content: '';
   position: absolute;
-  inset-block: 0;
-  inset-inline-end: 0;
-  width: 2px;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  width: 32%;
+  height: 2px;
   background: var(--color-primary);
+  opacity: 0;
   pointer-events: none;
-  animation: showcaseEdgeFade var(--showcase-wipe-duration) linear both;
 }
 
-.stageEnter[data-direction='back']::after {
-  inset-inline-end: auto;
-  inset-inline-start: 0;
+.stage[data-busy='true']::after {
+  animation: showcaseLoading 1.1s linear 220ms infinite;
 }
 
-@keyframes showcaseWipeForward {
-  from { clip-path: inset(0 100% 0 0); }
-  to { clip-path: inset(0 0 0 0); }
+@keyframes showcaseLoading {
+  0% {
+    opacity: 1;
+    transform: translateX(-100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(313%);
+  }
 }
 
-@keyframes showcaseWipeBack {
-  from { clip-path: inset(0 0 0 100%); }
-  to { clip-path: inset(0 0 0 0); }
-}
-
-@keyframes showcaseSettle {
-  from { transform: translateX(var(--showcase-settle-shift, 1.6%)) scale(1.045); }
-  to { transform: none; }
-}
-
-@keyframes showcaseEdgeFade {
-  0%, 55% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes showcaseCopyIn {
-  from { opacity: 0; transform: translateY(0.5rem); filter: blur(4px); }
-  to { opacity: 1; transform: none; filter: blur(0); }
-}
-
-.copyEnter {
-  animation: showcaseCopyIn 520ms cubic-bezier(0.16, 1, 0.3, 1) 140ms both;
-}
-
-/* Lightbox morph: the featured capture grows into the dialog and back. */
-::view-transition-group(showcase-shot) {
-  animation-duration: 560ms;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-::view-transition-old(showcase-shot),
-::view-transition-new(showcase-shot) {
-  mix-blend-mode: normal;
-}
-
-.featuredPreviewHint {
+.stageHit {
   position: absolute;
-  right: 1rem;
-  bottom: 1rem;
+  inset: 0;
+  z-index: 3;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+  touch-action: pan-y;
+}
+
+/* ---- Foot: the caption and the step buttons ---- */
+
+.foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 1rem 2rem;
+  padding: 1.1rem 1.25rem 1.2rem;
+  border-top: 1px solid var(--cx-line);
+}
+
+/* All ten captions share one grid cell, so the foot is always as tall as the longest one and never jumps. */
+.captions {
+  display: grid;
+  min-width: 0;
+}
+
+.caption {
+  grid-area: 1 / 1;
+  display: grid;
+  align-content: start;
+  gap: 0.4rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.5rem);
+  transition:
+    opacity 220ms var(--showcase-ease),
+    transform 220ms var(--showcase-ease),
+    visibility 0s linear 220ms;
+}
+
+.caption[data-active='true'] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 420ms var(--showcase-ease) 160ms,
+    transform 420ms var(--showcase-ease) 160ms,
+    visibility 0s;
+}
+
+.captionTitle {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.25;
+  font-family: var(--font-display);
+  color: var(--cx-text);
+}
+
+.captionText {
+  margin: 0;
+  max-width: 68ch;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  text-wrap: pretty;
+  color: var(--cx-muted);
+}
+
+.navGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.iconButton {
+  appearance: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(8, 12, 24, 0.78);
-  padding: 0.45rem 0.8rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  line-height: 1;
-  color: #f8fafc;
-  pointer-events: none;
-}
-
-.featuredContent {
-  display: grid;
-  gap: 1rem;
-  min-height: 8rem;
-}
-
-.featuredCopy {
-  display: grid;
-  gap: 0.72rem;
-}
-
-.featuredState {
-  margin: 0;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-text-secondary);
-}
-
-.featuredTitle {
-  margin: 0;
-  font-size: clamp(1.55rem, 2.5vw, 2.2rem);
-  line-height: 1.16;
-  color: var(--color-text);
-  font-family: var(--font-display);
-}
-
-.featuredDescription {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.72;
-  color: var(--color-text-secondary);
-  max-width: 58ch;
-}
-
-.tourRail {
-  list-style: none;
-  margin: 0;
+  width: 2.75rem;
+  height: 2.75rem;
   padding: 0;
+  border: 1px solid var(--cx-line);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--cx-text);
+  cursor: pointer;
+  transition:
+    background-color 180ms var(--showcase-ease),
+    border-color 180ms var(--showcase-ease),
+    opacity 180ms var(--showcase-ease);
+}
+
+.iconButton:hover:not(:disabled) {
+  background: rgba(248, 250, 252, 0.1);
+  border-color: rgba(248, 250, 252, 0.32);
+}
+
+.iconButton:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.enlarge:focus-visible,
+.iconButton:focus-visible,
+.stageHit:focus-visible,
+.lbButton:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: -2px;
+}
+
+.iconButton:focus-visible {
+  outline-offset: 2px;
+}
+
+/* ---- Filmstrip ---- */
+
+.stripWrap {
+  position: relative;
+  --strip-fade: 2.5rem;
+}
+
+.strip {
+  position: relative;
+  display: flex;
+  gap: 0.9rem;
+  padding: 0.5rem 0.35rem 0.75rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.strip::-webkit-scrollbar {
+  display: none;
+}
+
+.stripWrap[data-start='false'] .strip {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--strip-fade));
+  mask-image: linear-gradient(90deg, transparent, #000 var(--strip-fade));
+}
+
+.stripWrap[data-end='false'] .strip {
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - var(--strip-fade)), transparent);
+  mask-image: linear-gradient(90deg, #000 calc(100% - var(--strip-fade)), transparent);
+}
+
+.stripWrap[data-start='false'][data-end='false'] .strip {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 var(--strip-fade), #000 calc(100% - var(--strip-fade)), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 var(--strip-fade), #000 calc(100% - var(--strip-fade)), transparent);
+}
+
+.tab {
+  appearance: none;
+  flex: 0 0 10.5rem;
   display: grid;
-  gap: 1rem;
+  align-content: start;
+  gap: 0.6rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  scroll-snap-align: center;
+  transition: color 200ms var(--showcase-ease);
 }
 
-.tourStep {
-  min-height: 14rem;
+.tabThumb {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--cx-stage);
+  opacity: 0.58;
+  box-shadow: 0 0 0 2px transparent;
+  transition:
+    opacity 240ms var(--showcase-ease),
+    transform 240ms var(--showcase-ease),
+    box-shadow 240ms var(--showcase-ease);
 }
 
-.thumbnailButton {
+.tabThumb picture,
+.tabThumb img {
+  display: block;
   width: 100%;
   height: 100%;
-  border-radius: 1.45rem;
-  padding: 1rem;
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.95rem 1rem;
-  align-items: start;
-  text-align: left;
-  cursor: pointer;
-  border: 1px solid var(--color-border);
-  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
-  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.07);
-  transition:
-    transform var(--duration-normal) var(--ease-out),
-    border-color var(--duration-normal) var(--ease-out),
-    background-color var(--duration-normal) var(--ease-out),
-    box-shadow var(--duration-normal) var(--ease-out);
 }
 
-[data-theme='dark'] .thumbnailButton {
-  background: rgba(9, 19, 37, 0.78);
-  border-color: rgba(148, 163, 184, 0.12);
-  box-shadow: 0 18px 48px rgba(2, 6, 23, 0.22);
+.tabThumb img {
+  object-fit: cover;
 }
 
-.thumbnailButton:hover {
-  transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--color-primary) 44%, transparent);
+.tabThumb .fallback {
+  font-size: 0.7rem;
 }
 
-.tourStepActive .thumbnailButton {
-  border-color: color-mix(in srgb, var(--color-primary) 60%, transparent);
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--color-primary) 10%, transparent), color-mix(in srgb, var(--color-secondary) 6%, transparent)),
-    color-mix(in srgb, var(--color-surface) 92%, transparent);
-  box-shadow:
-    0 22px 54px color-mix(in srgb, var(--color-primary) 12%, transparent),
-    inset 0 0 0 1px color-mix(in srgb, var(--color-primary) 14%, transparent);
-}
-
-.thumbnailMeta {
-  display: grid;
-  gap: 0.55rem;
-  align-content: start;
-}
-
-.thumbnailOrder,
-.thumbnailStatus {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2rem;
-  border-radius: 999px;
-  padding: 0.3rem 0.68rem;
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.thumbnailOrder {
-  border: 1px solid color-mix(in srgb, var(--color-primary) 28%, transparent);
-  color: var(--color-primary);
-}
-
-.thumbnailStatus {
-  border: 1px solid color-mix(in srgb, var(--color-text-secondary) 22%, transparent);
-  color: var(--color-text-secondary);
-}
-
-.tourStepActive .thumbnailStatus {
-  border-color: color-mix(in srgb, var(--color-primary) 28%, transparent);
-  color: var(--color-text);
-}
-
-.thumbnailText {
-  min-width: 0;
-  display: grid;
-  gap: 0.42rem;
-}
-
-.thumbnailTitle {
-  display: block;
-  margin: 0;
-  font-size: 1.02rem;
-  line-height: 1.35;
-  font-weight: 800;
-  color: var(--color-text);
-}
-
-.thumbnailDescription {
+.tabTitle {
   display: -webkit-box;
-  margin: 0;
   overflow: hidden;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 0.9rem;
-  line-height: 1.62;
-  color: var(--color-text-secondary);
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-wrap: balance;
 }
 
-.thumbnailPreview {
-  grid-column: 1 / -1;
-  display: block;
-  overflow: hidden;
-  border-radius: 1rem;
-  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
-  background: var(--color-surface-placeholder);
+.tab:hover .tabThumb {
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 
-.thumbnailImage {
-  aspect-ratio: 16 / 9;
+.tab[aria-selected='true'] {
+  color: var(--color-text);
 }
 
-.screenshotPlaceholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 100%;
-  aspect-ratio: 16 / 10;
-  background: var(--color-surface-placeholder);
-  color: var(--color-text-secondary);
-  font-size: 0.92rem;
+.tab[aria-selected='true'] .tabThumb {
+  opacity: 1;
+  box-shadow: 0 0 0 2px var(--color-primary);
 }
+
+.tab:focus-visible {
+  outline: none;
+}
+
+.tab:focus-visible .tabThumb {
+  outline: 2px solid var(--color-text);
+  outline-offset: 4px;
+}
+
+/* ---- Lightbox ---- */
 
 .lightbox {
   position: fixed;
   inset: 0;
-  /* Above the fixed navbar (1000) so the close control is never covered. */
-  z-index: 1100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  background: rgba(2, 6, 23, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.lightboxInner {
-  width: min(100%, 92rem);
-  max-height: 100%;
-  overflow: auto;
-}
-
-.lightboxClose {
-  margin-left: auto;
-  margin-bottom: 0.75rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.72);
-  padding: 0.7rem 1rem;
-  font: inherit;
-  font-weight: 700;
-  color: #f8fafc;
-  cursor: pointer;
-}
-
-.lightboxFigure {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
   margin: 0;
-  border-radius: 1.5rem;
+  padding: 0;
+  border: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(8, 12, 24, 0.9);
-  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.45);
+  background: transparent;
+  color: #f8fafc;
 }
 
-.lightboxImage {
+.lightbox::backdrop {
+  background: transparent;
+}
+
+.lbScrim {
+  position: absolute;
+  inset: 0;
+  background: #020617;
+}
+
+.lbViewport {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  padding: 3.75rem 1.25rem 7.75rem;
+  overflow: hidden;
+}
+
+.lbViewport[data-zoom='true'] {
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+/* Auto margins centre the frame while it fits and still let it scroll from its edge once it overflows. */
+.lbFrame {
+  position: relative;
+  flex: none;
+  margin: auto;
+  aspect-ratio: var(--shot-ar);
+  width: min(100%, calc((100dvh - 11.5rem) * 1.6));
+  overflow: hidden;
+  border-radius: 10px;
+  background: #05080f;
+  cursor: zoom-in;
+}
+
+.lbViewport[data-zoom='true'] .lbFrame {
+  /* Up to the capture's own width; on a phone, about 3x the screen so the UI text is readable. */
+  width: min(var(--shot-w), max(220vw, 1200px));
+  max-width: none;
+  cursor: zoom-out;
+}
+
+.lbLayer {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.lbLayer picture,
+.lbLayer img {
   display: block;
   width: 100%;
-  max-height: min(78vh, 78rem);
+  height: 100%;
+}
+
+.lbLayer img {
   object-fit: contain;
-  background: rgba(2, 6, 23, 0.95);
 }
 
-.lightboxCaption {
+/* The sharp capture fades in over the small one that is already on screen. */
+.lbFull {
+  opacity: 0;
+  transition: opacity 260ms ease-out;
+}
+
+.lbFull[data-ready] {
+  opacity: 1;
+}
+
+.lbTop,
+.lbBottom {
+  position: absolute;
+  inset-inline: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.lbTop > *,
+.lbBottom > * {
+  pointer-events: auto;
+}
+
+.lbTop {
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0.75rem 1.5rem 1.25rem;
+  background: linear-gradient(rgba(2, 6, 23, 0.85), transparent);
+}
+
+.lbCounter {
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: #cbd5e1;
+}
+
+.lbActions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.lbButton {
+  color: #e2e8f0;
+}
+
+.lbBottom {
+  bottom: 0;
   display: grid;
-  gap: 0.7rem;
-  padding: 1.2rem 1.35rem 1.35rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 1rem 2rem;
+  padding: 3.5rem 1.25rem 1.25rem;
+  background: linear-gradient(transparent, rgba(2, 6, 23, 0.94) 60%);
 }
 
-.lightboxTitle {
+.lbCaption {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.lbTitle {
   margin: 0;
-  font-size: clamp(1.2rem, 2vw, 1.6rem);
-  color: #f8fafc;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.25;
   font-family: var(--font-display);
+  color: #f8fafc;
 }
 
-.lightboxDescription {
+.lbDescription {
+  display: -webkit-box;
   margin: 0;
-  line-height: 1.7;
-  color: rgba(226, 232, 240, 0.82);
+  max-width: 72ch;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #cbd5e1;
 }
 
-@media (max-width: 1080px) {
-  .showcaseLayout {
-    grid-template-columns: 1fr;
-  }
-
-  .featuredPanel {
-    position: relative;
-    top: auto;
-  }
-
-  .tourRail {
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(18rem, 74%);
-    overflow-x: auto;
-    padding-bottom: 0.35rem;
-    scrollbar-width: thin;
-    scroll-snap-type: x proximity;
-  }
-
-  .tourStep {
-    min-height: auto;
-    scroll-snap-align: start;
-  }
-}
+/* ---- Small screens ---- */
 
 @media (max-width: 767px) {
   .showcaseSection {
-    padding: 3.25rem 0;
+    padding: 3.25rem 0 3.5rem;
   }
 
   .sectionHeader {
     margin-bottom: 1.75rem;
   }
 
-  .featuredPanel {
-    padding: 0.9rem;
-    border-radius: 1.3rem;
+  .cinema {
+    gap: 1rem;
   }
 
-  .featuredPanelTopline {
-    align-items: flex-start;
+  .frame {
+    border-radius: 12px;
   }
 
-  .featuredContent {
-    min-height: auto;
+  .enlargeText,
+  .lbButtonText {
+    display: none;
   }
 
-  .featuredTitle {
-    font-size: 1.35rem;
-  }
-
-  .featuredDescription {
-    font-size: 0.95rem;
-    line-height: 1.64;
-  }
-
-  .tourRail {
-    grid-auto-columns: minmax(15rem, 86%);
-  }
-
-  .thumbnailButton {
-    padding: 0.85rem;
-    border-radius: 1.2rem;
-  }
-
-  .thumbnailDescription {
-    -webkit-line-clamp: 3;
-    font-size: 0.84rem;
-  }
-
-  .navButton {
-    min-height: 2.9rem;
-  }
-
-  .lightbox {
-    padding: 1rem;
-  }
-
-  .lightboxImage {
-    max-height: 68vh;
-  }
-
-  .featuredPreviewHint {
-    right: 0.75rem;
-    bottom: 0.75rem;
-  }
-}
-
-@media (max-width: 520px) {
-  .featuredControls {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .navButton {
-    min-width: 0;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 430px) {
-  .featuredControls {
+  .foot {
     grid-template-columns: 1fr;
+    padding: 1rem 1rem 1.1rem;
   }
 
-  .tourRail {
-    grid-auto-columns: minmax(14rem, 90%);
+  .navGroup {
+    justify-content: flex-end;
+  }
+
+  .tab {
+    flex-basis: 8.5rem;
+  }
+
+  .lbViewport {
+    padding: 3.5rem 0.5rem 9rem;
+  }
+
+  .lbFrame {
+    width: min(100%, calc((100dvh - 12.5rem) * 1.6));
+  }
+
+  .lbBottom {
+    grid-template-columns: 1fr;
+    padding: 3rem 1rem 1rem;
+  }
+
+  .lbBottom .navGroup {
+    justify-content: flex-end;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .navButton,
-  .thumbnailButton {
+  .layer[data-phase='enter'],
+  .layer[data-phase='leave'] {
+    animation: none;
+    will-change: auto;
+  }
+
+  .stage[data-busy='true']::after {
+    animation: none;
+    opacity: 1;
+    width: 100%;
+  }
+
+  .caption,
+  .caption[data-active='true'],
+  .tab,
+  .tabThumb,
+  .enlarge,
+  .lbButton,
+  .iconButton,
+  .lbFull {
     transition: none;
   }
 
-  .stageEnter,
-  .stageEnter .featuredImage,
-  .stageEnter::after,
-  .copyEnter {
-    animation: none;
-  }
-
-  ::view-transition-group(showcase-shot),
-  ::view-transition-old(showcase-shot),
-  ::view-transition-new(showcase-shot) {
-    animation: none;
+  .tab:hover .tabThumb {
+    transform: none;
   }
 }

@@ -1,65 +1,37 @@
-import { useEffect, useMemo, useRef, useState, type ImgHTMLAttributes } from 'react';
-import { flushSync } from 'react-dom';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+  type PointerEvent,
+} from 'react';
 import type { HomepageShowcaseCopy } from '@/lib/homepage-section-copy';
+import ShowcaseLightbox from './ShowcaseLightbox';
+import {
+  ChevronIcon,
+  ExpandIcon,
+  Shot,
+  formatOrder,
+  prefersReducedMotion,
+  type ScreenshotId,
+  type ScreenshotItem,
+  type ShowcaseImageSources,
+} from './ShowcaseParts';
 import styles from './ShowcaseSection.module.css';
 
-type ScreenshotId = HomepageShowcaseCopy['screenshots'][number]['id'];
+/** Keep in step with --showcase-enter-duration in ShowcaseSection.module.css. */
+const ENTER_MS = 560;
+const SWIPE_DISTANCE = 48;
+const STAGE_SIZES = '(min-width: 75rem) 1200px, 100vw';
 
-interface ShowcaseImageSources {
-  avif: string;
-  webp: string;
-  src: string;
-}
-
-interface ScreenshotItem {
-  id: ScreenshotId;
-  sources: ShowcaseImageSources;
-  title: string;
-  description: string;
-  alt: string;
-}
-
-function ScreenshotPicture({
-  sources,
-  ...imgProps
-}: ImgHTMLAttributes<HTMLImageElement> & { sources: ShowcaseImageSources }) {
-  return (
-    <picture>
-      <source type="image/avif" srcSet={sources.avif} />
-      <source type="image/webp" srcSet={sources.webp} />
-      <img src={sources.src} {...imgProps} />
-    </picture>
-  );
-}
-
-const handleImageError = (event: React.SyntheticEvent<HTMLImageElement>) => {
-  const target = event.currentTarget;
-  target.style.display = 'none';
-
-  const anchor = target.closest('picture') ?? target;
-  const parent = anchor.parentElement;
-  if (parent && !parent.querySelector(`.${styles.screenshotPlaceholder}`)) {
-    const placeholder = document.createElement('div');
-    placeholder.className = styles.screenshotPlaceholder;
-    placeholder.textContent = target.dataset.fallbackLabel || 'Image unavailable';
-    parent.insertBefore(placeholder, anchor.nextSibling);
-  }
-};
-
-function formatOrder(index: number) {
-  return String(index + 1).padStart(2, '0');
-}
-
-/** Keep in step with --showcase-wipe-duration in ShowcaseSection.module.css. */
-const WIPE_SETTLE_MS = 820;
-
-interface OutgoingShot {
-  index: number;
-  direction: 1 | -1;
-}
-
-function prefersReducedMotion() {
-  return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/** The slide being brought in; it is only revealed once its capture is decoded. */
+interface Incoming {
+  to: number;
+  dir: 1 | -1;
+  ready: boolean;
 }
 
 interface Props {
@@ -68,15 +40,20 @@ interface Props {
 }
 
 export default function ShowcaseSection({ copy, images }: Props) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isFullscreenOpen, setIsFullscreenOpen] = useState(false);
-  const [shownIndex, setShownIndex] = useState(0);
-  const [outgoing, setOutgoing] = useState<OutgoingShot | null>(null);
-  const previewButtonRef = useRef<HTMLButtonElement | null>(null);
-  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
-  const railRef = useRef<HTMLOListElement | null>(null);
-  const stepRefs = useRef<Array<HTMLElement | null>>([]);
-  const featuredPanelId = 'homepage-showcase-featured';
+  // `target` is what the visitor asked for and is the only thing input changes. `shown` is what the stage
+  // fully displays. The effect below walks `shown` toward `target` one decoded, animated step at a time,
+  // so a fast run of clicks never leaves two half-finished transitions stacked on each other.
+  const [target, setTarget] = useState(0);
+  const [shown, setShown] = useState(0);
+  const [incoming, setIncoming] = useState<Incoming | null>(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [edges, setEdges] = useState({ start: true, end: false });
+  const stageRef = useRef<HTMLDivElement | null>(null);
+  const stripRef = useRef<HTMLDivElement | null>(null);
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const swipeRef = useRef<{ x: number; y: number } | null>(null);
+  const swipedRef = useRef(false);
+  const panelId = 'homepage-showcase-panel';
 
   const screenshots: ScreenshotItem[] = useMemo(
     () => copy.screenshots.map((screenshot) => ({
@@ -86,151 +63,177 @@ export default function ShowcaseSection({ copy, images }: Props) {
     [copy.screenshots, images],
   );
 
-  const activeScreenshot = screenshots[activeIndex] ?? screenshots[0];
-
-  // The stage keeps the previous capture underneath while the next one is
-  // revealed over it, so a switch never flashes an empty frame.
-  if (shownIndex !== activeIndex) {
-    setOutgoing({ index: shownIndex, direction: activeIndex > shownIndex ? 1 : -1 });
-    setShownIndex(activeIndex);
-  }
+  const last = screenshots.length - 1;
+  const visible = incoming?.ready ? incoming.to : shown;
 
   useEffect(() => {
-    if (!outgoing) {
-      return undefined;
-    }
-
-    const timer = window.setTimeout(
-      () => setOutgoing(null),
-      prefersReducedMotion() ? 0 : WIPE_SETTLE_MS,
-    );
-
-    return () => window.clearTimeout(timer);
-  }, [outgoing]);
-
-  const outgoingScreenshot = outgoing ? screenshots[outgoing.index] : undefined;
-
-  // Same-document View Transition: the featured capture grows into the lightbox
-  // and shrinks back on close. Browsers without the API just toggle the state.
-  const setFullscreen = (open: boolean) => {
-    const startViewTransition = (document as Document & {
-      startViewTransition?: (update: () => void) => unknown;
-    }).startViewTransition?.bind(document);
-
-    if (!startViewTransition || prefersReducedMotion()) {
-      setIsFullscreenOpen(open);
+    if (incoming?.ready) {
       return;
     }
-
-    startViewTransition(() => flushSync(() => setIsFullscreenOpen(open)));
-  };
-
-  useEffect(() => {
-    if (!isFullscreenOpen || typeof window === 'undefined') {
-      return undefined;
-    }
-
-    const { body } = document;
-    const previousOverflow = body.style.overflow;
-    body.style.overflow = 'hidden';
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setFullscreen(false);
+    if (target === shown) {
+      if (incoming) {
+        setIncoming(null);
       }
-    };
+      return;
+    }
+    if (incoming?.to === target) {
+      return;
+    }
+    setIncoming({ to: target, dir: target > shown ? 1 : -1, ready: false });
+  }, [target, shown, incoming]);
 
-    window.addEventListener('keydown', handleKeyDown);
-    closeButtonRef.current?.focus();
-    const returnTarget = previewButtonRef.current;
+  const commit = useCallback((to: number) => {
+    setShown(to);
+    setIncoming(null);
+  }, []);
 
-    return () => {
-      body.style.overflow = previousOverflow;
-      window.removeEventListener('keydown', handleKeyDown);
-      returnTarget?.focus();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFullscreenOpen]);
+  const markReady = useCallback((to: number) => {
+    setIncoming((current) => (current && current.to === to ? { ...current, ready: true } : current));
+  }, []);
 
+  // The reveal ends on animationend; this covers reduced motion (no animation) and any missed event.
   useEffect(() => {
-    if (typeof window === 'undefined') {
+    if (!incoming?.ready) {
       return undefined;
     }
 
-    const steps = stepRefs.current.filter((step): step is HTMLElement => step instanceof HTMLElement);
-    if (steps.length === 0) {
+    const { to } = incoming;
+    if (prefersReducedMotion()) {
+      commit(to);
       return undefined;
     }
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+    const timer = window.setTimeout(() => commit(to), ENTER_MS + 240);
+    return () => window.clearTimeout(timer);
+  }, [incoming, commit]);
 
-        const nextTarget = visibleEntries[0]?.target as HTMLElement | undefined;
-        if (!nextTarget) {
-          return;
-        }
-
-        const nextIndex = Number(nextTarget.dataset.index ?? '-1');
-        if (Number.isFinite(nextIndex) && nextIndex >= 0) {
-          setActiveIndex(nextIndex);
-        }
-      },
-      {
-        root: null,
-        rootMargin: '-20% 0px -35% 0px',
-        threshold: [0.35, 0.55, 0.75],
-      },
-    );
-
-    steps.forEach((step) => observer.observe(step));
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [screenshots.length]);
-
+  // Keep the chosen tab centred in the filmstrip without ever scrolling the page itself.
   useEffect(() => {
-    const railNode = railRef.current;
-    const activeNode = stepRefs.current[activeIndex];
-
-    if (!railNode || !activeNode) {
+    const strip = stripRef.current;
+    const tab = tabRefs.current[target];
+    if (!strip || !tab || strip.scrollWidth <= strip.clientWidth) {
       return;
     }
 
-    const isCompact = window.matchMedia('(max-width: 1080px)').matches;
-    if (!isCompact) {
-      return;
-    }
-
-    activeNode.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'nearest',
+    strip.scrollTo({
+      left: tab.offsetLeft - (strip.clientWidth - tab.offsetWidth) / 2,
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth',
     });
-  }, [activeIndex]);
+  }, [target]);
 
-  if (!activeScreenshot) {
+  const syncEdges = useCallback(() => {
+    const strip = stripRef.current;
+    if (!strip) {
+      return;
+    }
+
+    const start = strip.scrollLeft <= 1;
+    const end = strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 1;
+    setEdges((current) => (current.start === start && current.end === end ? current : { start, end }));
+  }, []);
+
+  useEffect(() => {
+    syncEdges();
+    window.addEventListener('resize', syncEdges);
+    return () => window.removeEventListener('resize', syncEdges);
+  }, [syncEdges]);
+
+  if (screenshots.length === 0) {
     return null;
   }
 
-  const totalScreenshots = String(screenshots.length).padStart(2, '0');
-  const previousDisabled = activeIndex === 0;
-  const nextDisabled = activeIndex === screenshots.length - 1;
+  const visibleShot = screenshots[visible];
+  const previousDisabled = target === 0;
+  const nextDisabled = target === last;
 
-  const goToPrevious = () => {
-    if (!previousDisabled) {
-      setActiveIndex((currentIndex) => currentIndex - 1);
+  const step = (delta: number) => setTarget((current) => Math.min(last, Math.max(0, current + delta)));
+
+  const handleTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    let next = index;
+    if (event.key === 'ArrowRight') {
+      next = Math.min(last, index + 1);
+    } else if (event.key === 'ArrowLeft') {
+      next = Math.max(0, index - 1);
+    } else if (event.key === 'Home') {
+      next = 0;
+    } else if (event.key === 'End') {
+      next = last;
+    } else {
+      return;
+    }
+
+    event.preventDefault();
+    setTarget(next);
+    tabRefs.current[next]?.focus();
+  };
+
+  const handleFrameKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (!(event.target as HTMLElement).dataset.stageHit) {
+      return;
+    }
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      step(-1);
+    } else if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      step(1);
     }
   };
 
-  const goToNext = () => {
-    if (!nextDisabled) {
-      setActiveIndex((currentIndex) => currentIndex + 1);
+  const handleStagePointerDown = (event: PointerEvent<HTMLButtonElement>) => {
+    swipedRef.current = false;
+    swipeRef.current = event.pointerType === 'mouse' ? null : { x: event.clientX, y: event.clientY };
+  };
+
+  const handleStagePointerUp = (event: PointerEvent<HTMLButtonElement>) => {
+    const swipe = swipeRef.current;
+    swipeRef.current = null;
+    if (!swipe) {
+      return;
+    }
+
+    const dx = event.clientX - swipe.x;
+    const dy = event.clientY - swipe.y;
+    if (Math.abs(dx) > SWIPE_DISTANCE && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      swipedRef.current = true;
+      step(dx < 0 ? 1 : -1);
     }
   };
+
+  const renderLayer = (index: number, phase: 'rest' | 'leave' | 'wait' | 'enter', dir: 1 | -1) => {
+    const item = screenshots[index];
+    const isIncoming = phase === 'wait' || phase === 'enter';
+
+    return (
+      <span
+        key={`shot-${item.id}`}
+        className={styles.layer}
+        data-phase={phase}
+        style={{ '--dir': dir } as CSSProperties}
+        aria-hidden={phase === 'leave' || phase === 'wait' ? true : undefined}
+        onAnimationEnd={
+          phase === 'enter'
+            ? (event) => {
+              if (event.target === event.currentTarget) {
+                commit(index);
+              }
+            }
+            : undefined
+        }
+      >
+        <Shot
+          sources={item.sources}
+          sizes={STAGE_SIZES}
+          alt={item.alt}
+          fallbackLabel={copy.controls.imageUnavailable}
+          loading={index === 0 && !incoming ? 'lazy' : 'eager'}
+          onSettled={isIncoming ? () => markReady(index) : undefined}
+        />
+      </span>
+    );
+  };
+
+  const neighbours = [shown - 1, shown + 1].filter((i) => i >= 0 && i <= last && i !== incoming?.to);
 
   return (
     <section className={styles.showcaseSection}>
@@ -240,183 +243,167 @@ export default function ShowcaseSection({ copy, images }: Props) {
           <p className={styles.sectionDescription}>{copy.description}</p>
         </div>
 
-        <div className={styles.showcaseLayout}>
-          <article className={styles.featuredPanel} id={featuredPanelId}>
-            <div className={styles.featuredPanelTopline}>
-              <p className={styles.featuredEyebrow}>
-                <span>{copy.controls.current}</span>
-                <span className={styles.featuredCounter}>
-                  {formatOrder(activeIndex)} / {totalScreenshots}
-                </span>
+        <div className={styles.cinema}>
+          <div
+            className={styles.frame}
+            id={panelId}
+            role="tabpanel"
+            aria-labelledby={`${panelId}-tab-${target}`}
+            onKeyDown={handleFrameKeyDown}
+          >
+            <div className={styles.bar}>
+              <p className={styles.counter}>
+                <span className={styles.counterNow}>{formatOrder(visible)}</span> / {formatOrder(last)}
               </p>
-
-              <div className={styles.featuredControls}>
-                <button
-                  type="button"
-                  className={styles.navButton}
-                  onClick={goToPrevious}
-                  disabled={previousDisabled}
-                  aria-label={copy.controls.previous}
-                  aria-controls={featuredPanelId}
-                >
-                  {copy.controls.previous}
-                </button>
-                <button
-                  type="button"
-                  className={styles.navButton}
-                  onClick={goToNext}
-                  disabled={nextDisabled}
-                  aria-label={copy.controls.next}
-                  aria-controls={featuredPanelId}
-                >
-                  {copy.controls.next}
-                </button>
-              </div>
-            </div>
-
-            <div className={styles.featuredMedia}>
               <button
                 type="button"
-                ref={previewButtonRef}
-                className={styles.featuredPreviewButton}
-                onClick={() => setFullscreen(true)}
-                aria-label={`${copy.controls.openFullscreen}${activeScreenshot.title}`}
+                className={styles.enlarge}
+                onClick={() => setLightboxOpen(true)}
+                aria-label={`${copy.controls.openFullscreen}${visibleShot.title}`}
               >
-                <span className={styles.stage}>
-                  {outgoingScreenshot ? (
-                    <span
-                      key={`out-${outgoingScreenshot.id}`}
-                      className={styles.stageLayer}
-                      aria-hidden="true"
-                    >
-                      <ScreenshotPicture
-                        sources={outgoingScreenshot.sources}
-                        alt=""
-                        className={styles.featuredImage}
-                        onError={handleImageError}
-                        data-fallback-label={copy.controls.imageUnavailable}
-                      />
-                    </span>
-                  ) : null}
-                  <span
-                    key={activeScreenshot.id}
-                    className={`${styles.stageLayer} ${outgoing ? styles.stageEnter : ''} ${isFullscreenOpen ? '' : styles.morphSource}`}
-                    data-direction={outgoing?.direction === -1 ? 'back' : 'forward'}
-                  >
-                    <ScreenshotPicture
-                      sources={activeScreenshot.sources}
-                      alt={activeScreenshot.alt}
-                      className={styles.featuredImage}
-                      onError={handleImageError}
-                      data-fallback-label={copy.controls.imageUnavailable}
-                      fetchPriority="high"
-                    />
-                  </span>
-                </span>
-                <span className={styles.featuredPreviewHint}>
-                  {copy.controls.openFullscreenHint}
-                </span>
+                <ExpandIcon />
+                <span className={styles.enlargeText}>{copy.controls.openFullscreenHint}</span>
               </button>
             </div>
 
-            <div className={styles.featuredContent} aria-live="polite" aria-atomic="true">
-              <div
-                className={`${styles.featuredCopy} ${outgoing ? styles.copyEnter : ''}`}
-                key={activeScreenshot.id}
-              >
-                <p className={styles.featuredState}>{copy.controls.activeState}</p>
-                <h3 className={styles.featuredTitle}>{activeScreenshot.title}</h3>
-                <p className={styles.featuredDescription}>{activeScreenshot.description}</p>
+            <div
+              ref={stageRef}
+              className={styles.stage}
+              data-busy={incoming && !incoming.ready ? 'true' : undefined}
+            >
+              {renderLayer(shown, incoming?.ready ? 'leave' : 'rest', incoming?.dir ?? 1)}
+              {incoming ? renderLayer(incoming.to, incoming.ready ? 'enter' : 'wait', incoming.dir) : null}
+              <button
+                type="button"
+                className={styles.stageHit}
+                data-stage-hit="true"
+                tabIndex={-1}
+                aria-hidden="true"
+                onPointerDown={handleStagePointerDown}
+                onPointerUp={handleStagePointerUp}
+                onPointerCancel={() => {
+                  swipeRef.current = null;
+                }}
+                onClick={() => {
+                  if (swipedRef.current) {
+                    swipedRef.current = false;
+                    return;
+                  }
+                  setLightboxOpen(true);
+                }}
+              />
+            </div>
+
+            <div className={styles.foot}>
+              <div className={styles.captions}>
+                {screenshots.map((screenshot, index) => (
+                  <div
+                    key={screenshot.id}
+                    className={styles.caption}
+                    data-active={index === visible ? 'true' : 'false'}
+                    aria-hidden={index === visible ? undefined : true}
+                  >
+                    <h3 className={styles.captionTitle}>{screenshot.title}</h3>
+                    <p className={styles.captionText}>{screenshot.description}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className={styles.navGroup}>
+                <button
+                  type="button"
+                  className={styles.iconButton}
+                  onClick={() => step(-1)}
+                  disabled={previousDisabled}
+                  aria-label={copy.controls.previous}
+                  aria-controls={panelId}
+                >
+                  <ChevronIcon direction="left" />
+                </button>
+                <button
+                  type="button"
+                  className={styles.iconButton}
+                  onClick={() => step(1)}
+                  disabled={nextDisabled}
+                  aria-label={copy.controls.next}
+                  aria-controls={panelId}
+                >
+                  <ChevronIcon direction="right" />
+                </button>
               </div>
             </div>
-          </article>
+          </div>
 
-          <ol className={styles.tourRail} aria-label={copy.controls.railLabel} ref={railRef}>
-            {screenshots.map((screenshot, index) => {
-              const isActive = index === activeIndex;
+          <p className={styles.srOnly} aria-live="polite" aria-atomic="true">
+            {visibleShot.title}
+          </p>
 
-              return (
-                <li
-                  key={screenshot.id}
-                  className={`${styles.tourStep} ${isActive ? styles.tourStepActive : ''}`}
-                  ref={(node) => {
-                    stepRefs.current[index] = node;
-                  }}
-                  data-index={index}
-                >
+          <div className={styles.stripWrap} data-start={edges.start} data-end={edges.end}>
+            <div
+              ref={stripRef}
+              className={styles.strip}
+              role="tablist"
+              aria-label={copy.controls.railLabel}
+              onScroll={syncEdges}
+            >
+              {screenshots.map((screenshot, index) => {
+                const isSelected = index === target;
+
+                return (
                   <button
+                    key={screenshot.id}
                     type="button"
-                    className={styles.thumbnailButton}
-                    onClick={() => setActiveIndex(index)}
-                    aria-pressed={isActive}
-                    aria-current={isActive ? 'true' : undefined}
-                    aria-label={`${copy.controls.selectPrefix}${screenshot.title}`}
-                    aria-controls={featuredPanelId}
+                    role="tab"
+                    id={`${panelId}-tab-${index}`}
+                    ref={(node) => {
+                      tabRefs.current[index] = node;
+                    }}
+                    className={styles.tab}
+                    aria-selected={isSelected}
+                    aria-controls={panelId}
+                    tabIndex={isSelected ? 0 : -1}
+                    onClick={() => setTarget(index)}
+                    onKeyDown={(event) => handleTabKeyDown(event, index)}
                   >
-                    <span className={styles.thumbnailMeta}>
-                      <span className={styles.thumbnailOrder}>{formatOrder(index)}</span>
-                      <span className={styles.thumbnailStatus}>
-                        {isActive ? copy.controls.activeState : copy.controls.previewState}
-                      </span>
-                    </span>
-
-                    <span className={styles.thumbnailText}>
-                      <span className={styles.thumbnailTitle}>{screenshot.title}</span>
-                      <span className={styles.thumbnailDescription}>{screenshot.description}</span>
-                    </span>
-
-                    <span className={styles.thumbnailPreview} aria-hidden="true">
-                      <ScreenshotPicture
-                        sources={screenshot.sources}
+                    <span className={styles.tabThumb}>
+                      <Shot
+                        sources={screenshot.sources.thumb}
                         alt=""
-                        className={styles.thumbnailImage}
-                        onError={handleImageError}
-                        data-fallback-label={copy.controls.imageUnavailable}
+                        fallbackLabel={copy.controls.imageUnavailable}
                         loading="lazy"
                       />
                     </span>
+                    <span className={styles.tabTitle}>{screenshot.title}</span>
                   </button>
-                </li>
-              );
-            })}
-          </ol>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
 
-      {isFullscreenOpen ? (
-        <div
-          className={styles.lightbox}
-          role="dialog"
-          aria-modal="true"
-          aria-label={activeScreenshot.title}
-          onClick={() => setFullscreen(false)}
-        >
-          <div className={styles.lightboxInner} onClick={(event) => event.stopPropagation()}>
-            <button
-              type="button"
-              ref={closeButtonRef}
-              className={styles.lightboxClose}
-              onClick={() => setFullscreen(false)}
-              aria-label={copy.controls.closeFullscreen}
-            >
-              {copy.controls.closeFullscreen}
-            </button>
+      <div hidden aria-hidden="true">
+        {neighbours.map((i) => (
+          <Shot
+            key={screenshots[i].id}
+            sources={screenshots[i].sources}
+            sizes={STAGE_SIZES}
+            alt=""
+            fallbackLabel=""
+            loading="eager"
+          />
+        ))}
+      </div>
 
-            <figure className={styles.lightboxFigure}>
-              <ScreenshotPicture
-                sources={activeScreenshot.sources}
-                alt={activeScreenshot.alt}
-                className={`${styles.lightboxImage} ${styles.morphSource}`}
-                onError={handleImageError}
-                data-fallback-label={copy.controls.imageUnavailable}
-              />
-              <figcaption className={styles.lightboxCaption}>
-                <h3 className={styles.lightboxTitle}>{activeScreenshot.title}</h3>
-                <p className={styles.lightboxDescription}>{activeScreenshot.description}</p>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
+      {lightboxOpen ? (
+        <ShowcaseLightbox
+          screenshots={screenshots}
+          index={target}
+          copy={copy}
+          getOrigin={() => stageRef.current}
+          onNavigate={setTarget}
+          onClose={() => setLightboxOpen(false)}
+        />
       ) : null}
     </section>
   );

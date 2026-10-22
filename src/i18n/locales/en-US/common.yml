@@ -77,6 +77,8 @@ showcase:
     imageUnavailable: Image unavailable
     openFullscreen: 'Open fullscreen: '
     openFullscreenHint: Click to enlarge
+    zoomIn: "View actual size"
+    zoomOut: "Fit to screen"
     closeFullscreen: Close fullscreen
   screenshots:
     sessionBoard:

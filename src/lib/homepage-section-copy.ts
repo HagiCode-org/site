@@ -67,6 +67,8 @@ export interface HomepageShowcaseCopy {
     openFullscreen: string;
     imageUnavailable: string;
     openFullscreenHint: string;
+    zoomIn: string;
+    zoomOut: string;
     current: string;
     activeState: string;
     previewState: string;
@@ -202,6 +204,8 @@ export function getHomepageShowcaseCopy(locale: LocaleInput): HomepageShowcaseCo
       openFullscreen: getCommonString(resolvedLocale, 'showcase.controls.openFullscreen'),
       imageUnavailable: getCommonString(resolvedLocale, 'showcase.controls.imageUnavailable'),
       openFullscreenHint: getCommonString(resolvedLocale, 'showcase.controls.openFullscreenHint'),
+      zoomIn: getCommonString(resolvedLocale, 'showcase.controls.zoomIn'),
+      zoomOut: getCommonString(resolvedLocale, 'showcase.controls.zoomOut'),
       current: getCommonString(resolvedLocale, 'showcase.controls.current'),
       activeState: getCommonString(resolvedLocale, 'showcase.controls.activeState'),
       previewState: getCommonString(resolvedLocale, 'showcase.controls.previewState'),

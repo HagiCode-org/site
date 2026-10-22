@@ -77,6 +77,8 @@ showcase:
     imageUnavailable: Bild nicht verfuegbar
     openFullscreen: 'Vollbild oeffnen: '
     openFullscreenHint: Zum Vergroessern klicken
+    zoomIn: "In Originalgröße anzeigen"
+    zoomOut: "An Bildschirm anpassen"
     closeFullscreen: Vollbild schliessen
   screenshots:
     sessionBoard:

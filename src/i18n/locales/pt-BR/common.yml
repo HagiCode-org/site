@@ -77,6 +77,8 @@ showcase:
     imageUnavailable: Imagem indisponivel
     openFullscreen: 'Abrir em tela cheia: '
     openFullscreenHint: Clique para ampliar
+    zoomIn: "Ver em tamanho real"
+    zoomOut: "Ajustar à tela"
     closeFullscreen: Fechar tela cheia
   screenshots:
     sessionBoard:

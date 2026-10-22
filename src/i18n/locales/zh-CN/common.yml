@@ -77,6 +77,8 @@ showcase:
     imageUnavailable: 图片暂不可用
     openFullscreen: 全屏查看：
     openFullscreenHint: 点击查看大图
+    zoomIn: "查看原始大小"
+    zoomOut: "适应屏幕"
     closeFullscreen: 关闭全屏
   screenshots:
     sessionBoard:

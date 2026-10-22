@@ -77,6 +77,8 @@ showcase:
     imageUnavailable: Изображение недоступно
     openFullscreen: 'Открыть на весь экран: '
     openFullscreenHint: Нажмите, чтобы увеличить
+    zoomIn: "Показать в реальном размере"
+    zoomOut: "Вписать в экран"
     closeFullscreen: Закрыть полноэкранный режим
   screenshots:
     sessionBoard:

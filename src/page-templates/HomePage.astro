@@ -70,12 +70,25 @@ const workflowStepsCopy = getHomepageWorkflowStepsCopy(locale);
 const pricingContent = getPricingContent(locale);
 const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
 
+/** Stage and lightbox take a responsive set up to the capture's own width; the filmstrip takes one 480 px rendition. */
+const SHOWCASE_WIDTHS = [960, 1600, 2400];
+
 async function getShowcaseImageSources(source: ImageMetadata) {
-  const [avif, webp] = await Promise.all([
-    getImage({ src: source, format: 'avif' }),
-    getImage({ src: source, format: 'webp' }),
+  const widths = SHOWCASE_WIDTHS.filter((width) => width < source.width).concat(source.width);
+  const [avif, webp, thumbAvif, thumbWebp] = await Promise.all([
+    getImage({ src: source, format: 'avif', widths }),
+    getImage({ src: source, format: 'webp', widths }),
+    getImage({ src: source, format: 'avif', width: 480 }),
+    getImage({ src: source, format: 'webp', width: 480 }),
   ]);
-  return { avif: avif.src, webp: webp.src, src: source.src };
+  return {
+    avif: avif.srcSet.attribute,
+    webp: webp.srcSet.attribute,
+    src: source.src,
+    width: source.width,
+    height: source.height,
+    thumb: { avif: thumbAvif.src, webp: thumbWebp.src, src: thumbWebp.src },
+  };
 }
 
 const showcaseImages = {
