@@ -55,6 +55,17 @@ Requires Node.js 24+ (`engines` in `package.json`). `npm run build` also runs `s
 - If you change generated or synced content, check the corresponding scripts instead of editing derived outputs by hand.
 - Images meant to ship as AVIF and WebP are imported at a relative path as Astro assets (rendered with `<Picture>` in Astro files, or with `getImage` sources passed to React islands); `?url` imports, `public/` paths and remote URLs skip the image service.
 
+## R2 Images
+
+Images from the img-gen library on R2 (`https://img-gen.hagicode.com`) follow `r2-images.manifest.json`, the single record of what the site shows and why.
+
+- **Import**: `npm run import:r2-images` downloads every manifest entry, checks content type, bytes, sha256 and AVIF dimensions, checks each pool against its album `index.json`, and writes `src/assets/r2/**` through temp files only after every check passes. An invalid key or mismatch exits non-zero and changes no file. The importer is offline-safe to re-run: unchanged files are not rewritten.
+- **Manifest**: each entry names the album, object key, surface, vendored file, dimensions, bytes, sha256 and audit verdict. Decorative entries carry no alt text; meaningful entries need alt text in every locale. Rejected surfaces stay in `unchangedSurfaces` with a reason.
+- **Defaults are Astro assets**: a vendored default is imported at a relative path (for example `../assets/r2/hero-avatars/<key>.avif` in `src/page-templates/HomePage.astro`) and rendered through `getImage` (AVIF and WebP) before it reaches a React island. Never use a `?url` import, a `public/` path or a literal R2 URL for a default.
+- **Random pool**: only a decorative slot may declare a pool (a `pools` entry in the manifest, 12 to 200 keys from one album, each at or under the pool's byte cap). The page passes the pool to the island as a prop; the browser never fetches an album index. `src/scripts/r2-random-image.ts` (`pickR2PoolImage`) picks one entry uniformly, preloads it with `Image()`, swaps it into the same box only after it loads within 3 s, and does nothing with save-data on or an empty pool. The vendored default is what first paint, no-script readers and failures see.
+- **Tests**: `tests/r2-images.test.ts` checks manifest, files, usage, budgets and the Astro-asset rule. `src/scripts/r2-random-image.test.ts` covers the picker, including the 2 KiB minified limit. Both run under `npm test`.
+- **Audit**: a candidate image must be text-free, current-brand, not a retired channel, and not already on the same page. A screenshot or a figure the text refers to is meaningful and never gets a pool. A new key needs the same audit (text-free, current brand, no retired channel) and an entry in the manifest with its audit notes before it is listed in a pool.
+
 ## Google Analytics Events
 
 - Click events use the shared Hagilight vocabulary (`download_click` for installer downloads, `store_visit` for Microsoft Store and Steam listings, `link_click` for everything else; categories `download`, `store`, `navigation`, `community`, `promotion`). Store controls use category `store`, never `download`. Labels are stable ids, never localized text. Rules, labels, and locations live in the mono-root `docs/google-analytics-integration-reference.md`.
