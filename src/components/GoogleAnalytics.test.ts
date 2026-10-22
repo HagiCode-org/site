@@ -35,21 +35,21 @@ describe('Website Google Analytics component', () => {
     }
   });
 
-  it('renders it once in each of the five page templates', () => {
+  it('renders it once in each of the four page templates and the root transit page', () => {
     const importers = listAstroFiles(srcDir).filter((file) => file !== wrapperPath && readSource(file).includes('GoogleAnalytics'));
 
     expect(importers.map((file) => path.basename(file)).sort()).toEqual([
       'AboutSnapshotDocument.astro',
       'DesktopPage.astro',
       'HomePage.astro',
-      'LandingRedirectPage.astro',
       'StructuredArticlePage.astro',
+      'index.astro',
     ]);
 
     for (const file of importers) {
       const source = readSource(file);
       expect(source.match(/import GoogleAnalytics from '@\/components\/GoogleAnalytics\.astro';/g)).toHaveLength(1);
-      expect(source.match(/<GoogleAnalytics \/>/g)).toHaveLength(1);
+      expect(source.match(/<GoogleAnalytics\b[^>]*\/>/g)).toHaveLength(1);
     }
   });
 

@@ -98,11 +98,23 @@ function buildHreflangPaths(routePath) {
   return hreflangPaths;
 }
 
-const rootEntryPages = managedEntryRoutes.map((routePath) => ({
-  route: routePath,
-  file: routePath === '/' ? 'index.html' : `${routePath.replace(/^\/+/, '')}index.html`,
-  canonicalPath: routePath,
-}));
+const rootEntryPages = managedEntryRoutes.map((routePath) => {
+  const page = {
+    route: routePath,
+    file: routePath === '/' ? 'index.html' : `${routePath.replace(/^\/+/, '')}index.html`,
+    canonicalPath: routePath,
+  };
+
+  // "/" is the Hagilight root transit: noindex, canonical and fallback link all point at the default locale.
+  return routePath === '/'
+    ? {
+        ...page,
+        canonicalPath: getLocalizedPath('/', defaultLocale),
+        redirectTarget: getLocalizedPath('/', defaultLocale),
+        requiresRobotsNoindex: true,
+      }
+    : page;
+});
 
 const managedPages = [
   ...managedLocalizedRoutes.flatMap((routePath) =>

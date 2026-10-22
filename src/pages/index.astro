@@ -1,5 +1,26 @@
 ---
-import LandingRedirectPage from '@/page-templates/LandingRedirectPage.astro';
+import RootTransit from '@hagicode/hagilight-core/RootTransit';
+import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
+import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
+import { SITE_LOCALES, DEFAULT_LOCALE } from '@/i18n/locale-metadata';
+import { getLocalizedPath } from '@/lib/locale-routing';
+
+const links = SITE_LOCALES.filter((locale) => locale.code !== DEFAULT_LOCALE).map((locale) => ({
+  destination: getLocalizedPath('/', locale.code),
+  label: locale.nativeName,
+  lang: locale.code,
+}));
 ---
 
-<LandingRedirectPage />
+<RootTransit
+  destination={getLocalizedPath('/', DEFAULT_LOCALE)}
+  siteName="HagiCode"
+  locale="en-US"
+  links={links}
+>
+  <GoogleAnalytics slot="head" />
+  <AnalyticsScripts slot="head" />
+  <a slot="footer" href="/en-US/docs/">Docs</a>
+  <a slot="footer" href="https://github.com/hagicode" target="_blank" rel="noopener">GitHub</a>
+  <a slot="footer" href="/en-US/about/">About</a>
+</RootTransit>
