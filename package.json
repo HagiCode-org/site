@@ -21,6 +21,7 @@
     "prepare:i18n": "npm run i18n:generate",
     "i18n:check": "npm run i18n:audit && npm run i18n:doctor && npm run prepare:i18n && node scripts/generate-i18n-resources.mjs --check",
     "sync:about-snapshot": "node ./scripts/fetch-about-snapshot.mjs",
+    "import:r2-images": "node scripts/import-r2-images.mjs",
     "seo:audit": "node scripts/seo-audit.mjs",
     "verify:ga": "node scripts/verify-ga-build.mjs",
     "typecheck": "npm run prepare:i18n && tsc --noEmit",
