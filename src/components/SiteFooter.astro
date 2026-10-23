@@ -6,7 +6,11 @@ interface Props {
   locale: SiteLocale;
 }
 
+// The catalog id of this site in hagilight's related-sites data. It keeps the footer from listing
+// this site among its own Ecosystem Sites (Astro.site alone cannot, because the catalog entry
+// resolves to the locale path) and tags first-party footer links with utm_source=hagicode-main.
+const SITE_ID = 'hagicode-main';
 const { locale } = Astro.props;
 ---
 
-<Footer locale={locale} />
+<Footer locale={locale} links={{ siteId: SITE_ID }} />
