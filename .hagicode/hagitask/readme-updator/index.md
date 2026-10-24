@@ -24,6 +24,14 @@ style: product
 - Address people evaluating or starting with HagiCode who arrive at the official website repository.
 - Lead with what HagiCode is and its core capabilities, then official entry points and downloads.
 
+## Microsoft Store
+
+- The README's goal for the Microsoft Store is to bring readers to the official site and the Store listing so they install HagiCode, subscribe there and keep using it. State this plainly in the product copy instead of treating the Store as a side note.
+- Present the Microsoft Store as the recommended Windows entry point: installing and subscribing there keeps the app on the latest version.
+- Describe the Store edition's value as the site's "Editions & Pricing" comparison shows it: the higher concurrent proposal limit and the Store-only capabilities that TurboEngine, a one-time perpetual license sold in the Microsoft Store, unlocks.
+- Give the Store a clear call to action near the top of the README and in the Microsoft Store section, linking the Store listing together with the Desktop downloads page on the official website.
+- Write in product language about what the reader gains. Use only Store, edition and pricing facts the site shows, and do not promise anything the site does not state.
+
 ## Required content
 
 - Keep the language switcher, Microsoft Store and add-ons, what HagiCode is, core capabilities and official entry points as the current README does.
