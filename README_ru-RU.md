@@ -87,38 +87,6 @@ HagiCode рассматривает достижения, ежедневные �
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) для обновлений продукта и длинных публикаций
 
-## Разработка этого репозитория
-
-Этот репозиторий содержит публичный сайт HagiCode. В каталоге `repos/site` выполните:
-
-```bash
-npm install
-npm run dev
-npm run build
-npm run preview
-```
-
-Сервер разработки по умолчанию запускается на `http://localhost:31264`.
-Для руководства по вкладу начните с [`AGENTS.md`](./AGENTS.md) и [`CLAUDE.md`](./CLAUDE.md).
-
-## Продакшн-деплой
-
-- Основной workflow: `.github/workflows/site-deploy-gh-pages.yml`
-- Источник истины для production: ветка `gh-pages`, публикуемая только через GitHub Actions
-- Контракт публикуемого payload: `esa.jsonc` в корне ветки и проверенный статический снимок Astro в `dist/`
-- Путь в R2 после `gh-pages`: после успешного завершения job `deploy` job `upload-r2` скачивает тот же проверенный artifact `site-gh-pages-payload` и синхронизирует только содержимое `.deploy/gh-pages/dist/` в корень bucket R2 или в корень опционального prefix, не добавляя лишний сегмент `dist/`
-- Путь для ручного запуска: `workflow_dispatch` по умолчанию использует `latest-gh-pages`, поэтому сопровождающие могут повторно опубликовать данные прямо из последнего snapshot ветки `gh-pages` без новой сборки; `current-ref-build` выбирайте только тогда, когда действительно нужен ручной rebuild и повторная публикация из текущего ref
-- Обязательные R2 secrets: `R2_ENDPOINT`, `R2_BUCKET`, `R2_ACCESS_KEY_ID` и `R2_SECRET_ACCESS_KEY`; `R2_PREFIX` необязателен и удаляет ведущие и замыкающие `/` перед вычислением целевого корня
-- Диагностика сбоев: если `gh-pages` завершился успешно, а загрузка в R2 нет, workflow упадёт в `upload-r2`; смотрите GitHub step summary, чтобы увидеть вычисленный bucket, корень prefix и понять, случилась ли ошибка до передачи или во время синхронизации
-- Необходимые права GitHub: deploy job требует `contents: write`; build job остаётся только для чтения
-- Необходимая настройка хостинга: production-хост должен читать `gh-pages/esa.jsonc` и обслуживать `gh-pages/dist/` как каталог статических файлов
-- Проверки первого деплоя: убедитесь, что workflow публикует `esa.jsonc` и `dist/`, что целевой хостинг по-прежнему смотрит на `gh-pages`, что summary показывает ожидаемый bucket R2 или корень prefix, и затем откройте `https://www.hagicode.com`
-- Путь отката: откатить изменение в исходниках или повторно запустить деплой из более старого коммита, чтобы CI снова опубликовал предыдущий снимок
-
-### Резервный Desktop Index
-
-Индекс истории desktop по адресу `https://index.hagicode.com/desktop/history/` здесь выступает только как внешняя зависимость по ссылке. Сайт указывает на него как на резервную runtime-цель для desktop-инструкций, но сам этот репозиторий не публикует и не поддерживает этот индекс напрямую.
-
 ## Лицензия
 
-Этот репозиторий распространяется по [LICENSE](./LICENSE).
+Этот репозиторий распространяется по лицензии [GNU Affero General Public License v3.0 (AGPL-3.0)](./LICENSE).

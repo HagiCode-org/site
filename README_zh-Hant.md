@@ -87,38 +87,6 @@ HagiCode 把成就、每日報告、效率倍率、Token 吞吐量和主題化�
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) 查看產品更新與長篇文章
 
-## 開發此儲存庫
-
-這個儲存庫包含 HagiCode 的公開官網。請在 `repos/site` 下執行：
-
-```bash
-npm install
-npm run dev
-npm run build
-npm run preview
-```
-
-預設開發伺服器執行於 `http://localhost:31264`。
-貢獻者說明請先閱讀 [`AGENTS.md`](./AGENTS.md) 與 [`CLAUDE.md`](./CLAUDE.md)。
-
-## 正式環境部署
-
-- 權威工作流：`.github/workflows/site-deploy-gh-pages.yml`
-- 正式環境的事實來源：`gh-pages` 分支，而且只允許 GitHub Actions 發布
-- 發布內容契約：分支根目錄保留 `esa.jsonc`，已驗證的 Astro 靜態快照放在 `dist/`
-- `gh-pages` 後續的 R2 路徑：`deploy` job 成功後，`upload-r2` 會下載同一份已驗證的 `site-gh-pages-payload` artifact，只把 `.deploy/gh-pages/dist/` 的內容同步到 R2 bucket 根或可選前綴根，不會額外再建立一層 `dist/`
-- 手動觸發路徑：`workflow_dispatch` 預設使用 `latest-gh-pages`，維護者可以直接根據最新 `gh-pages` 分支快照重新發布內容而不重新建置；只有需要從目前程式碼重新建置並發布時，才選擇 `current-ref-build`
-- 必要的 R2 secrets：`R2_ENDPOINT`、`R2_BUCKET`、`R2_ACCESS_KEY_ID`、`R2_SECRET_ACCESS_KEY`；`R2_PREFIX` 為可選項，解析目標根路徑前會先去除首尾 `/`
-- 故障排查：如果 `gh-pages` 已成功但 R2 上傳失敗，workflow 會在 `upload-r2` 失敗；請查看 GitHub step summary，確認解析後的 bucket、前綴根路徑，以及失敗發生在上傳前校驗還是同步階段
-- 所需 GitHub 權限：deploy job 需要 `contents: write`；build job 保持唯讀
-- 所需託管設定：讓正式環境讀取 `gh-pages/esa.jsonc`，並將 `gh-pages/dist/` 作為靜態資源目錄
-- 首次部署檢查：確認工作流實際發布了 `esa.jsonc` 和 `dist/`，確認託管目標仍指向 `gh-pages`，確認 summary 中的 R2 bucket 或前綴根路徑符合預期，再開啟 `https://www.hagicode.com`
-- 回滾路徑：回退來源提交，或從舊提交重新觸發部署，讓 CI 重新發布前一份快照
-
-### Desktop Index 備援說明
-
-桌面歷史索引 `https://index.hagicode.com/desktop/history/` 在此僅作為被引用的相依項。本站把它當成桌面指引的執行期備援目標，但此儲存庫本身不直接發布或維護該索引。
-
 ## 授權
 
-此儲存庫以 [LICENSE](./LICENSE) 釋出。
+此儲存庫依據 [GNU Affero General Public License v3.0 (AGPL-3.0)](./LICENSE) 釋出。

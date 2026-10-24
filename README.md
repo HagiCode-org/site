@@ -22,10 +22,6 @@
 
 </div>
 
-## RSS feeds
-
-Hagilight 0.5.0 publishes valid empty default, English-alias, and configured locale feeds. The plain-Astro integration does not infer feed items from the marketing pages.
-
 [English](./README.md) · [简体中文](./README_cn.md) · [繁體中文](./README_zh-Hant.md) · [日本語](./README_ja-JP.md) · [한국어](./README_ko-KR.md) · [Deutsch](./README_de-DE.md) · [Français](./README_fr-FR.md) · [Español](./README_es-ES.md) · [Português (Brasil)](./README_pt-BR.md) · [Русский](./README_ru-RU.md)
 
 ---
@@ -91,47 +87,6 @@ HagiCode treats achievements, daily reports, efficiency multipliers, token throu
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) for product updates and long-form posts
 
-## Develop This Repository
-
-This repository contains the public HagiCode website. From `repos/site`, run:
-
-```bash
-npm install
-npm run dev
-npm run build
-npm run preview
-```
-
-The default dev server runs at `http://localhost:31264`.
-For contributor guidance, start with [`AGENTS.md`](./AGENTS.md) and [`CLAUDE.md`](./CLAUDE.md).
-
-Site pages use the default footer from `@hagicode/hagilight-core/Footer` with the
-active locale and no site-specific link overrides. The homepage also mounts
-`@hagicode/hagilight-core/PromotoBanner` directly in Astro.
-
-SEO for this Astro site remains site-owned: page templates render localized
-metadata and canonical URLs, `SeoAlternateLinks.astro` renders hreflang links,
-and `astro.config.mjs` generates the sitemap and robots.txt. The SEO features
-in `@hagicode/hagilight-starlight` require Starlight and are not provided by
-this site's `@hagicode/hagilight` component dependency. Keep `seo:audit` as
-the build-time check for managed marketing and redirect pages.
-
-## Production Deployment
-
-- Authoritative workflow: `.github/workflows/site-deploy-gh-pages.yml`
-- Production source of truth: the `gh-pages` branch, published only by GitHub Actions
-- Published payload contract: branch root `esa.jsonc`, `wrangler.jsonc`, and `dist/` containing the validated Astro snapshot
-- Manual dispatch path: `workflow_dispatch` rebuilds from the selected ref and republishes the validated payload to `gh-pages`
-- Direct Cloudflare publication is now handled outside this workflow; keep `gh-pages/wrangler.jsonc` as the checked-in Wrangler contract for direct publish operations
-- Required GitHub permissions: the deploy job needs `contents: write`; the build job stays read-only
-- Required hosting setting: configure the production host to read `gh-pages/esa.jsonc`, treat `gh-pages/wrangler.jsonc` as the Wrangler source of truth for direct publication, and serve `gh-pages/dist/`
-- First deploy checks: confirm the workflow publishes `esa.jsonc`, `wrangler.jsonc`, and `dist/`, verify the hosting target still points at `gh-pages`, and load `https://www.hagicode.com`
-- Rollback path: revert the source change or rerun deployment from an older commit so CI republishes the previous snapshot
-
-### Desktop Index Fallback
-
-The desktop history index at `https://index.hagicode.com/desktop/history/` is a referenced dependency only. The site links to it as a runtime fallback target for desktop guidance, but this repository does not publish or manage that index directly.
-
 ## License
 
-This repository is released under [LICENSE](./LICENSE).
+This repository is released under the [GNU Affero General Public License v3.0 (AGPL-3.0)](./LICENSE).

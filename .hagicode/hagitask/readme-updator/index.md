@@ -18,14 +18,15 @@ style: product
 
 # README requirements
 
-## Audience and focus
+## Product focus
 
-- Address people evaluating or starting with HagiCode who arrive at the official website repository, and developers who build the site.
-- Lead with what HagiCode is and its core capabilities, then official entry points.
+- Introduce HagiCode as the product shown on the official website: an AI coding tool, a gamified feedback system and a development workspace in one platform, with proposal-driven coding through OpenSpec, support for mainstream Agent CLIs routed through OmniRoute, multi-repository workspace tools (MonoSpecs, Skills, Vault, AI Compose Commit) and gamified feedback.
+- Address people evaluating or starting with HagiCode who arrive at the official website repository.
+- Lead with what HagiCode is and its core capabilities, then official entry points and downloads.
 
 ## Required content
 
-- Keep the language switcher, RSS feeds, Microsoft Store and add-ons, what HagiCode is, core capabilities, official entry points, repository development, production deployment and license sections, as the current README does.
+- Keep the language switcher, Microsoft Store and add-ons, what HagiCode is, core capabilities and official entry points as the current README does.
 - The AGPL-3.0 license statement must match `LICENSE`.
 
 ## README languages
@@ -36,4 +37,5 @@ style: product
 ## Exclusions
 
 - Exclude analytics keys, tokens, secret values, values from `.env.example`, internal hosts, machine-specific paths and private links.
+- Keep repository maintenance instructions out of the README: repository layout, internal architecture, CI, build and deployment internals, SEO and RSS plumbing and contribution workflow.
 - Do not list features the site does not show.

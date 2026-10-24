@@ -87,38 +87,6 @@ HagiCode trata conquistas, relatórios diários, multiplicadores de eficiência,
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) para atualizações do produto e textos longos
 
-## Desenvolvendo este repositório
-
-Este repositório contém o site público da HagiCode. Em `repos/site`, execute:
-
-```bash
-npm install
-npm run dev
-npm run build
-npm run preview
-```
-
-O servidor de desenvolvimento padrão roda em `http://localhost:31264`.
-Para orientações de contribuição, comece por [`AGENTS.md`](./AGENTS.md) e [`CLAUDE.md`](./CLAUDE.md).
-
-## Deploy em produção
-
-- Workflow autoritativo: `.github/workflows/site-deploy-gh-pages.yml`
-- Fonte de verdade em produção: a branch `gh-pages`, publicada apenas pelo GitHub Actions
-- Contrato do payload publicado: `esa.jsonc` na raiz da branch e o snapshot estático validado do Astro em `dist/`
-- Caminho R2 após `gh-pages`: depois que o job `deploy` for concluído com sucesso, `upload-r2` baixa o mesmo artifact validado `site-gh-pages-payload` e sincroniza apenas o conteúdo de `.deploy/gh-pages/dist/` para a raiz do bucket R2 ou para uma raiz de prefixo opcional, sem criar um segmento extra `dist/`
-- Caminho manual: `workflow_dispatch` usa `latest-gh-pages` por padrão, então os mantenedores podem republicar diretamente a partir do snapshot mais recente da branch `gh-pages` sem reconstruir; escolha `current-ref-build` apenas quando precisar reconstruir manualmente e republicar a partir da ref atual
-- Secrets R2 obrigatórios: `R2_ENDPOINT`, `R2_BUCKET`, `R2_ACCESS_KEY_ID` e `R2_SECRET_ACCESS_KEY`; `R2_PREFIX` é opcional e remove `/` do começo e do fim antes de resolver a raiz de destino
-- Triagem de falhas: se `gh-pages` tiver sucesso mas o upload para R2 falhar, o workflow falha em `upload-r2`; consulte o GitHub step summary para ver o bucket resolvido, a raiz do prefixo e se a falha aconteceu antes da transferência ou durante a sincronização
-- Permissões GitHub necessárias: o deploy job precisa de `contents: write`; o build job continua somente leitura
-- Configuração de hospedagem necessária: o host de produção deve ler `gh-pages/esa.jsonc` e servir `gh-pages/dist/` como diretório estático
-- Verificações do primeiro deploy: confirme que o workflow publicou `esa.jsonc` e `dist/`, verifique se o destino de hospedagem continua apontando para `gh-pages`, confirme que o summary mostra o bucket R2 ou a raiz de prefixo esperada e então abra `https://www.hagicode.com`
-- Caminho de rollback: reverta a mudança de origem ou reexecute o deploy a partir de um commit antigo para que a CI publique novamente o snapshot anterior
-
-### Fallback do Desktop Index
-
-O índice histórico do desktop em `https://index.hagicode.com/desktop/history/` é apenas uma dependência referenciada aqui. O site aponta para ele como destino de fallback em tempo de execução para a orientação do desktop, mas este repositório não publica nem mantém esse índice diretamente.
-
 ## Licença
 
-Este repositório é distribuído sob [LICENSE](./LICENSE).
+Este repositório é distribuído sob a [GNU Affero General Public License v3.0 (AGPL-3.0)](./LICENSE).

@@ -87,36 +87,6 @@ HagiCode 把成就、日报、效率倍率、Token 吞吐量和主题化界面�
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) 查看产品更新与长文内容
 
-## 开发这个仓库
-
-这个仓库承载 HagiCode 的公开官网。在 `repos/site` 下运行：
-
-```bash
-npm install
-npm run dev
-npm run build
-npm run preview
-```
-
-默认开发服务器运行在 `http://localhost:31264`。
-贡献者说明请先查看 [`AGENTS.md`](./AGENTS.md) 和 [`CLAUDE.md`](./CLAUDE.md)。
-
-## 生产部署
-
-- 权威工作流：`.github/workflows/site-deploy-gh-pages.yml`
-- 生产环境的事实来源：`gh-pages` 分支，并且只允许 GitHub Actions 发布
-- 发布产物契约：分支根目录保留 `esa.jsonc`、`wrangler.jsonc`，已验证的 Astro 静态快照放在 `dist/`
-- 手动触发路径：`workflow_dispatch` 会基于所选 ref 重新构建，并把校验后的 payload 重新发布到 `gh-pages`
-- Cloudflare 直接发布现在在这个 workflow 之外处理；请把 `gh-pages/wrangler.jsonc` 视为直接发布操作使用的、受版本控制的 Wrangler 契约
-- 所需 GitHub 权限：deploy job 需要 `contents: write`；build job 保持只读
-- 所需托管设置：让生产托管读取 `gh-pages/esa.jsonc`，把 `gh-pages/wrangler.jsonc` 作为直接发布使用的 Wrangler 事实来源，并把 `gh-pages/dist/` 作为静态资源目录
-- 首次部署检查：确认工作流实际发布了 `esa.jsonc`、`wrangler.jsonc` 和 `dist/`，确认托管目标仍指向 `gh-pages`，再访问 `https://www.hagicode.com`
-- 回滚路径：回退源提交，或从旧提交重新触发部署，让 CI 重新发布上一份快照
-
-### Desktop Index 回退说明
-
-桌面历史索引 `https://index.hagicode.com/desktop/history/` 在这里仅作为被引用依赖。站点会把它当作桌面引导的运行时回退目标，但这个仓库本身并不直接发布或维护这个索引。
-
 ## 许可协议
 
-本仓库遵循 [LICENSE](./LICENSE)。
+本仓库依据 [GNU Affero General Public License v3.0 (AGPL-3.0)](./LICENSE) 发布。
