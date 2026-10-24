@@ -1,0 +1,1 @@
+import{r as e}from"./analytics-events.DFI2gRs9.js";e();
