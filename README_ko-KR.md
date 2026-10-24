@@ -10,6 +10,8 @@
 
 <p>리포지토리 이해, 제안서 작성, 작업 분해, 코드 수정, 커밋 정리, 여러 리포지토리 관리, 그리고 재사용 가능한 지식 축적까지 같은 워크스페이스 안에서 처리할 수 있습니다.</p>
 
+<p><strong>Windows에서는 Microsoft Store에서 HagiCode를 받으세요. Store에서 설치하고 구독하면 항상 최신 버전을 사용할 수 있습니다.</strong></p>
+
 <a href="https://www.hagicode.com/">Website</a>
 ·
 <a href="https://docs.hagicode.com/product-overview/">Product Overview</a>
@@ -28,9 +30,13 @@
 
 ## Microsoft Store And Add-ons
 
+HagiCode for Windows는 Microsoft Store에서 제공되며, Windows에서 시작하는 권장 방법입니다. Store에서 설치하고 구독하면 최신 버전을 유지할 수 있으며, 다운로드와 제품 상세 정보는 공식 웹사이트 [hagicode.com](https://www.hagicode.com/)에서 확인할 수 있습니다.
+
+TurboEngine은 Microsoft Store에서 판매하는 1회 구매형 영구 라이선스로, Desktop 설치 버전에 포함되지 않은 기능을 해제합니다. 동시 제안 수가 3개에서 32개로 늘어나며, 문서 테마, 사용자 지정 커밋 서명, 브랜드 맞춤 설정, 사용자 지정 아바타 업로드도 사용할 수 있습니다.
+
 | 미리보기 | 제품 | 설명 | 시작 지점 |
 | --- | --- | --- | --- |
-| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
+| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Windows 데스크톱 앱의 권장 진입점입니다. 설치하고 구독하면 최신 버전을 유지할 수 있습니다. Steam 메인 애플리케이션 진입점은 종료되었습니다. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
 | <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus bundle artwork" width="280" /> | **Hagicode Plus** | Bundle and upgrade guidance remains available through the docs site. | [Read Hagicode Plus docs](https://docs.hagicode.com/bundles/hagicode-plus/) |
 | <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC artwork" width="280" /> | **Turbo Engine DLC** | DLC guidance for higher concurrency and customization remains available through the docs site. | [Read Turbo Engine DLC docs](https://docs.hagicode.com/dlc/turbo-engine-dlc/) |
 
@@ -83,7 +89,7 @@ HagiCode는 업적, 일일 리포트, 효율 배수, 토큰 처리량, 그리고
 - [Website](https://www.hagicode.com/) 에서 전체 제품 홈페이지 보기
 - [Product Overview](https://docs.hagicode.com/product-overview/) 에서 공식 공개 제품 소개 보기
 - [Desktop](https://www.hagicode.com/desktop/) 에서 로컬 우선 설치 및 서비스 관리 보기
-- [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
+- [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW)에서 Windows용으로 설치하고 구독하여 최신 버전 유지
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) 에서 제품 업데이트와 장문 글 보기
 

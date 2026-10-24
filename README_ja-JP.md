@@ -10,6 +10,8 @@
 
 <p>リポジトリの理解、提案の作成、タスクの分解、コードの変更、コミットの整理、複数リポジトリの管理、そして再利用可能な知識の蓄積までを、同じワークスペースから行えます。</p>
 
+<p><strong>Windows では Microsoft Store から HagiCode を入手してください。Store でインストールして購読すると、常に最新バージョンを利用できます。</strong></p>
+
 <a href="https://www.hagicode.com/">Website</a>
 ·
 <a href="https://docs.hagicode.com/product-overview/">Product Overview</a>
@@ -28,9 +30,13 @@
 
 ## Microsoft Store And Add-ons
 
+HagiCode for Windows は Microsoft Store で提供されており、Windows で始めるための推奨の方法です。Store でインストールして購読すると最新バージョンを維持でき、ダウンロードや製品の詳細は公式サイト [hagicode.com](https://www.hagicode.com/) で確認できます。
+
+TurboEngine は Microsoft Store で販売されている買い切りの永続ライセンスで、Desktop 版インストールには含まれない機能を解放します。同時提案数は 3 から 32 に増え、ドキュメントテーマ、カスタムコミット署名、ブランドのカスタマイズ、カスタムアバターのアップロードも利用できます。
+
 | プレビュー | 製品 | 概要 | 開始先 |
 | --- | --- | --- | --- |
-| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
+| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Windows でのデスクトップアプリの推奨入口です。インストールして購読すると最新バージョンを維持できます。Steam のメインアプリケーション入口は終了しました。 | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
 | <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus bundle artwork" width="280" /> | **Hagicode Plus** | Bundle and upgrade guidance remains available through the docs site. | [Read Hagicode Plus docs](https://docs.hagicode.com/bundles/hagicode-plus/) |
 | <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC artwork" width="280" /> | **Turbo Engine DLC** | DLC guidance for higher concurrency and customization remains available through the docs site. | [Read Turbo Engine DLC docs](https://docs.hagicode.com/dlc/turbo-engine-dlc/) |
 
@@ -83,7 +89,7 @@ HagiCode は、実績、日次レポート、効率倍率、トークン処理�
 - [Website](https://www.hagicode.com/) で製品サイト全体を見る
 - [Product Overview](https://docs.hagicode.com/product-overview/) で公式の公開製品紹介を見る
 - [Desktop](https://www.hagicode.com/desktop/) でローカルファーストの導入とサービス管理を見る
-- [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
+- [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) は Windows でインストールして購読し、最新バージョンを維持するための入口
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) で製品更新と長文記事を見る
 

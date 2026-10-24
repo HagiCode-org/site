@@ -10,6 +10,8 @@
 
 <p>Use-o para entender repositórios, escrever propostas, quebrar tarefas, modificar código, organizar commits, gerenciar vários repositórios e construir uma base de conhecimento reutilizável sem sair do mesmo workspace.</p>
 
+<p><strong>No Windows, obtenha o HagiCode pela Microsoft Store: instale e assine por lá para ficar sempre na versão mais recente.</strong></p>
+
 <a href="https://www.hagicode.com/">Website</a>
 ·
 <a href="https://docs.hagicode.com/product-overview/">Product Overview</a>
@@ -28,9 +30,13 @@
 
 ## Microsoft Store And Add-ons
 
+O HagiCode for Windows está disponível na Microsoft Store, a forma recomendada de começar no Windows. Instale e assine por lá para ficar na versão mais recente; o site oficial [hagicode.com](https://www.hagicode.com/) traz os downloads e os detalhes do produto.
+
+O TurboEngine, uma licença perpétua de compra única vendida na Microsoft Store, libera recursos que a instalação do Desktop não inclui: 32 propostas simultâneas em vez de 3, temas de documento, uma assinatura de commit personalizada, personalização de marca e envio de avatares personalizados.
+
 | Prévia | Produto | O que é | Comece aqui |
 | --- | --- | --- | --- |
-| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Current public entry point for the desktop app. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
+| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Ponto de entrada recomendado para o aplicativo desktop no Windows: instale e assine para ficar na versão mais recente. A entrada principal do aplicativo na Steam foi encerrada. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
 | <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus bundle artwork" width="280" /> | **Hagicode Plus** | Bundle and upgrade guidance remains available through the docs site. | [Read Hagicode Plus docs](https://docs.hagicode.com/bundles/hagicode-plus/) |
 | <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC artwork" width="280" /> | **Turbo Engine DLC** | DLC guidance for higher concurrency and customization remains available through the docs site. | [Read Turbo Engine DLC docs](https://docs.hagicode.com/dlc/turbo-engine-dlc/) |
 
@@ -83,7 +89,7 @@ HagiCode trata conquistas, relatórios diários, multiplicadores de eficiência,
 - [Website](https://www.hagicode.com/) para a página principal completa do produto
 - [Product Overview](https://docs.hagicode.com/product-overview/) para a introdução pública oficial do produto
 - [Desktop](https://www.hagicode.com/desktop/) para instalação local e gerenciamento de serviços
-- [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) for the current Windows desktop entry point
+- [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) para instalar e assinar no Windows e ficar na versão mais recente
 - [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) para atualizações do produto e textos longos
 
