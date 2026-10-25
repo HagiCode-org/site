@@ -1064,7 +1064,7 @@ interface Props {
   worldCovers?: Partial<Record<HomepageWorldKey, R2ImageSources>>;
   /** Fun-section covers that are rotating remote frames, by world: their object URLs, requested on activation. */
   remoteWorldCovers?: Partial<Record<HomepageWorldKey, string>>;
-  /** Fun-section hero strip frames in strip order: vendored R2 cat heads rendered by Astro. */
+  /** Fun-section hero strip frames in strip order: vendored R2 heads of the AI model characters, rendered by Astro. */
   heroStrip?: R2ImageSources[];
 }
 

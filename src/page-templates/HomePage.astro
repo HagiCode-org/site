@@ -28,16 +28,28 @@ import personaStrategistAvatar from '../assets/r2/cat-head-gallery/g017-cyanotyp
 import personaRunnerAvatar from '../assets/r2/cat-head-gallery/g004-pixel-art-03-256.avif';
 import personaArtistAvatar from '../assets/r2/cat-head-gallery/g045-impressionist-08-256.avif';
 import funWorldAgentsCover from '../assets/r2/cat-head-gallery/g002-ukiyo-e-01-960.avif';
-import funHeroFrame01 from '../assets/r2/cat-head-gallery/g023-chalk-pastel-10-256.avif';
-import funHeroFrame02 from '../assets/r2/cat-head-gallery/g025-voxel-03-256.avif';
-import funHeroFrame03 from '../assets/r2/cat-head-gallery/g031-illuminated-manuscript-04-256.avif';
-import funHeroFrame04 from '../assets/r2/cat-head-gallery/g034-vaporwave-04-256.avif';
-import funHeroFrame05 from '../assets/r2/cat-head-gallery/g035-synthwave-chrome-09-256.avif';
-import funHeroFrame06 from '../assets/r2/cat-head-gallery/g038-frosted-glass-02-256.avif';
-import funHeroFrame07 from '../assets/r2/cat-head-gallery/g039-needle-felt-09-256.avif';
-import funHeroFrame08 from '../assets/r2/cat-head-gallery/g041-glossy-balloon-05-256.avif';
-import funHeroFrame09 from '../assets/r2/cat-head-gallery/g042-blue-white-porcelain-05-256.avif';
-import funHeroFrame10 from '../assets/r2/cat-head-gallery/g043-glazed-ceramic-06-256.avif';
+import funHeroFrame01 from '../assets/r2/claude-antler-girl-gallery/g47-knitted-wool-19-256.avif';
+import funHeroFrame02 from '../assets/r2/deepseek-whale-girl-gallery/g10-felt-plush-14-256.avif';
+import funHeroFrame03 from '../assets/r2/doubao-sunny-girl-gallery/g48-chunky-flat-cartoon-02-256.avif';
+import funHeroFrame04 from '../assets/r2/gemini-twin-star-girl-gallery/g32-semi-3d-anime-07-256.avif';
+import funHeroFrame05 from '../assets/r2/glm-black-book-girl-gallery/g44-pastel-chalk-06-256.avif';
+import funHeroFrame06 from '../assets/r2/gpt-knot-girl-gallery/g32-semi-3d-anime-07-256.avif';
+import funHeroFrame07 from '../assets/r2/grok-punk-girl-gallery/g35-semi-3d-anime-16-256.avif';
+import funHeroFrame08 from '../assets/r2/hunyuan-neon-girl-gallery/g11-vinyl-toy-14-256.avif';
+import funHeroFrame09 from '../assets/r2/kimi-moon-girl-gallery/g45-moonlit-ink-wash-18-256.avif';
+import funHeroFrame10 from '../assets/r2/minimax-conch-girl-gallery/g46-pearl-hologram-03-256.avif';
+import funHeroFrame11 from '../assets/r2/qwen-porcelain-girl-gallery/g32-semi-3d-anime-07-256.avif';
+import funHeroFrame12 from '../assets/r2/claude-antler-girl-gallery/g03-paper-cut-layers-09-256.avif';
+import funHeroFrame13 from '../assets/r2/deepseek-whale-girl-gallery/g12-origami-04-256.avif';
+import funHeroFrame14 from '../assets/r2/doubao-sunny-girl-gallery/g47-toy-block-figure-17-256.avif';
+import funHeroFrame15 from '../assets/r2/gemini-twin-star-girl-gallery/g17-painterly-anime-scenery-08-256.avif';
+import funHeroFrame16 from '../assets/r2/glm-black-book-girl-gallery/g10-felt-plush-11-256.avif';
+import funHeroFrame17 from '../assets/r2/gpt-knot-girl-gallery/g27-picture-book-08-256.avif';
+import funHeroFrame18 from '../assets/r2/grok-punk-girl-gallery/g18-90s-anime-cel-02-256.avif';
+import funHeroFrame19 from '../assets/r2/hunyuan-neon-girl-gallery/g44-pastel-chalk-14-256.avif';
+import funHeroFrame20 from '../assets/r2/kimi-moon-girl-gallery/g49-paper-lantern-glow-20-256.avif';
+import funHeroFrame21 from '../assets/r2/minimax-conch-girl-gallery/g05-flat-vector-sticker-12-256.avif';
+import funHeroFrame22 from '../assets/r2/qwen-porcelain-girl-gallery/g21-modern-anime-16-256.avif';
 import r2Manifest from '../../r2-images.manifest.json';
 import { getImage } from 'astro:assets';
 import '@/styles/homepage.css';
@@ -122,8 +134,8 @@ const personaAvatars = {
   artist: await getR2ImageSources(personaArtistAvatar, 112, 112),
 };
 
-// Fun-section frames (cat heads from cat-head-gallery): the first world cover and the hero strip are vendored
-// renditions; the other world covers are rotating remote frames (see the manifest).
+// Fun-section frames: the first world cover (a cat head from cat-head-gallery) and the hero strip (two heads from
+// each AI model's character gallery) are vendored renditions; the other world covers are rotating remote frames (see the manifest).
 const funWorldCovers = {
   agents: await getR2ImageSources(funWorldAgentsCover, 720, 480),
 };
@@ -144,6 +156,18 @@ const funHeroStrip = [
   await getR2ImageSources(funHeroFrame08, 256, 256),
   await getR2ImageSources(funHeroFrame09, 256, 256),
   await getR2ImageSources(funHeroFrame10, 256, 256),
+  await getR2ImageSources(funHeroFrame11, 256, 256),
+  await getR2ImageSources(funHeroFrame12, 256, 256),
+  await getR2ImageSources(funHeroFrame13, 256, 256),
+  await getR2ImageSources(funHeroFrame14, 256, 256),
+  await getR2ImageSources(funHeroFrame15, 256, 256),
+  await getR2ImageSources(funHeroFrame16, 256, 256),
+  await getR2ImageSources(funHeroFrame17, 256, 256),
+  await getR2ImageSources(funHeroFrame18, 256, 256),
+  await getR2ImageSources(funHeroFrame19, 256, 256),
+  await getR2ImageSources(funHeroFrame20, 256, 256),
+  await getR2ImageSources(funHeroFrame21, 256, 256),
+  await getR2ImageSources(funHeroFrame22, 256, 256),
 ];
 ---
 

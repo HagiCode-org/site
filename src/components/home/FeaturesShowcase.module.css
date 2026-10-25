@@ -1874,7 +1874,8 @@
   display: flex;
   gap: 0.9rem;
   width: max-content;
-  animation: galleryMarquee 34s linear infinite;
+  /* 22 cards: 75 s keeps the 3.4 s-per-card pace the 10-card strip had at 34 s. */
+  animation: galleryMarquee 75s linear infinite;
 }
 
 .galleryPanel:hover .galleryTrack {

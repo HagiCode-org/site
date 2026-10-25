@@ -3,7 +3,7 @@
   "base": "https://img-gen.hagicode.com",
   "budgets": {
     "perFileBytes": 40960,
-    "totalBytes": 131072
+    "totalBytes": 229376
   },
   "entries": [
     {
@@ -326,25 +326,25 @@
       "activation": "Requested only when the carousel first activates this cover (timer or world chip); preloaded with an image element and swapped into the same box."
     },
     {
-      "id": "fun-hero-aurora-04",
-      "surface": "home/features-showcase/interesting/hero-strip/01-aurora-04",
-      "album": "cat-head-gallery",
-      "objectKey": "cat-head-gallery/g023-chalk-pastel-10.avif",
+      "id": "fun-hero-claude-g47-knitted-wool-19",
+      "surface": "home/features-showcase/interesting/hero-strip/01-claude-knitted-wool",
+      "album": "claude-antler-girl-gallery",
+      "objectKey": "claude-antler-girl-gallery/g47-knitted-wool-19.avif",
       "width": 256,
       "height": 256,
-      "bytes": 5081,
-      "sha256": "73e4abaeca7833cea0231f41ba25ee1c5c887aecd13e6f5a9e4dd3294a9e47fa",
+      "bytes": 7903,
+      "sha256": "4306be66805329616197a5679dba0ae3629f373714fafc57660790f7cfd95aeb",
       "decorative": true,
       "audit": {
         "verdict": "accepted",
-        "checkedOn": "2026-10-22",
-        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free claude character head (face framing, knitted-wool) with the HagiCode cat-head hair clip, picked from the claude-antler-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
       },
       "class": "vendored",
-      "file": "src/assets/r2/cat-head-gallery/g023-chalk-pastel-10-256.avif",
+      "file": "src/assets/r2/claude-antler-girl-gallery/g47-knitted-wool-19-256.avif",
       "source": {
-        "bytes": 29427,
-        "sha256": "782e76e30c4c58f7ebea2221b925d84989286cc5f004a0348956029ef7cd3ca7",
+        "bytes": 39303,
+        "sha256": "43dcd3525750c8e7a4a4cdd61af0f141b07accb70191545c61db3afd1f43aa24",
         "width": 1024,
         "height": 1024
       },
@@ -352,33 +352,33 @@
         "width": 256,
         "height": 256,
         "format": "avif",
-        "quality": 60
+        "quality": 45
       },
       "transforms": [
         "resize to 256x256 (cover) from the R2 object",
-        "encode AVIF quality 60, effort 4 (sharp)"
+        "encode AVIF quality 45, effort 4 (sharp)"
       ]
     },
     {
-      "id": "fun-hero-cat-ink-09",
-      "surface": "home/features-showcase/interesting/hero-strip/02-cat-ink-09",
-      "album": "cat-head-gallery",
-      "objectKey": "cat-head-gallery/g025-voxel-03.avif",
+      "id": "fun-hero-deepseek-g10-felt-plush-14",
+      "surface": "home/features-showcase/interesting/hero-strip/02-deepseek-felt-plush",
+      "album": "deepseek-whale-girl-gallery",
+      "objectKey": "deepseek-whale-girl-gallery/g10-felt-plush-14.avif",
       "width": 256,
       "height": 256,
-      "bytes": 3308,
-      "sha256": "39cffbea0f79c324f767fd8483a40ad3041225ca57c4bc9f8e22785fab446957",
+      "bytes": 9384,
+      "sha256": "a11fa55008bb4eeceec4535de4589a2b2b07f493a680cf298676cbf86c9b72c7",
       "decorative": true,
       "audit": {
         "verdict": "accepted",
-        "checkedOn": "2026-10-22",
-        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free deepseek character head (face framing, felt-plush) with the HagiCode cat-head hair clip, picked from the deepseek-whale-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
       },
       "class": "vendored",
-      "file": "src/assets/r2/cat-head-gallery/g025-voxel-03-256.avif",
+      "file": "src/assets/r2/deepseek-whale-girl-gallery/g10-felt-plush-14-256.avif",
       "source": {
-        "bytes": 8242,
-        "sha256": "23808a6d5241ce9085ec91329bd021d62a249f18bc3094dae0e8c8eeae4d8cf1",
+        "bytes": 41034,
+        "sha256": "f358ba427c2b79340e955a70b4be2833668918f325ed1a491051fd9c6b88c7a6",
         "width": 1024,
         "height": 1024
       },
@@ -386,33 +386,33 @@
         "width": 256,
         "height": 256,
         "format": "avif",
-        "quality": 60
+        "quality": 45
       },
       "transforms": [
         "resize to 256x256 (cover) from the R2 object",
-        "encode AVIF quality 60, effort 4 (sharp)"
+        "encode AVIF quality 45, effort 4 (sharp)"
       ]
     },
     {
-      "id": "fun-hero-cat-line-03",
-      "surface": "home/features-showcase/interesting/hero-strip/03-cat-line-03",
-      "album": "cat-head-gallery",
-      "objectKey": "cat-head-gallery/g031-illuminated-manuscript-04.avif",
+      "id": "fun-hero-doubao-g48-chunky-flat-cartoon-02",
+      "surface": "home/features-showcase/interesting/hero-strip/03-doubao-chunky-flat-cartoon",
+      "album": "doubao-sunny-girl-gallery",
+      "objectKey": "doubao-sunny-girl-gallery/g48-chunky-flat-cartoon-02.avif",
       "width": 256,
       "height": 256,
-      "bytes": 6840,
-      "sha256": "59a40c16a3e25445b3526a2b730d06217d727e08e45fc3ac070940e7e4f85749",
+      "bytes": 9222,
+      "sha256": "d10d161cfd42e1d7958888a99d74cd21bd4ff834be2e4676cbf523194d71c8cf",
       "decorative": true,
       "audit": {
         "verdict": "accepted",
-        "checkedOn": "2026-10-22",
-        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free doubao character head (face framing, chunky-flat-cartoon) with the HagiCode cat-head hair clip, picked from the doubao-sunny-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
       },
       "class": "vendored",
-      "file": "src/assets/r2/cat-head-gallery/g031-illuminated-manuscript-04-256.avif",
+      "file": "src/assets/r2/doubao-sunny-girl-gallery/g48-chunky-flat-cartoon-02-256.avif",
       "source": {
-        "bytes": 32530,
-        "sha256": "53486da06ca5a71438274f2ef42b07a036c3410858210538aa35a459a03ecf06",
+        "bytes": 35519,
+        "sha256": "95fcb2120de7371714b3feec9c38d4c24a77efe12937db84da05e9c7dd457d4a",
         "width": 1024,
         "height": 1024
       },
@@ -420,33 +420,33 @@
         "width": 256,
         "height": 256,
         "format": "avif",
-        "quality": 60
+        "quality": 45
       },
       "transforms": [
         "resize to 256x256 (cover) from the R2 object",
-        "encode AVIF quality 60, effort 4 (sharp)"
+        "encode AVIF quality 45, effort 4 (sharp)"
       ]
     },
     {
-      "id": "fun-hero-cat-oil-09",
-      "surface": "home/features-showcase/interesting/hero-strip/04-cat-oil-09",
-      "album": "cat-head-gallery",
-      "objectKey": "cat-head-gallery/g034-vaporwave-04.avif",
+      "id": "fun-hero-gemini-g32-semi-3d-anime-07",
+      "surface": "home/features-showcase/interesting/hero-strip/04-gemini-semi-3d-anime",
+      "album": "gemini-twin-star-girl-gallery",
+      "objectKey": "gemini-twin-star-girl-gallery/g32-semi-3d-anime-07.avif",
       "width": 256,
       "height": 256,
-      "bytes": 8138,
-      "sha256": "fbc93102d8d6b8a27767fbb0017e64d3344cba78ad0eed1138bafb4abe2b6c97",
+      "bytes": 6913,
+      "sha256": "71c34d4447db37da149f3c006d25041fc10d5820550898f24b70839b06de6480",
       "decorative": true,
       "audit": {
         "verdict": "accepted",
-        "checkedOn": "2026-10-22",
-        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free gemini character head (face framing, semi-3d-anime) with the HagiCode cat-head hair clip, picked from the gemini-twin-star-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
       },
       "class": "vendored",
-      "file": "src/assets/r2/cat-head-gallery/g034-vaporwave-04-256.avif",
+      "file": "src/assets/r2/gemini-twin-star-girl-gallery/g32-semi-3d-anime-07-256.avif",
       "source": {
-        "bytes": 36264,
-        "sha256": "75bbeab53b39d6dbeb40a1b720a39b28990fda11f73d9afcbdecd1dfd2ccf573",
+        "bytes": 32728,
+        "sha256": "bc06980b499c774661ca77d7a355a5c035318c5e122aa23762fb7d0185d23c77",
         "width": 1024,
         "height": 1024
       },
@@ -454,33 +454,33 @@
         "width": 256,
         "height": 256,
         "format": "avif",
-        "quality": 60
+        "quality": 45
       },
       "transforms": [
         "resize to 256x256 (cover) from the R2 object",
-        "encode AVIF quality 60, effort 4 (sharp)"
+        "encode AVIF quality 45, effort 4 (sharp)"
       ]
     },
     {
-      "id": "fun-hero-cat-paper-04",
-      "surface": "home/features-showcase/interesting/hero-strip/05-cat-paper-04",
-      "album": "cat-head-gallery",
-      "objectKey": "cat-head-gallery/g035-synthwave-chrome-09.avif",
+      "id": "fun-hero-glm-g44-pastel-chalk-06",
+      "surface": "home/features-showcase/interesting/hero-strip/05-glm-pastel-chalk",
+      "album": "glm-black-book-girl-gallery",
+      "objectKey": "glm-black-book-girl-gallery/g44-pastel-chalk-06.avif",
       "width": 256,
       "height": 256,
-      "bytes": 7195,
-      "sha256": "bbfc66744597e175934a031ac8aaba38290504d2b8cfbbed64351ce61b1fef8a",
+      "bytes": 7494,
+      "sha256": "5c2ad91fbf986aa831f1e9fa0e1040b4ee254796ecad0dd9b0d2fff50e7e1b21",
       "decorative": true,
       "audit": {
         "verdict": "accepted",
-        "checkedOn": "2026-10-22",
-        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free glm character head (face framing, pastel-chalk) with the HagiCode cat-head hair clip, picked from the glm-black-book-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
       },
       "class": "vendored",
-      "file": "src/assets/r2/cat-head-gallery/g035-synthwave-chrome-09-256.avif",
+      "file": "src/assets/r2/glm-black-book-girl-gallery/g44-pastel-chalk-06-256.avif",
       "source": {
-        "bytes": 18415,
-        "sha256": "b70201302ca70cd4d4f20bfbf42c7d79a29c56d0eb35c67a16bbaa75b58f39fe",
+        "bytes": 36403,
+        "sha256": "875db76e24c10698c6be93a49531d3ae204272617af2ee604ca276fc2dec2c34",
         "width": 1024,
         "height": 1024
       },
@@ -488,33 +488,33 @@
         "width": 256,
         "height": 256,
         "format": "avif",
-        "quality": 60
+        "quality": 45
       },
       "transforms": [
         "resize to 256x256 (cover) from the R2 object",
-        "encode AVIF quality 60, effort 4 (sharp)"
+        "encode AVIF quality 45, effort 4 (sharp)"
       ]
     },
     {
-      "id": "fun-hero-cat-sticker-02",
-      "surface": "home/features-showcase/interesting/hero-strip/06-cat-sticker-02",
-      "album": "cat-head-gallery",
-      "objectKey": "cat-head-gallery/g038-frosted-glass-02.avif",
+      "id": "fun-hero-gpt-g32-semi-3d-anime-07",
+      "surface": "home/features-showcase/interesting/hero-strip/06-gpt-semi-3d-anime",
+      "album": "gpt-knot-girl-gallery",
+      "objectKey": "gpt-knot-girl-gallery/g32-semi-3d-anime-07.avif",
       "width": 256,
       "height": 256,
-      "bytes": 9037,
-      "sha256": "cccb4e24006a55b232f2342faa9b348b5dcbe19011b7334838122896d2cf6e1b",
+      "bytes": 6313,
+      "sha256": "da825a91bc751cf9232b782824d1506d32a4d04338b68d09ea0dcf1dbc261c80",
       "decorative": true,
       "audit": {
         "verdict": "accepted",
-        "checkedOn": "2026-10-22",
-        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free gpt character head (face framing, semi-3d-anime) with the HagiCode cat-head hair clip, picked from the gpt-knot-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
       },
       "class": "vendored",
-      "file": "src/assets/r2/cat-head-gallery/g038-frosted-glass-02-256.avif",
+      "file": "src/assets/r2/gpt-knot-girl-gallery/g32-semi-3d-anime-07-256.avif",
       "source": {
-        "bytes": 28185,
-        "sha256": "eb121db856d905895e5310aae737717bf8720e463f12a31637440537c0036409",
+        "bytes": 27091,
+        "sha256": "3467401d735f12b7098d9dae4de6268c5797f0e9aac0df58c178b9ff6255c01a",
         "width": 1024,
         "height": 1024
       },
@@ -522,33 +522,33 @@
         "width": 256,
         "height": 256,
         "format": "avif",
-        "quality": 60
+        "quality": 45
       },
       "transforms": [
         "resize to 256x256 (cover) from the R2 object",
-        "encode AVIF quality 60, effort 4 (sharp)"
+        "encode AVIF quality 45, effort 4 (sharp)"
       ]
     },
     {
-      "id": "fun-hero-cat-sticker-08",
-      "surface": "home/features-showcase/interesting/hero-strip/07-cat-sticker-08",
-      "album": "cat-head-gallery",
-      "objectKey": "cat-head-gallery/g039-needle-felt-09.avif",
+      "id": "fun-hero-grok-g35-semi-3d-anime-16",
+      "surface": "home/features-showcase/interesting/hero-strip/07-grok-semi-3d-anime",
+      "album": "grok-punk-girl-gallery",
+      "objectKey": "grok-punk-girl-gallery/g35-semi-3d-anime-16.avif",
       "width": 256,
       "height": 256,
-      "bytes": 7617,
-      "sha256": "f83cd4609fe69d65a0c6eb40e425d2f4b1442eec8475e78c91a26da516f3fa6c",
+      "bytes": 7477,
+      "sha256": "24d566c706f3a75d15ef6be5c0b92f9c6d33850429fe7a322360b1a4c39d3813",
       "decorative": true,
       "audit": {
         "verdict": "accepted",
-        "checkedOn": "2026-10-22",
-        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free grok character head (face framing, semi-3d-anime) with the HagiCode cat-head hair clip, picked from the grok-punk-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
       },
       "class": "vendored",
-      "file": "src/assets/r2/cat-head-gallery/g039-needle-felt-09-256.avif",
+      "file": "src/assets/r2/grok-punk-girl-gallery/g35-semi-3d-anime-16-256.avif",
       "source": {
-        "bytes": 33696,
-        "sha256": "103a8a07df9ed005dbdde5e430df803be365307523cce0ad0b38a0e2df8b2cc3",
+        "bytes": 30928,
+        "sha256": "1b59a2342c71ff21f939a3c9b773136394cb3a6452db763bf89f213ce8345ebf",
         "width": 1024,
         "height": 1024
       },
@@ -556,33 +556,33 @@
         "width": 256,
         "height": 256,
         "format": "avif",
-        "quality": 60
+        "quality": 45
       },
       "transforms": [
         "resize to 256x256 (cover) from the R2 object",
-        "encode AVIF quality 60, effort 4 (sharp)"
+        "encode AVIF quality 45, effort 4 (sharp)"
       ]
     },
     {
-      "id": "fun-hero-royal-10",
-      "surface": "home/features-showcase/interesting/hero-strip/08-royal-10",
-      "album": "cat-head-gallery",
-      "objectKey": "cat-head-gallery/g041-glossy-balloon-05.avif",
+      "id": "fun-hero-hunyuan-g11-vinyl-toy-14",
+      "surface": "home/features-showcase/interesting/hero-strip/08-hunyuan-vinyl-toy",
+      "album": "hunyuan-neon-girl-gallery",
+      "objectKey": "hunyuan-neon-girl-gallery/g11-vinyl-toy-14.avif",
       "width": 256,
       "height": 256,
-      "bytes": 4861,
-      "sha256": "8ba062b2a8c4b223f945cae3f451dabbc78a7ae94a573d572455237817c7f67d",
+      "bytes": 7963,
+      "sha256": "1127392cb2c91520e29c0be7f767d20faa322bacce37708cce41d8155c943f38",
       "decorative": true,
       "audit": {
         "verdict": "accepted",
-        "checkedOn": "2026-10-22",
-        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free hunyuan character head (face framing, vinyl-toy) with the HagiCode cat-head hair clip, picked from the hunyuan-neon-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
       },
       "class": "vendored",
-      "file": "src/assets/r2/cat-head-gallery/g041-glossy-balloon-05-256.avif",
+      "file": "src/assets/r2/hunyuan-neon-girl-gallery/g11-vinyl-toy-14-256.avif",
       "source": {
-        "bytes": 14623,
-        "sha256": "9067ea279143b9d8ad3e2604914da9950795721bd668633928bfc7453a635d3a",
+        "bytes": 34434,
+        "sha256": "85fb9ae9789619df18e008d33a868ebf0d9f08172f1d2480efe84c417b7bc12b",
         "width": 1024,
         "height": 1024
       },
@@ -590,33 +590,33 @@
         "width": 256,
         "height": 256,
         "format": "avif",
-        "quality": 60
+        "quality": 45
       },
       "transforms": [
         "resize to 256x256 (cover) from the R2 object",
-        "encode AVIF quality 60, effort 4 (sharp)"
+        "encode AVIF quality 45, effort 4 (sharp)"
       ]
     },
     {
-      "id": "fun-hero-thorn-06",
-      "surface": "home/features-showcase/interesting/hero-strip/09-thorn-06",
-      "album": "cat-head-gallery",
-      "objectKey": "cat-head-gallery/g042-blue-white-porcelain-05.avif",
+      "id": "fun-hero-kimi-g45-moonlit-ink-wash-18",
+      "surface": "home/features-showcase/interesting/hero-strip/09-kimi-moonlit-ink-wash",
+      "album": "kimi-moon-girl-gallery",
+      "objectKey": "kimi-moon-girl-gallery/g45-moonlit-ink-wash-18.avif",
       "width": 256,
       "height": 256,
-      "bytes": 7043,
-      "sha256": "843aab6b7a0f11c7e5bb86806f4094bcd74683b54c8234d98a2bf114e6c891c8",
+      "bytes": 5840,
+      "sha256": "bed2c5d7402878af847b225085c82e42536c6b3890d4672eac09432f39c5e8d8",
       "decorative": true,
       "audit": {
         "verdict": "accepted",
-        "checkedOn": "2026-10-22",
-        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free kimi character head (face framing, moonlit-ink-wash) with the HagiCode cat-head hair clip, picked from the kimi-moon-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
       },
       "class": "vendored",
-      "file": "src/assets/r2/cat-head-gallery/g042-blue-white-porcelain-05-256.avif",
+      "file": "src/assets/r2/kimi-moon-girl-gallery/g45-moonlit-ink-wash-18-256.avif",
       "source": {
-        "bytes": 31257,
-        "sha256": "ccaef6c90a8f9916d7fce11bc392b8ce2b32d145d88f18cd375fb5c4e286fc8d",
+        "bytes": 34246,
+        "sha256": "8793085c09e9df5c3b1494a0e10521093a8c17046155b1979fe91fddd177f344",
         "width": 1024,
         "height": 1024
       },
@@ -624,33 +624,33 @@
         "width": 256,
         "height": 256,
         "format": "avif",
-        "quality": 60
+        "quality": 45
       },
       "transforms": [
         "resize to 256x256 (cover) from the R2 object",
-        "encode AVIF quality 60, effort 4 (sharp)"
+        "encode AVIF quality 45, effort 4 (sharp)"
       ]
     },
     {
-      "id": "fun-hero-tide-09",
-      "surface": "home/features-showcase/interesting/hero-strip/10-tide-09",
-      "album": "cat-head-gallery",
-      "objectKey": "cat-head-gallery/g043-glazed-ceramic-06.avif",
+      "id": "fun-hero-minimax-g46-pearl-hologram-03",
+      "surface": "home/features-showcase/interesting/hero-strip/10-minimax-pearl-hologram",
+      "album": "minimax-conch-girl-gallery",
+      "objectKey": "minimax-conch-girl-gallery/g46-pearl-hologram-03.avif",
       "width": 256,
       "height": 256,
-      "bytes": 4183,
-      "sha256": "dae2065c0bc734543847472c52932143813a2bd930267596fd0c0347f11c3c60",
+      "bytes": 7311,
+      "sha256": "dc8cdf69e1fde43b30707b9ae4254b78bb8bb68411a0e4d08d67904190b7fa0b",
       "decorative": true,
       "audit": {
         "verdict": "accepted",
-        "checkedOn": "2026-10-22",
-        "notes": "Text-free cat head from the cat-head-gallery review (all 506 entries at or under 40 KiB checked on contact sheets; none excluded). Decorative Fun-section frame; alt is empty."
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free minimax character head (face framing, pearl-hologram) with the HagiCode cat-head hair clip, picked from the minimax-conch-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
       },
       "class": "vendored",
-      "file": "src/assets/r2/cat-head-gallery/g043-glazed-ceramic-06-256.avif",
+      "file": "src/assets/r2/minimax-conch-girl-gallery/g46-pearl-hologram-03-256.avif",
       "source": {
-        "bytes": 11086,
-        "sha256": "878d5dee896212f697bc8cb44271aa8251f2fb929ec6f72075dd5ddf81078cdf",
+        "bytes": 37116,
+        "sha256": "09940db3b5348a93fac4ea0f5802a066c6661f76285baea6955a4425f3e3f3e5",
         "width": 1024,
         "height": 1024
       },
@@ -658,11 +658,419 @@
         "width": 256,
         "height": 256,
         "format": "avif",
-        "quality": 60
+        "quality": 45
       },
       "transforms": [
         "resize to 256x256 (cover) from the R2 object",
-        "encode AVIF quality 60, effort 4 (sharp)"
+        "encode AVIF quality 45, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-qwen-g32-semi-3d-anime-07",
+      "surface": "home/features-showcase/interesting/hero-strip/11-qwen-semi-3d-anime",
+      "album": "qwen-porcelain-girl-gallery",
+      "objectKey": "qwen-porcelain-girl-gallery/g32-semi-3d-anime-07.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 8416,
+      "sha256": "c66d7ea024ac8a8f5311800dadc74e31e15a2da3d8a8e79ed292cca6d8a56af8",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free qwen character head (face framing, semi-3d-anime) with the HagiCode cat-head hair clip, picked from the qwen-porcelain-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/qwen-porcelain-girl-gallery/g32-semi-3d-anime-07-256.avif",
+      "source": {
+        "bytes": 39923,
+        "sha256": "e81369f5f10a802c643832d899029fb03ca78927857666422a4964dc72d990d7",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 45
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 45, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-claude-g03-paper-cut-layers-09",
+      "surface": "home/features-showcase/interesting/hero-strip/12-claude-paper-cut-layers",
+      "album": "claude-antler-girl-gallery",
+      "objectKey": "claude-antler-girl-gallery/g03-paper-cut-layers-09.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 7638,
+      "sha256": "b10f66dcd35a7183e0c9ece0031992ba2a4e72a56008338395d2178b006af239",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free claude character head (bust framing, paper-cut-layers) with the HagiCode cat-head hair clip, picked from the claude-antler-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/claude-antler-girl-gallery/g03-paper-cut-layers-09-256.avif",
+      "source": {
+        "bytes": 37761,
+        "sha256": "068158d91be034900f5f706ec89ef6d13f66e0224c5ac181ef75020656a6bde3",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 45
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 45, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-deepseek-g12-origami-04",
+      "surface": "home/features-showcase/interesting/hero-strip/13-deepseek-origami",
+      "album": "deepseek-whale-girl-gallery",
+      "objectKey": "deepseek-whale-girl-gallery/g12-origami-04.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 7802,
+      "sha256": "c5baeaf273eb4d1fa7ae998cde2f8c88f6af41304f76791be739f4a54ac3d0c7",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free deepseek character head (face framing, origami) with the HagiCode cat-head hair clip, picked from the deepseek-whale-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/deepseek-whale-girl-gallery/g12-origami-04-256.avif",
+      "source": {
+        "bytes": 33062,
+        "sha256": "6a264c0be134e688ccca198d60232c5b152f25149f99fb5fba87205da8e53234",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 45
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 45, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-doubao-g47-toy-block-figure-17",
+      "surface": "home/features-showcase/interesting/hero-strip/14-doubao-toy-block-figure",
+      "album": "doubao-sunny-girl-gallery",
+      "objectKey": "doubao-sunny-girl-gallery/g47-toy-block-figure-17.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 6225,
+      "sha256": "f826352b664f181200ccd3367d95b6fab9245a482b1eaf6f78e8d5c9a5a89052",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free doubao character head (bust framing, toy-block-figure) with the HagiCode cat-head hair clip, picked from the doubao-sunny-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/doubao-sunny-girl-gallery/g47-toy-block-figure-17-256.avif",
+      "source": {
+        "bytes": 28733,
+        "sha256": "a9ad7705698820fcab83559ca27eee9161973e26ef47da291aa11ffa5b47d8ec",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 45
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 45, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-gemini-g17-painterly-anime-scenery-08",
+      "surface": "home/features-showcase/interesting/hero-strip/15-gemini-painterly-anime-scenery",
+      "album": "gemini-twin-star-girl-gallery",
+      "objectKey": "gemini-twin-star-girl-gallery/g17-painterly-anime-scenery-08.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 7954,
+      "sha256": "822fdf81d87c5915041af9640587b6bcf183b78db0c5c65e454a3bf061a88832",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free gemini character head (face framing, painterly-anime-scenery) with the HagiCode cat-head hair clip, picked from the gemini-twin-star-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/gemini-twin-star-girl-gallery/g17-painterly-anime-scenery-08-256.avif",
+      "source": {
+        "bytes": 39510,
+        "sha256": "9aef4e891993b3eab89456781b61bc21600aa2dd5bb6359a91e0529efbcc8cf8",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 45
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 45, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-glm-g10-felt-plush-11",
+      "surface": "home/features-showcase/interesting/hero-strip/16-glm-felt-plush",
+      "album": "glm-black-book-girl-gallery",
+      "objectKey": "glm-black-book-girl-gallery/g10-felt-plush-11.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 6071,
+      "sha256": "7fd537c237e10215bc3c6377b2b93f8802cffc6fdba014a6c3d78397e567096f",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free glm character head (face framing, felt-plush) with the HagiCode cat-head hair clip, picked from the glm-black-book-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/glm-black-book-girl-gallery/g10-felt-plush-11-256.avif",
+      "source": {
+        "bytes": 38291,
+        "sha256": "96f37c57e70f537995e178cf4142f06534e3af5b32d216e0a6a1188403477d8d",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 45
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 45, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-gpt-g27-picture-book-08",
+      "surface": "home/features-showcase/interesting/hero-strip/17-gpt-picture-book",
+      "album": "gpt-knot-girl-gallery",
+      "objectKey": "gpt-knot-girl-gallery/g27-picture-book-08.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 5903,
+      "sha256": "cd7a168154414bb3655b2f42e345e856c6582a959ae0140a7f268d1f3a799faf",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free gpt character head (bust framing, picture-book) with the HagiCode cat-head hair clip, picked from the gpt-knot-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/gpt-knot-girl-gallery/g27-picture-book-08-256.avif",
+      "source": {
+        "bytes": 27513,
+        "sha256": "c0bc2838416f3dc403ab3451e2cae88d06dd78b2bf50b9dd4da81fe69f0d689a",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 45
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 45, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-grok-g18-90s-anime-cel-02",
+      "surface": "home/features-showcase/interesting/hero-strip/18-grok-90s-anime-cel",
+      "album": "grok-punk-girl-gallery",
+      "objectKey": "grok-punk-girl-gallery/g18-90s-anime-cel-02.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 7795,
+      "sha256": "05d871ebaa23c57785c82e022676ead63d944cc482ba52f8a512cd41c5b2c5ab",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free grok character head (face framing, 90s-anime-cel) with the HagiCode cat-head hair clip, picked from the grok-punk-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/grok-punk-girl-gallery/g18-90s-anime-cel-02-256.avif",
+      "source": {
+        "bytes": 34561,
+        "sha256": "4c5c76d7425729c354caa5a4a96423153d22b78e82341e5a7ce2e47e695b1826",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 45
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 45, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-hunyuan-g44-pastel-chalk-14",
+      "surface": "home/features-showcase/interesting/hero-strip/19-hunyuan-pastel-chalk",
+      "album": "hunyuan-neon-girl-gallery",
+      "objectKey": "hunyuan-neon-girl-gallery/g44-pastel-chalk-14.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 7198,
+      "sha256": "eebe62fb1cdb33cca7e145583dba587dd3ffd58eeb3bdbb5ab55536ebfe1b461",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free hunyuan character head (bust framing, pastel-chalk) with the HagiCode cat-head hair clip, picked from the hunyuan-neon-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/hunyuan-neon-girl-gallery/g44-pastel-chalk-14-256.avif",
+      "source": {
+        "bytes": 36150,
+        "sha256": "c07908ab63abca9ed0449e1143d98591d8120906c728139d8fd96f6d5239b385",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 45
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 45, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-kimi-g49-paper-lantern-glow-20",
+      "surface": "home/features-showcase/interesting/hero-strip/20-kimi-paper-lantern-glow",
+      "album": "kimi-moon-girl-gallery",
+      "objectKey": "kimi-moon-girl-gallery/g49-paper-lantern-glow-20.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 6684,
+      "sha256": "ecafdf10ba314992752adbaf5fc76f0bb4284372c8dc7043b36735dcc55719eb",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free kimi character head (bust framing, paper-lantern-glow) with the HagiCode cat-head hair clip, picked from the kimi-moon-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/kimi-moon-girl-gallery/g49-paper-lantern-glow-20-256.avif",
+      "source": {
+        "bytes": 30468,
+        "sha256": "2c647448d268ea2479568367162a74587a0711778933a82d599004a35a4ed6f6",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 45
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 45, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-minimax-g05-flat-vector-sticker-12",
+      "surface": "home/features-showcase/interesting/hero-strip/21-minimax-flat-vector-sticker",
+      "album": "minimax-conch-girl-gallery",
+      "objectKey": "minimax-conch-girl-gallery/g05-flat-vector-sticker-12.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 8737,
+      "sha256": "21a822383e023adec16688604c4167a43b58d3247be86128015cac4c61f8a478",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free minimax character head (face framing, flat-vector-sticker) with the HagiCode cat-head hair clip, picked from the minimax-conch-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/minimax-conch-girl-gallery/g05-flat-vector-sticker-12-256.avif",
+      "source": {
+        "bytes": 39204,
+        "sha256": "a3c936f287f53ff81f5422feadc7a0b0a4335c7026716a66e8ed837465057fb6",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 45
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 45, effort 4 (sharp)"
+      ]
+    },
+    {
+      "id": "fun-hero-qwen-g21-modern-anime-16",
+      "surface": "home/features-showcase/interesting/hero-strip/22-qwen-modern-anime",
+      "album": "qwen-porcelain-girl-gallery",
+      "objectKey": "qwen-porcelain-girl-gallery/g21-modern-anime-16.avif",
+      "width": 256,
+      "height": 256,
+      "bytes": 8270,
+      "sha256": "3b84322b6f0c29958064dfcb7a3143dad4a0b508d6e335729864be11b04dd353",
+      "decorative": true,
+      "audit": {
+        "verdict": "accepted",
+        "checkedOn": "2026-10-25",
+        "notes": "Text-free qwen character head (bust framing, modern-anime) with the HagiCode cat-head hair clip, picked from the qwen-porcelain-girl-gallery album on a contact sheet of face and bust frames at or under 40 KiB (two per model gallery, no art style twice within one gallery). Decorative Fun-section frame; alt is empty."
+      },
+      "class": "vendored",
+      "file": "src/assets/r2/qwen-porcelain-girl-gallery/g21-modern-anime-16-256.avif",
+      "source": {
+        "bytes": 38605,
+        "sha256": "926ea2e7b6c81b7dd15da3a8e242b8dcb938fd6087fba8dd0822637108a9eef5",
+        "width": 1024,
+        "height": 1024
+      },
+      "render": {
+        "width": 256,
+        "height": 256,
+        "format": "avif",
+        "quality": 45
+      },
+      "transforms": [
+        "resize to 256x256 (cover) from the R2 object",
+        "encode AVIF quality 45, effort 4 (sharp)"
       ]
     }
   ],
@@ -670,7 +1078,7 @@
     "features-persona-avatar": {
       "album": "cat-head-gallery",
       "maxBytes": 40960,
-      "source": "Audited cat-head-gallery pool (50 keys, index updated 2026-10-21T01:17:37.109Z, cap 40960 bytes), minus the three persona defaults and the 20 Fun-section frames, so no cat head repeats on the page",
+      "source": "Audited cat-head-gallery pool (50 keys, index updated 2026-10-21T01:17:37.109Z, cap 40960 bytes), minus the three persona defaults and the 10 Fun-section world covers (the ten cat heads the hero strip showed before 2026-10-25 stay out too), so no cat head repeats on the page",
       "entries": [
         {
           "objectKey": "cat-head-gallery/g047-fauvist-09.avif",
