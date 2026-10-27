@@ -409,7 +409,7 @@ export default function InstallButton({
   const desktopPageUrl = useMemo(() => getLinkWithLocale('desktop', locale), [locale]);
   const installButtonLabel = isChineseLocale ? '立即安装' : 'Install now';
   const installDesktopAriaLabel =
-    isChineseLocale ? '立即安装 Hagicode Desktop' : 'Install Hagicode Desktop';
+    isChineseLocale ? '立即安装 HagiCode Desktop' : 'Install HagiCode Desktop';
   const selectOtherVersionsLabel = isChineseLocale ? '选择下载平台和安装包' : 'Choose platform and package';
   const recommendedLabel = isChineseLocale ? '推荐' : 'Recommended';
   const loadingLatestLabel = isChineseLocale ? '正在获取最新版本...' : 'Fetching latest version...';
@@ -429,9 +429,9 @@ export default function InstallButton({
   const otherInstallPathsLabel = isChineseLocale ? '其他安装路径' : 'Other install paths';
   const steamShortcutLabel = 'Steam';
   const steamShortcutAriaLabel =
-    isChineseLocale ? '打开 Hagicode Steam 商店页' : 'Open Hagicode on Steam';
+    isChineseLocale ? '打开 HagiCode Steam 商店页' : 'Open HagiCode on Steam';
   const windowsStoreShortcutAriaLabel =
-    isChineseLocale ? '打开 Hagicode Microsoft Store 页面' : 'Open Hagicode on Microsoft Store';
+    isChineseLocale ? '打开 HagiCode Microsoft Store 页面' : 'Open HagiCode on Microsoft Store';
   const showSteamShortcut = FEATURE_SITE_STEAM_ENABLED && variant === 'compact' && steamStoreLink.href.length > 0;
 
   useEffect(() => {
@@ -621,8 +621,8 @@ export default function InstallButton({
   const showWindowsStoreShortcut = variant === 'compact' && !preferWindowsStorePrimary;
   const windowsStorePrimaryLabel = isChineseLocale ? 'Microsoft Store 安装' : 'Install from Microsoft Store';
   const windowsStorePrimaryAriaLabel = isChineseLocale
-    ? '通过 Microsoft Store 安装 Hagicode Desktop'
-    : 'Install Hagicode Desktop from Microsoft Store';
+    ? '通过 Microsoft Store 安装 HagiCode Desktop'
+    : 'Install HagiCode Desktop from Microsoft Store';
   const showPrimarySourceButtons = primaryActions.length > 0 && !preferWindowsStorePrimary;
 
   const primaryHref =

@@ -43,9 +43,9 @@ hero:
     poweredBy: Impulsionado por
   qqGroup:
     title: Entrar no grupo de suporte técnico
-    description: Grupo QQ de suporte técnico do Hagicode
+    description: Grupo QQ de suporte técnico do HagiCode
     joinButton: Entrar agora
-  secondaryLine: O Hagicode oferece suporte aos Agent principais, dobra a eficiência de gestão paralela e reduz alucinações com OpenSpec.
+  secondaryLine: O HagiCode oferece suporte aos Agent principais, dobra a eficiência de gestão paralela e reduz alucinações com OpenSpec.
 features:
   showcase:
     title: "Feito para o trabalho real de desenvolvimento"
@@ -221,20 +221,20 @@ features:
         sun: "Sol"
         crown: "Coroa"
 productOverviewVideo:
-  title: Entenda o Hagicode antes do tour de recursos
+  title: Entenda o HagiCode antes do tour de recursos
 videoShowcase:
   eyebrow: Demos complementares do produto
-  title: Continue explorando o Hagicode em sessões reais de código
-  description: Após a visão geral principal, estas demos focadas mostram como o Hagicode se comporta em cenários mais lúdicos e específicos por modelo, sem repetir a introdução principal do produto.
+  title: Continue explorando o HagiCode em sessões reais de código
+  description: Após a visão geral principal, estas demos focadas mostram como o HagiCode se comporta em cenários mais lúdicos e específicos por modelo, sem repetir a introdução principal do produto.
   supportingLabel: Demo focada
 homepageVideos:
   overview:
     youtube:
-      title: Visão geral do produto Hagicode no YouTube
-      description: A principal introdução em inglês ao fluxo de trabalho do Hagicode, ao seu estilo de execução multiagente e ao motivo de o produto ir além de um chat genérico de programação com IA.
+      title: Visão geral do produto HagiCode no YouTube
+      description: A principal introdução em inglês ao fluxo de trabalho do HagiCode, ao seu estilo de execução multiagente e ao motivo de o produto ir além de um chat genérico de programação com IA.
       ctaLabel: Abrir no YouTube
     bilibili:
-      title: Visão geral do produto Hagicode no Bilibili
+      title: Visão geral do produto HagiCode no Bilibili
       description: Uma versão hospedada no Bilibili da introdução principal do produto, voltada a visitantes cujo navegador sinaliza preferência por chinês ou que preferem a rota doméstica de reprodução.
       ctaLabel: Abrir no Bilibili
   supporting:
@@ -243,12 +243,12 @@ homepageVideos:
       description: Este clipe complementar mais leve mostra que o assistente continua vivo e surpreendente em sessões reais de código, em vez de parecer apenas um gerador de código seco.
       ctaLabel: Abrir no Bilibili
     second:
-      title: 'GPT Codex no Hagicode: teste ao vivo'
+      title: 'GPT Codex no HagiCode: teste ao vivo'
       description: Depois da apresentação principal localizada, esta validação mais focada ajuda possíveis usuários a avaliar como o GPT Codex se comporta dentro do produto real.
       ctaLabel: Abrir no Bilibili
   hero:
     windowsStoreLabel: Microsoft Store
-    windowsStoreAriaLabel: Abrir Hagicode na Microsoft Store
+    windowsStoreAriaLabel: Abrir HagiCode na Microsoft Store
     ctaGroupLabel: Ações principais da página inicial
 pricing:
   title: Edições e preços
@@ -318,7 +318,7 @@ workflowSteps:
   steps:
     proposal:
       label: "Proposta"
-      description: "Descreva a mudança. O Hagicode examina seu repositório e redige uma proposta com especificações e tarefas que você pode ler e corrigir antes de qualquer código ser alterado."
+      description: "Descreva a mudança. O HagiCode examina seu repositório e redige uma proposta com especificações e tarefas que você pode ler e corrigir antes de qualquer código ser alterado."
     execution:
       label: "Execução"
       description: "Aprove o plano e os agentes o executam tarefa por tarefa, em paralelo com Claude Code, Codex, GitHub Copilot e mais, marcando cada tarefa ao concluí-la."

@@ -142,7 +142,7 @@ desktopHero:
     gotoDownload: Ir para a página de download
     redirectingToHistory: Não foi possível carregar os pacotes Desktop aqui. Redirecionando para o histórico de versões do Index...
   badge: Desktop
-  title: Hagicode Desktop
+  title: HagiCode Desktop
   tagline: Assistente de código com IA localizado, com privacidade e mais eficiência
   valuePoints:
     local: Execução 100% local, sem upload de código
@@ -168,11 +168,11 @@ desktopHero:
     crossPlatform: 💻 Suporte multiplataforma
   steam:
     description: A edição Steam oferece recursos do Steam como Cloud Saves e Workshop. Clique para abrir no Steam.
-    ariaLabel: Abrir Hagicode na Steam
+    ariaLabel: Abrir HagiCode na Steam
   windowsStore:
     eyebrow: Microsoft Store
     description: Assine pelo Microsoft Store para continuar sempre na versão mais recente.
-    ariaLabel: Abrir Hagicode na Microsoft Store
+    ariaLabel: Abrir HagiCode na Microsoft Store
   downloadActions:
     torrent: Torrent
   assetTypes:
@@ -194,11 +194,11 @@ promote:
   ariaLabel: Promotion
 pageMeta:
   home:
-    title: Hagicode - Smart · Efficient · Interesting AI Coding Assistant
+    title: HagiCode - Smart · Efficient · Interesting AI Coding Assistant
     description: Rich, convenient UI interactions make planning, agent execution, and project work approachable and easy to navigate, creating an engaging development experience.
   desktop:
-    title: Hagicode Desktop - Download
-    description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
+    title: HagiCode Desktop - Download
+    description: Download HagiCode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
     runtimeFallbackLabel: Fallback
     runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
 commonActions:

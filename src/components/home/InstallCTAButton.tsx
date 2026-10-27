@@ -29,7 +29,7 @@ export default function InstallCTAButton({
     <motion.a
       href={installUrl}
       className={`${styles.installCta} ${className}`}
-      aria-label="立即安装 Hagicode Desktop"
+      aria-label="立即安装 HagiCode Desktop"
       role="button"
       // 入场动画 - 仅播放一次
       initial={{ opacity: 0, y: -10 }}

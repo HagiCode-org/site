@@ -194,12 +194,12 @@ export default function Navbar({
           <div className={styles.logoIcon}>
             <img
               src={logoImage}
-              alt="Hagicode"
+              alt="HagiCode"
               width="32"
               height="32"
             />
           </div>
-          <span className={styles.logoText}>Hagicode</span>
+          <span className={styles.logoText}>HagiCode</span>
         </a>
 
         {/* Desktop Navigation */}

@@ -20,7 +20,7 @@ hero:
   problem: 기존 AI 코딩 도구의
   painPoint: 문제점
   painPoints: ': 제한된 컨텍스트, 뒤엉킨 세션, 부족한 협업.'
-  solution: Hagicode는
+  solution: HagiCode는
   features:
     - OpenSpec 워크플로
     - 멀티 Agent 멀티 인스턴스 병렬 실행
@@ -43,9 +43,9 @@ hero:
     poweredBy: 기술 기반
   qqGroup:
     title: 기술 지원 그룹 참여
-    description: Hagicode 기술 지원 QQ 그룹
+    description: HagiCode 기술 지원 QQ 그룹
     joinButton: 지금 참여
-  secondaryLine: Hagicode는 주요 Agent를 폭넓게 지원하고, 병렬 관리 효율을 높이며, OpenSpec으로 환각을 줄입니다.
+  secondaryLine: HagiCode는 주요 Agent를 폭넓게 지원하고, 병렬 관리 효율을 높이며, OpenSpec으로 환각을 줄입니다.
 features:
   showcase:
     title: "실제 개발 작업을 위해"
@@ -221,20 +221,20 @@ features:
         sun: "태양"
         crown: "크라운"
 productOverviewVideo:
-  title: 기능 투어 전에 Hagicode를 먼저 살펴보세요
+  title: 기능 투어 전에 HagiCode를 먼저 살펴보세요
 videoShowcase:
   eyebrow: 추가 제품 데모
-  title: 실제 코딩 세션에서 Hagicode를 계속 탐색해 보세요
-  description: 메인 소개를 본 뒤, 이 집중 데모들은 주요 제품 소개를 반복하지 않으면서도 더 장난기 있고 모델별 특성이 드러나는 상황에서 Hagicode가 어떻게 동작하는지 보여줍니다.
+  title: 실제 코딩 세션에서 HagiCode를 계속 탐색해 보세요
+  description: 메인 소개를 본 뒤, 이 집중 데모들은 주요 제품 소개를 반복하지 않으면서도 더 장난기 있고 모델별 특성이 드러나는 상황에서 HagiCode가 어떻게 동작하는지 보여줍니다.
   supportingLabel: 집중 데모
 homepageVideos:
   overview:
     youtube:
-      title: YouTube의 Hagicode 제품 개요
-      description: Hagicode의 워크플로, 멀티 에이전트 실행 방식, 그리고 왜 이 제품이 일반적인 AI 코딩 채팅창보다 더 넓은 경험을 제공하는지 설명하는 주요 영어 소개 영상입니다.
+      title: YouTube의 HagiCode 제품 개요
+      description: HagiCode의 워크플로, 멀티 에이전트 실행 방식, 그리고 왜 이 제품이 일반적인 AI 코딩 채팅창보다 더 넓은 경험을 제공하는지 설명하는 주요 영어 소개 영상입니다.
       ctaLabel: YouTube에서 열기
     bilibili:
-      title: Bilibili의 Hagicode 제품 개요
+      title: Bilibili의 HagiCode 제품 개요
       description: 브라우저가 중국어 선호를 표시하거나 중국 내 재생 경로를 선호하는 방문자를 위한 핵심 제품 소개의 Bilibili 버전입니다.
       ctaLabel: Bilibili에서 열기
   supporting:
@@ -243,12 +243,12 @@ homepageVideos:
       description: 이 가벼운 보조 영상은 실제 코딩 세션에서도 도우미가 단순한 코드 생성기에 머무르지 않고 생동감 있고 의외성을 유지하는 모습을 보여줍니다.
       ctaLabel: Bilibili에서 열기
     second:
-      title: 'Hagicode에서 GPT Codex: 실전 테스트'
+      title: 'HagiCode에서 GPT Codex: 실전 테스트'
       description: 주요 현지화 소개를 본 뒤, 이 집중 검증 영상은 GPT Codex가 실제 제품 안에서 어떻게 동작하는지 잠재 사용자 스스로 판단할 수 있게 도와줍니다.
       ctaLabel: Bilibili에서 열기
   hero:
     windowsStoreLabel: Microsoft Store
-    windowsStoreAriaLabel: Microsoft Store에서 Hagicode 열기
+    windowsStoreAriaLabel: Microsoft Store에서 HagiCode 열기
     ctaGroupLabel: 홈페이지 기본 동작
 pricing:
   title: 에디션 및 가격
@@ -318,7 +318,7 @@ workflowSteps:
   steps:
     proposal:
       label: "제안"
-      description: "원하는 변경을 설명하세요. Hagicode가 저장소를 확인하고, 코드를 건드리기 전에 읽고 고칠 수 있는 명세와 작업이 담긴 제안을 작성합니다."
+      description: "원하는 변경을 설명하세요. HagiCode가 저장소를 확인하고, 코드를 건드리기 전에 읽고 고칠 수 있는 명세와 작업이 담긴 제안을 작성합니다."
     execution:
       label: "실행"
       description: "계획을 승인하면 에이전트가 작업 단위로 실행합니다. Claude Code, Codex, GitHub Copilot 등에서 병렬로 진행되며 완료된 작업부터 체크됩니다."

@@ -1,6 +1,6 @@
 desktop:
-  title: Hagicode Desktop - Download
-  description: Laden Sie Hagicode Desktop herunter, den lokalisierten KI-Coding-Assistenten. Unterstützt Windows, macOS und Linux, mit starkem Datenschutz und schneller Reaktion.
+  title: HagiCode Desktop - Download
+  description: Laden Sie HagiCode Desktop herunter, den lokalisierten KI-Coding-Assistenten. Unterstützt Windows, macOS und Linux, mit starkem Datenschutz und schneller Reaktion.
   features:
     title: Hauptfunktionen
     local:
@@ -67,12 +67,12 @@ desktop:
     step4:
       number: '4'
       title: Loslegen
-      description: Nach der Einrichtung können Sie Hagicode Desktop sofort verwenden
+      description: Nach der Einrichtung können Sie HagiCode Desktop sofort verwenden
   faq:
     title: FAQ
     q1:
       question: Worin unterscheiden sich die Desktop- und die Server-Version?
-      intro: 'Hagicode bietet zwei Bereitstellungsoptionen: die Desktop-Version und die Server-Version. Beide haben ihre Vorteile, setzen aber auf eine vom Nutzer kontrollierte Verwaltung von Server und Daten und bieten dadurch besseren Schutz.'
+      intro: 'HagiCode bietet zwei Bereitstellungsoptionen: die Desktop-Version und die Server-Version. Beide haben ihre Vorteile, setzen aber auf eine vom Nutzer kontrollierte Verwaltung von Server und Daten und bieten dadurch besseren Schutz.'
       desktopTitle: Desktop-Version
       desktop1: Läuft lokal auf Ihrem Computer und ist leichtergewichtig
       desktop2: Keine Serverkonfiguration nötig, sofort einsatzbereit
@@ -86,38 +86,38 @@ desktop:
       conclusion: Unabhängig von der gewählten Version behalten Sie die volle Kontrolle über Server und Daten und profitieren von besserem Datenschutz und höherer Datensicherheit.
     q2:
       question: Was muss ich nach der Installation tun?
-      intro: 'Hagicode Desktop ist im Kern ein Launcher. Beim ersten Start nach der Installation führt er Sie durch diese Schritte:'
-      step1: '<strong>Hagicode Core herunterladen:</strong> Desktop erkennt automatisch, dass die Kernkomponenten fehlen, und fordert Sie zum Download auf'
+      intro: 'HagiCode Desktop ist im Kern ein Launcher. Beim ersten Start nach der Installation führt er Sie durch diese Schritte:'
+      step1: '<strong>HagiCode Core herunterladen:</strong> Desktop erkennt automatisch, dass die Kernkomponenten fehlen, und fordert Sie zum Download auf'
       step2: '<strong>Kernkomponenten installieren:</strong> Folgen Sie den Hinweisen auf dem Bildschirm, um die Installation abzuschließen'
       step3: '<strong>Standard-Agent-CLI konfigurieren:</strong> Wählen Sie eine aktuell unterstützte Agent CLI und schließen Sie die nötigen Anmelde-, Autorisierungs- oder lokalen Installationsschritte ab.'
-      note: Die Desktop-Oberfläche führt durch den gesamten Ablauf. Halten Sie beim ersten Start die Netzwerkverbindung aktiv, damit Hagicode Core geladen werden kann. Einige Agent CLIs erfordern weiterhin eine manuelle Installation oder Authentifizierung, gehören aber dennoch zum aktuellen Supportumfang.
-      done: Nach diesen Schritten können Sie alle Funktionen von Hagicode Desktop normal nutzen.
+      note: Die Desktop-Oberfläche führt durch den gesamten Ablauf. Halten Sie beim ersten Start die Netzwerkverbindung aktiv, damit HagiCode Core geladen werden kann. Einige Agent CLIs erfordern weiterhin eine manuelle Installation oder Authentifizierung, gehören aber dennoch zum aktuellen Supportumfang.
+      done: Nach diesen Schritten können Sie alle Funktionen von HagiCode Desktop normal nutzen.
     q3:
       question: Wie prüfe ich auf Updates?
       answer: Desktop sucht automatisch nach Updates. Wenn eine neue Version verfügbar ist, erscheint oben rechts in der Oberfläche ein Hinweis. Zusätzlich können Sie in „Einstellungen“ manuell nach Updates suchen.
     q4:
       question: Welche AI Agent CLIs werden unterstützt?
-      intro: 'Hagicode Desktop unterstützt derzeit aktiv die folgenden Agent CLIs:'
+      intro: 'HagiCode Desktop unterstützt derzeit aktiv die folgenden Agent CLIs:'
       active: '<strong>Aktuell unterstützt:</strong> Claude Code, Codex, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, Pi, Reasonix, DeepAgents und Codebuddy'
       manual: '<strong>Manuelle Installation oder Authentifizierung:</strong> Hermes, Gemini und DeepAgents benötigen zuerst eine lokale Installation oder Authentifizierung. Für die übrigen CLIs gibt es One-Click-Installationen oder geführte Installationsabläufe.'
       legacy: '<strong>Nur Legacy-Kompatibilität:</strong> IFlowCli bleibt nur aus Gründen der Kompatibilität mit historischen Daten erhalten und gehört nicht mehr zum aktuellen aktiven Supportumfang.'
       closing: Supportumfang und Einrichtungsmodus sind zwei verschiedene Dinge. Eine CLI, die manuell installiert werden muss, ist trotzdem aktuell unterstützt.
     q5:
       question: Wird die Offline-Nutzung unterstützt?
-      intro: 'Ja. Hagicode Desktop unterstützt eine vollständige Offline-Nutzung:'
+      intro: 'Ja. HagiCode Desktop unterstützt eine vollständige Offline-Nutzung:'
       point1: Für die erste Installation und Konfiguration wird eine Netzwerkverbindung benötigt (zum Herunterladen der Kernkomponenten und KI-Modelle)
       point2: Nach der Einrichtung können alle Funktionen offline genutzt werden
       point3: Ihr Code und Ihre Daten werden niemals in die Cloud hochgeladen
       point4: Die gesamte KI-Verarbeitung findet lokal statt
     q6:
       question: macOS meldet, dass Hagicode.app beschädigt ist oder nicht geöffnet werden kann. Was soll ich tun?
-      intro: Wenn Hagicode Desktop im Standardpfad /Applications/Hagicode.app installiert ist und macOS Gatekeeper den ersten Start blockiert, entfernen Sie mit folgendem Befehl das Quarantäne-Attribut der App.
+      intro: Wenn HagiCode Desktop im Standardpfad /Applications/Hagicode.app installiert ist und macOS Gatekeeper den ersten Start blockiert, entfernen Sie mit folgendem Befehl das Quarantäne-Attribut der App.
       cause: Das passiert, weil macOS Apps aus dem Internet mit dem Attribut com.apple.quarantine versieht. Es handelt sich um einen Sicherheitsmechanismus von macOS und nicht um einen Fehler des Hagicode-Installers.
       command: sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app
-      note: Führen Sie den Befehl im Terminal mit Administratorrechten aus und starten Sie Hagicode Desktop anschließend erneut.
+      note: Führen Sie den Befehl im Terminal mit Administratorrechten aus und starten Sie HagiCode Desktop anschließend erneut.
     q7:
       question: Wie bekomme ich Hilfe, wenn Probleme auftreten?
-      intro: 'Wenn bei der Nutzung von Hagicode Desktop Probleme auftreten, können Sie über folgende Wege Hilfe erhalten:'
+      intro: 'Wenn bei der Nutzung von HagiCode Desktop Probleme auftreten, können Sie über folgende Wege Hilfe erhalten:'
       point1: '<strong>Technische Support-Gruppe:</strong> Treten Sie der QQ-Gruppe 610394020 bei'
       point2: '<strong>Online-Dokumentation:</strong> Vollständige Anleitungen und Tutorials ansehen'
       point3: '<strong>GitHub Issues:</strong> Problemberichte im Projekt-Repository einreichen'

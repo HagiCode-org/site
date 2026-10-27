@@ -20,7 +20,7 @@ hero:
   problem: 傳統 AI 程式設計工具的
   painPoint: 痛點
   painPoints: ：上下文受限、會話混亂、缺乏協作。
-  solution: Hagicode 用
+  solution: HagiCode 用
   features:
     - OpenSpec 工作流程
     - 多 Agent 多實例並行
@@ -43,9 +43,9 @@ hero:
     poweredBy: 技術驅動
   qqGroup:
     title: 加入技術支援群組
-    description: Hagicode 技術支援 QQ 群
+    description: HagiCode 技術支援 QQ 群
     joinButton: 立即加入
-  secondaryLine: Hagicode 全面支援主流 Agent，並行管理效率翻倍，OpenSpec 可降低幻覺。
+  secondaryLine: HagiCode 全面支援主流 Agent，並行管理效率翻倍，OpenSpec 可降低幻覺。
 features:
   showcase:
     title: "為真實開發工作而生"
@@ -221,20 +221,20 @@ features:
         sun: "日"
         crown: "冠"
 productOverviewVideo:
-  title: 在深入功能導覽前先認識 Hagicode
+  title: 在深入功能導覽前先認識 HagiCode
 videoShowcase:
   eyebrow: 延伸產品示範
-  title: 在真實程式碼工作階段中繼續探索 Hagicode
-  description: 看完主介紹後，這些聚焦示範會在不重複主要產品介紹的前提下，展示 Hagicode 在更有趣、也更貼近特定模型場景中的實際表現。
+  title: 在真實程式碼工作階段中繼續探索 HagiCode
+  description: 看完主介紹後，這些聚焦示範會在不重複主要產品介紹的前提下，展示 HagiCode 在更有趣、也更貼近特定模型場景中的實際表現。
   supportingLabel: 聚焦示範
 homepageVideos:
   overview:
     youtube:
-      title: YouTube 上的 Hagicode 產品總覽
-      description: 以英文介紹 Hagicode 的工作流程、多 Agent 執行方式，以及它為何不只是一般 AI 程式設計聊天框的主介紹影片。
+      title: YouTube 上的 HagiCode 產品總覽
+      description: 以英文介紹 HagiCode 的工作流程、多 Agent 執行方式，以及它為何不只是一般 AI 程式設計聊天框的主介紹影片。
       ctaLabel: 在 YouTube 開啟
     bilibili:
-      title: Bilibili 上的 Hagicode 產品總覽
+      title: Bilibili 上的 HagiCode 產品總覽
       description: 給瀏覽器偏好中文，或偏好中國境內播放路徑的訪客觀看的核心產品介紹 Bilibili 版本。
       ctaLabel: 在 Bilibili 開啟
   supporting:
@@ -243,12 +243,12 @@ homepageVideos:
       description: 這支較有趣的補充影片，展示助理在真實程式碼工作階段中依然保持靈活與驚喜，而不只是乾巴巴的程式碼生成器。
       ctaLabel: 在 Bilibili 開啟
     second:
-      title: GPT Codex 在 Hagicode 中：實機試用
+      title: GPT Codex 在 HagiCode 中：實機試用
       description: 在看完主要的本地化介紹之後，這段更聚焦的驗證流程能幫助潛在使用者判斷 GPT Codex 在實際產品中的表現。
       ctaLabel: 在 Bilibili 開啟
   hero:
     windowsStoreLabel: Microsoft Store
-    windowsStoreAriaLabel: 在 Microsoft Store 上開啟 Hagicode
+    windowsStoreAriaLabel: 在 Microsoft Store 上開啟 HagiCode
     ctaGroupLabel: 首頁主要操作
 pricing:
   title: 版本與定價
@@ -318,7 +318,7 @@ workflowSteps:
   steps:
     proposal:
       label: "提案"
-      description: "描述你想做的改動。Hagicode 先查看儲存庫，起草附規格與任務清單的提案，你可以在動程式碼之前閱讀並修正。"
+      description: "描述你想做的改動。HagiCode 先查看儲存庫，起草附規格與任務清單的提案，你可以在動程式碼之前閱讀並修正。"
     execution:
       label: "執行"
       description: "確認方案後，Agent 依任務逐項執行，可在 Claude Code、Codex、GitHub Copilot 等之間並行，完成一項勾選一項。"

@@ -20,7 +20,7 @@ hero:
   problem: Traditionelle KI-Coding-Tools haben
   painPoint: Schwachstellen
   painPoints: ': begrenzten Kontext, chaotische Sitzungen und zu wenig Zusammenarbeit.'
-  solution: Hagicode definiert das KI-Coding-Erlebnis mit
+  solution: HagiCode definiert das KI-Coding-Erlebnis mit
   features:
     - OpenSpec-Workflow
     - Multi-Agent-Multi-Instanz-Ausführung
@@ -43,9 +43,9 @@ hero:
     poweredBy: Ermöglicht durch
   qqGroup:
     title: Technischer Support-Gruppe beitreten
-    description: Hagicode QQ-Gruppe für technischen Support
+    description: HagiCode QQ-Gruppe für technischen Support
     joinButton: Jetzt beitreten
-  secondaryLine: Hagicode unterstützt die wichtigsten Agenten, verdoppelt die Effizienz paralleler Verwaltung und reduziert Halluzinationen mit OpenSpec.
+  secondaryLine: HagiCode unterstützt die wichtigsten Agenten, verdoppelt die Effizienz paralleler Verwaltung und reduziert Halluzinationen mit OpenSpec.
 features:
   showcase:
     title: "Gemacht für echte Entwicklungsarbeit"
@@ -221,11 +221,11 @@ features:
         sun: "Sonne"
         crown: "Krone"
 productOverviewVideo:
-  title: Lernen Sie Hagicode kennen, bevor Sie die Funktions-Tour starten
+  title: Lernen Sie HagiCode kennen, bevor Sie die Funktions-Tour starten
 videoShowcase:
   eyebrow: Weitere Produktdemos
-  title: Entdecken Sie Hagicode weiter in echten Coding-Sessions
-  description: Nach der Hauptübersicht zeigen diese fokussierten Demos, wie sich Hagicode in spielerischen und modellspezifischen Szenarien verhält, ohne die primäre Produkteinführung zu wiederholen.
+  title: Entdecken Sie HagiCode weiter in echten Coding-Sessions
+  description: Nach der Hauptübersicht zeigen diese fokussierten Demos, wie sich HagiCode in spielerischen und modellspezifischen Szenarien verhält, ohne die primäre Produkteinführung zu wiederholen.
   supportingLabel: Fokussierte Demo
 homepageVideos:
   overview:
@@ -243,12 +243,12 @@ homepageVideos:
       description: Dieser spielerische Zusatzclip zeigt, dass der Assistent in echten Coding-Sessions lebendig und überraschend bleibt, statt wie ein trockener Codegenerator zu wirken.
       ctaLabel: Auf Bilibili öffnen
     second:
-      title: 'GPT Codex in Hagicode: Live-Test'
+      title: 'GPT Codex in HagiCode: Live-Test'
       description: Diese fokussierte Validierung hilft Interessenten nach der lokalisierten Hauptvorstellung einzuschätzen, wie sich GPT Codex im realen Produkt verhält.
       ctaLabel: Auf Bilibili öffnen
   hero:
     windowsStoreLabel: Microsoft Store
-    windowsStoreAriaLabel: Hagicode im Microsoft Store öffnen
+    windowsStoreAriaLabel: HagiCode im Microsoft Store öffnen
     ctaGroupLabel: Primäre Homepage-Aktionen
 pricing:
   title: Editionen und Preise
@@ -318,7 +318,7 @@ workflowSteps:
   steps:
     proposal:
       label: "Vorschlag"
-      description: "Beschreiben Sie die Änderung. Hagicode prüft Ihr Repository und entwirft einen Vorschlag mit Spezifikationen und Aufgaben, die Sie lesen und korrigieren können, bevor Code angefasst wird."
+      description: "Beschreiben Sie die Änderung. HagiCode prüft Ihr Repository und entwirft einen Vorschlag mit Spezifikationen und Aufgaben, die Sie lesen und korrigieren können, bevor Code angefasst wird."
     execution:
       label: "Umsetzung"
       description: "Genehmigen Sie den Plan, und Agenten arbeiten ihn Aufgabe für Aufgabe ab – parallel über Claude Code, Codex, GitHub Copilot und mehr, jede erledigte Aufgabe wird abgehakt."

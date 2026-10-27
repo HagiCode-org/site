@@ -139,7 +139,7 @@ export default function HeroSection({
             <h1 className={styles.heroTitle}>
               {/* One run of the proposal workflow: outline (proposed) -> solid (executed) -> lit rail (archived). */}
               <span ref={titleRunRef} className={styles.titleRun} data-run="intro">
-                {/* The outline layer is drawn from data-text so the h1's text stays "Hagicode". */}
+                {/* The outline layer is drawn from data-text so the h1's text stays "HagiCode". */}
                 <span className={styles.titleGhost} aria-hidden="true">
                   <span data-text="Hagi" />
                   <span data-text="code" />

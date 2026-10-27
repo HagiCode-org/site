@@ -1,6 +1,6 @@
 desktop:
-  title: Hagicode Desktop - ダウンロード
-  description: ローカル実行型の AI コーディングアシスタント Hagicode Desktop をダウンロード。Windows、macOS、Linux に対応し、プライバシー保護と高速応答を提供します。
+  title: HagiCode Desktop - ダウンロード
+  description: ローカル実行型の AI コーディングアシスタント HagiCode Desktop をダウンロード。Windows、macOS、Linux に対応し、プライバシー保護と高速応答を提供します。
   features:
     title: 主な特長
     local:
@@ -67,12 +67,12 @@ desktop:
     step4:
       number: '4'
       title: 利用開始
-      description: 設定が終わればすぐに Hagicode Desktop を使い始められます
+      description: 設定が終わればすぐに HagiCode Desktop を使い始められます
   faq:
     title: よくある質問
     q1:
       question: Desktop 版と Server 版の違いは？
-      intro: 'Hagicode には Desktop 版と Server 版の 2 つの導入方式があります。どちらにも利点がありますが、どちらもユーザーがサーバーとデータを管理できるため、高い保護を実現します。'
+      intro: 'HagiCode には Desktop 版と Server 版の 2 つの導入方式があります。どちらにも利点がありますが、どちらもユーザーがサーバーとデータを管理できるため、高い保護を実現します。'
       desktopTitle: Desktop 版
       desktop1: PC 上でローカル実行でき、より軽量
       desktop2: サーバー設定不要で、すぐに使い始められる
@@ -86,38 +86,38 @@ desktop:
       conclusion: どちらを選んでも、サーバーとデータの主導権は自分にあり、より高いプライバシー保護とデータ安全性を得られます。
     q2:
       question: インストール後は何をすればよいですか？
-      intro: 'Hagicode Desktop はランチャーとして動作します。初回起動時に次の流れを案内します。'
-      step1: <strong>Hagicode Core をダウンロード:</strong> Desktop が自動検出し、コアコンポーネントのダウンロードを案内します
+      intro: 'HagiCode Desktop はランチャーとして動作します。初回起動時に次の流れを案内します。'
+      step1: <strong>HagiCode Core をダウンロード:</strong> Desktop が自動検出し、コアコンポーネントのダウンロードを案内します
       step2: <strong>コアコンポーネントをインストール:</strong> 画面の案内に従ってインストールを完了します
       step3: <strong>既定の Agent CLI を設定:</strong> 対応中の Agent CLI を選び、必要なサインイン、認証、ローカル導入を完了します。
-      note: Desktop UI が一連の流れを案内します。初回起動時は Hagicode Core を取得できるようネット接続を維持してください。いくつかの Agent CLI は手動導入や認証が必要ですが、現在のサポート対象に含まれます。
-      done: これらの手順が終われば、Hagicode Desktop の機能を通常どおり利用できます。
+      note: Desktop UI が一連の流れを案内します。初回起動時は HagiCode Core を取得できるようネット接続を維持してください。いくつかの Agent CLI は手動導入や認証が必要ですが、現在のサポート対象に含まれます。
+      done: これらの手順が終われば、HagiCode Desktop の機能を通常どおり利用できます。
     q3:
       question: 更新はどう確認しますか？
       answer: Desktop は自動で更新を確認します。新しいバージョンがある場合、画面右上に通知が表示されます。「設定」から手動確認もできます。
     q4:
       question: 対応している AI Agent CLI は？
-      intro: 'Hagicode Desktop は現在、次の Agent CLI に対応しています。'
+      intro: 'HagiCode Desktop は現在、次の Agent CLI に対応しています。'
       active: <strong>現在サポート中:</strong> Claude Code、Codex、GitHub Copilot、OpenCode、Hermes、QoderCLI、Kiro、Kimi、Gemini、Pi、Reasonix、DeepAgents、Codebuddy
       manual: <strong>手動導入または認証が必要:</strong> Hermes、Gemini、DeepAgents は先にローカル導入または認証が必要です。その他はワンクリック導入またはガイド付きフローに対応します。
       legacy: <strong>旧互換のみ:</strong> IFlowCli は履歴データ互換のためだけに残っており、現在の主サポート対象ではありません。
       closing: サポート対象かどうかと、導入方式は別の話です。手動導入が必要な CLI も現在はサポート対象です。
     q5:
       question: オフライン利用はできますか？
-      intro: 'はい。Hagicode Desktop は完全オフライン利用に対応しています。'
+      intro: 'はい。HagiCode Desktop は完全オフライン利用に対応しています。'
       point1: 初回インストールと初期設定時のみネット接続が必要です（コアコンポーネントと AI モデルの取得）
       point2: 設定後はすべての機能をオフラインで利用できます
       point3: コードやデータがクラウドへアップロードされることはありません
       point4: AI 処理はローカルで完結します
     q6:
       question: macOS で Hagicode.app が壊れている、または開けないと表示されます。どうすればよいですか？
-      intro: Hagicode Desktop を既定の /Applications/Hagicode.app に配置していて、macOS Gatekeeper が初回起動を阻止する場合は、次のコマンドで隔離属性を削除してください。
-      cause: これはインターネットから取得したアプリに macOS が com.apple.quarantine 属性を付与するためです。Hagicode インストーラー自体の故障ではありません。
+      intro: HagiCode Desktop を既定の /Applications/Hagicode.app に配置していて、macOS Gatekeeper が初回起動を阻止する場合は、次のコマンドで隔離属性を削除してください。
+      cause: これはインターネットから取得したアプリに macOS が com.apple.quarantine 属性を付与するためです。HagiCode インストーラー自体の故障ではありません。
       command: sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app
-      note: 管理者権限でターミナルから実行し、その後 Hagicode Desktop を再起動してください。
+      note: 管理者権限でターミナルから実行し、その後 HagiCode Desktop を再起動してください。
     q7:
       question: 問題が起きたときはどこでサポートを受けられますか？
-      intro: 'Hagicode Desktop の利用中に問題が発生した場合は、次の方法でサポートを受けられます。'
+      intro: 'HagiCode Desktop の利用中に問題が発生した場合は、次の方法でサポートを受けられます。'
       point1: <strong>技術サポートグループ:</strong> QQ グループ 610394020 に参加
       point2: <strong>オンラインドキュメント:</strong> 完整な使用方法やチュートリアルを確認
       point3: <strong>GitHub Issues:</strong> リポジトリで issue を報告

@@ -34,52 +34,52 @@ function resolveSitePageCopy<T>(
 
 const homePageSeoCopy: LocalizedSitePageCopy<{ title: string; description: string }> = {
   'en-US': {
-    title: 'Hagicode - Proposal-Driven AI Coding Workspace',
+    title: 'HagiCode - Proposal-Driven AI Coding Workspace',
     description:
       'Turn AI coding from chat into reviewable proposals. Align on a plan, execute with Claude Code, Codex, GitHub Copilot and more, then archive what you learned as team knowledge. Get it on Microsoft Store.',
   },
   'zh-CN': {
-    title: 'Hagicode - 提案驱动的 AI 编码工作台',
+    title: 'HagiCode - 提案驱动的 AI 编码工作台',
     description:
       '把 AI 编码从聊天变成可审阅、可复用的提案流程：先对齐方案，再用 Claude Code、Codex、GitHub Copilot 等 Agent 执行，完成后沉淀为团队知识。可通过 Microsoft Store 获取。',
   },
   'zh-Hant': {
-    title: 'Hagicode - 提案驅動的 AI 編碼工作台',
+    title: 'HagiCode - 提案驅動的 AI 編碼工作台',
     description:
       '把 AI 編碼從聊天變成可審閱、可重複使用的提案流程：先對齊方案，再用 Claude Code、Codex、GitHub Copilot 等 Agent 執行，完成後沉澱為團隊知識。可透過 Microsoft Store 取得。',
   },
   'ja-JP': {
-    title: 'Hagicode - 提案駆動の AI コーディングワークスペース',
+    title: 'HagiCode - 提案駆動の AI コーディングワークスペース',
     description:
       'AI コーディングをチャットから、レビューできる提案フローへ。方針をそろえ、Claude Code・Codex・GitHub Copilot などで実行し、得られた知見をチームの資産に。Microsoft Store から入手できます。',
   },
   'ko-KR': {
-    title: 'Hagicode - 제안 중심 AI 코딩 워크스페이스',
+    title: 'HagiCode - 제안 중심 AI 코딩 워크스페이스',
     description:
       'AI 코딩을 채팅에서 검토 가능한 제안 흐름으로. 방향을 맞추고 Claude Code, Codex, GitHub Copilot 등으로 실행한 뒤, 얻은 경험을 팀 지식으로 남기세요. Microsoft Store에서 받을 수 있습니다.',
   },
   'de-DE': {
-    title: 'Hagicode - Vorschlagsbasierter KI-Coding-Workspace',
+    title: 'HagiCode - Vorschlagsbasierter KI-Coding-Workspace',
     description:
       'KI-Coding vom Chat zu prüfbaren Vorschlägen: Plan abstimmen, mit Claude Code, Codex, GitHub Copilot und mehr umsetzen und das Gelernte als Teamwissen archivieren. Erhältlich im Microsoft Store.',
   },
   'fr-FR': {
-    title: 'Hagicode - Espace de codage IA piloté par propositions',
+    title: 'HagiCode - Espace de codage IA piloté par propositions',
     description:
       "Du chat à des propositions vérifiables : alignez le plan, exécutez avec Claude Code, Codex, GitHub Copilot et plus, puis archivez l'expérience en connaissance d'équipe. Disponible sur le Microsoft Store.",
   },
   'es-ES': {
-    title: 'Hagicode - Espacio de programación con IA basado en propuestas',
+    title: 'HagiCode - Espacio de programación con IA basado en propuestas',
     description:
       'Del chat a propuestas revisables: acuerda el plan, ejecútalo con Claude Code, Codex, GitHub Copilot y más, y archiva lo aprendido como conocimiento del equipo. Disponible en Microsoft Store.',
   },
   'pt-BR': {
-    title: 'Hagicode - Espaço de programação com IA orientado a propostas',
+    title: 'HagiCode - Espaço de programação com IA orientado a propostas',
     description:
       'Do chat para propostas revisáveis: alinhe o plano, execute com Claude Code, Codex, GitHub Copilot e mais, e arquive o aprendizado como conhecimento da equipe. Disponível na Microsoft Store.',
   },
   'ru-RU': {
-    title: 'Hagicode - ИИ-среда для кодинга на основе предложений',
+    title: 'HagiCode - ИИ-среда для кодинга на основе предложений',
     description:
       'От чата к проверяемым предложениям: согласуйте план, выполните его с Claude Code, Codex, GitHub Copilot и другими, а опыт сохраните как знания команды. Доступно в Microsoft Store.',
   },

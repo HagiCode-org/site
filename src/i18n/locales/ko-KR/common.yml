@@ -142,7 +142,7 @@ desktopHero:
     gotoDownload: 다운로드 페이지로 이동
     redirectingToHistory: 이 페이지에서 데스크톱 패키지를 불러올 수 없어 Index 버전 기록 페이지로 이동 중입니다.
   badge: 데스크톱
-  title: Hagicode Desktop
+  title: HagiCode Desktop
   tagline: 로컬 중심 AI 코딩 도우미, 개인정보 보호와 높은 효율을 함께 제공합니다
   valuePoints:
     local: 100% 로컬 실행, 코드 업로드 없음
@@ -168,11 +168,11 @@ desktopHero:
     crossPlatform: 💻 크로스플랫폼 지원
   steam:
     description: Steam 버전은 클라우드 저장과 Workshop 같은 Steam 기능을 지원합니다. 클릭해 Steam에서 확인하세요.
-    ariaLabel: Steam에서 Hagicode 열기
+    ariaLabel: Steam에서 HagiCode 열기
   windowsStore:
     eyebrow: Microsoft Store
     description: Microsoft Store에서 구독하면 항상 최신 버전을 유지할 수 있습니다.
-    ariaLabel: Microsoft Store에서 Hagicode 열기
+    ariaLabel: Microsoft Store에서 HagiCode 열기
   downloadActions:
     torrent: 토렌트 다운로드
   assetTypes:
@@ -194,11 +194,11 @@ promote:
   ariaLabel: Promotion
 pageMeta:
   home:
-    title: Hagicode - Smart · Efficient · Interesting AI Coding Assistant
+    title: HagiCode - Smart · Efficient · Interesting AI Coding Assistant
     description: Rich, convenient UI interactions make planning, agent execution, and project work approachable and easy to navigate, creating an engaging development experience.
   desktop:
-    title: Hagicode Desktop - Download
-    description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
+    title: HagiCode Desktop - Download
+    description: Download HagiCode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
     runtimeFallbackLabel: Fallback
     runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
 commonActions:

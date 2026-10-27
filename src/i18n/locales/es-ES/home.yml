@@ -20,7 +20,7 @@ hero:
   problem: Las herramientas tradicionales de coding con IA tienen
   painPoint: puntos débiles
   painPoints: ': contexto limitado, sesiones desordenadas y poca colaboración.'
-  solution: Hagicode redefine la experiencia de coding con IA con
+  solution: HagiCode redefine la experiencia de coding con IA con
   features:
     - flujo de trabajo OpenSpec
     - ejecución multi-agent y multiinstancia
@@ -43,9 +43,9 @@ hero:
     poweredBy: Impulsado por
   qqGroup:
     title: Unirse al grupo de soporte técnico
-    description: Grupo QQ de soporte técnico de Hagicode
+    description: Grupo QQ de soporte técnico de HagiCode
     joinButton: Unirse ahora
-  secondaryLine: Hagicode es compatible con los Agent principales, duplica la eficiencia de gestión en paralelo y reduce las alucinaciones con OpenSpec.
+  secondaryLine: HagiCode es compatible con los Agent principales, duplica la eficiencia de gestión en paralelo y reduce las alucinaciones con OpenSpec.
 features:
   showcase:
     title: "Pensado para el trabajo de desarrollo real"
@@ -221,20 +221,20 @@ features:
         sun: "sol"
         crown: "corona"
 productOverviewVideo:
-  title: Conoce Hagicode antes del recorrido de funciones
+  title: Conoce HagiCode antes del recorrido de funciones
 videoShowcase:
   eyebrow: Demos complementarias del producto
-  title: Sigue explorando Hagicode en sesiones reales de código
-  description: Después de la presentación principal, estas demos enfocadas muestran cómo se comporta Hagicode en escenarios más lúdicos y específicos por modelo, sin repetir la introducción principal del producto.
+  title: Sigue explorando HagiCode en sesiones reales de código
+  description: Después de la presentación principal, estas demos enfocadas muestran cómo se comporta HagiCode en escenarios más lúdicos y específicos por modelo, sin repetir la introducción principal del producto.
   supportingLabel: Demo enfocada
 homepageVideos:
   overview:
     youtube:
-      title: Resumen del producto Hagicode en YouTube
-      description: La principal introducción en inglés al flujo de trabajo de Hagicode, su estilo de ejecución multiagente y por qué el producto va más allá de un chat genérico de programación con IA.
+      title: Resumen del producto HagiCode en YouTube
+      description: La principal introducción en inglés al flujo de trabajo de HagiCode, su estilo de ejecución multiagente y por qué el producto va más allá de un chat genérico de programación con IA.
       ctaLabel: Abrir en YouTube
     bilibili:
-      title: Resumen del producto Hagicode en Bilibili
+      title: Resumen del producto HagiCode en Bilibili
       description: Una versión en Bilibili de la introducción principal del producto, pensada para visitantes cuyo navegador indica preferencia por el chino o que prefieren una ruta de reproducción nacional.
       ctaLabel: Abrir en Bilibili
   supporting:
@@ -243,12 +243,12 @@ homepageVideos:
       description: Este clip complementario, más lúdico, muestra que el asistente sigue siendo vivo y sorprendente en sesiones reales de código, en lugar de parecer un generador de código rígido.
       ctaLabel: Abrir en Bilibili
     second:
-      title: 'GPT Codex en Hagicode: prueba en vivo'
+      title: 'GPT Codex en HagiCode: prueba en vivo'
       description: Después de ver la presentación principal localizada, esta validación más enfocada ayuda a los posibles usuarios a juzgar cómo se comporta GPT Codex dentro del producto real.
       ctaLabel: Abrir en Bilibili
   hero:
     windowsStoreLabel: Microsoft Store
-    windowsStoreAriaLabel: Abrir Hagicode en Microsoft Store
+    windowsStoreAriaLabel: Abrir HagiCode en Microsoft Store
     ctaGroupLabel: Acciones principales de la página de inicio
 pricing:
   title: Ediciones y precios
@@ -318,7 +318,7 @@ workflowSteps:
   steps:
     proposal:
       label: "Propuesta"
-      description: "Describe el cambio. Hagicode revisa tu repositorio y redacta una propuesta con especificaciones y tareas que puedes leer y corregir antes de tocar código."
+      description: "Describe el cambio. HagiCode revisa tu repositorio y redacta una propuesta con especificaciones y tareas que puedes leer y corregir antes de tocar código."
     execution:
       label: "Ejecución"
       description: "Aprueba el plan y los agentes lo ejecutan tarea por tarea, en paralelo con Claude Code, Codex, GitHub Copilot y más, marcando cada tarea al completarla."

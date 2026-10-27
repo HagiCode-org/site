@@ -32,7 +32,7 @@ interface VideoShowcaseProps {
 
 export default function VideoShowcase({
   locale,
-  title = 'See Hagicode in real coding sessions',
+  title = 'See HagiCode in real coding sessions',
   description = 'Compare focused supporting demos that keep the broader product story visible after the main overview video.',
   supportingLabel = 'Focused demo',
   supportingVideos,

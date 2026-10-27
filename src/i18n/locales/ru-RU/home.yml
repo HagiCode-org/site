@@ -20,7 +20,7 @@ hero:
   problem: У традиционных AI-инструментов для coding есть
   painPoint: слабые места
   painPoints: ': ограниченный контекст, хаотичные сессии и слабая совместная работа.'
-  solution: Hagicode переопределяет опыт AI-coding с помощью
+  solution: HagiCode переопределяет опыт AI-coding с помощью
   features:
     - workflow OpenSpec
     - multi-agent и multi-instance execution
@@ -43,9 +43,9 @@ hero:
     poweredBy: Работает на базе
   qqGroup:
     title: Вступить в группу технической поддержки
-    description: QQ-группа технической поддержки Hagicode
+    description: QQ-группа технической поддержки HagiCode
     joinButton: Вступить сейчас
-  secondaryLine: Hagicode поддерживает основные Agent, повышает эффективность параллельного управления и уменьшает галлюцинации с помощью OpenSpec.
+  secondaryLine: HagiCode поддерживает основные Agent, повышает эффективность параллельного управления и уменьшает галлюцинации с помощью OpenSpec.
 features:
   showcase:
     title: "Создано для реальной разработки"
@@ -221,20 +221,20 @@ features:
         sun: "Солнце"
         crown: "Корона"
 productOverviewVideo:
-  title: Узнайте о Hagicode до экскурсии по функциям
+  title: Узнайте о HagiCode до экскурсии по функциям
 videoShowcase:
   eyebrow: Дополнительные продуктовые демо
-  title: Продолжайте изучать Hagicode в реальных coding-сессиях
-  description: После основного обзора эти сфокусированные демо показывают, как Hagicode ведет себя в более игровых и модельно-специфичных сценариях, не повторяя основное введение в продукт.
+  title: Продолжайте изучать HagiCode в реальных coding-сессиях
+  description: После основного обзора эти сфокусированные демо показывают, как HagiCode ведет себя в более игровых и модельно-специфичных сценариях, не повторяя основное введение в продукт.
   supportingLabel: Сфокусированное демо
 homepageVideos:
   overview:
     youtube:
-      title: Обзор продукта Hagicode на YouTube
-      description: Основное англоязычное введение в workflow Hagicode, в стиль его multi-agent execution и в то, почему продукт ощущается шире, чем обычный AI-чат для программирования.
+      title: Обзор продукта HagiCode на YouTube
+      description: Основное англоязычное введение в workflow HagiCode, в стиль его multi-agent execution и в то, почему продукт ощущается шире, чем обычный AI-чат для программирования.
       ctaLabel: Открыть на YouTube
     bilibili:
-      title: Обзор продукта Hagicode на Bilibili
+      title: Обзор продукта HagiCode на Bilibili
       description: Версия основной продуктовой презентации на Bilibili для посетителей, чей браузер предпочитает китайский язык или кто выбирает локальный маршрут воспроизведения.
       ctaLabel: Открыть на Bilibili
   supporting:
@@ -243,12 +243,12 @@ homepageVideos:
       description: Этот более игровой дополнительный ролик показывает, что ассистент остается живым и неожиданным в реальных coding-сессиях, а не выглядит сухим генератором кода.
       ctaLabel: Открыть на Bilibili
     second:
-      title: 'GPT Codex в Hagicode: тест вживую'
+      title: 'GPT Codex в HagiCode: тест вживую'
       description: После локализованного основного введения эта более точечная проверка помогает потенциальным пользователям понять, как GPT Codex ведет себя внутри реального продукта.
       ctaLabel: Открыть на Bilibili
   hero:
     windowsStoreLabel: Microsoft Store
-    windowsStoreAriaLabel: Открыть Hagicode в Microsoft Store
+    windowsStoreAriaLabel: Открыть HagiCode в Microsoft Store
     ctaGroupLabel: Основные действия на главной странице
 pricing:
   title: Редакции и цены
@@ -318,7 +318,7 @@ workflowSteps:
   steps:
     proposal:
       label: "Предложение"
-      description: "Опишите изменение. Hagicode изучит репозиторий и составит предложение со спецификациями и задачами — их можно прочитать и поправить до того, как будет тронута хоть одна строка кода."
+      description: "Опишите изменение. HagiCode изучит репозиторий и составит предложение со спецификациями и задачами — их можно прочитать и поправить до того, как будет тронута хоть одна строка кода."
     execution:
       label: "Выполнение"
       description: "Утвердите план, и агенты выполнят его задача за задачей — параллельно через Claude Code, Codex, GitHub Copilot и другие, отмечая каждую завершённую задачу."

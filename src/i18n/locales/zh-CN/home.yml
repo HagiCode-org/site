@@ -20,7 +20,7 @@ hero:
   problem: 传统 AI 编码工具的
   painPoint: 痛点
   painPoints: ：上下文受限、会话混乱、缺乏协作。
-  solution: Hagicode 用
+  solution: HagiCode 用
   features:
     - OpenSpec 工作流
     - 多 Agent 多实例并行
@@ -43,9 +43,9 @@ hero:
     poweredBy: Powered by
   qqGroup:
     title: 加入技术支持群组
-    description: Hagicode 技术支持 QQ 群
+    description: HagiCode 技术支持 QQ 群
     joinButton: 立即加入
-  secondaryLine: Hagicode 主流 Agent 全面支持，并行管理效率翻倍，OpenSpec 减少幻觉。
+  secondaryLine: HagiCode 主流 Agent 全面支持，并行管理效率翻倍，OpenSpec 减少幻觉。
 features:
   showcase:
     title: "为真实开发工作而生"
@@ -221,34 +221,34 @@ features:
         sun: "日"
         crown: "冠"
 productOverviewVideo:
-  title: Hagicode video
+  title: HagiCode video
 videoShowcase:
   eyebrow: 补充视频演示
-  title: 继续看看 Hagicode 的真实使用片段
-  description: 主介绍之外，这些补充视频能帮助你继续观察 Hagicode 在真实编码中的表现。
+  title: 继续看看 HagiCode 的真实使用片段
+  description: 主介绍之外，这些补充视频能帮助你继续观察 HagiCode 在真实编码中的表现。
   supportingLabel: 补充演示
 homepageVideos:
   overview:
     youtube:
-      title: Hagicode YouTube
-      description: Hagicode 工作流、多 Agent 执行方式与整体能力的主介绍视频。
+      title: HagiCode YouTube
+      description: HagiCode 工作流、多 Agent 执行方式与整体能力的主介绍视频。
       ctaLabel: 打开 YouTube
     bilibili:
-      title: Hagicode Bilibili
-      description: Hagicode 工作流、多 Agent 执行方式与整体能力的主介绍视频（Bilibili）。
+      title: HagiCode Bilibili
+      description: HagiCode 工作流、多 Agent 执行方式与整体能力的主介绍视频（Bilibili）。
       ctaLabel: 打开 Bilibili
   supporting:
     first:
       title: AI 居然 写代码时 玩游戏
-      description: 作为补充演示，这条视频更偏趣味互动，帮助你快速感受 Hagicode 在真实编码过程里的节奏和氛围。
+      description: 作为补充演示，这条视频更偏趣味互动，帮助你快速感受 HagiCode 在真实编码过程里的节奏和氛围。
       ctaLabel: 打开 Bilibili
     second:
-      title: GPT Codex in Hagicode 实测
-      description: 聚焦 GPT Codex 在 Hagicode 中的实际表现，帮助你在主介绍之外继续判断模型接入后的真实效果。
+      title: GPT Codex in HagiCode 实测
+      description: 聚焦 GPT Codex 在 HagiCode 中的实际表现，帮助你在主介绍之外继续判断模型接入后的真实效果。
       ctaLabel: 打开 Bilibili
   hero:
     windowsStoreLabel: Windows 商店
-    windowsStoreAriaLabel: 打开 Hagicode Windows 商店页
+    windowsStoreAriaLabel: 打开 HagiCode Windows 商店页
     ctaGroupLabel: 首页主要操作
 pricing:
   title: 版本与定价
@@ -318,7 +318,7 @@ workflowSteps:
   steps:
     proposal:
       label: "提案"
-      description: "描述你想做的改动。Hagicode 先查看仓库，起草带规格和任务清单的提案，你可以在动代码之前阅读并修正。"
+      description: "描述你想做的改动。HagiCode 先查看仓库，起草带规格和任务清单的提案，你可以在动代码之前阅读并修正。"
     execution:
       label: "执行"
       description: "确认方案后，Agent 按任务逐项执行，可在 Claude Code、Codex、GitHub Copilot 等之间并行，完成一项勾选一项。"

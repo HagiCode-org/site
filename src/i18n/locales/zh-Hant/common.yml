@@ -142,7 +142,7 @@ desktopHero:
     gotoDownload: 前往下載頁面
     redirectingToHistory: 此頁暫時無法載入桌面端安裝包，正在跳轉到 Index 版本歷史頁。
   badge: 桌面版
-  title: Hagicode Desktop
+  title: HagiCode Desktop
   tagline: 本地化的 AI 程式碼助理，保護隱私並提升效率
   valuePoints:
     local: 100% 本機執行，程式碼不上傳
@@ -168,11 +168,11 @@ desktopHero:
     crossPlatform: 💻 跨平台支援
   steam:
     description: Steam 版本支援雲端存檔、Steam 工作坊等特性，點擊即可前往 Steam 查看。
-    ariaLabel: 在 Steam 上開啟 Hagicode
+    ariaLabel: 在 Steam 上開啟 HagiCode
   windowsStore:
     eyebrow: Microsoft Store
     description: 從 Microsoft Store 可以訂閱最新版本，保持最新。
-    ariaLabel: 在 Microsoft Store 上開啟 Hagicode
+    ariaLabel: 在 Microsoft Store 上開啟 HagiCode
   downloadActions:
     torrent: 種子下載
   assetTypes:
@@ -194,11 +194,11 @@ promote:
   ariaLabel: Promotion
 pageMeta:
   home:
-    title: Hagicode - Smart · Efficient · Interesting AI Coding Assistant
+    title: HagiCode - Smart · Efficient · Interesting AI Coding Assistant
     description: Rich, convenient UI interactions make planning, agent execution, and project work approachable and easy to navigate, creating an engaging development experience.
   desktop:
-    title: Hagicode Desktop - Download
-    description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
+    title: HagiCode Desktop - Download
+    description: Download HagiCode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
     runtimeFallbackLabel: Fallback
     runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
 commonActions:

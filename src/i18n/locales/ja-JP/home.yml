@@ -20,7 +20,7 @@ hero:
   problem: 従来の AI コーディングツールには
   painPoint: 課題
   painPoints: ': コンテキスト不足、セッションの混乱、協業の弱さ。'
-  solution: Hagicode は次の仕組みで AI コーディング体験を再定義します
+  solution: HagiCode は次の仕組みで AI コーディング体験を再定義します
   features:
     - OpenSpec ワークフロー
     - マルチエージェント・マルチインスタンス実行
@@ -43,9 +43,9 @@ hero:
     poweredBy: 提供元
   qqGroup:
     title: 技術サポートグループに参加
-    description: Hagicode 技術サポート QQ グループ
+    description: HagiCode 技術サポート QQ グループ
     joinButton: 今すぐ参加
-  secondaryLine: Hagicode は主要な Agent をサポートし、並列管理効率を高め、OpenSpec で幻覚を減らします。
+  secondaryLine: HagiCode は主要な Agent をサポートし、並列管理効率を高め、OpenSpec で幻覚を減らします。
 features:
   showcase:
     title: "実際の開発のために"
@@ -221,20 +221,20 @@ features:
         sun: "太陽"
         crown: "クラウン"
 productOverviewVideo:
-  title: 機能紹介の前に Hagicode の全体像を把握しましょう
+  title: 機能紹介の前に HagiCode の全体像を把握しましょう
 videoShowcase:
   eyebrow: 補足プロダクトデモ
-  title: 実際のコーディングセッションで Hagicode をさらに見る
+  title: 実際のコーディングセッションで HagiCode をさらに見る
   description: メイン紹介のあとに、遊び心のあるケースやモデル別シナリオでの挙動を確認できる補足デモです。
   supportingLabel: 補足デモ
 homepageVideos:
   overview:
     youtube:
-      title: YouTube で見る Hagicode 製品紹介
-      description: Hagicode のワークフロー、マルチエージェント実行、一般的な AI コーディングチャットを超える体験を紹介するメイン動画です。
+      title: YouTube で見る HagiCode 製品紹介
+      description: HagiCode のワークフロー、マルチエージェント実行、一般的な AI コーディングチャットを超える体験を紹介するメイン動画です。
       ctaLabel: YouTube で開く
     bilibili:
-      title: Bilibili で見る Hagicode 製品紹介
+      title: Bilibili で見る HagiCode 製品紹介
       description: 中国語圏ブラウザ環境や国内向け再生経路を好むユーザー向けの Bilibili 版コア紹介動画です。
       ctaLabel: Bilibili で開く
   supporting:
@@ -243,12 +243,12 @@ homepageVideos:
       description: 単なる無機質なコード生成ではなく、実際のセッションでも軽快で驚きのある体験を見せる補助クリップです。
       ctaLabel: Bilibili で開く
     second:
-      title: Hagicode で GPT Codex を実地検証
+      title: HagiCode で GPT Codex を実地検証
       description: ローカライズ済みのメイン紹介を見たあとに、GPT Codex が実製品内でどう動くかを判断できる検証デモです。
       ctaLabel: Bilibili で開く
   hero:
     windowsStoreLabel: Microsoft Store
-    windowsStoreAriaLabel: Microsoft Store で Hagicode を開く
+    windowsStoreAriaLabel: Microsoft Store で HagiCode を開く
     ctaGroupLabel: ホームページの主要アクション
 pricing:
   title: エディションと価格
@@ -318,7 +318,7 @@ workflowSteps:
   steps:
     proposal:
       label: "提案"
-      description: "やりたい変更を伝えます。Hagicode がリポジトリを確認し、コードに触れる前に読んで直せる、仕様とタスク付きの提案を作成します。"
+      description: "やりたい変更を伝えます。HagiCode がリポジトリを確認し、コードに触れる前に読んで直せる、仕様とタスク付きの提案を作成します。"
     execution:
       label: "実行"
       description: "計画を承認すると、エージェントがタスクごとに実行します。Claude Code、Codex、GitHub Copilot などで並列に進み、完了したタスクから順にチェックされます。"

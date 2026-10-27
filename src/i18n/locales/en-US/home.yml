@@ -20,7 +20,7 @@ hero:
   problem: Traditional AI coding tools have
   painPoint: pain points
   painPoints: ': limited context, messy sessions, lack of collaboration.'
-  solution: Hagicode redefines AI coding experience with
+  solution: HagiCode redefines AI coding experience with
   features:
     - OpenSpec workflow
     - multi-agent multi-instance execution
@@ -43,9 +43,9 @@ hero:
     poweredBy: Powered by
   qqGroup:
     title: Join Technical Support Group
-    description: Hagicode Technical Support QQ Group
+    description: HagiCode Technical Support QQ Group
     joinButton: Join Now
-  secondaryLine: Hagicode supports mainstream agents, doubles parallel management efficiency, and reduces hallucinations with OpenSpec.
+  secondaryLine: HagiCode supports mainstream agents, doubles parallel management efficiency, and reduces hallucinations with OpenSpec.
 features:
   showcase:
     title: "Built for real development work"
@@ -221,20 +221,20 @@ features:
         sun: "Sun"
         crown: "Crown"
 productOverviewVideo:
-  title: Understand Hagicode before the feature tour
+  title: Understand HagiCode before the feature tour
 videoShowcase:
   eyebrow: Supporting Product Demos
-  title: Keep exploring Hagicode in real coding sessions
-  description: After the main overview, these focused demos show how Hagicode behaves in playful and model-specific scenarios without repeating the primary product introduction.
+  title: Keep exploring HagiCode in real coding sessions
+  description: After the main overview, these focused demos show how HagiCode behaves in playful and model-specific scenarios without repeating the primary product introduction.
   supportingLabel: Focused demo
 homepageVideos:
   overview:
     youtube:
-      title: Hagicode Product Overview on YouTube
-      description: The main English-language introduction to Hagicode's workflow, multi-agent execution style, and why the product feels broader than a generic AI coding chat box.
+      title: HagiCode Product Overview on YouTube
+      description: The main English-language introduction to HagiCode's workflow, multi-agent execution style, and why the product feels broader than a generic AI coding chat box.
       ctaLabel: Open on YouTube
     bilibili:
-      title: Hagicode Product Overview on Bilibili
+      title: HagiCode Product Overview on Bilibili
       description: A Bilibili-hosted version of the core product introduction for visitors whose browsers signal a Chinese-language preference or who prefer the domestic playback path.
       ctaLabel: Open on Bilibili
   supporting:
@@ -243,12 +243,12 @@ homepageVideos:
       description: A playful supporting clip that shows the assistant staying lively and surprising during real coding sessions instead of feeling like a dry code generator.
       ctaLabel: Open on Bilibili
     second:
-      title: 'GPT Codex in Hagicode: Live Trial'
+      title: 'GPT Codex in HagiCode: Live Trial'
       description: A focused validation run that lets prospective users judge how GPT Codex behaves inside the actual product after they've seen the main localized introduction.
       ctaLabel: Open on Bilibili
   hero:
     windowsStoreLabel: Microsoft Store
-    windowsStoreAriaLabel: Open Hagicode on Microsoft Store
+    windowsStoreAriaLabel: Open HagiCode on Microsoft Store
     ctaGroupLabel: Primary homepage actions
 pricing:
   title: Editions & Pricing
@@ -318,7 +318,7 @@ workflowSteps:
   steps:
     proposal:
       label: "Proposal"
-      description: "Describe the change. Hagicode checks your repository and drafts a proposal with specs and tasks you can read and correct before any code is touched."
+      description: "Describe the change. HagiCode checks your repository and drafts a proposal with specs and tasks you can read and correct before any code is touched."
     execution:
       label: "Execution"
       description: "Approve the plan and agents carry it out task by task, in parallel across Claude Code, Codex, GitHub Copilot and more, ticking each task off as it lands."

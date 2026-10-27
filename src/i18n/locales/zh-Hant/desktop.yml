@@ -1,6 +1,6 @@
 desktop:
-  title: Hagicode Desktop - 下載
-  description: 下載 Hagicode Desktop，本地化的 AI 程式碼助理。支援 Windows、macOS 和 Linux，保護隱私、回應迅速。
+  title: HagiCode Desktop - 下載
+  description: 下載 HagiCode Desktop，本地化的 AI 程式碼助理。支援 Windows、macOS 和 Linux，保護隱私、回應迅速。
   features:
     title: 核心功能
     local:
@@ -67,7 +67,7 @@ desktop:
     step4:
       number: '4'
       title: 開始使用
-      description: 完成設定後即可開始使用 Hagicode Desktop
+      description: 完成設定後即可開始使用 HagiCode Desktop
   faq:
     title: 常見問題
     q1:
@@ -86,38 +86,38 @@ desktop:
       conclusion: 無論你選擇哪個版本，你都能完整掌控自己的伺服器與資料，享有更好的隱私保護與資料安全。
     q2:
       question: 安裝後還需要做什麼？
-      intro: Hagicode Desktop 本質上是一個啟動器，安裝完成後第一次啟動時，它會引導你完成以下步驟：
-      step1: <strong>下載 Hagicode Core：</strong>Desktop 會自動偵測並提示你下載 Hagicode 核心元件
+      intro: HagiCode Desktop 本質上是一個啟動器，安裝完成後第一次啟動時，它會引導你完成以下步驟：
+      step1: <strong>下載 HagiCode Core：</strong>Desktop 會自動偵測並提示你下載 HagiCode 核心元件
       step2: <strong>安裝核心元件：</strong>依照畫面提示完成核心元件安裝
       step3: <strong>設定預設 Agent CLI：</strong>選擇目前支援的 Agent CLI，並完成對應的登入、授權或本機安裝。
-      note: 整個流程都會在 Desktop 介面中清楚引導。首次啟動時請保持網路連線，以便下載 Hagicode Core；部分 Agent CLI 仍需手動安裝或認證，但這不影響它們屬於目前支援範圍。
-      done: 完成這些步驟後，你就能正常使用 Hagicode Desktop 的所有功能。
+      note: 整個流程都會在 Desktop 介面中清楚引導。首次啟動時請保持網路連線，以便下載 HagiCode Core；部分 Agent CLI 仍需手動安裝或認證，但這不影響它們屬於目前支援範圍。
+      done: 完成這些步驟後，你就能正常使用 HagiCode Desktop 的所有功能。
     q3:
       question: 如何檢查更新？
       answer: Desktop 會自動檢查更新。當有新版本可用時，介面右上角會顯示提示。你也可以在「設定」中手動檢查更新。
     q4:
       question: 支援哪些 AI Agent CLI？
-      intro: Hagicode Desktop 目前活躍支援以下 Agent CLI：
+      intro: HagiCode Desktop 目前活躍支援以下 Agent CLI：
       active: <strong>目前活躍支援：</strong>Claude Code、Codex、GitHub Copilot、OpenCode、Hermes、QoderCLI、Kiro、Kimi、Gemini、Pi、Reasonix、DeepAgents、Codebuddy
       manual: <strong>需手動安裝或認證：</strong>Hermes、Gemini、DeepAgents 需要先完成本機安裝或認證；其餘 CLI 提供一鍵安裝入口或引導式安裝流程。
       legacy: <strong>僅保留歷史相容：</strong>IFlowCli 只為舊資料相容保留，不屬於目前活躍支援範圍。
       closing: 是否支援，與是否提供一鍵安裝，是兩件不同的事。某個 CLI 需要手動安裝，不代表它目前尚未支援。
     q5:
       question: 是否支援離線使用？
-      intro: 是的！Hagicode Desktop 支援完整離線使用：
+      intro: 是的！HagiCode Desktop 支援完整離線使用：
       point1: 首次安裝與設定需要網路連線（下載核心元件與 AI 模型）
       point2: 完成設定後可離線使用所有功能
       point3: 你的程式碼與資料永遠不會上傳到雲端
       point4: 所有 AI 處理都在本機完成
     q6:
       question: macOS 提示 Hagicode.app 已損壞或無法開啟，該怎麼辦？
-      intro: 如果 Hagicode Desktop 安裝在預設路徑 /Applications/Hagicode.app，而 macOS Gatekeeper 阻止首次啟動，請使用下方命令移除應用程式的隔離屬性。
-      cause: 這是因為 macOS 會為從網際網路下載的應用程式加入 com.apple.quarantine 屬性。這屬於 macOS 的安全隔離機制，不代表 Hagicode 安裝程式本身發生故障。
+      intro: 如果 HagiCode Desktop 安裝在預設路徑 /Applications/Hagicode.app，而 macOS Gatekeeper 阻止首次啟動，請使用下方命令移除應用程式的隔離屬性。
+      cause: 這是因為 macOS 會為從網際網路下載的應用程式加入 com.apple.quarantine 屬性。這屬於 macOS 的安全隔離機制，不代表 HagiCode 安裝程式本身發生故障。
       command: sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app
-      note: 請在終端機中以管理員權限執行此命令，然後重新啟動 Hagicode Desktop。
+      note: 請在終端機中以管理員權限執行此命令，然後重新啟動 HagiCode Desktop。
     q7:
       question: 遇到問題時如何取得協助？
-      intro: 如果你在使用 Hagicode Desktop 時遇到問題，可以透過以下方式取得協助：
+      intro: 如果你在使用 HagiCode Desktop 時遇到問題，可以透過以下方式取得協助：
       point1: <strong>技術支援群：</strong>加入 QQ 群 610394020
       point2: <strong>線上文件：</strong>查看完整的使用說明與教學
       point3: <strong>GitHub Issues：</strong>在專案倉庫提交問題回報

@@ -142,7 +142,7 @@ desktopHero:
     gotoDownload: Aller à la page de téléchargement
     redirectingToHistory: Impossible de charger les paquets Desktop ici. Redirection vers l'historique des versions Index...
   badge: Desktop
-  title: Hagicode Desktop
+  title: HagiCode Desktop
   tagline: Assistant IA de code localisé, avec confidentialité et efficacité renforcées
   valuePoints:
     local: Exécution 100 % locale, aucun code n'est téléversé
@@ -168,11 +168,11 @@ desktopHero:
     crossPlatform: 💻 Compatibilité multiplateforme
   steam:
     description: L'édition Steam prend en charge des fonctionnalités Steam comme les sauvegardes cloud et le Workshop. Cliquez pour l'ouvrir sur Steam.
-    ariaLabel: Ouvrir Hagicode sur Steam
+    ariaLabel: Ouvrir HagiCode sur Steam
   windowsStore:
     eyebrow: Microsoft Store
     description: Abonnez-vous via le Microsoft Store pour rester sur la version la plus récente.
-    ariaLabel: Ouvrir Hagicode dans le Microsoft Store
+    ariaLabel: Ouvrir HagiCode dans le Microsoft Store
   downloadActions:
     torrent: Torrent
   assetTypes:
@@ -194,11 +194,11 @@ promote:
   ariaLabel: Promotion
 pageMeta:
   home:
-    title: Hagicode - Smart · Efficient · Interesting AI Coding Assistant
+    title: HagiCode - Smart · Efficient · Interesting AI Coding Assistant
     description: Rich, convenient UI interactions make planning, agent execution, and project work approachable and easy to navigate, creating an engaging development experience.
   desktop:
-    title: Hagicode Desktop - Download
-    description: Download Hagicode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
+    title: HagiCode Desktop - Download
+    description: Download HagiCode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
     runtimeFallbackLabel: Fallback
     runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
 commonActions:
