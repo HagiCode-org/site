@@ -8,6 +8,10 @@ import {
   type GoogleAnalyticsWindowLike,
 } from './provider-ga';
 import {
+  createPostHogMirror,
+  type PostHogWindowLike,
+} from './provider-posthog';
+import {
   create51LAProvider,
   type AnalyticsProvider,
   type AnalyticsWindowLike,
@@ -46,6 +50,7 @@ interface AnalyticsEventTargetLike {
 export interface BrowserAnalyticsWindow
   extends AnalyticsWindowLike,
     GoogleAnalyticsWindowLike,
+    PostHogWindowLike,
     AnalyticsEventTargetLike {
   document?: AnalyticsDocumentLike;
   __HAGI_WEBSITE_ANALYTICS__?: WebsiteAnalyticsRuntime;
@@ -74,16 +79,36 @@ function findTrackedElement(target: EventTarget | null): TrackableElement | null
   return candidate.dataset?.trackEvent ? candidate : null;
 }
 
+/**
+ * Runs each mirror in order. A mirror that throws does not stop the mirrors after it, or the 51LA provider.
+ */
+export function composeMirrors(...mirrors: readonly AnalyticsMirror[]): AnalyticsMirror {
+  return {
+    mirror(eventName, context) {
+      for (const mirror of mirrors) {
+        try {
+          mirror.mirror(eventName, context);
+        } catch {
+          // Isolated: one failing mirror must not affect the others.
+        }
+      }
+    },
+  };
+}
+
 export class WebsiteAnalyticsRuntime {
   private pendingQueue: QueuedTrackingEvent[] = [];
   private initialized = false;
+  private readonly mirror: AnalyticsMirror;
 
   constructor(
     private readonly provider: AnalyticsProvider,
     private readonly eventTarget?: AnalyticsEventTargetLike,
     private readonly documentTarget?: AnalyticsDocumentLike,
-    private readonly mirror?: AnalyticsMirror,
-  ) {}
+    mirrors: readonly AnalyticsMirror[] = [],
+  ) {
+    this.mirror = composeMirrors(...mirrors);
+  }
 
   initialize() {
     if (this.initialized) {
@@ -173,7 +198,10 @@ function getGlobalRuntime(target = getBrowserWindow()): WebsiteAnalyticsRuntime 
       create51LAProvider(() => getBrowserWindow()),
       target,
       target.document,
-      createGoogleAnalyticsMirror(() => getBrowserWindow()),
+      [
+        createGoogleAnalyticsMirror(() => getBrowserWindow()),
+        createPostHogMirror(() => getBrowserWindow()),
+      ],
     );
   }
 
@@ -199,12 +227,15 @@ export function createWebsiteAnalyticsRuntime(options: {
   provider: AnalyticsProvider;
   eventTarget?: AnalyticsEventTargetLike;
   documentTarget?: AnalyticsDocumentLike;
+  /** Ordered mirrors, invoked before the provider sends. */
+  mirrors?: readonly AnalyticsMirror[];
+  /** Single-mirror alias, kept for existing callers. Normalized to `[mirror]` ahead of `mirrors`. */
   mirror?: AnalyticsMirror;
 }) {
   return new WebsiteAnalyticsRuntime(
     options.provider,
     options.eventTarget,
     options.documentTarget,
-    options.mirror,
+    [...(options.mirror ? [options.mirror] : []), ...(options.mirrors ?? [])],
   );
 }

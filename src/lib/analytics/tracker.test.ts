@@ -1,6 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import { WEBSITE_TRACKING_EVENTS } from './events';
 import { createWebsiteAnalyticsRuntime, notifyWebsiteAnalyticsReady } from './tracker';
+import { createGoogleAnalyticsMirror } from './provider-ga';
+import { createPostHogMirror } from './provider-posthog';
 
 function createEventTarget() {
   const listeners = new Map<string, Array<() => void>>();
@@ -165,6 +167,132 @@ describe('website analytics runtime', () => {
 
       expect(send).toHaveBeenCalledTimes(1);
       expect(send).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openDesktopPage, { source: 'hero' });
+    });
+  });
+
+  describe('ordered mirrors', () => {
+    const events = [
+      { name: WEBSITE_TRACKING_EVENTS.downloadDesktop, context: { source: 'navbar', url: '/download/' } },
+      { name: WEBSITE_TRACKING_EVENTS.openDesktopPage, context: { source: 'install-options-desktop', url: '/desktop/' } },
+      { name: WEBSITE_TRACKING_EVENTS.downloadDesktopWindows, context: { source: 'desktop_hero', url: 'https://example.com/a.exe' } },
+      { name: WEBSITE_TRACKING_EVENTS.openSteamStore, context: { source: 'hero-section-steam' } },
+    ] as const;
+
+    /** Real GA mirror over a recording gtag, so GA call arguments are compared exactly. */
+    function gaRecorder() {
+      const gtag = vi.fn();
+      return { gtag, mirror: createGoogleAnalyticsMirror(() => ({ gtag })) };
+    }
+
+    it('keeps GA and 51LA call sequences and arguments identical with and without the PostHog mirror', () => {
+      const withoutPostHog = gaRecorder();
+      const laWithout = vi.fn(() => true);
+      const runtimeWithout = createWebsiteAnalyticsRuntime({
+        provider: { send: laWithout },
+        eventTarget: createEventTarget(),
+        mirrors: [withoutPostHog.mirror],
+      });
+
+      const withPostHog = gaRecorder();
+      const laWith = vi.fn(() => true);
+      const posthog = { __loaded: true, capture: vi.fn(), has_opted_out_capturing: () => false };
+      const runtimeWith = createWebsiteAnalyticsRuntime({
+        provider: { send: laWith },
+        eventTarget: createEventTarget(),
+        mirrors: [withPostHog.mirror, createPostHogMirror(() => ({ posthog }))],
+      });
+
+      for (const event of events) {
+        runtimeWithout.trackEvent(event.name, event.context);
+        runtimeWith.trackEvent(event.name, event.context);
+      }
+
+      expect(withPostHog.gtag.mock.calls).toEqual(withoutPostHog.gtag.mock.calls);
+      expect(withPostHog.gtag.mock.calls.length).toBe(events.length);
+      expect(laWith.mock.calls).toEqual(laWithout.mock.calls);
+      expect(laWith.mock.calls.length).toBe(events.length);
+      // The PostHog mirror did receive every event, so the comparison is not vacuous.
+      expect(posthog.capture).toHaveBeenCalledTimes(events.length);
+    });
+
+    it('does not stop GA or 51LA when the PostHog mirror throws', () => {
+      const ga = gaRecorder();
+      const throwingPostHog = {
+        mirror: vi.fn(() => {
+          throw new Error('posthog down');
+        }),
+      };
+      const laSend = vi.fn(() => true);
+      const runtime = createWebsiteAnalyticsRuntime({
+        provider: { send: laSend },
+        eventTarget: createEventTarget(),
+        mirrors: [ga.mirror, throwingPostHog],
+      });
+
+      expect(() => runtime.trackEvent(WEBSITE_TRACKING_EVENTS.downloadDesktop, { source: 'navbar' })).not.toThrow();
+
+      expect(throwingPostHog.mirror).toHaveBeenCalledTimes(1);
+      expect(ga.gtag).toHaveBeenCalledTimes(1);
+      expect(laSend).toHaveBeenCalledTimes(1);
+    });
+
+    it('still runs a mirror that comes after a throwing mirror', () => {
+      const after = { mirror: vi.fn() };
+      const runtime = createWebsiteAnalyticsRuntime({
+        provider: { send: () => true },
+        mirrors: [
+          {
+            mirror: () => {
+              throw new Error('first mirror failed');
+            },
+          },
+          after,
+        ],
+      });
+
+      runtime.trackEvent(WEBSITE_TRACKING_EVENTS.openDesktopPage, { source: 'hero' });
+
+      expect(after.mirror).toHaveBeenCalledTimes(1);
+    });
+
+    it('delivers a queued-then-flushed event to each mirror exactly once', () => {
+      const ga = { mirror: vi.fn() };
+      const posthog = { mirror: vi.fn() };
+      let ready = false;
+      const sent: string[] = [];
+      const eventTarget = createEventTarget();
+      const runtime = createWebsiteAnalyticsRuntime({
+        provider: {
+          send(eventName) {
+            if (!ready) {
+              return false;
+            }
+            sent.push(eventName);
+            return true;
+          },
+        },
+        eventTarget,
+        mirrors: [ga, posthog],
+      });
+      runtime.initialize();
+
+      expect(runtime.trackEvent(WEBSITE_TRACKING_EVENTS.downloadDesktopMacOS, { source: 'desktop' })).toBe('queued');
+      ready = true;
+      notifyWebsiteAnalyticsReady(eventTarget as never);
+      runtime.flushPendingEvents();
+
+      expect(sent).toEqual([WEBSITE_TRACKING_EVENTS.downloadDesktopMacOS]);
+      expect(ga.mirror).toHaveBeenCalledTimes(1);
+      expect(posthog.mirror).toHaveBeenCalledTimes(1);
+    });
+
+    it('accepts the single mirror option as a one-item list', () => {
+      const single = { mirror: vi.fn() };
+      const runtime = createWebsiteAnalyticsRuntime({ provider: { send: () => true }, mirror: single });
+
+      runtime.trackEvent(WEBSITE_TRACKING_EVENTS.downloadDesktop);
+
+      expect(single.mirror).toHaveBeenCalledTimes(1);
     });
   });
 

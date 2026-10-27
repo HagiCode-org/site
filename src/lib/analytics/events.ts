@@ -20,12 +20,16 @@ export interface WebsiteTrackingGaMapping {
   label: string;
 }
 
+export type WebsiteTrackingPlatform = 'windows' | 'macos' | 'linux';
+
 export interface WebsiteTrackingEventDefinition {
   name: WebsiteTrackingEventName;
   description: string;
   locations: readonly string[];
   meaning: string;
   ga: WebsiteTrackingGaMapping;
+  /** Desktop platform of a direct download event; reported to PostHog as `platform`. */
+  platform?: WebsiteTrackingPlatform;
 }
 
 export const WEBSITE_TRACKING_EVENT_CATALOG: readonly WebsiteTrackingEventDefinition[] = [
@@ -56,6 +60,7 @@ export const WEBSITE_TRACKING_EVENT_CATALOG: readonly WebsiteTrackingEventDefini
     locations: ['DesktopHero', 'InstallButton platform list'],
     meaning: 'User downloads a Windows build of Hagicode Desktop',
     ga: { category: 'download', label: 'downloadDesktopWindows' },
+    platform: 'windows',
   },
   {
     name: WEBSITE_TRACKING_EVENTS.downloadDesktopMacOS,
@@ -63,6 +68,7 @@ export const WEBSITE_TRACKING_EVENT_CATALOG: readonly WebsiteTrackingEventDefini
     locations: ['DesktopHero', 'InstallButton platform list'],
     meaning: 'User downloads a macOS build of Hagicode Desktop',
     ga: { category: 'download', label: 'downloadDesktopMacOS' },
+    platform: 'macos',
   },
   {
     name: WEBSITE_TRACKING_EVENTS.downloadDesktopLinux,
@@ -70,6 +76,7 @@ export const WEBSITE_TRACKING_EVENT_CATALOG: readonly WebsiteTrackingEventDefini
     locations: ['DesktopHero', 'InstallButton platform list'],
     meaning: 'User downloads a Linux build of Hagicode Desktop',
     ga: { category: 'download', label: 'downloadDesktopLinux' },
+    platform: 'linux',
   },
 ] as const;
 

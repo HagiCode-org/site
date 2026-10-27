@@ -21,7 +21,8 @@ const GA_MAPPINGS = new Map<WebsiteTrackingEventName, WebsiteTrackingGaMapping>(
   WEBSITE_TRACKING_EVENT_CATALOG.map((definition) => [definition.name, definition.ga]),
 );
 
-function normalizeLocation(source: string | undefined): string {
+/** Trims the tracked source, turns hyphens into underscores and falls back to `website`. Shared with the PostHog mirror. */
+export function normalizeLocation(source: string | undefined): string {
   const location = source?.trim().replaceAll('-', '_');
   return location || DEFAULT_LOCATION;
 }
