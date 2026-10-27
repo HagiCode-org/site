@@ -394,6 +394,20 @@
   color: var(--hero-muted);
 }
 
+/* The shared entity definition: same lead block, quieter weight, wraps at any width. */
+.heroDefinition {
+  width: 100%;
+  max-width: 46rem;
+  margin: 0;
+  /* DESIGN.md body token: 1rem, weight 400, line-height 1.6. */
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+  color: var(--hero-muted);
+}
+
 .storyBlock {
   display: grid;
   gap: 0.78rem;

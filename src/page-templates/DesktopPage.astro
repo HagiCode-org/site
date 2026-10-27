@@ -19,6 +19,9 @@ import type { SiteLocale } from '@/i18n/locale-metadata';
 import { getAbsoluteSiteUrl } from '@/lib/locale-routing';
 import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
 import { getDesktopPageCopy } from '@/lib/site-page-copy';
+import { serializeJsonLd } from '@hagicode/hagilight-core/seo';
+import { getEntityDefinition } from '@hagicode/hagilight-core/entity-definition';
+import { buildEntityStructuredData } from '@/lib/entity-structured-data';
 
 interface Props {
   locale: SiteLocale;
@@ -34,6 +37,7 @@ const heroTagline = t('desktopHero.tagline');
 const desktopI18nBootstrap = getSerializedPageTranslationBootstrap(locale, ['common', 'desktop']);
 const siteBase = import.meta.env.VITE_SITE_BASE || '';
 const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
+const entityStructuredData = buildEntityStructuredData({ locale, siteBase });
 ---
 
 <!doctype html>
@@ -51,6 +55,9 @@ const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
     <meta name="og:title" content={pageCopy.title} />
     <meta name="og:description" content={pageCopy.description} />
     <meta name="og:type" content="website" />
+    {entityStructuredData.map((block) => (
+      <script is:inline type="application/ld+json" set:html={serializeJsonLd(block)} />
+    ))}
     <GoogleAnalytics />
     <MicrosoftStoreBadgeScript />
     <script is:inline set:html={desktopI18nBootstrap} />
@@ -96,6 +103,7 @@ const canonicalUrl = getAbsoluteSiteUrl('/desktop/', locale, siteBase);
           <div class="hero-badge">{heroBadge}</div>
           <h1>{heroTitle}</h1>
           <p class="hero-tagline">{heroTagline}</p>
+          <p class="hero-definition">{getEntityDefinition(locale)}</p>
           <DesktopHero client:load locale={locale} />
           <aside class="hero-runtime-note" aria-label={pageCopy.runtimeNoteAriaLabel}>
             <span class="hero-runtime-note__label">{pageCopy.runtimeNoteLabel}</span>

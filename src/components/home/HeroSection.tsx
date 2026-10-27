@@ -8,6 +8,7 @@ import HeroWorkflowBoard from './HeroWorkflowBoard';
 import ProductOverviewVideoSection from './ProductOverviewVideoSection';
 import type { FeaturedVideosByProvider } from './video-showcase-model';
 import type { HomepageHeroCopy, HomepageWorkflowBoardCopy } from '@/lib/homepage-runtime-copy';
+import { getEntityDefinition } from '@hagicode/hagilight-core/entity-definition';
 
 interface HeroSectionProps {
   desktopVersion?: unknown;
@@ -159,6 +160,7 @@ export default function HeroSection({
 
             <p className={styles.heroHeadline}>{copy.headline}</p>
             <p className={styles.heroDescription}>{copy.subheadline}</p>
+            <p className={styles.heroDefinition}>{getEntityDefinition(locale)}</p>
           </div>
 
           <div className={styles.heroActions} role="group" aria-label={ctaGroupLabel}>

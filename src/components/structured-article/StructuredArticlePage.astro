@@ -20,6 +20,7 @@ import {
 import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
 import { getAbsoluteSiteUrl } from '@/lib/locale-routing';
 import { getStructuredArticleViewModel } from '@/lib/structured-articles.mjs';
+import { getEntityDefinition } from '@hagicode/hagilight-core/entity-definition';
 import '@/styles/homepage.css';
 import '@/styles/desktop.css';
 import { agentAccent } from '@/components/compare/agent-accents';
@@ -167,6 +168,9 @@ const structuredDataJson = JSON.stringify(structuredData).replace(/</gu, '\\u003
             )}
           </h1>
         )}
+        {locale === 'en-US' || locale === 'zh-CN' ? (
+          <p class="compare-page__definition">{getEntityDefinition(locale)}</p>
+        ) : null}
         <p class="compare-page__subtitle">{viewModel.summary}</p>
         <p class="compare-page__hero-cta">
           <a

@@ -34,6 +34,7 @@ const description = `This page now points to ${destinationName} at ${redirectPat
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <meta name="hagilight:llms" content="exclude" />
     {entryTargetPath ? (
       <>
         <meta name="hagicode-site-base" content={siteBase} />

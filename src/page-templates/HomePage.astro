@@ -14,6 +14,8 @@ import AnalyticsScripts from '@/components/AnalyticsScripts.astro';
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 import MicrosoftStoreBadgeScript from '@/components/MicrosoftStoreBadgeScript.astro';
 import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
+import { serializeJsonLd } from '@hagicode/hagilight-core/seo';
+import { buildEntityStructuredData } from '@/lib/entity-structured-data';
 import showcaseSessionBoard from '../assets/img/home/showcase-session-board.png';
 import showcaseProposalWorkflow from '../assets/img/home/showcase-proposal-workflow.png';
 import showcaseAgentRoster from '../assets/img/home/showcase-agent-roster.png';
@@ -182,6 +184,9 @@ const funHeroStrip = [
     <meta name="description" content={pageCopy.description} />
     <link rel="canonical" href={canonicalUrl} />
     <SeoAlternateLinks pathname="/" siteBase={siteBase} currentLocale={locale} />
+    {buildEntityStructuredData({ locale, siteBase }).map((block) => (
+      <script is:inline type="application/ld+json" set:html={serializeJsonLd(block)} />
+    ))}
     <meta name="baidu-site-verification" content="codeva-A9s3yT3z5m" />
     <meta name="og:title" content={pageCopy.title} />
     <meta name="og:description" content={pageCopy.description} />

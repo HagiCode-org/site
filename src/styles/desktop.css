@@ -1258,3 +1258,14 @@ main.homepage section > .bgGlow {
     background: rgba(40, 30, 20, 0.95);
   }
 }
+
+/* Entity definition under the desktop hero tagline: one sentence, same centred lead, wraps at any width. */
+.hero-definition {
+  max-width: 46rem;
+  margin: -1.25rem auto 2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  overflow-wrap: anywhere;
+  text-align: center;
+}

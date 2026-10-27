@@ -957,3 +957,14 @@
 }
 .compare-page__hero-cta{margin:var(--spacing-md,24px) 0 0}
 .compare-page__hero-cta .structured-cta-button{font-family:inherit}
+
+/* The shared entity definition opens en-US and zh-CN comparison pages, before the article summary. */
+.compare-page__definition {
+  margin: 0 0 0.5rem;
+  /* DESIGN.md body token: 1rem, weight 400, line-height 1.6. */
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+  color: var(--color-text-primary, inherit);
+}

@@ -3,6 +3,7 @@ import partytown from '@astrojs/partytown';
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 import { hagilight } from '@hagicode/hagilight/integration';
+import { getEntityDefinition } from '@hagicode/hagilight-core/entity-definition';
 import { DEFAULT_LOCALE, SUPPORTED_SITE_LOCALES } from './src/i18n/locale-metadata.ts';
 
 // https://astro.build/config
@@ -48,7 +49,12 @@ export default defineConfig({
         },
     },
     integrations: [
-        hagilight(),
+        hagilight({
+          llms: {
+            title: 'HagiCode',
+            summary: getEntityDefinition('en-US'),
+          },
+        }),
         partytown(),
         react(),
         mdx(),
