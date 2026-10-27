@@ -230,11 +230,11 @@ videoShowcase:
 homepageVideos:
   overview:
     youtube:
-      title: Hagicode-Produktüberblick auf YouTube
-      description: Die wichtigste englischsprachige Einführung in Hagicodes Workflow, den Multi-Agent-Ausführungsstil und warum sich das Produkt größer anfühlt als ein generischer KI-Coding-Chat.
+      title: HagiCode-Produktüberblick auf YouTube
+      description: Die wichtigste englischsprachige Einführung in HagiCodes Workflow, den Multi-Agent-Ausführungsstil und warum sich das Produkt größer anfühlt als ein generischer KI-Coding-Chat.
       ctaLabel: Auf YouTube öffnen
     bilibili:
-      title: Hagicode-Produktüberblick auf Bilibili
+      title: HagiCode-Produktüberblick auf Bilibili
       description: Eine auf Bilibili gehostete Version der zentralen Produkteinführung für Besucher, deren Browser eine chinesische Sprachpräferenz signalisiert oder die den chinesischen Wiedergabepfad bevorzugen.
       ctaLabel: Auf Bilibili öffnen
   supporting:

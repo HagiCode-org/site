@@ -112,7 +112,7 @@ desktop:
     q6:
       question: macOS meldet, dass Hagicode.app beschädigt ist oder nicht geöffnet werden kann. Was soll ich tun?
       intro: Wenn HagiCode Desktop im Standardpfad /Applications/Hagicode.app installiert ist und macOS Gatekeeper den ersten Start blockiert, entfernen Sie mit folgendem Befehl das Quarantäne-Attribut der App.
-      cause: Das passiert, weil macOS Apps aus dem Internet mit dem Attribut com.apple.quarantine versieht. Es handelt sich um einen Sicherheitsmechanismus von macOS und nicht um einen Fehler des Hagicode-Installers.
+      cause: Das passiert, weil macOS Apps aus dem Internet mit dem Attribut com.apple.quarantine versieht. Es handelt sich um einen Sicherheitsmechanismus von macOS und nicht um einen Fehler des HagiCode-Installers.
       command: sudo xattr -dr com.apple.quarantine /Applications/Hagicode.app
       note: Führen Sie den Befehl im Terminal mit Administratorrechten aus und starten Sie HagiCode Desktop anschließend erneut.
     q7:

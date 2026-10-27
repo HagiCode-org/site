@@ -236,7 +236,7 @@ describe('DesktopHero fallback contract', () => {
     expect(markup).toContain('<ms-store-badge');
     expect(markup).toContain('productid="9N3PM0N3SVDW"');
     expect(markup).toContain('language="en-us"');
-    expect(markup).toContain('Open Hagicode on Microsoft Store');
+    expect(markup).toContain('Open HagiCode on Microsoft Store');
     expect(markup).toContain('Subscribe on Microsoft Store to stay on the latest version.');
     expect(markup.indexOf('data-windows-store-row="desktop-downloads"')).toBeLessThan(
       markup.indexOf('data-platform-table="desktop-downloads"'),
