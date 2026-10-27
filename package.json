@@ -55,7 +55,7 @@
     "sharp": "^0.34.2"
   },
   "devDependencies": {
-    "@hagicode/hagi18n": "^0.1.1",
+    "@hagicode/hagi18n": "^0.2.0",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "@types/semver": "^7.7.1",
