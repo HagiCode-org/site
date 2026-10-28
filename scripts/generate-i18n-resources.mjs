@@ -179,7 +179,7 @@ function collectParityErrors(sourceResources, generatedResources, expectedLocale
       const sourceJson = formatJson(sourceResources[locale][namespace]);
       const generatedJson = formatJson(generatedResources[locale][namespace]);
       if (sourceJson !== generatedJson) {
-        errors.push(`${locale}/${namespace}.json is stale; rerun npm run i18n:generate`);
+        errors.push(`${locale}/${namespace}.json is stale; rerun pnpm run i18n:generate`);
       }
     }
   }

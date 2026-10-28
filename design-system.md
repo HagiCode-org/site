@@ -204,6 +204,6 @@
 ## 图标系统
 
 使用 **Lucide React** 图标库:
-- 安装: `npm install lucide-react`
+- 安装: `pnpm add lucide-react`
 - 特点: 一致的设计风格、Tree-shakeable、支持 TypeScript
 - 大小: 统一使用 24x24 viewBox

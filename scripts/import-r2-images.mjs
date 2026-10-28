@@ -12,7 +12,7 @@
  * Every check runs before anything is written. Files are written through a temp file and a rename,
  * so a failed run exits non-zero and leaves the vendored files untouched.
  *
- * Usage: npm run import:r2-images [-- --manifest <path>]
+ * Usage: pnpm run import:r2-images [-- --manifest <path>]
  */
 import { createHash, randomUUID } from 'node:crypto';
 import { mkdir, readFile, rename, unlink, writeFile } from 'node:fs/promises';

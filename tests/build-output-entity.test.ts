@@ -6,8 +6,8 @@ import { SUPPORTED_SITE_LOCALES } from '@/i18n/locale-metadata';
 import { getEntitySameAs } from '@/lib/entity-structured-data';
 
 /**
- * Build-output contract for the entity data. Runs against `dist/` after `npm run build`; it is skipped
- * (and says so) when no build exists, so `npm test` on a clean checkout does not pretend to have checked it.
+ * Build-output contract for the entity data. Runs against `dist/` after `pnpm run build`; it is skipped
+ * (and says so) when no build exists, so `pnpm test` on a clean checkout does not pretend to have checked it.
  */
 
 const DIST = join(process.cwd(), 'dist');
@@ -24,7 +24,7 @@ function readBuilt(path: string): string {
   return readFileSync(join(DIST, path), 'utf8');
 }
 
-describe.skipIf(!BUILT)('built entity data (requires npm run build)', () => {
+describe.skipIf(!BUILT)('built entity data (requires pnpm run build)', () => {
   it('llms.txt starts with the HagiCode name and carries the en-US definition', () => {
     const llms = readBuilt('llms.txt');
     expect(llms.startsWith('# HagiCode\n')).toBe(true);
