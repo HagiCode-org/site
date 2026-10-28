@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "type": "module",
-  "packageManager": "npm@11.10.1",
+  "packageManager": "pnpm@12.16.1",
   "scripts": {
-    "dev": "npm run prepare:i18n && astro dev --host 0.0.0.0 --port ${PORT_WEBSITE:-31264}",
-    "start": "npm run prepare:i18n && astro dev --host 0.0.0.0",
-    "build": "export NODE_OPTIONS=\"${NODE_OPTIONS:-} --max-old-space-size=8192\"; export NODE_ENV=\"${NODE_ENV:-production}\"; npm run prepare:i18n && npm run sync:about-snapshot && astro build && npm run seo:audit && npm run verify:ga",
+    "dev": "pnpm run prepare:i18n && astro dev --host 0.0.0.0 --port ${PORT_WEBSITE:-31264}",
+    "start": "pnpm run prepare:i18n && astro dev --host 0.0.0.0",
+    "build": "export NODE_OPTIONS=\"${NODE_OPTIONS:-} --max-old-space-size=8192\"; export NODE_ENV=\"${NODE_ENV:-production}\"; pnpm run prepare:i18n && pnpm run sync:about-snapshot && astro build && pnpm run seo:audit && pnpm run verify:ga",
     "preview": "astro preview --port ${PORT_WEBSITE:-31264}",
     "astro": "astro",
     "i18n:audit": "hagi18n audit --config hagi18n.yaml",
@@ -18,21 +18,23 @@
     "i18n:prune": "hagi18n prune --config hagi18n.yaml --from en-US",
     "i18n:prune:write": "hagi18n prune --config hagi18n.yaml --from en-US --write",
     "i18n:generate": "node scripts/generate-i18n-resources.mjs",
-    "prepare:i18n": "npm run i18n:generate",
-    "i18n:check": "npm run i18n:audit && npm run i18n:doctor && npm run prepare:i18n && node scripts/generate-i18n-resources.mjs --check",
+    "prepare:i18n": "pnpm run i18n:generate",
+    "i18n:check": "pnpm run i18n:audit && pnpm run i18n:doctor && pnpm run prepare:i18n && node scripts/generate-i18n-resources.mjs --check",
     "sync:about-snapshot": "node ./scripts/fetch-about-snapshot.mjs",
     "import:r2-images": "node scripts/import-r2-images.mjs",
     "seo:audit": "node scripts/seo-audit.mjs",
     "verify:ga": "node scripts/verify-ga-build.mjs",
-    "typecheck": "export NODE_OPTIONS=\"${NODE_OPTIONS:-} --max-old-space-size=8192\"; npm run prepare:i18n && tsc --noEmit",
+    "typecheck": "export NODE_OPTIONS=\"${NODE_OPTIONS:-} --max-old-space-size=8192\"; pnpm run prepare:i18n && tsc --noEmit",
     "clean": "rm -rf .astro dist",
-    "test": "npm run prepare:i18n && vitest run",
+    "test": "pnpm run prepare:i18n && vitest run",
     "test:ui": "vitest --ui",
     "test:watch": "vitest",
     "generate:image": "node scripts/generate-image.mjs",
     "generate:image:custom": "node scripts/generate-image.mjs",
     "generate:product-images": "node scripts/generate-image.mjs --batch-config scripts/product-images-batch.json",
-    "regenerate:product-images": "node scripts/generate-image.mjs --batch-config scripts/product-images-batch.json --force"
+    "regenerate:product-images": "node scripts/generate-image.mjs --batch-config scripts/product-images-batch.json --force",
+    "check:registry": "node scripts/check-registry-neutrality.mjs",
+    "test:registry": "node --test scripts/check-registry-neutrality.node-test.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.2",
@@ -65,13 +67,11 @@
     "npm-run-all": "^4.1.5",
     "playwright": "^1.58.0",
     "typescript": "~6.0.3",
+    "vite": "^8.0.1",
     "vitest": "^5.0.5"
-  },
-  "overrides": {
-    "vite": "^8.0.1"
   },
   "engines": {
     "node": ">=24.0.0",
-    "npm": ">=9.0"
+    "pnpm": ">=12.16.1"
   }
 }

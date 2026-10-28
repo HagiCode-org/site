@@ -1,0 +1,24 @@
+# pnpm settings (pnpm 12 reads these here, not from package.json).
+# Replaces the npm `overrides` field.
+overrides:
+  vite: ^8.0.1
+
+# Dependency lifecycle scripts run only for approved packages. Reviewed from the old lockfile's
+# `hasInstallScript` entries:
+#   sharp    - needs its install step to fetch/verify the native libvips binding.
+#   fsevents - macOS-only optional file watcher; ships a prebuilt binary, no script needed.
+allowBuilds:
+  sharp: true
+  fsevents: false
+
+# pnpm 12 rejects packages younger than its default minimumReleaseAge (1 day). First-party packages
+# are published and consumed the same day, so exempt only that scope.
+minimumReleaseAgeExclude:
+  - "@hagicode/*"
+
+# Agent skills shipped inside dependencies are not installed into the repository (reviewed: denied).
+permissions:
+  '@hagicode/hagi18n':
+    skills: false
+  dotenv:
+    skills: false

@@ -1,8 +1,8 @@
 {
   "name": "hagicode site",
   "entry": "./src/index.js",
-  "installCommand": "npm ci --include=dev",
-  "buildCommand": "npm run build",
+  "installCommand": "corepack enable && pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm run build",
   "assets": {
     "directory": "./dist",
     "notFoundStrategy": "singlePageApplication"
