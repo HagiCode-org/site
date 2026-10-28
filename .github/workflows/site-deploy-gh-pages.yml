@@ -28,17 +28,29 @@ jobs:
       - name: Checkout current source ref
         uses: actions/checkout@v4
 
+      # No version literal: pnpm/action-setup reads package.json "packageManager".
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
+          cache: pnpm
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify install and lockfile stability
+        run: |
+          test -d node_modules
+          git diff --exit-code -- pnpm-lock.yaml
+
+      - name: Registry neutrality
+        run: pnpm run check:registry
 
       - name: Build and verify site
-        run: npm run build
+        run: pnpm run build
 
       - name: Assemble gh-pages publication payload
         run: |
