@@ -1,0 +1,30 @@
+# Cache Configuration for Static Resources
+# This file configures HTTP cache headers for GitHub Pages deployment
+
+# Enable Expires module for cache expiration
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+</IfModule>
+
+# Enable Headers module for Cache-Control
+<IfModule mod_headers.c>
+  # Hashed resources in _astro directory - 1 year immutable cache
+  # These files contain content hashes in their filenames, so they never change
+  <FilesMatch "_astro/.*\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Static assets (images, fonts, icons) - 1 day cache
+  <FilesMatch "\.(jpg|jpeg|png|gif|ico|svg|webp|woff|woff2|ttf|eot|otf)$">
+    Header set Cache-Control "public, max-age=86400"
+  </FilesMatch>
+
+  # HTML documents - no cache, must revalidate
+  # HTML content changes frequently and should always be fresh
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
