@@ -11,6 +11,71 @@ targetLocales:
   - es-ES
   - pt-BR
   - ru-RU
+# 与英文基线相同、且在各语言里本就应当相同的值(品牌名、URL、技术标识、通用借词等),按「文件 → 键」逐条精确列出,每条写理由。
+# 名单对所有目标语言生效:只有在所有仍与英文相同的语言里英文写法都正确时才加入;其余一律翻译。
+auditIdenticalAllowlist:
+  common.yml:
+    - languageSwitcher.switchToChinese # 语言切换标签
+    - languageSwitcher.switchToEnglish # 语言切换标签
+    - socialProof.badges.claude # 品牌名
+    - socialProof.badges.opensource # 德法通用借词
+    - socialProof.badges.opensourceDesc # 品牌名
+    - activityMetrics.dockerHub # 品牌名
+    - activityMetrics.starHistory.value # 德语通用借词
+    - showcase.screenshots.vault.title # 产品功能名
+    - desktopHero.title # 品牌名
+    - desktopHero.windowsStore.eyebrow # 品牌名
+    - desktopHero.assetTypes.windowsMsix # 技术标识
+    - desktopHero.assetTypes.windowsStore # 品牌名
+    - desktopHero.assetTypes.macosApple # 品牌名
+    - desktopHero.assetTypes.linuxAppImage # 技术标识
+    - desktopHero.assetTypes.linuxArm64AppImage # 技术标识
+    - navbar.blog # 各语言通用借词
+    - videoPlayer.pause # 德法通用词
+    - pageMeta.desktop.title # 德语通用借词
+    - desktopHero.downloadActions.torrent # 各语言通用借词
+    - compare.vsLabel # 通用缩写vs
+    - desktopHero.badge # 产品版本名
+    - desktopHero.testVersion # 各语言通用词
+    - desktopHero.channels.beta # 各语言通用词
+    - desktopHero.channels.stable # 法语同形词
+  desktop.yml:
+    - desktop.systemRequirements.windows # 品牌名
+    - desktop.systemRequirements.macos # 品牌名
+    - desktop.systemRequirements.linux # 品牌名
+    - desktop.installation.step1.number # 数字
+    - desktop.installation.step2.number # 数字
+    - desktop.installation.step3.number # 数字
+    - desktop.installation.step4.number # 数字
+    - desktop.faq.q6.command # 命令行
+    - desktop.title # 德语通用借词
+    - desktop.faq.title # 通用缩写FAQ
+  home.yml:
+    - homepageVideos.hero.windowsStoreLabel # 品牌名
+    - features.smart.workflow.spec.label # OpenSpec术语
+    - features.convenient.agentMatrix.agents.claude.name # 品牌名
+    - features.convenient.agentMatrix.agents.codex.name # 品牌名
+    - features.convenient.agentMatrix.agents.router.name # 品牌名
+    - features.convenient.cliBay.chain.agent # 术语Agent
+    - features.interesting.worlds.labels.agent # 术语Agent
+    - features.interesting.worlds.items.agents.agent # 术语Agent
+    - features.interesting.agents.items.strategist.name # 示例角色名
+    - features.interesting.agents.items.runner.name # 示例角色名
+    - features.interesting.agents.items.artist.name # 示例角色名
+    - pricing.editions.desktop.title # 版本名
+    - pricing.editions.microsoftStore.title # 品牌名
+    - pricing.rows.vault # 产品功能名
+    - hero.valueCards.smart.title # 德语通用借词
+    - features.smart.title # 德语通用借词
+    - features.smart.workflow.review.label # 德语通用借词
+    - features.smart.workflow.design.label # 德葡通用借词
+    - features.interesting.worlds.items.cattleRanching.group # 德法通用词
+    - features.interesting.worlds.items.imperialCourt.agent # 德语同形词
+    - features.interesting.worlds.items.alienLaboratory.agent # 科幻角色称谓
+    - hero.redefine # 仅标点
+    - features.smart.workflow.archive.label # 法语同形词
+    - features.interesting.worlds.items.animeAcademy.agent # 法语同形词
+    - workflowSteps.steps.archive.label # 法语同形词
 doctor:
   excludedDirectories:
     - .astro
