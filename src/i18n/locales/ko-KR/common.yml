@@ -1,68 +1,68 @@
 navbar:
-  home: Home
-  explore: Explore
-  docs: Docs
-  blog: Blog
-  about: About
-  desktop: Desktop App
-  support: Get Support
-  mobileOpenMenu: Open menu
-  mobileCloseMenu: Close menu
-  mobileNav: Mobile site navigation
+  home: 홈
+  explore: 둘러보기
+  docs: 문서
+  blog: 블로그
+  about: 소개
+  desktop: 데스크톱 앱
+  support: 기술 지원 받기
+  mobileOpenMenu: 메뉴 열기
+  mobileCloseMenu: 메뉴 닫기
+  mobileNav: 모바일 사이트 탐색
 themeToggle:
-  theme: Theme
-  darkMode: Switch to dark mode
-  lightMode: Switch to light mode
-  lunarNewYearMode: Switch to Lunar New Year theme
+  theme: 테마
+  darkMode: 다크 모드로 전환
+  lightMode: 라이트 모드로 전환
+  lunarNewYearMode: 음력 설 테마로 전환
 languageSwitcher:
-  label: Language
-  dialogTitle: Select language
-  currentLocaleLabel: Current language
-  close: Close language chooser
-  selectedState: Current
+  label: 언어
+  dialogTitle: 언어 선택
+  currentLocaleLabel: 현재 언어
+  close: 언어 선택기 닫기
+  selectedState: 현재
   switchToChinese: 切换到中文
   switchToEnglish: Switch to English
 videoPlayer:
-  play: Play
-  pause: Pause
-  fullscreen: Fullscreen
+  play: 재생
+  pause: 일시정지
+  fullscreen: 전체 화면
 socialProof:
   highlights:
-    multiAgent: Multi-Agent Parallel
-    multiAgentDesc: Claude Code, Codex, and others can drive multiple instances at once
-    privacy: Privacy First
-    privacyDesc: Local deployment, no code upload
-    openspec: OpenSpec Orchestration
-    openspecDesc: Standardized proposal, execution, and archive flow
-    heroScenarios: Scenario Workflow
-    heroScenariosDesc: Scenarios, captains, and battle reports close the loop
+    multiAgent: 멀티 Agent 병렬
+    multiAgentDesc: Claude Code, Codex 등이 여러 인스턴스를 동시에 구동할 수 있습니다
+    privacy: 개인정보 우선
+    privacyDesc: 로컬 배포, 코드 업로드 없음
+    openspec: OpenSpec 오케스트레이션
+    openspecDesc: 표준화된 제안, 실행, 아카이브 흐름
+    heroScenarios: 시나리오 워크플로
+    heroScenariosDesc: 시나리오, 팀장, 전투 보고서가 하나의 순환을 완성합니다
   badges:
     claude: Claude AI
-    claudeDesc: Powered by
-    opensource: Open Source
+    claudeDesc: 기술 기반
+    opensource: 오픈소스
     opensourceDesc: GitHub
-    ssl: SSL Secure
-    sslDesc: Secure Encryption
+    ssl: SSL 보안
+    sslDesc: 보안 암호화
 installCTA:
-  button: Install HagiCode
+  button: HagiCode 설치
 activityMetrics:
-  title: People Are Using It
-  description: Community keeps growing, thanks to every contributor
+  title: 모두가 사용하고 있어요
+  description: 커뮤니티는 계속 성장하고 있습니다. 모든 기여자께 감사드립니다
   dockerHub: Docker Hub
-  pullCount: Pull Count
-  activeUsers: Active Users
-  activeSessions: Active Sessions
-  recentDays: Last 3 days
+  pullCount: Pull 횟수
+  activeUsers: 활성 사용자
+  activeSessions: 활성 세션
+  recentDays: 최근 3일
   emptyState:
-    title: Data Coming Soon
-    description: Activity data will be displayed here when available. Stay tuned for community growth!
-  imageError: Image failed to load
+    title: 데이터 준비 중
+    description: 활동 데이터가 준비되면 여기에 표시됩니다. 커뮤니티의 성장을 기대해 주세요!
+  imageError: 이미지를 불러오지 못했습니다
   starHistory:
-    title: GitHub Star History
-    value: Live
-    description: Real-time community momentum
-    alt: Star history chart for the HagiCode site repository
-    cta: View full chart
+    title: GitHub Star 기록
+    value: 실시간
+    description: 실시간 커뮤니티 관심도
+    alt: HagiCode site 저장소의 Star 기록 차트
+    cta: 전체 차트 보기
 showcase:
   title: "HagiCode가 일하는 모습"
   description: "제품의 열 가지 영역을 영어 다크 인터페이스와 다섯 가지 다크 테마로 보여 드립니다. 세션 보드, 제안, 에이전트, 스킬, Vault, 사용량, 업적, Git, 예약 계획입니다."
@@ -122,19 +122,19 @@ showcase:
       description: "제안과 HagiTask를 달력에서 시작합니다. 야간 점검, 주간 초안, 일회성 릴리스 준비에 적합합니다."
       alt: "야간, 주간, 일회성 계획이 있는 HagiCode 10월 예약 계획 달력"
 installOptions:
-  sectionTitle: Choose Your Installation Method
-  sectionDescription: Choose the most suitable installation method based on your usage scenario
+  sectionTitle: 설치 방법을 선택하세요
+  sectionDescription: 사용 시나리오에 가장 알맞은 설치 방법을 선택하세요
   desktop:
-    title: Desktop App
-    description: Runs locally on your computer, lightweight and convenient, ready to use out of the box
+    title: 데스크톱 앱
+    description: 내 컴퓨터에서 로컬로 실행되며 가볍고 편리해 바로 사용할 수 있습니다
     features:
-      - Local execution, complete data privacy
-      - Supports Windows, macOS, and Linux
-      - No server configuration needed
-      - Auto updates, stay with latest version
-      - Suitable for individual developers
-    ctaText: Download Desktop App
-  badge: Recommended
+      - 로컬 실행, 데이터 완전 비공개
+      - Windows, macOS, Linux 지원
+      - 서버 설정이 필요 없음
+      - 자동 업데이트로 항상 최신 버전 유지
+      - 개인 개발자에게 적합
+    ctaText: 데스크톱 앱 다운로드
+  badge: 추천
 desktopHero:
   loading: 버전 정보를 불러오는 중입니다...
   error:
@@ -189,18 +189,18 @@ desktopHero:
     source: 소스 코드
     other: 기타
 promote:
-  badgeFallback: Promoted
-  closeLabel: Dismiss promotion
-  ariaLabel: Promotion
+  badgeFallback: 추천
+  closeLabel: 프로모션 닫기
+  ariaLabel: 프로모션
 pageMeta:
   home:
-    title: HagiCode - Smart · Efficient · Interesting AI Coding Assistant
-    description: Rich, convenient UI interactions make planning, agent execution, and project work approachable and easy to navigate, creating an engaging development experience.
+    title: HagiCode - 스마트 · 효율적 · 재미있는 AI 코딩 도우미
+    description: 풍부하고 편리한 UI 상호작용으로 계획, Agent 실행, 프로젝트 작업을 쉽게 시작하고 따라갈 수 있어 몰입감 있는 개발 경험을 만듭니다.
   desktop:
-    title: HagiCode Desktop - Download
-    description: Download HagiCode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
-    runtimeFallbackLabel: Fallback
-    runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
+    title: HagiCode Desktop - 다운로드
+    description: 로컬에서 실행되는 AI 코딩 도우미 HagiCode Desktop을 다운로드하세요. Windows, macOS, Linux를 지원하며 개인정보 보호와 빠른 응답을 제공합니다.
+    runtimeFallbackLabel: 대체 안내
+    runtimeFallbackCopy: "이 페이지에서 패키지를 불러오지 못하면 공식 Index Desktop 버전 기록 페이지로 이동합니다:"
 commonActions:
   retry: 다시 시도
   unavailable: 제공되지 않음

@@ -40,7 +40,7 @@ hero:
     desktopApp: 立即安装桌面应用
     learnMore: 了解更多
   techStack:
-    poweredBy: Powered by
+    poweredBy: 技术驱动
   qqGroup:
     title: 加入技术支持群组
     description: HagiCode 技术支持 QQ 群
@@ -268,7 +268,7 @@ pricing:
     pricing: 定价
     allFreeFeaturesIncluded: 全部免费特性
     vault: Vault
-    skills: Skills
+    skills: 技能
     proposalWorkflow: 提案流程
     localAchievements: 本地成就
     allAgentCliIntegrations: 全部 Agent CLI 对接支持

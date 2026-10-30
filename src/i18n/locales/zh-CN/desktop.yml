@@ -31,7 +31,7 @@ desktop:
     memory: 内存
     diskSpace: 磁盘空间
     network: 网络
-    windowsOs: Windows 10/11 (64-bit)
+    windowsOs: Windows 10/11 (64 位)
     macosOs: macOS 12+ (Monterey 或更高版本)
     linuxOs: Ubuntu 20.04+ / Debian 11+ / 其他主流发行版
     windowsProcessor: Intel Core i3 或同等性能处理器

@@ -38,10 +38,10 @@ socialProof:
     heroScenariosDesc: 场景、队长编组与战报反馈形成闭环
   badges:
     claude: Claude AI
-    claudeDesc: Powered by
-    opensource: Open Source
+    claudeDesc: 技术驱动
+    opensource: 开源
     opensourceDesc: GitHub
-    ssl: SSL Secure
+    ssl: SSL 安全
     sslDesc: 安全加密
 installCTA:
   button: 安装 HagiCode
@@ -59,7 +59,7 @@ activityMetrics:
   imageError: 图片加载失败
   starHistory:
     title: GitHub Star 历史
-    value: Live
+    value: 实时
     description: 实时社区关注曲线
     alt: HagiCode site 仓库的 Star 历史图
     cta: 查看完整图表

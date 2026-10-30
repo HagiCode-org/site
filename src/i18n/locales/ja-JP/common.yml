@@ -1,6 +1,6 @@
 navbar:
   home: ホーム
-  explore: Explore
+  explore: 探索
   docs: ドキュメント
   blog: ブログ
   about: 概要
@@ -16,10 +16,10 @@ themeToggle:
   lunarNewYearMode: 旧正月テーマに切り替え
 languageSwitcher:
   label: 言語
-  dialogTitle: Select language
-  currentLocaleLabel: Current language
-  close: Close language chooser
-  selectedState: Current
+  dialogTitle: 言語を選択
+  currentLocaleLabel: 現在の言語
+  close: 言語選択を閉じる
+  selectedState: 現在
   switchToChinese: 切换到中文
   switchToEnglish: 英語に切り替え
 videoPlayer:
@@ -174,14 +174,14 @@ desktopHero:
     description: Microsoft Store から購読して、常に最新バージョンを保てます。
     ariaLabel: Microsoft Store で HagiCode を開く
   downloadActions:
-    torrent: Torrent
+    torrent: トレント
   assetTypes:
     windowsSetup: インストーラー
     windowsPortable: ポータブル版
     windowsMsix: MSIX
     windowsStore: Microsoft Store
     macosApple: Apple Silicon
-    macosIntel: Intel
+    macosIntel: Intel 版
     linuxAppImage: AppImage (x64)
     linuxArm64AppImage: AppImage (ARM64)
     linuxTarball: 圧縮パッケージ (x64)

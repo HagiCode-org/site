@@ -31,7 +31,7 @@ desktop:
     memory: Mémoire
     diskSpace: Espace disque
     network: Réseau
-    windowsOs: Windows 10/11 (64-bit)
+    windowsOs: Windows 10/11 (64 bits)
     macosOs: macOS 12+ (Monterey ou version ultérieure)
     linuxOs: Ubuntu 20.04+ / Debian 11+ / autres distributions courantes
     windowsProcessor: Intel Core i3 ou processeur équivalent

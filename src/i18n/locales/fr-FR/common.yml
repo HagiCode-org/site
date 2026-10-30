@@ -1,68 +1,68 @@
 navbar:
-  home: Home
-  explore: Explore
-  docs: Docs
+  home: Accueil
+  explore: Explorer
+  docs: Documentation
   blog: Blog
-  about: About
-  desktop: Desktop App
-  support: Get Support
-  mobileOpenMenu: Open menu
-  mobileCloseMenu: Close menu
-  mobileNav: Mobile site navigation
+  about: À propos
+  desktop: Application Desktop
+  support: Obtenir de l'aide
+  mobileOpenMenu: Ouvrir le menu
+  mobileCloseMenu: Fermer le menu
+  mobileNav: Navigation mobile du site
 themeToggle:
-  theme: Theme
-  darkMode: Switch to dark mode
-  lightMode: Switch to light mode
-  lunarNewYearMode: Switch to Lunar New Year theme
+  theme: Thème
+  darkMode: Passer en mode sombre
+  lightMode: Passer en mode clair
+  lunarNewYearMode: Passer au thème du Nouvel An lunaire
 languageSwitcher:
-  label: Language
-  dialogTitle: Select language
-  currentLocaleLabel: Current language
-  close: Close language chooser
-  selectedState: Current
+  label: Langue
+  dialogTitle: Choisir la langue
+  currentLocaleLabel: Langue actuelle
+  close: Fermer le sélecteur de langue
+  selectedState: Actuel
   switchToChinese: 切换到中文
   switchToEnglish: Switch to English
 videoPlayer:
-  play: Play
+  play: Lire
   pause: Pause
-  fullscreen: Fullscreen
+  fullscreen: Plein écran
 socialProof:
   highlights:
-    multiAgent: Multi-Agent Parallel
-    multiAgentDesc: Claude Code, Codex, and others can drive multiple instances at once
-    privacy: Privacy First
-    privacyDesc: Local deployment, no code upload
-    openspec: OpenSpec Orchestration
-    openspecDesc: Standardized proposal, execution, and archive flow
-    heroScenarios: Scenario Workflow
-    heroScenariosDesc: Scenarios, captains, and battle reports close the loop
+    multiAgent: Multi-Agent en parallèle
+    multiAgentDesc: Claude Code, Codex et d'autres peuvent piloter plusieurs instances en même temps
+    privacy: Confidentialité d'abord
+    privacyDesc: Déploiement local, aucun code téléversé
+    openspec: Orchestration OpenSpec
+    openspecDesc: Flux standardisé de proposition, d'exécution et d'archivage
+    heroScenarios: Workflow par scénarios
+    heroScenariosDesc: Scénarios, capitaines et rapports de bataille referment la boucle
   badges:
     claude: Claude AI
-    claudeDesc: Powered by
+    claudeDesc: Propulsé par
     opensource: Open Source
     opensourceDesc: GitHub
-    ssl: SSL Secure
-    sslDesc: Secure Encryption
+    ssl: SSL sécurisé
+    sslDesc: Chiffrement sécurisé
 installCTA:
-  button: Install HagiCode
+  button: Installer HagiCode
 activityMetrics:
-  title: People Are Using It
-  description: Community keeps growing, thanks to every contributor
+  title: Ils l'utilisent déjà
+  description: La communauté ne cesse de grandir, merci à chaque contributeur
   dockerHub: Docker Hub
-  pullCount: Pull Count
-  activeUsers: Active Users
-  activeSessions: Active Sessions
-  recentDays: Last 3 days
+  pullCount: Nombre de pulls
+  activeUsers: Utilisateurs actifs
+  activeSessions: Sessions actives
+  recentDays: 3 derniers jours
   emptyState:
-    title: Data Coming Soon
-    description: Activity data will be displayed here when available. Stay tuned for community growth!
-  imageError: Image failed to load
+    title: Données bientôt disponibles
+    description: Les données d'activité s'afficheront ici dès qu'elles seront disponibles. Suivez la croissance de la communauté !
+  imageError: Échec du chargement de l'image
   starHistory:
-    title: GitHub Star History
-    value: Live
-    description: Real-time community momentum
-    alt: Star history chart for the HagiCode site repository
-    cta: View full chart
+    title: Historique des étoiles GitHub
+    value: En direct
+    description: L'élan de la communauté en temps réel
+    alt: Graphique de l'historique des étoiles du dépôt du site HagiCode
+    cta: Voir le graphique complet
 showcase:
   title: "HagiCode au travail"
   description: "Dix zones du produit, présentées dans l'interface sombre en anglais et cinq thèmes sombres : tableau de sessions, propositions, agents, compétences, vaults, consommation, succès, Git et plans planifiés."
@@ -122,19 +122,19 @@ showcase:
       description: "Lancez propositions et HagiTasks depuis un calendrier : audits de nuit, brouillons hebdomadaires, préparation de version ponctuelle."
       alt: "Calendrier des plans planifiés de HagiCode en octobre avec plans nocturnes, hebdomadaires et ponctuels"
 installOptions:
-  sectionTitle: Choose Your Installation Method
-  sectionDescription: Choose the most suitable installation method based on your usage scenario
+  sectionTitle: Choisissez votre méthode d'installation
+  sectionDescription: Choisissez la méthode d'installation la mieux adaptée à votre scénario d'utilisation
   desktop:
-    title: Desktop App
-    description: Runs locally on your computer, lightweight and convenient, ready to use out of the box
+    title: Application Desktop
+    description: S'exécute en local sur votre ordinateur, léger et pratique, prêt à l'emploi
     features:
-      - Local execution, complete data privacy
-      - Supports Windows, macOS, and Linux
-      - No server configuration needed
-      - Auto updates, stay with latest version
-      - Suitable for individual developers
-    ctaText: Download Desktop App
-  badge: Recommended
+      - Exécution locale, confidentialité totale des données
+      - Compatible avec Windows, macOS et Linux
+      - Aucune configuration de serveur nécessaire
+      - Mises à jour automatiques, toujours la dernière version
+      - Adapté aux développeurs individuels
+    ctaText: Télécharger l'application Desktop
+  badge: Recommandé
 desktopHero:
   loading: Chargement des informations de version...
   error:
@@ -189,18 +189,18 @@ desktopHero:
     source: Code source
     other: Autre
 promote:
-  badgeFallback: Promoted
-  closeLabel: Dismiss promotion
-  ariaLabel: Promotion
+  badgeFallback: À l'affiche
+  closeLabel: Fermer la promotion
+  ariaLabel: Annonce promotionnelle
 pageMeta:
   home:
-    title: HagiCode - Smart · Efficient · Interesting AI Coding Assistant
-    description: Rich, convenient UI interactions make planning, agent execution, and project work approachable and easy to navigate, creating an engaging development experience.
+    title: HagiCode - Assistant de code IA intelligent · efficace · intéressant
+    description: Des interactions d'interface riches et pratiques rendent la planification, l'exécution des agents et le travail sur les projets accessibles et faciles à suivre, pour une expérience de développement captivante.
   desktop:
-    title: HagiCode Desktop - Download
-    description: Download HagiCode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
-    runtimeFallbackLabel: Fallback
-    runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
+    title: HagiCode Desktop - Téléchargement
+    description: Téléchargez HagiCode Desktop, l'assistant de code IA localisé. Compatible avec Windows, macOS et Linux, avec protection de la confidentialité et réponse rapide.
+    runtimeFallbackLabel: Repli
+    runtimeFallbackCopy: "Si le chargement des paquets échoue ici, cette page redirige vers l'historique de versions canonique d'Index Desktop :"
 commonActions:
   retry: Réessayer
   unavailable: Indisponible

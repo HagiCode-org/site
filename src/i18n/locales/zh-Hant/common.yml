@@ -1,21 +1,21 @@
 navbar:
-  home: Home
-  explore: Explore
-  docs: Docs
-  blog: Blog
-  about: About
-  desktop: Desktop App
-  support: Get Support
-  mobileOpenMenu: Open menu
-  mobileCloseMenu: Close menu
-  mobileNav: Mobile site navigation
+  home: 首頁
+  explore: 探索
+  docs: 文件
+  blog: 部落格
+  about: 關於
+  desktop: 桌面應用
+  support: 取得技術支援
+  mobileOpenMenu: 開啟選單
+  mobileCloseMenu: 關閉選單
+  mobileNav: 行動版網站導覽
 themeToggle:
-  theme: Theme
-  darkMode: Switch to dark mode
-  lightMode: Switch to light mode
-  lunarNewYearMode: Switch to Lunar New Year theme
+  theme: 主題
+  darkMode: 切換到深色模式
+  lightMode: 切換到淺色模式
+  lunarNewYearMode: 切換到農曆新年主題
 languageSwitcher:
-  label: Language
+  label: 語言
   dialogTitle: 選擇語言
   currentLocaleLabel: 目前語言
   close: 關閉語言選擇器
@@ -23,46 +23,46 @@ languageSwitcher:
   switchToChinese: 切换到中文
   switchToEnglish: Switch to English
 videoPlayer:
-  play: Play
-  pause: Pause
-  fullscreen: Fullscreen
+  play: 播放
+  pause: 暫停
+  fullscreen: 全螢幕
 socialProof:
   highlights:
-    multiAgent: Multi-Agent Parallel
-    multiAgentDesc: Claude Code, Codex, and others can drive multiple instances at once
-    privacy: Privacy First
-    privacyDesc: Local deployment, no code upload
-    openspec: OpenSpec Orchestration
-    openspecDesc: Standardized proposal, execution, and archive flow
-    heroScenarios: Scenario Workflow
-    heroScenariosDesc: Scenarios, captains, and battle reports close the loop
+    multiAgent: 多 Agent 並行
+    multiAgentDesc: Claude Code、Codex 等可同時驅動多個實例
+    privacy: 隱私優先
+    privacyDesc: 本機部署，程式碼不上傳
+    openspec: OpenSpec 編排
+    openspecDesc: 標準化的提案、執行與歸檔流程
+    heroScenarios: 場景工作流程
+    heroScenariosDesc: 場景、隊長編組與戰報回饋形成閉環
   badges:
     claude: Claude AI
-    claudeDesc: Powered by
-    opensource: Open Source
+    claudeDesc: 技術驅動
+    opensource: 開源
     opensourceDesc: GitHub
-    ssl: SSL Secure
-    sslDesc: Secure Encryption
+    ssl: SSL 安全
+    sslDesc: 安全加密
 installCTA:
-  button: Install HagiCode
+  button: 安裝 HagiCode
 activityMetrics:
-  title: People Are Using It
-  description: Community keeps growing, thanks to every contributor
+  title: 大家都在用
+  description: 社群持續成長，感謝每一位貢獻者
   dockerHub: Docker Hub
-  pullCount: Pull Count
-  activeUsers: Active Users
-  activeSessions: Active Sessions
-  recentDays: Last 3 days
+  pullCount: 拉取次數
+  activeUsers: 活躍使用者
+  activeSessions: 活躍會話
+  recentDays: 近三天
   emptyState:
-    title: Data Coming Soon
-    description: Activity data will be displayed here when available. Stay tuned for community growth!
-  imageError: Image failed to load
+    title: 資料即將上線
+    description: 活動資料可用後將顯示在這裡，敬請期待社群的成長！
+  imageError: 圖片載入失敗
   starHistory:
-    title: GitHub Star History
-    value: Live
-    description: Real-time community momentum
-    alt: Star history chart for the HagiCode site repository
-    cta: View full chart
+    title: GitHub Star 歷史
+    value: 即時
+    description: 即時的社群關注曲線
+    alt: HagiCode site 儲存庫的 Star 歷史圖
+    cta: 查看完整圖表
 showcase:
   title: "看看 HagiCode 如何運作"
   description: "十個產品區域，全部採用英文暗色介面，涵蓋五套暗色主題：工作階段看板、提案、Agent、技能、Vault、用量、成就、Git 與排程計畫。"
@@ -122,19 +122,19 @@ showcase:
       description: "用日曆安排提案與 HagiTask：夜間稽核、每週草稿、一次性的發布準備。"
       alt: "HagiCode 排程計畫十月日曆，包含每晚、每週與一次性計畫"
 installOptions:
-  sectionTitle: Choose Your Installation Method
-  sectionDescription: Choose the most suitable installation method based on your usage scenario
+  sectionTitle: 選擇您的安裝方式
+  sectionDescription: 依據您的使用情境，選擇最合適的安裝方式
   desktop:
-    title: Desktop App
-    description: Runs locally on your computer, lightweight and convenient, ready to use out of the box
+    title: 桌面應用
+    description: 在本機電腦上執行，輕巧便利，開箱即用
     features:
-      - Local execution, complete data privacy
-      - Supports Windows, macOS, and Linux
-      - No server configuration needed
-      - Auto updates, stay with latest version
-      - Suitable for individual developers
-    ctaText: Download Desktop App
-  badge: Recommended
+      - 本機執行，資料完全私有
+      - 支援 Windows、macOS、Linux
+      - 無需設定伺服器
+      - 自動更新，保持最新版本
+      - 適合個人開發者
+    ctaText: 下載桌面應用
+  badge: 推薦
 desktopHero:
   loading: 正在載入版本資訊...
   error:
@@ -189,18 +189,18 @@ desktopHero:
     source: 原始碼
     other: 其他
 promote:
-  badgeFallback: Promoted
-  closeLabel: Dismiss promotion
-  ariaLabel: Promotion
+  badgeFallback: 推薦
+  closeLabel: 關閉推廣資訊
+  ariaLabel: 推廣資訊
 pageMeta:
   home:
-    title: HagiCode - Smart · Efficient · Interesting AI Coding Assistant
-    description: Rich, convenient UI interactions make planning, agent execution, and project work approachable and easy to navigate, creating an engaging development experience.
+    title: HagiCode - 智慧 · 高效 · 有趣的 AI 程式設計助理
+    description: 豐富、便利的介面互動，讓規劃、Agent 執行與專案工作更容易上手、好跟進，帶來更投入的開發體驗。
   desktop:
-    title: HagiCode Desktop - Download
-    description: Download HagiCode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
-    runtimeFallbackLabel: Fallback
-    runtimeFallbackCopy: 'If package loading fails here, this page redirects to the canonical Index Desktop version history:'
+    title: HagiCode Desktop - 下載
+    description: 下載 HagiCode Desktop，本地化的 AI 程式碼助理。支援 Windows、macOS 和 Linux，保護隱私、回應迅速。
+    runtimeFallbackLabel: 備援說明
+    runtimeFallbackCopy: 若此頁載入安裝套件失敗，將自動跳轉到 canonical 的 Index Desktop 版本歷史頁：
 commonActions:
   retry: 重試
   unavailable: 暫無

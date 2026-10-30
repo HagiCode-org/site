@@ -31,8 +31,8 @@ desktop:
     memory: メモリ
     diskSpace: ディスク容量
     network: ネットワーク
-    windowsOs: Windows 10/11 (64-bit)
-    macosOs: macOS 12+ (Monterey or higher)
+    windowsOs: Windows 10/11 (64 ビット)
+    macosOs: macOS 12+ (Monterey 以降)
     linuxOs: Ubuntu 20.04+ / Debian 11+ / その他主要ディストリビューション
     windowsProcessor: Intel Core i3 以上または同等 CPU
     macosProcessor: Apple Silicon (M1/M2/M3) または Intel Core i3 以上

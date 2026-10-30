@@ -31,7 +31,7 @@ desktop:
     memory: 記憶體
     diskSpace: 磁碟空間
     network: 網路
-    windowsOs: Windows 10/11 (64-bit)
+    windowsOs: Windows 10/11 (64 位元)
     macosOs: macOS 12+ (Monterey 或以上版本)
     linuxOs: Ubuntu 20.04+ / Debian 11+ / 其他主流發行版
     windowsProcessor: Intel Core i3 或同等效能處理器

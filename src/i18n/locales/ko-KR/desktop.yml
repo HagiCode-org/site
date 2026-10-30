@@ -31,7 +31,7 @@ desktop:
     memory: 메모리
     diskSpace: 디스크 공간
     network: 네트워크
-    windowsOs: Windows 10/11 (64-bit)
+    windowsOs: Windows 10/11 (64비트)
     macosOs: macOS 12+ (Monterey 이상)
     linuxOs: Ubuntu 20.04+ / Debian 11+ / 기타 주요 배포판
     windowsProcessor: Intel Core i3 또는 동급 성능의 프로세서

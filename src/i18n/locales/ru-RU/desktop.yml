@@ -31,7 +31,7 @@ desktop:
     memory: Память
     diskSpace: Место на диске
     network: Сеть
-    windowsOs: Windows 10/11 (64-bit)
+    windowsOs: Windows 10/11 (64-разрядная)
     macosOs: macOS 12+ (Monterey или новее)
     linuxOs: Ubuntu 20.04+ / Debian 11+ / другие популярные дистрибутивы
     windowsProcessor: Intel Core i3 или эквивалентный процессор
