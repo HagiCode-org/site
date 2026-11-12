@@ -2,6 +2,8 @@
 # Replaces the npm `overrides` field.
 overrides:
   vite: ^8.0.1
+  # dompurify 3.4.4-3.4.16 is critical in `pnpm audit`; comes in via mermaid.
+  dompurify: ^3.4.17
 
 # Dependency lifecycle scripts run only for approved packages. Reviewed from the old lockfile's
 # `hasInstallScript` entries:
