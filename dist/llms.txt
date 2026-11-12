@@ -1,0 +1,37 @@
+# HagiCode
+
+> HagiCode is a proposal-driven AI coding workbench that turns a request into a reviewable proposal, runs it through agent CLIs such as Claude Code, Codex and GitHub Copilot, and keeps the outcome as team knowledge.
+
+## Overview
+
+- [HagiCode - Proposal-Driven AI Coding Workspace](https://www.hagicode.com/en-US/): Turn AI coding from chat into reviewable proposals. Align on a plan, execute with Claude Code, Codex, GitHub Copilot and more, then archive what you learned as team knowledge. Get it on Microsoft Store.
+- [About the HagiCode Team](https://www.hagicode.com/en-US/about/): Meet the HagiCode team and browse official stores, group channels, content platforms, and scannable cards from the latest bundled about snapshot.
+- [Claude Code vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/claude-vs-hagicode/): Claude Code is Anthropic's terminal coding agent; HagiCode is a workbench that runs it. Compare install, plans, features and when each fits.
+- [CodeBuddy vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/codebuddy-vs-hagicode/): CodeBuddy Code is Tencent's terminal AI coding agent; HagiCode is a workbench that runs it. Compare install, pricing, features and fit.
+- [Codex vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/codex-vs-hagicode/): Codex is OpenAI's terminal coding agent; HagiCode is a workbench that runs it. Compare install, ChatGPT plans, features and when each fits.
+- [GitHub Copilot vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/copilot-vs-hagicode/): GitHub Copilot is a terminal agent; HagiCode is a workbench that runs it. Compare features, pricing and fit, and see when to use Copilot alone.
+- [DeepAgents vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/deepagents-vs-hagicode/): DeepAgents is LangChain's open-source agent harness and CLI (Deep Agents Code); HagiCode runs it in a workbench. Compare features, pricing and fit.
+- [HagiCode Desktop - Download](https://www.hagicode.com/en-US/desktop/): Download HagiCode Desktop, a localized AI code assistant. Supports Windows, macOS, and Linux. Privacy protection, fast response.
+- [DeepSeek Harness (dsh) vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/dsh-vs-hagicode/): DeepSeek Harness (dsh) is DeepSeek's open-source agent harness; HagiCode runs it in a workbench. Compare features, pricing, maturity and fit.
+- [Gemini vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/gemini-vs-hagicode/): Gemini is Google's open-source terminal agent; free and AI Pro access moved to Antigravity in June 2026. Compare features, pricing and fit.
+- [Hermes Agent vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/hermes-vs-hagicode/): Hermes Agent is Nous Research's open-source, self-improving agent; HagiCode runs it as a coding executor. Compare features, pricing, setup and fit.
+- [Junie vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/junie-vs-hagicode/): Junie is JetBrains' terminal coding agent; HagiCode runs it inside a workbench. Compare features, pricing, setup and when each one fits.
+- [Kimi vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/kimi-vs-hagicode/): Kimi is now Kimi Code, Moonshot AI's terminal coding agent; HagiCode is a workbench that runs it. Compare features, pricing and when each fits.
+- [Kiro vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/kiro-vs-hagicode/): Kiro is Kiro's terminal agent; HagiCode is a workbench that runs it. Compare features, credit pricing and fit, and when Kiro alone is enough.
+- [OMP vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/omp-vs-hagicode/): omp (oh-my-pi) is a free, MIT-licensed terminal coding agent; HagiCode is a workbench that runs it. Compare features, pricing and fit.
+- [OpenCode vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/opencode-vs-hagicode/): OpenCode is a free open-source coding agent for terminal, desktop and IDE; HagiCode is a workbench that runs it. Compare features, pricing and fit.
+- [Pi vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/pi-vs-hagicode/): Pi is a free, MIT-licensed minimal coding agent you extend yourself; HagiCode is a workbench that runs it. Compare features, pricing and when each fits.
+- [Qoder vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/qoder-vs-hagicode/): Qoder is a terminal AI coding agent; HagiCode is a workbench that runs it. Install steps, pricing, features and when to use each, compared.
+- [Reasonix vs HagiCode: Features and Comparison](https://www.hagicode.com/en-US/reasonix-vs-hagicode/): Reasonix is a free, MIT-licensed coding agent with a DeepSeek preset; HagiCode is a workbench that runs it. Compare features, pricing, setup and fit.
+
+## Optional
+
+- [de-DE](https://www.hagicode.com/de-DE/)
+- [es-ES](https://www.hagicode.com/es-ES/)
+- [fr-FR](https://www.hagicode.com/fr-FR/)
+- [ja-JP](https://www.hagicode.com/ja-JP/)
+- [ko-KR](https://www.hagicode.com/ko-KR/)
+- [pt-BR](https://www.hagicode.com/pt-BR/)
+- [ru-RU](https://www.hagicode.com/ru-RU/)
+- [zh-CN](https://www.hagicode.com/zh-CN/)
+- [zh-Hant](https://www.hagicode.com/zh-Hant/)
