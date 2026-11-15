@@ -1,0 +1,5 @@
+# Project settings for node-dev-host. Read at the start of every build.
+# Multi-page site: unknown paths and locale folders must not fall back to index.html.
+version: 1
+build:
+  spa: false
