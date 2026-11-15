@@ -47,3 +47,6 @@ tsconfig.tsbuildinfo
 .imgbin-library/
 src/i18n/generated-locales/
 .impeccable/
+
+# Local deja session-rule export (auto-extracted from agent sessions; not committed)
+.deja/
