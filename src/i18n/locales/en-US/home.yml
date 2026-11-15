@@ -273,7 +273,6 @@ pricing:
     localAchievements: Local achievements
     allAgentCliIntegrations: All Agent CLI integrations
     speechRecognition: Speech recognition
-    omniRouteIntegration: OmniRoute integration
     githubIntegration: GitHub integration
     gitManagement: Git management
     maximumConcurrentProposals: Maximum concurrent proposals

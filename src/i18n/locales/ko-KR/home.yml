@@ -273,7 +273,6 @@ pricing:
     localAchievements: 지역 성과
     allAgentCliIntegrations: 모든 Agent CLI 연동
     speechRecognition: 음성 인식
-    omniRouteIntegration: OmniRoute 연동
     githubIntegration: GitHub 연동
     gitManagement: Git 관리
     maximumConcurrentProposals: 최대 동시 제안 수

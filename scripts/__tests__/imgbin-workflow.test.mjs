@@ -211,7 +211,7 @@ describe('site ImgBin workflow helpers', () => {
     expect(results[1].summaryLines).toContain('metadata analysis (Codex): failed (Codex unavailable)');
   });
 
-  it('loads site runtime env from .env files and applies the OmniRoute Codex defaults', async () => {
+  it('loads site runtime env from .env files and applies the Codex defaults', async () => {
     const tempDir = await createTempDir('site-imgbin-env-');
     await fs.writeFile(
       path.join(tempDir, '.env'),

@@ -273,7 +273,6 @@ pricing:
     localAchievements: 本地成就
     allAgentCliIntegrations: 全部 Agent CLI 整合支援
     speechRecognition: 語音辨識支援
-    omniRouteIntegration: OmniRoute 整合
     githubIntegration: GitHub 整合
     gitManagement: Git 管理
     maximumConcurrentProposals: 最大提案並行數

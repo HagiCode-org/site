@@ -410,7 +410,6 @@ export function getPricingContent(locale: LocaleInput): PricingContent {
     localAchievements: getHomeString(resolvedLocale, 'pricing.rows.localAchievements'),
     allAgentCliIntegrations: getHomeString(resolvedLocale, 'pricing.rows.allAgentCliIntegrations'),
     speechRecognition: getHomeString(resolvedLocale, 'pricing.rows.speechRecognition'),
-    omniRouteIntegration: getHomeString(resolvedLocale, 'pricing.rows.omniRouteIntegration'),
     githubIntegration: getHomeString(resolvedLocale, 'pricing.rows.githubIntegration'),
     gitManagement: getHomeString(resolvedLocale, 'pricing.rows.gitManagement'),
     maximumConcurrentProposals: getHomeString(resolvedLocale, 'pricing.rows.maximumConcurrentProposals'),
@@ -438,7 +437,6 @@ export function getPricingContent(locale: LocaleInput): PricingContent {
     { feature: pricingRows.localAchievements, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
     { feature: pricingRows.allAgentCliIntegrations, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
     { feature: pricingRows.speechRecognition, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
-    { feature: pricingRows.omniRouteIntegration, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
     { feature: pricingRows.githubIntegration, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
     { feature: pricingRows.gitManagement, desktop: { type: 'check' }, microsoftStore: { type: 'check' } },
     {
