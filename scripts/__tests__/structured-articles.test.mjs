@@ -191,12 +191,6 @@ describe('snapshot-backed article indexes', () => {
         href: '/zh-CN/pi-vs-hagicode/',
         localizedLocale: 'zh-CN',
       },
-      {
-        slug: 'reasonix-vs-hagicode',
-        agentName: 'Reasonix',
-        href: '/zh-CN/faq/',
-        localizedLocale: 'zh-CN',
-      },
     ]);
   });
 });
@@ -264,12 +258,12 @@ describe('comparison tables and FAQ', () => {
 describe('getRelatedComparisonItems', () => {
   it('lists the other comparison pages and skips the current one', async () => {
     const snapshotRoot = await createTempDir('site-articles-');
-    for (const slug of ['claude-vs-hagicode', 'codex-vs-hagicode', 'pi-vs-hagicode', 'reasonix-vs-hagicode']) {
+    for (const slug of ['claude-vs-hagicode', 'codex-vs-hagicode', 'pi-vs-hagicode']) {
       await writeSnapshot(snapshotRoot, 'en-US', slug, buildDetail({ slug, locale: 'en-US', title: `${slug.split('-')[0]} CLI vs HagiCode: Features` }));
     }
 
     const related = getRelatedComparisonItems('codex-vs-hagicode', 'en-US', 'vs-hagicode', { snapshotRoot });
-    expect(related.map((item) => item.slug)).toEqual(['claude-vs-hagicode', 'pi-vs-hagicode', 'reasonix-vs-hagicode']);
+    expect(related.map((item) => item.slug)).toEqual(['claude-vs-hagicode', 'pi-vs-hagicode']);
     expect(related[0].href).toBe('/en-US/claude-vs-hagicode/');
   });
 });

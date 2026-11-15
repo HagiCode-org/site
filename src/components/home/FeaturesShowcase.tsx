@@ -149,13 +149,6 @@ function SupportedCliIcon({ providerKey }: CliIconProps) {
           <path d="M15 8v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </svg>
       );
-    case 'ReasonixCli':
-      return (
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M7 17.5v-11h6a3.5 3.5 0 1 1 0 7H7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="m12.5 13.5 4.5 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        </svg>
-      );
     case 'DeepAgentsCli':
       return (
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -211,7 +204,6 @@ const CLI_PROVIDER_KEYS: Record<string, string> = {
   gemini: 'GeminiCli',
   pi: 'PiCli',
   omp: 'OmpCli',
-  reasonix: 'ReasonixCli',
   deepagents: 'DeepAgentsCli',
   codebuddy: 'CodebuddyCli',
   dsh: 'DshCli',

@@ -338,7 +338,6 @@ export function getStructuredArticleEntriesByCategory(category = 'vs-hagicode', 
 
 const EXTRA_AGENT_CHOICES = [
   { slug: 'pi-vs-hagicode', agentName: 'Pi' },
-  { slug: 'reasonix-vs-hagicode', agentName: 'Reasonix' },
 ];
 
 export function getHomepageAgentChooserItems(locale, category = 'vs-hagicode', options = {}) {
@@ -433,7 +432,6 @@ const CLI_PROFILE_ORDER = [
   'gemini',
   'pi',
   'omp',
-  'reasonix',
   'deepagents',
   'codebuddy',
   'dsh',
