@@ -10,10 +10,6 @@ This file records the screenshots copied from `repos/docs` and the Steam artwork
 - Theme: OpenSpec proposal-driven execution
 - Source: `repos/docs/src/content/docs/img/screenshots/shared/classic-proposal-view/original.png`
 
-## omniroute-routing.png
-- Theme: Mainstream Agent CLIs with OmniRoute routing
-- Source: `repos/docs/src/content/docs/img/screenshots/shared/omniroute-support/original.png`
-
 ## monospecs-multi-repo.png
 - Theme: MonoSpecs multi-repository coordination
 - Source: `repos/docs/src/content/docs/img/screenshots/monospecs/hover-project-show-repository-status/original.png`

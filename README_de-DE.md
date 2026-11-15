@@ -54,11 +54,9 @@ Bei nicht-trivialer Arbeit startet HagiCode mit einem Vorschlag, statt sofort Da
 
 ![HagiCode-Ansicht einer Vorschlagssitzung mit Workflow-Schritten, Ausführungsergebnissen und historischem Kontext.](./src/assets/img/readme-sync/open-spec-proposal-workflow.png)
 
-### 2. Gängige Agent-CLIs mit OmniRoute
+### 2. Gängige Agent-CLIs
 
-HagiCode unterstützt Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, Pi, DeepAgents und Codebuddy. OmniRoute trennt die CLI-Auswahl von Modell- und Abonnementebene, damit Teams Modelle und Endpunkte routen können, ohne alles hart an einen einzigen Standard-Stack zu binden.
-
-![OmniRoute-Einstellungsseite mit Routing-Konfiguration, Endpunktsteuerung und Laufzeitstatus.](./src/assets/img/readme-sync/omniroute-routing.png)
+HagiCode unterstützt Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, Pi, DeepAgents und Codebuddy. Teams können für jede Aufgabe die passende CLI wählen.
 
 ### 3. Ein vollständiger Entwicklungs-Workspace, nicht nur ein Chatbereich
 

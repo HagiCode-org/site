@@ -54,11 +54,9 @@ HagiCode создавался не как ещё одно чат-окно для
 
 ![Экран сессии предложения в HagiCode с шагами процесса, результатами выполнения и историческим контекстом.](./src/assets/img/readme-sync/open-spec-proposal-workflow.png)
 
-### 2. Популярные Agent CLI и OmniRoute
+### 2. Популярные Agent CLI
 
-HagiCode поддерживает Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, Pi, DeepAgents и Codebuddy. OmniRoute отделяет выбор CLI от уровня моделей и подписок, чтобы команды могли маршрутизировать модели и endpoints без жёсткой привязки ко всему одному стеку по умолчанию.
-
-![Страница настроек OmniRoute с конфигурацией маршрутизации, управлением endpoints и статусом выполнения.](./src/assets/img/readme-sync/omniroute-routing.png)
+HagiCode поддерживает Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, Pi, DeepAgents и Codebuddy. Команды могут выбрать подходящий CLI для каждой задачи.
 
 ### 3. Полноценное рабочее пространство разработки, а не только чат
 

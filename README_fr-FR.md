@@ -54,11 +54,9 @@ Pour les travaux non triviaux, HagiCode commence par une proposition au lieu de 
 
 ![Vue de session de proposition HagiCode montrant les étapes du flux, les résultats d'exécution et le contexte historique.](./src/assets/img/readme-sync/open-spec-proposal-workflow.png)
 
-### 2. CLI d'agents grand public avec OmniRoute
+### 2. CLI d'agents grand public
 
-HagiCode prend en charge Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, Pi, DeepAgents et Codebuddy. OmniRoute sépare le choix du CLI de la couche modèle et abonnement, afin que les équipes puissent router les modèles et les endpoints sans tout lier rigidement à une pile par défaut unique.
-
-![Page de paramètres OmniRoute montrant la configuration du routage, les contrôles d'endpoint et l'état d'exécution.](./src/assets/img/readme-sync/omniroute-routing.png)
+HagiCode prend en charge Codex, Claude Code, GitHub Copilot, OpenCode, Hermes, QoderCLI, Kiro, Kimi, Gemini, Pi, DeepAgents et Codebuddy. Les équipes peuvent choisir le CLI adapté à chaque tâche.
 
 ### 3. Un espace de développement complet, pas seulement un panneau de chat
 

@@ -20,7 +20,7 @@ style: product
 
 ## Product focus
 
-- Introduce HagiCode as the product shown on the official website: an AI coding tool, a gamified feedback system and a development workspace in one platform, with proposal-driven coding through OpenSpec, support for mainstream Agent CLIs routed through OmniRoute, multi-repository workspace tools (MonoSpecs, Skills, Vault, AI Compose Commit) and gamified feedback.
+- Introduce HagiCode as the product shown on the official website: an AI coding tool, a gamified feedback system and a development workspace in one platform, with proposal-driven coding through OpenSpec, support for mainstream Agent CLIs, multi-repository workspace tools (MonoSpecs, Skills, Vault, AI Compose Commit) and gamified feedback.
 - Address people evaluating or starting with HagiCode who arrive at the official website repository.
 - Lead with what HagiCode is and its core capabilities, then official entry points and downloads.
 

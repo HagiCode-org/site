@@ -54,11 +54,9 @@ HagiCode 並不是另一個只會聊天的程式碼對話框。它把 AI 帶進�
 
 ![HagiCode 提案工作階段檢視，展示工作流步驟、執行結果與歷史上下文。](./src/assets/img/readme-sync/open-spec-proposal-workflow.png)
 
-### 2. 主流 Agent CLI 與 OmniRoute
+### 2. 主流 Agent CLI
 
-HagiCode 支援 Codex、Claude Code、GitHub Copilot、OpenCode、Hermes、QoderCLI、Kiro、Kimi、Gemini、Pi、DeepAgents 和 Codebuddy。OmniRoute 把 CLI 的選擇與模型和訂閱層分開，讓團隊可以路由模型與端點，而不用把所有內容硬綁到單一預設堆疊上。
-
-![OmniRoute 設定頁面，展示路由設定、端點控制與執行狀態。](./src/assets/img/readme-sync/omniroute-routing.png)
+HagiCode 支援 Codex、Claude Code、GitHub Copilot、OpenCode、Hermes、QoderCLI、Kiro、Kimi、Gemini、Pi、DeepAgents 和 Codebuddy，團隊可以依任務選擇合適的 CLI。
 
 ### 3. 完整的開發工作台，而不只是聊天面板
 
