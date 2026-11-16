@@ -1,10 +1,13 @@
 ---
-import Analytics51LA from './51LAAnalytics.astro';
+import Analytics51LA from '@hagicode/hagilight-core/Analytics51LA';
 import Clarity from './Clarity.astro';
+
+// The hagilight component loads the 51LA SDK in production only and keeps its defaults (no screen recording).
+const laId = process.env.LI_51LA_ID || import.meta.env.VITE_51LA_ID || 'L6b88a5yK4h2Xnci';
 ---
 
 <Clarity />
-<Analytics51LA />
+<Analytics51LA siteId={laId} />
 
 <script>
   import { initializeWebsiteAnalytics } from '@/lib/analytics/tracker';

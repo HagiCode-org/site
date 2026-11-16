@@ -18,7 +18,8 @@ import {
   type TrackingEventContext,
 } from './provider-51la';
 
-export const WEBSITE_ANALYTICS_READY_EVENT = 'hagicode:analytics-ready';
+// The hagilight 51LA component loads the SDK without announcing it, so queued events flush once the page has loaded.
+export const WEBSITE_ANALYTICS_READY_EVENT = 'load';
 
 interface QueuedTrackingEvent {
   name: WebsiteTrackingEventName;
@@ -219,6 +220,7 @@ export function trackEvent(
   return getGlobalRuntime()?.trackEvent(eventName, context) ?? 'noop';
 }
 
+/** Test helper: simulates the readiness signal on a fake event target. Never call it on the real window. */
 export function notifyWebsiteAnalyticsReady(target = getBrowserWindow()) {
   target?.dispatchEvent?.(new Event(WEBSITE_ANALYTICS_READY_EVENT));
 }
