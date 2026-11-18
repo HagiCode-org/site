@@ -28,12 +28,11 @@ describe('PricingComparisonSection', () => {
     });
   }
 
-  it('renders the pricing comparison without Hagicode Plus or Microsoft Store labels', () => {
+  it('renders the Microsoft Store comparison without Hagicode Plus or Steam labels', () => {
     const content = getPricingContent('zh-CN');
     const markup = renderToStaticMarkup(<PricingComparisonSection content={content} />);
 
     expect(markup).not.toContain('href="https://store.steampowered.com');
-    expect(markup).not.toContain('Microsoft Store');
     expect(markup).not.toContain('Hagicode Plus');
     expect(markup).toContain('Microsoft Store');
     expect(markup).toContain('[1]');

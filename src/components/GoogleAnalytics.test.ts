@@ -58,7 +58,8 @@ describe('Website Google Analytics component', () => {
       path.resolve(srcDir, '../node_modules/@hagicode/hagilight-core/GoogleAnalytics.astro'),
     );
 
-    expect(core).toMatch(/import\.meta\.env\.PROD && \(/);
+    expect(core).toMatch(/import\.meta\.env\.PROD && consent && \(/);
+    expect(core).toMatch(/import\.meta\.env\.PROD && !consent && \(/);
     expect(core).toContain("<script async src={scriptUrl}></script>");
     expect(core.match(/installGaEventTracking\(\);/g)).toHaveLength(1);
   });

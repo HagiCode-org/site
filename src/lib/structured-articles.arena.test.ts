@@ -1,9 +1,22 @@
 import { describe, expect, it } from 'vitest';
 import { getAgentAccentIndex, getHomepageCompareArenaItems } from '@/lib/structured-articles.mjs';
 
+type ArenaRow = { id: string; label: string; agent: string; hagicode: string };
+type ArenaItem = {
+  slug: string;
+  href: string;
+  accentIndex: number;
+  summary: string;
+  rows: ArenaRow[];
+};
+
+function arenaItems(locale: string): ArenaItem[] {
+  return getHomepageCompareArenaItems(locale) as ArenaItem[];
+}
+
 describe('homepage compare arena data', () => {
   it('lists every comparison page once, in a stable order, linking to its own page', () => {
-    const items = getHomepageCompareArenaItems('en-US');
+    const items = arenaItems('en-US');
     const slugs = items.map((item) => item.slug);
 
     expect(new Set(slugs).size).toBe(slugs.length);
@@ -13,7 +26,7 @@ describe('homepage compare arena data', () => {
   });
 
   it('previews rows taken from the article comparison table, not written for the homepage', () => {
-    const claude = getHomepageCompareArenaItems('en-US').find((item) => item.slug === 'claude-vs-hagicode');
+    const claude = arenaItems('en-US').find((item) => item.slug === 'claude-vs-hagicode');
 
     expect(claude?.rows.map((row) => row.label)).toEqual([
       'What it is',
@@ -25,7 +38,7 @@ describe('homepage compare arena data', () => {
   });
 
   it('keeps an entry without a table as a summary-only preview', () => {
-    const items = getHomepageCompareArenaItems('ja-JP');
+    const items = arenaItems('ja-JP');
     const claude = items.find((item) => item.slug === 'claude-vs-hagicode');
 
     expect(claude?.rows).toEqual([]);

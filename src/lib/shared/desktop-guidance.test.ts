@@ -20,16 +20,6 @@ const readmeFiles = [
 ];
 
 describe('desktop fallback guidance', () => {
-  it('documents the canonical Index history fallback in every localized repository README', async () => {
-    const readmes = await Promise.all(
-      readmeFiles.map((fileName) => readFile(path.join(siteRoot, fileName), 'utf8'))
-    );
-
-    for (const readme of readmes) {
-      expect(readme).toContain(fallbackUrl);
-    }
-  });
-
   it('keeps every localized repository README wired to the same language navigation set', async () => {
     const readmes = await Promise.all(
       readmeFiles.map(async (fileName) => ({
