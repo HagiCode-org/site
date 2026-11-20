@@ -1,8 +1,8 @@
 hero:
   headline: "Tire a programação com IA do chat e leve para um fluxo de propostas revisável e reutilizável"
-  subheadline: "Toda mudança passa por Proposta → Execução → Arquivo: primeiro alinha-se o plano, depois mexe-se no código, e o aprendizado vira conhecimento da equipe. Compatível com Claude Code, Codex, GitHub Copilot e outras CLIs de agentes populares."
+  subheadline: "Toda mudança passa por Proposta → Execução → Arquivo: primeiro alinha-se o plano, depois mexe-se no código, e o aprendizado vira conhecimento da equipe."
   storeRecommended: "Recomendado"
-  storeNote: "Compra única · licença permanente · desbloqueia todos os recursos"
+  storeNote: Assine pelo Microsoft Store para continuar sempre na versão mais recente.
   tagline: Aumente a eficiência de desenvolvimento com ferramentas de código impulsionadas por IA
   description: O HagiCode ajuda desenvolvedores a focarem no código, não em trabalho repetitivo
   ctaButton: Começar
@@ -250,40 +250,6 @@ homepageVideos:
     windowsStoreLabel: Microsoft Store
     windowsStoreAriaLabel: Abrir HagiCode na Microsoft Store
     ctaGroupLabel: Ações principais da página inicial
-pricing:
-  title: Edições e preços
-  limitTitle: Regra de contagem de propostas paralelas
-  limitDescription: Propostas em geração, execução e arquivamento contam para o mesmo limite de propostas simultâneas.
-  unlockFootnote: "Requer a compra do TurboEngine para desbloquear. O TurboEngine é uma licença perpétua de compra única na Microsoft Store (Store ID: 9NSD809W18Z6). Uma compra desbloqueia permanentemente os recursos acima."
-  featureHeader: Artigo
-  includedLabel: Incluído
-  notIncludedLabel: Não incluído
-  editions:
-    desktop:
-      title: Desktop
-    microsoftStore:
-      title: Microsoft Store
-  rows:
-    entryPoint: Ponto de entrada
-    pricing: Preço
-    allFreeFeaturesIncluded: Todos os recursos gratuitos incluídos
-    vault: Cofre
-    skills: Habilidades
-    proposalWorkflow: Fluxo de trabalho da proposta
-    localAchievements: Conquistas locais
-    allAgentCliIntegrations: Todas as integrações do Agent CLI
-    speechRecognition: Reconhecimento de voz
-    githubIntegration: Integração com GitHub
-    gitManagement: Gerenciamento de Git
-    maximumConcurrentProposals: Máximo de propostas simultâneas
-    documentThemes: Temas de documentos
-    customCommitSignature: Autoria de commit personalizada
-    brandCustomization: Personalização de marca
-    customAvatarUploads: Upload de avatares personalizados
-  values:
-    free: Gratuito
-    desktopInstall: Instalação na área de trabalho
-    microsoftStoreInstall: Instalação pela Microsoft Store
 workflowBoard:
   title: "Vários agentes, cada etapa, sempre em andamento"
   description: "Cada agente leva a própria tarefa pela ideia, proposta, execução e arquivamento. Quando uma execução é arquivada, a próxima começa, e o trabalho avança em todas as etapas ao mesmo tempo."

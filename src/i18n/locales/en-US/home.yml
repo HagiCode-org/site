@@ -1,8 +1,8 @@
 hero:
   headline: "Turn AI coding from open-ended chat into reviewable, reusable proposals"
-  subheadline: "Every change moves through Proposal → Execution → Archive: align on the plan before touching code, then keep what you learned as team knowledge. Works with Claude Code, Codex, GitHub Copilot, and other mainstream agent CLIs."
+  subheadline: "Every change moves through Proposal → Execution → Archive: align on the plan before touching code, then keep what you learned as team knowledge."
   storeRecommended: "Recommended"
-  storeNote: "One-time purchase · permanent license · unlocks the full feature set"
+  storeNote: Subscribe on Microsoft Store to stay on the latest version.
   tagline: Boost development efficiency with AI-powered coding tools
   description: HagiCode helps developers focus on code, not repetitive work
   ctaButton: Get Started
@@ -250,40 +250,6 @@ homepageVideos:
     windowsStoreLabel: Microsoft Store
     windowsStoreAriaLabel: Open HagiCode on Microsoft Store
     ctaGroupLabel: Primary homepage actions
-pricing:
-  title: Editions & Pricing
-  limitTitle: Proposal concurrency counting
-  limitDescription: Generating, executing, and archiving proposals all count toward the same concurrent proposal limit.
-  unlockFootnote: "Purchase TurboEngine to unlock these Microsoft Store-only capabilities permanently. TurboEngine is a one-time perpetual license in Microsoft Store (Store ID: 9NSD809W18Z6)."
-  featureHeader: Item
-  includedLabel: Included
-  notIncludedLabel: Not included
-  editions:
-    desktop:
-      title: Desktop
-    microsoftStore:
-      title: Microsoft Store
-  rows:
-    entryPoint: Entry point
-    pricing: Pricing
-    allFreeFeaturesIncluded: All free features included
-    vault: Vault
-    skills: Skills
-    proposalWorkflow: Proposal workflow
-    localAchievements: Local achievements
-    allAgentCliIntegrations: All Agent CLI integrations
-    speechRecognition: Speech recognition
-    githubIntegration: GitHub integration
-    gitManagement: Git management
-    maximumConcurrentProposals: Maximum concurrent proposals
-    documentThemes: Document themes
-    customCommitSignature: Custom commit signature
-    brandCustomization: Brand customization
-    customAvatarUploads: Custom avatar uploads
-  values:
-    free: Free
-    desktopInstall: Desktop install
-    microsoftStoreInstall: Microsoft Store install
 workflowBoard:
   title: "Many agents, every stage, always running"
   description: "Each agent takes its own task through ideate, propose, execute and archive. When one run is archived the next begins, so work keeps moving through every stage at once."

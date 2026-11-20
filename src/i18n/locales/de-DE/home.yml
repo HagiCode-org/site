@@ -1,8 +1,8 @@
 hero:
   headline: "KI-Coding vom Chat zum prüfbaren, wiederverwendbaren Vorschlags-Workflow"
-  subheadline: "Jede Änderung durchläuft Vorschlag → Umsetzung → Archiv: erst den Plan abstimmen, dann Code anfassen – und das Gelernte als Teamwissen bewahren. Funktioniert mit Claude Code, Codex, GitHub Copilot und weiteren gängigen Agent-CLIs."
+  subheadline: "Jede Änderung durchläuft Vorschlag → Umsetzung → Archiv: erst den Plan abstimmen, dann Code anfassen – und das Gelernte als Teamwissen bewahren."
   storeRecommended: "Empfohlen"
-  storeNote: "Einmalkauf · dauerhafte Lizenz · schaltet alle Funktionen frei"
+  storeNote: Abonnieren Sie über den Microsoft Store, um immer auf dem neuesten Stand zu bleiben.
   tagline: Entwicklungsleistung mit KI-gestützten Coding-Tools steigern
   description: HagiCode hilft Entwicklern, sich auf Code statt auf wiederkehrende Arbeit zu konzentrieren
   ctaButton: Jetzt starten
@@ -250,40 +250,6 @@ homepageVideos:
     windowsStoreLabel: Microsoft Store
     windowsStoreAriaLabel: HagiCode im Microsoft Store öffnen
     ctaGroupLabel: Primäre Homepage-Aktionen
-pricing:
-  title: Editionen und Preise
-  limitTitle: Zählregel für parallele Vorschläge
-  limitDescription: Vorschläge beim Generieren, Ausführen und Archivieren zählen gemeinsam zum selben Limit gleichzeitiger Vorschläge.
-  unlockFootnote: "Erfordert den Kauf von TurboEngine zur Freischaltung. TurboEngine ist eine einmalige unbefristete Lizenz im Microsoft Store (Store-ID: 9NSD809W18Z6). Ein Kauf schaltet die oben genannten Funktionen dauerhaft frei."
-  featureHeader: Artikel
-  includedLabel: Enthalten
-  notIncludedLabel: Nicht enthalten
-  editions:
-    desktop:
-      title: Desktop
-    microsoftStore:
-      title: Microsoft Store
-  rows:
-    entryPoint: Einstiegspunkt
-    pricing: Preis
-    allFreeFeaturesIncluded: Alle kostenlosen Funktionen inklusive
-    vault: Tresor
-    skills: Fähigkeiten
-    proposalWorkflow: Angebotsworkflow
-    localAchievements: Lokale Erfolge
-    allAgentCliIntegrations: Alle Agent-CLI-Integrationen
-    speechRecognition: Spracherkennung
-    githubIntegration: GitHub-Integration
-    gitManagement: Git-Verwaltung
-    maximumConcurrentProposals: Maximale Anzahl gleichzeitiger Vorschläge
-    documentThemes: Dokumentthemen
-    customCommitSignature: Benutzerdefinierte Commit-Autorschaft
-    brandCustomization: Branding-Anpassung
-    customAvatarUploads: Upload eigener Avatare
-  values:
-    free: Kostenlos
-    desktopInstall: Desktop-Installation
-    microsoftStoreInstall: Microsoft Store-Installation
 workflowBoard:
   title: "Viele Agenten, jede Phase, dauerhaft in Bewegung"
   description: "Jeder Agent führt seine eigene Aufgabe durch Idee, Vorschlag, Ausführung und Archivierung. Sobald ein Lauf archiviert ist, beginnt der nächste. So ist in jeder Phase gleichzeitig Arbeit im Gang."

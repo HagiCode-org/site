@@ -9,7 +9,7 @@ import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from 
 import { createPortal } from 'react-dom';
 
 import styles from './InstallButton.module.css';
-import { FEATURE_MAC_DOWNLOAD_ENABLED, FEATURE_SITE_STEAM_ENABLED } from '@/config/features';
+import { FEATURE_MAC_DOWNLOAD_ENABLED } from '@/config/features';
 import type {
   AssetType,
   DesktopVersion,
@@ -35,7 +35,6 @@ import {
 } from '@/lib/shared/desktop-utils';
 import type { PrimaryDownloadActionPair, PrimaryDownloadSourceKey } from '@/lib/shared/desktop-utils';
 import { getLinkWithLocale } from '@/lib/shared/links';
-import { getBundledSteamStoreLink, loadSteamStoreLink } from '@/lib/shared/steam-store-link';
 import type {
   DesktopVersionData,
   DesktopVersionState,
@@ -102,41 +101,6 @@ function areDownloadSourceProbeStatesEqual(
   }
 
   return leftKeys.every((key) => left[key] === right[key]);
-}
-
-function SteamIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      data-steam-icon="true"
-    >
-      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.75" />
-      <circle cx="16.8" cy="7.8" r="2.15" stroke="currentColor" strokeWidth="1.75" />
-      <circle cx="9.1" cy="15.1" r="1.45" fill="currentColor" />
-      <path
-        d="M10.2 14.2L14.7 10.3"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-      />
-      <path
-        d="M15.6 9.2a1.75 1.75 0 1 0 2.4-2.4"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-      />
-      <path
-        d="M7.5 14.6l2.8 1.5"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
 }
 
 const WINDOWS_STORE_URL = 'https://apps.microsoft.com/detail/9N3PM0N3SVDW';
@@ -396,7 +360,6 @@ export default function InstallButton({
   const [fetchedData, setFetchedData] = useState<DesktopVersionData | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState<DropdownPosition | null>(null);
   const [downloadSourceProbeStates, setDownloadSourceProbeStates] = useState<DownloadSourceProbeStateMap>({});
-  const [steamStoreLink, setSteamStoreLink] = useState(() => getBundledSteamStoreLink());
   const buttonRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -427,30 +390,8 @@ export default function InstallButton({
   const allDownloadsLabel = isChineseLocale ? '查看全部下载与安装说明' : 'All downloads and installation guide';
   const currentDeviceLabel = isChineseLocale ? '当前设备' : 'Current device';
   const otherInstallPathsLabel = isChineseLocale ? '其他安装路径' : 'Other install paths';
-  const steamShortcutLabel = 'Steam';
-  const steamShortcutAriaLabel =
-    isChineseLocale ? '打开 HagiCode Steam 商店页' : 'Open HagiCode on Steam';
   const windowsStoreShortcutAriaLabel =
     isChineseLocale ? '打开 HagiCode Microsoft Store 页面' : 'Open HagiCode on Microsoft Store';
-  const showSteamShortcut = FEATURE_SITE_STEAM_ENABLED && variant === 'compact' && steamStoreLink.href.length > 0;
-
-  useEffect(() => {
-    if (!FEATURE_SITE_STEAM_ENABLED) {
-      return;
-    }
-
-    let mounted = true;
-
-    void loadSteamStoreLink().then((nextLink) => {
-      if (mounted) {
-        setSteamStoreLink(nextLink);
-      }
-    });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
 
   useEffect(() => {
     if (!needsRuntimeFetch) {
@@ -1051,20 +992,6 @@ export default function InstallButton({
             badgeClassName={styles.microsoftStoreBadgeElement}
             badgeAttributes={{ 'data-windows-store-entry': 'site-header-install' }}
           />
-        )}
-
-        {showSteamShortcut && (
-          <a
-            href={steamStoreLink.href}
-            className={`${styles.steamShortcut} ${showDropdown ? styles.steamShortcutWithDropdown : styles.steamShortcutLast}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={steamShortcutAriaLabel}
-            data-steam-entry="site-header-install"
-          >
-            <SteamIcon className={styles.downloadIcon} />
-            <span className={styles.btnText}>{steamShortcutLabel}</span>
-          </a>
         )}
 
         {showDropdown && (

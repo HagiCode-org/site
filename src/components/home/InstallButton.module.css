@@ -3,11 +3,9 @@
  * 支持完整模式（Hero）和紧凑模式（Header）
  * 支持亮色/暗色/农历新年主题
  */
-
 /* ==========================================================================
    安装按钮容器
    ========================================================================== */
-
 .installButtonWrapper {
   display: inline-block;
   --install-button-width-scale: 1.2;
@@ -64,7 +62,6 @@
 /* ==========================================================================
    主下载按钮
    ========================================================================== */
-
 .primarySourceActions {
   display: flex;
   flex: 1 1 auto;
@@ -109,7 +106,6 @@
 .splitButtonContainerSegmented .btnDownloadMain,
 .splitButtonContainerSegmented .primarySourceActionsGrouped .sourceActionButton,
 .splitButtonContainerSegmented .storeShortcut,
-.splitButtonContainerSegmented .steamShortcut,
 .splitButtonContainerSegmented .btnDropdownToggle {
   box-shadow: none;
 }
@@ -243,61 +239,6 @@
   border-bottom-right-radius: var(--radius-md);
 }
 
-.steamShortcut {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  box-sizing: border-box;
-  min-height: 56px;
-  min-width: calc(7rem * var(--install-button-width-scale));
-  max-width: 100%;
-  padding: 0 calc(1rem * var(--install-button-width-scale));
-  border: 1px solid rgba(102, 192, 244, 0.35);
-  color: #f8fbff;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  background:
-    radial-gradient(circle at top left, rgba(102, 192, 244, 0.34), transparent 54%),
-    linear-gradient(135deg, #171a21 0%, #1b2838 58%, #2a475e 100%);
-  box-shadow: 0 8px 20px rgba(23, 26, 33, 0.22);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease,
-    background-position 0.2s ease;
-}
-
-.installButtonWrapper--compact .steamShortcut {
-  min-height: 40px;
-  min-width: calc(6rem * var(--install-button-width-scale));
-  padding: 0 calc(0.9rem * var(--install-button-width-scale));
-  font-size: 0.9375rem;
-}
-
-.steamShortcut:hover {
-  transform: translateY(-1px);
-  border-color: rgba(102, 192, 244, 0.52);
-  box-shadow: 0 12px 24px rgba(23, 26, 33, 0.28);
-}
-
-.splitButtonContainerSegmented .steamShortcut {
-  border-radius: var(--install-segment-radius);
-  border-right: 1px solid rgba(102, 192, 244, 0.35);
-  box-shadow: var(--install-segment-surface-shadow);
-}
-
-.steamShortcutWithDropdown {
-  border-radius: var(--install-segment-radius);
-}
-
-.steamShortcutLast {
-  border-top-right-radius: var(--install-segment-radius);
-  border-bottom-right-radius: var(--install-segment-radius);
-}
-
 .btnDownloadMain {
   display: flex;
   align-items: center;
@@ -377,7 +318,6 @@
 /* ==========================================================================
    下拉切换按钮
    ========================================================================== */
-
 .btnDropdownToggle {
   display: flex;
   align-items: center;
@@ -418,7 +358,6 @@
 
 .splitButtonContainerSegmented .sourceActionButton:hover,
 .splitButtonContainerSegmented .btnDownloadMain:hover,
-.splitButtonContainerSegmented .steamShortcut:hover,
 .splitButtonContainerSegmented .btnDropdownToggle:hover {
   transform: translateY(-1px);
   box-shadow: var(--install-segment-surface-shadow-hover);
@@ -430,7 +369,6 @@
 
 .sourceActionButton:focus-visible,
 .btnDownloadMain:focus-visible,
-.steamShortcut:focus-visible,
 .btnDropdownToggle:focus-visible,
 .microsoftStoreBadgeSlot:focus-within {
   outline: 2px solid var(--install-segment-focus-ring);
@@ -440,7 +378,6 @@
 /* ==========================================================================
    下拉菜单
    ========================================================================== */
-
 .dropdownMenu {
   /* 使用 fixed 定位以脱离所有父元素的层叠上下文限制
      这样可以确保下拉菜单始终显示在最顶层，不受任何父元素影响 */
@@ -508,7 +445,6 @@
 /* ==========================================================================
    平台分组标签
    ========================================================================== */
-
 .dropdownHeader {
   display: flex;
   flex: 0 0 auto;
@@ -596,7 +532,6 @@
 /* ==========================================================================
    下拉菜单项
    ========================================================================== */
-
 .dropdownItem {
   display: flex;
   align-items: flex-start;
@@ -739,7 +674,6 @@
 /* ==========================================================================
    分隔线
    ========================================================================== */
-
 .dropdownUtilitySection {
   display: grid;
   gap: 0.25rem;
@@ -785,7 +719,6 @@
 /* ==========================================================================
    暗色主题
    ========================================================================== */
-
 [data-theme='dark'] .installButtonWrapper {
   --install-segment-shell-bg: rgba(7, 12, 24, 0.74);
   --install-segment-shell-border: rgba(96, 165, 250, 0.2);
@@ -858,7 +791,6 @@
 /* ==========================================================================
    新年主题
    ========================================================================== */
-
 [data-theme='lunar-new-year'] .installButtonWrapper {
   --install-segment-shell-bg: rgba(127, 29, 29, 0.22);
   --install-segment-shell-border: rgba(251, 191, 36, 0.28);
@@ -974,7 +906,6 @@
 /* ==========================================================================
    移动端样式
    ========================================================================== */
-
 @media (max-width: 768px) {
   .installButtonWrapper--compact {
     display: block;
@@ -1013,13 +944,6 @@
     font-size: 0.9375rem;
   }
 
-  .installButtonWrapper--full .steamShortcut {
-    min-height: 48px;
-    min-width: 0;
-    padding: 0 0.9rem;
-    font-size: 0.9375rem;
-  }
-
   .installButtonWrapper--full .btnDropdownToggle {
     width: 40px;
     min-width: 40px;
@@ -1028,19 +952,12 @@
   .installButtonWrapper--compact .btnDownloadMain,
   .installButtonWrapper--compact .sourceActionButton,
   .installButtonWrapper--compact .storeShortcut,
-  .installButtonWrapper--compact .steamShortcut {
-    min-width: 0;
-  }
 
   .installButtonWrapper--compact .sourceActionButton {
     padding: 0 0.75rem;
   }
 
   .installButtonWrapper--compact .storeShortcut {
-    padding: 0 0.75rem;
-  }
-
-  .installButtonWrapper--compact .steamShortcut {
     padding: 0 0.75rem;
   }
 
@@ -1058,13 +975,11 @@
 /* ==========================================================================
    减少动画偏好
    ========================================================================== */
-
 @media (prefers-reduced-motion: reduce) {
   .btnDownloadMain,
   .btnDropdownToggle,
   .sourceActionButton,
   .storeShortcut,
-  .steamShortcut,
   .dropdownSourceAction,
   .dropdownItem,
   .dropdownMenu {

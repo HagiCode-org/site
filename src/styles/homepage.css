@@ -288,6 +288,26 @@ body.homepage {
   overflow-x: clip;
 }
 
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1000;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--color-primary-dark, #0060cc);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+
 main.homepage {
   --homepage-content-max-width: var(--site-content-max, 1200px);
   --homepage-inline-padding: 1.5rem;

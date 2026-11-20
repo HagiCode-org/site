@@ -1,8 +1,8 @@
 hero:
   headline: "Превратите ИИ-кодинг из чата в проверяемый и повторно используемый процесс предложений"
-  subheadline: "Каждое изменение проходит путь «Предложение → Выполнение → Архив»: сначала согласуем план, потом трогаем код, а накопленный опыт становится знанием команды. Работает с Claude Code, Codex, GitHub Copilot и другими популярными Agent CLI."
+  subheadline: "Каждое изменение проходит путь «Предложение → Выполнение → Архив»: сначала согласуем план, потом трогаем код, а накопленный опыт становится знанием команды."
   storeRecommended: "Рекомендуем"
-  storeNote: "Разовая покупка · бессрочная лицензия · открывает все возможности"
+  storeNote: Подпишитесь через Microsoft Store, чтобы всегда оставаться на самой новой версии.
   tagline: Повышайте эффективность разработки с помощью AI-инструментов для кода
   description: HagiCode помогает разработчикам сосредоточиться на коде, а не на повторяющейся работе
   ctaButton: Начать
@@ -250,40 +250,6 @@ homepageVideos:
     windowsStoreLabel: Microsoft Store
     windowsStoreAriaLabel: Открыть HagiCode в Microsoft Store
     ctaGroupLabel: Основные действия на главной странице
-pricing:
-  title: Редакции и цены
-  limitTitle: Правило подсчёта параллельных предложений
-  limitDescription: Предложения на этапах генерации, выполнения и архивации учитываются в одном лимите одновременных предложений.
-  unlockFootnote: "Требуется покупка TurboEngine для разблокировки. TurboEngine — это бессрочная лицензия с единоразовой покупкой в Microsoft Store (Store ID: 9NSD809W18Z6). Одна покупка навсегда разблокирует указанные выше функции."
-  featureHeader: Товар
-  includedLabel: Включено
-  notIncludedLabel: Не включено
-  editions:
-    desktop:
-      title: Desktop
-    microsoftStore:
-      title: Microsoft Store
-  rows:
-    entryPoint: Точка входа
-    pricing: Цена
-    allFreeFeaturesIncluded: Все бесплатные функции включены
-    vault: Хранилище
-    skills: Навыки
-    proposalWorkflow: Рабочий процесс предложения
-    localAchievements: Локальные достижения
-    allAgentCliIntegrations: Все интеграции Agent CLI
-    speechRecognition: Распознавание речи
-    githubIntegration: Интеграция GitHub
-    gitManagement: Управление Git
-    maximumConcurrentProposals: Максимальное количество одновременных предложений
-    documentThemes: Темы документов
-    customCommitSignature: Настраиваемое авторство коммитов
-    brandCustomization: Настройка брендинга
-    customAvatarUploads: Загрузка собственных аватаров
-  values:
-    free: Бесплатно
-    desktopInstall: Установка на рабочем столе
-    microsoftStoreInstall: Установка из Microsoft Store
 workflowBoard:
   title: "Несколько агентов, каждый этап, работа не прекращается"
   description: "Каждый агент проводит свою задачу через идею, предложение, выполнение и архивацию. Как только один запуск архивирован, начинается следующий, и работа идёт на всех этапах одновременно."

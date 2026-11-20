@@ -1,8 +1,8 @@
 hero:
   headline: "AI 코딩을 채팅에서 검토 가능하고 재사용 가능한 제안 워크플로로"
-  subheadline: "모든 변경은 제안 → 실행 → 아카이브 순서로 진행됩니다. 먼저 방향을 맞춘 뒤 코드를 바꾸고, 얻은 경험은 팀의 지식으로 쌓입니다. Claude Code, Codex, GitHub Copilot 등 주요 Agent CLI를 지원합니다."
+  subheadline: "모든 변경은 제안 → 실행 → 아카이브 순서로 진행됩니다. 먼저 방향을 맞춘 뒤 코드를 바꾸고, 얻은 경험은 팀의 지식으로 쌓입니다."
   storeRecommended: "추천"
-  storeNote: "1회 구매 · 영구 라이선스 · 모든 기능 해제"
+  storeNote: Microsoft Store에서 구독하면 항상 최신 버전을 유지할 수 있습니다.
   tagline: AI 기반 코딩 도구로 개발 효율을 높이세요
   description: HagiCode는 개발자가 반복 작업이 아니라 코드 자체에 집중하도록 돕습니다
   ctaButton: 시작하기
@@ -250,40 +250,6 @@ homepageVideos:
     windowsStoreLabel: Microsoft Store
     windowsStoreAriaLabel: Microsoft Store에서 HagiCode 열기
     ctaGroupLabel: 홈페이지 기본 동작
-pricing:
-  title: 에디션 및 가격
-  limitTitle: 제안 병렬 집계 규칙
-  limitDescription: 생성 중, 실행 중, 보관 중인 제안은 모두 같은 동시 제안 한도에 합산됩니다.
-  unlockFootnote: "TurboEngine 구매가 필요합니다. TurboEngine은 Microsoft Store의 1회 구매 영구 라이선스(Store ID: 9NSD809W18Z6)로, 한 번 구매하면 위 기능이 영구적으로 잠금 해제됩니다."
-  featureHeader: 품목
-  includedLabel: 포함됨
-  notIncludedLabel: 포함되지 않음
-  editions:
-    desktop:
-      title: Desktop
-    microsoftStore:
-      title: Microsoft Store
-  rows:
-    entryPoint: 진입점
-    pricing: 가격
-    allFreeFeaturesIncluded: 모든 무료 기능 포함
-    vault: 금고
-    skills: 기술
-    proposalWorkflow: 제안 워크플로
-    localAchievements: 지역 성과
-    allAgentCliIntegrations: 모든 Agent CLI 연동
-    speechRecognition: 음성 인식
-    githubIntegration: GitHub 연동
-    gitManagement: Git 관리
-    maximumConcurrentProposals: 최대 동시 제안 수
-    documentThemes: 문서 테마
-    customCommitSignature: 커스텀 커밋 저작자
-    brandCustomization: 브랜딩 사용자 지정
-    customAvatarUploads: 사용자 지정 아바타 업로드
-  values:
-    free: 무료
-    desktopInstall: 데스크탑 설치
-    microsoftStoreInstall: Microsoft Store 설치
 workflowBoard:
   title: "여러 Agent가 모든 단계에서 멈추지 않고 실행됩니다"
   description: "각 Agent가 자신의 작업을 구상, 제안, 실행, 보관까지 진행합니다. 한 건이 보관되면 다음 건이 시작되어, 모든 단계에서 작업이 동시에 이어집니다."

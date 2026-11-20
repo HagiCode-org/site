@@ -45,6 +45,14 @@ function DownloadIcon({ className = '' }: IconProps) {
   );
 }
 
+function ArrowIcon({ className = '' }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 const HERO_GA_LOCATION = 'home_hero';
 
 function heroGaAttributes(category: GaCategory, label: string, url?: string) {
@@ -164,10 +172,15 @@ export default function HeroSection({
           </div>
 
           <div className={styles.heroActions} role="group" aria-label={ctaGroupLabel}>
-            <div className={styles.heroPrimaryActions}>
+            {/* One dock for every way in. Once the wordmark run is archived, a beam crosses the dock's rail
+                and arms the primary segment: the same proposal -> execution -> archive vocabulary. */}
+            <div className={`${styles.launchDock} ${showWindowsStoreButton ? '' : styles.launchDockSolo}`}>
+              <span className={styles.dockRail} aria-hidden="true">
+                <i className={styles.dockBeam} />
+              </span>
+
               {showWindowsStoreButton && (
                 <div className={styles.storeCta}>
-                  <span className={styles.storeCtaTag}>{copy.storeRecommended}</span>
                   <MicrosoftStoreBadge
                     href={windowsStoreLink.href}
                     locale={locale}
@@ -180,33 +193,36 @@ export default function HeroSection({
                       ...heroGaAttributes('store', 'microsoftStore', windowsStoreLink.href),
                     }}
                   />
-                  <span className={styles.storeCtaNote}>{copy.storeNote}</span>
+                  <p className={styles.storeCtaCaption}>
+                    <span className={styles.storeCtaTag}>{copy.storeRecommended}</span>
+                    <span className={styles.storeCtaNote}>{copy.storeNote}</span>
+                  </p>
                 </div>
               )}
 
-              <a
-                href={desktopUrl}
-                className={styles.buttonPrimary}
-                {...heroGaAttributes('navigation', 'openDesktopPage')}
-              >
-                <span className={styles.buttonPrimaryContent}>
+              <div className={styles.dockMain}>
+                <a
+                  href={desktopUrl}
+                  className={styles.buttonPrimary}
+                  {...heroGaAttributes('navigation', 'openDesktopPage')}
+                >
                   <DownloadIcon className={styles.buttonIcon} />
                   <span className={styles.buttonTextStack}>
                     <span className={styles.buttonPrimaryLabel}>{copy.buttons.desktopApp}</span>
                     <span className={styles.buttonPrimaryMeta}>{primaryButtonHint}</span>
                   </span>
-                </span>
-              </a>
-            </div>
+                  <ArrowIcon className={styles.buttonArrow} />
+                </a>
 
-            <div className={styles.heroSecondaryActions}>
-              <a
-                className={styles.buttonSecondary}
-                href={docsUrl}
-                {...heroGaAttributes('navigation', 'productDocs')}
-              >
-                <span>{copy.buttons.learnMore}</span>
-              </a>
+                <a
+                  className={styles.docsLink}
+                  href={docsUrl}
+                  {...heroGaAttributes('navigation', 'productDocs')}
+                >
+                  <span>{copy.buttons.learnMore}</span>
+                  <ArrowIcon className={styles.docsLinkArrow} />
+                </a>
+              </div>
             </div>
           </div>
         </div>

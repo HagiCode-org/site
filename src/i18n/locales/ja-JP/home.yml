@@ -1,8 +1,8 @@
 hero:
   headline: "AI コーディングを、チャットから「レビューできて再利用できる」提案フローへ"
-  subheadline: "すべての変更は 提案 → 実行 → アーカイブ の順で進みます。まず方針をそろえてからコードに手を入れ、得られた知見はチームの資産として蓄積。Claude Code、Codex、GitHub Copilot など主要な Agent CLI に対応しています。"
+  subheadline: "すべての変更は 提案 → 実行 → アーカイブ の順で進みます。まず方針をそろえてからコードに手を入れ、得られた知見はチームの資産として蓄積。"
   storeRecommended: "おすすめ"
-  storeNote: "買い切り・永続ライセンス・すべての機能を解放"
+  storeNote: Microsoft Store から購読して、常に最新バージョンを保てます。
   tagline: AI が支えるコーディングツールで開発効率を高める
   description: HagiCode は繰り返し作業ではなく、本当に重要なコードに集中できるようにします
   ctaButton: 使い始める
@@ -250,40 +250,6 @@ homepageVideos:
     windowsStoreLabel: Microsoft Store
     windowsStoreAriaLabel: Microsoft Store で HagiCode を開く
     ctaGroupLabel: ホームページの主要アクション
-pricing:
-  title: エディションと価格
-  limitTitle: 提案並行数のカウントルール
-  limitDescription: 生成中、実行中、保存中の提案は同じ同時提案上限にまとめて計上されます。
-  unlockFootnote: "TurboEngine の購入が必要です。TurboEngine は Microsoft Store の買い切り型永久ライセンス（Store ID: 9NSD809W18Z6）で、一度購入すれば上記の機能が永続的にロック解除されます。"
-  featureHeader: アイテム
-  includedLabel: 含まれます
-  notIncludedLabel: 含まれません
-  editions:
-    desktop:
-      title: Desktop
-    microsoftStore:
-      title: Microsoft Store
-  rows:
-    entryPoint: エントリーポイント
-    pricing: 価格
-    allFreeFeaturesIncluded: すべての無料機能が含まれています
-    vault: Vault
-    skills: スキル
-    proposalWorkflow: 提案ワークフロー
-    localAchievements: ローカル実績
-    allAgentCliIntegrations: すべての Agent CLI 連携
-    speechRecognition: 音声認識
-    githubIntegration: GitHub 連携
-    gitManagement: Git 管理
-    maximumConcurrentProposals: 同時プロポーザルの最大数
-    documentThemes: ドキュメントテーマ
-    customCommitSignature: カスタムコミット著者名
-    brandCustomization: ブランディングカスタマイズ
-    customAvatarUploads: カスタムアバターアップロード
-  values:
-    free: 無料
-    desktopInstall: デスクトップへのインストール
-    microsoftStoreInstall: Microsoft Store からのインストール
 workflowBoard:
   title: "複数の Agent が、すべての段階で動き続ける"
   description: "各 Agent が自分のタスクを発想、提案、実行、保存まで進めます。1 本が保存されると次が始まり、すべての段階で作業が同時に進み続けます。"

@@ -6,7 +6,6 @@ import FeaturesShowcase from '@/components/home/FeaturesShowcase';
 import ShowcaseSection from '@/components/home/ShowcaseSection';
 import VideoShowcase from '@/components/home/VideoShowcase';
 import CompareArena from '@/components/compare/CompareArena.astro';
-import PricingComparisonSection from '@/components/home/PricingComparisonSection';
 import PromotoBanner from '@hagicode/hagilight-core/PromotoBanner';
 import SiteFooter from '@/components/SiteFooter.astro';
 import LunarNewYearDecorations from '@/components/home/LunarNewYearDecorations';
@@ -63,7 +62,6 @@ import {
   getHomepageFeaturesCopy,
   getHomepageShowcaseCopy,
   getHomepageWorkflowStepsCopy,
-  getPricingContent,
 } from '@/lib/homepage-section-copy';
 import { getHomepageCliProfiles } from '@/lib/structured-articles.mjs';
 import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
@@ -81,8 +79,20 @@ const featuresCopy = getHomepageFeaturesCopy(locale);
 const cliProfiles = getHomepageCliProfiles(locale);
 const showcaseCopy = getHomepageShowcaseCopy(locale);
 const workflowStepsCopy = getHomepageWorkflowStepsCopy(locale);
-const pricingContent = getPricingContent(locale);
 const canonicalUrl = getAbsoluteSiteUrl('/', locale, siteBase);
+const SKIP_TO_CONTENT_LABELS: Record<string, string> = {
+  'en-US': 'Skip to main content',
+  'zh-CN': '跳到主要内容',
+  'zh-Hant': '跳到主要內容',
+  'ja-JP': 'メインコンテンツへスキップ',
+  'ko-KR': '본문으로 건너뛰기',
+  'de-DE': 'Zum Hauptinhalt springen',
+  'fr-FR': 'Aller au contenu principal',
+  'es-ES': 'Saltar al contenido principal',
+  'pt-BR': 'Pular para o conteúdo principal',
+  'ru-RU': 'Перейти к основному содержимому',
+};
+const skipToContentLabel = SKIP_TO_CONTENT_LABELS[locale] ?? SKIP_TO_CONTENT_LABELS['en-US'];
 
 /** Stage and lightbox take a responsive set up to the capture's own width; the filmstrip takes one 480 px rendition. */
 const SHOWCASE_WIDTHS = [960, 1600, 2400];
@@ -188,9 +198,13 @@ const funHeroStrip = [
       <script is:inline type="application/ld+json" set:html={serializeJsonLd(block)} />
     ))}
     <meta name="baidu-site-verification" content="codeva-A9s3yT3z5m" />
-    <meta name="og:title" content={pageCopy.title} />
-    <meta name="og:description" content={pageCopy.description} />
-    <meta name="og:type" content="website" />
+    <meta property="og:title" content={pageCopy.title} />
+    <meta property="og:description" content={pageCopy.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageCopy.title} />
+    <meta name="twitter:description" content={pageCopy.description} />
     <GoogleAnalytics />
     <MicrosoftStoreBadgeScript />
     <script is:inline>
@@ -223,6 +237,7 @@ const funHeroStrip = [
     </script>
   </head>
   <body class="homepage">
+    <a class="skip-link" href="#homepage-content">{skipToContentLabel}</a>
     <LunarNewYearDecorations client:idle />
     <Navbar
       client:idle
@@ -243,8 +258,9 @@ const funHeroStrip = [
           featuredVideos: pageCopy.featuredHomepageVideos,
         }}
       />
-      <CompareArena locale={locale} />
       <WorkflowStepsSection copy={workflowStepsCopy} />
+      <ShowcaseSection copy={showcaseCopy} images={showcaseImages} client:visible />
+      <CompareArena locale={locale} />
       <FeaturesShowcase
         copy={featuresCopy}
         cliProfiles={cliProfiles}
@@ -255,16 +271,12 @@ const funHeroStrip = [
         heroStrip={funHeroStrip}
         client:visible
       />
-      <ShowcaseSection copy={showcaseCopy} images={showcaseImages} client:visible />
       <VideoShowcase
         eyebrow={pageCopy.supportingSection.eyebrow}
         title={pageCopy.supportingSection.title}
         description={pageCopy.supportingSection.description}
         supportingLabel={pageCopy.supportingSection.supportingLabel}
         supportingVideos={pageCopy.supportingHomepageVideos}
-      />
-      <PricingComparisonSection
-        content={pricingContent}
       />
     </main>
 

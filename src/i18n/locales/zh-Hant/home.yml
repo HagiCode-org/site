@@ -1,8 +1,8 @@
 hero:
   headline: "把 AI 編碼從聊天，變成可審閱、可重複使用的提案流程"
-  subheadline: "每次改動都走 提案 → 執行 → 歸檔：先對齊方案再動程式碼，做完的經驗沉澱成團隊知識。支援 Claude Code、Codex、GitHub Copilot 等主流 Agent CLI。"
+  subheadline: "每次改動都走 提案 → 執行 → 歸檔：先對齊方案再動程式碼，做完的經驗沉澱成團隊知識。"
   storeRecommended: "推薦取得方式"
-  storeNote: "一次買斷 · 永久授權 · 解鎖全部功能"
+  storeNote: 從 Microsoft Store 可以訂閱最新版本，保持最新。
   tagline: 用 AI 驅動的程式設計工具，提升開發效率
   description: HagiCode 幫助開發者專注於程式碼，而不是重複性工作
   ctaButton: 立即開始
@@ -250,40 +250,6 @@ homepageVideos:
     windowsStoreLabel: Microsoft Store
     windowsStoreAriaLabel: 在 Microsoft Store 上開啟 HagiCode
     ctaGroupLabel: 首頁主要操作
-pricing:
-  title: 版本與定價
-  limitTitle: 提案並行計數規則
-  limitDescription: 正在生成、執行與歸檔的提案都會計入同一個並行提案上限。
-  unlockFootnote: "需要購買 TurboEngine 進行解鎖。TurboEngine 是 Microsoft Store 中的一次買斷制永久授權（Store ID: 9NSD809W18Z6），購買後即可永久解鎖上述功能。"
-  featureHeader: 專案
-  includedLabel: 已包含
-  notIncludedLabel: 未包含
-  editions:
-    desktop:
-      title: Desktop
-    microsoftStore:
-      title: Microsoft Store
-  rows:
-    entryPoint: 切入點
-    pricing: 定價
-    allFreeFeaturesIncluded: 包含所有免費功能
-    vault: 資料庫
-    skills: 技能
-    proposalWorkflow: 提案流程
-    localAchievements: 本地成就
-    allAgentCliIntegrations: 全部 Agent CLI 整合支援
-    speechRecognition: 語音辨識支援
-    githubIntegration: GitHub 整合
-    gitManagement: Git 管理
-    maximumConcurrentProposals: 最大提案並行數
-    documentThemes: 文件主題
-    customCommitSignature: 自訂提交署名
-    brandCustomization: 品牌自訂
-    customAvatarUploads: 自訂頭像上傳
-  values:
-    free: 免費
-    desktopInstall: 桌面安裝
-    microsoftStoreInstall: Microsoft Store 安裝
 workflowBoard:
   title: "多個 Agent，每個階段，持續運行"
   description: "每個 Agent 各自把任務走完構思、提案、執行、歸檔。一輪歸檔，下一輪立刻開始，所有階段同時都有工作在推進。"

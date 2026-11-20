@@ -35,25 +35,6 @@ describe('site i18n translation lookup', () => {
     }
   });
 
-  it('localizes pricing row labels outside the base locale', () => {
-    const englishLabel = 'All free features included';
-
-    expect(getTranslation('zh-CN', { resources: serverResources }).t('pricing.title')).toBe('版本与定价');
-    expect(getTranslation('zh-CN', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).toBe('全部免费特性');
-    expect(getTranslation('zh-Hant', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).toBe('包含所有免費功能');
-    expect(getTranslation('ja-JP', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).not.toBe(englishLabel);
-    expect(getTranslation('ko-KR', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).not.toBe(englishLabel);
-    expect(getTranslation('de-DE', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).not.toBe(englishLabel);
-    expect(getTranslation('fr-FR', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).not.toBe(englishLabel);
-    expect(getTranslation('es-ES', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).not.toBe(englishLabel);
-    expect(getTranslation('pt-BR', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).not.toBe(englishLabel);
-    expect(getTranslation('ru-RU', { resources: serverResources }).t('pricing.rows.allFreeFeaturesIncluded')).not.toBe(englishLabel);
-    expect(getTranslation('de-DE', { resources: serverResources }).t('pricing.rows.maximumConcurrentProposals')).toBe(
-      'Maximale Anzahl gleichzeitiger Vorschläge',
-    );
-    expect(getTranslation('fr-FR', { resources: serverResources }).t('pricing.rows.documentThemes')).toBe('Thèmes de documents');
-  });
-
   it('localizes the workflow board title outside the base locale', () => {
     const englishTitle = 'Many agents, every stage, always running';
 

@@ -1,8 +1,8 @@
 hero:
   headline: "Faites passer le codage IA du chat à un flux de propositions vérifiable et réutilisable"
-  subheadline: "Chaque changement suit Proposition → Exécution → Archive : on aligne le plan avant de toucher au code, puis l'expérience devient connaissance d'équipe. Compatible avec Claude Code, Codex, GitHub Copilot et d'autres CLI d'agents courantes."
+  subheadline: "Chaque changement suit Proposition → Exécution → Archive : on aligne le plan avant de toucher au code, puis l'expérience devient connaissance d'équipe."
   storeRecommended: "Recommandé"
-  storeNote: "Achat unique · licence permanente · débloque toutes les fonctionnalités"
+  storeNote: Abonnez-vous via le Microsoft Store pour rester sur la version la plus récente.
   tagline: Gagnez en efficacité avec des outils de code pilotés par l'IA
   description: HagiCode aide les développeurs à se concentrer sur le code plutôt que sur les tâches répétitives
   ctaButton: Commencer
@@ -250,40 +250,6 @@ homepageVideos:
     windowsStoreLabel: Microsoft Store
     windowsStoreAriaLabel: Ouvrir HagiCode dans le Microsoft Store
     ctaGroupLabel: Actions principales de la page d'accueil
-pricing:
-  title: Éditions et tarifs
-  limitTitle: Règle de comptage des propositions parallèles
-  limitDescription: Les propositions en génération, en exécution et en archivage comptent toutes dans la même limite de propositions simultanées.
-  unlockFootnote: "Nécessite l'achat de TurboEngine pour déverrouiller. TurboEngine est une licence perpétuelle à achat unique dans Microsoft Store (Store ID: 9NSD809W18Z6). Un achat déverrouille définitivement les fonctionnalités ci-dessus."
-  featureHeader: Article
-  includedLabel: Inclus
-  notIncludedLabel: Non inclus
-  editions:
-    desktop:
-      title: Desktop
-    microsoftStore:
-      title: Microsoft Store
-  rows:
-    entryPoint: Point d'entrée
-    pricing: Tarif
-    allFreeFeaturesIncluded: Toutes les fonctionnalités gratuites incluses
-    vault: Coffre-fort
-    skills: Compétences
-    proposalWorkflow: Flux de travail de proposition
-    localAchievements: Réalisations locales
-    allAgentCliIntegrations: Toutes les intégrations Agent CLI
-    speechRecognition: Reconnaissance vocale
-    githubIntegration: Intégration GitHub
-    gitManagement: Gestion Git
-    maximumConcurrentProposals: Nombre maximal de propositions simultanées
-    documentThemes: Thèmes de documents
-    customCommitSignature: Paternité de commit personnalisée
-    brandCustomization: Personnalisation de marque
-    customAvatarUploads: Import d'avatars personnalisés
-  values:
-    free: Gratuit
-    desktopInstall: Installation de bureau
-    microsoftStoreInstall: Installation depuis Microsoft Store
 workflowBoard:
   title: "Plusieurs agents, chaque étape, toujours en cours"
   description: "Chaque agent mène sa propre tâche de l'idée à l'archivage, en passant par la proposition et l'exécution. Dès qu'un cycle est archivé, le suivant démarre : le travail avance à toutes les étapes en même temps."
