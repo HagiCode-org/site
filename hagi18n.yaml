@@ -62,9 +62,6 @@ auditIdenticalAllowlist:
     - features.interesting.agents.items.strategist.name # 示例角色名
     - features.interesting.agents.items.runner.name # 示例角色名
     - features.interesting.agents.items.artist.name # 示例角色名
-    - pricing.editions.desktop.title # 版本名
-    - pricing.editions.microsoftStore.title # 品牌名
-    - pricing.rows.vault # 产品功能名
     - hero.valueCards.smart.title # 德语通用借词
     - features.smart.title # 德语通用借词
     - features.smart.workflow.review.label # 德语通用借词
