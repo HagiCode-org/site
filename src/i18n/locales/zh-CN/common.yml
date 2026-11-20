@@ -99,7 +99,7 @@ showcase:
       alt: "HagiCode AgentCLI 管理表格，列出各个受支持的 Agent CLI 及其版本和健康状态"
     skillsGallery:
       title: "技能图库"
-      description: "浏览可信的技能来源，对比安装量，并一眼看出哪些技能已经装在本机。"
+      description: "浏览可信的技能来源，含内置技能，并一眼看出哪些技能已经装在本机。"
       alt: "HagiCode 技能图库，列出技能的来源、安装量以及“已在本地安装”标记"
     vault:
       title: "Vault"
@@ -166,9 +166,6 @@ desktopHero:
     privacy: 🔒 隐私保护
     fast: ⚡ 快速响应
     crossPlatform: 💻 跨平台支持
-  steam:
-    description: Steam 版本支持云存档、创意工坊等 Steam 特性，点击前往 Steam 查看。
-    ariaLabel: 打开 HagiCode Steam 商店页
   windowsStore:
     eyebrow: Microsoft Store
     description: 从 Microsoft Store 可以订阅最新版本，保持最新。

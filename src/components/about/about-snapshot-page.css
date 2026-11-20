@@ -237,10 +237,6 @@
   --tone: #ff3b30;
 }
 
-[data-tone='steam'] {
-  --tone: #66c0f4;
-}
-
 [data-tone='hot'] {
   --tone: #ff4d6d;
 }
@@ -340,10 +336,6 @@
 
 .entry-platform-icon-tone-youtube {
   background: linear-gradient(145deg, #ff5a51 0%, #e51d15 100%);
-}
-
-.entry-platform-icon-tone-steam {
-  background: linear-gradient(145deg, #1b2838 0%, #0b1018 100%);
 }
 
 .entry-platform-icon-tone-hot {

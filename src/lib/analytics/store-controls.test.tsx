@@ -5,28 +5,14 @@ import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 
 import HeroSection from '@/components/home/HeroSection';
 import InstallButton from '@/components/home/InstallButton';
-import PricingComparisonSection from '@/components/home/PricingComparisonSection';
 import { DesktopHeroWindowsStoreRow } from '@/components/desktop/DesktopHero';
 import { getHomepageInteractiveCopy } from '@/lib/homepage-runtime-copy';
-import { getPricingContent } from '@/lib/homepage-section-copy';
 import { groupAssetsByPlatform } from '@/lib/shared/desktop-utils';
 import { setupGaClickHarness, stubMatchMedia } from '@/lib/analytics/test-harness';
 
-// Store controls are guarded by their destination host: Microsoft Store listings and the Steam store page.
-const STORE_HOSTS = new Set(['apps.microsoft.com', 'store.steampowered.com']);
-const steamUrl = 'https://store.steampowered.com/app/4625540/Hagicode/';
+// Store controls are guarded by their destination host: the Microsoft Store listing.
+const STORE_HOSTS = new Set(['apps.microsoft.com']);
 const storeUrl = 'https://apps.microsoft.com/detail/9N3PM0N3SVDW';
-
-vi.mock('@/config/features', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/config/features')>()),
-  FEATURE_SITE_STEAM_ENABLED: true,
-}));
-
-vi.mock('@/lib/shared/steam-store-link', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/lib/shared/steam-store-link')>()),
-  getBundledSteamStoreLink: () => ({ href: steamUrl, source: 'bundled', updatedAt: null }),
-  loadSteamStoreLink: async () => ({ href: steamUrl, source: 'canonical', updatedAt: null }),
-}));
 
 vi.mock('@/lib/shared/windows-store-link', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/shared/windows-store-link')>()),
@@ -168,13 +154,13 @@ describe('Store control wiring guard', () => {
   it('fails a Store control wired to both the unified tracker and a data-ga tag', async () => {
     const container = await harness.render(
       <a
-        href={steamUrl}
-        data-track-event="open_steam_store"
+        href={storeUrl}
+        data-track-event="open_desktop_page"
         data-ga-category="store"
-        data-ga-label="openSteamStore"
+        data-ga-label="microsoftStore"
         data-ga-location="fixture"
       >
-        Steam
+        Store
       </a>,
     );
 
@@ -182,8 +168,8 @@ describe('Store control wiring guard', () => {
 
     expect(problems).toEqual(
       expect.arrayContaining([
-        'a (openSteamStore): wired to both the unified tracker and data-ga tags',
-        'a (openSteamStore): one click sent 2 events',
+        'a (microsoftStore): wired to both the unified tracker and data-ga tags',
+        'a (microsoftStore): one click sent 2 events',
       ]),
     );
   });
@@ -197,7 +183,6 @@ describe('Store control wiring guard', () => {
         agentChoices={[]}
       />
     )],
-    ['the pricing comparison edition actions', () => <PricingComparisonSection content={getPricingContent('en')} />],
     ['the compact install button shortcuts', () => (
       <InstallButton locale="en" variant="compact" version={version} platforms={groupAssetsByPlatform(version.assets)} />
     )],

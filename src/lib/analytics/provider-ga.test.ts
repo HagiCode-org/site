@@ -12,7 +12,6 @@ describe('Google Analytics mirror', () => {
     [WEBSITE_TRACKING_EVENTS.downloadDesktopWindows, 'download_click', 'download', 'downloadDesktopWindows'],
     [WEBSITE_TRACKING_EVENTS.downloadDesktopMacOS, 'download_click', 'download', 'downloadDesktopMacOS'],
     [WEBSITE_TRACKING_EVENTS.downloadDesktopLinux, 'download_click', 'download', 'downloadDesktopLinux'],
-    [WEBSITE_TRACKING_EVENTS.openSteamStore, 'store_visit', 'store', 'openSteamStore'],
     [WEBSITE_TRACKING_EVENTS.openDesktopPage, 'link_click', 'navigation', 'openDesktopPage'],
   ] as Array<[WebsiteTrackingEventName, string, string, string]>)(
     'maps %s to %s with category %s and label %s',
@@ -32,15 +31,15 @@ describe('Google Analytics mirror', () => {
     },
   );
 
-  it('reports the Steam store page as a store visit, never as a download click', () => {
+  it('reports a desktop download as a download click, never as a store visit', () => {
     const gtag = vi.fn();
 
-    mirrorWith(gtag).mirror(WEBSITE_TRACKING_EVENTS.openSteamStore, { source: 'hero-section-steam' });
+    mirrorWith(gtag).mirror(WEBSITE_TRACKING_EVENTS.downloadDesktop, { source: 'hero-section' });
 
     expect(gtag).toHaveBeenCalledTimes(1);
-    expect(gtag.mock.calls[0][1]).toBe('store_visit');
-    expect(gtag.mock.calls[0][2].event_category).toBe('store');
-    expect(gtag.mock.calls.some(([, action]) => action === 'download_click')).toBe(false);
+    expect(gtag.mock.calls[0][1]).toBe('download_click');
+    expect(gtag.mock.calls[0][2].event_category).toBe('download');
+    expect(gtag.mock.calls.some(([, action]) => action === 'store_visit')).toBe(false);
   });
 
   it('normalizes hyphens in the source to underscores for the location', () => {

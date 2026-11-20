@@ -45,7 +45,6 @@ const PLATFORM_PROPERTIES = Object.freeze({
 export const SITE_POSTHOG_EVENTS: SiteEventTable = Object.freeze({
   download_desktop: SOURCE_PROPERTY,
   open_desktop_page: SOURCE_PROPERTY,
-  open_steam_store: SOURCE_PROPERTY,
   download_desktop_windows: PLATFORM_PROPERTIES,
   download_desktop_macos: PLATFORM_PROPERTIES,
   download_desktop_linux: PLATFORM_PROPERTIES,

@@ -11,7 +11,6 @@ export const ABOUT_SNAPSHOT_LOCAL_INPUT_PATH = '../index/dist/about.json';
 export const ABOUT_SNAPSHOT_REGION_PRIORITIES = ['china-first', 'international-first'];
 export const REQUIRED_ABOUT_ENTRY_IDS = [
   'youtube',
-  'steam',
   'bilibili',
   'xiaohongshu',
   'douyin-account',

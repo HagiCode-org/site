@@ -18,8 +18,8 @@ import {
 } from '@/lib/about-page-media-catalog';
 
 export interface AboutPageEntryPresentation {
-  readonly theme: 'default' | 'steam' | 'youtube';
-  readonly icon?: 'steam' | 'youtube';
+  readonly theme: 'default' | 'youtube';
+  readonly icon?: 'youtube';
   readonly badgeLabel?: string;
 }
 
@@ -111,7 +111,7 @@ export interface AboutPageModel {
   readonly sections: readonly AboutPageSection[];
 }
 
-const STORE_ENTRY_IDS = new Set(['windows-store', 'steam']);
+const STORE_ENTRY_IDS = new Set(['windows-store']);
 const COMMUNITY_ENTRY_IDS = new Set(['qq-group', 'feishu-group', 'discord']);
 
 /** 站点层面不展示的条目（index 数据源中仍然存在，仅过滤显示） */
@@ -123,7 +123,6 @@ const ENTRY_ORDER = [
   'discord',
   'windows-store',
   'youtube',
-  'steam',
   'bilibili',
   'xiaohongshu',
   'douyin-account',
@@ -181,7 +180,6 @@ interface AboutLocaleCopy {
     readonly copied: string;
   };
   readonly platformBadges: {
-    readonly steam: string;
     readonly youtube: string;
   };
 }
@@ -220,7 +218,6 @@ function getAboutLocaleCopy(locale: SiteLocale): AboutLocaleCopy {
       copied: requireLocaleResourceString(locale, 'about', 'page.actions.copied'),
     },
     platformBadges: {
-      steam: requireLocaleResourceString(locale, 'about', 'page.platformBadges.steam'),
       youtube: requireLocaleResourceString(locale, 'about', 'page.platformBadges.youtube'),
     },
   };
@@ -247,14 +244,6 @@ function getEntryPresentation(
       theme: 'youtube',
       icon: 'youtube',
       badgeLabel: getAboutLocaleCopy(locale).platformBadges.youtube,
-    };
-  }
-
-  if (entry.id === 'steam') {
-    return {
-      theme: 'steam',
-      icon: 'steam',
-      badgeLabel: getAboutLocaleCopy(locale).platformBadges.steam,
     };
   }
 

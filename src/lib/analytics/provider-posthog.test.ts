@@ -19,7 +19,6 @@ describe('PostHog mirror', () => {
   it.each([
     [WEBSITE_TRACKING_EVENTS.downloadDesktop, { source: 'navbar' }],
     [WEBSITE_TRACKING_EVENTS.openDesktopPage, { source: 'install_options_desktop' }],
-    [WEBSITE_TRACKING_EVENTS.openSteamStore, { source: 'hero_section_steam' }],
     [WEBSITE_TRACKING_EVENTS.downloadDesktopWindows, { source: 'desktop_hero', platform: 'windows' }],
     [WEBSITE_TRACKING_EVENTS.downloadDesktopMacOS, { source: 'desktop_hero', platform: 'macos' }],
     [WEBSITE_TRACKING_EVENTS.downloadDesktopLinux, { source: 'desktop_hero', platform: 'linux' }],
@@ -50,9 +49,9 @@ describe('PostHog mirror', () => {
     (context) => {
       const posthog = fakePostHog();
 
-      mirrorWith(posthog).mirror(WEBSITE_TRACKING_EVENTS.openSteamStore, context);
+      mirrorWith(posthog).mirror(WEBSITE_TRACKING_EVENTS.openDesktopPage, context);
 
-      expect(posthog.capture).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openSteamStore, { source: 'website' });
+      expect(posthog.capture).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openDesktopPage, { source: 'website' });
     },
   );
 

@@ -99,7 +99,7 @@ showcase:
       alt: "HagiCode-Tabelle zur AgentCLI-Verwaltung mit Version und Status jeder unterstuetzten Agent-CLI"
     skillsGallery:
       title: "Skill-Galerie"
-      description: "Stoebern Sie in vertrauenswuerdigen Skill-Quellen, vergleichen Sie Installationszahlen und erkennen Sie sofort, welche Skills schon auf diesem Rechner sind."
+      description: "Stoebern Sie in vertrauenswuerdigen Skill-Quellen, darunter integrierte Skills, und erkennen Sie sofort, welche Skills schon auf diesem Rechner sind."
       alt: "HagiCode-Skill-Galerie mit Skills, Quelle, Installationszahlen und dem Hinweis Lokal installiert"
     vault:
       title: "Vault"
@@ -166,9 +166,6 @@ desktopHero:
     privacy: 🔒 Datenschutz
     fast: ⚡ Schnelle Reaktion
     crossPlatform: 💻 Plattformübergreifend
-  steam:
-    description: Die Steam-Edition unterstützt Steam-Funktionen wie Cloud Saves und den Workshop. Klicken Sie hier, um sie auf Steam zu öffnen.
-    ariaLabel: HagiCode auf Steam öffnen
   windowsStore:
     eyebrow: Microsoft Store
     description: Abonnieren Sie über den Microsoft Store, um immer auf dem neuesten Stand zu bleiben.

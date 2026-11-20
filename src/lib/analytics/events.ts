@@ -4,7 +4,6 @@ import { AssetType } from '../shared/types/desktop';
 export const WEBSITE_TRACKING_EVENTS = {
   downloadDesktop: 'download_desktop',
   openDesktopPage: 'open_desktop_page',
-  openSteamStore: 'open_steam_store',
   downloadDesktopWindows: 'download_desktop_windows',
   downloadDesktopMacOS: 'download_desktop_macos',
   downloadDesktopLinux: 'download_desktop_linux',
@@ -46,13 +45,6 @@ export const WEBSITE_TRACKING_EVENT_CATALOG: readonly WebsiteTrackingEventDefini
     locations: ['Homepage install options desktop card'],
     meaning: 'User wants to learn more about the Desktop offering',
     ga: { category: 'navigation', label: 'openDesktopPage' },
-  },
-  {
-    name: WEBSITE_TRACKING_EVENTS.openSteamStore,
-    description: 'Open the Hagicode Steam store page from a marketing CTA',
-    locations: ['Homepage hero Steam button'],
-    meaning: 'User wants to view the Steam edition of Hagicode',
-    ga: { category: 'store', label: 'openSteamStore' },
   },
   {
     name: WEBSITE_TRACKING_EVENTS.downloadDesktopWindows,

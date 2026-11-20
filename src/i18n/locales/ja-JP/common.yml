@@ -99,7 +99,7 @@ showcase:
       alt: "対応する各 Agent CLI のバージョンと正常状態を表示した HagiCode の AgentCLI 管理テーブル"
     skillsGallery:
       title: "スキルギャラリー"
-      description: "信頼できるスキルの提供元を閲覧し、インストール数を比較し、このマシンに入っているスキルを一目で確認できます。"
+      description: "信頼できるスキルの提供元を閲覧し、内蔵スキルを含め、このマシンに入っているスキルを一目で確認できます。"
       alt: "スキルの提供元、インストール数、ローカルにインストール済みのバッジを並べた HagiCode のスキルギャラリー"
     vault:
       title: "Vault"
@@ -166,9 +166,6 @@ desktopHero:
     privacy: 🔒 プライバシー保護
     fast: ⚡ 高速応答
     crossPlatform: 💻 クロスプラットフォーム対応
-  steam:
-    description: Steam 版ではクラウドセーブや Workshop などの Steam 機能を利用できます。クリックして Steam で確認してください。
-    ariaLabel: Steam で HagiCode を開く
   windowsStore:
     eyebrow: Microsoft Store
     description: Microsoft Store から購読して、常に最新バージョンを保てます。

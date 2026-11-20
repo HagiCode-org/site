@@ -99,7 +99,7 @@ showcase:
       alt: "지원되는 각 Agent CLI의 버전과 정상 상태를 보여 주는 HagiCode AgentCLI 관리 표"
     skillsGallery:
       title: "스킬 갤러리"
-      description: "신뢰할 수 있는 스킬 출처를 둘러보고 설치 수를 비교하며, 이 컴퓨터에 이미 있는 스킬을 한눈에 확인합니다."
+      description: "신뢰할 수 있는 스킬 출처를 둘러보고 내장 스킬을 포함해, 이 컴퓨터에 이미 있는 스킬을 한눈에 확인합니다."
       alt: "스킬 출처, 설치 수, 로컬 설치됨 배지를 나열한 HagiCode 스킬 갤러리"
     vault:
       title: "Vault"
@@ -166,9 +166,6 @@ desktopHero:
     privacy: 🔒 개인정보 보호
     fast: ⚡ 빠른 응답
     crossPlatform: 💻 크로스플랫폼 지원
-  steam:
-    description: Steam 버전은 클라우드 저장과 Workshop 같은 Steam 기능을 지원합니다. 클릭해 Steam에서 확인하세요.
-    ariaLabel: Steam에서 HagiCode 열기
   windowsStore:
     eyebrow: Microsoft Store
     description: Microsoft Store에서 구독하면 항상 최신 버전을 유지할 수 있습니다.

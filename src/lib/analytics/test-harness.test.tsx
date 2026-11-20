@@ -47,42 +47,42 @@ describe('GA click harness', () => {
     expect(gtag).toHaveBeenCalledTimes(2);
   });
 
-  it('reports the declarative Steam CTA and the hyphenated spelling once each', async () => {
+  it('reports the declarative desktop CTA and the hyphenated spelling once each', async () => {
     const container = await harness.render(
       <div>
         <a
           id="hero"
-          href="https://store.steampowered.com/app/hagicode"
-          data-track-event="open_steam_store"
-          data-track-source="home-hero-steam"
+          href="https://www.hagicode.com/desktop/"
+          data-track-event="open_desktop_page"
+          data-track-source="home-hero-desktop"
         />
         <a
           id="faq"
-          href="https://store.steampowered.com/app/hagicode"
-          data-track-event="open-steam-store"
-          data-track-source="home-hero-steam-secondary"
+          href="https://www.hagicode.com/desktop/"
+          data-track-event="open-desktop-page"
+          data-track-source="home-hero-desktop-secondary"
         />
       </div>,
     );
 
     harness.click(container.querySelector('#hero') as Element);
     expect(gtag).toHaveBeenCalledTimes(1);
-    expect(gtag).toHaveBeenLastCalledWith('event', 'store_visit', {
-      event_category: 'store',
-      event_label: 'openSteamStore',
-      link_location: 'home_hero_steam',
-      link_url: 'https://store.steampowered.com/app/hagicode',
+    expect(gtag).toHaveBeenLastCalledWith('event', 'link_click', {
+      event_category: 'navigation',
+      event_label: 'openDesktopPage',
+      link_location: 'home_hero_desktop',
+      link_url: 'https://www.hagicode.com/desktop/',
       transport_type: 'beacon',
     });
 
     gtag.mockClear();
     harness.click(container.querySelector('#faq') as Element);
     expect(gtag).toHaveBeenCalledTimes(1);
-    expect(gtag).toHaveBeenLastCalledWith('event', 'store_visit', {
-      event_category: 'store',
-      event_label: 'openSteamStore',
-      link_location: 'home_hero_steam_secondary',
-      link_url: 'https://store.steampowered.com/app/hagicode',
+    expect(gtag).toHaveBeenLastCalledWith('event', 'link_click', {
+      event_category: 'navigation',
+      event_label: 'openDesktopPage',
+      link_location: 'home_hero_desktop_secondary',
+      link_url: 'https://www.hagicode.com/desktop/',
       transport_type: 'beacon',
     });
   });

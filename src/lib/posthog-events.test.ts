@@ -49,26 +49,26 @@ describe('site PostHog capture wrapper', () => {
   it('drops keys that are not in the event allowlist', () => {
     const posthog = fakePostHog();
 
-    captureSiteEvent('open_steam_store', { source: 'hero', url: 'https://store.steampowered.com/app/x' }, { posthog });
+    captureSiteEvent('open_desktop_page', { source: 'hero', url: 'https://www.hagicode.com/desktop/' }, { posthog });
 
-    expect(posthog.capture).toHaveBeenCalledWith('open_steam_store', { source: 'hero' });
+    expect(posthog.capture).toHaveBeenCalledWith('open_desktop_page', { source: 'hero' });
   });
 
   it('drops non-primitive values even for an allowed key', () => {
     const posthog = fakePostHog();
 
-    captureSiteEvent('open_steam_store', { source: { text: 'nested' } as unknown as string }, { posthog });
-    captureSiteEvent('open_steam_store', { source: ['a'] as unknown as string }, { posthog });
-    captureSiteEvent('open_steam_store', { source: null as unknown as string }, { posthog });
+    captureSiteEvent('open_desktop_page', { source: { text: 'nested' } as unknown as string }, { posthog });
+    captureSiteEvent('open_desktop_page', { source: ['a'] as unknown as string }, { posthog });
+    captureSiteEvent('open_desktop_page', { source: null as unknown as string }, { posthog });
 
-    expect(posthog.capture).toHaveBeenCalledWith('open_steam_store', {});
+    expect(posthog.capture).toHaveBeenCalledWith('open_desktop_page', {});
     expect(posthog.capture).toHaveBeenCalledTimes(3);
   });
 
   it('caps a string value at 128 characters', () => {
     const posthog = fakePostHog();
 
-    captureSiteEvent('open_steam_store', { source: 'a'.repeat(300) }, { posthog });
+    captureSiteEvent('open_desktop_page', { source: 'a'.repeat(300) }, { posthog });
 
     const sent = vi.mocked(posthog.capture).mock.calls[0][1] as Record<string, string>;
     expect(sent.source).toHaveLength(128);

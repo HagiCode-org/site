@@ -18,7 +18,6 @@ page:
     copy: 복사
     copied: 복사됨
   platformBadges:
-    steam: 공식 스토어
     youtube: 공식 채널
   genericLinkText:
     link: 페이지 열기

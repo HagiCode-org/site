@@ -19,7 +19,7 @@ interface AboutSnapshotRuntimeProps {
 }
 
 type AboutRefreshState = 'static' | 'refreshing' | 'synced' | 'noop' | 'fallback';
-type PlatformIconTone = 'steam' | 'youtube' | 'hot' | 'sky' | 'ink' | 'jade' | 'gold';
+type PlatformIconTone = 'youtube' | 'hot' | 'sky' | 'ink' | 'jade' | 'gold';
 type PlatformIconShape =
   | {
       readonly type: 'path';
@@ -93,44 +93,6 @@ const platformIcons: Record<string, PlatformIconDefinition> = {
         d: 'm9.75 15.02 6.24-3.02-6.24-3.02v6.04Z',
         className: 'entry-platform-icon-play',
         fill: '#ff3b30',
-      },
-    ],
-  },
-  steam: {
-    tone: 'steam',
-    viewBox: '0 0 24 24',
-    label: 'Steam',
-    shapes: [
-      {
-        type: 'circle',
-        cx: 16.9,
-        cy: 7.4,
-        r: 2.3,
-        stroke: 'white',
-        strokeWidth: 1.6,
-      },
-      {
-        type: 'circle',
-        cx: 8.4,
-        cy: 15.7,
-        r: 3.6,
-        stroke: 'white',
-        strokeWidth: 1.6,
-      },
-      {
-        type: 'circle',
-        cx: 8.4,
-        cy: 15.7,
-        r: 1.2,
-        fill: 'white',
-      },
-      {
-        type: 'path',
-        d: 'M10.9 13.8 15 9.8',
-        stroke: 'white',
-        strokeWidth: 1.8,
-        strokeLinecap: 'round',
-        strokeLinejoin: 'round',
       },
     ],
   },
@@ -349,10 +311,6 @@ function isScannable(entry: AboutPageEntry): entry is Extract<AboutPageEntry, { 
 function getEntryTone(entry: AboutPageEntry): string {
   if (entry.presentation?.theme === 'youtube') {
     return 'youtube';
-  }
-
-  if (entry.presentation?.theme === 'steam') {
-    return 'steam';
   }
 
   return getPlatformIcon(entry)?.tone ?? FALLBACK_TONE;

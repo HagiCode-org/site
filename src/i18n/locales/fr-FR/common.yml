@@ -99,7 +99,7 @@ showcase:
       alt: "Tableau de gestion AgentCLI de HagiCode avec la version et l'état de chaque Agent CLI pris en charge"
     skillsGallery:
       title: "Galerie de compétences"
-      description: "Parcourez des sources de compétences fiables, comparez les installations et repérez d'un coup d'œil celles déjà présentes sur cette machine."
+      description: "Parcourez des sources de compétences fiables, dont les compétences intégrées, et repérez d'un coup d'œil celles déjà présentes sur cette machine."
       alt: "Galerie de compétences HagiCode avec source, nombre d'installations et badge Installé localement"
     vault:
       title: "Vault"
@@ -166,9 +166,6 @@ desktopHero:
     privacy: 🔒 Protection de la confidentialité
     fast: ⚡ Réponse rapide
     crossPlatform: 💻 Compatibilité multiplateforme
-  steam:
-    description: L'édition Steam prend en charge des fonctionnalités Steam comme les sauvegardes cloud et le Workshop. Cliquez pour l'ouvrir sur Steam.
-    ariaLabel: Ouvrir HagiCode sur Steam
   windowsStore:
     eyebrow: Microsoft Store
     description: Abonnez-vous via le Microsoft Store pour rester sur la version la plus récente.

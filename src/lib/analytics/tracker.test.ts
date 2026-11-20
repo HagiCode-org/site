@@ -62,7 +62,7 @@ describe('website analytics runtime', () => {
     runtime.initialize();
 
     const firstResult = runtime.trackEvent(WEBSITE_TRACKING_EVENTS.openDesktopPage);
-    const secondResult = runtime.trackEvent(WEBSITE_TRACKING_EVENTS.openSteamStore);
+    const secondResult = runtime.trackEvent(WEBSITE_TRACKING_EVENTS.downloadDesktop);
 
     expect(firstResult).toBe('queued');
     expect(secondResult).toBe('queued');
@@ -73,7 +73,7 @@ describe('website analytics runtime', () => {
 
     expect(sentEvents).toEqual([
       WEBSITE_TRACKING_EVENTS.openDesktopPage,
-      WEBSITE_TRACKING_EVENTS.openSteamStore,
+      WEBSITE_TRACKING_EVENTS.downloadDesktop,
     ]);
     expect(runtime.getPendingCount()).toBe(0);
   });
@@ -175,7 +175,7 @@ describe('website analytics runtime', () => {
       { name: WEBSITE_TRACKING_EVENTS.downloadDesktop, context: { source: 'navbar', url: '/download/' } },
       { name: WEBSITE_TRACKING_EVENTS.openDesktopPage, context: { source: 'install-options-desktop', url: '/desktop/' } },
       { name: WEBSITE_TRACKING_EVENTS.downloadDesktopWindows, context: { source: 'desktop_hero', url: 'https://example.com/a.exe' } },
-      { name: WEBSITE_TRACKING_EVENTS.openSteamStore, context: { source: 'hero-section-steam' } },
+      { name: WEBSITE_TRACKING_EVENTS.downloadDesktopMacOS, context: { source: 'desktop_hero' } },
     ] as const;
 
     /** Real GA mirror over a recording gtag, so GA call arguments are compared exactly. */
@@ -328,14 +328,14 @@ describe('website analytics runtime', () => {
       const { click, mirror, send } = setup();
 
       click(
-        { trackEvent: 'open-steam-store', trackSource: 'home-hero-steam' },
-        'https://store.steampowered.com/app/hagicode',
+        { trackEvent: 'open-desktop-page', trackSource: 'home-hero-desktop' },
+        'https://www.hagicode.com/desktop/',
       );
 
-      const context = { source: 'home-hero-steam', url: 'https://store.steampowered.com/app/hagicode' };
-      expect(send).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openSteamStore, context);
+      const context = { source: 'home-hero-desktop', url: 'https://www.hagicode.com/desktop/' };
+      expect(send).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openDesktopPage, context);
       expect(mirror.mirror).toHaveBeenCalledTimes(1);
-      expect(mirror.mirror).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openSteamStore, context);
+      expect(mirror.mirror).toHaveBeenCalledWith(WEBSITE_TRACKING_EVENTS.openDesktopPage, context);
     });
 
     it('still recognizes the underscore spelling and leaves url empty without an href', () => {

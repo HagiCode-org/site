@@ -23,12 +23,3 @@ export const FEATURE_MAC_DOWNLOAD_ENABLED = parseBooleanFlag(
   true
 );
 
-export const FEATURE_SITE_STEAM_ENABLED = parseBooleanFlag(
-  import.meta.env.VITE_FEATURE_SITE_STEAM_ENABLED,
-  false
-);
-
-export const FEATURE_SITE_DLC_ENABLED = parseBooleanFlag(
-  import.meta.env.VITE_FEATURE_SITE_DLC_ENABLED,
-  false
-);

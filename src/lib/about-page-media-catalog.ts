@@ -41,10 +41,6 @@ const entryCopyOverrides = {
       detail: 'Official Microsoft Store listing',
       linkText: 'Open listing',
     },
-    steam: {
-      detail: 'Official store page',
-      linkText: 'Open store',
-    },
     devto: {
       detail: 'Engineering blog',
       linkText: 'Read posts',
@@ -75,10 +71,6 @@ const entryCopyOverrides = {
     'windows-store': {
       label: 'Windows 商店',
       detail: 'Windows 应用商店官方上架页',
-      linkText: '打开商店页',
-    },
-    steam: {
-      detail: '官方商店页',
       linkText: '打开商店页',
     },
     bilibili: {

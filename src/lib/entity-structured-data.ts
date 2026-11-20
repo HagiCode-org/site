@@ -16,7 +16,7 @@ import { DEFAULT_WINDOWS_STORE_URL } from '@/lib/shared/windows-store-link';
  *
  * Deliberately omitted:
  * - `offers`: the site copy does not establish the terms of a free or paid offer (see brand-audit.md).
- * - Steam: its storefront is hidden by `FEATURE_SITE_STEAM_ENABLED` by default.
+ * - Steam: not launched, so no Steam page is advertised.
  * - QQ group: it has no stable public profile page.
  */
 
