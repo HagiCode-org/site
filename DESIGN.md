@@ -198,7 +198,7 @@ Each component should read like a control surface in a coherent system: decisive
 - **State:** Hover may rotate the icon slightly and intensify the glow, but reduced-motion users must get a stable version with no rotational flourish.
 
 ### Signature Component
-- **Segmented Install Button:** This is the clearest expression of the site's conversion model. The primary action, alternate sources, Steam path, and dropdown affordance share a single segmented rail. It should always feel cohesive, high-priority, and immediately scannable.
+- **Segmented Install Button:** This is the clearest expression of the site's conversion model. The primary action, alternate sources, and dropdown affordance share a single segmented rail. It should always feel cohesive, high-priority, and immediately scannable.
 
 ## 6. Do's and Don'ts
 

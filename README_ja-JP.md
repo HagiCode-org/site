@@ -28,17 +28,13 @@
 
 ---
 
-## Microsoft Store And Add-ons
+## Microsoft Store
 
 HagiCode for Windows は Microsoft Store で提供されており、Windows で始めるための推奨の方法です。Store でインストールして購読すると最新バージョンを維持でき、ダウンロードや製品の詳細は公式サイト [hagicode.com](https://www.hagicode.com/) で確認できます。
 
-TurboEngine は Microsoft Store で販売されている買い切りの永続ライセンスで、Desktop 版インストールには含まれない機能を解放します。同時提案数は 3 から 32 に増え、ドキュメントテーマ、カスタムコミット署名、ブランドのカスタマイズ、カスタムアバターのアップロードも利用できます。
-
 | プレビュー | 製品 | 概要 | 開始先 |
 | --- | --- | --- | --- |
-| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Windows でのデスクトップアプリの推奨入口です。インストールして購読すると最新バージョンを維持できます。Steam のメインアプリケーション入口は終了しました。 | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
-| <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus bundle artwork" width="280" /> | **Hagicode Plus** | Bundle and upgrade guidance remains available through the docs site. | [Read Hagicode Plus docs](https://docs.hagicode.com/bundles/hagicode-plus/) |
-| <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC artwork" width="280" /> | **Turbo Engine DLC** | DLC guidance for higher concurrency and customization remains available through the docs site. | [Read Turbo Engine DLC docs](https://docs.hagicode.com/dlc/turbo-engine-dlc/) |
+| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Windows でのデスクトップアプリの推奨入口です。インストールして購読すると最新バージョンを維持できます。 | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) |
 
 ## HagiCode とは
 
@@ -88,7 +84,6 @@ HagiCode は、実績、日次レポート、効率倍率、トークン処理�
 - [Product Overview](https://docs.hagicode.com/product-overview/) で公式の公開製品紹介を見る
 - [Desktop](https://www.hagicode.com/desktop/) でローカルファーストの導入とサービス管理を見る
 - [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) は Windows でインストールして購読し、最新バージョンを維持するための入口
-- [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) で製品更新と長文記事を見る
 
 ## ライセンス

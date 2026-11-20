@@ -71,7 +71,7 @@ Images from the img-gen library on R2 (`https://img-gen.hagicode.com`) follow `r
 
 ## Google Analytics Events
 
-- Click events use the shared Hagilight vocabulary (`download_click` for installer downloads, `store_visit` for Microsoft Store and Steam listings, `link_click` for everything else; categories `download`, `store`, `navigation`, `community`, `promotion`). Store controls use category `store`, never `download`. Labels are stable ids, never localized text. Rules, labels, and locations live in the mono-root `docs/google-analytics-integration-reference.md`.
+- Click events use the shared Hagilight vocabulary (`download_click` for installer downloads, `store_visit` for Microsoft Store listings, `link_click` for everything else; categories `download`, `store`, `navigation`, `community`, `promotion`). Store controls use category `store`, never `download`. Labels are stable ids, never localized text. Rules, labels, and locations live in the mono-root `docs/google-analytics-integration-reference.md`.
 - **One mechanism per element.** A control reports either through the unified tracker (`trackEvent()` or `data-track-event`, which reaches 51LA and, through the GA mirror in `src/lib/analytics/provider-ga.ts`, Google Analytics) or through `data-ga-*` attributes from `gaEventAttributes()` (`@hagicode/hagilight-core/analytics-events`, Google Analytics only). Never both: one click would send two GA events. Use the tracker where the catalog in `src/lib/analytics/events.ts` already names the surface; tag everything else.
 - A new tracker event needs the required `ga: { category, label }` field in the catalog, otherwise the type check fails. Pass `url` to `trackEvent()` when the destination is in scope.
 - Test a new tracked control with `setupGaClickHarness()` from `src/lib/analytics/test-harness.ts` (jsdom): it installs the listener and the tracker over one stub `gtag`, so assert exactly one `gtag('event', …)` call per click.
@@ -85,13 +85,12 @@ Every event in `WEBSITE_TRACKING_EVENT_CATALOG` (`src/lib/analytics/events.ts`) 
 |-------|------------|------------|
 | `download_desktop` | `source` | Primary install/download CTA is activated |
 | `open_desktop_page` | `source` | Navigation from the homepage into the Desktop page |
-| `open_steam_store` | `source` | The Steam store CTA is activated |
 | `download_desktop_windows` | `source`, `platform` (`windows`) | A Windows Desktop package download is activated |
 | `download_desktop_macos` | `source`, `platform` (`macos`) | A macOS Desktop package download is activated |
 | `download_desktop_linux` | `source`, `platform` (`linux`) | A Linux Desktop package download is activated |
 
 - `source` is the tracked location normalized as the GA `link_location` (trimmed, hyphens to underscores, default `website`). `platform` appears only on the three download events.
-- **Deduplication with `cta_click`:** the six events are sent from `trackEvent()` and never from an element tagged with `data-ga-*`, so one click produces one business event and no `cta_click`. If a control ever gains a `data-ga-*` marker, the business event is the canonical record of that click, and dashboards must not add it to `cta_click` counts.
+- **Deduplication with `cta_click`:** the five events are sent from `trackEvent()` and never from an element tagged with `data-ga-*`, so one click produces one business event and no `cta_click`. If a control ever gains a `data-ga-*` marker, the business event is the canonical record of that click, and dashboards must not add it to `cta_click` counts.
 - `src/lib/analytics/posthog-docs.test.ts` checks that this list matches the catalog.
 
 ## Package management

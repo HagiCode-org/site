@@ -12,7 +12,7 @@ brand
 
 ## Users
 
-HagiCode's public site serves developers, tech leads, indie teams, and self-hosted operators who are evaluating an AI coding workspace. They arrive from GitHub, docs, release notes, social posts, Steam, and search. They need to understand what HagiCode is, why it is different from code-chat tools, and which public entry point fits them: website, docs, desktop, container, or Steam.
+HagiCode's public site serves developers, tech leads, indie teams, and self-hosted operators who are evaluating an AI coding workspace. They arrive from GitHub, docs, release notes, social posts, and search. They need to understand what HagiCode is, why it is different from code-chat tools, and which public entry point fits them: website, docs, desktop, or container.
 
 ## Product Purpose
 

@@ -28,17 +28,13 @@
 
 ---
 
-## Microsoft Store And Add-ons
+## Microsoft Store
 
 HagiCode for Windows is available on the Microsoft Store, the recommended way to start on Windows. Install and subscribe there to stay on the latest version, and use the official website at [hagicode.com](https://www.hagicode.com/) for downloads and product details.
 
-TurboEngine, a one-time perpetual license sold in the Microsoft Store, unlocks capabilities the Desktop install does not include: 32 concurrent proposals instead of 3, document themes, a custom commit signature, brand customization and custom avatar uploads.
-
 | Preview | Product | What it is | Start here |
 | --- | --- | --- | --- |
-| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Recommended entry point for the desktop app on Windows: install and subscribe to stay on the latest version. The Steam main application entry has been retired. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) · [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) |
-| <img src="./src/assets/img/readme-sync/steam/hagicode-plus-wide-capsule.png" alt="Hagicode Plus bundle artwork" width="280" /> | **Hagicode Plus** | Bundle and upgrade guidance remains available through the docs site. | [Read Hagicode Plus docs](https://docs.hagicode.com/bundles/hagicode-plus/) |
-| <img src="./src/assets/img/readme-sync/steam/turbo-engine-wide-capsule.png" alt="Turbo Engine DLC artwork" width="280" /> | **Turbo Engine DLC** | DLC guidance for higher concurrency and customization remains available through the docs site. | [Read Turbo Engine DLC docs](https://docs.hagicode.com/dlc/turbo-engine-dlc/) |
+| <img src="./src/assets/img/readme-sync/workspace-overview.png" alt="HagiCode desktop workspace preview" width="280" /> | **HagiCode for Windows** | Recommended entry point for the desktop app on Windows: install and subscribe to stay on the latest version. | [Open Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) · [Desktop downloads](https://www.hagicode.com/desktop/) |
 
 ## What HagiCode Is
 
@@ -88,7 +84,6 @@ HagiCode treats achievements, daily reports, efficiency multipliers, token throu
 - [Product Overview](https://docs.hagicode.com/product-overview/) for the canonical public introduction
 - [Desktop](https://www.hagicode.com/desktop/) for local-first installation and service management
 - [Microsoft Store](https://apps.microsoft.com/detail/9N3PM0N3SVDW) to install and subscribe on Windows and stay on the latest version
-- [Steam status FAQ](https://docs.hagicode.com/faq/steam-distribution-status/) for why the Steam main application is no longer the primary channel
 - [Blog](https://docs.hagicode.com/blog/) for product updates and long-form posts
 
 ## License
