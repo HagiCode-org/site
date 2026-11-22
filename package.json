@@ -29,10 +29,6 @@
     "test": "pnpm run prepare:i18n && vitest run",
     "test:ui": "vitest --ui",
     "test:watch": "vitest",
-    "generate:image": "node scripts/generate-image.mjs",
-    "generate:image:custom": "node scripts/generate-image.mjs",
-    "generate:product-images": "node scripts/generate-image.mjs --batch-config scripts/product-images-batch.json",
-    "regenerate:product-images": "node scripts/generate-image.mjs --batch-config scripts/product-images-batch.json --force",
     "check:registry": "node scripts/check-registry-neutrality.mjs",
     "test:registry": "node --test scripts/check-registry-neutrality.node-test.mjs"
   },
