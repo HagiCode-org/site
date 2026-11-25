@@ -19,7 +19,7 @@ const siteAssetUrlsSource = readFileSync(new URL('../assets/siteAssetUrls.ts', i
 
 describe('homepage showcase image delivery', () => {
   it.each(showcaseScreenshots)('imports %s from a relative path with no query', (name) => {
-    const relativeImport = new RegExp(`import \\w+ from '\\.\\./assets/img/home/${name}\\.png';`, 'u');
+    const relativeImport = new RegExp(`import \\w+ from '\\.\\./assets/img/home/${name}\\.avif';`, 'u');
 
     expect(homePageSource, `${name} must be imported relatively with no query`).toMatch(relativeImport);
   });

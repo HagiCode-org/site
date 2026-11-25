@@ -14,7 +14,7 @@ import type { ScreenshotId, ShowcaseImageSources } from './ShowcaseParts';
 const copy = getHomepageShowcaseCopy('en-US');
 
 function sourcesFor(id: string): ShowcaseImageSources {
-  const set = { avif: `/${id}.avif 960w`, webp: `/${id}.webp 960w`, src: `/${id}.png` };
+  const set = { avif: `/${id}.avif 960w`, webp: `/${id}.webp 960w`, src: `/${id}.webp` };
   return { ...set, width: 2400, height: 1500, thumb: { avif: `/${id}-t.avif`, webp: `/${id}-t.webp`, src: `/${id}-t.webp` } };
 }
 

@@ -15,16 +15,16 @@ import MicrosoftStoreBadgeScript from '@/components/MicrosoftStoreBadgeScript.as
 import SeoAlternateLinks from '@/components/SeoAlternateLinks.astro';
 import { serializeJsonLd } from '@hagicode/hagilight-core/seo';
 import { buildEntityStructuredData } from '@/lib/entity-structured-data';
-import showcaseSessionBoard from '../assets/img/home/showcase-session-board.png';
-import showcaseProposalWorkflow from '../assets/img/home/showcase-proposal-workflow.png';
-import showcaseAgentRoster from '../assets/img/home/showcase-agent-roster.png';
-import showcaseAgentCli from '../assets/img/home/showcase-agent-cli.png';
-import showcaseSkillsGallery from '../assets/img/home/showcase-skills-gallery.png';
-import showcaseVault from '../assets/img/home/showcase-vault.png';
-import showcaseTokenUsage from '../assets/img/home/showcase-token-usage.png';
-import showcaseAchievements from '../assets/img/home/showcase-achievements.png';
-import showcaseGitManagement from '../assets/img/home/showcase-git-management.png';
-import showcaseScheduledPlans from '../assets/img/home/showcase-scheduled-plans.png';
+import showcaseSessionBoard from '../assets/img/home/showcase-session-board.avif';
+import showcaseProposalWorkflow from '../assets/img/home/showcase-proposal-workflow.avif';
+import showcaseAgentRoster from '../assets/img/home/showcase-agent-roster.avif';
+import showcaseAgentCli from '../assets/img/home/showcase-agent-cli.avif';
+import showcaseSkillsGallery from '../assets/img/home/showcase-skills-gallery.avif';
+import showcaseVault from '../assets/img/home/showcase-vault.avif';
+import showcaseTokenUsage from '../assets/img/home/showcase-token-usage.avif';
+import showcaseAchievements from '../assets/img/home/showcase-achievements.avif';
+import showcaseGitManagement from '../assets/img/home/showcase-git-management.avif';
+import showcaseScheduledPlans from '../assets/img/home/showcase-scheduled-plans.avif';
 import personaStrategistAvatar from '../assets/r2/cat-head-gallery/g017-cyanotype-06-256.avif';
 import personaRunnerAvatar from '../assets/r2/cat-head-gallery/g004-pixel-art-03-256.avif';
 import personaArtistAvatar from '../assets/r2/cat-head-gallery/g045-impressionist-08-256.avif';
@@ -108,7 +108,7 @@ async function getShowcaseImageSources(source: ImageMetadata) {
   return {
     avif: avif.srcSet.attribute,
     webp: webp.srcSet.attribute,
-    src: source.src,
+    src: webp.src,
     width: source.width,
     height: source.height,
     thumb: { avif: thumbAvif.src, webp: thumbWebp.src, src: thumbWebp.src },
