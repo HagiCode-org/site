@@ -1,0 +1,1 @@
+var e=`hagilight:consent-open-change`;function t(){return typeof document<`u`&&document.documentElement.hasAttribute(`data-hagilight-consent-open`)}function n(n){typeof document<`u`&&t()!==n&&(document.documentElement.toggleAttribute(`data-hagilight-consent-open`,n),document.dispatchEvent(new Event(e)))}export{t as n,n as r,e as t};
