@@ -29,7 +29,7 @@ pnpm run i18n:check
 pnpm run check:registry
 ```
 
-Requires Node.js 24+ (`engines` in `package.json`). `pnpm run build` also runs `sync:about-snapshot`, `seo:audit` and `verify:ga` after the Astro build.
+Requires Node.js 24+ (`engines` in `package.json`). `pnpm run build` also runs `sync:about-snapshot` before the Astro build, and `seo:audit` and `verify:ga` after it.
 
 ## Key Paths
 
